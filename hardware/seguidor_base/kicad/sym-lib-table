@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "seguidor")(type "KiCad")(uri "${KIPRJMOD}/seguidor.kicad_sym")(options "")(descr "DRV8874PWP e simbolo de alimentacao VBAT"))
+)

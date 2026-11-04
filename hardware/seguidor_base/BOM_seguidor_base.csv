@@ -1,0 +1,51 @@
+﻿Qtd;Referencias;Valor;Encapsulamento;LCSC;Montagem;EVA-RT;Observacao
+2;C1 C2;220uF;eletrolitico 25 V, radial D6,3 mm P2,5;;sim;igual;entre os pes da carcaca, como no EVA-RT
+1;C3;220nF;0603 50 V;;sim;igual;
+4;C4 C9 C10 C17;100nF;0603;;sim;"igual; novo";"junto aos pinos VCC; AREF (referencia = AVCC no firmware); reset automatico pelo DTR"
+1;C5;47uF;tantalo 10 V, 3216 (caso A);;sim;igual;
+2;C6 C7;100nF;0603 25 V X7R;;sim;igual;VM, junto ao pino 11
+1;C8;100nF;0603 25 V;;sim;igual;
+2;C11 C12;22pF;0603;;sim;novo;
+2;C13 C15;100nF;0603 16 V X7R;;sim;novo;VCP -> VM
+2;C14 C16;22nF;0603 50 V X7R;;sim;novo;CPH -> CPL (tensao >= VM)
+1;D1;1N5819;SOD-123 (B5819W) ou 1N5819 nos terminais do motor;;sim;novo;"diodo de roda livre (novo; o EVA-RT nao tem)"
+1;J1;XT30 (bateria 2S);XT30PW-M de placa ou rabicho XT30;;sim;VIN;pino 1 = +, pino 2 = -
+1;J2;BARRA (1x8, 2,54 mm);barra de pinos 1x8 2,54 mm;;sim;FPC1 (FPC 10 vias);
+1;J3;GRAVACAO (90 graus, 2,54);barra de pinos macho 1x5 90 graus 2,54 mm;;sim;Converter Conn Master;borda traseira, em cima
+1;J5;ICSP (pads SMD embaixo);6 pads SMD D1,8 em grade 2,54;;sim;USB to ASP Conn Master;"posicoes do EVA-RT: x 33,97/36,51; y -8,36/-10,90/-13,44"
+1;LED1;LED A;0603;;sim;igual;
+1;LED2;LED B;0603;;sim;igual;
+1;LED4;LED C;0603;;sim;igual;"vermelho; o LED3 em paralelo do EVA-RT foi retirado"
+1;LED5;verde;0603;;sim;igual;indica 5 V presente
+1;LED6;TX;0603;;sim;igual;
+1;M1;1020 esq.;2 pads;;sim;igual;"coreless 1020 7,4 V; se girar ao contrario, inverta os fios"
+1;M2;1020 dir.;2 pads;;sim;igual;"coreless 1020 7,4 V; se girar ao contrario, inverta os fios"
+1;M3;ventoinha;2 pads;;sim;igual;coreless 1020 7,4 V
+1;Q1;AO3400A;SOT-23 (1 = G, 2 = S, 3 = D);C20917;sim;Q1 (outro MOSFET);"no lugar do IRFR3411/RM10N100LD; liga totalmente com 5 V no gate"
+5;R1 R5 R6 R7 R10;1k;0603;;sim;igual;
+3;R3 R8 R15;10k;0603;;sim;"R3 (1k); igual; novo";"EVA-RT usava 1k; 10k com reset automatico por DTR; gate -> GND (desligado no boot); nSLEEP sempre alto (pull-down interno de 100k)"
+1;R9;200;0603;;sim;igual;gate
+2;R11 R12;1.5k 1%;0603;;sim;novo;IPROPI -> limite de corrente
+1;R13;15k 1%;0603;;sim;novo;VREF = 2,0 V
+1;R14;10k 1%;0603;;sim;novo;VREF = 2,0 V
+2;R20 R21;220;0603;;sim;igual;
+2;R30 R31;47k;0603;;sim;igual;
+2;S0 S1;QRE1113GR;SMD 4 pinos;;sim;igual;datasheet: 1 = anodo, 2 = catodo, 3 = coletor, 4 = emissor
+1;SW0;RESET;botao tatil 2 pinos (furo) ou B3U-1000P;;sim;igual;
+1;SW1;BOTAO 1;botao tatil 2 pinos (furo) ou B3U-1000P;;sim;igual;
+1;SW2;BOTAO 2;botao tatil 2 pinos (furo) ou B3U-1000P;;sim;igual;
+1;U1;ATmega328P-AU;TQFP-32;C14877;sim;igual;do Nano/Uno doador (com bootloader) ou novo + bootloader pelo ICSP
+2;U2 U3;DRV8874PWPR;HTSSOP-16 (PWP), pad termico com vias;C1855818;sim;"IFX_A1 (IFX9201); IFX_B1 (IFX9201)";"esq.; dir."
+1;U5;78M05;TO-252 (DPAK);C111265;sim;igual;
+1;X1;16MHz;HC-49/S SMD ou 3225 (o que vier do doador);;sim;X1 (ressonador 3 pinos);ou o ressonador CSTCE16M0V13 do EVA-RT (3 pinos), sem C11/C12
+1;C18;100nF;0603;;opcional (bateria);novo;filtro da medicao (opcional)
+1;J4;BLUETOOTH (femea 1x6, ordem HC-05);barra femea 1x6 2,54 mm;;opcional (Bluetooth);novo;"frente direita, x = 32,5; HC-06 nas vias 2-5 (virado)"
+1;J8;ASA ESQ.;4 pads;;nao montar (DNP);novo;opcional: nao montar se o braco for parte da placa base
+1;J9;ASA DIR.;4 pads;;nao montar (DNP);novo;opcional: nao montar se o braco for parte da placa base
+1;LED7;RX (opcional);0603;;opcional;igual;sem ele, R18 pode ser 4,7k
+1;R2;1k;0603;;opcional;igual;opcional
+1;R16;1k;0603;;opcional (Bluetooth);novo;divisor 5 V -> 3,3 V
+1;R17;2k;0603;;opcional (Bluetooth);novo;divisor 5 V -> 3,3 V
+1;R18;0;0603;;opcional (Bluetooth);novo;"0 ohm; 4,7k se o LED7 nao for montado"
+1;R23;20k 1%;0603;;opcional (bateria);novo;medicao da bateria (opcional)
+1;R24;10k 1%;0603;;opcional (bateria);novo;medicao da bateria (opcional)

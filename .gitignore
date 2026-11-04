@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+# KiCad
+*-backups/
+*.kicad_sch-bak
+*.lck
+fp-info-cache
+_autosave-*
+# netlist exportada (regenerável a partir do .kicad_sch; a lista legível é REDES.md)
+*.net
+# sistema
+.DS_Store
+Thumbs.db
+desktop.ini

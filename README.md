@@ -11,8 +11,8 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 ## Estado
 - [x] Componentes definidos
 - [x] Contorno definitivo (`hardware/contorno/`)
-- [x] Esquemático rev 1.0 em KiCad (`hardware/seguidor_base/seguidor_base.pdf`)
-- [ ] Esquemático no EasyEDA Pro (em andamento; conferir com `hardware/seguidor_base/REDES.md`)
+- [x] Esquemático rev 1.0 em KiCad (`hardware/seguidor_base/seguidor_base.pdf`; fonte em `ferramentas/esquematico/`)
+- [ ] Importação no EasyEDA Pro (em andamento; conferir com `hardware/seguidor_base/REDES.md`)
 - [ ] Layout da placa (EasyEDA Pro)
 - [ ] Pedido na JLC
 - [ ] Montagem e firmware
@@ -20,14 +20,15 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 ## Estrutura
 | Pasta | Conteúdo |
 |---|---|
-| `docs/` | decisões do seguidor (as mais novas: `DECISOES_2026-11-04.md`), contorno e esquemático |
-| `docs/perseguidor/` | contexto do perseguidor (ESP32-C3, TB6612, N20), que também vai ganhar placa na JLC |
-| `docs/fenolite/` | plano B do seguidor em fenolite (v4/v5); imagens e arquivos no repositório `therickmatos/seguidor-fenolite` |
+| `docs/` | decisões (as mais novas: `DECISOES_2026-11-04.md`), contorno e esquemático |
 | `hardware/contorno/` | contorno B definitivo (DXF) e figuras de conferência |
-| `hardware/seguidor_base/` | esquemático rev 1.0 (PDF), BOM, lista de redes; `kicad/` com o projeto KiCad de referência |
+| `hardware/seguidor_base/` | esquemático rev 1.0 (projeto KiCad, PDF), BOM, lista de redes (`REDES.md`) |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (12 sensores) |
 | `hardware/figuras/` | posição do conector do Bluetooth |
+| `ferramentas/esquematico/` | scripts que geram o esquemático KiCad, a BOM e a lista de redes |
 | `referencias/eva-rt/` | cópia do EVA-RT: projeto EasyEDA Pro, Gerbers, PDFs, STL e firmware |
+
+O perseguidor e o seguidor em fenolite são outros projetos e não estão neste repositório.
 
 ## Licença
 GNU Affero General Public License v3.0 (`LICENSE`), a mesma do EVA-RT.

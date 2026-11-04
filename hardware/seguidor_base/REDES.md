@@ -1,8 +1,12 @@
-# Redes da placa base (referência para o port KiCad → EasyEDA)
+# Redes da placa base (conferência da importação KiCad → EasyEDA)
 
-_Gerado da netlist do esquemático KiCad rev 1.0 (`kicad/seguidor_base.kicad_sch`). Depois de passar o esquemático para o EasyEDA Pro, conferir rede por rede. Formato: `REF.pino (nome do pino)`. Valores e encapsulamentos em `BOM_seguidor_base.csv`._
+_Gerado por `ferramentas/esquematico/redes.py` a partir da netlist do `seguidor_base.kicad_sch` (rev 1.0). Depois de importar o esquemático no EasyEDA Pro, conferir rede por rede. Formato: `REF.pino (nome do pino)`. Valores e encapsulamentos em `BOM_seguidor_base.csv`._
 
 **54 redes**, **7 pinos sem ligação**.
+
+**Atenção na importação:**
+- No símbolo do ATmega (U1), os pinos 5 e 21 (GND) e 6 (VCC) estão escondidos e empilhados sobre os pinos 3 e 4; no KiCad eles se ligam pela posição. Conferir no EasyEDA se U1.5 e U1.21 estão no GND e U1.6 no +5V.
+- `VBAT`, `+5V` e `GND` vêm de símbolos de alimentação (ligação pelo nome): conferir que chegaram com esses nomes.
 
 | Rede | Pinos | Qtd |
 |---|---|---|

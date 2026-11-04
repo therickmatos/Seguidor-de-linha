@@ -6,11 +6,11 @@ Mantenha o crédito e a licença se publicar o projeto.
 ## Arquivos (`hardware/seguidor_base/`)
 - `seguidor_base.pdf` – esquemático em A3
 - `BOM_seguidor_base.csv` – lista de material (separador `;`, abre no Excel/LibreOffice)
-- `REDES.md` – todas as redes com os pinos ligados, para conferir o esquemático no EasyEDA Pro
-- `kicad/seguidor_base.kicad_sch` – esquemático (KiCad 7 ou mais novo; abre sozinho, os símbolos estão embutidos)
-- `kicad/seguidor_base.kicad_pro`, `kicad/sym-lib-table`, `kicad/seguidor.kicad_sym` – projeto e biblioteca local (DRV8874PWP e VBAT)
+- `REDES.md` – todas as redes com os pinos ligados, para conferir a importação no EasyEDA Pro
+- `seguidor_base.kicad_sch` – esquemático (KiCad 7 ou mais novo; abre sozinho, os símbolos estão embutidos)
+- `seguidor_base.kicad_pro`, `sym-lib-table`, `seguidor.kicad_sym` – projeto e biblioteca local (DRV8874PWP e VBAT)
 
-O KiCad fica congelado como referência (rev 1.0). O esquemático está sendo passado para o EasyEDA Pro, que vira a fonte a partir daí.
+Fonte: `ferramentas/esquematico/gen.py` (ver `ferramentas/README.md`). O EasyEDA Pro recebe o esquemático importado para o layout e o pedido na JLC.
 
 Conectividade conferida contra a netlist exportada pelo KiCad: 54 redes, nenhuma fusão indevida,
 7 pinos sem uso marcados com X (PB0/D8, PB1/D9, J2.3, J4.1, J4.6, nFAULT das duas pontes).

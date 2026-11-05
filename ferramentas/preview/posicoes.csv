@@ -1,0 +1,70 @@
+ref;valor;footprint;face;x_mm;y_mm;rot_graus;mudou_do_EVA-RT;motivo
+C1;220uF;C_RAD_D6.3_P2.5;TOP;-22,000;2,060;-90;nao;EVA-RT mantido (eletrolitico entre os pes da carcaca)
+C2;220uF;C_RAD_D6.3_P2.5;TOP;21,500;2,060;90;sim;mudou 0,5 mm (era x 22,0): libera o Q1 entre C2 e a ventoinha
+C3;220nF;C0603;TOP;-19,180;7,000;90;nao;EVA-RT mantido
+C4;100nF;C0603;TOP;-24,260;10,120;90;nao;EVA-RT mantido
+C5;47uF;C_TANT_3216_A;TOP;-21,720;8,000;-90;nao;EVA-RT mantido (tantalo)
+C6;100nF;C0603;TOP;-21,375;-16,725;0;sim;VM: junto ao pino 11 (U2)
+C7;100nF;C0603;TOP;23,975;-8,175;0;sim;VM: junto ao pino 11 (U3)
+C8;100nF;C0603;TOP;28,820;-0,220;180;sim;100 nF do VBAT (perto do VBAT da ventoinha)
+C9;100nF;C0603;TOP;-5,150;-27,550;45;sim;100 nF do VCC (U1.4/U1.6): <= 2 mm do pino
+C10;100nF;C0603;TOP;5,501;-18,864;0;sim;100 nF do AREF (U1.20): <= 2 mm do pino
+C11;22pF;C0603;TOP;-6,602;-22,041;90;sim;22 pF do XTAL1
+C12;22pF;C0603;TOP;-7,719;-28,474;135;sim;22 pF do XTAL2
+C13;100nF;C0603;TOP;-21,425;-18,225;0;sim;VCP -> VM (U2)
+C14;22nF;C0603;TOP;-18,550;-16,025;90;sim;CPH-CPL (U2)
+C15;100nF;C0603;TOP;21,025;-8,175;0;sim;VCP -> VM (U3)
+C16;22nF;C0603;TOP;18,550;-10,475;90;sim;CPH-CPL (U3)
+C17;100nF;C0603;TOP;5,805;-26,903;180;sim;DTR -> RESET (auto-reset)
+C18;100nF;C0603;TOP;6,670;-24,133;90;sim;medicao VBAT (opcional)
+D1;1N5819;SOD123;TOP;27,020;3,050;90;sim;roda livre da ventoinha (catodo no VBAT)
+J1;XT30 (bateria 2S);XT30_RABICHO;TOP;-27,200;-0,800;90;sim;bateria XT30 rabicho: lateral esquerda (no lugar do VIN nao coube)
+J2;BARRA (1x8, 2,54 mm);HDR_1x08_P2.54;TOP;0,000;22,740;0;sim;barra de sensores 1x8, linha y 22,74
+J3;GRAVACAO (90 graus, 2,54);HDR_RA_1x05_P2.54;TOP;9,000;-28,750;0;sim;"gravacao 1x5, rot 0, pontas para -y; x = 9,0 (proposta: velcro 2,2 mm para fora)"
+J4;BLUETOOTH (femea 1x6, ordem HC-05);HDR_F_1x06_P2.54;TOP;33,000;7,050;0;sim;"BT femea 1x6 (pino 1 em y 0,7, pino 6 em y 13,4); x = 33,0 (corpo do socket nao cruza o M3)"
+J5;ICSP (pads SMD embaixo);ICSP_6P_SMD_BOT;BOTTOM;35,244;-10,901;0;sim;ICSP: posicoes do EVA-RT (face BOTTOM)
+J8;ASA ESQ.;WING_L_1x4_SMD;TOP;-45,044;4,510;0;sim;"DNP (nao montar; pode apagar no layout). DNP: asa esq. (pode apagar no layout)"
+J9;ASA DIR.;WING_R_1x4_SMD;TOP;45,044;4,510;0;sim;"DNP (nao montar; pode apagar no layout). DNP: asa dir. (pode apagar no layout)"
+LED1;LED A;LED0603;TOP;-69,500;4,500;-90;sim;sensor esq.: LED sobre o QRE (braco integrado)
+LED2;LED B;LED0603;TOP;69,500;4,500;90;sim;sensor dir.: LED sobre o QRE (braco integrado)
+LED4;LED C;LED0603;TOP;21,340;13,460;180;nao;EVA-RT mantido (LED C, vermelho)
+LED5;verde;LED0603;TOP;-21,340;13,460;0;nao;EVA-RT mantido (indica 5 V)
+LED6;TX;LED0603;TOP;-11,940;-21,460;180;nao;EVA-RT mantido (TX)
+LED7;RX (opcional);LED0603;TOP;-11,940;-23,370;180;nao;EVA-RT mantido (RX, opcional)
+M1;1020 esq.;MOTOR_1020_2P;TOP;-36,580;1,270;0;sim;motor esq.: pads nas posicoes do EVA-RT
+M2;1020 dir.;MOTOR_1020_2P;TOP;36,580;1,270;0;sim;motor dir.: pads nas posicoes do EVA-RT
+M3;ventoinha;MOTOR_1020_2P;TOP;29,720;3,050;0;sim;ventoinha: pads nas posicoes do EVA-RT
+Q1;AO3400A;SOT23_AO3400A;BOTTOM;29,720;-1,180;270;sim;MOSFET da ventoinha: face BOTTOM (sem colisao com THT)
+R1;1k;R0603;TOP;-15,490;-21,460;0;nao;EVA-RT mantido
+R2;1k;R0603;TOP;-15,490;-23,370;0;nao;EVA-RT mantido (opcional)
+R3;10k;R0603;TOP;-15,490;-19,560;0;nao;EVA-RT mantido (10k do RESET)
+R5;1k;R0603;TOP;18,670;10,790;90;nao;EVA-RT mantido
+R6;1k;R0603;TOP;-71,000;2,775;90;sim;resistor do LED esq. (TOP)
+R7;1k;R0603;TOP;68,000;4,425;90;sim;resistor do LED dir. (TOP)
+R8;10k;R0603;TOP;20,570;7,620;-90;nao;EVA-RT mantido (pull-down do gate)
+R9;200;R0603;TOP;20,570;10,790;-90;nao;EVA-RT mantido (200 ohm do gate)
+R10;1k;R0603;TOP;-17,910;11,810;0;nao;EVA-RT mantido
+R11;1.5k 1%;R0603;TOP;-23,975;-8,175;0;sim;IPROPI (U2): limite de corrente
+R12;1.5k 1%;R0603;TOP;22,175;-16,725;0;sim;IPROPI (U3): limite de corrente
+R13;15k 1%;R0603;TOP;9,500;-15,450;0;sim;VREF divisor (comum aos DRV)
+R14;10k 1%;R0603;TOP;9,000;-16,950;0;sim;VREF divisor (comum aos DRV)
+R15;10k;R0603;TOP;6,000;-16,850;0;sim;nSLEEP (comum aos DRV)
+R16;1k;R0603;TOP;35,400;5,340;90;sim;divisor 5 V -> 3,3 V (TX)
+R17;2k;R0603;TOP;36,900;5,340;90;sim;divisor 5 V -> 3,3 V (BT_RXD)
+R18;0;R0603;TOP;35,400;8,380;270;sim;0 ohm RX -> BT_TXD
+R20;220;R0603;BOTTOM;-72,350;4,000;90;sim;LED do QRE esq. (BOTTOM)
+R21;220;R0603;BOTTOM;72,350;5,000;90;sim;LED do QRE dir. (BOTTOM)
+R23;20k 1%;R0603;TOP;6,670;-21,133;90;sim;medicao VBAT (opcional)
+R24;10k 1%;R0603;TOP;8,170;-20,033;90;sim;medicao VBAT (opcional)
+R30;47k;R0603;BOTTOM;-65,950;5,900;0;sim;pull-down do A5 (BOTTOM)
+R31;47k;R0603;BOTTOM;65,950;3,100;0;sim;pull-down do A6 (BOTTOM)
+S0;QRE1113GR;QRE1113GR_SMD;BOTTOM;-69,500;4,500;180;sim;QRE1113GR esq. (curva, A5) no braco
+S1;QRE1113GR;QRE1113GR_SMD;BOTTOM;69,500;4,500;0;sim;QRE1113GR dir. (partida/chegada, A6) no braco
+SW0;RESET;SW_6x6_THT_4P;TOP;-26,400;-20,500;90;sim;RESET: traseira esquerda, separado dos botoes 1 e 2
+SW1;BOTAO 1;SW_6x6_THT_4P;TOP;27,000;10,700;90;sim;BOTAO 1: frente direita, fora da succao (rot 90)
+SW2;BOTAO 2;SW_6x6_THT_4P;TOP;27,200;-20,500;90;sim;BOTAO 2: traseira direita, fora da succao
+U1;ATmega328P-AU;TQFP32_7x7_P0.8;TOP;0,000;-23,000;-45;nao;"EVA-RT mantido: (0;-18) invade o disco da ventoinha"
+U2;DRV8874PWPR;HTSSOP16_PWP_DRV8874;TOP;-22,100;-12,450;-90;sim;"DRV8874 motor esq. no lugar do IFX_A1; potencia (8-11) para o motor"
+U3;DRV8874PWPR;HTSSOP16_PWP_DRV8874;TOP;22,100;-12,450;90;sim;"DRV8874 motor dir. no lugar do IFX_B1; potencia (8-11) para o motor"
+U5;78M05;DPAK_TO252_3;TOP;-30,610;9,020;180;nao;EVA-RT mantido (78M05)
+X1;16MHz;CRISTAL_3225_4P;TOP;-7,900;-25,300;180;sim;cristal 16 MHz (3225 sob a bateria, 0,8 mm)

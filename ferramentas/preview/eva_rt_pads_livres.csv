@@ -1,0 +1,14 @@
+nome;rede_eva;x_mm;y_mm;tipo;obs
+VEL_D;;16.68;-28.21;rasgo 1x7 mm (velcro);rasgo sem cobre do velcro (x 13,7..19,7)
+VEL_E;;-16.68;-28.21;rasgo 1x7 mm (velcro);
+M3+;VCC(VBAT);29.72;1.78;furo Ø0,9 pad oval 3,0x2,0;ventoinha +
+M3-;OUT_C;29.72;4.32;furo Ø0,9 pad oval 3,0x2,0;ventoinha -
+M2a;OUT_B1;36.58;2.54;furo Ø0,9 pad oval 3,0x2,0;motor direito
+M2b;OUT_B2;36.58;0.00;furo Ø0,9 pad oval 3,0x2,0;motor direito
+M1a;OUT_A2;-36.58;0.00;furo Ø0,9 pad oval 3,0x2,0;motor esquerdo
+M1b;OUT_A1;-36.58;2.54;furo Ø0,9 pad oval 3,0x2,0;motor esquerdo
+CONV1..5;+5V,GND,RX,TX,RESET;-4,-2,0,2,4;-28.57;pads SMD 1,25x2,25 (passo 2,0);conector do conversor do EVA-RT -> SAI, substituido por J3
+ICSP;+5V MOSI GND;33.97;-8.36/-10.90/-13.44;pad SMD Ø1,8 (EMBAIXO);J5 pinos 2,4,6
+ICSP;MISO SCK RESET;36.51;-8.36/-10.90/-13.44;pad SMD Ø1,8 (EMBAIXO);J5 pinos 1,3,5
+ASA_E;LED1 A5 +5V GND;-45.04 e -46.57;2.79/3.94/5.08/6.22;pads 0,75x3,0 (passo 1,14);ligacao das asas soltas do EVA-RT (vira J8, DNP)
+ASA_D;GND +5V A6 LED2;45.04 e 46.57;2.79/3.94/5.08/6.22;pads 0,75x3,0;vira J9 (DNP)

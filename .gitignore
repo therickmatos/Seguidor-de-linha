@@ -18,3 +18,11 @@ ferramentas/esquematico/seguidor_base.net
 .DS_Store
 Thumbs.db
 desktop.ini
+# preview de posicionamento (regeneraveis)
+ferramentas/preview/eprj/
+ferramentas/preview/gerber_eva_rt_zip/
+ferramentas/preview/grades.npz
+ferramentas/preview/conf_geometria.png
+ferramentas/preview/conf_footprints.png
+ferramentas/preview/analise/*.png
+ferramentas/preview/.venv/

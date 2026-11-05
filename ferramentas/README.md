@@ -27,3 +27,8 @@ python3 redes.py
 ```
 
 As saídas intermediárias (`seguidor_base.kicad_sch`, `.pdf`, `.net`, PNGs, `pacote/`) ficam nesta pasta e são ignoradas pelo git. Os UUIDs mudam a cada geração, então o `.kicad_sch` publicado muda inteiro mesmo sem mudança de ligação: confira pelo `check.py` e pelo diff do `REDES.md`.
+
+## preview/ — preview de posicionamento da placa base (JPG)
+Geometria mecânica (contorno B + STL do EVA-RT), biblioteca de footprints da BOM e posicionamento (em andamento).
+Estado, convenções e próximos passos: `docs/HANDOFF_PREVIEW_2026-11-05.md`. Dependências em `preview/requirements.txt`.
+`extrair_eprj.py` decodifica o `EVA_RT.eprj` (SQLite + base64/gzip) para texto, de onde saem posições, pads, trilhas e vias do EVA-RT.

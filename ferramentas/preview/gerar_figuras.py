@@ -135,6 +135,9 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
                     arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.7},zorder=20)
         ax.text(-54,8.6,'J1: PROPOSTA',fontsize=5.3,color='#ffbd72',ha='center',zorder=20)
         ax.text(-11,-31.7,'X1 3225: PROPOSTA',fontsize=5.3,color='#ffbd72',ha='center',zorder=20)
+        ax.annotate('VBAT: 0,30 mm\nREDIMENSIONAR',xy=(23.3,-6.21),xytext=(42,-15),
+                    color='#ffbd72',fontsize=5.6,fontweight='bold',ha='left',
+                    arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.65},zorder=20)
         # Alternativa grafica apenas: o rasgo real permanece no lugar do JSON.
         ax.plot([15.385,22.385,22.385,15.385,15.385],[-28.713,-28.713,-27.713,-27.713,-28.713],
                 color='#ffbd72',lw=.65,ls='--',zorder=18)
@@ -181,7 +184,7 @@ def render_single(positions,data,layer,filename,title,subtitle):
     draw_board(ax,positions,data,layer,air=True)
     fig.text(.047,.058,f"{len(data['ratsnest'])} ligações abertas em amarelo · propostas: J1, J3 e X1 · ponto branco = pino 1",
              color='#ffcf86',fontsize=8.0)
-    fig.text(.047,.032,'J3 colide com o rasgo original. Tracejado laranja = rasgo alternativo, ainda não aprovado; altera o contorno.',color='#ffcf86',fontsize=7.6)
+    fig.text(.047,.032,'J3 colide com o rasgo; tracejado = alternativa não aprovada. VBAT tem trecho de 0,30 mm que precisa ser redimensionado.',color='#ffcf86',fontsize=7.6)
     fig.text(.047,.011,'Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Grade de 5 mm; +y para a frente.',color='#8ba198',fontsize=7)
     out=M.OUTPUT/filename
     fig.savefig(out,dpi=200,facecolor=BG,pil_kwargs={'quality':92,'optimize':True});plt.close(fig)

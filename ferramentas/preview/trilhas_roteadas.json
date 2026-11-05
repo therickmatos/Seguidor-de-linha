@@ -4864,7 +4864,7 @@
    "motivo": ""
   },
   {
-   "id": "e3361",
+   "id": "e3361_aj2_0",
    "old_net": "+5V",
    "net": "+5V",
    "layer": 2,
@@ -4875,13 +4875,53 @@
      6.35
     ],
     [
+     30.99994164387945,
+     6.35
+    ]
+   ],
+   "type": "LINE",
+   "status": "ajustada",
+   "motivo": "recorte local para liberar outra rede"
+  },
+  {
+   "id": "e3361_aj2_1",
+   "old_net": "+5V",
+   "net": "+5V",
+   "layer": 2,
+   "width": 0.49999899999999997,
+   "xy": [
+    [
+     29.30005835612055,
+     6.35
+    ],
+    [
      27.939999999999998,
      6.35
     ]
    ],
    "type": "LINE",
-   "status": "mantida",
-   "motivo": ""
+   "status": "ajustada",
+   "motivo": "recorte local para liberar outra rede"
+  },
+  {
+   "id": "e3361_rem2_0",
+   "old_net": "+5V",
+   "net": "+5V",
+   "layer": 2,
+   "width": 0.49999899999999997,
+   "xy": [
+    [
+     30.99993164387945,
+     6.35
+    ],
+    [
+     29.30006835612055,
+     6.35
+    ]
+   ],
+   "type": "LINE",
+   "status": "removida",
+   "motivo": "recorte local para liberar outra rede"
   },
   {
    "id": "e1019",
@@ -6559,7 +6599,7 @@
    "motivo": ""
   },
   {
-   "id": "e2735",
+   "id": "e2735_aj1_0",
    "old_net": "+5V",
    "net": "+5V",
    "layer": 1,
@@ -6571,12 +6611,32 @@
     ],
     [
      23.597997,
-     -6.149999380000001
+     -5.533904135611241
     ]
    ],
    "type": "LINE",
    "status": "ajustada",
-   "motivo": "recortada para nova geometria e folga"
+   "motivo": "recorte local para liberar outra rede"
+  },
+  {
+   "id": "e2735_rem1_0",
+   "old_net": "+5V",
+   "net": "+5V",
+   "layer": 1,
+   "width": 0.6500012399999999,
+   "xy": [
+    [
+     23.597997,
+     -5.533914135611241
+    ],
+    [
+     23.597997,
+     -6.149999380000001
+    ]
+   ],
+   "type": "LINE",
+   "status": "removida",
+   "motivo": "recorte local para liberar outra rede"
   },
   {
    "id": "e2735",
@@ -12814,7 +12874,7 @@
    "motivo": "colisao/folga apos mudancas"
   },
   {
-   "id": "e1043",
+   "id": "e1043_aj1_0",
    "old_net": "DIRB/D4",
    "net": "DIRB_D4",
    "layer": 1,
@@ -12825,13 +12885,33 @@
      -5.588
     ],
     [
+     24.93791278064472,
+     -5.796087219355276
+    ]
+   ],
+   "type": "LINE",
+   "status": "ajustada",
+   "motivo": "recorte local para liberar outra rede"
+  },
+  {
+   "id": "e1043_rem1_0",
+   "old_net": "DIRB/D4",
+   "net": "DIRB_D4",
+   "layer": 1,
+   "width": 0.39999919999999994,
+   "xy": [
+    [
+     24.937905709576906,
+     -5.796094290423089
+    ],
+    [
      24.597994999999997,
      -6.136004999999999
     ]
    ],
    "type": "LINE",
-   "status": "mantida",
-   "motivo": ""
+   "status": "removida",
+   "motivo": "recorte local para liberar outra rede"
   },
   {
    "id": "e927",
@@ -16371,7 +16451,7 @@
    "motivo": "conexao nova; largura de escape 0,30 mm"
   },
   {
-   "id": "escape_48_p0",
+   "id": "escape_48_p0_aj0_0",
    "old_net": null,
    "net": "VBAT",
    "layer": 1,
@@ -16383,12 +16463,12 @@
     ],
     [
      23.075000000000003,
-     -8.374999999999998
+     -8.780045241158334
     ]
    ],
    "type": "LINE",
    "status": "nova",
-   "motivo": "potencia alargada quando possivel"
+   "motivo": "recorte local para liberar outra rede"
   },
   {
    "id": "escape_49",
@@ -24061,6 +24141,78 @@
    "type": "LINE",
    "status": "nova",
    "motivo": "conexao nova; largura de escape 0,30 mm"
+  },
+  {
+   "id": "ajuste_local_0",
+   "old_net": null,
+   "net": "VCP_B",
+   "layer": 1,
+   "width": 0.3,
+   "xy": [
+    [
+     22.924999999999997,
+     -7.625
+    ],
+    [
+     22.924999999999997,
+     -8.250279558154617
+    ],
+    [
+     22.508335534952945,
+     -8.250279558154617
+    ]
+   ],
+   "type": "LINE",
+   "status": "nova",
+   "motivo": "conexao local com recorte verificado"
+  },
+  {
+   "id": "ajuste_local_1",
+   "old_net": null,
+   "net": "VBAT",
+   "layer": 1,
+   "width": 0.3,
+   "xy": [
+    [
+     22.36625554421792,
+     -6.209904755611241
+    ],
+    [
+     24.575,
+     -6.209904755611241
+    ],
+    [
+     24.575,
+     -6.675000000000001
+    ]
+   ],
+   "type": "LINE",
+   "status": "nova",
+   "motivo": "conexao local com recorte verificado"
+  },
+  {
+   "id": "ajuste_local_2",
+   "old_net": null,
+   "net": "BT_RXD",
+   "layer": 2,
+   "width": 0.3,
+   "xy": [
+    [
+     31.982552785342587,
+     3.91435033924755
+    ],
+    [
+     31.982552785342587,
+     4.517447214657411
+    ],
+    [
+     28.775,
+     7.725
+    ]
+   ],
+   "type": "LINE",
+   "status": "nova",
+   "motivo": "conexao local com recorte verificado"
   }
  ],
  "vias": [
@@ -26021,8 +26173,10 @@
     "C2.1",
     "C3.1",
     "C6.1",
+    "C7.1",
     "C8.1",
     "C13.1",
+    "C15.1",
     "D1.1",
     "J1.1",
     "M3.1",
@@ -26036,22 +26190,24 @@
    "net": "VBAT",
    "xy": [
     [
-     22.17187207278238,
-     -6.446761700871478
+     24.522836140246625,
+     -8.314805029709527
     ],
     [
-     22.998463313526983,
-     -8.190224093497742
+     23.25977590650226,
+     -8.703508554685316
     ]
    ],
-   "distance": 1.9294854738447236,
+   "distance": 1.3215186659275664,
    "from": [
     "C1.1",
     "C2.1",
     "C3.1",
     "C6.1",
+    "C7.1",
     "C8.1",
     "C13.1",
+    "C15.1",
     "D1.1",
     "J1.1",
     "M3.1",
@@ -26059,27 +26215,6 @@
    ],
    "to": [
     "U3.11"
-   ]
-  },
-  {
-   "net": "VBAT",
-   "xy": [
-    [
-     23.27115705608065,
-     -8.335981935596772
-    ],
-    [
-     24.501458443504045,
-     -8.214807825397159
-    ]
-   ],
-   "distance": 1.2362542897311208,
-   "from": [
-    "U3.11"
-   ],
-   "to": [
-    "C7.1",
-    "C15.1"
    ]
   },
   {
@@ -26379,26 +26514,6 @@
    ]
   },
   {
-   "net": "VCP_B",
-   "xy": [
-    [
-     22.924999999999997,
-     -7.625
-    ],
-    [
-     22.508335534952945,
-     -8.250279558154617
-    ]
-   ],
-   "distance": 0.7513879173096804,
-   "from": [
-    "C15.2"
-   ],
-   "to": [
-    "U3.12"
-   ]
-  },
-  {
    "net": "VBAT_A7",
    "xy": [
     [
@@ -26521,27 +26636,6 @@
    ],
    "to": [
     "R16.1"
-   ]
-  },
-  {
-   "net": "BT_RXD",
-   "xy": [
-    [
-     31.982552785342587,
-     3.91435033924755
-    ],
-    [
-     28.775,
-     7.725
-    ]
-   ],
-   "distance": 4.98090812079,
-   "from": [
-    "J4.2"
-   ],
-   "to": [
-    "R16.2",
-    "R17.1"
    ]
   },
   {
@@ -26851,9 +26945,9 @@
  ],
  "redes": {
   "VBAT": {
-   "grupos": 5,
+   "grupos": 4,
    "pads": 15,
-   "pendencias": 4
+   "pendencias": 3
   },
   "GND": {
    "grupos": 6,
@@ -26896,9 +26990,9 @@
    "pendencias": 1
   },
   "VCP_B": {
-   "grupos": 2,
+   "grupos": 1,
    "pads": 2,
-   "pendencias": 1
+   "pendencias": 0
   },
   "CPH_B": {
    "grupos": 1,
@@ -26966,9 +27060,9 @@
    "pendencias": 2
   },
   "BT_RXD": {
-   "grupos": 2,
+   "grupos": 1,
    "pads": 3,
-   "pendencias": 1
+   "pendencias": 0
   },
   "BT_TXD": {
    "grupos": 2,
@@ -27122,50 +27216,60 @@
   }
  },
  "roteamento": {
-  "tentativas": 47,
-  "conexoes_unidas": 8,
+  "tentativas": 34,
+  "conexoes_unidas": 0,
   "motivos_falhas": {
-   "sem caminho com folga na busca": 37,
+   "sem caminho com folga na busca": 32,
    "checagem vetorial de trilha": 2
   },
   "grade_mm": 0.1,
   "rodada_anterior": {
-   "tentativas": 142,
-   "conexoes_unidas": 75,
+   "tentativas": 47,
+   "conexoes_unidas": 8,
    "motivos_falhas": {
-    "sem caminho com folga na busca": 40,
-    "destino sem saida na grade": 13,
-    "origem sem saida na grade": 1,
-    "checagem vetorial de via": 1
-   }
-  },
-  "larguras_mm_por_rede": {
-   "VBAT / 0.6 mm": 23.13,
-   "GND / 0.5 mm": 89.9,
-   "OUT_A2 / 0.4 mm": 1.3,
-   "OUT_A2 / 1 mm": 4.4,
-   "OUT_A2 / 0.6 mm": 4.68,
-   "GND / 0.4 mm": 7.18,
-   "VBAT / 1 mm": 27.03,
-   "GND / 0.3 mm": 1.8,
-   "+5V / 0.6 mm": 142.06,
-   "OUT_B2 / 0.4 mm": 1.3,
-   "OUT_C / 1 mm": 1.57,
-   "VBAT / 0.4 mm": 3.3,
-   "OUT_C / 0.5 mm": 0.88,
-   "OUT_C / 0.4 mm": 1.8,
-   "OUT_C / 0.6 mm": 0.68,
-   "+5V / 0.4 mm": 16.03,
-   "VBAT / 0.5 mm": 3.68,
-   "+5V / 0.5 mm": 16.09,
-   "OUT_B2 / 1 mm": 2.31,
-   "OUT_B2 / 0.6 mm": 0.14,
-   "OUT_A1 / 1 mm": 12.32,
-   "OUT_A1 / 0.6 mm": 10.92,
-   "OUT_A1 / 0.5 mm": 0.34,
-   "OUT_A1 / 0.4 mm": 1.62,
-   "+5V / 0.3 mm": 0.9
-  },
-  "diretas_adicionais": 0
+    "sem caminho com folga na busca": 37,
+    "checagem vetorial de trilha": 2
+   },
+   "grade_mm": 0.1,
+   "rodada_anterior": {
+    "tentativas": 142,
+    "conexoes_unidas": 75,
+    "motivos_falhas": {
+     "sem caminho com folga na busca": 40,
+     "destino sem saida na grade": 13,
+     "origem sem saida na grade": 1,
+     "checagem vetorial de via": 1
+    }
+   },
+   "larguras_mm_por_rede": {
+    "VBAT / 0.6 mm": 23.13,
+    "GND / 0.5 mm": 89.9,
+    "OUT_A2 / 0.4 mm": 1.3,
+    "OUT_A2 / 1 mm": 4.4,
+    "OUT_A2 / 0.6 mm": 4.68,
+    "GND / 0.4 mm": 7.18,
+    "VBAT / 1 mm": 27.03,
+    "GND / 0.3 mm": 1.8,
+    "+5V / 0.6 mm": 142.06,
+    "OUT_B2 / 0.4 mm": 1.3,
+    "OUT_C / 1 mm": 1.57,
+    "VBAT / 0.4 mm": 3.3,
+    "OUT_C / 0.5 mm": 0.88,
+    "OUT_C / 0.4 mm": 1.8,
+    "OUT_C / 0.6 mm": 0.68,
+    "+5V / 0.4 mm": 16.03,
+    "VBAT / 0.5 mm": 3.68,
+    "+5V / 0.5 mm": 16.09,
+    "OUT_B2 / 1 mm": 2.31,
+    "OUT_B2 / 0.6 mm": 0.14,
+    "OUT_A1 / 1 mm": 12.32,
+    "OUT_A1 / 0.6 mm": 10.92,
+    "OUT_A1 / 0.5 mm": 0.34,
+    "OUT_A1 / 0.4 mm": 1.62,
+    "+5V / 0.3 mm": 0.9
+   },
+   "diretas_adicionais": 0,
+   "ajustes_locais": 3
+  }
  }
 }

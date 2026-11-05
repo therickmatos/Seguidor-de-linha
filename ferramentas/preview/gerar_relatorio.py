@@ -49,7 +49,7 @@ No CSV, cada linha liga duas ilhas de cobre da mesma rede. Os pontos são os ext
 
 - A verificação geométrica independente examinou {checks['objetos_de_cobre']} objetos e não apontou folgas abaixo de 0,19 mm entre redes diferentes no modelo. Encontrou **1 conflito de borda/furo: J3.1 × rasgo original**. Limite de 0,19 mm usado como tolerância para o alvo aproximado de 0,20 mm.
 - Os pads e corpos da face superior não invadem as áreas retangulares de apoio dos gearboxes informadas. C1/C2 mantêm os furos THT originais sobre a área da placa de sucção, como no EVA-RT. O encaixe 3D completo, o módulo Bluetooth e a altura real do rotor não foram comprovados.
-- Algumas saídas de potência foram alargadas para 0,4–1,0 mm onde havia espaço, mas alguns escapes de alimentação permanecem finos. Dimensionar corrente/temperatura e conferir todas as ligações, pads e DRC no EasyEDA. O código e as figuras são um guia, não Gerber nem arquivo de fabricação; DRV e QRE continuam sujeitos à conferência dos footprints reais.
+- Algumas saídas de potência foram alargadas para 0,4–1,0 mm onde havia espaço. Um trecho novo da rede **VBAT tem 0,30 mm de largura por cerca de 2,67 mm**: precisa ser redesenhado/dimensionado para a corrente, e não é uma solução de potência final. Conferir também todas as ligações, pads e DRC no EasyEDA. O código e as figuras são um guia, não Gerber nem arquivo de fabricação; DRV e QRE continuam sujeitos à conferência dos footprints reais.
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.
 '''

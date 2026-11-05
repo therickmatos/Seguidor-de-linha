@@ -29,7 +29,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Esquemático rev 1.0 pronto: `hardware/seguidor_base/` (projeto KiCad, PDF, BOM, `REDES.md`).
 - **A fonte do esquemático é o KiCad**, gerado por `ferramentas/esquematico/gen.py` (feito com o Claude em outra sessão). Mudança no esquemático → editar o `gen.py` e regerar (passo a passo em `ferramentas/README.md`).
 - **Em andamento:** o Erick está importando o esquemático do KiCad no EasyEDA Pro para fazer o layout e encomendar na JLC. Conferir a importação rede por rede com `hardware/seguidor_base/REDES.md` (54 redes, 7 pinos sem ligação).
-- **05/11:** prévia de posicionamento e trilhas em `hardware/preview/`, baseada no EVA-RT. Roteamento ainda parcial, com 37 ligações abertas e conflito de J3 com o rasgo original; as propostas e verificações estão no `RELATORIO.md` dessa pasta e no `docs/HANDOFF_PREVIEW_2026-11-05.md`.
+- **05/11:** prévia de posicionamento e trilhas em `hardware/preview/`, baseada no EVA-RT. Roteamento ainda parcial, com 34 ligações abertas e conflito de J3 com o rasgo original; as propostas e verificações estão no `RELATORIO.md` dessa pasta e no `docs/HANDOFF_PREVIEW_2026-11-05.md`.
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos

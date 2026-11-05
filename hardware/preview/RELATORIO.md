@@ -1,6 +1,6 @@
 # Prévia da placa base — resultado da sessão de 05/11/2026
 
-**Resultado parcial:** 37 ligações de 25 redes continuam abertas, desenhadas em amarelo. Não são consideradas impossíveis: não encontrei um caminho que satisfizesse as regras da busca. A placa ainda não está integralmente roteada. A lista exata de ilhas e coordenadas está em `pendencias_roteamento.csv`.
+**Resultado parcial:** 34 ligações de 23 redes continuam abertas, desenhadas em amarelo. Não são consideradas impossíveis: não encontrei um caminho que satisfizesse as regras da busca. A placa ainda não está integralmente roteada. A lista exata de ilhas e coordenadas está em `pendencias_roteamento.csv`.
 
 ## Mudanças em relação ao EVA-RT
 
@@ -17,14 +17,14 @@
 
 ## Ligações abertas
 
-`GND` (5); `VBAT` (4); `VBAT_A7` (2); `RX_D0` (2); `TX_D1` (2); `VREF` (2); `DRV_SLEEP` (2); `+5V` (1); `XTAL1` (1); `VCP_A` (1); `CPH_A` (1); `CPL_A` (1); `VCP_B` (1); `BT_RXD` (1); `BT_TXD` (1); `LEDC_D13` (1); `OUT_B1` (1); `LEDA_D2` (1); `LEDB_D7` (1); `PWMC_D10` (1); `IPROPI_A` (1); `IPROPI_B` (1); `MARK_R_A6` (1); `DIRB_D4` (1); `PWMB_D6` (1).
+`GND` (5); `VBAT` (3); `VBAT_A7` (2); `RX_D0` (2); `TX_D1` (2); `VREF` (2); `DRV_SLEEP` (2); `+5V` (1); `XTAL1` (1); `VCP_A` (1); `CPH_A` (1); `CPL_A` (1); `BT_TXD` (1); `LEDC_D13` (1); `OUT_B1` (1); `LEDA_D2` (1); `LEDB_D7` (1); `PWMC_D10` (1); `IPROPI_A` (1); `IPROPI_B` (1); `MARK_R_A6` (1); `DIRB_D4` (1); `PWMB_D6` (1).
 
 No CSV, cada linha liga duas ilhas de cobre da mesma rede. Os pontos são os extremos do ratsnest em mm; os grupos listam os **pads físicos do footprint**, não necessariamente a numeração do símbolo (por exemplo, X1.3 físico corresponde ao segundo terminal do cristal no esquemático). Linhas que ainda passam pela região de J3 pressupõem resolver o conflito do rasgo.
 
 ## Conferência e limites
 
-- A verificação geométrica independente examinou 1286 objetos e não apontou folgas abaixo de 0,19 mm entre redes diferentes no modelo. Encontrou **1 conflito de borda/furo: J3.1 × rasgo original**. Limite de 0,19 mm usado como tolerância para o alvo aproximado de 0,20 mm.
+- A verificação geométrica independente examinou 1290 objetos e não apontou folgas abaixo de 0,19 mm entre redes diferentes no modelo. Encontrou **1 conflito de borda/furo: J3.1 × rasgo original**. Limite de 0,19 mm usado como tolerância para o alvo aproximado de 0,20 mm.
 - Os pads e corpos da face superior não invadem as áreas retangulares de apoio dos gearboxes informadas. C1/C2 mantêm os furos THT originais sobre a área da placa de sucção, como no EVA-RT. O encaixe 3D completo, o módulo Bluetooth e a altura real do rotor não foram comprovados.
-- Algumas saídas de potência foram alargadas para 0,4–1,0 mm onde havia espaço, mas alguns escapes de alimentação permanecem finos. Dimensionar corrente/temperatura e conferir todas as ligações, pads e DRC no EasyEDA. O código e as figuras são um guia, não Gerber nem arquivo de fabricação; DRV e QRE continuam sujeitos à conferência dos footprints reais.
+- Algumas saídas de potência foram alargadas para 0,4–1,0 mm onde havia espaço. Um trecho novo da rede **VBAT tem 0,30 mm de largura por cerca de 2,67 mm**: precisa ser redesenhado/dimensionado para a corrente, e não é uma solução de potência final. Conferir também todas as ligações, pads e DRC no EasyEDA. O código e as figuras são um guia, não Gerber nem arquivo de fabricação; DRV e QRE continuam sujeitos à conferência dos footprints reais.
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.

@@ -1,6 +1,6 @@
 {
  "min_folga_avaliada_mm": 0.19,
- "objetos_de_cobre": 1286,
+ "objetos_de_cobre": 1290,
  "contagem": {
   "borda/furo": 1
  },
@@ -11,12 +11,12 @@
    "rede": "+5V"
   }
  ],
- "ligacoes_abertas": 37,
+ "ligacoes_abertas": 34,
  "redes_abertas": {
   "VBAT": {
-   "grupos": 5,
+   "grupos": 4,
    "pads": 15,
-   "pendencias": 4
+   "pendencias": 3
   },
   "GND": {
    "grupos": 6,
@@ -48,11 +48,6 @@
    "pads": 2,
    "pendencias": 1
   },
-  "VCP_B": {
-   "grupos": 2,
-   "pads": 2,
-   "pendencias": 1
-  },
   "VBAT_A7": {
    "grupos": 3,
    "pads": 4,
@@ -67,11 +62,6 @@
    "grupos": 3,
    "pads": 4,
    "pendencias": 2
-  },
-  "BT_RXD": {
-   "grupos": 2,
-   "pads": 3,
-   "pendencias": 1
   },
   "BT_TXD": {
    "grupos": 2,

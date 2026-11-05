@@ -195,10 +195,6 @@ def hole_gap(quad_or_circ, hole):
 
 HOLES = G["furos"]
 
-# PROPOSTA (nao esta no geometria.json): rasgos do velcro 2 mm para fora (x = +-18,7).
-# Motivo: com os rasgos em +-16,7 nao cabe o J3 (1x5, 11,9 mm de cobre) na borda traseira
-# entre o U1 (x +-1,7) e o rasgo (x a partir de +-13,2, folga 0,3). Sob a bateria (x +-22,5) continua.
+# Apenas uma alternativa pendente: nunca deslocar silenciosamente os furos reais.
+# As rotinas que ilustrarem esta alternativa devem fazer uma copia explicita de HOLES.
 PROPOSTA_VELCRO_DX = 2.2
-for _h in HOLES:
-    if _h["nome"].startswith("velcro"):
-        _h["x"] = _h["x"] - PROPOSTA_VELCRO_DX if _h["x"] < 0 else _h["x"] + PROPOSTA_VELCRO_DX

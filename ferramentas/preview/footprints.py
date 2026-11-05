@@ -223,6 +223,15 @@ FOOTPRINTS["XT30_RABICHO"] = _fp(
     "Rabicho XT30 (alternativa a J1): 2 furos Ø2,0 com pad Ø3,0 para soldar fios grossos. "
     "Passo 5,0 (igual aos contatos do XT30, escolha sem norma). Pino 1 = + (-x). Sem corpo.")
 
+FOOTPRINTS["XT30_VERTICAL_M_PROPOSTA"] = _fp(
+    [_pad("1", -2.5, 0, 3.0, 3.0, "round", 1.7),
+     _pad("2", 2.5, 0, 3.0, 3.0, "round", 1.7)],
+    (10.7, 5.6), 10.2, True,
+    "Proposta de XT30 macho vertical: corpo e passo aproximados do AMASS XT30UPB-M, "
+    "dois contatos de passo 5 mm. Pino 1 = +, no lado reto (-x); pino 2 = - no lado "
+    "chanfrado. Confirmar o codigo comprado e as medidas dos terminais antes do layout: "
+    "a foto por si so nao identifica o modelo. Fonte: catalogo AMASS, XT30UPB-M.")
+
 _pads_bar8 = []
 for _i in range(8):
     _pads_bar8.append(_pad(_i + 1, -8.89 + 2.54 * _i, 0, 1.7, 1.7,
@@ -347,10 +356,18 @@ FOOTPRINTS["SW_6x6_SMD_4P"] = _fp(
 
 FOOTPRINTS["SW_B3U_SMD_2P"] = _fp(
     [_pad("1", -1.7, 0, 1.0, 1.7), _pad("2", 1.7, 0, 1.0, 1.7)],
-    (6.0, 3.5), 2.5, False,
-    "Botao B3U-1000P SMD de 2 pads (alternativa do BOM). Pads 1,0 x 1,7 em x = +-1,7 medidos "
-    "no EVA-RT (EasyEDA key-smd_b3u-1000pm, e330/e331/e332). Corpo 6,0 x 3,5 e altura 2,5 "
-    "ESTIMADOS (nao medidos).")
+    (3.0, 2.5), 2.5, False,
+    "Botao B3U-1000P SMD de 2 pads. Pads 1,0 x 1,7 em x = +-1,7 medidos "
+    "no EVA-RT (EasyEDA key-smd_b3u-1000pm, e330/e331/e332). Corpo 3,0 x 2,5 mm.")
+
+# No SW0, o simbolo KiCad foi numerado ao contrario do footprint EVA-RT.
+# Botao sem polaridade: inverter a correspondencia preserva as trilhas originais.
+FOOTPRINTS["SW_B3U_SMD_2P_RESET"] = _fp(
+    [_pad("1", -1.7, 0, 1.0, 1.7, rede="2"),
+     _pad("2", 1.7, 0, 1.0, 1.7, rede="1")],
+    (3.0, 2.5), 2.5, False,
+    "Mesmo B3U-1000P, com pad fisico 1 = RESET (SW0.2 no esquematico) "
+    "e pad 2 = GND (SW0.1); reproduz as redes do EVA-RT.")
 
 # ---------------------------------------------------------------- sensores de marca
 FOOTPRINTS["QRE1113GR_SMD"] = _fp(
@@ -387,8 +404,8 @@ REF_FOOTPRINT.update({
     "U2": "HTSSOP16_PWP_DRV8874",
     "U3": "HTSSOP16_PWP_DRV8874",
     "U5": "DPAK_TO252_3",
-    "X1": "CRISTAL_HC49S_SMD",
-    "J1": "XT30PW_M_PCB",
+    "X1": "CRISTAL_3225_4P",
+    "J1": "XT30_VERTICAL_M_PROPOSTA",
     "J2": "HDR_1x08_P2.54",
     "J3": "HDR_RA_1x05_P2.54",
     "J4": "HDR_F_1x06_P2.54",
@@ -400,18 +417,18 @@ REF_FOOTPRINT.update({
     "M3": "MOTOR_1020_2P",
     "S0": "QRE1113GR_SMD",
     "S1": "QRE1113GR_SMD",
-    "SW0": "SW_6x6_THT_4P",
-    "SW1": "SW_6x6_THT_4P",
-    "SW2": "SW_6x6_THT_4P",
+    "SW0": "SW_B3U_SMD_2P_RESET",
+    "SW1": "SW_B3U_SMD_2P",
+    "SW2": "SW_B3U_SMD_2P",
 })
 
 # alternativas da BOM (nao usadas por padrao)
 ALTERNATIVAS = {
-    "J1": ["XT30_RABICHO"],
-    "X1": ["CRISTAL_3225_4P"],
-    "SW0": ["SW_6x6_SMD_4P", "SW_B3U_SMD_2P"],
-    "SW1": ["SW_6x6_SMD_4P", "SW_B3U_SMD_2P"],
-    "SW2": ["SW_6x6_SMD_4P", "SW_B3U_SMD_2P"],
+    "J1": ["XT30_RABICHO", "XT30PW_M_PCB"],
+    "X1": ["CRISTAL_HC49S_SMD"],
+    "SW0": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
+    "SW1": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
+    "SW2": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
 }
 
 

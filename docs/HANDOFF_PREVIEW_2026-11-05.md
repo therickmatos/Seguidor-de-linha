@@ -3,6 +3,18 @@
 Para o agente que continua o trabalho. Leia antes: `CLAUDE.md`, `docs/DECISOES_2026-11-05.md` (decisões de hoje) e `ferramentas/preview/BRIEFING.md` (referencial e restrições mecânicas).
 Branch: `claude/jolly-hypatia-g6elan` (repositório `therickmatos/Seguidor-de-linha`).
 
+## Atualização posterior — estado atual
+
+O pedido mais recente prevalece sobre o restante deste handoff: os três botões são **B3U SMD 3,0 × 2,5 mm** nas posições originais, não os THT 6 × 6. U1 permanece em (0; −23), −45°; a bateria atravessa a traseira e os motores ficam sobre os drivers. J4 e R16/R17/R18 são obrigatórios.
+
+As figuras `hardware/preview/placa_completa.jpg`, `placa_top.jpg`, `placa_bottom.jpg` e `mudancas_vs_eva-rt.jpg` foram geradas; `placa_etapa1.jpg` registra a primeira entrega e usa a posição anterior dos desacoplamentos. A posição atual está em `ferramentas/preview/posicoes.csv`. Há **37 ligações ainda abertas**, não comprovadas impossíveis: estão em amarelo e discriminadas em `hardware/preview/pendencias_roteamento.csv` e `RELATORIO.md`. O resultado ainda não é roteamento completo.
+
+As propostas J1 (−54; 4,5), X1 3225 (−7,9; −25,3) e J3 (9; −28,75) aguardam decisão. O pad J3.1 colide com o rasgo original; o deslocamento proposto de 2,2 mm exige também alterar o contorno, e não foi aplicado à geometria aprovada. A verificação de cobre registrou apenas esse conflito de borda/furo e nenhuma folga entre redes diferentes abaixo de 0,19 mm no modelo; conferir o DRC real, alturas, corrente e os footprints.
+
+Scripts novos em `ferramentas/preview/`: `layout_placa.py`, `trilhas_eva.py` (extração/classificação), `rotear.py`, `alargar_potencia.py`, `verificar_cobre.py`, `gerar_figuras.py` e `gerar_relatorio.py`. `trilhas_classificadas.json` registra o cobre de origem; `trilhas_roteadas.json` contém os caminhos finais parciais e o ratsnest; `verificacao_cobre.json` registra a checagem. Para regenerar as figuras do estado salvo, executar `python gerar_figuras.py final` nessa pasta, após instalar `requirements.txt`.
+
+O registro seguinte é histórico; onde divergir, valem esta atualização, `DECISOES_2026-11-05.md` e o pedido mais recente do Erick.
+
 ## O que o Erick pediu
 Um **preview da placa base em JPG** (não arquivo KiCad) para guiar o posicionamento e o roteamento que ele vai fazer no EasyEDA Pro. O preview considera:
 - os componentes reais da BOM;

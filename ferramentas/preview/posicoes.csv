@@ -4,17 +4,17 @@ C2;220uF;C_RAD_D6.3_P2.5;TOP;22,000;2,060;90;nao;posicao original EVA-RT
 C3;220nF;C0603;TOP;-19,180;7,000;90;nao;EVA-RT mantido
 C4;100nF;C0603;TOP;-24,260;10,120;90;nao;EVA-RT mantido
 C5;47uF;C_TANT_3216_A;TOP;-21,720;8,000;-90;nao;EVA-RT mantido (tantalo)
-C6;100nF;C0603;TOP;-21,375;-16,725;0;sim;VM: junto ao pino 11 (U2)
-C7;100nF;C0603;TOP;23,975;-8,175;0;sim;VM: junto ao pino 11 (U3)
+C6;100nF;C0603;TOP;-25,300;-15,200;90;sim;"VM U2; ajustado para liberar os pinos adjacentes"
+C7;100nF;C0603;TOP;25,200;-9,250;270;sim;"VM U3; ajustado para liberar os pinos adjacentes"
 C8;100nF;C0603;TOP;26,670;2,790;-90;nao;posicao original EVA-RT
-C9;100nF;C0603;TOP;-5,150;-27,550;45;sim;100 nF do VCC (U1.4/U1.6): <= 2 mm do pino
+C9;100nF;C0603;TOP;-5,150;-27,550;225;sim;"desacoplamento U1; invertido para liberar a saida de VCC"
 C10;100nF;C0603;TOP;5,710;-18,290;135;nao;posicao original EVA-RT
 C11;22pF;C0603;TOP;-6,602;-22,041;90;sim;22 pF do XTAL1
 C12;22pF;C0603;TOP;-7,719;-28,474;135;sim;22 pF do XTAL2
-C13;100nF;C0603;TOP;-21,425;-18,225;0;sim;VCP -> VM (U2)
-C14;22nF;C0603;TOP;-18,550;-16,025;90;sim;CPH-CPL (U2)
-C15;100nF;C0603;TOP;21,025;-8,175;0;sim;VCP -> VM (U3)
-C16;22nF;C0603;TOP;18,550;-10,475;90;sim;CPH-CPL (U3)
+C13;100nF;C0603;TOP;-24,250;-17,650;0;sim;"VCP/VM U2; proximo sem obstruir pinos"
+C14;22nF;C0603;TOP;-21,450;-17,650;0;sim;"CPH/CPL U2; proximo sem obstruir pinos"
+C15;100nF;C0603;TOP;24,150;-7,150;180;sim;"VCP/VM U3; proximo sem obstruir pinos"
+C16;22nF;C0603;TOP;21,350;-7,150;180;sim;"CPH/CPL U3; proximo sem obstruir pinos"
 C17;100nF;C0603;TOP;5,805;-26,903;180;sim;DTR -> RESET (auto-reset)
 C18;100nF;C0603;TOP;6,670;-24,133;90;sim;medicao VBAT (opcional)
 D1;1N5819;SOD123;BOTTOM;26,500;3,050;-90;sim;diodo junto aos pads da ventoinha

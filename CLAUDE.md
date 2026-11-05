@@ -18,7 +18,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
 - Gravação: barra macho 1×5 90° 2,54 mm (+5V, GND, RX, TX, DTR) no centro da borda traseira, em cima; conversor CH340G com DTR. ICSP: 6 pads SMD embaixo, posições do EVA-RT.
 - Bluetooth (**obrigatório** desde 05/11): fêmea 1×6 (ordem HC-05) na frente direita (x ≈ 32,5; y 0,7…13,4), divisor 1k/2k.
-- Botões SW0–SW2: táteis **6 × 6 × 4,5 THT de 2 terminais** (já comprados).
+- Botões SW0–SW2: **B3U-1000P SMD de dois terminais**, corpo 3,0 × 2,5 mm, nas posições originais do EVA-RT (pedido posterior de 05/11; substitui a escolha anterior de THT 6 × 6).
 - Barra de sensores: **V1 de 12 QRE1113 + 74HC4067** (Gerber em `hardware/barra_v1/`), ligada por barra de pinos **2,54 mm** na base (a barra tem passo de 2,0 mm → cabo misto). Distância barra–eixo L = 67–70 mm.
 - Sensores de marca QRE1113GR nos braços em (±69,5; 4,5); esquerdo = curva (A5), direito = partida/chegada (A6). **Pinagem do QRE1113GR: 1 anodo, 2 catodo, 3 coletor, 4 emissor** — conferir no footprint.
 - Bateria GNB 350 mAh 2S (45 × 20,5 × 12 mm, deitada atrás com 45 mm em x). Conector: **XT30 macho de placa** (foto em `hardware/preview/`; lado reto do corpo = +). 78M05 para 5 V.
@@ -29,7 +29,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Esquemático rev 1.0 pronto: `hardware/seguidor_base/` (projeto KiCad, PDF, BOM, `REDES.md`).
 - **A fonte do esquemático é o KiCad**, gerado por `ferramentas/esquematico/gen.py` (feito com o Claude em outra sessão). Mudança no esquemático → editar o `gen.py` e regerar (passo a passo em `ferramentas/README.md`).
 - **Em andamento:** o Erick está importando o esquemático do KiCad no EasyEDA Pro para fazer o layout e encomendar na JLC. Conferir a importação rede por rede com `hardware/seguidor_base/REDES.md` (54 redes, 7 pinos sem ligação).
-- **05/11:** preview de posicionamento (JPG) em andamento: geometria e footprints prontos, posicionamento interrompido, JPGs pendentes. Continuar por `docs/HANDOFF_PREVIEW_2026-11-05.md`. Orientação nova: **reaproveitar as trilhas do EVA-RT** o máximo possível.
+- **05/11:** prévia de posicionamento e trilhas em `hardware/preview/`, baseada no EVA-RT. Roteamento ainda parcial, com 37 ligações abertas e conflito de J3 com o rasgo original; as propostas e verificações estão no `RELATORIO.md` dessa pasta e no `docs/HANDOFF_PREVIEW_2026-11-05.md`.
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos

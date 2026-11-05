@@ -1,0 +1,142 @@
+{
+ "min_folga_avaliada_mm": 0.19,
+ "objetos_de_cobre": 1286,
+ "contagem": {
+  "borda/furo": 1
+ },
+ "violacoes": [
+  {
+   "tipo": "borda/furo",
+   "obj": "J3.1",
+   "rede": "+5V"
+  }
+ ],
+ "ligacoes_abertas": 37,
+ "redes_abertas": {
+  "VBAT": {
+   "grupos": 5,
+   "pads": 15,
+   "pendencias": 4
+  },
+  "GND": {
+   "grupos": 6,
+   "pads": 50,
+   "pendencias": 5
+  },
+  "+5V": {
+   "grupos": 2,
+   "pads": 21,
+   "pendencias": 1
+  },
+  "XTAL1": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "VCP_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "CPH_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "CPL_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VCP_B": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VBAT_A7": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "RX_D0": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "TX_D1": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "BT_RXD": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "BT_TXD": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "LEDC_D13": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "OUT_B1": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "LEDA_D2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "LEDB_D7": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "PWMC_D10": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_B": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VREF": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "DRV_SLEEP": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "MARK_R_A6": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "DIRB_D4": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "PWMB_D6": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  }
+ }
+}

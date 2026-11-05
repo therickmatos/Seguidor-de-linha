@@ -99,9 +99,9 @@
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": -21.375,
-  "y": -16.725,
-  "rot": 0,
+  "x": -25.3,
+  "y": -15.2,
+  "rot": 90,
   "mudou": "sim",
   "dnp": false,
   "eva": {
@@ -111,16 +111,16 @@
    "rot": 0.0
   },
   "tht": false,
-  "motivo": "VM: junto ao pino 11 (U2)"
+  "motivo": "VM U2; ajustado para liberar os pinos adjacentes"
  },
  {
   "ref": "C7",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": 23.975,
-  "y": -8.175,
-  "rot": 0,
+  "x": 25.2,
+  "y": -9.25,
+  "rot": 270,
   "mudou": "sim",
   "dnp": false,
   "eva": {
@@ -130,7 +130,7 @@
    "rot": 0.0
   },
   "tht": false,
-  "motivo": "VM: junto ao pino 11 (U3)"
+  "motivo": "VM U3; ajustado para liberar os pinos adjacentes"
  },
  {
   "ref": "C8",
@@ -158,7 +158,7 @@
   "face": "TOP",
   "x": -5.15,
   "y": -27.55,
-  "rot": 45,
+  "rot": 225,
   "mudou": "sim",
   "dnp": false,
   "eva": {
@@ -168,7 +168,7 @@
    "rot": 180.0
   },
   "tht": false,
-  "motivo": "100 nF do VCC (U1.4/U1.6): <= 2 mm do pino"
+  "motivo": "desacoplamento U1; invertido para liberar a saida de VCC"
  },
  {
   "ref": "C10",
@@ -222,56 +222,56 @@
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": -21.425,
-  "y": -18.225,
+  "x": -24.25,
+  "y": -17.65,
   "rot": 0,
   "mudou": "sim",
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "VCP -> VM (U2)"
+  "motivo": "VCP/VM U2; proximo sem obstruir pinos"
  },
  {
   "ref": "C14",
   "valor": "22nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": -18.55,
-  "y": -16.025,
-  "rot": 90,
+  "x": -21.45,
+  "y": -17.65,
+  "rot": 0,
   "mudou": "sim",
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "CPH-CPL (U2)"
+  "motivo": "CPH/CPL U2; proximo sem obstruir pinos"
  },
  {
   "ref": "C15",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": 21.025,
-  "y": -8.175,
-  "rot": 0,
+  "x": 24.15,
+  "y": -7.15,
+  "rot": 180,
   "mudou": "sim",
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "VCP -> VM (U3)"
+  "motivo": "VCP/VM U3; proximo sem obstruir pinos"
  },
  {
   "ref": "C16",
   "valor": "22nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": 18.55,
-  "y": -10.475,
-  "rot": 90,
+  "x": 21.35,
+  "y": -7.15,
+  "rot": 180,
   "mudou": "sim",
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "CPH-CPL (U3)"
+  "motivo": "CPH/CPL U3; proximo sem obstruir pinos"
  },
  {
   "ref": "C17",

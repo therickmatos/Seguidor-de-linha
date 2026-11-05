@@ -63,6 +63,7 @@ def label_placements(ax,components):
         t.set_path_effects([effects.withStroke(linewidth=1.5,foreground=BG)])
 
 def draw_board(ax,positions,data,layer,air=True,mode='normal'):
+    both = layer == 0
     ax.set_facecolor(BG); ax.set_xlim(-77,77); ax.set_ylim(-34,28.5); ax.set_aspect('equal',adjustable='box')
     ax.set_xticks(range(-75,76,5)); ax.set_yticks(range(-30,26,5))
     ax.grid(color=GRID,alpha=.35,linewidth=.35,zorder=0)
@@ -70,7 +71,7 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     for spine in ax.spines.values():spine.set_color('#53645d')
     polygon(ax,M.OUTLINE,facecolor=BOARD,edgecolor='#e1e7db',linewidth=1.2,zorder=1)
     # Estruturas de contato do gearbox, desenhadas sem cobrir cobre.
-    if layer==1:
+    if layer in (0,1):
         for a,b in [(-40,-30.5),(30.5,40)]:
             ax.plot([a,a,b,b,a],[-28.5,-1.8,-1.8,-28.5,-28.5],
                     color='#8fa68e',alpha=.42,lw=.65,ls='--',zorder=2)
@@ -78,7 +79,7 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     if mode=='mudancas':
         palette={'mantida':'#73d598','ajustada':'#f4c95d','removida':'#dd718d','nova':'#65c9f3'}
         for status in ('removida','mantida','ajustada','nova'):
-            sub=[t for t in tracks if t['layer']==layer and t['status']==status]
+            sub=[t for t in tracks if (both or t['layer']==layer) and t['status']==status]
             for t in sub:
                 ax.plot(*zip(*t['xy']),color=palette[status],
                         linewidth=max(.45,mm_width(ax,t['width'])*(.45 if status=='removida' else 1)),
@@ -86,8 +87,8 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
                         linestyle='--' if status=='removida' else '-',solid_capstyle='round',zorder=3)
     else:
         for t in tracks:
-            if t['layer']!=layer or t['status'] not in ('mantida','ajustada','nova'):continue
-            ax.plot(*zip(*t['xy']),color=TOP if layer==1 else BOTTOM,
+            if (not both and t['layer']!=layer) or t['status'] not in ('mantida','ajustada','nova'):continue
+            ax.plot(*zip(*t['xy']),color=TOP if t['layer']==1 else BOTTOM,
                     linewidth=max(.35,mm_width(ax,t['width'])),solid_capstyle='round',alpha=.88,zorder=3)
     for v in data['vias']:
         if v['status'] not in ('mantida','nova'):continue
@@ -101,20 +102,24 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     shown=[]
     for c in positions:
         if c['dnp']:continue
-        relevant=(c['face']==('TOP' if layer==1 else 'BOTTOM') or c['tht'])
+        relevant=(both or c['face']==('TOP' if layer==1 else 'BOTTOM') or c['tht'])
         if not relevant:continue
         b=M.body(c)
-        if b is not None and c['face']==('TOP' if layer==1 else 'BOTTOM'):
+        if b is not None and (both or c['face']==('TOP' if layer==1 else 'BOTTOM')):
             polygon(ax,b,facecolor='#d6ded5',edgecolor='#f6f0dc',linewidth=.55,alpha=.22,zorder=8)
-            polygon(ax,b,facecolor='none',edgecolor='#e7eee5',linewidth=.48,alpha=.9,zorder=9)
+            polygon(ax,b,facecolor='none',edgecolor='#9bcaf4' if c['face']=='BOTTOM' else '#e7eee5',linewidth=.48,alpha=.9,zorder=9)
         for p in M.get_pads(c):
-            if layer not in p['layers']:continue
-            polygon(ax,p['shape'],facecolor=PAD,edgecolor='#fff5d8',linewidth=.25,alpha=.98,zorder=10)
+            if not both and layer not in p['layers']:continue
+            color='#a2c8f0' if both and p['layers']==(2,) else PAD
+            polygon(ax,p['shape'],facecolor=color,edgecolor='#fff5d8',linewidth=.25,alpha=.98,zorder=10)
             if p['furo']:
                 ax.add_patch(Circle((p['x'],p['y']),p['furo']/2,facecolor=BG,
                                     edgecolor='#e7dfcc',linewidth=.25,zorder=11))
             if p['pin']=='1':
                 ax.plot(p['x'],p['y'],marker='.',ms=1.5,color='#fffdf0',zorder=12)
+            if c['ref']=='J1' and c['face']=='TOP' and layer in (0,1) and p['pin'] in ('1','2'):
+                ax.text(p['x'],p['y']+2.05,'+' if p['pin']=='1' else '−',
+                        fontsize=7,color='#fff3b0',fontweight='bold',ha='center',zorder=14)
         shown.append(c)
     # Os furos reais sao desenhados por cima, inclusive o rasgo que conflita com J3.
     for name,h in M.HOLES:
@@ -123,18 +128,27 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     ax.plot([-1.1,1.1],[0,0],color='#ffdf80',lw=.55,zorder=14)
     ax.plot([0,0],[-1.1,1.1],color='#ffdf80',lw=.55,zorder=14)
     ax.text(1.5,.7,'(0,0)',fontsize=5,color='#ffdf80',zorder=14)
-    if layer==1:
+    if layer in (0,1):
         # A geometria original fica intacta; o ponto de conflito fica inequivoco.
         ax.annotate('J3: PROPOSTA\ncolide com rasgo',xy=(14.08,-28.5),xytext=(20.5,-33.0),
                     color='#ffbd72',fontsize=5.8,fontweight='bold',ha='left',
                     arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.7},zorder=20)
         ax.text(-54,8.6,'J1: PROPOSTA',fontsize=5.3,color='#ffbd72',ha='center',zorder=20)
         ax.text(-11,-31.7,'X1 3225: PROPOSTA',fontsize=5.3,color='#ffbd72',ha='center',zorder=20)
+        # Alternativa grafica apenas: o rasgo real permanece no lugar do JSON.
+        ax.plot([15.385,22.385,22.385,15.385,15.385],[-28.713,-28.713,-27.713,-27.713,-28.713],
+                color='#ffbd72',lw=.65,ls='--',zorder=18)
+    elif layer==2:
+        ax.plot([15.385,22.385,22.385,15.385,15.385],[-28.713,-28.713,-27.713,-27.713,-28.713],
+                color='#ffbd72',lw=.65,ls='--',zorder=18)
+        ax.annotate('J3: PROPOSTA\ncolide com rasgo',xy=(14.08,-28.5),xytext=(20.5,-33.0),
+                    color='#ffbd72',fontsize=5.8,fontweight='bold',ha='left',
+                    arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.7},zorder=20)
     if mode=='mudancas':
         for c in shown:
             e=c.get('eva')
             if not e or c.get('mudou')=='nao':continue
-            if (e['lado']=='BOT') != (layer==2):continue
+            if not both and (e['lado']=='BOT') != (layer==2):continue
             ax.plot(e['x'],e['y'],marker='x',ms=2.4,color='#ef9ab2',mew=.6,zorder=16)
             ax.plot([e['x'],c['x']],[e['y'],c['y']],color='#ef9ab2',lw=.35,ls=':',alpha=.7,zorder=14)
 
@@ -160,8 +174,46 @@ def render_stage1(positions,data):
     plt.close(fig)
     print(out)
 
+def render_single(positions,data,layer,filename,title,subtitle):
+    fig=plt.figure(figsize=(21,9.6),dpi=200)
+    header(fig,title,subtitle)
+    ax=fig.add_axes([.045,.11,.91,.76])
+    draw_board(ax,positions,data,layer,air=True)
+    fig.text(.047,.058,f"{len(data['ratsnest'])} ligações abertas em amarelo · propostas: J1, J3 e X1 · ponto branco = pino 1",
+             color='#ffcf86',fontsize=8.0)
+    fig.text(.047,.032,'J3 colide com o rasgo original. Tracejado laranja = rasgo alternativo, ainda não aprovado; altera o contorno.',color='#ffcf86',fontsize=7.6)
+    fig.text(.047,.011,'Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Grade de 5 mm; +y para a frente.',color='#8ba198',fontsize=7)
+    out=M.OUTPUT/filename
+    fig.savefig(out,dpi=200,facecolor=BG,pil_kwargs={'quality':92,'optimize':True});plt.close(fig)
+    print(out)
+
+def render_changes(positions,data):
+    fig=plt.figure(figsize=(21,17.2),dpi=200)
+    header(fig,'MUDANÇAS EM RELAÇÃO AO EVA-RT',
+           'Verde = mantida · amarelo = ajustada · rosa tracejado = removida · ciano = nova · × = posição anterior')
+    a=fig.add_axes([.045,.51,.91,.41]); b=fig.add_axes([.045,.065,.91,.41])
+    draw_board(a,positions,data,1,air=False,mode='mudancas')
+    draw_board(b,positions,data,2,air=False,mode='mudancas')
+    a.set_title('FACE DE CIMA',loc='left',color=WHITE,fontsize=10,fontweight='bold',pad=4)
+    b.set_title('FACE DE BAIXO — vista através da placa, sem espelhar',loc='left',color=WHITE,fontsize=10,fontweight='bold',pad=4)
+    fig.text(.047,.032,'Trechos removidos são referências históricas: não representam cobre da proposta. Marcas × mostram centros do EVA-RT.',color='#ffcf86',fontsize=8)
+    fig.text(.047,.012,'Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.',color='#8ba198',fontsize=7)
+    out=M.OUTPUT/'mudancas_vs_eva-rt.jpg'
+    fig.savefig(out,dpi=200,facecolor=BG,pil_kwargs={'quality':92,'optimize':True});plt.close(fig)
+    print(out)
+
 if __name__=='__main__':
     positions=M.load_positions()
     M.export_positions(positions)
-    data=json.loads((M.HERE/'trilhas_classificadas.json').read_text(encoding='utf8'))
-    render_stage1(positions,data)
+    if len(sys.argv)>1 and sys.argv[1]=='final':
+        data=json.loads((M.HERE/'trilhas_roteadas.json').read_text(encoding='utf8'))
+        render_single(positions,data,0,'placa_completa.jpg','PLACA BASE | DUAS FACES',
+                      'Cobre superior vermelho · inferior azul · pads inferiores azuis · amarelo = ligação ainda não roteada')
+        render_single(positions,data,1,'placa_top.jpg','PLACA BASE | FACE DE CIMA',
+                      'Cobre superior vermelho · amarelo = ligação ainda não roteada · +y para a frente')
+        render_single(positions,data,2,'placa_bottom.jpg','PLACA BASE | FACE DE BAIXO',
+                      'Cobre inferior azul · vista através da placa, sem espelhar · amarelo = ligação ainda não roteada')
+        render_changes(positions,data)
+    else:
+        data=json.loads((M.HERE/'trilhas_classificadas.json').read_text(encoding='utf8'))
+        render_stage1(positions,data)

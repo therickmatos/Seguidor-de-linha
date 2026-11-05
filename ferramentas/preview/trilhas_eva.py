@@ -96,12 +96,29 @@ def _blocker(pads, net, layers):
              and (p['net'] != net or p['net'] is None)]
     return unary_union(geoms) if geoms else None
 
+def driver_escapes(positions):
+    """Reserva saidas curtas dos pinos dos DRV, substitutos dos IFX originais."""
+    escapes=[]
+    for c in positions:
+        if c['ref'] not in ('U2','U3'):continue
+        fp=M.F.FOOTPRINTS[c['footprint']]
+        for p in M.get_pads(c):
+            if p['pin']=='17' or not p['net']:continue
+            raw=next(x for x in fp['pads'] if x['pino']==p['pin'])
+            dx=math.copysign(1,raw['x']);dy=0
+            angle=math.radians(c['rot'])
+            dx,dy=dx*math.cos(angle)-dy*math.sin(angle),dx*math.sin(angle)+dy*math.cos(angle)
+            line=LineString([(p['x'],p['y']),(p['x']+1.4*dx,p['y']+1.4*dy)])
+            escapes.append((p['net'],line.buffer(.15+GAP)))
+    return escapes
+
 def classify(positions):
     originals, original_vias, counts = extract()
     pads = M.all_pads(positions)
     netnames = {x['net'] for x in originals+original_vias if x['net']}
     blockers = {(net,layer): _blocker(pads,net,(layer,)) for net in netnames for layer in (1,2)}
     via_blockers = {net: _blocker(pads,net,(1,2)) for net in netnames}
+    escapes = driver_escapes(positions)
     via_out = []
     # Aceita primeiro vias de maior diametro; nenhuma pode tocar pad de outra rede.
     accepted_vias = []
@@ -115,6 +132,8 @@ def classify(positions):
             why = 'contorno/furo'
         elif via_blockers[v['net']] is not None and copper.distance(via_blockers[v['net']]) < GAP-1e-7:
             why = 'conflito com pad novo'
+        elif any(v['net']!=net and copper.intersects(corridor) for net,corridor in escapes):
+            why = 'via antiga obstrui saida do DRV substituto'
         elif any(v['net'] != old['net'] and copper.distance(old['geom']) < GAP-1e-7 for old in accepted_vias):
             why = 'folga para outra via'
         v['status'] = 'removida' if why else 'mantida'
@@ -136,6 +155,10 @@ def classify(positions):
         blocker = blockers[(r['net'],r['layer'])]
         if blocker is not None and not valid.is_empty:
             valid = valid.difference(blocker.buffer(width/2+GAP))
+        if r['layer']==1:
+            for net,corridor in escapes:
+                if net!=r['net'] and not valid.is_empty and valid.distance(corridor)<width/2:
+                    valid=valid.difference(corridor.buffer(width/2))
         for via in accepted_vias:
             if via['net'] != r['net'] and not valid.is_empty and valid.distance(via['geom']) < width/2+GAP:
                 valid = valid.difference(via['geom'].buffer(width/2+GAP))
@@ -161,7 +184,12 @@ def classify(positions):
             accepted.append({'net':r['net'],'layer':r['layer'],
                              'geom':p.buffer(width/2,cap_style='round',quad_segs=8)})
         if changed:
-            classified.append({**r,'status':'removida','motivo':'trecho original substituido/recortado', 'original_recortado':True})
+            removed=original.difference(unary_union(pieces).buffer(.00001))
+            for p in parts(removed):
+                if p.length<.02:continue
+                classified.append({**r,'xy':[[float(x),float(y)] for x,y in p.coords],
+                                   'status':'removida','motivo':'trecho original substituido/recortado',
+                                   'original_recortado':True})
     return {'source_counts':dict(counts),'tracks':classified,'vias':via_out}
 
 def connectivity(positions, tracks, vias):

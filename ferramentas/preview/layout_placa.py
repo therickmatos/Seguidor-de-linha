@@ -12,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 from shapely.geometry import Point, Polygon, LineString, box
+from shapely import affinity
 from shapely.ops import unary_union
 
 import footprints as F
@@ -48,8 +49,15 @@ PIN_NET = netlist()
 # posicoes que o pedido novo ou a verificacao de encaixe alteraram.
 OVERRIDES = {
     'C2': (22.0, 2.06, 90, 'TOP', 'posicao original EVA-RT'),
+    'C6': (-25.30, -15.20, 90, 'TOP', 'VM U2; ajustado para liberar os pinos adjacentes'),
+    'C7': (25.20, -9.25, 270, 'TOP', 'VM U3; ajustado para liberar os pinos adjacentes'),
     'C8': (26.67, 2.79, -90, 'TOP', 'posicao original EVA-RT'),
+    'C9': (-5.15, -27.55, 225, 'TOP', 'desacoplamento U1; invertido para liberar a saida de VCC'),
     'C10': (5.71, -18.29, 135, 'TOP', 'posicao original EVA-RT'),
+    'C13': (-24.25, -17.65, 0, 'TOP', 'VCP/VM U2; proximo sem obstruir pinos'),
+    'C14': (-21.45, -17.65, 0, 'TOP', 'CPH/CPL U2; proximo sem obstruir pinos'),
+    'C15': (24.15, -7.15, 180, 'TOP', 'VCP/VM U3; proximo sem obstruir pinos'),
+    'C16': (21.35, -7.15, 180, 'TOP', 'CPH/CPL U3; proximo sem obstruir pinos'),
     'D1': (26.5, 3.05, -90, 'BOTTOM', 'diodo junto aos pads da ventoinha'),
     'Q1': (26.92, 9.14, 180, 'TOP', 'no lugar e orientacao originais'),
     'SW0': (36.35, -30.25, 180, 'TOP', 'B3U na posicao original'),
@@ -115,6 +123,13 @@ def get_pads(c):
         else:
             shape = Polygon(q)
             px, py = shape.centroid.x, shape.centroid.y
+            if raw['forma']=='oval':
+                w,h=raw['w'],raw['h']
+                if w>=h:
+                    oval=LineString([(-(w-h)/2,0),((w-h)/2,0)]).buffer(h/2,quad_segs=12)
+                else:
+                    oval=LineString([(0,-(h-w)/2),(0,(h-w)/2)]).buffer(w/2,quad_segs=12)
+                shape=affinity.translate(affinity.rotate(oval,rot,origin=(0,0)),px,py)
         result.append({'ref': ref, 'pin': pin, 'symbol_pin': symbol_pin,
                        'net': PIN_NET.get((ref, symbol_pin)), 'shape': shape,
                        'x': float(px), 'y': float(py), 'furo': raw['furo'],
@@ -124,6 +139,12 @@ def get_pads(c):
 def body(c):
     if c['ref'] in ('M1', 'M2', 'M3'):
         return None
+    if c['ref']=='J1':
+        # Corpo da proposta XT30: extremidade negativa chanfrada, positiva reta.
+        w,h=F.FOOTPRINTS[c['footprint']]['corpo']; chamfer=.8
+        points=[[-w/2,-h/2],[w/2-chamfer,-h/2],[w/2,-h/2+chamfer],
+                [w/2,h/2-chamfer],[w/2-chamfer,h/2],[-w/2,h/2]]
+        return Polygon(geo._to_board(points,None,c['x'],c['y'],c['rot'],c['face']))
     pts = geo.corpo_quad(c['ref'], c['x'], c['y'], c['rot'], c['face'])
     return Polygon(pts) if pts is not None else None
 

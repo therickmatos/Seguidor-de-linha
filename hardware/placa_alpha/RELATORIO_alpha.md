@@ -6,7 +6,7 @@ Pacote para o EasyEDA em `hardware/placa_alpha/` (ver o README de lá): `placa_a
 
 - **Todas as ligações do `REDES.md` estão feitas** (54 redes, 219 pads), conferidas por um verificador independente de conectividade sobre o cobre final (trilhas, vias, pads e plano de GND).
 - Folgas: nenhuma violação abaixo de 0.2 mm entre redes diferentes e de 0.3 mm entre cobre e borda/furos (0 violações no verificador). Não substitui o DRC do EasyEDA.
-- 323 segmentos de trilha (216 em cima, 107 embaixo) e 142 vias: 57 do roteamento, 2 dos troncos de VBAT, 12 térmicas (6 por DRV8874) e 71 de costura do GND.
+- 323 segmentos de trilha (216 em cima, 107 embaixo) e 133 vias: 57 do roteamento, 2 dos troncos de VBAT, 12 térmicas (6 por DRV8874) e 62 de costura do GND.
 - **Plano de GND nas duas faces.** 110 trilhas de GND do autorroteador ficaram redundantes e foram retiradas; a conectividade foi conferida com o plano. No EasyEDA: criar as áreas de cobre GND (cima e baixo) com folga de 0,25 mm e reconstruir antes do DRC.
 
 ## O que mudou em relação à prévia anterior

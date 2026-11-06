@@ -12,6 +12,30 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
 | `guia_alpha.dxf` | cobre, planos, pads, vias, corpos e referências, uma camada DXF para cada coisa |
 | `trilhas_fixas_alpha.csv` | o cobre desenhado à mão (pontos exatos), para reproduzir primeiro |
 | `RELATORIO_alpha.md` | resultado da verificação, larguras, mudanças e o que conferir |
+| `../seguidor_base/seguidor_base.kicad_pcb` | **a mesma placa em KiCad 7**, ligada ao esquemático (ver abaixo) |
+
+## Placa em KiCad (`hardware/seguidor_base/`)
+
+`seguidor_base.kicad_pcb` é esta versão alpha completa: contorno, furos e rasgos, os 67
+componentes nas posições e faces acima, trilhas, vias e as áreas de GND nas duas faces
+(preenchidas pelo KiCad, folga 0,25 mm). Abre junto com o esquemático no projeto
+`seguidor_base.kicad_pro`: cada footprint está ligado ao símbolo pelo UUID e cada pad está na rede
+do esquemático. Origem auxiliar e da grade no centro da ventoinha.
+
+- **Conferido pelo próprio KiCad 7.0.11** (`drc_kicad.rpt`): 0 violações, 0 pads sem ligação,
+  0 erros de footprint. Paridade com o esquemático: 217 pads, 0 diferenças. Só J8/J9 (pads das
+  asas, não montados) ficam fora da placa, como na prévia.
+- Regras: folga 0,2 mm, cobre–borda 0,3 mm, trilha mínima 0,2 mm, via mínima 0,5/0,3 mm.
+- Footprints na biblioteca do projeto `seguidor_alpha.pretty` (já no `fp-lib-table`). **São os
+  modelos aproximados da prévia** (pads certos, corpo aproximado na camada F.Fab, sem 3D): trocar
+  pelos da LCSC antes do pedido e repetir o DRC.
+- **EasyEDA Pro:** importar o projeto KiCad (Arquivo → Importar → KiCad), escolhendo os arquivos
+  desta pasta (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`, `seguidor_alpha.pretty` e
+  `seguidor.kicad_sym`). Não testei a importação aqui (não há EasyEDA neste ambiente). Se ela
+  falhar ou não trouxer as áreas de cobre, use o caminho manual abaixo: os DXF e o CSV são os
+  mesmos dados.
+- Para gerar Gerber direto do KiCad (opcional): `Arquivo → Plotar`, marcando "usar origem auxiliar".
+  Pelo terminal, o `kicad-cli pcb export gerbers` / `export drill` já foi testado.
 
 ## Passo a passo no EasyEDA Pro
 
@@ -60,7 +84,8 @@ RX, monte LED7/R2, troque o R18 por 0 Ω e tire o módulo antes de gravar.
   (a prévia supõe encostada em |x| = 40; o XT30 fica a 2 mm desse plano).
 - J3 deitado: folga da barra até o chão (ver relatório).
 - Cristal X1: a prévia usa 3225; HC-49/S não cabe sob a bateria.
-- Esquemático: já regerado (J1, J3, Bluetooth e R18 = 4,7k na BOM). Falta o código LCSC do
-  XT30 e decidir os botões (B3U ou 6 × 6 THT, ver `hardware/preview/botoes_6x6.jpg`).
+- Esquemático: já regerado (J1, J3, Bluetooth e R18 = 4,7k na BOM; campo Footprint apontando
+  para `seguidor_alpha`). Falta o código LCSC do XT30 e decidir os botões (B3U ou 6 × 6 THT, ver
+  `hardware/preview/botoes_6x6.jpg`).
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.

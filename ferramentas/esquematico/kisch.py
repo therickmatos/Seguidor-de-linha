@@ -1,8 +1,12 @@
 # Minimal KiCad 7 schematic writer (raw S-expressions) with pin-geometry helpers.
-import re, uuid, math
+import re, uuid, math, random
 LIBDIR='/usr/share/kicad/symbols/'
 _libcache={}
-def U(): return str(uuid.uuid4())
+# UUIDs reprodutiveis: a mesma geracao da o mesmo arquivo, e o UUID de cada simbolo depende so da
+# referencia (a placa .kicad_pcb se liga ao esquematico por esses UUIDs)
+_rng=random.Random(20261106)
+def U(): return str(uuid.UUID(int=_rng.getrandbits(128), version=4))
+def U_ref(project, ref): return str(uuid.uuid5(uuid.NAMESPACE_URL, f'seguidor-de-linha/{project}/{ref}'))
 
 def _blocks(text):
     """yield (name, block_text) for top-level symbols in a .kicad_sym"""
@@ -63,7 +67,7 @@ def rot(vx,vy,r):
 
 class Sch:
     def __init__(self, title='', paper='A3', project='seguidor'):
-        self.uuid=U(); self.paper=paper; self.project=project; self.title=title
+        self.uuid=U_ref(project, '/'); self.paper=paper; self.project=project; self.title=title
         self.libs={}; self.items=[]; self.pwr=0; self.flg=0
         self.syms={}   # ref -> dict
         self.tb={}
@@ -78,7 +82,7 @@ class Sch:
         self.uselib(libid, blk)
         pins=pins_of(blk)
         s=dict(ref=ref,value=value,x=x,y=y,r=r,libid=libid,pins=pins,fields=fields or {},footprint=footprint,
-               hide_ref=hide_ref,hide_val=hide_val,dnp=dnp,uuid=U(),ref_off=ref_off,val_off=val_off)
+               hide_ref=hide_ref,hide_val=hide_val,dnp=dnp,uuid=U_ref(self.project, ref),ref_off=ref_off,val_off=val_off)
         self.syms[ref]=s; self.items.append(('sym',s)); return s
     def pinpos(self, ref, num):
         s=self.syms[ref]; px,py,a,nm,typ=s['pins'][num]

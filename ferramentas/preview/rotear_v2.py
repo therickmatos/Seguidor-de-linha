@@ -468,6 +468,7 @@ def stitch_islands(positions, tracks, vias, pours):
     holes = unary_union([g for _, g in M.HOLES]).buffer(EDGE + d / 2 + 0.05)
     holes = holes.union(unary_union([p['shape'] for p in M.all_pads(positions)]).buffer(d / 2 + 0.25))
     live = drop_floating(positions, tracks, vias, pours)
+    n0 = sum(1 for v in vias if v['id'].startswith('GI'))
     new = []
     for layer in (1, 2):
         other = 2 if layer == 1 else 1
@@ -475,12 +476,16 @@ def stitch_islands(positions, tracks, vias, pours):
         for isl in getattr(pours[layer], 'geoms', [pours[layer]]):
             if isl.is_empty or any(isl.intersects(lp) and isl.intersection(lp).area > 0.01 for lp in live_parts):
                 continue
-            ok = (isl.buffer(-(d / 2 + 0.05)).intersection(pours[other].buffer(-(d / 2 + 0.05)))
+            # so vale costurar onde a outra face tem plano LIGADO; ilha com ilha nao resolve nada
+            # (antes repetia a mesma via a cada rodada e deixava vias soltas, que o DRC do KiCad acusa)
+            ok = (isl.buffer(-(d / 2 + 0.05)).intersection(live[other].buffer(-(d / 2 + 0.05)))
                   .difference(foreign).difference(holes))
             if ok.is_empty:
                 continue
             p = ok.representative_point()
-            new.append({'id': f'GI{len(new) + 1}', 'net': 'GND', 'xy': [p.x, p.y], 'diameter': d,
+            if any(math.hypot(p.x - v['xy'][0], p.y - v['xy'][1]) < d + CLEAR for v in vias + new):
+                continue
+            new.append({'id': f'GI{n0 + len(new) + 1}', 'net': 'GND', 'xy': [p.x, p.y], 'diameter': d,
                         'drill': drill, 'status': 'nova', 'costura': True})
     return new
 

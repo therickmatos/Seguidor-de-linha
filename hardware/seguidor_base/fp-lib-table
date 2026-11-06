@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "seguidor_alpha")(type "KiCad")(uri "${KIPRJMOD}/seguidor_alpha.pretty")(options "")(descr "Footprints da previa alpha (aproximados; trocar pelos da LCSC)"))
+)

@@ -30,3 +30,4 @@ ferramentas/preview/.venv/
 # saidas de execucao do FreeRouting
 ferramentas/preview/logs/
 ferramentas/preview/v2/*.log
+ferramentas/preview/v2/kicad_dados.json

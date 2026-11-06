@@ -1,4 +1,4 @@
-import sys, json
+import os, sys, json
 sys.path.insert(0, '.')
 from kisch import Sch
 from drv8874 import drv_block
@@ -240,6 +240,11 @@ note(['J3: 1 +5V, 2 GND, 3 RX (<- TXD do conversor), 4 TX (-> RXD do conversor),
       'J5: bootloader com Arduino Uno + ArduinoISP (D10 -> RST, D11 -> MOSI, D12 -> MISO, D13 -> SCK, 10 uF no RESET do Uno).'],
      12.7, g(108) + 1.27)
 
+# footprints da placa (biblioteca seguidor_alpha, gerada por ferramentas/preview/kicad_exportar.py)
+if os.path.exists('footprints_alpha.json'):
+    for ref, fp in json.load(open('footprints_alpha.json')).items():
+        if ref in S.syms:
+            S.syms[ref]['footprint'] = fp
 open('seguidor_base.kicad_sch', 'w').write(S.render())
 json.dump(dict(intent=S.intent, links=S.links, ncs=S.ncs, bom=BOM), open('intent.json', 'w'), indent=1)
 print('ok', len(S.syms), 'simbolos')

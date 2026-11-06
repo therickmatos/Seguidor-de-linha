@@ -26,7 +26,7 @@ cp pacote/seguidor_base/* ../../hardware/seguidor_base/
 python3 redes.py
 ```
 
-As saídas intermediárias (`seguidor_base.kicad_sch`, `.pdf`, `.net`, PNGs, `pacote/`) ficam nesta pasta e são ignoradas pelo git. Os UUIDs mudam a cada geração, então o `.kicad_sch` publicado muda inteiro mesmo sem mudança de ligação: confira pelo `check.py` e pelo diff do `REDES.md`.
+As saídas intermediárias (`seguidor_base.kicad_sch`, `.pdf`, `.net`, PNGs, `pacote/`) ficam nesta pasta e são ignoradas pelo git. A geração é reprodutível (mesmo arquivo a cada rodada) e o UUID de cada símbolo depende só da referência, porque a placa `.kicad_pcb` se liga ao esquemático por esses UUIDs. O campo Footprint vem de `footprints_alpha.json` (gerado por `preview/kicad_exportar.py`). **Depois de regerar o esquemático, gere a placa KiCad de novo** (comandos no fim da seção da prévia v2).
 
 ## preview/ — preview de posicionamento da placa base (JPG)
 Geometria mecânica (contorno B + STL do EVA-RT), biblioteca de footprints da BOM e posicionamento (em andamento).
@@ -47,3 +47,12 @@ python pacote_alpha.py           # hardware/placa_alpha/: imagens, CSV, DXF do c
 ```
 
 Se a otimização final do FreeRouting travar, rodar sem ela: `FR_EXTRA="-mt 0" python rotear_v2.py rotear 100`.
+
+**Placa em KiCad** (`hardware/seguidor_base/seguidor_base.kicad_pcb`) a partir da prévia v2 e do esquemático publicado:
+
+```
+python kicad_exportar.py           # (venv) v2/kicad_dados.json e esquematico/footprints_alpha.json
+/usr/bin/python3 kicad_montar.py   # (python do KiCad, módulo pcbnew) monta a placa, preenche o GND, DRC e paridade
+```
+
+O `kicad_montar.py` grava em `hardware/seguidor_base/` a placa, a biblioteca `seguidor_alpha.pretty`, o `fp-lib-table`, as regras no `.kicad_pro` (mantendo o que o esquemático já tinha) e o `drc_kicad.rpt`, e para com erro se algum pad sair do lugar do modelo. Se o `footprints_alpha.json` mudar (footprint novo ou trocado), regere o esquemático antes do `kicad_montar.py`.

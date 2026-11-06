@@ -1,3 +1,5 @@
+> **Histórico.** A prévia atual é `RELATORIO_v2.md` / `placa_v2.jpg` (06/11, 100% das ligações, J3 SMD embaixo).
+
 # Prévia da placa base — atualização de 06/11/2026
 
 **Resultado:** 21 ligações em 17 redes ainda abertas, desenhadas em amarelo. Elas não foram demonstradas impossíveis; os grupos e coordenadas estão em `pendencias_roteamento.csv`.

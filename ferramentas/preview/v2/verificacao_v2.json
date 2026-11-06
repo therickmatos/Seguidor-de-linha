@@ -1,0 +1,16 @@
+{
+ "folga_mm": 0.2,
+ "borda_mm": 0.3,
+ "trilhas": 295,
+ "vias": 167,
+ "trilhas_gnd_removidas_pelo_plano": 95,
+ "abertas_do_freerouting": {
+  "GND": 1,
+  "MARK_L_A5": 1
+ },
+ "ligadas_pelo_finalizador": [
+  "MARK_L_A5"
+ ],
+ "abertas_final": {},
+ "violacoes": []
+}

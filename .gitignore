@@ -26,3 +26,7 @@ ferramentas/preview/conf_geometria.png
 ferramentas/preview/conf_footprints.png
 ferramentas/preview/analise/*.png
 ferramentas/preview/.venv/
+
+# saidas de execucao do FreeRouting
+ferramentas/preview/logs/
+ferramentas/preview/v2/*.log

@@ -32,3 +32,15 @@ As saídas intermediárias (`seguidor_base.kicad_sch`, `.pdf`, `.net`, PNGs, `pa
 Geometria mecânica (contorno B + STL do EVA-RT), biblioteca de footprints da BOM e posicionamento (em andamento).
 Estado, convenções e próximos passos: `docs/HANDOFF_PREVIEW_2026-11-05.md`. Dependências em `preview/requirements.txt`.
 `extrair_eprj.py` decodifica o `EVA_RT.eprj` (SQLite + base64/gzip) para texto, de onde saem posições, pads, trilhas e vias do EVA-RT.
+
+**Prévia v2 (06/11, atual)** — rodar em `preview/` (FreeRouting 1.9.0: `freerouting-1.9.0.jar` dos releases do GitHub, caminho em `FREEROUTING_JAR`; Java 17+):
+
+```
+python placa_v2.py               # posicionamento + checagens mecânicas
+python rotear_v2.py dsn          # v2/seguidor_v2.dsn
+python rotear_v2.py rotear 100   # FreeRouting -> v2/seguidor_v2.ses
+python rotear_v2.py continuar 100  # (opcional) mais uma rodada a partir do SES
+python rotear_v2.py importar     # finalizador, alargamento, plano de GND, verificação
+python figura_v2.py              # hardware/preview/placa_v2.jpg
+python relatorio_v2.py           # hardware/preview/RELATORIO_v2.md e posicoes_v2.csv
+```

@@ -1,0 +1,3484 @@
+(session seguidor_v2
+  (base_design seguidor_v2)
+  (placement
+    (resolution mm 1000)
+    (component IMG_C1
+      (place C1 -22000 2060 front 0)
+    )
+    (component IMG_C2
+      (place C2 22000 2060 front 0)
+    )
+    (component IMG_C3
+      (place C3 -19180 7000 front 0)
+    )
+    (component IMG_C4
+      (place C4 -24260 10120 front 0)
+    )
+    (component IMG_C5
+      (place C5 -21720 8000 front 0)
+    )
+    (component IMG_C6
+      (place C6 -25900 -17600 front 0)
+    )
+    (component IMG_C7
+      (place C7 25900 -7300 front 0)
+    )
+    (component IMG_C8
+      (place C8 26670 2790 front 0)
+    )
+    (component IMG_C9
+      (place C9 7400 -21600 front 0)
+    )
+    (component IMG_C10
+      (place C10 5710 -18290 front 0)
+    )
+    (component IMG_C11
+      (place C11 -6700 -24300 front 0)
+    )
+    (component IMG_C12
+      (place C12 -11300 -28250 front 0)
+    )
+    (component IMG_C13
+      (place C13 -23075 -17600 front 0)
+    )
+    (component IMG_C14
+      (place C14 -20425 -17600 front 0)
+    )
+    (component IMG_C15
+      (place C15 23075 -7300 front 0)
+    )
+    (component IMG_C16
+      (place C16 20425 -7300 front 0)
+    )
+    (component IMG_C17
+      (place C17 8600 -27600 front 0)
+    )
+    (component IMG_C18
+      (place C18 11740 -23350 front 0)
+    )
+    (component IMG_D1
+      (place D1 26500 3050 front 0)
+    )
+    (component IMG_J1
+      (place J1 -35500 -31700 front 0)
+    )
+    (component IMG_J2
+      (place J2 0 22740 front 0)
+    )
+    (component IMG_J3
+      (place J3 0 -28575 front 0)
+    )
+    (component IMG_J4
+      (place J4 32500 7050 front 0)
+    )
+    (component IMG_J5
+      (place J5 35244 -10901 front 0)
+    )
+    (component IMG_LED1
+      (place LED1 -69500 4500 front 0)
+    )
+    (component IMG_LED2
+      (place LED2 69500 4500 front 0)
+    )
+    (component IMG_LED4
+      (place LED4 21340 13460 front 0)
+    )
+    (component IMG_LED5
+      (place LED5 -21340 13460 front 0)
+    )
+    (component IMG_LED6
+      (place LED6 -11940 -21460 front 0)
+    )
+    (component IMG_LED7
+      (place LED7 -11940 -23370 front 0)
+    )
+    (component IMG_M1
+      (place M1 -36580 1270 front 0)
+    )
+    (component IMG_M2
+      (place M2 36580 1270 front 0)
+    )
+    (component IMG_M3
+      (place M3 29720 3050 front 0)
+    )
+    (component IMG_Q1
+      (place Q1 26920 9140 front 0)
+    )
+    (component IMG_R1
+      (place R1 -15490 -21460 front 0)
+    )
+    (component IMG_R2
+      (place R2 -15490 -23370 front 0)
+    )
+    (component IMG_R3
+      (place R3 -15490 -19560 front 0)
+    )
+    (component IMG_R5
+      (place R5 18670 10790 front 0)
+    )
+    (component IMG_R6
+      (place R6 -61730 4430 front 0)
+    )
+    (component IMG_R7
+      (place R7 61730 4570 front 0)
+    )
+    (component IMG_R8
+      (place R8 20570 7620 front 0)
+    )
+    (component IMG_R9
+      (place R9 20570 10790 front 0)
+    )
+    (component IMG_R10
+      (place R10 -17910 11810 front 0)
+    )
+    (component IMG_R11
+      (place R11 -23400 -6600 front 0)
+    )
+    (component IMG_R12
+      (place R12 23400 -18300 front 0)
+    )
+    (component IMG_R13
+      (place R13 24500 -20600 front 0)
+    )
+    (component IMG_R14
+      (place R14 22000 -20600 front 0)
+    )
+    (component IMG_R15
+      (place R15 -21125 -6600 front 0)
+    )
+    (component IMG_R16
+      (place R16 29200 8200 front 0)
+    )
+    (component IMG_R17
+      (place R17 29200 10200 front 0)
+    )
+    (component IMG_R18
+      (place R18 29200 12200 front 0)
+    )
+    (component IMG_R20
+      (place R20 -64670 3610 front 0)
+    )
+    (component IMG_R21
+      (place R21 64670 5390 front 0)
+    )
+    (component IMG_R23
+      (place R23 11740 -19550 front 0)
+    )
+    (component IMG_R24
+      (place R24 11740 -21450 front 0)
+    )
+    (component IMG_R30
+      (place R30 -64670 5390 front 0)
+    )
+    (component IMG_R31
+      (place R31 64670 3610 front 0)
+    )
+    (component IMG_S0
+      (place S0 -69500 4500 front 0)
+    )
+    (component IMG_S1
+      (place S1 69500 4500 front 0)
+    )
+    (component IMG_SW0
+      (place SW0 36350 -30250 front 0)
+    )
+    (component IMG_SW1
+      (place SW1 37340 5840 front 0)
+    )
+    (component IMG_SW2
+      (place SW2 37340 11300 front 0)
+    )
+    (component IMG_U1
+      (place U1 0 -23000 front 0)
+    )
+    (component IMG_U2
+      (place U2 -22100 -12450 front 0)
+    )
+    (component IMG_U3
+      (place U3 22100 -12450 front 0)
+    )
+    (component IMG_U5
+      (place U5 -30610 9020 front 0)
+    )
+    (component IMG_X1
+      (place X1 -7800 -27400 front 0)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution mm 1000)
+    (parser
+      (host_cad preview)
+      (host_version v2)
+    )
+    (library_out 
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_P
+        (shape
+          (circle F 800 0 0)
+        )
+        (shape
+          (circle B 800 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+      (padstack VIA_S
+        (shape
+          (circle F 600 0 0)
+        )
+        (shape
+          (circle B 600 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net N048
+        (wire
+          (path F 400
+            -23900 -17600
+            -23083 -17600
+          )
+        )
+        (wire
+          (path F 400
+            10915 -19550
+            9888 -19550
+          )
+        )
+        (wire
+          (path B 400
+            17000 810
+            17000 -9334
+            9888 -16446
+            9888 -19550
+          )
+        )
+        (wire
+          (path B 1200
+            -24500 3310
+            -22000 3310
+          )
+          (type protect)
+        )
+        (wire
+          (path B 1200
+            -25300 -19400
+            -27000 -17700
+            -27000 3310
+            -24500 3310
+          )
+          (type protect)
+        )
+        (wire
+          (path B 1200
+            17000 810
+            22000 810
+          )
+          (type protect)
+        )
+        (wire
+          (path B 1200
+            -22000 3310
+            -14310 11000
+            9000 11000
+            17000 3000
+            17000 810
+          )
+          (type protect)
+        )
+        (wire
+          (path F 1000
+            24490 -4490
+            24490 -7300
+          )
+          (type protect)
+        )
+        (wire
+          (path F 1000
+            23785 -975
+            24490 -1680
+            24490 -4490
+          )
+          (type protect)
+        )
+        (wire
+          (path F 1000
+            22000 810
+            23785 -975
+          )
+          (type protect)
+        )
+        (via VIA_P -24200 -19400
+          (type protect)
+        )
+        (wire
+          (path F 1000
+            -24500 -19400
+            -24200 -19400
+          )
+          (type protect)
+        )
+        (wire
+          (path F 1000
+            -25300 -19400
+            -24500 -19400
+          )
+          (type protect)
+        )
+        (via VIA_P -25300 -19400
+          (type protect)
+        )
+        (wire
+          (path F 400
+            23075 -9675
+            23075 -7300
+            23900 -7300
+          )
+          (type protect)
+        )
+        (wire
+          (path F 1000
+            -24500 -19400
+            -24500 -17900
+          )
+          (type protect)
+        )
+        (wire
+          (path B 1200
+            -25300 -19400
+            -24200 -19400
+          )
+          (type protect)
+        )
+        (wire
+          (path B 1200
+            -38000 -31700
+            -35000 -29500
+            -25600 -20100
+            -25300 -19400
+          )
+          (type protect)
+        )
+        (via VIA_P -26526 12432
+        )
+        (via VIA_P 9888 -19550
+        )
+        (wire
+          (path F 400
+            24490 -4490
+            25075 -5075
+            25075 -7300
+          )
+        )
+        (wire
+          (path F 400
+            23900 -7300
+            24490 -7300
+          )
+        )
+        (wire
+          (path F 400
+            -23075 -15225
+            -23075 -17592
+            -23083 -17600
+          )
+        )
+        (wire
+          (path B 400
+            29720 1780
+            27897 1780
+            27517 1400
+            26500 1400
+          )
+        )
+        (wire
+          (path F 400
+            29720 1780
+            27885 3615
+            26670 3615
+          )
+        )
+        (wire
+          (path F 400
+            29720 1780
+            26965 -975
+            23785 -975
+          )
+        )
+        (wire
+          (path F 400
+            -23900 -17600
+            -24500 -17600
+          )
+        )
+        (wire
+          (path F 400
+            -24500 -17600
+            -25075 -17600
+          )
+        )
+        (wire
+          (path F 400
+            -24500 -17900
+            -24500 -17600
+          )
+        )
+        (wire
+          (path F 400
+            -22000 3310
+            -19952 5358
+            -19180 5358
+            -19180 6175
+          )
+        )
+        (wire
+          (path F 400
+            -26526 12432
+            -27313 13219
+            -27313 13220
+            -28330 13220
+          )
+        )
+        (wire
+          (path B 400
+            -26526 12432
+            -26526 5336
+            -24500 3310
+          )
+        )
+      )
+      (net N016
+        (wire
+          (path F 400
+            -26725 -27196
+            -28795 -27196
+            -33000 -31401
+            -33000 -31700
+          )
+        )
+        (wire
+          (path F 400
+            -12125 -27358
+            -12287 -27196
+            -26725 -27196
+          )
+        )
+        (wire
+          (path F 400
+            -26725 -17600
+            -26725 -27196
+          )
+        )
+        (wire
+          (path F 400
+            -22771 6551
+            -22929 6551
+            -23891 5589
+          )
+        )
+        (wire
+          (path F 400
+            -21720 6551
+            -22771 6551
+          )
+        )
+        (wire
+          (path F 400
+            -19180 7825
+            -21497 7825
+            -22771 6551
+          )
+        )
+        (wire
+          (path B 400
+            -71500 3600
+            -72747 3600
+          )
+        )
+        (wire
+          (path F 400
+            -72954 5100
+            -70617 5100
+            -70392 5325
+          )
+        )
+        (wire
+          (path B 400
+            -72747 3600
+            -72747 4893
+            -72954 5100
+          )
+        )
+        (wire
+          (path F 400
+            -69500 5325
+            -70392 5325
+          )
+        )
+        (via VIA_P -72954 5100
+        )
+        (wire
+          (path B 400
+            -63845 5390
+            -63845 6282
+          )
+        )
+        (wire
+          (path B 400
+            -2540 -28575
+            -2540 -27033
+          )
+        )
+        (wire
+          (path F 400
+            21175 -20600
+            21992 -20600
+          )
+        )
+        (wire
+          (path F 400
+            23400 -19125
+            23400 -18308
+          )
+        )
+        (wire
+          (path F 400
+            -6700 -23475
+            -6700 -24292
+          )
+        )
+        (wire
+          (path F 400
+            -19825 -15225
+            -19825 -14283
+          )
+        )
+        (wire
+          (path F 400
+            5127 -17792
+            4643 -17792
+            2736 -19699
+          )
+        )
+        (wire
+          (path F 400
+            5127 -17707
+            5127 -17792
+          )
+        )
+        (wire
+          (path F 400
+            5127 -17792
+            7178 -17792
+            8501 -19115
+          )
+        )
+        (wire
+          (path F 400
+            19825 -9675
+            20475 -9675
+          )
+        )
+        (via VIA_S 23600 -11700
+          (type protect)
+        )
+        (via VIA_S 23600 -13200
+          (type protect)
+        )
+        (via VIA_S 22100 -11700
+          (type protect)
+        )
+        (via VIA_S 22100 -13200
+          (type protect)
+        )
+        (via VIA_S 20600 -11700
+          (type protect)
+        )
+        (via VIA_S 20600 -13200
+          (type protect)
+        )
+        (via VIA_S -20600 -11700
+          (type protect)
+        )
+        (via VIA_S -20600 -13200
+          (type protect)
+        )
+        (via VIA_S -22100 -11700
+          (type protect)
+        )
+        (via VIA_S -22100 -13200
+          (type protect)
+        )
+        (via VIA_S -23600 -11700
+          (type protect)
+        )
+        (via VIA_S -23600 -13200
+          (type protect)
+        )
+        (via VIA_P 25893 -6161
+        )
+        (via VIA_P -4078 -26794
+        )
+        (via VIA_P 36223 -30218
+        )
+        (via VIA_P 70289 2657
+        )
+        (via VIA_P 28975 6795
+        )
+        (via VIA_P -8986 -24625
+        )
+        (via VIA_P 10965 -18115
+        )
+        (via VIA_P 1770 -23416
+        )
+        (via VIA_P -64128 6504
+        )
+        (via VIA_P 26816 10339
+        )
+        (wire
+          (path F 400
+            23600 -11700
+            22100 -11700
+          )
+        )
+        (wire
+          (path F 400
+            22100 -13200
+            20600 -13200
+          )
+        )
+        (wire
+          (path F 400
+            22100 -13200
+            22100 -12450
+          )
+        )
+        (wire
+          (path F 400
+            -20600 -11700
+            -22100 -11700
+          )
+        )
+        (wire
+          (path B 400
+            -20600 -11700
+            -20600 -13200
+          )
+        )
+        (wire
+          (path F 400
+            -22100 -13200
+            -22100 -12450
+          )
+        )
+        (wire
+          (path F 400
+            22100 -11700
+            20600 -11700
+          )
+        )
+        (wire
+          (path F 400
+            20600 -11700
+            20475 -11575
+            20475 -9675
+          )
+        )
+        (wire
+          (path F 400
+            22100 -13200
+            23600 -13200
+          )
+        )
+        (wire
+          (path F 400
+            24375 -9675
+            24375 -10925
+            23600 -11700
+          )
+        )
+        (wire
+          (path F 400
+            23600 -13200
+            23725 -13325
+            23725 -15225
+          )
+        )
+        (wire
+          (path F 400
+            23725 -15225
+            23725 -16167
+            24292 -16734
+            24292 -18233
+            24217 -18308
+            23400 -18308
+          )
+        )
+        (wire
+          (path F 400
+            -22100 -13200
+            -20600 -13200
+          )
+        )
+        (wire
+          (path F 400
+            -19825 -14283
+            -20475 -14283
+          )
+        )
+        (wire
+          (path F 400
+            -22100 -11700
+            -23600 -11700
+          )
+        )
+        (wire
+          (path F 400
+            -23600 -11700
+            -23725 -11575
+            -23725 -9675
+          )
+        )
+        (wire
+          (path F 400
+            39040 11300
+            38123 11300
+            36786 9963
+            36786 8320
+          )
+        )
+        (wire
+          (path F 400
+            39040 5840
+            38123 5840
+          )
+        )
+        (wire
+          (path F 400
+            21992 -20600
+            21992 -21417
+            22715 -22140
+            23608 -22140
+            24500 -21248
+            24500 -19333
+            24292 -19125
+            23400 -19125
+          )
+        )
+        (wire
+          (path F 400
+            10915 -21450
+            8934 -21450
+            8501 -21017
+          )
+        )
+        (wire
+          (path B 400
+            23600 -13200
+            33733 -13200
+            33974 -13441
+          )
+        )
+        (wire
+          (path F 400
+            -23400 -5775
+            -23400 -590
+            -22000 810
+          )
+        )
+        (wire
+          (path F 400
+            -22573 13460
+            -22982 13460
+            -22982 13040
+            -24260 11762
+            -24260 11354
+          )
+        )
+        (wire
+          (path F 400
+            -30610 6920
+            -63712 6920
+            -64128 6504
+          )
+        )
+        (wire
+          (path B 400
+            23600 -13200
+            23600 -11700
+          )
+        )
+        (wire
+          (path F 400
+            27920 10339
+            27920 10907
+            25535 10907
+            22982 13460
+            22165 13460
+          )
+        )
+        (wire
+          (path B 400
+            -2540 -27033
+            -3839 -27033
+            -4078 -26794
+          )
+        )
+        (wire
+          (path F 400
+            -6700 -24292
+            -8653 -24292
+            -8986 -24625
+          )
+        )
+        (wire
+          (path F 400
+            -12125 -28250
+            -12125 -27358
+          )
+        )
+        (wire
+          (path F 400
+            8501 -21017
+            7983 -21017
+          )
+        )
+        (wire
+          (path F 400
+            26670 1965
+            23345 1965
+            22000 3310
+          )
+        )
+        (wire
+          (path F 400
+            26725 -7300
+            26725 -6408
+            26478 -6161
+            25893 -6161
+          )
+        )
+        (wire
+          (path B 400
+            23600 -11700
+            23600 -6161
+          )
+        )
+        (wire
+          (path B 400
+            23600 -6161
+            23600 1710
+            22000 3310
+          )
+        )
+        (wire
+          (path B 400
+            23600 -6161
+            25893 -6161
+          )
+        )
+        (wire
+          (path F 400
+            -20475 -14283
+            -20475 -15225
+          )
+        )
+        (wire
+          (path F 400
+            -20600 -13200
+            -20600 -14158
+            -20475 -14283
+          )
+        )
+        (wire
+          (path F 400
+            10915 -23350
+            10915 -21450
+          )
+        )
+        (wire
+          (path F 400
+            -2736 -26301
+            -3229 -26794
+            -4078 -26794
+          )
+        )
+        (wire
+          (path F 400
+            -3867 -25170
+            -4319 -25622
+            -4319 -26553
+            -4078 -26794
+          )
+        )
+        (wire
+          (path B 400
+            71500 5400
+            72747 5400
+            72747 3027
+            72377 2657
+            70289 2657
+          )
+        )
+        (wire
+          (path F 400
+            69500 3675
+            69500 2858
+            70088 2858
+            70289 2657
+          )
+        )
+        (wire
+          (path B 400
+            63845 3610
+            63028 3610
+            63028 4427
+            62877 4578
+            61082 4578
+            60838 4822
+            60838 6149
+            62069 7380
+            68273 7380
+            70253 5400
+            71500 5400
+          )
+        )
+        (wire
+          (path F 400
+            -22165 13460
+            -22573 13460
+          )
+        )
+        (wire
+          (path F 400
+            -22573 13460
+            -18960 17073
+            -12017 17073
+            -6350 22740
+          )
+        )
+        (wire
+          (path F 400
+            -24260 10945
+            -24260 11354
+          )
+        )
+        (wire
+          (path F 400
+            -30610 6920
+            -25222 6920
+          )
+        )
+        (wire
+          (path F 400
+            -25222 6920
+            -23891 5589
+          )
+        )
+        (wire
+          (path F 400
+            -22100 -13200
+            -23600 -13200
+          )
+        )
+        (wire
+          (path F 400
+            -23600 -13200
+            -24375 -13975
+            -24375 -15225
+          )
+        )
+        (wire
+          (path F 400
+            -12125 -27358
+            -9392 -24625
+            -8986 -24625
+          )
+        )
+        (wire
+          (path B 400
+            -8986 -24625
+            -6817 -26794
+            -4078 -26794
+          )
+        )
+        (wire
+          (path F 400
+            8501 -19115
+            8501 -21017
+          )
+        )
+        (wire
+          (path F 400
+            27920 10090
+            30730 10090
+            32500 8320
+          )
+        )
+        (wire
+          (path B 400
+            -64128 6504
+            -63906 6282
+            -63845 6282
+          )
+        )
+        (wire
+          (path F 400
+            -64128 6504
+            -65307 5325
+            -69500 5325
+          )
+        )
+        (wire
+          (path F 400
+            20570 6795
+            22000 6795
+          )
+        )
+        (wire
+          (path F 400
+            22000 6795
+            22000 3310
+          )
+        )
+        (wire
+          (path F 400
+            22000 6795
+            28975 6795
+          )
+        )
+        (wire
+          (path F 400
+            -25222 6920
+            -25222 10392
+            -24260 11354
+          )
+        )
+        (wire
+          (path B 400
+            28975 6795
+            29193 7013
+            29193 8892
+            29417 9116
+            31704 9116
+            32500 8320
+          )
+        )
+        (wire
+          (path F 400
+            -22000 810
+            -23891 2701
+            -23891 5589
+          )
+        )
+        (wire
+          (path F 400
+            27920 10090
+            27920 10339
+          )
+        )
+        (wire
+          (path B 400
+            28375 10200
+            27558 10200
+            27419 10339
+            26816 10339
+          )
+        )
+        (wire
+          (path F 400
+            27920 10339
+            26816 10339
+          )
+        )
+        (wire
+          (path F 400
+            -3867 -25170
+            -3651 -25170
+            -1897 -23416
+            1770 -23416
+          )
+        )
+        (wire
+          (path F 400
+            8501 -19115
+            9501 -18115
+            10965 -18115
+          )
+        )
+        (wire
+          (path F 400
+            69500 3675
+            40288 3675
+            39623 4340
+            39623 4731
+            39204 5150
+            38813 5150
+            38123 5840
+          )
+        )
+        (wire
+          (path B 400
+            -22000 810
+            -22100 710
+            -22100 -11700
+          )
+        )
+        (wire
+          (path F 400
+            38123 5840
+            38123 6983
+            36786 8320
+          )
+        )
+        (wire
+          (path F 400
+            36786 8320
+            32500 8320
+          )
+        )
+        (wire
+          (path B 400
+            1770 -23416
+            1983 -23629
+            4149 -23629
+            4362 -23416
+            7618 -23416
+            10965 -20069
+            10965 -18115
+          )
+        )
+        (wire
+          (path B 400
+            10965 -18115
+            10965 -18002
+            15463 -13504
+            17222 -13504
+            17526 -13200
+            20600 -13200
+          )
+        )
+        (wire
+          (path B 400
+            33974 -13441
+            36944 -16411
+            36944 -29497
+            36223 -30218
+          )
+        )
+        (wire
+          (path F 400
+            34650 -30250
+            36191 -30250
+            36223 -30218
+          )
+        )
+      )
+      (net N001
+        (wire
+          (path B 400
+            -69946 5707
+            -68762 4523
+            -66408 4523
+            -65495 3610
+          )
+        )
+        (wire
+          (path B 400
+            -3498 -20084
+            -3498 -19495
+            -5111 -17882
+          )
+        )
+        (wire
+          (path B 400
+            -10505 -24529
+            -9707 -23731
+            -7145 -23731
+            -3498 -20084
+          )
+        )
+        (wire
+          (path B 400
+            -302 -24764
+            -302 -23280
+            -3498 -20084
+          )
+        )
+        (wire
+          (path F 400
+            -19317 -4859
+            -18256 -3798
+            -18256 9043
+            -18662 9449
+            -21720 9449
+          )
+        )
+        (wire
+          (path F 400
+            -5111 -17882
+            -6294 -17882
+            -19317 -4859
+          )
+        )
+        (wire
+          (path F 400
+            -19317 -4859
+            -20233 -5775
+          )
+        )
+        (wire
+          (path F 400
+            -21125 -5775
+            -20233 -5775
+          )
+        )
+        (wire
+          (path B 400
+            -34245 13220
+            -39934 7531
+            -68122 7531
+            -69946 5707
+          )
+        )
+        (wire
+          (path B 400
+            -69946 5707
+            -70253 5400
+          )
+        )
+        (wire
+          (path B 400
+            -71500 5400
+            -70253 5400
+          )
+        )
+        (wire
+          (path F 400
+            -16315 -23370
+            -15498 -23370
+          )
+        )
+        (via VIA_P -34245 13220
+        )
+        (via VIA_P -24260 8269
+        )
+        (via VIA_P -10505 -24529
+        )
+        (via VIA_P -5111 -17882
+        )
+        (via VIA_P -302 -24764
+        )
+        (via VIA_P 9277 -23606
+        )
+        (via VIA_P 64870 1839
+        )
+        (wire
+          (path B 400
+            71500 3600
+            70253 3600
+            69376 4477
+            66408 4477
+            65495 5390
+          )
+        )
+        (wire
+          (path F 400
+            -34245 13220
+            -32890 13220
+          )
+        )
+        (wire
+          (path F 400
+            6817 -22183
+            7854 -22183
+            9277 -23606
+          )
+        )
+        (wire
+          (path F 400
+            -16315 -21460
+            -16315 -23370
+          )
+        )
+        (wire
+          (path F 400
+            -16315 -21460
+            -16315 -19560
+          )
+        )
+        (wire
+          (path B 400
+            -8890 22740
+            -8291 22740
+          )
+        )
+        (wire
+          (path B 400
+            -8291 22740
+            -7623 22740
+            -7623 21589
+            -7507 21473
+            4583 21473
+            15527 10529
+            25002 10529
+          )
+        )
+        (wire
+          (path F 400
+            -21720 9691
+            -22116 9295
+            -24260 9295
+          )
+        )
+        (wire
+          (path F 400
+            -21720 9449
+            -21720 9691
+          )
+        )
+        (wire
+          (path F 400
+            -21720 9691
+            -19601 11810
+            -18735 11810
+          )
+        )
+        (wire
+          (path F 400
+            -1392 -25060
+            -2625 -25060
+            -3301 -25736
+          )
+        )
+        (wire
+          (path F 400
+            -1392 -25060
+            -1392 -26089
+            -2170 -26867
+          )
+        )
+        (wire
+          (path B 400
+            -8291 22740
+            -12143 18888
+            -16752 18888
+            -24260 11380
+          )
+        )
+        (wire
+          (path B 400
+            -34245 13220
+            -34216 13249
+            -26129 13249
+            -24260 11380
+          )
+        )
+        (wire
+          (path B 400
+            -5080 -28575
+            -6459 -28575
+            -10505 -24529
+          )
+        )
+        (wire
+          (path F 400
+            -15498 -23370
+            -15498 -24187
+            -15156 -24529
+            -10505 -24529
+          )
+        )
+        (wire
+          (path F 400
+            -302 -24764
+            -598 -25060
+            -1392 -25060
+          )
+        )
+        (wire
+          (path B 400
+            -24260 11380
+            -24260 8269
+          )
+        )
+        (wire
+          (path F 400
+            -24260 9295
+            -24260 8269
+          )
+        )
+        (wire
+          (path B 400
+            25002 10529
+            25002 611
+            33974 -8361
+          )
+        )
+        (wire
+          (path F 400
+            4433 -21396
+            4899 -20930
+            5564 -20930
+            6817 -22183
+          )
+        )
+        (wire
+          (path B 400
+            65495 5390
+            64674 4569
+            64674 2035
+            64870 1839
+          )
+        )
+        (wire
+          (path F 400
+            32500 10860
+            34399 12759
+            39742 12759
+            41589 10912
+            41589 10083
+            47176 4496
+            70991 4496
+            71107 4380
+            71107 2141
+            70805 1839
+            64870 1839
+          )
+        )
+        (wire
+          (path B 400
+            -302 -24764
+            1409 -26475
+            6408 -26475
+            9277 -23606
+          )
+        )
+        (wire
+          (path F 400
+            25325 -20600
+            25325 -21622
+            22291 -24656
+            10327 -24656
+            9277 -23606
+          )
+        )
+        (wire
+          (path B 400
+            25002 10529
+            25663 11190
+            30744 11190
+            30830 11104
+            31425 11104
+            31511 11190
+            32170 11190
+            32500 10860
+          )
+        )
+      )
+      (net N002
+        (wire
+          (path F 250
+            6293 -18873
+            4692 -18873
+            3301 -20264
+          )
+        )
+      )
+      (net N053
+        (wire
+          (path F 250
+            -6700 -26550
+            -6700 -25125
+          )
+          (type protect)
+        )
+        (wire
+          (path F 250
+            -1604 -27433
+            -2046 -27875
+            -5600 -27875
+            -5600 -26550
+            -6700 -26550
+          )
+          (type protect)
+        )
+      )
+      (net N054
+        (wire
+          (path F 250
+            -8900 -28250
+            -10475 -28250
+          )
+          (type protect)
+        )
+        (wire
+          (path F 250
+            -1039 -27999
+            -2290 -29250
+            -8900 -29250
+            -8900 -28250
+          )
+          (type protect)
+        )
+      )
+      (net N050
+        (wire
+          (path F 250
+            -22250 -17600
+            -22250 -16783
+          )
+        )
+        (wire
+          (path F 250
+            -22425 -15225
+            -22425 -16608
+            -22250 -16783
+          )
+        )
+      )
+      (net N008
+        (wire
+          (path F 250
+            -21775 -15225
+            -21775 -16153
+            -21250 -16678
+            -21250 -17600
+          )
+        )
+      )
+      (net N010
+        (wire
+          (path F 250
+            -19600 -17600
+            -20342 -17600
+          )
+        )
+        (wire
+          (path F 250
+            -21125 -15225
+            -21125 -16092
+          )
+        )
+        (wire
+          (path F 250
+            -21125 -16092
+            -20342 -16875
+            -20342 -17600
+          )
+        )
+      )
+      (net N051
+        (wire
+          (path F 250
+            22250 -7300
+            22250 -8117
+          )
+        )
+        (wire
+          (path F 250
+            22425 -9675
+            22425 -8292
+            22250 -8117
+          )
+        )
+      )
+      (net N009
+        (wire
+          (path F 250
+            21775 -9675
+            21775 -8375
+            21250 -7850
+            21250 -7300
+          )
+        )
+      )
+      (net N011
+        (wire
+          (path F 250
+            18858 -7300
+            18858 -8176
+          )
+        )
+        (wire
+          (path B 250
+            21044 -8553
+            20667 -8176
+            18858 -8176
+          )
+        )
+        (wire
+          (path F 250
+            19600 -7300
+            18858 -7300
+          )
+        )
+        (wire
+          (path F 250
+            21044 -8553
+            21125 -8634
+            21125 -9675
+          )
+        )
+        (via VIA_S 21044 -8553
+        )
+        (via VIA_S 18858 -8176
+        )
+      )
+      (net N015
+        (wire
+          (path F 250
+            7775 -27600
+            6291 -27600
+          )
+        )
+        (wire
+          (path B 250
+            5080 -27108
+            5975 -27108
+            6291 -27424
+            6291 -27600
+          )
+        )
+        (wire
+          (path B 250
+            5080 -28575
+            5080 -27108
+          )
+        )
+        (via VIA_S 6291 -27600
+        )
+      )
+      (net N041
+        (wire
+          (path F 250
+            -8026 -19560
+            -8026 -19307
+          )
+        )
+        (wire
+          (path B 250
+            -12198 -10092
+            -12198 -15135
+            -8026 -19307
+          )
+        )
+        (wire
+          (path F 250
+            9425 -27600
+            10167 -27600
+          )
+        )
+        (via VIA_S 37741 -28877
+        )
+        (via VIA_S -8026 -19307
+        )
+        (via VIA_S -12198 -10092
+        )
+        (via VIA_S -11566 -6934
+        )
+        (via VIA_S 8140 -12973
+        )
+        (via VIA_S 16924 -12787
+        )
+        (wire
+          (path F 250
+            -14665 -19560
+            -8026 -19560
+          )
+        )
+        (wire
+          (path F 250
+            38050 -30250
+            38050 -29058
+            37922 -29058
+            37741 -28877
+          )
+        )
+        (wire
+          (path B 250
+            36514 -13441
+            37486 -14413
+            37486 -28622
+            37741 -28877
+          )
+        )
+        (wire
+          (path F 250
+            10167 -27600
+            10594 -27173
+            33444 -27173
+            35148 -28877
+            37741 -28877
+          )
+        )
+        (wire
+          (path B 250
+            16924 -12787
+            17261 -12450
+            21227 -12450
+            21350 -12573
+            21350 -13626
+            22656 -14932
+            28629 -14932
+            33494 -19797
+            33494 -28732
+            35723 -30961
+            36813 -30961
+            37741 -30033
+            37741 -28877
+          )
+        )
+        (wire
+          (path F 250
+            8140 -12973
+            16738 -12973
+            16924 -12787
+          )
+        )
+        (wire
+          (path B 250
+            8140 -12973
+            -5527 -12973
+            -11566 -6934
+          )
+        )
+        (wire
+          (path F 250
+            -12198 -10092
+            -12198 -7566
+            -11566 -6934
+          )
+        )
+        (wire
+          (path F 250
+            -8026 -19560
+            -4006 -19560
+            -3310 -20256
+          )
+        )
+      )
+      (net N049
+        (wire
+          (path F 250
+            12565 -19550
+            12565 -18619
+            10760 -16814
+            8300 -16814
+            8078 -16592
+            4711 -16592
+            2170 -19133
+          )
+        )
+        (wire
+          (path F 250
+            12565 -23350
+            12565 -21450
+          )
+        )
+        (wire
+          (path F 250
+            12565 -19550
+            12565 -21450
+          )
+        )
+      )
+      (net N037
+        (wire
+          (path B 400
+            29720 4320
+            27897 4320
+            27517 4700
+            26500 4700
+          )
+        )
+        (wire
+          (path F 400
+            25920 9140
+            28624 9140
+            30153 7611
+            30153 4753
+            29720 4320
+          )
+        )
+      )
+      (net N007
+        (wire
+          (path F 250
+            -2179 -19124
+            -10800 -10503
+            -10800 13498
+            -4698 19600
+            -1270 19600
+            -1270 22740
+          )
+          (type protect)
+        )
+      )
+      (net N046
+        (wire
+          (path F 250
+            -1613 -18559
+            -10200 -9972
+            -10200 13249
+            -4449 19000
+            1270 19000
+            1270 22740
+          )
+          (type protect)
+        )
+      )
+      (net N045
+        (wire
+          (path F 250
+            -1047 -17993
+            -9600 -9440
+            -9600 13000
+            -4200 18400
+            3810 18400
+            3810 22740
+          )
+          (type protect)
+        )
+      )
+      (net N044
+        (wire
+          (path F 250
+            1039 -18001
+            9600 -9440
+            9600 13000
+            6350 16250
+            6350 22740
+          )
+          (type protect)
+        )
+      )
+      (net N043
+        (wire
+          (path F 250
+            1604 -18567
+            10200 -9971
+            10200 13249
+            8890 14559
+            8890 22740
+          )
+          (type protect)
+        )
+      )
+      (net N042
+        (wire
+          (path B 250
+            0 -28575
+            0 -27108
+          )
+        )
+        (wire
+          (path F 250
+            -11115 -23370
+            -11857 -23370
+          )
+        )
+        (via VIA_S -3082 -21615
+        )
+        (via VIA_S 5353 -11607
+        )
+        (via VIA_S 11905 6470
+        )
+        (via VIA_S 16707 11272
+        )
+        (wire
+          (path B 250
+            0 -27108
+            -3387 -23721
+            -3387 -21920
+            -3082 -21615
+          )
+        )
+        (wire
+          (path F 250
+            -3876 -20821
+            -4289 -20408
+            -11796 -20408
+            -11857 -20469
+            -11857 -23370
+          )
+        )
+        (wire
+          (path B 250
+            30025 12200
+            29283 12200
+            29283 12942
+            29193 13032
+            18467 13032
+            16707 11272
+          )
+        )
+        (wire
+          (path F 250
+            11905 6470
+            16707 11272
+          )
+        )
+        (wire
+          (path B 250
+            11905 6470
+            11905 -5055
+            5353 -11607
+          )
+        )
+        (wire
+          (path F 250
+            5353 -11607
+            96 -16864
+            96 -18182
+            -3209 -21487
+          )
+        )
+        (wire
+          (path F 250
+            -3876 -20821
+            -3209 -21487
+          )
+        )
+        (wire
+          (path F 250
+            -3209 -21487
+            -3082 -21615
+          )
+        )
+      )
+      (net N047
+        (wire
+          (path B 250
+            2540 -28575
+            2540 -27108
+          )
+        )
+        (wire
+          (path B 250
+            2540 -28575
+            3221 -28575
+            3897 -29251
+          )
+        )
+        (wire
+          (path B 250
+            2540 -27108
+            748 -27108
+            -2745 -23615
+            -2745 -22572
+          )
+        )
+        (wire
+          (path F 250
+            -11115 -21460
+            -10373 -21460
+          )
+        )
+        (via VIA_S -2745 -22572
+        )
+        (via VIA_S 3897 -29251
+        )
+        (via VIA_S 31609 7050
+        )
+        (via VIA_S 36841 7050
+        )
+        (via VIA_S 38166 -8566
+        )
+        (via VIA_S 28058 -15615
+        )
+        (via VIA_S 9369 -29251
+        )
+        (wire
+          (path F 250
+            -10373 -21460
+            -9908 -20995
+            -4833 -20995
+            -4441 -21387
+          )
+        )
+        (wire
+          (path F 250
+            -2745 -22572
+            -3256 -22572
+            -4441 -21387
+          )
+        )
+        (wire
+          (path B 250
+            38166 -8566
+            38945 -7787
+            38945 4946
+            36841 7050
+          )
+        )
+        (wire
+          (path B 250
+            30025 8200
+            30767 8200
+            30767 7892
+            31609 7050
+          )
+        )
+        (wire
+          (path F 250
+            31609 7050
+            36841 7050
+          )
+        )
+        (wire
+          (path F 250
+            3897 -29251
+            9369 -29251
+          )
+        )
+        (wire
+          (path B 250
+            9369 -29251
+            23005 -15615
+            28058 -15615
+          )
+        )
+        (wire
+          (path F 250
+            38166 -8566
+            31117 -15615
+            28058 -15615
+          )
+        )
+      )
+      (net N005
+        (wire
+          (path B 250
+            30025 10200
+            29283 10200
+            29283 9749
+            28551 9017
+            28375 9017
+            28375 8200
+          )
+        )
+        (wire
+          (path B 250
+            28375 8200
+            28375 7383
+            28095 7103
+            28095 6469
+            28529 6035
+            30481 6035
+            32500 4016
+            32500 3240
+          )
+        )
+      )
+      (net N006
+        (via VIA_S 27417 12289
+        )
+        (via VIA_S 30963 12289
+        )
+        (wire
+          (path B 250
+            28375 12200
+            28286 12289
+            27417 12289
+          )
+        )
+        (wire
+          (path B 250
+            32500 5780
+            33736 7016
+            33736 11999
+            33649 12086
+            31166 12086
+            30963 12289
+          )
+        )
+        (wire
+          (path F 250
+            27417 12289
+            30963 12289
+          )
+        )
+      )
+      (net N004
+        (via VIA_S 36065 9907
+        )
+        (via VIA_S 6422 -24138
+        )
+        (via VIA_S 5098 -25757
+        )
+        (via VIA_S 38324 -22527
+        )
+        (wire
+          (path F 250
+            35640 11300
+            35640 10108
+            35864 10108
+            36065 9907
+          )
+        )
+        (wire
+          (path F 250
+            38324 -22527
+            26484 -22527
+            23254 -25757
+            5098 -25757
+          )
+        )
+        (wire
+          (path B 250
+            36065 9907
+            36065 6366
+            38439 3992
+            38439 -6436
+            36759 -8116
+          )
+        )
+        (wire
+          (path B 250
+            36759 -8116
+            36514 -8361
+          )
+        )
+        (wire
+          (path B 250
+            36759 -8116
+            38407 -9764
+            38407 -22444
+            38324 -22527
+          )
+        )
+        (wire
+          (path B 250
+            5098 -25757
+            6422 -24433
+            6422 -24138
+          )
+        )
+        (wire
+          (path F 250
+            5008 -24048
+            6332 -24048
+            6422 -24138
+          )
+        )
+      )
+      (net N021
+        (via VIA_S 17905 9116
+        )
+        (via VIA_S 3990 -22773
+        )
+        (via VIA_S 13185 4872
+        )
+        (wire
+          (path F 250
+            18670 9965
+            18670 9223
+            18012 9223
+            17905 9116
+          )
+        )
+        (wire
+          (path B 250
+            36514 -10901
+            35244 -12171
+            32971 -12171
+            24175 -3375
+            24175 3322
+            18381 9116
+            17905 9116
+          )
+        )
+        (wire
+          (path F 250
+            13185 4872
+            13661 4872
+            17905 9116
+          )
+        )
+        (wire
+          (path B 250
+            3990 -22773
+            5490 -22773
+            9255 -19008
+            9255 -16261
+            13185 -12331
+            13185 4872
+          )
+        )
+        (wire
+          (path F 250
+            4999 -21961
+            4187 -22773
+            3990 -22773
+          )
+        )
+      )
+      (net N003
+        (via VIA_S 33449 -667
+        )
+        (via VIA_S 37714 -10066
+        )
+        (wire
+          (path F 250
+            35640 5840
+            34798 5840
+            33696 4738
+            33696 -420
+            33449 -667
+          )
+        )
+        (wire
+          (path B 250
+            33974 -10901
+            35244 -9631
+          )
+        )
+        (wire
+          (path B 250
+            35244 -9631
+            35244 -6179
+            33449 -4384
+            33449 -667
+          )
+        )
+        (wire
+          (path B 250
+            35244 -9631
+            37279 -9631
+            37714 -10066
+          )
+        )
+        (wire
+          (path F 250
+            4442 -24614
+            4943 -25115
+            5365 -25115
+            5493 -25243
+            22537 -25243
+            37714 -10066
+          )
+        )
+      )
+      (net N024
+        (wire
+          (path F 250
+            -69500 3675
+            -69500 2933
+          )
+        )
+        (via VIA_S -62041 2103
+        )
+        (wire
+          (path B 250
+            -61730 3605
+            -61730 2414
+            -62041 2103
+          )
+        )
+        (wire
+          (path F 250
+            -62041 2103
+            -68670 2103
+            -69500 2933
+          )
+        )
+      )
+      (net N025
+        (via VIA_S 62761 6397
+        )
+        (wire
+          (path F 250
+            69500 5325
+            69500 6067
+            69170 6397
+            62761 6397
+          )
+        )
+        (wire
+          (path B 250
+            61730 5395
+            62547 5395
+            62547 6183
+            62761 6397
+          )
+        )
+      )
+      (net N026
+        (wire
+          (path F 250
+            20515 13460
+            19773 13460
+            18670 12357
+            18670 11615
+          )
+        )
+      )
+      (net N027
+        (wire
+          (path F 250
+            -17085 11810
+            -17827 11810
+            -17827 12552
+            -18735 13460
+            -20515 13460
+          )
+        )
+      )
+      (net N028
+        (wire
+          (path F 250
+            -14665 -21460
+            -12765 -21460
+          )
+        )
+      )
+      (net N029
+        (wire
+          (path F 250
+            -14665 -23370
+            -12765 -23370
+          )
+        )
+      )
+      (net N034
+        (wire
+          (path F 400
+            -23725 -15225
+            -23725 -16167
+          )
+        )
+        (wire
+          (path F 400
+            -23725 -16167
+            -24940 -16167
+            -33342 -7765
+            -33342 -3238
+            -36580 0
+          )
+        )
+      )
+      (net N033
+        (wire
+          (path F 400
+            -24375 -9675
+            -24375 -8733
+          )
+        )
+        (wire
+          (path F 400
+            -24375 -8733
+            -25307 -8733
+            -36580 2540
+          )
+        )
+      )
+      (net N036
+        (wire
+          (path F 1000
+            27600 -8500
+            36080 -20
+            36580 0
+          )
+          (type protect)
+        )
+        (wire
+          (path F 400
+            23725 -9675
+            23725 -8500
+            27600 -8500
+          )
+          (type protect)
+        )
+      )
+      (net N035
+        (wire
+          (path F 1000
+            25300 -15225
+            27000 -15225
+            39200 -3025
+            39200 2540
+            36580 2540
+          )
+          (type protect)
+        )
+        (wire
+          (path F 400
+            24375 -15225
+            25300 -15225
+          )
+          (type protect)
+        )
+      )
+      (net N030
+        (wire
+          (path F 250
+            21070 8445
+            21387 8445
+            21642 8190
+            27920 8190
+          )
+        )
+        (wire
+          (path F 250
+            20570 8445
+            21070 8445
+          )
+        )
+        (wire
+          (path F 250
+            21070 8445
+            21070 8723
+            20570 9223
+            20570 9965
+          )
+        )
+      )
+      (net N019
+        (wire
+          (path B 250
+            -24769 1883
+            -24769 -6006
+            -22946 -7829
+            -22946 -12231
+            -22727 -12450
+            -21473 -12450
+            -21350 -12327
+            -21350 -8583
+            -20516 -7749
+            -20294 -7749
+            -8668 -19375
+            -8668 -19573
+            -6517 -21724
+            -6517 -21953
+          )
+        )
+        (via VIA_S -30521 1883
+        )
+        (via VIA_S -24769 1883
+        )
+        (via VIA_S -6517 -21953
+        )
+        (wire
+          (path B 250
+            -61730 5255
+            -33893 5255
+            -30521 1883
+          )
+        )
+        (wire
+          (path F 250
+            -5007 -21953
+            -6517 -21953
+          )
+        )
+        (wire
+          (path F 250
+            -30521 1883
+            -24769 1883
+          )
+        )
+      )
+      (net N020
+        (via VIA_S 38130 -24018
+        )
+        (wire
+          (path B 250
+            61730 3745
+            51792 3745
+            39263 -8784
+            39263 -22885
+            38130 -24018
+          )
+        )
+        (wire
+          (path F 250
+            38130 -24018
+            27375 -24018
+            24785 -26608
+            3897 -26608
+            2955 -27550
+            2853 -27550
+            2179 -26876
+          )
+        )
+      )
+      (net N040
+        (via VIA_S 1675 -20913
+        )
+        (via VIA_S 12687 5655
+        )
+        (wire
+          (path F 250
+            20570 11615
+            20570 10873
+            17905 10873
+            12687 5655
+          )
+        )
+        (wire
+          (path F 250
+            3876 -25179
+            2576 -23879
+            2576 -21814
+            1675 -20913
+          )
+        )
+        (wire
+          (path B 250
+            12687 5655
+            12543 5511
+            12543 -9813
+            1675 -20681
+            1675 -20913
+          )
+        )
+      )
+      (net N017
+        (wire
+          (path F 250
+            -23400 -7425
+            -23400 -8167
+          )
+        )
+        (wire
+          (path F 250
+            -23075 -9675
+            -23075 -8492
+            -23400 -8167
+          )
+        )
+      )
+      (net N018
+        (wire
+          (path F 250
+            23400 -17475
+            23400 -16733
+          )
+        )
+        (wire
+          (path F 250
+            23075 -15225
+            23075 -16408
+            23400 -16733
+          )
+        )
+      )
+      (net N052
+        (wire
+          (path F 250
+            -22425 -9675
+            -22425 -6744
+            -22353 -6672
+            -20166 -6672
+          )
+        )
+        (wire
+          (path B 250
+            8944 -12145
+            8817 -12272
+            -4079 -12272
+            -10183 -6168
+            -19662 -6168
+            -20166 -6672
+          )
+        )
+        (via VIA_S 19956 -17755
+        )
+        (via VIA_S 19017 -13936
+        )
+        (via VIA_S 8944 -12145
+        )
+        (via VIA_S -20166 -6672
+        )
+        (wire
+          (path F 250
+            23675 -20600
+            22825 -20600
+          )
+        )
+        (wire
+          (path B 250
+            19956 -17755
+            19956 -14875
+            19017 -13936
+          )
+        )
+        (wire
+          (path F 250
+            22425 -17755
+            19956 -17755
+          )
+        )
+        (wire
+          (path F 250
+            22425 -15225
+            22425 -17755
+          )
+        )
+        (wire
+          (path F 250
+            22425 -17755
+            22425 -20200
+            22825 -20600
+          )
+        )
+        (wire
+          (path F 250
+            19017 -13936
+            17226 -12145
+            8944 -12145
+          )
+        )
+      )
+      (net N014
+        (wire
+          (path F 250
+            -21125 -7425
+            -18985 -7425
+          )
+        )
+        (wire
+          (path B 250
+            5623 -15484
+            -3926 -15484
+            -11985 -7425
+            -18985 -7425
+          )
+        )
+        (via VIA_S 5623 -15484
+        )
+        (via VIA_S -18985 -7425
+        )
+        (wire
+          (path F 250
+            -21125 -9675
+            -21125 -7425
+          )
+        )
+        (wire
+          (path F 250
+            21125 -15225
+            21125 -16146
+            20230 -17041
+            13888 -17041
+            12331 -15484
+            5623 -15484
+          )
+        )
+      )
+      (net N031
+        (wire
+          (path B 250
+            -63845 3610
+            -64587 3610
+          )
+        )
+        (wire
+          (path B 250
+            -67500 3600
+            -66328 3600
+          )
+        )
+        (wire
+          (path B 250
+            -66328 3600
+            -66328 2858
+            -66263 2793
+            -64662 2793
+            -64587 2868
+            -64587 3610
+          )
+        )
+      )
+      (net N032
+        (wire
+          (path B 250
+            67500 5400
+            66328 5400
+            66328 6142
+            66263 6207
+            64662 6207
+            64587 6132
+            64587 5390
+            63845 5390
+          )
+        )
+      )
+      (net N022
+        (wire
+          (path B 250
+            -65495 5390
+            -66237 5390
+          )
+        )
+        (wire
+          (path B 250
+            -67500 5400
+            -66247 5400
+            -66237 5390
+          )
+        )
+      )
+      (net N023
+        (wire
+          (path F 250
+            8612 -16126
+            11808 -16126
+          )
+        )
+        (wire
+          (path B 250
+            11808 -16126
+            17381 -10553
+            22207 -10553
+            22931 -11277
+            22931 -13864
+            23003 -13936
+            29741 -13936
+          )
+        )
+        (via VIA_S 6490 -20209
+        )
+        (via VIA_S 65953 2587
+        )
+        (via VIA_S 29741 -13936
+        )
+        (via VIA_S 11808 -16126
+        )
+        (via VIA_S 8612 -16126
+        )
+        (wire
+          (path B 250
+            67500 3600
+            65953 3600
+          )
+        )
+        (wire
+          (path B 250
+            65495 3610
+            65943 3610
+            65953 3600
+          )
+        )
+        (wire
+          (path F 250
+            65953 2587
+            50959 2587
+            40659 -7713
+            35964 -7713
+            29741 -13936
+          )
+        )
+        (wire
+          (path F 250
+            3867 -20830
+            4488 -20209
+            6490 -20209
+          )
+        )
+        (wire
+          (path B 250
+            65953 3600
+            65953 2587
+          )
+        )
+        (wire
+          (path B 250
+            6490 -20209
+            8612 -18087
+            8612 -16126
+          )
+        )
+      )
+      (net N012
+        (via VIA_S -7701 -22644
+        )
+        (via VIA_S -20343 -8632
+        )
+        (wire
+          (path F 250
+            -4999 -24039
+            -4999 -23237
+            -5592 -22644
+            -7701 -22644
+          )
+        )
+        (wire
+          (path B 250
+            -7701 -22644
+            -7701 -21274
+            -20343 -8632
+          )
+        )
+        (wire
+          (path F 250
+            -20475 -9675
+            -20475 -8764
+            -20343 -8632
+          )
+        )
+      )
+      (net N013
+        (wire
+          (path F 250
+            20475 -15225
+            20475 -16092
+          )
+        )
+        (via VIA_S 1044 -22481
+        )
+        (via VIA_S 9290 -13995
+        )
+        (wire
+          (path F 250
+            20475 -16092
+            18519 -16092
+            16422 -13995
+            9290 -13995
+          )
+        )
+        (wire
+          (path F 250
+            -4433 -24604
+            -3043 -23214
+            -2462 -23214
+            -1729 -22481
+            1044 -22481
+          )
+        )
+        (wire
+          (path B 250
+            9290 -13995
+            9290 -14235
+            1044 -22481
+          )
+        )
+      )
+      (net N038
+        (wire
+          (path F 250
+            -19825 -9675
+            -17243 -9675
+          )
+        )
+        (wire
+          (path B 250
+            1005 -25016
+            321 -24332
+            321 -21600
+            -11871 -9408
+            -16976 -9408
+            -17243 -9675
+          )
+        )
+        (via VIA_S -17243 -9675
+        )
+        (via VIA_S 1005 -25016
+        )
+        (wire
+          (path F 250
+            1005 -25016
+            468 -25553
+            468 -27428
+            1048 -28008
+          )
+        )
+      )
+      (net N039
+        (via VIA_S 19082 -15225
+        )
+        (via VIA_S 6823 -28486
+        )
+        (wire
+          (path F 250
+            1614 -27442
+            2658 -28486
+            6823 -28486
+          )
+        )
+        (wire
+          (path B 250
+            6823 -28486
+            19082 -16227
+            19082 -15225
+          )
+        )
+        (wire
+          (path F 250
+            19825 -15225
+            19082 -15225
+          )
+        )
+      )
+    )
+  )
+)

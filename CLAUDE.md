@@ -37,6 +37,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - **A fonte do esquemático é o KiCad**, gerado por `ferramentas/esquematico/gen.py` (feito com o Claude em outra sessão). Mudança no esquemático → editar o `gen.py` e regerar (passo a passo em `ferramentas/README.md`).
 - **Em andamento:** o Erick está importando o esquemático do KiCad no EasyEDA Pro para fazer o layout e encomendar na JLC. Conferir a importação rede por rede com `hardware/seguidor_base/REDES.md` (54 redes, 7 pinos sem ligação).
 - **05/11:** prévia de posicionamento e trilhas em `hardware/preview/`, baseada no EVA-RT. Roteamento ainda parcial, com 34 ligações abertas e conflito de J3 com o rasgo original; as propostas e verificações estão no `RELATORIO.md` dessa pasta e no `docs/HANDOFF_PREVIEW_2026-11-05.md`.
+- **06/11 — prévia v2 com 100% das ligações:** `hardware/preview/placa_v2.jpg`, `RELATORIO_v2.md` e `posicoes_v2.csv` (substituem `placa_completa.jpg`/`RELATORIO.md`). J3 = 5 pads SMD embaixo (barra 2,54 deitada, como o EVA-RT), U1 em (0; −23) −45°, passivos espalhados por função, plano de GND nas duas faces, 0 violações de folga no verificador. Scripts: `ferramentas/preview/placa_v2.py`, `rotear_v2.py` (FreeRouting 1.9.0 + cobre fixo + finalizador), `figura_v2.py`. Pendente no `gen.py`: texto do J3 (agora SMD embaixo).
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos

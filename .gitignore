@@ -31,3 +31,4 @@ ferramentas/preview/.venv/
 ferramentas/preview/logs/
 ferramentas/preview/v2/*.log
 ferramentas/preview/v2/kicad_dados.json
+ferramentas/preview/v2/marcas_sim.json

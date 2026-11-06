@@ -41,3 +41,4 @@ _02/11/2026. Substitui o contorno do documento `EVA_RT_PCB` (não usar o `EVA_RT
 - Com a presilha e o patim do EVA-RT, cada 1 mm de vareta soma 1 mm em L (L = 82 ↔ vareta de ~56 mm desde y = −4), então L = 70 ↔ ~44 mm.
 - QRE nunca passa a menos de 44,7 mm do centro da linha com L = 70 (não lê a própria linha).
 - Código da simulação: `marcas_sim.py` (robô como reboque, barra ideal sobre a linha).
+- **06/11:** simulação refeita em `ferramentas/preview/marcas_sim.py` (eixo em y −22,59, controle P e barra deslocada, marca antes/centrada/depois da troca): `hardware/preview/marcas_trif_sim.jpg` e resumo em `docs/DECISOES_2026-11-05.md`.

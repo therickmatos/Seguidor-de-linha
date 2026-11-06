@@ -67,7 +67,7 @@ def stl_part(name, fn):
     return b64(w.reshape(-1))
 
 
-def main(cobre=True):
+def main(cobre=True, variante=False):
     pos = V.load()
     cu = json.loads(R.COBRE.read_text(encoding='utf8'))
     tracks, vias = cu['tracks'], cu['vias']
@@ -231,9 +231,39 @@ def main(cobre=True):
         'refs': [{'ref': c['ref'], 'x': rnd(c['x']), 'y': rnd(c['y']), 'face': c['face']} for c in pos
                  if c['ref'] not in ('J8', 'J9')],
     }
+    out = M.OUTPUT / 'placa_3d.html'
+    if variante:
+        import variante_traseira as VT
+        f = VT.folgas(pos)
+        jx, jy = j1['x'], j1['y']
+        # plugue femea encaixado (par encaixado ~20,1 mm, manual do XT30U) e os dois fios saindo por cima
+        topo = T + 10.2
+        data['extras'] += [
+            {'nome': 'Plugue XT30 fêmea encaixado (estimado, par com ~20 mm)', 'cor': '#c99512',
+             'box': [rnd(jx), rnd(jy), rnd(topo + 4.95), 5.4, 10.4, 9.9]},
+            {'nome': 'Fio + (vermelho)', 'cor': '#c8322b', 'box': [rnd(jx), -21.2, rnd(topo + 9.9 + 3.0), 1.9, 1.9, 6.0]},
+            {'nome': 'Fio − (preto)', 'cor': '#202022', 'box': [rnd(jx), -26.2, rnd(topo + 9.9 + 3.0), 1.9, 1.9, 6.0]}]
+        sai = VT.OUTLINE_ALPHA.difference(M.OUTLINE).buffer(-0.01)
+        data['fantasmas'] = [{'poly': rings(g, 0.005)[0][0], 'cor': '#ff5a52',
+                              'nome': 'Lóbulo da alpha que sai (até y −35)'}
+                             for g in getattr(sai, 'geoms', [sai]) if g.area > 1]
+        data['titulo'] = 'Traseira do EVA-RT + XT30 em pé'
+        data['sub'] = ('Proposta de 06/11 em 3D, só posições, com a mecânica do EVA-RT · vermelho translúcido = '
+                       'placa da alpha que sai · mm, origem no centro da ventoinha, +y = frente')
+        data['rotulo_xt30'] = 'XT30 (J1)'
+        data['vista_xt30'] = {'p': [-82, -78, 58], 't': [-27.5, -23.7, 6]}
+        data['notas']['engrenagem'] = (
+            '<strong>XT30 em pé no degrau esquerdo.</strong> Traseira do contorno B original, que é a do EVA-RT '
+            '(pés em y −32, degrau em y −28,5, centro em y −30); saem os lóbulos da alpha até y −35 (vermelho '
+            f'translúcido). J1 em ({n(jx)}; {n(jy)}), eixo longo em y, pino 1 (+) para a frente: corpo a '
+            f'{n(f["corpo_suporte"])} mm do suporte, {n(f["corpo_motor"])} mm do motor, {n(f["corpo_bateria"])} mm '
+            f'da bateria e {n(f["corpo_engrenagem"])} mm do plano da engrenagem. O plugue fêmea encaixado e os fios '
+            'são estimados. Use a vista “XT30 (J1)”.')
+        out = M.OUTPUT / 'traseira_3d.html'
     js = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
     tpl = (M.HERE / 'placa_3d_modelo.html').read_text(encoding='utf8')
-    out = M.OUTPUT / 'placa_3d.html'
+    if variante:
+        tpl = tpl.replace('<title>Placa base do seguidor</title>', '<title>Traseira estilo EVA-RT</title>', 1)
     out.write_text(tpl.replace('/*__DADOS__*/null', js), encoding='utf8')
     print(out, f'{len(js) / 1e6:.2f} MB de dados')
 

@@ -134,6 +134,9 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const D = /*__DADOS__*/null;
 document.getElementById('nota-eng').innerHTML = D.notas.engrenagem;
 document.getElementById('nota-placa').textContent = D.notas.placa;
+if (D.titulo) document.querySelector('.topo h1').textContent = D.titulo;
+if (D.sub) document.querySelector('.topo .sub').textContent = D.sub;
+if (D.rotulo_xt30) document.getElementById('v-xt30').textContent = D.rotulo_xt30;
 const T = D.espessura;
 const box = document.getElementById('vista');
 const chip = document.getElementById('chip');
@@ -248,8 +251,14 @@ function montar() {
   for (const e of D.extras) {
     const [x, y, z, sx, sy, sz] = e.box;
     const m = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), mat(e.cor));
-    m.position.set(x, y, z); m.userData = { nome: 'J3 · barra 1×5 2,54 deitada (gravação)' };
+    m.position.set(x, y, z); m.userData = { nome: e.nome || 'J3 · barra 1×5 2,54 deitada (gravação)' };
     grupos.comp.add(m); clicaveis.push(m);
+  }
+  // areas de comparacao (placa que sai/entra numa variante), translucidas
+  for (const f of (D.fantasmas || [])) {
+    const g = new THREE.ExtrudeGeometry(forma(f.poly), { depth: T, bevelEnabled: false, curveSegments: 16 });
+    const m = new THREE.Mesh(g, mat(f.cor, { op: .38, r: .7 }));
+    m.userData = { nome: f.nome }; scene.add(m); clicaveis.push(m);
   }
 
   // mecanica (STL do EVA-RT)
@@ -297,6 +306,7 @@ const VISTAS = {
   lado: { p: [-230, -10, 30], t: [0, -10, 5] },
   xt30: { p: [-18, -96, 40], t: [-37, -27, 3] },
 };
+if (D.vista_xt30) VISTAS.xt30 = D.vista_xt30;
 let anim = null;
 function irPara(nome) {
   const v = VISTAS[nome];

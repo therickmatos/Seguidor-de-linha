@@ -48,6 +48,14 @@ python pacote_alpha.py           # hardware/placa_alpha/: imagens, CSV, DXF do c
 
 Se a otimização final do FreeRouting travar, rodar sem ela: `FR_EXTRA="-mt 0" python rotear_v2.py rotear 100`.
 
+**Proposta da traseira e simulação das marcas** (rodar em `preview/`):
+
+```
+python variante_traseira.py --3d   # traseira do EVA-RT + XT30 em pé: hardware/preview/traseira_eva_xt30.jpg e traseira_3d.html (não altera a alpha)
+python marcas_sim.py               # QRE de marca x marcas do TRIF (v2/marcas_sim.json)
+python marcas_sim.py --figura      # hardware/preview/marcas_trif_sim.jpg
+```
+
 **Placa em KiCad** (`hardware/seguidor_base/seguidor_base.kicad_pcb`) a partir da prévia v2 e do esquemático publicado:
 
 ```

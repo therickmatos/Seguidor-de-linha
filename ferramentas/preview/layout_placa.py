@@ -27,9 +27,9 @@ OUTLINE_ORIGINAL = Polygon(BOARD_DATA['contorno'])
 # fora do contato do gearbox. Os furos e o JSON original continuam intactos.
 # 06/11: o contorno nao passa de |x| = 40 (face externa do suporte), porque a
 # engrenagem 64T fica em |x| 40..42 e desce abaixo da placa; o lobulo vai ate
-# |x| = 29 para dentro, para o XT30 ficar todo em x >= -39,5.
-_extensao_direita = Polygon([(28,-28), (29,-28), (29,-34.3), (29.2,-34.8),
-                             (29.7,-35), (39.3,-35), (39.8,-34.8), (40,-34.3),
+# |x| = 27,6 para dentro, para o XT30 ficar todo em x >= -38 (2 mm da engrenagem).
+_extensao_direita = Polygon([(27.0,-28), (27.6,-28), (27.6,-34.3), (27.8,-34.8),
+                             (28.3,-35), (39.3,-35), (39.8,-34.8), (40,-34.3),
                              (40,-27.5)])
 OUTLINE = unary_union([OUTLINE_ORIGINAL, _extensao_direita,
                        affinity.scale(_extensao_direita, xfact=-1, origin=(0,0))])

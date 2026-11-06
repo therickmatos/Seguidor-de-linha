@@ -147,7 +147,7 @@ def main():
     draw(ax1, pos, data, pours, 1, view, edges)
     draw(ax2, pos, data, pours, 2, view, edges)
     nopen = sum(len(g) - 1 for g in ver['abertas_final'].values())
-    fig.text(0.04, 0.965, 'PLACA BASE v2 — J3 embaixo, ATmega na posição do EVA-RT, plano de GND',
+    fig.text(0.04, 0.965, 'PLACA BASE — VERSÃO ALPHA (06/11/2026)',
              color=WHITE, fontsize=17, fontweight='bold')
     fig.text(0.04, 0.945, f"{ver['trilhas']} trilhas · {ver['vias']} vias · ligações abertas: {nopen} · "
              f"folga mínima entre redes {ver['folga_mm']} mm, cobre–borda {ver['borda_mm']} mm · "

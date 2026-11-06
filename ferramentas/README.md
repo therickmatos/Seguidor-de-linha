@@ -43,4 +43,7 @@ python rotear_v2.py continuar 100  # (opcional) mais uma rodada a partir do SES
 python rotear_v2.py importar     # finalizador, alargamento, plano de GND, verificação
 python figura_v2.py              # hardware/preview/placa_v2.jpg
 python relatorio_v2.py           # hardware/preview/RELATORIO_v2.md e posicoes_v2.csv
+python pacote_alpha.py           # hardware/placa_alpha/: imagens, CSV, DXF do contorno e DXF-guia
 ```
+
+Se a otimização final do FreeRouting travar, rodar sem ela: `FR_EXTRA="-mt 0" python rotear_v2.py rotear 100`.

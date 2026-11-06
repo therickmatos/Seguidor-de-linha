@@ -47,7 +47,7 @@ T, B = 'TOP', 'BOTTOM'
 # ref: (x, y, rot, face, motivo)
 POS = {
     # ---- mecanica e conectores (fixos)
-    'J1': (-34.4, -31.7, 0, T, 'XT30 no canto traseiro esquerdo, corpo em x >= -39,5 (engrenagem em x <= -40); pad 1 (lado reto) = +'),
+    'J1': (-32.9, -31.7, 0, T, 'XT30 no canto traseiro esquerdo, corpo em x >= -38 (2 mm da engrenagem em x <= -40); pad 1 (lado reto) = +'),
     'J2': (0.0, 22.74, 0, T, 'barra de sensores, centro da frente'),
     'J3': (0.0, -28.575, 0, B, 'gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)'),
     'J4': (32.5, 7.05, 0, T, 'Bluetooth (femea 1x6), frente direita'),

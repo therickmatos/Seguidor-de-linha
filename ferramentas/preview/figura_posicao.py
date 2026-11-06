@@ -96,10 +96,10 @@ def main():
     stroke(ax2.text(-45.6, -36.6, 'laranja = engrenagem (|x| 40…42); pontilhado laranja = plano x = −40',
                     color=GEAR, fontsize=7.5), 2)
 
-    fig.text(0.04, 0.955, 'PLACA BASE v2 — POSIÇÕES (sem trilhas)', color=WHITE, fontsize=18, fontweight='bold')
+    fig.text(0.04, 0.955, 'PLACA BASE — VERSÃO ALPHA · POSIÇÕES', color=WHITE, fontsize=18, fontweight='bold')
     fig.text(0.04, 0.935, f'J1 (XT30) em ({n(j1["x"])}; {n(j1["y"])}), corpo em x {n(x0)}…{n(x1)}; contorno dos dois '
-             'lóbulos traseiros sem passar de |x| = 40 (lóbulo até |x| = 29 para dentro, até y = −35). '
-             'Roteamento a refazer.', color='#c7d2cc', fontsize=10.5)
+             'lóbulos traseiros sem passar de |x| = 40 (até |x| = 27,6 para dentro e y = −35), '
+             f'{n(x0 + 40)} mm até o plano da engrenagem.', color='#c7d2cc', fontsize=10.5)
     fig.text(0.04, 0.918, 'Bege = pads da face de cima, contorno branco = corpo; azul tracejado = face de baixo '
              '(vista através da placa); ponto branco = pino 1. Contorno tracejado = original do contorno B. '
              'Grade de 5 mm, +y = frente.', color='#c7d2cc', fontsize=10.5)

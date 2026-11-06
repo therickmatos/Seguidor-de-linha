@@ -62,7 +62,7 @@ def via_for(net):
 # C2 desce pela face de cima ate C15/C7 (VM do U3). Assim o VBAT nao passa entre
 # o ATmega e a ventoinha, por onde saem os sinais para a barra de sensores.
 PRE_TRACKS = [
-    ('VBAT', 2, 1.2, [(-36.9, -31.7), (-25.3, -20.1), (-25.3, -19.4)]),
+    ('VBAT', 2, 1.2, [(-35.4, -31.7), (-25.3, -21.6), (-25.3, -19.4)]),
     ('VBAT', 2, 1.2, [(-25.3, -19.4), (-24.2, -19.4)]),
     ('VBAT', 2, 1.2, [(-25.3, -19.4), (-27.0, -17.7), (-27.0, 3.31), (-22.0, 3.31)]),
     ('VBAT', 2, 1.2, [(-22.0, 3.31), (-14.31, 11.0), (9.0, 11.0), (17.0, 3.0), (17.0, 0.81), (22.0, 0.81)]),
@@ -75,6 +75,10 @@ PRE_TRACKS = [
     ('OUT_B2', 1, 1.0, [(27.6, -8.5), (36.08, -0.02), (36.58, 0.0)]),
     ('VBAT', 1, 0.4, [(23.075, -9.675), (23.075, -7.3), (23.9, -7.3)]),
     ('OUT_B1', 1, 0.4, [(24.375, -15.225), (25.3, -15.225)]),
+    # bomba de carga do U3 (pinos 12-14 -> C15.2 e C16), sem cruzar o VM
+    ('VCP_B', 1, 0.25, [(22.425, -9.675), (22.425, -7.3)]),
+    ('CPH_B', 1, 0.25, [(21.775, -9.675), (21.775, -8.2), (21.25, -7.675), (21.25, -7.3)]),
+    ('CPL_B', 1, 0.25, [(21.125, -9.675), (21.125, -8.6), (19.6, -8.6), (19.6, -7.3)]),
     ('OUT_B1', 1, 1.0, [(25.3, -15.225), (27.0, -15.225), (39.2, -3.025), (39.2, 2.54), (36.58, 2.54)]),
     # cristal: trilhas curtas desenhadas a mao (pino 7 -> X1.1 -> C11; pino 8 -> X1.3 -> C12)
     ('XTAL1', 1, 0.25, [(-1.604, -27.433), (-2.046, -27.875), (-5.6, -27.875), (-5.6, -26.55),
@@ -235,6 +239,8 @@ def run_freerouting(passes=100):
     # FreeRouting 1.9.0 (algoritmo classico; o 2.x oscila e restaura tabuleiros piores)
     # baixar: github.com/freerouting/freerouting/releases (v1.9.0); no Linux sem tela usa xvfb-run
     cmd = ['java', '-jar', JAR, '-de', str(DSN), '-do', str(SES), '-mp', str(passes), '-dct', '0']
+    # FR_EXTRA, ex. "-mt 0": sem a otimizacao final (ela travou numa das rodadas da versao alpha)
+    cmd += os.environ.get('FR_EXTRA', '').split()
     if shutil.which('xvfb-run') and not os.environ.get('DISPLAY'):
         cmd = ['xvfb-run', '-a'] + cmd
     print(' '.join(cmd), flush=True)
@@ -436,7 +442,9 @@ def stitching_vias(positions, tracks, vias, pours, step=5.0):
     objs = copper_objects(positions, tracks, vias)
     foreign = unary_union([o['geom'] for o in objs if o['net'] != 'GND']).buffer(CLEAR + d / 2)
     holes = unary_union([g for _, g in M.HOLES]).buffer(EDGE + d / 2 + 0.2)
-    ok = ok.difference(foreign).difference(holes)
+    # nenhuma via de costura encostada em pad (nem de GND): solda e distancia entre furos
+    pads = unary_union([p['shape'] for p in M.all_pads(positions)]).buffer(d / 2 + 0.25)
+    ok = ok.difference(foreign).difference(holes).difference(pads)
     new = []
     xs = [x * step for x in range(int(-76 / step), int(76 / step) + 1)]
     ys = [y * step for y in range(int(-36 / step), int(27 / step) + 1)]
@@ -458,6 +466,7 @@ def stitch_islands(positions, tracks, vias, pours):
     objs = copper_objects(positions, tracks, vias)
     foreign = unary_union([o['geom'] for o in objs if o['net'] != 'GND']).buffer(CLEAR + d / 2)
     holes = unary_union([g for _, g in M.HOLES]).buffer(EDGE + d / 2 + 0.05)
+    holes = holes.union(unary_union([p['shape'] for p in M.all_pads(positions)]).buffer(d / 2 + 0.25))
     live = drop_floating(positions, tracks, vias, pours)
     new = []
     for layer in (1, 2):

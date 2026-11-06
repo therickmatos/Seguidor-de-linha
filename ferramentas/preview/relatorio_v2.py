@@ -38,9 +38,10 @@ def main():
     j3 = [p for p in M.get_pads(next(c for c in pos if c['ref'] == 'J3'))]
     L = []
     w = L.append
-    w('# Placa base v2 — prévia com trilhas (06/11/2026)\n')
-    w('Imagem: `placa_v2.jpg` (face de cima e face de baixo vista através da placa). '
-      'Posições para digitar no EasyEDA: `posicoes_v2.csv`. Origem no centro da ventoinha, +y = frente, mm.\n')
+    w('# Placa base — versão alpha (06/11/2026)\n')
+    w('Pacote para o EasyEDA em `hardware/placa_alpha/` (ver o README de lá): `placa_alpha.jpg` (as duas faces '
+      'com trilhas), `posicao_alpha.jpg`, `posicoes_alpha.csv`, `contorno_alpha.dxf`, `guia_alpha.dxf` e '
+      '`trilhas_fixas_alpha.csv`. Origem no centro da ventoinha, +y = frente, mm.\n')
     w('## Resultado\n')
     if n_open == 0:
         w('- **Todas as ligações do `REDES.md` estão feitas** (54 redes, 219 pads), conferidas por um '
@@ -82,7 +83,8 @@ def main():
     w('  - troncos de VBAT na face de baixo, como no EVA-RT: J1 → driver esquerdo → sobe pela esquerda até '
       'C1 → contorna a frente da ventoinha até C2; na direita desce por cima até C15/C7 (VM do U3);')
     w('  - feixe dos sensores (S0–S3, C0) em volta do furo da ventoinha até J2, como o octógono do EVA-RT;')
-    w('  - cristal (pinos 7/8 → X1 → C11/C12) e a saída de potência do U3 (OUT1/OUT2/VM).\n')
+    w('  - cristal (pinos 7/8 → X1 → C11/C12), saída de potência do U3 (OUT1/OUT2/VM) e a bomba de carga '
+      'do U3 (VCP/CPH/CPL).\n')
     w('## Larguras desenhadas (potência)\n')
     w('| rede | mín. (mm) | máx. (mm) | trecho < 0,6 mm |')
     w('|---|---|---|---|')
@@ -99,8 +101,18 @@ def main():
       'ele é alto demais para ficar sob a bateria; avisar para reposicionar.')
     w('- **C9** ficou junto ao AVCC (pinos 18/21); os pinos VCC 4/6 recebem o +5V pela trilha, como no EVA-RT '
       '(que também tem um único 100 nF afastado). Se quiser, cabe um 100 nF extra no esquemático.')
-    w('- XT30 (J1): furos e pads estimados pela foto; medir a peça. Contorno ampliado até y = −35 '
-      '(`contorno_b_xt30.dxf`), como na prévia anterior.')
+    j1 = next(c for c in pos if c['ref'] == 'J1')
+    jb = M.body(j1).bounds
+    w(f"- **XT30 (J1) em ({j1['x']:.1f}; {j1['y']:.1f})**, corpo em x {jb[0]:.1f}…{jb[2]:.1f}: "
+      f"{jb[0] + 40:.1f} mm até o plano da engrenagem da roda (64T M0,3, Ø≈19,8, em |x| 40…42, que desce "
+      '2,9 mm abaixo da face de cima). Os lóbulos traseiros não passam de |x| = 40 (vão até |x| = 27,6 para dentro '
+      'e até y = −35). Medir no conjunto real a face da engrenagem e o XT30 macho + plugue fêmea; sair com o cabo '
+      'da bateria para dentro/para trás, nunca para o lado da roda, e prendê-lo.')
+    w('- **J3 deitado embaixo:** o plástico da barra fica ~1,6 mm abaixo da face de baixo, atrás da borda '
+      '(y < −30). Com pneus de Ø≈22 a face de baixo fica ~2,5 mm do chão; conferir a folga real. Alternativa: '
+      'soldar a barra só para gravar, ou apoiar a barra nos pads na hora de gravar (como os pads do EVA-RT permitem).')
+    w('- Motores em balanço (~12 mm para dentro do suporte, como no EVA-RT): travar o motor na abraçadeira '
+      '(cola ou fita kapton) e deixar folga nos fios até M1/M2.')
     w('- Altura do rotor sobre a placa: nenhum componente sob o disco de Ø34; só trilhas, como no EVA-RT.')
     w('- Footprints da prévia são aproximados (KiCad/EVA-RT); usar os da LCSC no EasyEDA e refazer o DRC.\n')
     w('## Arquivos\n')

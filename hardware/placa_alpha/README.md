@@ -47,6 +47,12 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
 Pads 1,25 × 2,25 mm em y = −28,575, passo 2,54. Visto de cima (e por trás do robô) a ordem
 é +5V, GND, RX, TX, DTR da esquerda para a direita. Conferir a ordem do conversor CH340G.
 
+## Montagem do Bluetooth
+
+R18 = 4,7 kΩ e **LED7 e R2 não montados**: assim dá para gravar pelo J3 com o HC-05 encaixado
+(o conversor ganha do módulo no RX). Os footprints do LED7/R2 ficam na placa; para ter o LED de
+RX, monte LED7/R2, troque o R18 por 0 Ω e tire o módulo antes de gravar.
+
 ## Conferir antes de pedir na JLC
 
 - XT30 (J1): medir o corpo do macho e o plugue fêmea encaixado; pads Ø3,9 e furos Ø2,5 são estimados.
@@ -54,7 +60,7 @@ Pads 1,25 × 2,25 mm em y = −28,575, passo 2,54. Visto de cima (e por trás do
   (a prévia supõe encostada em |x| = 40; o XT30 fica a 2 mm desse plano).
 - J3 deitado: folga da barra até o chão (ver relatório).
 - Cristal X1: a prévia usa 3225; HC-49/S não cabe sob a bateria.
-- Esquemático (`ferramentas/esquematico/gen.py`): texto e BOM do J3 (agora SMD embaixo),
-  código LCSC do XT30, B3U e Bluetooth obrigatório (ver `docs/DECISOES_2026-11-05.md`).
+- Esquemático: já regerado (J1, J3, Bluetooth e R18 = 4,7k na BOM). Falta o código LCSC do
+  XT30 e decidir os botões (B3U ou 6 × 6 THT, ver `hardware/preview/botoes_6x6.jpg`).
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.

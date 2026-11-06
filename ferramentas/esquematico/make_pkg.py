@@ -25,10 +25,10 @@ shutil.copy('seguidor_base.pdf', out)
 # --- BOM
 bom = json.load(open('intent.json'))['bom']
 opt = {'R23': 'opcional (bateria)', 'R24': 'opcional (bateria)', 'C18': 'opcional (bateria)',
-       'LED7': 'opcional', 'R2': 'opcional'}
+       'LED7': 'nao montar (com R18 = 4,7k)', 'R2': 'nao montar (com R18 = 4,7k)'}
 eva = {'J1': 'VIN', 'J2': 'FPC1 (FPC 10 vias)', 'U2': 'IFX_A1 (IFX9201)', 'U3': 'IFX_B1 (IFX9201)', 'J3': 'Converter Conn Master',
        'J5': 'USB to ASP Conn Master', 'Q1': 'Q1 (outro MOSFET)', 'X1': 'X1 (ressonador 3 pinos)', 'R3': 'R3 (1k)'}
-new = {'C11', 'C12', 'C13', 'C14', 'C15', 'C16', 'C17', 'C18', 'R11', 'R12', 'R13', 'R14', 'R15', 'R16', 'R17', 'R23', 'R24', 'D1', 'J4', 'J8', 'J9'}
+new = {'C11', 'C12', 'C13', 'C14', 'C15', 'C16', 'C17', 'C18', 'R11', 'R12', 'R13', 'R14', 'R15', 'R16', 'R17', 'R18', 'R23', 'R24', 'D1', 'J4', 'J8', 'J9'}
 def key(r):
     m = re.match(r'([A-Z]+)(\d+)', r); return (m.group(1), int(m.group(2)))
 groups = OrderedDict()

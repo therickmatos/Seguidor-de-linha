@@ -113,6 +113,9 @@ def main():
     w('- **J3 deitado embaixo:** o plástico da barra fica ~1,6 mm abaixo da face de baixo, atrás da borda '
       '(y < −30). Com pneus de Ø≈22 a face de baixo fica ~2,5 mm do chão; conferir a folga real. Alternativa: '
       'soldar a barra só para gravar, ou apoiar a barra nos pads na hora de gravar (como os pads do EVA-RT permitem).')
+    w('- **Bluetooth:** R18 = 4,7 kΩ entre o TXD do HC-05 e o RX do ATmega, com **LED7 e R2 não montados** '
+      '(footprints ficam na placa): o conversor ganha do módulo no RX e dá para gravar com o HC-05 encaixado. '
+      'Se preferir o LED de RX, monte LED7/R2 e troque o R18 por 0 Ω (aí tire o módulo para gravar).')
     w('- Motores em balanço (~12 mm para dentro do suporte, como no EVA-RT): travar o motor na abraçadeira '
       '(cola ou fita kapton) e deixar folga nos fios até M1/M2.')
     w('- Altura do rotor sobre a placa: nenhum componente sob o disco de Ø34; só trilhas, como no EVA-RT.')

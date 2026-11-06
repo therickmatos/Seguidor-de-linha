@@ -898,7 +898,7 @@
   [
    "J4",
    "3",
-   "RX_D0"
+   "BT_TXD"
   ],
   [
    "J4",
@@ -929,6 +929,16 @@
    "R17",
    "2",
    "GND"
+  ],
+  [
+   "R18",
+   "1",
+   "RX_D0"
+  ],
+  [
+   "R18",
+   "2",
+   "BT_TXD"
   ],
   [
    "J5",
@@ -1501,14 +1511,14 @@
   "R2": {
    "value": "1k",
    "pkg": "0603",
-   "note": "opcional",
+   "note": "nao montar com R18 = 4,7k",
    "lcsc": "",
    "dnp": false
   },
   "LED7": {
    "value": "RX (opcional)",
    "pkg": "0603",
-   "note": "",
+   "note": "nao montar com R18 = 4,7k",
    "lcsc": "",
    "dnp": false
   },
@@ -1544,6 +1554,13 @@
    "value": "2k",
    "pkg": "0603",
    "note": "divisor 5 V -> 3,3 V",
+   "lcsc": "",
+   "dnp": false
+  },
+  "R18": {
+   "value": "4.7k",
+   "pkg": "0603",
+   "note": "4,7k: grava com o HC-05 encaixado (LED7/R2 nao montados); 0 ohm se montar o LED7",
    "lcsc": "",
    "dnp": false
   },

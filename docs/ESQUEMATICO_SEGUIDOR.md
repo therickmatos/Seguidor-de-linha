@@ -43,7 +43,7 @@ Footprints ainda não atribuídos: isso fica para a etapa da PCB (o campo `Encap
 | Converter Conn Master (RST direto) | J3 1×5 macho 90° 2,54 mm (+5V, GND, RX, TX, DTR) + C17 100 nF DTR→RESET | gravar pela IDE com o CH340G com DTR e cabo Dupont |
 | FPC1 (FPC 10 vias) | J2 barra 1×8 2,54 mm | conector da barra em 2,54 mm |
 | LED3 + LED4 em paralelo no D13 (R4/R5) | só LED4 + R5 | um LED basta para o LED C |
-| — | J4 fêmea 1×6 (ordem HC-05) + R16/R17 1k/2k (TXD direto no RX) | Bluetooth de encaixe (obrigatório desde 05/11; R18 retirado em 06/11) |
+| — | J4 fêmea 1×6 (ordem HC-05) + R16/R17 1k/2k + R18 4,7k | Bluetooth de encaixe (obrigatório desde 05/11) |
 | — | R23/R24 20k/10k + C18 no A7 | medição da bateria (opcional, o firmware original não usa) |
 | — | J8/J9 4 pads (não montar) | só se os braços de marca forem placas separadas |
 | VIN | J1 XT30 | conector da bateria 2S |
@@ -58,5 +58,5 @@ LED1/LED2 com R6/R7, botões SW0–SW2, LED6/LED7 de TX/RX, C9/C10, R8/R9 do gat
 3. C14/C16 (CPH–CPL) com tensão ≥ VM: use 50 V.
 4. Os 100 nF podem ser todos do mesmo tipo (0603 50 V X7R) para simplificar a compra.
 5. J3 na borda traseira em cima (furos em y ≤ −28), com o ATmega uns 5 mm à frente; J4 na frente direita (x ≈ 32,5).
-6. O Bluetooth e o conversor disputam o RX: tire o módulo da barra antes de gravar (TXD do módulo ligado direto no RX_D0).
+6. O Bluetooth e o conversor disputam o RX: com R18 = 4,7k e LED7/R2 não montados, o conversor ganha e dá para gravar com o módulo encaixado. Com o LED7 montado, use R18 = 0 Ω e tire o módulo para gravar.
 7. Se um motor girar ao contrário, inverta os fios dele (ou troque OUT1/OUT2 na PCB).

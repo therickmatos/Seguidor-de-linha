@@ -212,11 +212,11 @@ LED('LED4', 'LED C', g(84) + 7.62, g(71), r=180, note='vermelho; o LED3 em paral
 S.links.append(('R5', '2', 'LED4', '2')); S.conn('LED4', '1', 'GND', bend='down')
 R('R1', '1k', g(84), g(77), r=90); S.conn('R1', '1', '+5V')
 LED('LED6', 'TX', g(84) + 7.62, g(77), r=180); S.links.append(('R1', '2', 'LED6', '2')); S.conn('LED6', '1', 'TX_D1')
-R('R2', '1k', g(84), g(83), r=90, note='opcional'); S.conn('R2', '1', '+5V')
-LED('LED7', 'RX (opcional)', g(84) + 7.62, g(83), r=180)
+R('R2', '1k', g(84), g(83), r=90, note='nao montar com R18 = 4,7k'); S.conn('R2', '1', '+5V')
+LED('LED7', 'RX (opcional)', g(84) + 7.62, g(83), r=180, note='nao montar com R18 = 4,7k')
 S.links.append(('R2', '2', 'LED7', '2')); S.conn('LED7', '1', 'RX_D0')
 note(['Botoes: menu do EVA-RT (1 = calibrar/partir, 2 = menu/+velocidade). LED C: calibracao e menu.',
-      'LED6/LED7 piscam com trafego na serial.'], 148.59, g(86))
+      'LED6/LED7 piscam com trafego na serial. Com R18 = 4,7k, LED7 e R2 nao sao montados.'], 148.59, g(86))
 
 # ---------------------------------------------------------------- 8 GRAVACAO / BT / ICSP
 frame(10, 228, 276, 287, '8 - GRAVACAO, BLUETOOTH E ICSP')
@@ -226,16 +226,17 @@ for p, n in zip('12345', ['+5V', 'GND', 'RX_D0', 'TX_D1', 'DTR']): S.conn('J3', 
 C('C17', '100nF', g(32), g(104), r=90, note='reset automatico pelo DTR'); S.conn('C17', '1', 'DTR'); S.conn('C17', '2', 'RESET')
 part('Connector_Generic', 'Conn_01x06', 'J4', 'BLUETOOTH (femea 1x6, ordem HC-05)', g(70), g(97), 0,
      'barra femea 1x6 2,54 mm', 'frente direita, x = 32,5; HC-06 nas vias 2-5 (virado)', ref_off=(-2.54, -10.16), val_off=(2.54, -10.16))
-# TXD do modulo direto no RX do ATmega (o R18 de 0 ohm saiu em 06/11)
-for p, n in zip('123456', [None, 'BT_RXD', 'RX_D0', 'GND', '+5V', None]): S.conn('J4', p, n, stub=7.62 if n in ('+5V', 'GND') else 2.54)
+for p, n in zip('123456', [None, 'BT_RXD', 'BT_TXD', 'GND', '+5V', None]): S.conn('J4', p, n, stub=7.62 if n in ('+5V', 'GND') else 2.54)
 R('R16', '1k', g(48), g(95), r=90, note='divisor 5 V -> 3,3 V'); S.conn('R16', '1', 'TX_D1'); S.conn('R16', '2', 'BT_RXD')
 R('R17', '2k', g(56), g(98), note='divisor 5 V -> 3,3 V'); S.conn('R17', '1', 'BT_RXD', bend='right'); S.conn('R17', '2', 'GND')
+R('R18', '4.7k', g(48), g(103), r=90, note='4,7k: grava com o HC-05 encaixado (LED7/R2 nao montados); 0 ohm se montar o LED7')
+S.conn('R18', '1', 'RX_D0'); S.conn('R18', '2', 'BT_TXD')
 part('Connector', 'AVR-ISP-6', 'J5', 'ICSP (pads SMD embaixo)', g(90), g(99), 0, '6 pads SMD D1,8 em grade 2,54',
      'posicoes do EVA-RT: x 33,97/36,51; y -8,36/-10,90/-13,44', ref_off=(5.08, -12.7), val_off=(5.08, 12.7))
 S.conn('J5', '1', 'B2_D12'); S.conn('J5', '4', 'B1_D11'); S.conn('J5', '3', 'LEDC_D13'); S.conn('J5', '5', 'RESET')
 S.conn('J5', '2', '+5V'); S.conn('J5', '6', 'GND')
 note(['J3: 1 +5V, 2 GND, 3 RX (<- TXD do conversor), 4 TX (-> RXD do conversor), 5 DTR. Conversor CH340G com DTR, em 5 V.',
-      'J4: TXD do modulo direto no RX: tire o modulo antes de gravar. Modulo em 115200 (comando AT). HC-06 nas vias 2-5, virado.',
+      'J4: com R18 = 4,7k o conversor ganha do modulo no RX: grava com o HC-05 encaixado. Com R18 = 0 e LED7, tire o modulo. 115200 (AT). HC-06 nas vias 2-5.',
       'J5: bootloader com Arduino Uno + ArduinoISP (D10 -> RST, D11 -> MOSI, D12 -> MISO, D13 -> SCK, 10 uF no RESET do Uno).'],
      12.7, g(108) + 1.27)
 

@@ -88,6 +88,7 @@ POS = {
     'D1': (26.5, 3.05, -90, B, 'diodo da ventoinha, embaixo dos pads do motor'),
     'R16': (29.2, 8.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
     'R17': (29.2, 10.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
+    'R18': (29.2, 12.2, 0, B, '4,7k entre TXD do HC-05 e RX: grava com o modulo encaixado'),
     # ---- driver esquerdo: sinais (pinos 1-8) em cima, potencia (9-16) embaixo
     'U2': (-22.1, -12.45, -90, T, 'DRV8874 esq. no lugar do IFX do EVA-RT'),
     'C6': (-25.9, -17.6, 180, T, 'VM-GND junto a VM/PGND'),
@@ -112,9 +113,9 @@ POS = {
     'C10': (5.71, -18.29, 135, T, 'AREF, EVA-RT'),
     'R3': (-15.49, -19.56, 0, T, 'pull-up do RESET, EVA-RT'),
     'R1': (-15.49, -21.46, 0, T, 'LED TX, EVA-RT'),
-    'R2': (-15.49, -23.37, 0, T, 'LED RX, EVA-RT'),
+    'R2': (-15.49, -23.37, 0, T, 'LED RX, EVA-RT; NAO MONTAR com R18 = 4,7k'),
     'LED6': (-11.94, -21.46, 180, T, 'TX, EVA-RT'),
-    'LED7': (-11.94, -23.37, 180, T, 'RX, EVA-RT'),
+    'LED7': (-11.94, -23.37, 180, T, 'RX, EVA-RT; NAO MONTAR com R18 = 4,7k'),
     'C17': (8.6, -27.6, 0, T, 'DTR-RESET, junto ao pad DTR do J3'),
     'R23': (11.74, -19.55, 0, T, 'divisor VBAT (no lugar do LED3/R4 do EVA-RT)'),
     'R24': (11.74, -21.45, 180, T, 'divisor VBAT'),
@@ -123,7 +124,9 @@ POS = {
 
 
 # componentes que sairam do esquematico depois da lista base (posicoes.json)
-REMOVIDOS = {'R18'}   # 06/11: TXD do Bluetooth direto no RX_D0 (trilha)
+REMOVIDOS = set()   # (o R18 saiu e voltou em 06/11)
+# valores que mudaram depois da lista base (posicoes.json)
+VALOR = {'R18': '4.7k'}
 
 
 def load():
@@ -138,6 +141,8 @@ def load():
             raise KeyError('sem posicao: ' + ref)
         c['x'], c['y'], c['rot'], c['face'], c['motivo'] = POS[ref]
         c['footprint'] = F.REF_FOOTPRINT[ref]
+        if ref in VALOR:
+            c['valor'] = VALOR[ref]
         c['tht'] = F.FOOTPRINTS[c['footprint']]['tht']
         if ref == 'J3':
             c['valor'] = 'GRAVACAO (barra 1x5 2,54 deitada, embaixo)'

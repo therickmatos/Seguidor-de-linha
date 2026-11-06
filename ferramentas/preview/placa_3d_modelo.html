@@ -1,0 +1,352 @@
+<title>Placa base do seguidor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: bancada de inspeção — barra de comandos fina em cima, a placa ocupa a tela, notas técnicas embaixo. */
+:root {
+  --bg: #eef1ee;        /* papel de bancada, levemente esverdeado */
+  --painel: #ffffff;
+  --fg: #17201b;
+  --mudo: #56645c;
+  --linha: #cdd6d0;
+  --acento: #1f6b45;    /* verde de máscara de solda */
+  --alerta: #b4430f;
+  --cena: #dfe5e1;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1311; --painel: #151c19; --fg: #e4ebe6; --mudo: #93a39a; --linha: #27322d;
+    --acento: #5fcf92; --alerta: #ff9a5c; --cena: #101614; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1311; --painel: #151c19; --fg: #e4ebe6; --mudo: #93a39a; --linha: #27322d;
+  --acento: #5fcf92; --alerta: #ff9a5c; --cena: #101614; color-scheme: dark;
+}
+html, body { background: var(--bg); color: var(--fg); }
+body {
+  font: 14px/1.5 var(--sans);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 14px 28px;
+}
+.topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-bottom: 10px; }
+h1 { font-size: 1.25rem; font-weight: 600; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+.sub { color: var(--mudo); font-size: .88rem; margin: 0; min-width: 0; }
+.barra { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin-bottom: 10px; }
+.grupo { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.rot { font: 600 .68rem/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--mudo); margin-right: 2px; }
+button.v {
+  font: 500 .82rem/1 var(--sans); color: var(--fg); background: var(--painel);
+  border: 1px solid var(--linha); border-radius: 6px; padding: 7px 10px; cursor: pointer;
+}
+button.v[aria-pressed="true"] { border-color: var(--acento); color: var(--acento); }
+button.v:focus-visible, label.t:focus-within { outline: 2px solid var(--acento); outline-offset: 2px; }
+label.t { display: inline-flex; gap: 6px; align-items: center; font-size: .84rem; cursor: pointer; user-select: none;
+  padding: 5px 8px; border: 1px solid var(--linha); border-radius: 6px; background: var(--painel); }
+label.t input { accent-color: var(--acento); margin: 0; }
+.vista { position: relative; width: 100%; height: min(74vh, 780px); min-height: 380px; border: 1px solid var(--linha);
+  border-radius: 8px; overflow: hidden; background: var(--cena); }
+.vista canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.chip { position: absolute; left: 12px; top: 12px; font: 500 .8rem/1.3 var(--mono); background: var(--painel);
+  color: var(--fg); border: 1px solid var(--linha); border-radius: 6px; padding: 6px 9px; max-width: calc(100% - 24px); }
+.dica { position: absolute; right: 12px; bottom: 10px; font: .72rem/1.3 var(--mono); color: var(--mudo); text-align: right; }
+.carregando { position: absolute; inset: 0; display: grid; place-items: center; color: var(--mudo); font: .9rem var(--mono); }
+.notas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px 22px; margin-top: 14px; }
+.notas section { min-width: 0; }
+.notas h2 { font: 600 .72rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--mudo); margin: 0 0 6px; }
+.notas p, .notas li { margin: 0 0 6px; max-width: 68ch; font-size: .88rem; }
+.notas ul { margin: 0; padding-left: 18px; }
+.alerta { border-left: 3px solid var(--alerta); padding: 2px 0 2px 10px; }
+.alerta strong { color: var(--alerta); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.pe { color: var(--mudo); font-size: .78rem; margin-top: 14px; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<header class="topo">
+  <h1>Placa base do seguidor</h1>
+  <p class="sub">Prévia v2 em 3D com a mecânica do EVA-RT · mm, origem no centro da ventoinha, +y = frente</p>
+</header>
+
+<div class="barra" role="toolbar" aria-label="Vistas e camadas">
+  <div class="grupo" id="vistas">
+    <span class="rot">Vista</span>
+    <button class="v" type="button" id="v-iso" data-v="iso" aria-pressed="true">Perspectiva</button>
+    <button class="v" type="button" id="v-cima" data-v="cima" aria-pressed="false">Cima</button>
+    <button class="v" type="button" id="v-baixo" data-v="baixo" aria-pressed="false">Baixo</button>
+    <button class="v" type="button" id="v-tras" data-v="tras" aria-pressed="false">Traseira</button>
+    <button class="v" type="button" id="v-lado" data-v="lado" aria-pressed="false">Lateral esq.</button>
+    <button class="v" type="button" id="v-xt30" data-v="xt30" aria-pressed="false">Canto do XT30</button>
+  </div>
+  <div class="grupo">
+    <span class="rot">Mostrar</span>
+    <label class="t"><input type="checkbox" id="c-comp" checked> Componentes</label>
+    <label class="t"><input type="checkbox" id="c-motor" checked> Suportes e motores</label>
+    <label class="t"><input type="checkbox" id="c-roda" checked> Rodas e engrenagens</label>
+    <label class="t"><input type="checkbox" id="c-vent" checked> Ventoinha</label>
+    <label class="t"><input type="checkbox" id="c-succ" checked> Placa de sucção</label>
+    <label class="t"><input type="checkbox" id="c-bat" checked> Bateria</label>
+  </div>
+</div>
+
+<div class="vista" id="vista">
+  <div class="carregando" id="carregando">montando a placa…</div>
+  <div class="chip" id="chip" hidden></div>
+  <div class="dica">arraste para girar · roda/pinça para aproximar · botão direito/dois dedos para mover<br>toque num componente para ver o nome</div>
+</div>
+
+<div class="notas">
+  <section>
+    <h2>Conferir na mecânica</h2>
+    <p class="alerta"><strong>Engrenagem × canto traseiro.</strong> A engrenagem de 64 dentes (Ø19,8, estimada pelo README do EVA-RT) fica fora do suporte, em |x| 40…42, no eixo da roda (y −22,59, 7,0 mm acima da placa), e desce até 2,9 mm abaixo da face de cima. A ampliação do contorno até x = −41 e o corpo do XT30 (até x = −40,6) entram nessa faixa entre y ≈ −28,4 e −32,5. Use a vista “Canto do XT30”.</p>
+    <p>Motores: corpo Ø10 × 20 em x ±18…±38, eixo em y −11,26 e 7,6 mm de altura (camada Document do EVA-RT + gearbox.stl).</p>
+  </section>
+  <section>
+    <h2>O que é estimado</h2>
+    <ul>
+      <li>Altura do rotor dentro da carcaça, pneus (rolos de impressora, Ø≈21,5) e posição das rodas em x (a partir de |x| = 42).</li>
+      <li>Bateria GNB 350 2S 45 × 20,5 × 12 com a frente em y −22,1 e apoiada a 3 mm da placa.</li>
+      <li>XT30: corpo da foto, ~10 mm de altura. Corpos dos componentes pelas medidas típicas dos encapsulamentos.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Placa</h2>
+    <p>Cobre e planos de GND sob a máscara aparecem em verde mais claro, pads expostos em prata. A face de baixo é vista como está na placa (texto espelhado de propósito para ler por baixo).</p>
+  </section>
+</div>
+<p class="pe">Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Gerado por ferramentas/preview/exportar_3d.py a partir do roteamento verificado (0 ligações abertas, 0 violações de folga).</p>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const D = /*__DADOS__*/null;
+const T = D.espessura;
+const box = document.getElementById('vista');
+const chip = document.getElementById('chip');
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+box.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, 1, 1, 3000);
+camera.up.set(0, 0, 1);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.target.set(0, -8, 3);
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x50565a, 1.6));
+const sol = new THREE.DirectionalLight(0xffffff, 1.6); sol.position.set(-80, -120, 200); scene.add(sol);
+const sol2 = new THREE.DirectionalLight(0xffffff, 0.6); sol2.position.set(120, 90, -60); scene.add(sol2);
+
+function corCena() { scene.background = new THREE.Color(css('--cena') || '#dfe5e1'); }
+corCena();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', corCena);
+new MutationObserver(corCena).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+// ------------------------------------------------------------ formas
+function forma(ext, furos = []) {
+  const s = new THREE.Shape(ext.map(([x, y]) => new THREE.Vector2(x, y)));
+  for (const h of furos) s.holes.push(new THREE.Path(h.map(([x, y]) => new THREE.Vector2(x, y))));
+  return s;
+}
+const placaForma = D.placa.map(([e, h]) => forma(e, h));
+
+// ------------------------------------------------------------ texturas das faces
+const [X0, Y0, X1, Y1] = D.limites, W = X1 - X0, H = Y1 - Y0;
+const S = Math.min(18, 3900 / W);
+const CORES = { mascara: '#1d5a3a', cobre: '#2f7f52', pad: '#d6d8db', furo: '#0b0c0d', silk: '#f3f4ef' };
+const sobre = {};
+for (const c of D.componentes) {
+  let ymax = -1e9, xs = 0;
+  for (const [x, y] of c.poly) { ymax = Math.max(ymax, y); xs += x; }
+  sobre[c.ref] = [xs / c.poly.length, ymax];
+}
+function textura(L) {
+  const cv = document.createElement('canvas');
+  cv.width = Math.ceil(W * S); cv.height = Math.ceil(H * S);
+  const g = cv.getContext('2d');
+  const tx = x => (x - X0) * S, ty = y => (Y1 - y) * S;
+  const anel = pts => { pts.forEach(([x, y], i) => i ? g.lineTo(tx(x), ty(y)) : g.moveTo(tx(x), ty(y))); g.closePath(); };
+  const caminho = rs => { g.beginPath(); for (const [e, hs] of rs) { anel(e); hs.forEach(anel); } };
+  g.fillStyle = CORES.mascara; caminho(D.placa); g.fill('evenodd');
+  g.fillStyle = CORES.cobre; caminho(D.camadas[L].cobre); g.fill('evenodd');
+  g.fillStyle = CORES.pad; caminho(D.camadas[L].pads); g.fill('evenodd');
+  g.fillStyle = CORES.furo;
+  for (const [x, y, r] of D.furos) { g.beginPath(); g.arc(tx(x), ty(y), r * S, 0, 2 * Math.PI); g.fill(); }
+  g.fillStyle = CORES.silk; g.textAlign = 'center'; g.textBaseline = 'bottom';
+  const escreve = (txt, x, y, tam) => {
+    g.font = `600 ${tam * S}px "IBM Plex Mono", monospace`;
+    g.save(); g.translate(tx(x), ty(y)); if (L === 2) g.scale(-1, 1); g.fillText(txt, 0, 0); g.restore();
+  };
+  const face = L === 1 ? 'TOP' : 'BOTTOM';
+  for (const r of D.refs) {
+    if (r.face !== face) continue;
+    const [cx, ymax] = sobre[r.ref] || [r.x, r.y + 1.2];
+    escreve(r.ref, cx, ymax + 0.35, 0.95);
+  }
+  if (L === 1) { escreve('FRENTE ↑', 0, 24.55, 0.9); escreve('+', -38, -29.2, 1.4); }
+  else {
+    ['+5V', 'GND', 'RX', 'TX', 'DTR'].forEach((t, i) => escreve(t, -5.08 + 2.54 * i, -26.95, 0.75));
+    escreve('base v2 · baseado no EVA-RT', 0, 17.2, 1.0);
+  }
+  const t = new THREE.CanvasTexture(cv);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  t.repeat.set(1 / W, 1 / H); t.offset.set(-X0 / W, -Y0 / H);
+  return t;
+}
+
+// ------------------------------------------------------------ montagem
+const grupos = { comp: new THREE.Group(), motor: new THREE.Group(), roda: new THREE.Group(),
+  vent: new THREE.Group(), succ: new THREE.Group(), bat: new THREE.Group() };
+Object.values(grupos).forEach(g => scene.add(g));
+const clicaveis = [];
+const mat = (cor, o = {}) => new THREE.MeshStandardMaterial({ color: cor, roughness: o.r ?? 0.6, metalness: o.m ?? 0,
+  transparent: (o.op ?? 1) < 1, opacity: o.op ?? 1, side: o.side ?? THREE.FrontSide });
+
+function montar() {
+  // placa (bordas em FR-4) + faces com textura
+  const geo = new THREE.ExtrudeGeometry(placaForma, { depth: T, bevelEnabled: false, curveSegments: 24 });
+  scene.add(new THREE.Mesh(geo, [mat(CORES.mascara, { r: .5 }), mat('#cdbb7c', { r: .8 })]));
+  const faceGeo = new THREE.ShapeGeometry(placaForma, 24);
+  const cima = new THREE.Mesh(faceGeo, new THREE.MeshStandardMaterial({ map: textura(1), roughness: .45, metalness: .05 }));
+  cima.position.z = T + 0.012; scene.add(cima);
+  const baixo = new THREE.Mesh(faceGeo, new THREE.MeshStandardMaterial({ map: textura(2), roughness: .45, metalness: .05, side: THREE.BackSide }));
+  baixo.position.z = -0.012; scene.add(baixo);
+
+  // componentes
+  for (const c of D.componentes) {
+    const g = new THREE.ExtrudeGeometry(forma(c.poly), { depth: c.h, bevelEnabled: false, curveSegments: 16 });
+    if (c.down) g.translate(0, 0, -c.h);
+    const m = new THREE.Mesh(g, mat(c.cor, { r: c.ref.startsWith('LED') ? .25 : .55, m: c.ref === 'X1' ? .7 : 0 }));
+    m.position.z = c.down ? c.z0 - 0.02 : c.z0 + 0.02;
+    m.userData = { nome: `${c.ref}${c.valor ? ' · ' + c.valor : ''}` };
+    grupos.comp.add(m); clicaveis.push(m);
+  }
+  for (const p of D.pinos) {
+    const [x, y, z, sx, sy, sz] = p.box;
+    const m = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), mat('#d1ad48', { r: .3, m: .8 }));
+    m.position.set(x, y, z); grupos.comp.add(m);
+  }
+  for (const e of D.extras) {
+    const [x, y, z, sx, sy, sz] = e.box;
+    const m = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), mat(e.cor));
+    m.position.set(x, y, z); m.userData = { nome: 'J3 · barra 1×5 2,54 deitada (gravação)' };
+    grupos.comp.add(m); clicaveis.push(m);
+  }
+
+  // mecanica (STL do EVA-RT)
+  for (const p of D.mecanica) {
+    const bin = atob(p.tri), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(buf.buffer), 3));
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, mat(p.cor, { r: .75 }));
+    m.userData = { nome: p.nome };
+    const alvo = /Carcaça|Rotor/.test(p.nome) ? grupos.vent : /sucção/.test(p.nome) ? grupos.succ
+      : /Aro/.test(p.nome) ? grupos.roda : grupos.motor;
+    alvo.add(m); clicaveis.push(m);
+  }
+  for (const c of D.cilindros) {
+    let g;
+    if (c.tubo) {
+      const s = new THREE.Shape(); s.absarc(0, 0, c.r, 0, Math.PI * 2);
+      const h = new THREE.Path(); h.absarc(0, 0, c.tubo, 0, Math.PI * 2, true); s.holes.push(h);
+      g = new THREE.ExtrudeGeometry(s, { depth: c.L, bevelEnabled: false, curveSegments: 48 });
+      g.translate(0, 0, -c.L / 2); g.rotateY(Math.PI / 2);
+    } else {
+      g = new THREE.CylinderGeometry(c.r, c.r, c.L, 40); g.rotateZ(Math.PI / 2);
+    }
+    const m = new THREE.Mesh(g, mat(c.cor, { r: .5, m: /Motor|Pinhão|Eixo/.test(c.nome) ? .6 : 0,
+      op: c.tubo ? .35 : 1, side: c.tubo ? THREE.DoubleSide : THREE.FrontSide }));
+    m.position.set(...c.c); m.userData = { nome: c.nome };
+    (/Motor/.test(c.nome) ? grupos.motor : grupos.roda).add(m); clicaveis.push(m);
+  }
+  for (const b of D.caixas) {
+    const [x, y, z, sx, sy, sz] = b.box;
+    const m = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), mat(b.cor, { r: .5, op: .92 }));
+    m.position.set(x, y, z); m.userData = { nome: b.nome };
+    grupos.bat.add(m); clicaveis.push(m);
+  }
+}
+
+// ------------------------------------------------------------ vistas
+const VISTAS = {
+  iso: { p: [-95, -135, 100], t: [0, -8, 3] },
+  cima: { p: [0, -5, 260], t: [0, -5, 0] },
+  baixo: { p: [0, -5, -260], t: [0, -5, 0] },
+  tras: { p: [0, -230, 40], t: [0, -10, 5] },
+  lado: { p: [-230, -10, 30], t: [0, -10, 5] },
+  xt30: { p: [-18, -96, 40], t: [-37, -27, 3] },
+};
+let anim = null;
+function irPara(nome) {
+  const v = VISTAS[nome];
+  document.querySelectorAll('button.v').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === nome)));
+  const p0 = camera.position.clone(), t0 = controls.target.clone();
+  const p1 = new THREE.Vector3(...v.p), t1 = new THREE.Vector3(...v.t);
+  if (nome === 'cima' || nome === 'baixo') camera.up.set(0, 1, 0); else camera.up.set(0, 0, 1);
+  if (reduz) { camera.position.copy(p1); controls.target.copy(t1); controls.update(); return; }
+  const ini = performance.now();
+  anim = (agora) => {
+    const k = Math.min(1, (agora - ini) / 450), e = k * (2 - k);
+    camera.position.lerpVectors(p0, p1, e); controls.target.lerpVectors(t0, t1, e);
+    if (k >= 1) anim = null;
+  };
+}
+document.getElementById('vistas').addEventListener('click', e => {
+  const b = e.target.closest('button.v'); if (b) irPara(b.dataset.v);
+});
+for (const [id, g] of [['c-comp', 'comp'], ['c-motor', 'motor'], ['c-roda', 'roda'], ['c-vent', 'vent'], ['c-succ', 'succ'], ['c-bat', 'bat']]) {
+  const el = document.getElementById(id);
+  el.addEventListener('change', () => { grupos[g].visible = el.checked; });
+}
+
+// ------------------------------------------------------------ toque/clique
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+let desce = null;
+renderer.domElement.addEventListener('pointerdown', e => { desce = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener('pointerup', e => {
+  if (!desce || Math.hypot(e.clientX - desce[0], e.clientY - desce[1]) > 5) return;
+  const r = renderer.domElement.getBoundingClientRect();
+  ptr.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(ptr, camera);
+  const vis = clicaveis.filter(o => o.parent.visible);
+  const hit = ray.intersectObjects(vis, false)[0];
+  if (hit) { chip.textContent = hit.object.userData.nome; chip.hidden = false; } else chip.hidden = true;
+});
+
+function ajusta() {
+  const w = box.clientWidth, h = box.clientHeight;
+  renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+new ResizeObserver(ajusta).observe(box);
+
+async function iniciar() {
+  // espera a fonte do silk no maximo 1,5 s; sem ela usa a monoespaçada do sistema
+  try { await Promise.race([document.fonts.load('600 20px "IBM Plex Mono"'), new Promise(r => setTimeout(r, 1500))]); }
+  catch (e) { /* fonte de reserva */ }
+  montar();
+  document.getElementById('carregando').hidden = true;
+  const v = VISTAS.iso; camera.position.set(...v.p); controls.target.set(...v.t);
+  ajusta();
+  renderer.setAnimationLoop(agora => { if (anim) anim(agora); controls.update(); renderer.render(scene, camera); });
+}
+iniciar();
+</script>

@@ -1,0 +1,146 @@
+{
+ "componentes_agrupados": true,
+ "objetos_de_cobre": 519,
+ "folga_alvo_mm": 0.2,
+ "limite_de_verificacao_mm": 0.19,
+ "violacoes": [],
+ "resumo_violacoes": {},
+ "ligacoes_abertas": 46,
+ "redes_abertas": {
+  "VBAT": {
+   "grupos": 4,
+   "pads": 15,
+   "pendencias": 3
+  },
+  "GND": {
+   "grupos": 9,
+   "pads": 50,
+   "pendencias": 8
+  },
+  "+5V": {
+   "grupos": 3,
+   "pads": 21,
+   "pendencias": 2
+  },
+  "XTAL1": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "XTAL2": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "DTR": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "RESET": {
+   "grupos": 3,
+   "pads": 5,
+   "pendencias": 2
+  },
+  "VBAT_A7": {
+   "grupos": 2,
+   "pads": 4,
+   "pendencias": 1
+  },
+  "RX_D0": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "TX_D1": {
+   "grupos": 4,
+   "pads": 4,
+   "pendencias": 3
+  },
+  "BT_TXD": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "B2_D12": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "LEDC_D13": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "B1_D11": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "OUT_A2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "OUT_B2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "LEDA_D2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "LEDB_D7": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_B": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VREF": {
+   "grupos": 2,
+   "pads": 4,
+   "pendencias": 1
+  },
+  "DRV_SLEEP": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "MARK_L_A5": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "MARK_R_A6": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "DIRA_D3": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "DIRB_D4": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "PWMA_D5": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  }
+ }
+}

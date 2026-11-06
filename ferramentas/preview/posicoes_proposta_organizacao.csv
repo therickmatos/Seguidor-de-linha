@@ -1,0 +1,70 @@
+ref;face;x_mm;y_mm;rot_graus;x_anterior_mm;y_anterior_mm;rot_anterior;alterado_nesta_proposta;motivo
+C1;TOP;-22.000;2.060;-90;-22.000;2.060;-90;nao;EVA-RT mantido (eletrolitico entre os pes da carcaca)
+C2;TOP;22.000;2.060;90;22.000;2.060;90;nao;posicao original EVA-RT
+C3;TOP;-19.180;7.000;90;-19.180;7.000;90;nao;EVA-RT mantido
+C4;TOP;-24.260;10.120;90;-24.260;10.120;90;nao;EVA-RT mantido
+C5;TOP;-21.720;8.000;-90;-21.720;8.000;-90;nao;EVA-RT mantido (tantalo)
+C6;TOP;-25.300;-15.200;90;-25.300;-15.200;90;nao;"VM U2; ajustado para liberar os pinos adjacentes"
+C7;TOP;25.200;-9.250;270;25.200;-9.250;270;nao;"VM U3; ajustado para liberar os pinos adjacentes"
+C8;TOP;26.670;2.790;-90;26.670;2.790;-90;nao;posicao original EVA-RT
+C9;TOP;-5.500;-23.000;135;-4.750;-26.450;225;sim;desacoplamento junto a VCC e GND do ATmega
+C10;TOP;5.710;-18.290;135;5.710;-18.290;135;nao;posicao original EVA-RT
+C11;TOP;-7.000;-23.800;180;-6.602;-22.041;90;sim;capacitor de XTAL1 junto ao cristal
+C12;TOP;-9.000;-26.500;180;-7.719;-28.474;135;sim;capacitor de XTAL2 junto ao cristal
+C13;TOP;-23.650;-17.650;0;-24.250;-17.650;0;sim;VCP/VM de U2 ajustado para liberar corredor
+C14;TOP;-20.850;-17.650;0;-21.450;-17.650;0;sim;CPH/CPL de U2 ajustado junto ao driver
+C15;TOP;23.550;-7.150;180;24.150;-7.150;180;sim;VCP/VM de U3 ajustado para liberar corredor
+C16;TOP;20.750;-7.150;180;21.350;-7.150;180;sim;CPH/CPL de U3 ajustado junto ao driver
+C17;TOP;-8.000;-28.200;180;5.805;-26.903;180;sim;capacitor DTR/RESET junto ao pino 5 de J3
+C18;TOP;8.000;-23.400;270;6.670;-24.133;90;sim;filtro da bateria agrupado ao divisor ADC7
+D1;BOTTOM;26.500;3.050;-90;26.500;3.050;-90;nao;diodo junto aos pads da ventoinha
+J1;TOP;-35.500;-31.700;0;-35.500;-31.700;0;nao;"XT30 no canto inferior esquerdo; pad 1 e lado reto = positivo"
+J2;TOP;0.000;22.740;0;0.000;22.740;0;nao;barra de sensores 1x8, linha y 22,74
+J3;TOP;0.000;-28.800;0;0.000;-28.800;0;nao;"barra inferior centralizada; corpo 90 graus para tras"
+J4;TOP;32.500;7.050;0;32.500;7.050;0;nao;Bluetooth obrigatorio, entre ventoinha e botoes
+J5;BOTTOM;35.244;-10.901;0;35.244;-10.901;0;nao;ICSP: posicoes do EVA-RT (face BOTTOM)
+J8;TOP;-45.044;4.510;0;-45.044;4.510;0;nao;"DNP (nao montar; pode apagar no layout). DNP: asa esq. (pode apagar no layout)"
+J9;TOP;45.044;4.510;0;45.044;4.510;0;nao;"DNP (nao montar; pode apagar no layout). DNP: asa dir. (pode apagar no layout)"
+LED1;TOP;-69.500;4.500;-90;-69.500;4.500;-90;nao;sensor esq.: LED sobre o QRE (braco integrado)
+LED2;TOP;69.500;4.500;90;69.500;4.500;90;nao;sensor dir.: LED sobre o QRE (braco integrado)
+LED4;TOP;21.340;13.460;180;21.340;13.460;180;nao;EVA-RT mantido (LED C, vermelho)
+LED5;TOP;-21.340;13.460;0;-21.340;13.460;0;nao;EVA-RT mantido (indica 5 V)
+LED6;TOP;-11.940;-21.460;180;-11.940;-21.460;180;nao;EVA-RT mantido (TX)
+LED7;TOP;-11.940;-23.370;180;-11.940;-23.370;180;nao;EVA-RT mantido (RX, opcional)
+M1;TOP;-36.580;1.270;0;-36.580;1.270;0;nao;motor esq.: pads nas posicoes do EVA-RT
+M2;TOP;36.580;1.270;0;36.580;1.270;0;nao;motor dir.: pads nas posicoes do EVA-RT
+M3;TOP;29.720;3.050;0;29.720;3.050;0;nao;ventoinha: pads nas posicoes do EVA-RT
+Q1;TOP;26.920;9.140;180;26.920;9.140;180;nao;no lugar e orientacao originais
+R1;TOP;-15.490;-21.460;0;-15.490;-21.460;0;nao;EVA-RT mantido
+R2;TOP;-15.490;-23.370;0;-15.490;-23.370;0;nao;EVA-RT mantido (opcional)
+R3;TOP;-8.000;-17.800;0;-15.490;-19.560;0;sim;pull-up RESET aproximado do ATmega
+R5;TOP;18.670;10.790;90;18.670;10.790;90;nao;EVA-RT mantido
+R6;BOTTOM;-61.730;4.430;90;-61.730;4.430;90;nao;asa esquerda transladada ao braco
+R7;BOTTOM;61.730;4.570;270;61.730;4.570;270;nao;asa direita transladada ao braco
+R8;TOP;20.570;7.620;-90;20.570;7.620;-90;nao;EVA-RT mantido (pull-down do gate)
+R9;TOP;20.570;10.790;-90;20.570;10.790;-90;nao;EVA-RT mantido (200 ohm do gate)
+R10;TOP;-17.910;11.810;0;-17.910;11.810;0;nao;EVA-RT mantido
+R11;TOP;-23.975;-8.175;0;-23.975;-8.175;0;nao;IPROPI (U2): limite de corrente
+R12;TOP;22.175;-16.725;0;22.175;-16.725;0;nao;IPROPI (U3): limite de corrente
+R13;TOP;11.000;-14.800;270;9.500;-15.450;0;sim;divisor VREF alinhado, saida entre R13 e R14
+R14;TOP;11.000;-17.700;270;9.000;-16.950;0;sim;divisor VREF alinhado, GND no lado inferior
+R15;TOP;12.500;-19.500;90;10.500;-20.000;90;sim;pull-up de nSLEEP agrupado ao controle dos drivers
+R16;BOTTOM;29.200;8.200;0;29.200;8.200;0;nao;Bluetooth: perto de J4, liberando SW1
+R17;BOTTOM;29.200;10.200;0;29.200;10.200;0;nao;Bluetooth: perto de J4, liberando SW1
+R18;BOTTOM;29.200;12.200;0;29.200;12.200;0;nao;Bluetooth: perto de J4, liberando SW2
+R20;BOTTOM;-64.670;3.610;180;-64.670;3.610;180;nao;asa esquerda transladada ao braco
+R21;BOTTOM;64.670;5.390;0;64.670;5.390;0;nao;asa direita transladada ao braco
+R23;TOP;8.000;-20.500;270;6.670;-21.133;90;sim;divisor ADC7 com a saida voltada para C18
+R24;TOP;10.500;-22.000;0;8.170;-20.033;90;sim;divisor ADC7 junto a R23 e C18
+R30;BOTTOM;-64.670;5.390;180;-64.670;5.390;180;nao;asa esquerda transladada ao braco
+R31;BOTTOM;64.670;3.610;0;64.670;3.610;0;nao;asa direita transladada ao braco
+S0;BOTTOM;-69.500;4.500;180;-69.500;4.500;180;nao;QRE1113GR esq. (curva, A5) no braco
+S1;BOTTOM;69.500;4.500;0;69.500;4.500;0;nao;QRE1113GR dir. (partida/chegada, A6) no braco
+SW0;TOP;36.350;-30.250;180;36.350;-30.250;180;nao;B3U na posicao original
+SW1;TOP;37.340;5.840;0;37.340;5.840;0;nao;B3U na posicao original
+SW2;TOP;37.340;11.300;0;37.340;11.300;0;nao;B3U na posicao original
+U1;TOP;0.000;-20.500;-45;0.000;-22.250;-45;sim;"avanco 1,75 mm; depende da folga real do rotor"
+U2;TOP;-22.100;-12.450;-90;-22.100;-12.450;-90;nao;"DRV8874 motor esq. no lugar do IFX_A1; potencia (8-11) para o motor"
+U3;TOP;22.100;-12.450;90;22.100;-12.450;90;nao;"DRV8874 motor dir. no lugar do IFX_B1; potencia (8-11) para o motor"
+U5;TOP;-30.610;9.020;180;-30.610;9.020;180;nao;EVA-RT mantido (78M05)
+X1;TOP;-5.500;-26.000;180;-7.900;-25.300;180;sim;"cristal 3225 aproximado dos pinos XTAL; modelo a confirmar"

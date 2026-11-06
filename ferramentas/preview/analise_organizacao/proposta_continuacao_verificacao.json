@@ -1,0 +1,101 @@
+{
+ "componentes_agrupados": true,
+ "objetos_de_cobre": 617,
+ "folga_alvo_mm": 0.2,
+ "limite_de_verificacao_mm": 0.19,
+ "violacoes": [],
+ "resumo_violacoes": {},
+ "ligacoes_abertas": 36,
+ "redes_abertas": {
+  "VBAT": {
+   "grupos": 14,
+   "pads": 15,
+   "pendencias": 13
+  },
+  "GND": {
+   "grupos": 3,
+   "pads": 50,
+   "pendencias": 2
+  },
+  "+5V": {
+   "grupos": 4,
+   "pads": 21,
+   "pendencias": 3
+  },
+  "RESET": {
+   "grupos": 2,
+   "pads": 5,
+   "pendencias": 1
+  },
+  "VBAT_A7": {
+   "grupos": 2,
+   "pads": 4,
+   "pendencias": 1
+  },
+  "S1_A1": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "S0_A0": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "RX_D0": {
+   "grupos": 2,
+   "pads": 4,
+   "pendencias": 1
+  },
+  "TX_D1": {
+   "grupos": 2,
+   "pads": 4,
+   "pendencias": 1
+  },
+  "B2_D12": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "LEDC_D13": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "B1_D11": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "OUT_B2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "Net-(Q1-G)": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "IPROPI_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_B": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VREF": {
+   "grupos": 4,
+   "pads": 4,
+   "pendencias": 3
+  },
+  "DRV_SLEEP": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  }
+ }
+}

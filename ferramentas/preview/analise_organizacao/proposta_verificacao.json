@@ -1,0 +1,126 @@
+{
+ "componentes_agrupados": true,
+ "objetos_de_cobre": 544,
+ "folga_alvo_mm": 0.2,
+ "limite_de_verificacao_mm": 0.19,
+ "violacoes": [],
+ "resumo_violacoes": {},
+ "ligacoes_abertas": 37,
+ "redes_abertas": {
+  "VBAT": {
+   "grupos": 4,
+   "pads": 15,
+   "pendencias": 3
+  },
+  "GND": {
+   "grupos": 8,
+   "pads": 50,
+   "pendencias": 7
+  },
+  "+5V": {
+   "grupos": 3,
+   "pads": 21,
+   "pendencias": 2
+  },
+  "AREF": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VBAT_A7": {
+   "grupos": 2,
+   "pads": 4,
+   "pendencias": 1
+  },
+  "S2_A2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "RX_D0": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "TX_D1": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "B2_D12": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "LEDC_D13": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "B1_D11": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "OUT_B2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "Net-(Q1-G)": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "LEDA_D2": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_A": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "IPROPI_B": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "VREF": {
+   "grupos": 3,
+   "pads": 4,
+   "pendencias": 2
+  },
+  "DRV_SLEEP": {
+   "grupos": 3,
+   "pads": 3,
+   "pendencias": 2
+  },
+  "MARK_L_A5": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "MARK_R_A6": {
+   "grupos": 2,
+   "pads": 3,
+   "pendencias": 1
+  },
+  "DIRB_D4": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "PWMA_D5": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  },
+  "PWMB_D6": {
+   "grupos": 2,
+   "pads": 2,
+   "pendencias": 1
+  }
+ }
+}

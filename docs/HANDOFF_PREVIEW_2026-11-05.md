@@ -1,5 +1,12 @@
 # Handoff — preview de posicionamento da placa base (05/11/2026)
 
+> **Handoff vigente de 06/11:** consultar `docs/HANDOFF_2026-11-06.md` antes
+> deste histórico. A nova decisão sobre J3 na face inferior e o recuo do
+> ATmega substitui a configuração PTH descrita abaixo. O diagnóstico das
+> pendências já foi apresentado; a continuação não precisa repetir a pausa
+> histórica citada a seguir. Nenhuma alteração dessa nova decisão foi aplicada
+> ao layout salvo ainda.
+
 ## Atualização de 06/11 — ler primeiro
 
 O Erick autorizou apagar as trilhas antigas e pediu XT30 no canto inferior esquerdo, J2/J3 centralizados, sensores laterais horizontais e preferência pelo FreeRouting. Depois pediu **uma única imagem** com a versão de menos pendências, seguida de uma explicação e pausa antes de resolver as causas e rotear novamente. Não iniciar novo roteamento sem primeiro discutir o diagnóstico com ele.

@@ -1,5 +1,12 @@
 # CLAUDE.md — contexto para o Claude Code
 
+> **Atualização mais recente — 06/11/2026:** leia primeiro
+> `docs/HANDOFF_2026-11-06.md`. O Erick decidiu substituir o J3 PTH da
+> prévia por contatos na face inferior, com a barra deitada como no EVA-RT,
+> para poder recuar o ATmega e reorganizar a placa. Isso prevalece sobre
+> instruções anteriores de J3 PTH em cima e de avançar o ATmega. A alteração
+> ainda não foi implementada; a placa salva continua com 21 ligações abertas.
+
 ## Como trabalhar
 - Responder em **português**, de forma direta e concisa. O Erick (estudante de eletrônica, IFSP) revisa e corrige o que recebe.
 - Antes de afirmar algo sobre o projeto, ler o doc correspondente em `docs/`. As decisões mais novas estão em `docs/DECISOES_2026-11-05.md`, `docs/DECISOES_2026-11-04.md` e `docs/SEGUIDOR_JLC_DECISOES.md`.

@@ -1,5 +1,15 @@
 # Handoff — preview de posicionamento da placa base (05/11/2026)
 
+## Atualização de 06/11 — ler primeiro
+
+O Erick autorizou apagar as trilhas antigas e pediu XT30 no canto inferior esquerdo, J2/J3 centralizados, sensores laterais horizontais e preferência pelo FreeRouting. Depois pediu **uma única imagem** com a versão de menos pendências, seguida de uma explicação e pausa antes de resolver as causas e rotear novamente. Não iniciar novo roteamento sem primeiro discutir o diagnóstico com ele.
+
+O novo posicionamento usa J1 (−35,5; −31,7), lado reto = +; J2 (0; 22,74); J3 (0; −28,8), 90° para trás; U1 (0; −22,25), −45°. A traseira foi ampliada simetricamente até y = −35 mm, preservando os furos e os rasgos; ver `hardware/preview/contorno_b_xt30.dxf`. O padrão dos pads QRE veio do Gerber EVA-RT, na horizontal. Os diâmetros dos pads e furos do XT30 foram estimados da imagem e devem ser conferidos fisicamente.
+
+O resultado tem **21 ligações abertas**, inclusive VBAT e OUT nos dois drivers; a checagem independente encontrou zero violações de folga no modelo. As redes, limitações e conferências estão em `hardware/preview/RELATORIO.md`, `pendencias_roteamento.csv` e `ferramentas/preview/verificacao_cobre.json`. A imagem **atual** é `hardware/preview/placa_completa.jpg`; `placa_top.jpg`, `placa_bottom.jpg` e `mudancas_vs_eva-rt.jpg` são históricos da sessão anterior. `freerouting_io.py` gera o modelo Specctra e lê a sessão; este é um modelo de prévia com pads individuais, não um projeto EasyEDA de fabricação.
+
+As informações a seguir são históricas e subordinadas a esta atualização e ao último pedido do usuário.
+
 Para o agente que continua o trabalho. Leia antes: `CLAUDE.md`, `docs/DECISOES_2026-11-05.md` (decisões de hoje) e `ferramentas/preview/BRIEFING.md` (referencial e restrições mecânicas).
 Branch: `claude/jolly-hypatia-g6elan` (repositório `therickmatos/Seguidor-de-linha`).
 

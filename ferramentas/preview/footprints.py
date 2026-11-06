@@ -26,7 +26,7 @@ Fontes das medidas (resumo; detalhes em "obs" de cada footprint):
 - KiCad footprint library (github KiCad/kicad-footprints): 0603, SOT-23, SOD-123, DPAK
   (TO-252-3), HTSSOP-16 com EP, HC-49/S SMD, 3225 de 4 pads, barra 1x5 90 graus, botao 6x6.
 - AMASS XT30 (catalogo oficial, pagina 15/16, figura "Mounting hole diagram"): XT30PW-M.
-- QRE1113GR: datasheet onsemi NAO acessivel nesta sessao; medidas estimadas (ver obs).
+- QRE1113GR: pads medidos no Gerber inferior EVA-RT; pinos conferidos no datasheet onsemi.
 """
 
 import math
@@ -224,13 +224,13 @@ FOOTPRINTS["XT30_RABICHO"] = _fp(
     "Passo 5,0 (igual aos contatos do XT30, escolha sem norma). Pino 1 = + (-x). Sem corpo.")
 
 FOOTPRINTS["XT30_VERTICAL_M_PROPOSTA"] = _fp(
-    [_pad("1", -2.5, 0, 3.0, 3.0, "round", 1.7),
-     _pad("2", 2.5, 0, 3.0, 3.0, "round", 1.7)],
-    (10.7, 5.6), 10.2, True,
-    "Proposta de XT30 macho vertical: corpo e passo aproximados do AMASS XT30UPB-M, "
-    "dois contatos de passo 5 mm. Pino 1 = +, no lado reto (-x); pino 2 = - no lado "
-    "chanfrado. Confirmar o codigo comprado e as medidas dos terminais antes do layout: "
-    "a foto por si so nao identifica o modelo. Fonte: catalogo AMASS, XT30UPB-M.")
+    [_pad("1", -2.5, 0, 3.9, 3.9, "round", 2.5),
+     _pad("2", 2.5, 0, 3.9, 3.9, "round", 2.5)],
+    (10.214, 5.2), 10.2, True,
+    "XT30 macho: imagem fornecida pelo usuario indica corpo 10,214 x 5,200 mm e passo "
+    "5,000 mm. Pino 1 = + no lado reto (-x); pino 2 = - na extremidade arredondada. "
+    "A imagem nao cota diametros: pads Ø3,9 e furos Ø2,5 sao estimados pela proporcao "
+    "com o passo de 5 mm; a altura tambem e estimada. Conferir a peca antes de fabricar.")
 
 _pads_bar8 = []
 for _i in range(8):
@@ -371,18 +371,15 @@ FOOTPRINTS["SW_B3U_SMD_2P_RESET"] = _fp(
 
 # ---------------------------------------------------------------- sensores de marca
 FOOTPRINTS["QRE1113GR_SMD"] = _fp(
-    [_pad("1", -0.95, 1.4, 1.0, 1.1),   # anodo (LED), borda superior-esquerda
-     _pad("2", 0.95, 1.4, 1.0, 1.1),    # catodo (LED), borda superior-direita
-     _pad("3", 0.95, -1.4, 1.0, 1.1),   # coletor (fototransistor), inferior-direita
-     _pad("4", -0.95, -1.4, 1.0, 1.1)], # emissor (fototransistor), inferior-esquerda
+    [_pad("1", 2.0, 0.9, 1.66, 0.8),
+     _pad("2", -2.0, 0.9, 1.66, 0.8),
+     _pad("3", -2.0, -0.9, 1.66, 0.8),
+     _pad("4", 2.0, -0.9, 1.66, 0.8)],
     (3.6, 2.9), 1.7, False,
-    "QRE1113GR SMD (S0, S1 - sensores de marca, face BOTTOM nos bracos). NAO VERIFICADO: o "
-    "datasheet onsemi (case 100CY) nao foi acessivel nesta sessao (dominio bloqueado pelo "
-    "proxy e espelhos de terceiros tambem). Estimativas: corpo 3,6 x 2,9 x 1,7 (distribuidor; "
-    "outra fonte diz 3,4 x 2,7), pads 1,0 x 1,1 em x = +-0,95 e y = +-1,4 (linhas 2,8 mm). "
-    "Pinos: 1 anodo e 2 catodo numa borda; 4 emissor e 3 coletor na outra (texto de terceiros). "
-    "Pino 1 = canto superior-esquerdo na vista de cima do componente (o datasheet cita 'LED (+)' "
-    "perto do anodo). CONFERIR antes do pedido: pads, pino 1 e marca do sensor.")
+    "QRE1113GR SMD horizontal (S0, S1 na face BOTTOM). Pads 1,66 x 0,80 mm, centros "
+    "(+/-2,0; +/-0,9), conferidos no Gerber inferior do EVA-RT e associados as redes "
+    "originais. Pinos 1/2/3/4 = anodo/catodo/coletor/emissor, conforme onsemi. "
+    "Corpo 3,6 x 2,9 x 1,7 mm aproximado; conferir contra a peca e o footprint adotado.")
 
 # ---------------------------------------------------------------- mapeamento REF -> footprint
 REF_FOOTPRINT = {}

@@ -1,89 +1,56 @@
 {
  "min_folga_avaliada_mm": 0.19,
- "objetos_de_cobre": 1290,
- "contagem": {
-  "borda/furo": 1
- },
- "violacoes": [
-  {
-   "tipo": "borda/furo",
-   "obj": "J3.1",
-   "rede": "+5V"
-  }
- ],
- "ligacoes_abertas": 34,
+ "objetos_de_cobre": 701,
+ "contagem": {},
+ "violacoes": [],
+ "ligacoes_abertas": 21,
  "redes_abertas": {
   "VBAT": {
-   "grupos": 4,
+   "grupos": 3,
    "pads": 15,
-   "pendencias": 3
+   "pendencias": 2
   },
   "GND": {
-   "grupos": 6,
+   "grupos": 2,
    "pads": 50,
-   "pendencias": 5
+   "pendencias": 1
   },
   "+5V": {
    "grupos": 2,
    "pads": 21,
    "pendencias": 1
   },
-  "XTAL1": {
+  "XTAL2": {
    "grupos": 2,
    "pads": 3,
    "pendencias": 1
   },
-  "VCP_A": {
+  "DTR": {
    "grupos": 2,
    "pads": 2,
    "pendencias": 1
   },
-  "CPH_A": {
+  "RESET": {
    "grupos": 2,
-   "pads": 2,
-   "pendencias": 1
-  },
-  "CPL_A": {
-   "grupos": 2,
-   "pads": 2,
+   "pads": 5,
    "pendencias": 1
   },
   "VBAT_A7": {
-   "grupos": 3,
-   "pads": 4,
-   "pendencias": 2
-  },
-  "RX_D0": {
-   "grupos": 3,
-   "pads": 4,
-   "pendencias": 2
-  },
-  "TX_D1": {
-   "grupos": 3,
-   "pads": 4,
-   "pendencias": 2
-  },
-  "BT_TXD": {
    "grupos": 2,
-   "pads": 2,
+   "pads": 4,
    "pendencias": 1
   },
-  "LEDC_D13": {
+  "B2_D12": {
    "grupos": 2,
    "pads": 3,
    "pendencias": 1
   },
-  "OUT_B1": {
+  "OUT_A2": {
    "grupos": 2,
    "pads": 2,
    "pendencias": 1
   },
-  "LEDA_D2": {
-   "grupos": 2,
-   "pads": 2,
-   "pendencias": 1
-  },
-  "LEDB_D7": {
+  "OUT_B2": {
    "grupos": 2,
    "pads": 2,
    "pendencias": 1
@@ -104,26 +71,21 @@
    "pendencias": 1
   },
   "VREF": {
-   "grupos": 3,
+   "grupos": 4,
    "pads": 4,
-   "pendencias": 2
+   "pendencias": 3
   },
   "DRV_SLEEP": {
    "grupos": 3,
    "pads": 3,
    "pendencias": 2
   },
-  "MARK_R_A6": {
-   "grupos": 2,
-   "pads": 3,
-   "pendencias": 1
-  },
-  "DIRB_D4": {
+  "DIRA_D3": {
    "grupos": 2,
    "pads": 2,
    "pendencias": 1
   },
-  "PWMB_D6": {
+  "PWMA_D5": {
    "grupos": 2,
    "pads": 2,
    "pendencias": 1

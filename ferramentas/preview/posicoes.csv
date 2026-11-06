@@ -7,7 +7,7 @@ C5;47uF;C_TANT_3216_A;TOP;-21,720;8,000;-90;nao;EVA-RT mantido (tantalo)
 C6;100nF;C0603;TOP;-25,300;-15,200;90;sim;"VM U2; ajustado para liberar os pinos adjacentes"
 C7;100nF;C0603;TOP;25,200;-9,250;270;sim;"VM U3; ajustado para liberar os pinos adjacentes"
 C8;100nF;C0603;TOP;26,670;2,790;-90;nao;posicao original EVA-RT
-C9;100nF;C0603;TOP;-5,150;-27,550;225;sim;"desacoplamento U1; invertido para liberar a saida de VCC"
+C9;100nF;C0603;TOP;-4,750;-26,450;225;sim;deslocado para liberar J3 central, proximo ao U1
 C10;100nF;C0603;TOP;5,710;-18,290;135;nao;posicao original EVA-RT
 C11;22pF;C0603;TOP;-6,602;-22,041;90;sim;22 pF do XTAL1
 C12;22pF;C0603;TOP;-7,719;-28,474;135;sim;22 pF do XTAL2
@@ -18,9 +18,9 @@ C16;22nF;C0603;TOP;21,350;-7,150;180;sim;"CPH/CPL U3; proximo sem obstruir pinos
 C17;100nF;C0603;TOP;5,805;-26,903;180;sim;DTR -> RESET (auto-reset)
 C18;100nF;C0603;TOP;6,670;-24,133;90;sim;medicao VBAT (opcional)
 D1;1N5819;SOD123;BOTTOM;26,500;3,050;-90;sim;diodo junto aos pads da ventoinha
-J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-54,000;4,500;0;sim;"PROPOSTA: XT30 vertical no braco; confirmar modelo e encaixe"
+J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-35,500;-31,700;0;sim;"XT30 no canto inferior esquerdo; pad 1 e lado reto = positivo"
 J2;BARRA (1x8, 2,54 mm);HDR_1x08_P2.54;TOP;0,000;22,740;0;sim;barra de sensores 1x8, linha y 22,74
-J3;GRAVACAO (90 graus, 2,54);HDR_RA_1x05_P2.54;TOP;9,000;-28,750;0;sim;"PROPOSTA: deslocado; colide com rasgo original do velcro"
+J3;GRAVACAO (90 graus, 2,54);HDR_RA_1x05_P2.54;TOP;0,000;-28,800;0;sim;"barra inferior centralizada; corpo 90 graus para tras"
 J4;BLUETOOTH (femea 1x6, ordem HC-05);HDR_F_1x06_P2.54;TOP;32,500;7,050;0;sim;Bluetooth obrigatorio, entre ventoinha e botoes
 J5;ICSP (pads SMD embaixo);ICSP_6P_SMD_BOT;BOTTOM;35,244;-10,901;0;sim;ICSP: posicoes do EVA-RT (face BOTTOM)
 J8;ASA ESQ.;WING_L_1x4_SMD;TOP;-45,044;4,510;0;sim;"DNP (nao montar; pode apagar no layout). DNP: asa esq. (pode apagar no layout)"
@@ -63,7 +63,7 @@ S1;QRE1113GR;QRE1113GR_SMD;BOTTOM;69,500;4,500;0;sim;QRE1113GR dir. (partida/che
 SW0;RESET;SW_B3U_SMD_2P_RESET;TOP;36,350;-30,250;180;nao;B3U na posicao original
 SW1;BOTAO 1;SW_B3U_SMD_2P;TOP;37,340;5,840;0;nao;B3U na posicao original
 SW2;BOTAO 2;SW_B3U_SMD_2P;TOP;37,340;11,300;0;nao;B3U na posicao original
-U1;ATmega328P-AU;TQFP32_7x7_P0.8;TOP;0,000;-23,000;-45;nao;"EVA-RT mantido: (0;-18) invade o disco da ventoinha"
+U1;ATmega328P-AU;TQFP32_7x7_P0.8;TOP;0,000;-22,250;-45;sim;avancado 0,75 mm para centralizar J3
 U2;DRV8874PWPR;HTSSOP16_PWP_DRV8874;TOP;-22,100;-12,450;-90;sim;"DRV8874 motor esq. no lugar do IFX_A1; potencia (8-11) para o motor"
 U3;DRV8874PWPR;HTSSOP16_PWP_DRV8874;TOP;22,100;-12,450;90;sim;"DRV8874 motor dir. no lugar do IFX_B1; potencia (8-11) para o motor"
 U5;78M05;DPAK_TO252_3;TOP;-30,610;9,020;180;nao;EVA-RT mantido (78M05)

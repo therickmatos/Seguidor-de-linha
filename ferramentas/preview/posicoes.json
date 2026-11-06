@@ -156,8 +156,8 @@
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
-  "x": -5.15,
-  "y": -27.55,
+  "x": -4.75,
+  "y": -26.45,
   "rot": 225,
   "mudou": "sim",
   "dnp": false,
@@ -168,7 +168,7 @@
    "rot": 180.0
   },
   "tht": false,
-  "motivo": "desacoplamento U1; invertido para liberar a saida de VCC"
+  "motivo": "deslocado para liberar J3 central, proximo ao U1"
  },
  {
   "ref": "C10",
@@ -320,14 +320,19 @@
   "valor": "XT30 (bateria 2S)",
   "footprint": "XT30_VERTICAL_M_PROPOSTA",
   "face": "TOP",
-  "x": -54.0,
-  "y": 4.5,
+  "x": -35.5,
+  "y": -31.7,
   "rot": 0,
   "mudou": "sim",
   "dnp": false,
-  "eva": null,
+  "eva": {
+   "lado": "TOP",
+   "x": -36.35,
+   "y": -30.25,
+   "rot": 0
+  },
   "tht": true,
-  "motivo": "PROPOSTA: XT30 vertical no braco; confirmar modelo e encaixe"
+  "motivo": "XT30 no canto inferior esquerdo; pad 1 e lado reto = positivo"
  },
  {
   "ref": "J2",
@@ -339,7 +344,12 @@
   "rot": 0,
   "mudou": "sim",
   "dnp": false,
-  "eva": null,
+  "eva": {
+   "lado": "TOP",
+   "x": 0,
+   "y": 25.74,
+   "rot": 180
+  },
   "tht": true,
   "motivo": "barra de sensores 1x8, linha y 22,74"
  },
@@ -348,14 +358,19 @@
   "valor": "GRAVACAO (90 graus, 2,54)",
   "footprint": "HDR_RA_1x05_P2.54",
   "face": "TOP",
-  "x": 9.0,
-  "y": -28.75,
+  "x": 0.0,
+  "y": -28.8,
   "rot": 0,
   "mudou": "sim",
   "dnp": false,
-  "eva": null,
+  "eva": {
+   "lado": "TOP",
+   "x": 0,
+   "y": -28.57,
+   "rot": 0
+  },
   "tht": true,
-  "motivo": "PROPOSTA: deslocado; colide com rasgo original do velcro"
+  "motivo": "barra inferior centralizada; corpo 90 graus para tras"
  },
  {
   "ref": "J4",
@@ -1076,9 +1091,9 @@
   "footprint": "TQFP32_7x7_P0.8",
   "face": "TOP",
   "x": 0.0,
-  "y": -23.0,
+  "y": -22.25,
   "rot": -45,
-  "mudou": "nao",
+  "mudou": "sim",
   "dnp": false,
   "eva": {
    "lado": "TOP",
@@ -1087,7 +1102,7 @@
    "rot": -45.0
   },
   "tht": false,
-  "motivo": "EVA-RT mantido: (0;-18) invade o disco da ventoinha"
+  "motivo": "avancado 0,75 mm para centralizar J3"
  },
  {
   "ref": "U2",
@@ -1099,7 +1114,12 @@
   "rot": -90,
   "mudou": "sim",
   "dnp": false,
-  "eva": null,
+  "eva": {
+   "lado": "TOP",
+   "x": -22.1,
+   "y": -12.45,
+   "rot": -90
+  },
   "tht": false,
   "motivo": "DRV8874 motor esq. no lugar do IFX_A1; potencia (8-11) para o motor"
  },
@@ -1113,7 +1133,12 @@
   "rot": 90,
   "mudou": "sim",
   "dnp": false,
-  "eva": null,
+  "eva": {
+   "lado": "TOP",
+   "x": 22.1,
+   "y": -12.45,
+   "rot": -90
+  },
   "tht": false,
   "motivo": "DRV8874 motor dir. no lugar do IFX_B1; potencia (8-11) para o motor"
  },

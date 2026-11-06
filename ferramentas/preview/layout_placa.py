@@ -22,7 +22,14 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 OUTPUT = ROOT / 'hardware' / 'preview'
 BOARD_DATA = json.loads((HERE / 'geometria.json').read_text(encoding='utf8'))
-OUTLINE = Polygon(BOARD_DATA['contorno'])
+OUTLINE_ORIGINAL = Polygon(BOARD_DATA['contorno'])
+# Duas extensoes iguais na traseira conservam o desenho geral e acomodam o XT30
+# fora do contato do gearbox. Os furos e o JSON original continuam intactos.
+_extensao_direita = Polygon([(28,-28), (29,-28), (30,-28.6), (30,-33.9),
+                             (30.3,-34.7), (31,-35), (40,-35), (40.7,-34.8),
+                             (41,-34.2), (41,-28.4), (40,-27.5)])
+OUTLINE = unary_union([OUTLINE_ORIGINAL, _extensao_direita,
+                       affinity.scale(_extensao_direita, xfact=-1, origin=(0,0))])
 
 def hole_shape(h):
     if h['tipo'] == 'furo':
@@ -52,7 +59,7 @@ OVERRIDES = {
     'C6': (-25.30, -15.20, 90, 'TOP', 'VM U2; ajustado para liberar os pinos adjacentes'),
     'C7': (25.20, -9.25, 270, 'TOP', 'VM U3; ajustado para liberar os pinos adjacentes'),
     'C8': (26.67, 2.79, -90, 'TOP', 'posicao original EVA-RT'),
-    'C9': (-5.15, -27.55, 225, 'TOP', 'desacoplamento U1; invertido para liberar a saida de VCC'),
+    'C9': (-4.75, -26.45, 225, 'TOP', 'deslocado para liberar J3 central, proximo ao U1'),
     'C10': (5.71, -18.29, 135, 'TOP', 'posicao original EVA-RT'),
     'C13': (-24.25, -17.65, 0, 'TOP', 'VCP/VM U2; proximo sem obstruir pinos'),
     'C14': (-21.45, -17.65, 0, 'TOP', 'CPH/CPL U2; proximo sem obstruir pinos'),
@@ -63,13 +70,14 @@ OVERRIDES = {
     'SW0': (36.35, -30.25, 180, 'TOP', 'B3U na posicao original'),
     'SW1': (37.34, 5.84, 0, 'TOP', 'B3U na posicao original'),
     'SW2': (37.34, 11.30, 0, 'TOP', 'B3U na posicao original'),
-    'J1': (-54.0, 4.5, 0, 'TOP', 'PROPOSTA: XT30 vertical no braco; confirmar modelo e encaixe'),
-    'J3': (9.0, -28.75, 0, 'TOP', 'PROPOSTA: deslocado; colide com rasgo original do velcro'),
+    'J1': (-35.5, -31.7, 0, 'TOP', 'XT30 no canto inferior esquerdo; pad 1 e lado reto = positivo'),
+    'J3': (0.0, -28.8, 0, 'TOP', 'barra inferior centralizada; corpo 90 graus para tras'),
     'J4': (32.5, 7.05, 0, 'TOP', 'Bluetooth obrigatorio, entre ventoinha e botoes'),
     'R16': (29.2, 8.2, 0, 'BOTTOM', 'Bluetooth: perto de J4, liberando SW1'),
     'R17': (29.2, 10.2, 0, 'BOTTOM', 'Bluetooth: perto de J4, liberando SW1'),
     'R18': (29.2, 12.2, 0, 'BOTTOM', 'Bluetooth: perto de J4, liberando SW2'),
     'R15': (10.5, -20.0, 90, 'TOP', 'novo pull-up nSLEEP, preserva C10'),
+    'U1': (0.0, -22.25, -45, 'TOP', 'avancado 0,75 mm para centralizar J3'),
     'X1': (-7.9, -25.3, 180, 'TOP', 'PROPOSTA: 3225 baixo sob bateria; modelo a confirmar'),
     # O conjunto foi transladado sem trocar a face ou a rotacao do EVA-RT.
     'R6': (-61.73, 4.43, 90, 'BOTTOM', 'asa esquerda transladada ao braco'),
@@ -84,12 +92,20 @@ def load_positions():
     positions = json.loads((HERE / 'posicoes.json').read_text(encoding='utf8'))
     with (HERE / 'posicoes.csv').open(encoding='utf8', newline='') as fh:
         previous = {r['ref']: r.get('motivo','') for r in csv.DictReader(fh,delimiter=';')}
+    # Referencias dos itens substituidos no EVA-RT, para marcar seus centros
+    # anteriores na figura de mudancas. CONV1..5 eram pads, nao um componente.
+    replaced = {'J1': ('TOP',-36.35,-30.25,0), 'J2': ('TOP',0,25.74,180),
+                'J3': ('TOP',0,-28.57,0), 'U2': ('TOP',-22.10,-12.45,-90),
+                'U3': ('TOP',22.10,-12.45,-90)}
     for c in positions:
         c['motivo'] = previous.get(c['ref'], '')
         if c['ref'] in OVERRIDES:
             c['x'], c['y'], c['rot'], c['face'], c['motivo'] = OVERRIDES[c['ref']]
         c['footprint'] = F.REF_FOOTPRINT[c['ref']]
         c['tht'] = F.FOOTPRINTS[c['footprint']]['tht']
+        if c['ref'] in replaced:
+            lado,x,y,rot = replaced[c['ref']]
+            c['eva'] = {'lado':lado,'x':x,'y':y,'rot':rot}
     return positions
 
 def export_positions(positions):
@@ -140,10 +156,12 @@ def body(c):
     if c['ref'] in ('M1', 'M2', 'M3'):
         return None
     if c['ref']=='J1':
-        # Corpo da proposta XT30: extremidade negativa chanfrada, positiva reta.
-        w,h=F.FOOTPRINTS[c['footprint']]['corpo']; chamfer=.8
-        points=[[-w/2,-h/2],[w/2-chamfer,-h/2],[w/2,-h/2+chamfer],
-                [w/2,h/2-chamfer],[w/2-chamfer,h/2],[-w/2,h/2]]
+        # Lado positivo reto e lado negativo semicircular conforme desenho do usuario.
+        w,h=F.FOOTPRINTS[c['footprint']]['corpo']; r=h/2; center=w/2-r
+        points=[[-w/2,-h/2], [center,-h/2]]
+        points += [[center+r*math.cos(math.radians(a)), r*math.sin(math.radians(a))]
+                   for a in range(-85,91,5)]
+        points += [[-w/2,h/2]]
         return Polygon(geo._to_board(points,None,c['x'],c['y'],c['rot'],c['face']))
     pts = geo.corpo_quad(c['ref'], c['x'], c['y'], c['rot'], c['face'])
     return Polygon(pts) if pts is not None else None

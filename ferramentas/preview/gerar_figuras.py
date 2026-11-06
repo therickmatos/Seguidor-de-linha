@@ -51,7 +51,7 @@ def label_placements(ax,components):
             px,py=x+dx,y+dy
             label=box(px-w/2,py-h/2,px+w/2,py+h/2)
             penalty=sum(label.intersection(k).area*100 for k in used)
-            if abs(px)>76 or py < -33.3 or py > 27:penalty+=100
+            if abs(px)>76 or py < -36 or py > 27:penalty+=100
             penalty+=math.hypot(dx,dy)*.01
             if best is None or penalty<best[0]:best=(penalty,px,py,label)
         _,px,py,bb=best
@@ -64,8 +64,8 @@ def label_placements(ax,components):
 
 def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     both = layer == 0
-    ax.set_facecolor(BG); ax.set_xlim(-77,77); ax.set_ylim(-34,28.5); ax.set_aspect('equal',adjustable='box')
-    ax.set_xticks(range(-75,76,5)); ax.set_yticks(range(-30,26,5))
+    ax.set_facecolor(BG); ax.set_xlim(-77,77); ax.set_ylim(-37.2,28.5); ax.set_aspect('equal',adjustable='box')
+    ax.set_xticks(range(-75,76,5)); ax.set_yticks(range(-35,26,5))
     ax.grid(color=GRID,alpha=.35,linewidth=.35,zorder=0)
     ax.tick_params(axis='both',colors='#abbab3',labelsize=5.5,length=2,pad=1)
     for spine in ax.spines.values():spine.set_color('#53645d')
@@ -98,7 +98,15 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     if air:
         for e in data['ratsnest']:
             (x1,y1),(x2,y2)=e['xy']
-            ax.plot([x1,x2],[y1,y2],color=AIR,linewidth=.45,alpha=.77,zorder=7)
+            if math.hypot(x2-x1,y2-y1)<1.0:
+                # Ilhas sobrepostas em faces diferentes ainda precisam de via;
+                # um segmento de comprimento zero ficaria invisivel na imagem.
+                x,y=(x1+x2)/2,(y1+y2)/2
+                ax.add_patch(Circle((x,y),.72,facecolor='none',edgecolor=AIR,
+                                    linewidth=.75,alpha=.95,zorder=19))
+                ax.plot(x,y,marker='x',markersize=2.3,color=AIR,mew=.6,zorder=20)
+            else:
+                ax.plot([x1,x2],[y1,y2],color=AIR,linewidth=.8,alpha=.95,zorder=14)
     shown=[]
     for c in positions:
         if c['dnp']:continue
@@ -121,7 +129,7 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
                 ax.text(p['x'],p['y']+2.05,'+' if p['pin']=='1' else '−',
                         fontsize=7,color='#fff3b0',fontweight='bold',ha='center',zorder=14)
         shown.append(c)
-    # Os furos reais sao desenhados por cima, inclusive o rasgo que conflita com J3.
+    # Furos originais conservados.
     for name,h in M.HOLES:
         polygon(ax,h,facecolor=BG,edgecolor='#f2e5cd',linewidth=.65,zorder=13)
     label_placements(ax,shown)
@@ -129,24 +137,9 @@ def draw_board(ax,positions,data,layer,air=True,mode='normal'):
     ax.plot([0,0],[-1.1,1.1],color='#ffdf80',lw=.55,zorder=14)
     ax.text(1.5,.7,'(0,0)',fontsize=5,color='#ffdf80',zorder=14)
     if layer in (0,1):
-        # A geometria original fica intacta; o ponto de conflito fica inequivoco.
-        ax.annotate('J3: PROPOSTA\ncolide com rasgo',xy=(14.08,-28.5),xytext=(20.5,-33.0),
-                    color='#ffbd72',fontsize=5.8,fontweight='bold',ha='left',
-                    arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.7},zorder=20)
-        ax.text(-54,8.6,'J1: PROPOSTA',fontsize=5.3,color='#ffbd72',ha='center',zorder=20)
-        ax.text(-11,-31.7,'X1 3225: PROPOSTA',fontsize=5.3,color='#ffbd72',ha='center',zorder=20)
-        ax.annotate('VBAT: 0,30 mm\nREDIMENSIONAR',xy=(23.3,-6.21),xytext=(42,-15),
-                    color='#ffbd72',fontsize=5.6,fontweight='bold',ha='left',
-                    arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.65},zorder=20)
-        # Alternativa grafica apenas: o rasgo real permanece no lugar do JSON.
-        ax.plot([15.385,22.385,22.385,15.385,15.385],[-28.713,-28.713,-27.713,-27.713,-28.713],
-                color='#ffbd72',lw=.65,ls='--',zorder=18)
-    elif layer==2:
-        ax.plot([15.385,22.385,22.385,15.385,15.385],[-28.713,-28.713,-27.713,-27.713,-28.713],
-                color='#ffbd72',lw=.65,ls='--',zorder=18)
-        ax.annotate('J3: PROPOSTA\ncolide com rasgo',xy=(14.08,-28.5),xytext=(20.5,-33.0),
-                    color='#ffbd72',fontsize=5.8,fontweight='bold',ha='left',
-                    arrowprops={'arrowstyle':'->','color':'#ffbd72','lw':.7},zorder=20)
+        ax.text(-35.5,-36.1,'J1: lado reto = +',fontsize=5.2,color='#ffbd72',ha='center',zorder=20)
+        ax.text(0,-35.6,'J3 central · 90°',fontsize=5.2,color='#ffbd72',ha='center',zorder=20)
+        ax.text(-10,-32.2,'X1 3225: proposta',fontsize=5.0,color='#ffbd72',ha='center',zorder=20)
     if mode=='mudancas':
         for c in shown:
             e=c.get('eva')
@@ -162,13 +155,13 @@ def header(fig,title,subtitle):
 
 def render_stage1(positions,data):
     fig=plt.figure(figsize=(21,17.2),dpi=200)
-    header(fig,'ETAPA 1  |  Posicionamento + cobre do EVA-RT',
-           'Primeira versão: vermelho = cobre superior · azul = inferior · amarelo = ligações pendentes · +y = frente · grade 5 mm')
+    header(fig,'ETAPA 1  |  Novo posicionamento e conexões',
+           'Cobre antigo removido para novo roteamento · amarelo = ligações ainda não roteadas · +y = frente · grade 5 mm')
     a=fig.add_axes([.045,.51,.91,.41]); b=fig.add_axes([.045,.065,.91,.41])
     draw_board(a,positions,data,1); draw_board(b,positions,data,2)
     a.set_title('FACE DE CIMA',loc='left',color=TOP,fontsize=10,fontweight='bold',pad=4)
     b.set_title('FACE DE BAIXO — vista através da placa, sem espelhar',loc='left',color=BOTTOM,fontsize=10,fontweight='bold',pad=4)
-    fig.text(.047,.035,f"{len(data['ratsnest'])} ligações ainda abertas · J3 e XT30 são propostas · furo/rasgo original mostrado intacto · ponto branco = pino 1",
+    fig.text(.047,.035,f"{len(data['ratsnest'])} ligações antes do roteamento · círculo amarelo = pendência curta/entre faces · J1: furos estimados · ponto branco = pino 1",
              color='#ffcf86',fontsize=8.2)
     fig.text(.047,.015,'Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Prévia para revisão no EasyEDA Pro.',
              color='#8ba198',fontsize=7)
@@ -182,9 +175,9 @@ def render_single(positions,data,layer,filename,title,subtitle):
     header(fig,title,subtitle)
     ax=fig.add_axes([.045,.11,.91,.76])
     draw_board(ax,positions,data,layer,air=True)
-    fig.text(.047,.058,f"{len(data['ratsnest'])} ligações abertas em amarelo · propostas: J1, J3 e X1 · ponto branco = pino 1",
+    fig.text(.047,.058,f"{len(data['ratsnest'])} ligações abertas em amarelo; círculo = pendência curta ou entre faces · ponto branco = pino 1",
              color='#ffcf86',fontsize=8.0)
-    fig.text(.047,.032,'J3 colide com o rasgo; tracejado = alternativa não aprovada. VBAT tem trecho de 0,30 mm que precisa ser redimensionado.',color='#ffcf86',fontsize=7.6)
+    fig.text(.047,.032,'XT30: dimensões externas e passo informados; diâmetros dos pads e furos ainda precisam ser conferidos.',color='#ffcf86',fontsize=7.6)
     fig.text(.047,.011,'Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Grade de 5 mm; +y para a frente.',color='#8ba198',fontsize=7)
     out=M.OUTPUT/filename
     fig.savefig(out,dpi=200,facecolor=BG,pil_kwargs={'quality':92,'optimize':True});plt.close(fig)
@@ -193,7 +186,7 @@ def render_single(positions,data,layer,filename,title,subtitle):
 def render_changes(positions,data):
     fig=plt.figure(figsize=(21,17.2),dpi=200)
     header(fig,'MUDANÇAS EM RELAÇÃO AO EVA-RT',
-           'Verde = mantida · amarelo = ajustada · rosa tracejado = removida · ciano = nova · × = posição anterior')
+           'Rosa tracejado = cobre EVA-RT removido · ciano = cobre novo · × = posição anterior no EVA-RT')
     a=fig.add_axes([.045,.51,.91,.41]); b=fig.add_axes([.045,.065,.91,.41])
     draw_board(a,positions,data,1,air=False,mode='mudancas')
     draw_board(b,positions,data,2,air=False,mode='mudancas')
@@ -218,5 +211,5 @@ if __name__=='__main__':
                       'Cobre inferior azul · vista através da placa, sem espelhar · amarelo = ligação ainda não roteada')
         render_changes(positions,data)
     else:
-        data=json.loads((M.HERE/'trilhas_classificadas.json').read_text(encoding='utf8'))
+        data=json.loads((M.HERE/'etapa1_colocacao.json').read_text(encoding='utf8'))
         render_stage1(positions,data)

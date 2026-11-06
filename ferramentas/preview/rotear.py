@@ -26,8 +26,9 @@ FINO='--fino' in sys.argv
 RESERVAR='--reservar' in sys.argv
 SAIDA='trilhas_reservadas.json' if '--saida-reservada' in sys.argv else 'trilhas_roteadas.json'
 STEP=.1 if FINO else .2
-X0,Y0=-75.0,-33.0
-NX,NY=int(round(150/STEP))+1,int(round(60/STEP))+1
+# Inclui a pequena extensao traseira do XT30 e todo o contorno dos bracos.
+X0,Y0=-75.0,-36.0
+NX,NY=int(round(150/STEP))+1,int(round(64.5/STEP))+1
 CLEAR=.2
 SIGNAL=.30
 VIA_D=.80

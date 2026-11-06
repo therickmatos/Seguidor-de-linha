@@ -220,6 +220,21 @@ _confere("U1 TQFP", _ref_pos("U1", 0, 0, 0, "TOP"), {
 # HTSSOP-16 (U2): pino 1 canto superior-esquerdo, 9 inferior-direito
 _confere("U2 HTSSOP", _ref_pos("U2", 0, 0, 0, "TOP"), {
     "1": (-2.775, 2.275), "8": (-2.775, -2.275), "9": (2.775, -2.275), "16": (2.775, 2.275)})
+# Gerber inferior EVA-RT: o eixo entre as duas colunas de pads e horizontal.
+_confere("S0 pads Gerber", _ref_pos("S0", -46.5, 18.5, 180, "BOTTOM"), {
+    "1": (-44.5, 17.6), "2": (-48.5, 17.6),
+    "3": (-48.5, 19.4), "4": (-44.5, 19.4)})
+_confere("S1 pads Gerber", _ref_pos("S1", 46.5, 18.5, 0, "BOTTOM"), {
+    "1": (44.5, 19.4), "2": (48.5, 19.4),
+    "3": (48.5, 17.6), "4": (44.5, 17.6)})
+for _pad_sensor in F.FOOTPRINTS["QRE1113GR_SMD"]["pads"]:
+    if (_pad_sensor["w"], _pad_sensor["h"]) != (1.66, 0.8):
+        falha("QRE1113: pad difere do pad horizontal 1,66 x 0,80 mm do Gerber")
+    else:
+        ok("sensor")
+# A foto cotada fixa o passo e a polaridade, nao os diametros de furo.
+_confere("J1 polaridade", _ref_pos("J1", 0, 0, 0, "TOP"), {
+    "1": (-2.5, 0), "2": (2.5, 0)})
 # Rotacao: pad (1,0) girado 90 graus vai para (0,1); lado BOTTOM espelha x
 _teste_rot = F.pads_absolutos("R1", 0, 0, 90, "TOP")
 _p1 = [p for p in F.pads_absolutos("R1", 0, 0, 0, "TOP") if p["pino"] == "2"][0]

@@ -103,13 +103,15 @@ def main():
       'ele é alto demais para ficar sob a bateria; avisar para reposicionar.')
     w('- **C9** ficou junto ao AVCC (pinos 18/21); os pinos VCC 4/6 recebem o +5V pela trilha, como no EVA-RT '
       '(que também tem um único 100 nF afastado). Se quiser, cabe um 100 nF extra no esquemático.')
-    j1 = next(c for c in pos if c['ref'] == 'J1')
-    jb = M.body(j1).bounds
-    w(f"- **XT30 (J1) em ({j1['x']:.1f}; {j1['y']:.1f})**, corpo em x {jb[0]:.1f}…{jb[2]:.1f}: "
-      f"{jb[0] + 40:.1f} mm até o plano da engrenagem da roda (64T M0,3, Ø≈19,8, em |x| 40…42, que desce "
-      '2,9 mm abaixo da face de cima). Os lóbulos traseiros não passam de |x| = 40 (vão até |x| = 27,6 para dentro '
-      'e até y = −35). Medir no conjunto real a face da engrenagem e o XT30 macho + plugue fêmea; sair com o cabo '
-      'da bateria para dentro/para trás, nunca para o lado da roda, e prendê-lo.')
+    f = V.folgas_j1(pos)
+    nn = lambda v: f'{v:.1f}'.replace('.', ',')
+    w(f"- **XT30 (J1) em pé em ({nn(f['xy'][0])}; {nn(f['xy'][1])})**, eixo longo em y, por dentro do suporte esquerdo, "
+      f"com o pino 1 (+) para a frente: corpo a {nn(f['corpo_suporte'])} mm do suporte, {nn(f['corpo_motor'])} mm do "
+      f"motor, {nn(f['corpo_bateria'])} mm da bateria e {nn(f['corpo_engrenagem'])} mm do plano da engrenagem da roda; "
+      f"pads a {nn(f['cobre_borda'])} mm da borda. Traseira do EVA-RT (contorno B original, sem os lóbulos até y = −35 "
+      'da primeira alpha). A peça é a XT30U-M (C99101, macho de cabo): os copos vão nos furos. Medir o diâmetro dos '
+      'copos (furo Ø2,5 / pad Ø3,9 estimados) e cortar rente o que sobrar embaixo (~2,5 mm até o chão). Prender o '
+      'cabo da bateria baixo e para trás, longe da ventoinha.')
     w('- **J3 deitado embaixo:** o plástico da barra fica ~1,6 mm abaixo da face de baixo, atrás da borda '
       '(y < −30). Com pneus de Ø≈22 a face de baixo fica ~2,5 mm do chão; conferir a folga real. Alternativa: '
       'soldar a barra só para gravar, ou apoiar a barra nos pads na hora de gravar (como os pads do EVA-RT permitem).')

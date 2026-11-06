@@ -9,7 +9,7 @@
 2;C13 C15;100nF;0603 16 V X7R;;sim;novo;VCP -> VM
 2;C14 C16;22nF;0603 50 V X7R;;sim;novo;CPH -> CPL (tensao >= VM)
 1;D1;1N5819;SOD-123 (B5819W) ou 1N5819 nos terminais do motor;;sim;novo;"diodo de roda livre (novo; o EVA-RT nao tem)"
-1;J1;XT30 (bateria 2S);XT30 macho de placa (vertical);;sim;VIN;"pino 1 = + (lado reto), pino 2 = -; canto traseiro esquerdo"
+1;J1;XT30 (bateria 2S);"XT30U-M (macho de cabo; copos soldados nos furos, em pe)";C99101;sim;VIN;"pino 1 = + (lado reto), pino 2 = -; em pe por dentro do suporte esq.; medir os copos e cortar rente embaixo; versao de placa: XT30UPB-M (C428721)"
 1;J2;BARRA (1x8, 2,54 mm);barra de pinos 1x8 2,54 mm;;sim;FPC1 (FPC 10 vias);
 1;J3;GRAVACAO (barra 1x5 2,54 deitada);5 pads SMD 1,25 x 2,25 + barra macho 1x5 2,54 deitada;;sim;Converter Conn Master;borda traseira, face de baixo (como o EVA-RT)
 1;J4;BLUETOOTH (femea 1x6, ordem HC-05);barra femea 1x6 2,54 mm;;sim;novo;"frente direita, x = 32,5; HC-06 nas vias 2-5 (virado)"

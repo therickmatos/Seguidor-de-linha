@@ -41,7 +41,9 @@ def note(lines, x, y, size=1.27):
 # ---------------------------------------------------------------- 1 ALIMENTACAO
 frame(10, 12, 144, 72, '1 - ALIMENTACAO (bateria 2S -> 5 V)')
 part('Connector_Generic', 'Conn_01x02', 'J1', 'XT30 (bateria 2S)', g(8), g(12), 180,
-     'XT30 macho de placa (vertical)', 'pino 1 = + (lado reto), pino 2 = -; canto traseiro esquerdo', ref_off=(-2.54, -6.35), val_off=(-7.62, 6.35))
+     'XT30U-M (macho de cabo; copos soldados nos furos, em pe)',
+     'pino 1 = + (lado reto), pino 2 = -; em pe por dentro do suporte esq.; medir os copos e cortar rente embaixo; '
+     'versao de placa: XT30UPB-M (C428721)', lcsc='C99101', ref_off=(-2.54, -6.35), val_off=(-7.62, 6.35))
 S.conn('J1', '1', 'VBAT'); S.conn('J1', '2', 'GND')
 x, y, ox, oy = S.pinpos('J1', '1'); S.flag(x + 2.54, y)
 x, y, ox, oy = S.pinpos('J1', '2'); S.flag(x + 2.54, y)

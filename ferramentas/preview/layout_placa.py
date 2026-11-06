@@ -23,16 +23,11 @@ ROOT = HERE.parent.parent
 OUTPUT = ROOT / 'hardware' / 'preview'
 BOARD_DATA = json.loads((HERE / 'geometria.json').read_text(encoding='utf8'))
 OUTLINE_ORIGINAL = Polygon(BOARD_DATA['contorno'])
-# Duas extensoes iguais na traseira conservam o desenho geral e acomodam o XT30
-# fora do contato do gearbox. Os furos e o JSON original continuam intactos.
-# 06/11: o contorno nao passa de |x| = 40 (face externa do suporte), porque a
-# engrenagem 64T fica em |x| 40..42 e desce abaixo da placa; o lobulo vai ate
-# |x| = 27,6 para dentro, para o XT30 ficar todo em x >= -38 (2 mm da engrenagem).
-_extensao_direita = Polygon([(27.0,-28), (27.6,-28), (27.6,-34.3), (27.8,-34.8),
-                             (28.3,-35), (39.3,-35), (39.8,-34.8), (40,-34.3),
-                             (40,-27.5)])
-OUTLINE = unary_union([OUTLINE_ORIGINAL, _extensao_direita,
-                       affinity.scale(_extensao_direita, xfact=-1, origin=(0,0))])
+# Traseira: a do contorno B original, que e a do EVA-RT (pes em y = -32 para |x| 33..40, chanfro ate
+# o degrau em y = -28,5 e centro em y = -30). A alpha de 06/11 tinha alongado os dois cantos ate
+# y = -35 para o XT30 deitado no canto esquerdo; desde a noite de 06/11 o XT30 fica em pe por dentro
+# do suporte esquerdo e os lobulos sairam (decisao do Erick). O contorno nao passa de |x| = 40.
+OUTLINE = OUTLINE_ORIGINAL
 
 def hole_shape(h):
     if h['tipo'] == 'furo':

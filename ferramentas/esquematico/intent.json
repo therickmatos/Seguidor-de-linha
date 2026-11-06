@@ -1090,9 +1090,9 @@
  "bom": {
   "J1": {
    "value": "XT30 (bateria 2S)",
-   "pkg": "XT30 macho de placa (vertical)",
-   "note": "pino 1 = + (lado reto), pino 2 = -; canto traseiro esquerdo",
-   "lcsc": "",
+   "pkg": "XT30U-M (macho de cabo; copos soldados nos furos, em pe)",
+   "note": "pino 1 = + (lado reto), pino 2 = -; em pe por dentro do suporte esq.; medir os copos e cortar rente embaixo; versao de placa: XT30UPB-M (C428721)",
+   "lcsc": "C99101",
    "dnp": false
   },
   "C1": {

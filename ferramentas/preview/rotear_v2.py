@@ -57,17 +57,15 @@ def via_for(net):
 
 
 # ---------------------------------------------------------------- cobre fixo (pre-roteado)
-# Troncos de VBAT como no EVA-RT: face de baixo, do J1 ao driver esquerdo, subindo
-# pela esquerda ate C1, e contornando a frente da ventoinha ate C2; na direita,
-# C2 desce pela face de cima ate C15/C7 (VM do U3). Assim o VBAT nao passa entre
-# o ATmega e a ventoinha, por onde saem os sinais para a barra de sensores.
+# Troncos de VBAT como no EVA-RT: face de baixo, do J1 subindo pela esquerda ate C1 e
+# contornando a frente da ventoinha ate C2; na direita, C2 desce pela face de cima ate
+# C15/C7 (VM do U3). Assim o VBAT nao passa entre o ATmega e a ventoinha, por onde saem
+# os sinais para a barra de sensores. Com o XT30 em pe em x = -27, o pino + (J1.1, furo
+# passante) fica sobre o tronco de baixo e liga direto o VM do U2 por cima (C6/C13).
 PRE_TRACKS = [
-    ('VBAT', 2, 1.2, [(-35.4, -31.7), (-25.3, -21.6), (-25.3, -19.4)]),
-    ('VBAT', 2, 1.2, [(-25.3, -19.4), (-24.2, -19.4)]),
-    ('VBAT', 2, 1.2, [(-25.3, -19.4), (-27.0, -17.7), (-27.0, 3.31), (-22.0, 3.31)]),
+    ('VBAT', 2, 1.2, [(-27.0, -21.2), (-27.0, 3.31), (-22.0, 3.31)]),
     ('VBAT', 2, 1.2, [(-22.0, 3.31), (-14.31, 11.0), (9.0, 11.0), (17.0, 3.0), (17.0, 0.81), (22.0, 0.81)]),
-    ('VBAT', 1, 1.0, [(-25.3, -19.4), (-24.2, -19.4)]),
-    ('VBAT', 1, 1.0, [(-24.5, -19.4), (-24.5, -17.9)]),
+    ('VBAT', 1, 1.0, [(-27.0, -21.2), (-24.5, -18.7), (-24.5, -17.9)]),
     ('VBAT', 1, 1.0, [(22.0, 0.81), (24.49, -1.68), (24.49, -7.3)]),
     # U3 (rot 90): potencia na fileira de cima; OUT2 sai pelo corredor entre os pinos e
     # C15/C7, VM sobe ate C15.1, OUT1 sai pela direita e contorna o furo do suporte do motor
@@ -98,7 +96,7 @@ PRE_TRACKS = [
     ('C0_A4', 1, 0.25, [(-2.179, -19.124), (-2.621, -18.682), (-10.8, -10.503), (-10.8, 13.498),
                         (-4.698, 19.6), (-1.27, 19.6), (-1.27, 22.74)]),
 ]
-PRE_VIAS = [('VBAT', 'VIA_P', (-25.3, -19.4)), ('VBAT', 'VIA_P', (-24.2, -19.4))]
+PRE_VIAS = []   # o J1 (furo passante) faz a passagem de face do VBAT
 
 
 def fixed_copper():

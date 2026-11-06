@@ -47,7 +47,7 @@ T, B = 'TOP', 'BOTTOM'
 # ref: (x, y, rot, face, motivo)
 POS = {
     # ---- mecanica e conectores (fixos)
-    'J1': (-32.9, -31.7, 0, T, 'XT30 no canto traseiro esquerdo, corpo em x >= -38 (2 mm da engrenagem em x <= -40); pad 1 (lado reto) = +'),
+    'J1': (-27.0, -23.7, 270, T, 'XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm); pino 1 (+, lado reto) para a frente, junto do VM do U2'),
     'J2': (0.0, 22.74, 0, T, 'barra de sensores, centro da frente'),
     'J3': (0.0, -28.575, 0, B, 'gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)'),
     'J4': (32.5, 7.05, 0, T, 'Bluetooth (femea 1x6), frente direita'),
@@ -197,7 +197,7 @@ def check(positions):
             if g.intersects(CARCACA):
                 problems.append(('pe da carcaca', ref))
             for gb in GEARBOX:
-                if g.intersects(gb) and ref not in ('J1', 'SW0'):
+                if g.intersects(gb) and ref not in ('SW0',):
                     problems.append(('suporte do motor', ref))
             for pr in PRESILHAS:
                 if g.intersects(pr):
@@ -212,6 +212,33 @@ def check(positions):
             if c['face'] == 'BOTTOM' and g.buffer(-0.1).intersects(SUCCAO):
                 problems.append(('placa de succao', ref))
     return problems
+
+
+SUPORTE_E = box(-40, -28.5, -30.5, -1.78)
+MOTOR_E = box(-38, -16.26, -18, -6.26)
+
+
+def folgas_j1(positions):
+    """Folgas do XT30 em pe (corpo 10,2 x 5,2 da foto; pads estimados) ate a mecanica do EVA-RT."""
+    j1 = next(c for c in positions if c['ref'] == 'J1')
+    corpo = M.body(j1)
+    pads = M.get_pads(j1)
+    cobre = unary_union([p['shape'] for p in pads])
+    vizinhos = []
+    for c in positions:
+        if c['ref'] in ('J1', 'M1', 'M2', 'M3') or c['face'] != 'TOP':
+            continue
+        vizinhos.append((round(corpo.distance(footprint_shape(c)), 2), c['ref']))
+    return {
+        'xy': (j1['x'], j1['y']), 'corpo': [round(v, 2) for v in corpo.bounds],
+        'pads': {p['pin']: [round(p['x'], 2), round(p['y'], 2), p['net']] for p in pads},
+        'corpo_suporte': round(corpo.distance(SUPORTE_E), 2),
+        'corpo_motor': round(corpo.distance(MOTOR_E), 2),
+        'corpo_bateria': round(corpo.distance(BATERIA), 2),
+        'cobre_borda': round(cobre.distance(M.OUTLINE.exterior), 2),
+        'corpo_engrenagem': round(corpo.bounds[0] + 40, 2),
+        'vizinho_mais_perto': sorted(vizinhos)[:3],
+    }
 
 
 def check_board():
@@ -248,4 +275,5 @@ if __name__ == '__main__':
     print(len(pos), 'componentes')
     for p in check(pos) + check_board():
         print(p)
+    print('J1:', folgas_j1(pos))
     export_dxf(M.OUTPUT / 'contorno_b_xt30.dxf')

@@ -48,10 +48,9 @@ python pacote_alpha.py           # hardware/placa_alpha/: imagens, CSV, DXF do c
 
 Se a otimização final do FreeRouting travar, rodar sem ela: `FR_EXTRA="-mt 0" python rotear_v2.py rotear 100`.
 
-**Proposta da traseira e simulação das marcas** (rodar em `preview/`):
+**Simulação das marcas do TRIF** (rodar em `preview/`):
 
 ```
-python variante_traseira.py --3d   # traseira do EVA-RT + XT30 em pé: hardware/preview/traseira_eva_xt30.jpg e traseira_3d.html (não altera a alpha)
 python marcas_sim.py               # QRE de marca x marcas do TRIF (v2/marcas_sim.json)
 python marcas_sim.py --figura      # hardware/preview/marcas_trif_sim.jpg
 ```
@@ -62,5 +61,7 @@ python marcas_sim.py --figura      # hardware/preview/marcas_trif_sim.jpg
 python kicad_exportar.py           # (venv) v2/kicad_dados.json e esquematico/footprints_alpha.json
 /usr/bin/python3 kicad_montar.py   # (python do KiCad, módulo pcbnew) monta a placa, preenche o GND, DRC e paridade
 ```
+
+Por último, `python3 ../empacotar.py` monta `hardware/placa_base_alpha.zip` (projeto KiCad, pacote para o EasyEDA e prévia 3D).
 
 O `kicad_montar.py` grava em `hardware/seguidor_base/` a placa, a biblioteca `seguidor_alpha.pretty`, o `fp-lib-table`, as regras no `.kicad_pro` (mantendo o que o esquemático já tinha) e o `drc_kicad.rpt`, e para com erro se algum pad sair do lugar do modelo. Se o `footprints_alpha.json` mudar (footprint novo ou trocado), regere o esquemático antes do `kicad_montar.py`.

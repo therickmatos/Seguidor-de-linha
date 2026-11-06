@@ -4,10 +4,10 @@ Pacote para o EasyEDA em `hardware/placa_alpha/` (ver o README de lá): `placa_a
 
 ## Resultado
 
-- **Todas as ligações do `REDES.md` estão feitas** (54 redes, 219 pads), conferidas por um verificador independente de conectividade sobre o cobre final (trilhas, vias, pads e plano de GND).
+- **Todas as ligações do `REDES.md` estão feitas** (53 redes, 217 pads), conferidas por um verificador independente de conectividade sobre o cobre final (trilhas, vias, pads e plano de GND).
 - Folgas: nenhuma violação abaixo de 0.2 mm entre redes diferentes e de 0.3 mm entre cobre e borda/furos (0 violações no verificador). Não substitui o DRC do EasyEDA.
-- 323 segmentos de trilha (216 em cima, 107 embaixo) e 142 vias: 57 do roteamento, 2 dos troncos de VBAT, 12 térmicas (6 por DRV8874) e 71 de costura do GND.
-- **Plano de GND nas duas faces.** 110 trilhas de GND do autorroteador ficaram redundantes e foram retiradas; a conectividade foi conferida com o plano. No EasyEDA: criar as áreas de cobre GND (cima e baixo) com folga de 0,25 mm e reconstruir antes do DRC.
+- 322 segmentos de trilha (209 em cima, 113 embaixo) e 149 vias: 64 do roteamento, 2 dos troncos de VBAT, 12 térmicas (6 por DRV8874) e 71 de costura do GND.
+- **Plano de GND nas duas faces.** 106 trilhas de GND do autorroteador ficaram redundantes e foram retiradas; a conectividade foi conferida com o plano. No EasyEDA: criar as áreas de cobre GND (cima e baixo) com folga de 0,25 mm e reconstruir antes do DRC.
 
 ## O que mudou em relação à prévia anterior
 
@@ -35,13 +35,13 @@ Pacote para o EasyEDA em `hardware/placa_alpha/` (ver o README de lá): `placa_a
 
 | rede | mín. (mm) | máx. (mm) | trecho < 0,6 mm |
 |---|---|---|---|
-| `VBAT` | 0.40 | 1.20 | 11.0 mm |
-| `OUT_A1` | 0.40 | 1.20 | 2.9 mm |
-| `OUT_A2` | 0.40 | 1.20 | 5.5 mm |
+| `VBAT` | 0.40 | 1.20 | 16.1 mm |
+| `OUT_A1` | 0.40 | 1.20 | 4.9 mm |
+| `OUT_A2` | 0.40 | 1.20 | 3.8 mm |
 | `OUT_B1` | 0.40 | 1.20 | 0.9 mm |
 | `OUT_B2` | 0.40 | 1.20 | 3.1 mm |
 | `OUT_C` | 0.60 | 1.20 | 0.0 mm |
-| `+5V` | 0.40 | 0.60 | 69.3 mm |
+| `+5V` | 0.40 | 0.60 | 63.0 mm |
 
 Os trechos estreitos são as saídas dos pinos 0,45 mm do DRV8874 (passo 0,65) e passagens entre pads; o resto foi alargado até 1,0–1,2 mm onde a folga permitiu. No EasyEDA, alargar onde houver espaço.
 

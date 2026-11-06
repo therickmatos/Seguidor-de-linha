@@ -2,7 +2,7 @@
 
 _Gerado por `ferramentas/esquematico/redes.py` a partir da netlist do `seguidor_base.kicad_sch` (rev 1.0). Depois de importar o esquemático no EasyEDA Pro, conferir rede por rede. Formato: `REF.pino (nome do pino)`. Valores e encapsulamentos em `BOM_seguidor_base.csv`._
 
-**54 redes**, **7 pinos sem ligação**.
+**53 redes**, **7 pinos sem ligação**.
 
 **Atenção na importação:**
 - No símbolo do ATmega (U1), os pinos 5 e 21 (GND) e 6 (VCC) estão escondidos e empilhados sobre os pinos 3 e 4; no KiCad eles se ligam pela posição. Conferir no EasyEDA se U1.5 e U1.21 estão no GND e U1.6 no +5V.
@@ -17,7 +17,6 @@ _Gerado por `ferramentas/esquematico/redes.py` a partir da netlist do `seguidor_
 | `B1_D11` | J5.4 (MOSI), SW1.1, U1.15 (PB3) | 3 |
 | `B2_D12` | J5.1 (MISO), SW2.1, U1.16 (PB4) | 3 |
 | `BT_RXD` | J4.2, R16.2, R17.1 | 3 |
-| `BT_TXD` | J4.3, R18.2 | 2 |
 | `C0_A4` | J2.4, U1.27 (PC4) | 2 |
 | `CPH_A` | C14.1, U2.13 (CPH) | 2 |
 | `CPH_B` | C16.1, U3.13 (CPH) | 2 |
@@ -52,7 +51,7 @@ _Gerado por `ferramentas/esquematico/redes.py` a partir da netlist do `seguidor_
 | `PWMB_D6` | U1.10 (PD6), U3.1 (EN/IN1) | 2 |
 | `PWMC_D10` | R9.1, U1.14 (PB2) | 2 |
 | `RESET` | C17.2, J5.5 (~{RST}), R3.2, SW0.2, U1.29 (~{RESET}/PC6) | 5 |
-| `RX_D0` | J3.3, LED7.1 (K), R18.1, U1.30 (PD0) | 4 |
+| `RX_D0` | J3.3, J4.3, LED7.1 (K), U1.30 (PD0) | 4 |
 | `S0_A0` | J2.8, U1.23 (PC0) | 2 |
 | `S1_A1` | J2.7, U1.24 (PC1) | 2 |
 | `S2_A2` | J2.6, U1.25 (PC2) | 2 |

@@ -41,7 +41,7 @@ def note(lines, x, y, size=1.27):
 # ---------------------------------------------------------------- 1 ALIMENTACAO
 frame(10, 12, 144, 72, '1 - ALIMENTACAO (bateria 2S -> 5 V)')
 part('Connector_Generic', 'Conn_01x02', 'J1', 'XT30 (bateria 2S)', g(8), g(12), 180,
-     'XT30PW-M de placa ou rabicho XT30', 'pino 1 = +, pino 2 = -', ref_off=(-2.54, -6.35), val_off=(-7.62, 6.35))
+     'XT30 macho de placa (vertical)', 'pino 1 = + (lado reto), pino 2 = -; canto traseiro esquerdo', ref_off=(-2.54, -6.35), val_off=(-7.62, 6.35))
 S.conn('J1', '1', 'VBAT'); S.conn('J1', '2', 'GND')
 x, y, ox, oy = S.pinpos('J1', '1'); S.flag(x + 2.54, y)
 x, y, ox, oy = S.pinpos('J1', '2'); S.flag(x + 2.54, y)
@@ -213,29 +213,29 @@ S.links.append(('R5', '2', 'LED4', '2')); S.conn('LED4', '1', 'GND', bend='down'
 R('R1', '1k', g(84), g(77), r=90); S.conn('R1', '1', '+5V')
 LED('LED6', 'TX', g(84) + 7.62, g(77), r=180); S.links.append(('R1', '2', 'LED6', '2')); S.conn('LED6', '1', 'TX_D1')
 R('R2', '1k', g(84), g(83), r=90, note='opcional'); S.conn('R2', '1', '+5V')
-LED('LED7', 'RX (opcional)', g(84) + 7.62, g(83), r=180, note='sem ele, R18 pode ser 4,7k')
+LED('LED7', 'RX (opcional)', g(84) + 7.62, g(83), r=180)
 S.links.append(('R2', '2', 'LED7', '2')); S.conn('LED7', '1', 'RX_D0')
 note(['Botoes: menu do EVA-RT (1 = calibrar/partir, 2 = menu/+velocidade). LED C: calibracao e menu.',
-      'LED6/LED7 piscam com trafego na serial. Sem o LED7, R18 pode ser 4,7k (BT encaixado ao gravar).'], 148.59, g(86))
+      'LED6/LED7 piscam com trafego na serial.'], 148.59, g(86))
 
 # ---------------------------------------------------------------- 8 GRAVACAO / BT / ICSP
 frame(10, 228, 276, 287, '8 - GRAVACAO, BLUETOOTH E ICSP')
-part('Connector_Generic', 'Conn_01x05', 'J3', 'GRAVACAO (90 graus, 2,54)', g(22), g(97), 0,
-     'barra de pinos macho 1x5 90 graus 2,54 mm', 'borda traseira, em cima', ref_off=(-2.54, -7.62), val_off=(2.54, -7.62))
+part('Connector_Generic', 'Conn_01x05', 'J3', 'GRAVACAO (barra 1x5 2,54 deitada)', g(22), g(97), 0,
+     '5 pads SMD 1,25 x 2,25 + barra macho 1x5 2,54 deitada', 'borda traseira, face de baixo (como o EVA-RT)', ref_off=(-2.54, -7.62), val_off=(2.54, -7.62))
 for p, n in zip('12345', ['+5V', 'GND', 'RX_D0', 'TX_D1', 'DTR']): S.conn('J3', p, n, stub=7.62 if n in ('+5V', 'GND') else 2.54)
 C('C17', '100nF', g(32), g(104), r=90, note='reset automatico pelo DTR'); S.conn('C17', '1', 'DTR'); S.conn('C17', '2', 'RESET')
 part('Connector_Generic', 'Conn_01x06', 'J4', 'BLUETOOTH (femea 1x6, ordem HC-05)', g(70), g(97), 0,
      'barra femea 1x6 2,54 mm', 'frente direita, x = 32,5; HC-06 nas vias 2-5 (virado)', ref_off=(-2.54, -10.16), val_off=(2.54, -10.16))
-for p, n in zip('123456', [None, 'BT_RXD', 'BT_TXD', 'GND', '+5V', None]): S.conn('J4', p, n, stub=7.62 if n in ('+5V', 'GND') else 2.54)
+# TXD do modulo direto no RX do ATmega (o R18 de 0 ohm saiu em 06/11)
+for p, n in zip('123456', [None, 'BT_RXD', 'RX_D0', 'GND', '+5V', None]): S.conn('J4', p, n, stub=7.62 if n in ('+5V', 'GND') else 2.54)
 R('R16', '1k', g(48), g(95), r=90, note='divisor 5 V -> 3,3 V'); S.conn('R16', '1', 'TX_D1'); S.conn('R16', '2', 'BT_RXD')
 R('R17', '2k', g(56), g(98), note='divisor 5 V -> 3,3 V'); S.conn('R17', '1', 'BT_RXD', bend='right'); S.conn('R17', '2', 'GND')
-R('R18', '0', g(48), g(103), r=90, note='0 ohm; 4,7k se o LED7 nao for montado'); S.conn('R18', '1', 'RX_D0'); S.conn('R18', '2', 'BT_TXD')
 part('Connector', 'AVR-ISP-6', 'J5', 'ICSP (pads SMD embaixo)', g(90), g(99), 0, '6 pads SMD D1,8 em grade 2,54',
      'posicoes do EVA-RT: x 33,97/36,51; y -8,36/-10,90/-13,44', ref_off=(5.08, -12.7), val_off=(5.08, 12.7))
 S.conn('J5', '1', 'B2_D12'); S.conn('J5', '4', 'B1_D11'); S.conn('J5', '3', 'LEDC_D13'); S.conn('J5', '5', 'RESET')
 S.conn('J5', '2', '+5V'); S.conn('J5', '6', 'GND')
 note(['J3: 1 +5V, 2 GND, 3 RX (<- TXD do conversor), 4 TX (-> RXD do conversor), 5 DTR. Conversor CH340G com DTR, em 5 V.',
-      'J4: tire o modulo antes de gravar (com R18 = 0). Modulo em 115200 (comando AT). HC-06 nas vias 2-5, virado.',
+      'J4: TXD do modulo direto no RX: tire o modulo antes de gravar. Modulo em 115200 (comando AT). HC-06 nas vias 2-5, virado.',
       'J5: bootloader com Arduino Uno + ArduinoISP (D10 -> RST, D11 -> MOSI, D12 -> MISO, D13 -> SCK, 10 uF no RESET do Uno).'],
      12.7, g(108) + 1.27)
 

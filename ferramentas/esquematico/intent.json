@@ -898,7 +898,7 @@
   [
    "J4",
    "3",
-   "BT_TXD"
+   "RX_D0"
   ],
   [
    "J4",
@@ -929,16 +929,6 @@
    "R17",
    "2",
    "GND"
-  ],
-  [
-   "R18",
-   "1",
-   "RX_D0"
-  ],
-  [
-   "R18",
-   "2",
-   "BT_TXD"
   ],
   [
    "J5",
@@ -1090,8 +1080,8 @@
  "bom": {
   "J1": {
    "value": "XT30 (bateria 2S)",
-   "pkg": "XT30PW-M de placa ou rabicho XT30",
-   "note": "pino 1 = +, pino 2 = -",
+   "pkg": "XT30 macho de placa (vertical)",
+   "note": "pino 1 = + (lado reto), pino 2 = -; canto traseiro esquerdo",
    "lcsc": "",
    "dnp": false
   },
@@ -1518,14 +1508,14 @@
   "LED7": {
    "value": "RX (opcional)",
    "pkg": "0603",
-   "note": "sem ele, R18 pode ser 4,7k",
+   "note": "",
    "lcsc": "",
    "dnp": false
   },
   "J3": {
-   "value": "GRAVACAO (90 graus, 2,54)",
-   "pkg": "barra de pinos macho 1x5 90 graus 2,54 mm",
-   "note": "borda traseira, em cima",
+   "value": "GRAVACAO (barra 1x5 2,54 deitada)",
+   "pkg": "5 pads SMD 1,25 x 2,25 + barra macho 1x5 2,54 deitada",
+   "note": "borda traseira, face de baixo (como o EVA-RT)",
    "lcsc": "",
    "dnp": false
   },
@@ -1554,13 +1544,6 @@
    "value": "2k",
    "pkg": "0603",
    "note": "divisor 5 V -> 3,3 V",
-   "lcsc": "",
-   "dnp": false
-  },
-  "R18": {
-   "value": "0",
-   "pkg": "0603",
-   "note": "0 ohm; 4,7k se o LED7 nao for montado",
    "lcsc": "",
    "dnp": false
   },

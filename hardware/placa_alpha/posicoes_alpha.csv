@@ -49,7 +49,6 @@ R14;10k 1%;R0603;TOP;22,000;-20,600;180;divisor VREF (lado GND), abaixo do pino 
 R15;10k;R0603;TOP;-21,125;-6,600;270;pull-up nSLEEP, acima do pino 3
 R16;1k;R0603;BOTTOM;29,200;8,200;0;divisor do Bluetooth, embaixo do J4
 R17;2k;R0603;BOTTOM;29,200;10,200;0;divisor do Bluetooth, embaixo do J4
-R18;0;R0603;BOTTOM;29,200;12,200;0;divisor do Bluetooth, embaixo do J4
 R20;220;R0603;BOTTOM;-64,670;3,610;180;braco esq. (asa do EVA-RT)
 R21;220;R0603;BOTTOM;64,670;5,390;0;braco dir. (asa do EVA-RT)
 R23;20k 1%;R0603;TOP;11,740;-19,550;0;divisor VBAT (no lugar do LED3/R4 do EVA-RT)

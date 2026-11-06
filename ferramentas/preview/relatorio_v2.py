@@ -44,7 +44,9 @@ def main():
       '`trilhas_fixas_alpha.csv`. Origem no centro da ventoinha, +y = frente, mm.\n')
     w('## Resultado\n')
     if n_open == 0:
-        w('- **Todas as ligações do `REDES.md` estão feitas** (54 redes, 219 pads), conferidas por um '
+        pads_all = M.all_pads(pos)
+        n_redes = len({p['net'] for p in pads_all if p['net']})
+        w(f'- **Todas as ligações do `REDES.md` estão feitas** ({n_redes} redes, {len(pads_all)} pads), conferidas por um '
           'verificador independente de conectividade sobre o cobre final (trilhas, vias, pads e plano de GND).')
     else:
         w(f'- **{n_open} ligação(ões) aberta(s)**, em amarelo na imagem:')

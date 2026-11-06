@@ -88,7 +88,6 @@ POS = {
     'D1': (26.5, 3.05, -90, B, 'diodo da ventoinha, embaixo dos pads do motor'),
     'R16': (29.2, 8.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
     'R17': (29.2, 10.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
-    'R18': (29.2, 12.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
     # ---- driver esquerdo: sinais (pinos 1-8) em cima, potencia (9-16) embaixo
     'U2': (-22.1, -12.45, -90, T, 'DRV8874 esq. no lugar do IFX do EVA-RT'),
     'C6': (-25.9, -17.6, 180, T, 'VM-GND junto a VM/PGND'),
@@ -123,13 +122,17 @@ POS = {
 }
 
 
+# componentes que sairam do esquematico depois da lista base (posicoes.json)
+REMOVIDOS = {'R18'}   # 06/11: TXD do Bluetooth direto no RX_D0 (trilha)
+
+
 def load():
     base = json.loads((M.HERE / 'posicoes.json').read_text(encoding='utf8'))
     out = []
     for c in base:
         c = dict(c)
         ref = c['ref']
-        if c.get('dnp'):
+        if c.get('dnp') or ref in REMOVIDOS:
             continue
         if ref not in POS:
             raise KeyError('sem posicao: ' + ref)

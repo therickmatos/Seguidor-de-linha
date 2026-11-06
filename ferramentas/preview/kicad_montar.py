@@ -382,6 +382,20 @@ def main():
     pcbnew.SaveBoard(caminho, b)
     rpt = os.path.join(tmp, 'drc_kicad.rpt')
     pcbnew.WriteDRCReport(b, rpt, pcbnew.EDA_UNITS_MILLIMETRES, True)
+    # pad passante com menos de 2 raios de alivio termico (vizinhos/borda tomam o espaco): ligacao
+    # solida so nesse pad, preenche de novo e repete o DRC
+    import re
+    fome = set(re.findall(r'\[starved_thermal\][^\n]*\n(?:    [^\n]*\n)*?    @[^\n]*PTH pad (\S+) \[[^\]]*\] of (\S+)',
+                          open(rpt).read()))
+    if fome:
+        for fp in b.GetFootprints():
+            for pad in fp.Pads():
+                if (pad.GetNumber(), fp.GetReference()) in fome:
+                    pad.SetZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
+                    print('ligacao solida ao plano (alivio termico com 1 raio so):', fp.GetReference(), pad.GetNumber())
+        pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+        pcbnew.SaveBoard(caminho, b)
+        pcbnew.WriteDRCReport(b, rpt, pcbnew.EDA_UNITS_MILLIMETRES, True)
     txt = open(rpt, encoding='utf8').read().replace(caminho, 'hardware/seguidor_base/' + NOME + '.kicad_pcb')
     open(rpt, 'w', encoding='utf8').write(txt)
     print('conexoes nao roteadas (KiCad):', b.GetConnectivity().GetUnconnectedCount(True))

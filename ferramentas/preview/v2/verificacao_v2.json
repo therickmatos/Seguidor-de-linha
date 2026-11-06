@@ -1,11 +1,15 @@
 {
  "folga_mm": 0.2,
  "borda_mm": 0.3,
- "trilhas": 323,
- "vias": 133,
- "trilhas_gnd_removidas_pelo_plano": 110,
- "abertas_do_freerouting": {},
- "ligadas_pelo_finalizador": [],
+ "trilhas": 341,
+ "vias": 155,
+ "trilhas_gnd_removidas_pelo_plano": 102,
+ "abertas_do_freerouting": {
+  "+5V": 1
+ },
+ "ligadas_pelo_finalizador": [
+  "+5V"
+ ],
  "abertas_final": {},
  "violacoes": []
 }

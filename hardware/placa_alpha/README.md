@@ -10,7 +10,7 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
 | Arquivo | Para que serve |
 |---|---|
 | `placa_alpha.jpg` | as duas faces com trilhas, vias e plano de GND (guia visual do roteamento) |
-| `posicao_alpha.jpg` | só posições, com a mecânica do EVA-RT por cima e o detalhe do canto do XT30 |
+| `posicao_alpha.jpg` | só posições, com a mecânica do EVA-RT por cima e o detalhe do XT30 em pé |
 | `posicoes_alpha.csv` | ref, valor, face, x, y, rotação de cada componente |
 | `contorno_alpha.dxf` | contorno da placa (camada CONTORNO) + furos e rasgos (camada FUROS) |
 | `guia_alpha.dxf` | cobre, planos, pads, vias, corpos e referências, uma camada DXF para cada coisa |
@@ -29,7 +29,8 @@ do esquemático. Origem auxiliar e da grade no centro da ventoinha.
 - **Conferido pelo próprio KiCad 7.0.11** (`drc_kicad.rpt`): 0 violações, 0 pads sem ligação,
   0 erros de footprint. Paridade com o esquemático: 217 pads, 0 diferenças. Só J8/J9 (pads das
   asas, não montados) ficam fora da placa, como na prévia.
-- Regras: folga 0,2 mm, cobre–borda 0,3 mm, trilha mínima 0,2 mm, via mínima 0,5/0,3 mm.
+- Regras: folga 0,2 mm, cobre–borda 0,3 mm, trilha mínima 0,2 mm, via mínima 0,5/0,3 mm. O pino 2 (GND)
+  do J2 liga ao plano sem alívio térmico: embaixo só cabia 1 raio de alívio, e o KiCad exige 2.
 - Footprints na biblioteca do projeto `seguidor_alpha.pretty` (já no `fp-lib-table`). **São os
   modelos aproximados da prévia** (pads certos, corpo aproximado na camada F.Fab, sem 3D): trocar
   pelos da LCSC antes do pedido e repetir o DRC.

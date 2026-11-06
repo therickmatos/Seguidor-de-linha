@@ -18,7 +18,7 @@ C16;22nF;C0603;TOP;20,425;-7,300;180;CPH-CPL sobre os pinos 13/14
 C17;100nF;C0603;TOP;8,600;-27,600;0;DTR-RESET, junto ao pad DTR do J3
 C18;100nF;C0603;TOP;11,740;-23,350;180;filtro do A7
 D1;1N5819;SOD123;BOTTOM;26,500;3,050;-90;diodo da ventoinha, embaixo dos pads do motor
-J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-32,900;-31,700;0;"XT30 no canto traseiro esquerdo, corpo em x >= -38 (2 mm da engrenagem em x <= -40); pad 1 (lado reto) = +"
+J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-27,000;-23,700;270;"XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm); pino 1 (+, lado reto) para a frente, junto do VM do U2"
 J2;BARRA (1x8, 2,54 mm);HDR_1x08_P2.54;TOP;0,000;22,740;0;barra de sensores, centro da frente
 J3;GRAVACAO (barra 1x5 2,54 deitada, embaixo);HDR_1x05_P2.54_SMD_DEITADA;BOTTOM;0,000;-28,575;0;gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)
 J4;BLUETOOTH (femea 1x6, ordem HC-05);HDR_F_1x06_P2.54;TOP;32,500;7,050;0;Bluetooth (femea 1x6), frente direita

@@ -67,7 +67,7 @@ def stl_part(name, fn):
     return b64(w.reshape(-1))
 
 
-def main():
+def main(cobre=True):
     pos = V.load()
     cu = json.loads(R.COBRE.read_text(encoding='utf8'))
     tracks, vias = cu['tracks'], cu['vias']
@@ -84,8 +84,9 @@ def main():
         cop += [Point(v['xy']).buffer(v['diameter'] / 2, quad_segs=10) for v in vias]
         cop.append(pours[L])
         exposed = [p['shape'] for p in pads if L in p['layers']]
-        layers[L] = {'cobre': rings(unary_union(cop)), 'pads': rings(unary_union(exposed), 0.005)}
-    drills = [[rnd(v['xy'][0]), rnd(v['xy'][1]), rnd(v['drill'] / 2)] for v in vias]
+        layers[L] = {'cobre': rings(unary_union(cop)) if cobre else [],
+                     'pads': rings(unary_union(exposed), 0.005)}
+    drills = [[rnd(v['xy'][0]), rnd(v['xy'][1]), rnd(v['drill'] / 2)] for v in vias] if cobre else []
     drills += [[rnd(p['x']), rnd(p['y']), rnd(p['furo'] / 2)] for p in pads if p['furo']]
 
     # ---------------------------------------------------------------- componentes
@@ -199,7 +200,23 @@ def main():
               'cor': '#2f6bd8'}]
 
     ox0, oy0, ox1, oy1 = board.bounds
+    j1 = next(c for c in pos if c['ref'] == 'J1')
+    corpo = M.body(j1).bounds
+    n = lambda v: f'{v:.1f}'.replace('.', ',').replace('-', '−')
+    notas = {
+        'engrenagem': ('<strong>Engrenagem × canto traseiro.</strong> A engrenagem de 64 dentes (Ø19,8, estimada pelo '
+                       'README do EVA-RT) fica fora do suporte, em |x| 40…42, no eixo da roda (y −22,59, 7,0 mm acima '
+                       'da placa), e desce até 2,9 mm abaixo da face de cima. O contorno agora não passa de |x| = 40 e o '
+                       f'XT30 (J1) foi para ({n(j1["x"])}; {n(j1["y"])}): corpo em x {n(corpo[0])}…{n(corpo[2])}, '
+                       f'a ~{n(corpo[0] + 40)} mm do plano da engrenagem. Use a vista “Canto do XT30”.'),
+        'placa': ('Só posições: o roteamento ainda vai ser refeito para o novo J1 e o novo contorno, então a máscara '
+                  'aparece sem trilhas; pads, furos e referências nas duas faces. A face de baixo é vista como está na '
+                  'placa (texto espelhado de propósito para ler por baixo).') if not cobre else
+                 ('Cobre e planos de GND sob a máscara aparecem em verde mais claro, pads expostos em prata. A face de '
+                  'baixo é vista como está na placa (texto espelhado de propósito para ler por baixo).'),
+    }
     data = {
+        'notas': notas,
         'espessura': T,
         'limites': [rnd(ox0), rnd(oy0), rnd(ox1), rnd(oy1)],
         'placa': rings(board, 0.005),
@@ -222,4 +239,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main(cobre='--sem-cobre' not in sys.argv)

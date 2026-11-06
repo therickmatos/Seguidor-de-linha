@@ -103,7 +103,7 @@ label.t input { accent-color: var(--acento); margin: 0; }
 <div class="notas">
   <section>
     <h2>Conferir na mecânica</h2>
-    <p class="alerta"><strong>Engrenagem × canto traseiro.</strong> A engrenagem de 64 dentes (Ø19,8, estimada pelo README do EVA-RT) fica fora do suporte, em |x| 40…42, no eixo da roda (y −22,59, 7,0 mm acima da placa), e desce até 2,9 mm abaixo da face de cima. A ampliação do contorno até x = −41 e o corpo do XT30 (até x = −40,6) entram nessa faixa entre y ≈ −28,4 e −32,5. Use a vista “Canto do XT30”.</p>
+    <p class="alerta" id="nota-eng"></p>
     <p>Motores: corpo Ø10 × 20 em x ±18…±38, eixo em y −11,26 e 7,6 mm de altura (camada Document do EVA-RT + gearbox.stl).</p>
   </section>
   <section>
@@ -116,10 +116,10 @@ label.t input { accent-color: var(--acento); margin: 0; }
   </section>
   <section>
     <h2>Placa</h2>
-    <p>Cobre e planos de GND sob a máscara aparecem em verde mais claro, pads expostos em prata. A face de baixo é vista como está na placa (texto espelhado de propósito para ler por baixo).</p>
+    <p id="nota-placa"></p>
   </section>
 </div>
-<p class="pe">Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Gerado por ferramentas/preview/exportar_3d.py a partir do roteamento verificado (0 ligações abertas, 0 violações de folga).</p>
+<p class="pe">Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0. Gerado por ferramentas/preview/exportar_3d.py.</p>
 
 <script type="importmap">
 { "imports": {
@@ -132,6 +132,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const D = /*__DADOS__*/null;
+document.getElementById('nota-eng').innerHTML = D.notas.engrenagem;
+document.getElementById('nota-placa').textContent = D.notas.placa;
 const T = D.espessura;
 const box = document.getElementById('vista');
 const chip = document.getElementById('chip');

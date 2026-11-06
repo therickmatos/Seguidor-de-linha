@@ -62,7 +62,7 @@ def via_for(net):
 # C2 desce pela face de cima ate C15/C7 (VM do U3). Assim o VBAT nao passa entre
 # o ATmega e a ventoinha, por onde saem os sinais para a barra de sensores.
 PRE_TRACKS = [
-    ('VBAT', 2, 1.2, [(-38.0, -31.7), (-35.0, -29.5), (-25.6, -20.1), (-25.3, -19.4)]),
+    ('VBAT', 2, 1.2, [(-36.9, -31.7), (-25.3, -20.1), (-25.3, -19.4)]),
     ('VBAT', 2, 1.2, [(-25.3, -19.4), (-24.2, -19.4)]),
     ('VBAT', 2, 1.2, [(-25.3, -19.4), (-27.0, -17.7), (-27.0, 3.31), (-22.0, 3.31)]),
     ('VBAT', 2, 1.2, [(-22.0, 3.31), (-14.31, 11.0), (9.0, 11.0), (17.0, 3.0), (17.0, 0.81), (22.0, 0.81)]),
@@ -124,7 +124,7 @@ def thermal_vias(positions):
 # ---------------------------------------------------------------- DSN
 def make_dsn():
     pos = V.load()
-    problems = V.check(pos)
+    problems = V.check(pos) + V.check_board()
     if problems:
         raise SystemExit(f'posicionamento com problemas: {problems}')
     pads = M.all_pads(pos)

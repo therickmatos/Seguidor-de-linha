@@ -1,3 +1,5 @@
+> **Atualização 06/11 (posição):** J1 foi para (−34,4; −31,7) e os lóbulos traseiros não passam mais de |x| = 40 (engrenagem da roda em |x| 40…42). Ver `posicao_v2.jpg` e `placa_3d.html`. **O roteamento abaixo e `placa_v2.jpg` são da posição anterior e precisam ser refeitos.**
+
 # Placa base v2 — prévia com trilhas (06/11/2026)
 
 Imagem: `placa_v2.jpg` (face de cima e face de baixo vista através da placa). Posições para digitar no EasyEDA: `posicoes_v2.csv`. Origem no centro da ventoinha, +y = frente, mm.

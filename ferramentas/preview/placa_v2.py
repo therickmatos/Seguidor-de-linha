@@ -47,7 +47,7 @@ T, B = 'TOP', 'BOTTOM'
 # ref: (x, y, rot, face, motivo)
 POS = {
     # ---- mecanica e conectores (fixos)
-    'J1': (-35.5, -31.7, 0, T, 'XT30 no canto traseiro esquerdo; pad 1 (lado reto) = +'),
+    'J1': (-34.4, -31.7, 0, T, 'XT30 no canto traseiro esquerdo, corpo em x >= -39,5 (engrenagem em x <= -40); pad 1 (lado reto) = +'),
     'J2': (0.0, 22.74, 0, T, 'barra de sensores, centro da frente'),
     'J3': (0.0, -28.575, 0, B, 'gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)'),
     'J4': (32.5, 7.05, 0, T, 'Bluetooth (femea 1x6), frente direita'),
@@ -157,6 +157,11 @@ CARCACA = _area('carcaca_contato')                       # pes da carcaca (em ci
 SUCCAO = _area('succao_contato')                         # placa de succao (embaixo)
 GEARBOX = [box(-40, -28.5, -30.5, -1.8), box(30.5, -28.5, 40, -1.8)]
 BATERIA = box(-22.5, -42.6, 22.5, -22.1)                 # so componentes <= 2,5 mm
+# engrenagem 64T M0,3 (Ø19,8 x 2) no eixo da roda (y -22,59, 7,0 mm acima da placa), fora
+# do suporte em |x| 40..42: componentes em cima nao entram nessa faixa e a placa nao pode
+# passar de |x| = 40 onde a engrenagem desce abaixo da face de cima (|y + 22,59| < 7,0)
+ENGRENAGEM = [box(40, -32.49, 42, -12.69), box(-42, -32.49, -40, -12.69)]
+ENGRENAGEM_SOB_PLACA = [box(40, -29.59, 45, -15.59), box(-45, -29.59, -40, -15.59)]
 PRESILHAS = [_area(n) for n in ('presilha_D_tras_contato', 'presilha_D_frente_contato',
                                 'presilha_E_tras_contato', 'presilha_E_frente_contato')]
 
@@ -189,6 +194,9 @@ def check(positions):
             for pr in PRESILHAS:
                 if g.intersects(pr):
                     problems.append(('presilha', ref))
+            for eg in ENGRENAGEM:
+                if g.intersects(eg):
+                    problems.append(('engrenagem da roda', ref))
             if g.intersects(BATERIA) and h > 2.5 and c['face'] == 'TOP':
                 problems.append(('alto sob a bateria', ref, h))
         if c['face'] == 'BOTTOM' or c['tht']:
@@ -196,6 +204,25 @@ def check(positions):
             if c['face'] == 'BOTTOM' and g.buffer(-0.1).intersects(SUCCAO):
                 problems.append(('placa de succao', ref))
     return problems
+
+
+def check_board():
+    out = []
+    for z in ENGRENAGEM_SOB_PLACA:
+        a = M.OUTLINE.intersection(z).area
+        if a > 1e-6:
+            out.append(('contorno invade a engrenagem', round(a, 3)))
+    return out
+
+
+def export_dxf(path):
+    import ezdxf
+    d = ezdxf.new('R2010'); d.units = 4
+    d.layers.new('CONTORNO'); d.layers.new('FURO_VENTOINHA')
+    msp = d.modelspace()
+    msp.add_lwpolyline(list(M.OUTLINE.exterior.coords)[:-1], close=True, dxfattribs={'layer': 'CONTORNO'})
+    msp.add_circle((0, 0), 8.5, dxfattribs={'layer': 'FURO_VENTOINHA'})
+    d.saveas(path)
 
 
 def export_csv(positions, path):
@@ -211,5 +238,6 @@ def export_csv(positions, path):
 if __name__ == '__main__':
     pos = load()
     print(len(pos), 'componentes')
-    for p in check(pos):
+    for p in check(pos) + check_board():
         print(p)
+    export_dxf(M.OUTPUT / 'contorno_b_xt30.dxf')

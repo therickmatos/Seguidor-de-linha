@@ -206,13 +206,13 @@
   )
   (was_is
   )
-  (routes 
+  (routes
     (resolution mm 1000000)
     (parser
       (host_cad preview)
       (host_version "2")
     )
-    (library_out 
+    (library_out
       (padstack "VIA_080_040"
         (shape
           (circle F 800000 0 0)
@@ -223,7 +223,7 @@
         (attach off)
       )
     )
-    (network_out 
+    (network_out
       (net N048
         (wire
           (path F 800000

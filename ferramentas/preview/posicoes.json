@@ -95,7 +95,7 @@
   "motivo": "EVA-RT mantido (tantalo)"
  },
  {
-  "ref": "C6",
+  "ref": "C13",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -111,10 +111,10 @@
    "rot": 0.0
   },
   "tht": false,
-  "motivo": "VM U2; ajustado para liberar os pinos adjacentes"
+  "motivo": "VM U3; ajustado para liberar os pinos adjacentes"
  },
  {
-  "ref": "C7",
+  "ref": "C16",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -130,10 +130,10 @@
    "rot": 0.0
   },
   "tht": false,
-  "motivo": "VM U3; ajustado para liberar os pinos adjacentes"
+  "motivo": "VM U4; ajustado para liberar os pinos adjacentes"
  },
  {
-  "ref": "C8",
+  "ref": "C17",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -152,7 +152,7 @@
   "motivo": "posicao original EVA-RT"
  },
  {
-  "ref": "C9",
+  "ref": "C7",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -168,10 +168,10 @@
    "rot": 180.0
   },
   "tht": false,
-  "motivo": "deslocado para liberar J3 central, proximo ao U1"
+  "motivo": "deslocado para liberar J3 central, proximo ao U2"
  },
  {
-  "ref": "C10",
+  "ref": "C8",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -190,7 +190,7 @@
   "motivo": "posicao original EVA-RT"
  },
  {
-  "ref": "C11",
+  "ref": "C9",
   "valor": "22pF",
   "footprint": "C0603",
   "face": "TOP",
@@ -204,7 +204,7 @@
   "motivo": "22 pF do XTAL1"
  },
  {
-  "ref": "C12",
+  "ref": "C10",
   "valor": "22pF",
   "footprint": "C0603",
   "face": "TOP",
@@ -218,7 +218,7 @@
   "motivo": "22 pF do XTAL2"
  },
  {
-  "ref": "C13",
+  "ref": "C11",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -229,10 +229,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "VCP/VM U2; proximo sem obstruir pinos"
+  "motivo": "VCP/VM U3; proximo sem obstruir pinos"
  },
  {
-  "ref": "C14",
+  "ref": "C12",
   "valor": "22nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -243,10 +243,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "CPH/CPL U2; proximo sem obstruir pinos"
+  "motivo": "CPH/CPL U3; proximo sem obstruir pinos"
  },
  {
-  "ref": "C15",
+  "ref": "C14",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -257,10 +257,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "VCP/VM U3; proximo sem obstruir pinos"
+  "motivo": "VCP/VM U4; proximo sem obstruir pinos"
  },
  {
-  "ref": "C16",
+  "ref": "C15",
   "valor": "22nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -271,10 +271,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "CPH/CPL U3; proximo sem obstruir pinos"
+  "motivo": "CPH/CPL U4; proximo sem obstruir pinos"
  },
  {
-  "ref": "C17",
+  "ref": "C18",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -288,7 +288,7 @@
   "motivo": "DTR -> RESET (auto-reset)"
  },
  {
-  "ref": "C18",
+  "ref": "C6",
   "valor": "100nF",
   "footprint": "C0603",
   "face": "TOP",
@@ -401,35 +401,7 @@
   "motivo": "ICSP: posicoes do EVA-RT (face BOTTOM)"
  },
  {
-  "ref": "J8",
-  "valor": "ASA ESQ.",
-  "footprint": "WING_L_1x4_SMD",
-  "face": "TOP",
-  "x": -45.044,
-  "y": 4.51,
-  "rot": 0,
-  "mudou": "sim",
-  "dnp": true,
-  "eva": null,
-  "tht": false,
-  "motivo": "DNP (nao montar; pode apagar no layout). DNP: asa esq. (pode apagar no layout)"
- },
- {
-  "ref": "J9",
-  "valor": "ASA DIR.",
-  "footprint": "WING_R_1x4_SMD",
-  "face": "TOP",
-  "x": 45.044,
-  "y": 4.51,
-  "rot": 0,
-  "mudou": "sim",
-  "dnp": true,
-  "eva": null,
-  "tht": false,
-  "motivo": "DNP (nao montar; pode apagar no layout). DNP: asa dir. (pode apagar no layout)"
- },
- {
-  "ref": "LED1",
+  "ref": "LED2",
   "valor": "LED A",
   "footprint": "LED0603",
   "face": "TOP",
@@ -448,7 +420,7 @@
   "motivo": "sensor esq.: LED sobre o QRE (braco integrado)"
  },
  {
-  "ref": "LED2",
+  "ref": "LED3",
   "valor": "LED B",
   "footprint": "LED0603",
   "face": "TOP",
@@ -486,7 +458,7 @@
   "motivo": "EVA-RT mantido (LED C, vermelho)"
  },
  {
-  "ref": "LED5",
+  "ref": "LED1",
   "valor": "verde",
   "footprint": "LED0603",
   "face": "TOP",
@@ -505,7 +477,7 @@
   "motivo": "EVA-RT mantido (indica 5 V)"
  },
  {
-  "ref": "LED6",
+  "ref": "LED5",
   "valor": "TX",
   "footprint": "LED0603",
   "face": "TOP",
@@ -522,25 +494,6 @@
   },
   "tht": false,
   "motivo": "EVA-RT mantido (TX)"
- },
- {
-  "ref": "LED7",
-  "valor": "RX (opcional)",
-  "footprint": "LED0603",
-  "face": "TOP",
-  "x": -11.94,
-  "y": -23.37,
-  "rot": 180,
-  "mudou": "nao",
-  "dnp": false,
-  "eva": {
-   "lado": "TOP",
-   "x": -11.94,
-   "y": -23.37,
-   "rot": 180.0
-  },
-  "tht": false,
-  "motivo": "EVA-RT mantido (RX, opcional)"
  },
  {
   "ref": "M1",
@@ -604,7 +557,7 @@
   "motivo": "no lugar e orientacao originais"
  },
  {
-  "ref": "R1",
+  "ref": "R19",
   "valor": "1k",
   "footprint": "R0603",
   "face": "TOP",
@@ -623,26 +576,7 @@
   "motivo": "EVA-RT mantido"
  },
  {
-  "ref": "R2",
-  "valor": "1k",
-  "footprint": "R0603",
-  "face": "TOP",
-  "x": -15.49,
-  "y": -23.37,
-  "rot": 0,
-  "mudou": "nao",
-  "dnp": false,
-  "eva": {
-   "lado": "TOP",
-   "x": -15.49,
-   "y": -23.37,
-   "rot": 0.0
-  },
-  "tht": false,
-  "motivo": "EVA-RT mantido (opcional)"
- },
- {
-  "ref": "R3",
+  "ref": "R10",
   "valor": "10k",
   "footprint": "R0603",
   "face": "TOP",
@@ -661,7 +595,7 @@
   "motivo": "EVA-RT mantido (10k do RESET)"
  },
  {
-  "ref": "R5",
+  "ref": "R18",
   "valor": "1k",
   "footprint": "R0603",
   "face": "TOP",
@@ -699,7 +633,7 @@
   "motivo": "asa esquerda transladada ao braco"
  },
  {
-  "ref": "R7",
+  "ref": "R9",
   "valor": "1k",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -718,7 +652,7 @@
   "motivo": "asa direita transladada ao braco"
  },
  {
-  "ref": "R8",
+  "ref": "R17",
   "valor": "10k",
   "footprint": "R0603",
   "face": "TOP",
@@ -737,7 +671,7 @@
   "motivo": "EVA-RT mantido (pull-down do gate)"
  },
  {
-  "ref": "R9",
+  "ref": "R16",
   "valor": "200",
   "footprint": "R0603",
   "face": "TOP",
@@ -756,7 +690,7 @@
   "motivo": "EVA-RT mantido (200 ohm do gate)"
  },
  {
-  "ref": "R10",
+  "ref": "R1",
   "valor": "1k",
   "footprint": "R0603",
   "face": "TOP",
@@ -775,7 +709,7 @@
   "motivo": "EVA-RT mantido"
  },
  {
-  "ref": "R11",
+  "ref": "R14",
   "valor": "1.5k 1%",
   "footprint": "R0603",
   "face": "TOP",
@@ -786,10 +720,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "IPROPI (U2): limite de corrente"
+  "motivo": "IPROPI (U3): limite de corrente"
  },
  {
-  "ref": "R12",
+  "ref": "R15",
   "valor": "1.5k 1%",
   "footprint": "R0603",
   "face": "TOP",
@@ -800,10 +734,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "IPROPI (U3): limite de corrente"
+  "motivo": "IPROPI (U4): limite de corrente"
  },
  {
-  "ref": "R13",
+  "ref": "R11",
   "valor": "15k 1%",
   "footprint": "R0603",
   "face": "TOP",
@@ -817,7 +751,7 @@
   "motivo": "VREF divisor (comum aos DRV)"
  },
  {
-  "ref": "R14",
+  "ref": "R12",
   "valor": "10k 1%",
   "footprint": "R0603",
   "face": "TOP",
@@ -831,7 +765,7 @@
   "motivo": "VREF divisor (comum aos DRV)"
  },
  {
-  "ref": "R15",
+  "ref": "R13",
   "valor": "10k",
   "footprint": "R0603",
   "face": "TOP",
@@ -842,10 +776,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "novo pull-up nSLEEP, preserva C10"
+  "motivo": "novo pull-up nSLEEP, preserva C8"
  },
  {
-  "ref": "R16",
+  "ref": "R20",
   "valor": "1k",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -856,10 +790,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "Bluetooth: perto de J4, liberando SW1"
+  "motivo": "Bluetooth: perto de J4, liberando SW2"
  },
  {
-  "ref": "R17",
+  "ref": "R21",
   "valor": "2k",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -870,10 +804,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "Bluetooth: perto de J4, liberando SW1"
+  "motivo": "Bluetooth: perto de J4, liberando SW2"
  },
  {
-  "ref": "R18",
+  "ref": "R22",
   "valor": "0",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -884,10 +818,10 @@
   "dnp": false,
   "eva": null,
   "tht": false,
-  "motivo": "Bluetooth: perto de J4, liberando SW2"
+  "motivo": "Bluetooth: perto de J4, liberando SW3"
  },
  {
-  "ref": "R20",
+  "ref": "R4",
   "valor": "220",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -906,7 +840,7 @@
   "motivo": "asa esquerda transladada ao braco"
  },
  {
-  "ref": "R21",
+  "ref": "R7",
   "valor": "220",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -925,7 +859,7 @@
   "motivo": "asa direita transladada ao braco"
  },
  {
-  "ref": "R23",
+  "ref": "R2",
   "valor": "20k 1%",
   "footprint": "R0603",
   "face": "TOP",
@@ -939,7 +873,7 @@
   "motivo": "medicao VBAT (opcional)"
  },
  {
-  "ref": "R24",
+  "ref": "R3",
   "valor": "10k 1%",
   "footprint": "R0603",
   "face": "TOP",
@@ -953,7 +887,7 @@
   "motivo": "medicao VBAT (opcional)"
  },
  {
-  "ref": "R30",
+  "ref": "R5",
   "valor": "47k",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -972,7 +906,7 @@
   "motivo": "asa esquerda transladada ao braco"
  },
  {
-  "ref": "R31",
+  "ref": "R8",
   "valor": "47k",
   "footprint": "R0603",
   "face": "BOTTOM",
@@ -991,7 +925,7 @@
   "motivo": "asa direita transladada ao braco"
  },
  {
-  "ref": "S0",
+  "ref": "S1",
   "valor": "QRE1113GR",
   "footprint": "QRE1113GR_SMD",
   "face": "BOTTOM",
@@ -1010,7 +944,7 @@
   "motivo": "QRE1113GR esq. (curva, A5) no braco"
  },
  {
-  "ref": "S1",
+  "ref": "S2",
   "valor": "QRE1113GR",
   "footprint": "QRE1113GR_SMD",
   "face": "BOTTOM",
@@ -1029,7 +963,7 @@
   "motivo": "QRE1113GR dir. (partida/chegada, A6) no braco"
  },
  {
-  "ref": "SW0",
+  "ref": "SW1",
   "valor": "RESET",
   "footprint": "SW_B3U_SMD_2P_RESET",
   "face": "TOP",
@@ -1048,7 +982,7 @@
   "motivo": "B3U na posicao original"
  },
  {
-  "ref": "SW1",
+  "ref": "SW2",
   "valor": "BOTAO 1",
   "footprint": "SW_B3U_SMD_2P",
   "face": "TOP",
@@ -1067,7 +1001,7 @@
   "motivo": "B3U na posicao original"
  },
  {
-  "ref": "SW2",
+  "ref": "SW3",
   "valor": "BOTAO 2",
   "footprint": "SW_B3U_SMD_2P",
   "face": "TOP",
@@ -1086,7 +1020,7 @@
   "motivo": "B3U na posicao original"
  },
  {
-  "ref": "U1",
+  "ref": "U2",
   "valor": "ATmega328P-AU",
   "footprint": "TQFP32_7x7_P0.8",
   "face": "TOP",
@@ -1105,7 +1039,7 @@
   "motivo": "avancado 0,75 mm para centralizar J3"
  },
  {
-  "ref": "U2",
+  "ref": "U3",
   "valor": "DRV8874PWPR",
   "footprint": "HTSSOP16_PWP_DRV8874",
   "face": "TOP",
@@ -1124,7 +1058,7 @@
   "motivo": "DRV8874 motor esq. no lugar do IFX_A1; potencia (8-11) para o motor"
  },
  {
-  "ref": "U3",
+  "ref": "U4",
   "valor": "DRV8874PWPR",
   "footprint": "HTSSOP16_PWP_DRV8874",
   "face": "TOP",
@@ -1143,7 +1077,7 @@
   "motivo": "DRV8874 motor dir. no lugar do IFX_B1; potencia (8-11) para o motor"
  },
  {
-  "ref": "U5",
+  "ref": "U1",
   "valor": "78M05",
   "footprint": "DPAK_TO252_3",
   "face": "TOP",

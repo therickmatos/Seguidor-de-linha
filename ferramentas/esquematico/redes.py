@@ -66,8 +66,8 @@ L.append("")
 L.append(f"**{len(nets)} redes**, **{len(ncs)} pinos sem ligação**.")
 L.append("")
 L.append("**Atenção na importação:**")
-L.append("- No símbolo do ATmega (U1), os pinos 5 e 21 (GND) e 6 (VCC) estão escondidos e empilhados sobre os pinos 3 e 4; "
-         "no KiCad eles se ligam pela posição. Conferir no EasyEDA se U1.5 e U1.21 estão no GND e U1.6 no +5V.")
+L.append("- No símbolo do ATmega (U2), os pinos 5 e 21 (GND) e 6 (VCC) estão escondidos e empilhados sobre os pinos 3 e 4; "
+         "no KiCad eles se ligam pela posição. Conferir no EasyEDA se U2.5 e U2.21 estão no GND e U2.6 no +5V.")
 L.append("- `VBAT`, `+5V` e `GND` vêm de símbolos de alimentação (ligação pelo nome): conferir que chegaram com esses nomes.")
 L.append("")
 L.append("| Rede | Pinos | Qtd |")

@@ -41,17 +41,17 @@
    "GND"
   ],
   [
-   "U5",
+   "U1",
    "1",
    "VBAT"
   ],
   [
-   "U5",
+   "U1",
    "2",
    "GND"
   ],
   [
-   "U5",
+   "U1",
    "3",
    "+5V"
   ],
@@ -76,42 +76,42 @@
    "GND"
   ],
   [
-   "R10",
+   "R1",
    "1",
    "+5V"
   ],
   [
-   "LED5",
+   "LED1",
    "1",
    "GND"
   ],
   [
-   "R23",
+   "R2",
    "1",
    "VBAT"
   ],
   [
-   "R24",
+   "R3",
    "2",
    "GND"
   ],
   [
-   "C18",
+   "C6",
    "2",
    "GND"
   ],
   [
-   "R23",
+   "R2",
    "2",
    "VBAT_A7"
   ],
   [
-   "R24",
+   "R3",
    "1",
    "VBAT_A7"
   ],
   [
-   "C18",
+   "C6",
    "1",
    "VBAT_A7"
   ],
@@ -151,27 +151,27 @@
    "S0_A0"
   ],
   [
-   "R20",
+   "R4",
    "1",
    "+5V"
   ],
   [
-   "S0",
+   "S1",
    "2",
    "GND"
   ],
   [
-   "S0",
+   "S1",
    "3",
    "+5V"
   ],
   [
-   "S0",
+   "S1",
    "4",
    "MARK_L_A5"
   ],
   [
-   "R30",
+   "R5",
    "2",
    "GND"
   ],
@@ -181,217 +181,177 @@
    "LEDA_D2"
   ],
   [
-   "LED1",
-   "1",
-   "GND"
-  ],
-  [
-   "J8",
-   "1",
-   "+5V"
-  ],
-  [
-   "J8",
-   "2",
-   "GND"
-  ],
-  [
-   "J8",
-   "3",
-   "MARK_L_A5"
-  ],
-  [
-   "J8",
-   "4",
-   "LEDA_D2"
-  ],
-  [
-   "R21",
-   "1",
-   "+5V"
-  ],
-  [
-   "S1",
-   "2",
-   "GND"
-  ],
-  [
-   "S1",
-   "3",
-   "+5V"
-  ],
-  [
-   "S1",
-   "4",
-   "MARK_R_A6"
-  ],
-  [
-   "R31",
-   "2",
-   "GND"
-  ],
-  [
-   "R7",
-   "1",
-   "LEDB_D7"
-  ],
-  [
    "LED2",
    "1",
    "GND"
   ],
   [
-   "J9",
+   "R7",
    "1",
    "+5V"
   ],
   [
-   "J9",
+   "S2",
    "2",
    "GND"
   ],
   [
-   "J9",
+   "S2",
    "3",
+   "+5V"
+  ],
+  [
+   "S2",
+   "4",
    "MARK_R_A6"
   ],
   [
-   "J9",
-   "4",
+   "R8",
+   "2",
+   "GND"
+  ],
+  [
+   "R9",
+   "1",
    "LEDB_D7"
   ],
   [
-   "U1",
+   "LED3",
+   "1",
+   "GND"
+  ],
+  [
+   "U2",
    "14",
    "PWMC_D10"
   ],
   [
-   "U1",
+   "U2",
    "15",
    "B1_D11"
   ],
   [
-   "U1",
+   "U2",
    "16",
    "B2_D12"
   ],
   [
-   "U1",
+   "U2",
    "17",
    "LEDC_D13"
   ],
   [
-   "U1",
+   "U2",
    "7",
    "XTAL1"
   ],
   [
-   "U1",
+   "U2",
    "8",
    "XTAL2"
   ],
   [
-   "U1",
+   "U2",
    "23",
    "S0_A0"
   ],
   [
-   "U1",
+   "U2",
    "24",
    "S1_A1"
   ],
   [
-   "U1",
+   "U2",
    "25",
    "S2_A2"
   ],
   [
-   "U1",
+   "U2",
    "26",
    "S3_A3"
   ],
   [
-   "U1",
+   "U2",
    "27",
    "C0_A4"
   ],
   [
-   "U1",
+   "U2",
    "28",
    "MARK_L_A5"
   ],
   [
-   "U1",
+   "U2",
    "29",
    "RESET"
   ],
   [
-   "U1",
+   "U2",
    "30",
    "RX_D0"
   ],
   [
-   "U1",
+   "U2",
    "31",
    "TX_D1"
   ],
   [
-   "U1",
+   "U2",
    "32",
    "LEDA_D2"
   ],
   [
-   "U1",
+   "U2",
    "1",
    "DIRA_D3"
   ],
   [
-   "U1",
+   "U2",
    "2",
    "DIRB_D4"
   ],
   [
-   "U1",
+   "U2",
    "9",
    "PWMA_D5"
   ],
   [
-   "U1",
+   "U2",
    "10",
    "PWMB_D6"
   ],
   [
-   "U1",
+   "U2",
    "11",
    "LEDB_D7"
   ],
   [
-   "U1",
+   "U2",
    "20",
    "AREF"
   ],
   [
-   "U1",
+   "U2",
    "19",
    "MARK_R_A6"
   ],
   [
-   "U1",
+   "U2",
    "22",
    "VBAT_A7"
   ],
   [
-   "U1",
+   "U2",
    "3",
    "GND"
   ],
   [
-   "U1",
+   "U2",
    "4",
    "+5V"
   ],
   [
-   "U1",
+   "U2",
    "18",
    "+5V"
   ],
@@ -406,182 +366,182 @@
    "XTAL2"
   ],
   [
-   "C11",
+   "C9",
    "2",
    "GND"
   ],
   [
-   "C12",
+   "C10",
    "2",
    "GND"
   ],
   [
-   "C11",
+   "C9",
    "1",
    "XTAL1"
   ],
   [
-   "C12",
+   "C10",
    "1",
    "XTAL2"
   ],
   [
-   "C9",
+   "C7",
    "1",
    "+5V"
   ],
   [
-   "C9",
+   "C7",
    "2",
    "GND"
   ],
   [
-   "C10",
+   "C8",
    "1",
    "AREF"
   ],
   [
-   "C10",
+   "C8",
    "2",
    "GND"
   ],
   [
-   "R3",
+   "R10",
    "1",
    "+5V"
   ],
   [
-   "R3",
+   "R10",
    "2",
    "RESET"
   ],
   [
-   "SW0",
+   "SW1",
    "2",
    "RESET"
   ],
   [
-   "SW0",
+   "SW1",
    "1",
    "GND"
   ],
   [
-   "U2",
+   "U3",
    "1",
    "PWMA_D5"
   ],
   [
-   "U2",
+   "U3",
    "2",
    "DIRA_D3"
   ],
   [
-   "U2",
+   "U3",
    "3",
    "DRV_SLEEP"
   ],
   [
-   "U2",
+   "U3",
    "5",
    "VREF"
   ],
   [
-   "U2",
+   "U3",
    "16",
    "GND"
   ],
   [
-   "U2",
+   "U3",
    "7",
    "GND"
   ],
   [
-   "U2",
+   "U3",
    "15",
    "GND"
   ],
   [
-   "U2",
+   "U3",
    "9",
    "GND"
   ],
   [
-   "U2",
+   "U3",
    "17",
    "GND"
   ],
   [
-   "U2",
+   "U3",
    "11",
    "VBAT"
   ],
   [
-   "U2",
+   "U3",
    "12",
    "VCP_A"
   ],
   [
-   "U2",
+   "U3",
    "13",
    "CPH_A"
   ],
   [
-   "U2",
+   "U3",
    "14",
    "CPL_A"
   ],
   [
-   "U2",
+   "U3",
    "8",
    "OUT_A1"
   ],
   [
-   "U2",
+   "U3",
    "10",
    "OUT_A2"
   ],
   [
-   "U2",
+   "U3",
    "6",
    "IPROPI_A"
   ],
   [
-   "C13",
+   "C11",
    "1",
    "VBAT"
   ],
   [
-   "C13",
+   "C11",
    "2",
    "VCP_A"
   ],
   [
-   "C14",
+   "C12",
    "1",
    "CPH_A"
   ],
   [
-   "C14",
+   "C12",
    "2",
    "CPL_A"
   ],
   [
-   "C6",
+   "C13",
    "1",
    "VBAT"
   ],
   [
-   "C6",
+   "C13",
    "2",
    "GND"
   ],
   [
-   "R11",
+   "R14",
    "1",
    "IPROPI_A"
   ],
   [
-   "R11",
+   "R14",
    "2",
    "GND"
   ],
@@ -596,122 +556,122 @@
    "OUT_A1"
   ],
   [
-   "U3",
+   "U4",
    "1",
    "PWMB_D6"
   ],
   [
-   "U3",
+   "U4",
    "2",
    "DIRB_D4"
   ],
   [
-   "U3",
+   "U4",
    "3",
    "DRV_SLEEP"
   ],
   [
-   "U3",
+   "U4",
    "5",
    "VREF"
   ],
   [
-   "U3",
+   "U4",
    "16",
    "GND"
   ],
   [
-   "U3",
+   "U4",
    "7",
    "GND"
   ],
   [
-   "U3",
+   "U4",
    "15",
    "GND"
   ],
   [
-   "U3",
+   "U4",
    "9",
    "GND"
   ],
   [
-   "U3",
+   "U4",
    "17",
    "GND"
   ],
   [
-   "U3",
+   "U4",
    "11",
    "VBAT"
   ],
   [
-   "U3",
+   "U4",
    "12",
    "VCP_B"
   ],
   [
-   "U3",
+   "U4",
    "13",
    "CPH_B"
   ],
   [
-   "U3",
+   "U4",
    "14",
    "CPL_B"
   ],
   [
-   "U3",
+   "U4",
    "8",
    "OUT_B1"
   ],
   [
-   "U3",
+   "U4",
    "10",
    "OUT_B2"
   ],
   [
-   "U3",
+   "U4",
    "6",
    "IPROPI_B"
   ],
   [
-   "C15",
+   "C14",
    "1",
    "VBAT"
   ],
   [
-   "C15",
+   "C14",
    "2",
    "VCP_B"
   ],
   [
-   "C16",
+   "C15",
    "1",
    "CPH_B"
   ],
   [
-   "C16",
+   "C15",
    "2",
    "CPL_B"
   ],
   [
-   "C7",
+   "C16",
    "1",
    "VBAT"
   ],
   [
-   "C7",
+   "C16",
    "2",
    "GND"
   ],
   [
-   "R12",
+   "R15",
    "1",
    "IPROPI_B"
   ],
   [
-   "R12",
+   "R15",
    "2",
    "GND"
   ],
@@ -726,32 +686,32 @@
    "OUT_B1"
   ],
   [
-   "R13",
+   "R11",
    "1",
    "+5V"
   ],
   [
-   "R13",
+   "R11",
    "2",
    "VREF"
   ],
   [
-   "R14",
+   "R12",
    "1",
    "VREF"
   ],
   [
-   "R14",
+   "R12",
    "2",
    "GND"
   ],
   [
-   "R15",
+   "R13",
    "1",
    "+5V"
   ],
   [
-   "R15",
+   "R13",
    "2",
    "DRV_SLEEP"
   ],
@@ -786,47 +746,47 @@
    "GND"
   ],
   [
-   "R9",
+   "R16",
    "1",
    "PWMC_D10"
   ],
   [
-   "R8",
+   "R17",
    "2",
    "GND"
   ],
   [
-   "C8",
+   "C17",
    "1",
    "VBAT"
   ],
   [
-   "C8",
+   "C17",
    "2",
    "GND"
   ],
   [
-   "SW1",
+   "SW2",
    "1",
    "B1_D11"
   ],
   [
-   "SW1",
+   "SW2",
    "2",
    "GND"
   ],
   [
-   "SW2",
+   "SW3",
    "1",
    "B2_D12"
   ],
   [
-   "SW2",
+   "SW3",
    "2",
    "GND"
   ],
   [
-   "R5",
+   "R18",
    "1",
    "LEDC_D13"
   ],
@@ -836,24 +796,14 @@
    "GND"
   ],
   [
-   "R1",
+   "R19",
    "1",
    "+5V"
   ],
   [
-   "LED6",
+   "LED5",
    "1",
    "TX_D1"
-  ],
-  [
-   "R2",
-   "1",
-   "+5V"
-  ],
-  [
-   "LED7",
-   "1",
-   "RX_D0"
   ],
   [
    "J3",
@@ -881,12 +831,12 @@
    "DTR"
   ],
   [
-   "C17",
+   "C18",
    "1",
    "DTR"
   ],
   [
-   "C17",
+   "C18",
    "2",
    "RESET"
   ],
@@ -911,32 +861,32 @@
    "+5V"
   ],
   [
-   "R16",
+   "R20",
    "1",
    "TX_D1"
   ],
   [
-   "R16",
+   "R20",
    "2",
    "BT_RXD"
   ],
   [
-   "R17",
+   "R21",
    "1",
    "BT_RXD"
   ],
   [
-   "R17",
+   "R21",
    "2",
    "GND"
   ],
   [
-   "R18",
+   "R22",
    "1",
    "RX_D0"
   ],
   [
-   "R18",
+   "R22",
    "2",
    "BT_TXD"
   ],
@@ -973,37 +923,19 @@
  ],
  "links": [
   [
-   "R10",
-   "2",
-   "LED5",
-   "2"
-  ],
-  [
-   "R23",
-   "2",
-   "R24",
-   "1"
-  ],
-  [
-   "R20",
-   "2",
-   "S0",
-   "1"
-  ],
-  [
-   "S0",
-   "4",
-   "R30",
-   "1"
-  ],
-  [
-   "R6",
+   "R1",
    "2",
    "LED1",
    "2"
   ],
   [
-   "R21",
+   "R2",
+   "2",
+   "R3",
+   "1"
+  ],
+  [
+   "R4",
    "2",
    "S1",
    "1"
@@ -1011,49 +943,61 @@
   [
    "S1",
    "4",
-   "R31",
+   "R5",
    "1"
   ],
   [
-   "R7",
+   "R6",
    "2",
    "LED2",
    "2"
   ],
   [
-   "R13",
+   "R7",
    "2",
-   "R14",
+   "S2",
+   "1"
+  ],
+  [
+   "S2",
+   "4",
+   "R8",
    "1"
   ],
   [
    "R9",
    "2",
-   "R8",
+   "LED3",
+   "2"
+  ],
+  [
+   "R11",
+   "2",
+   "R12",
    "1"
   ],
   [
-   "R8",
+   "R16",
+   "2",
+   "R17",
+   "1"
+  ],
+  [
+   "R17",
    "1",
    "Q1",
    "1"
   ],
   [
-   "R5",
+   "R18",
    "2",
    "LED4",
    "2"
   ],
   [
-   "R1",
+   "R19",
    "2",
-   "LED6",
-   "2"
-  ],
-  [
-   "R2",
-   "2",
-   "LED7",
+   "LED5",
    "2"
   ]
  ],
@@ -1063,19 +1007,19 @@
    "3"
   ],
   [
-   "U1",
+   "U2",
    "12"
   ],
   [
-   "U1",
+   "U2",
    "13"
   ],
   [
-   "U2",
+   "U3",
    "4"
   ],
   [
-   "U3",
+   "U4",
    "4"
   ],
   [
@@ -1116,7 +1060,7 @@
    "lcsc": "",
    "dnp": false
   },
-  "U5": {
+  "U1": {
    "value": "78M05",
    "pkg": "TO-252 (DPAK)",
    "note": "",
@@ -1137,35 +1081,35 @@
    "lcsc": "",
    "dnp": false
   },
-  "R10": {
+  "R1": {
    "value": "1k",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "LED5": {
+  "LED1": {
    "value": "verde",
    "pkg": "0603",
    "note": "indica 5 V presente",
    "lcsc": "",
    "dnp": false
   },
-  "R23": {
+  "R2": {
    "value": "20k 1%",
    "pkg": "0603",
    "note": "medicao da bateria (opcional)",
    "lcsc": "",
    "dnp": false
   },
-  "R24": {
+  "R3": {
    "value": "10k 1%",
    "pkg": "0603",
    "note": "medicao da bateria (opcional)",
    "lcsc": "",
    "dnp": false
   },
-  "C18": {
+  "C6": {
    "value": "100nF",
    "pkg": "0603",
    "note": "filtro da medicao (opcional)",
@@ -1179,21 +1123,21 @@
    "lcsc": "",
    "dnp": false
   },
-  "S0": {
+  "S1": {
    "value": "QRE1113GR",
    "pkg": "SMD 4 pinos",
    "note": "datasheet: 1 = anodo, 2 = catodo, 3 = coletor, 4 = emissor",
    "lcsc": "",
    "dnp": false
   },
-  "R20": {
+  "R4": {
    "value": "220",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "R30": {
+  "R5": {
    "value": "47k",
    "pkg": "0603",
    "note": "",
@@ -1207,63 +1151,49 @@
    "lcsc": "",
    "dnp": false
   },
-  "LED1": {
+  "LED2": {
    "value": "LED A",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "J8": {
-   "value": "ASA ESQ.",
-   "pkg": "4 pads",
-   "note": "opcional: nao montar se o braco for parte da placa base",
-   "lcsc": "",
-   "dnp": true
-  },
-  "S1": {
+  "S2": {
    "value": "QRE1113GR",
    "pkg": "SMD 4 pinos",
    "note": "datasheet: 1 = anodo, 2 = catodo, 3 = coletor, 4 = emissor",
    "lcsc": "",
    "dnp": false
   },
-  "R21": {
+  "R7": {
    "value": "220",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "R31": {
+  "R8": {
    "value": "47k",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "R7": {
+  "R9": {
    "value": "1k",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "LED2": {
+  "LED3": {
    "value": "LED B",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "J9": {
-   "value": "ASA DIR.",
-   "pkg": "4 pads",
-   "note": "opcional: nao montar se o braco for parte da placa base",
-   "lcsc": "",
-   "dnp": true
-  },
-  "U1": {
+  "U2": {
    "value": "ATmega328P-AU",
    "pkg": "TQFP-32",
    "note": "do Nano/Uno doador (com bootloader) ou novo + bootloader pelo ICSP",
@@ -1277,77 +1207,77 @@
    "lcsc": "C2450102",
    "dnp": false
   },
-  "C11": {
-   "value": "22pF",
-   "pkg": "0603",
-   "note": "",
-   "lcsc": "",
-   "dnp": false
-  },
-  "C12": {
-   "value": "22pF",
-   "pkg": "0603",
-   "note": "",
-   "lcsc": "",
-   "dnp": false
-  },
   "C9": {
+   "value": "22pF",
+   "pkg": "0603",
+   "note": "",
+   "lcsc": "",
+   "dnp": false
+  },
+  "C10": {
+   "value": "22pF",
+   "pkg": "0603",
+   "note": "",
+   "lcsc": "",
+   "dnp": false
+  },
+  "C7": {
    "value": "100nF",
    "pkg": "0603",
    "note": "junto aos pinos VCC",
    "lcsc": "",
    "dnp": false
   },
-  "C10": {
+  "C8": {
    "value": "100nF",
    "pkg": "0603",
    "note": "AREF (referencia = AVCC no firmware)",
    "lcsc": "",
    "dnp": false
   },
-  "R3": {
+  "R10": {
    "value": "10k",
    "pkg": "0603",
    "note": "EVA-RT usava 1k; 10k com reset automatico por DTR",
    "lcsc": "",
    "dnp": false
   },
-  "SW0": {
+  "SW1": {
    "value": "RESET",
    "pkg": "chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)",
    "note": "terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4",
    "lcsc": "C19271064",
    "dnp": false
   },
-  "U2": {
+  "U3": {
    "value": "DRV8874PWPR",
    "pkg": "HTSSOP-16 (PWP), pad termico com vias",
    "note": "esq.",
    "lcsc": "C1855818",
    "dnp": false
   },
-  "C13": {
+  "C11": {
    "value": "100nF",
    "pkg": "0603 16 V X7R",
    "note": "VCP -> VM",
    "lcsc": "",
    "dnp": false
   },
-  "C14": {
+  "C12": {
    "value": "22nF",
    "pkg": "0603 50 V X7R",
    "note": "CPH -> CPL (tensao >= VM)",
    "lcsc": "",
    "dnp": false
   },
-  "C6": {
+  "C13": {
    "value": "100nF",
    "pkg": "0603 25 V X7R",
    "note": "VM, junto ao pino 11",
    "lcsc": "",
    "dnp": false
   },
-  "R11": {
+  "R14": {
    "value": "1.5k 1%",
    "pkg": "0603",
    "note": "IPROPI -> limite de corrente",
@@ -1361,35 +1291,35 @@
    "lcsc": "",
    "dnp": false
   },
-  "U3": {
+  "U4": {
    "value": "DRV8874PWPR",
    "pkg": "HTSSOP-16 (PWP), pad termico com vias",
    "note": "dir.",
    "lcsc": "C1855818",
    "dnp": false
   },
-  "C15": {
+  "C14": {
    "value": "100nF",
    "pkg": "0603 16 V X7R",
    "note": "VCP -> VM",
    "lcsc": "",
    "dnp": false
   },
-  "C16": {
+  "C15": {
    "value": "22nF",
    "pkg": "0603 50 V X7R",
    "note": "CPH -> CPL (tensao >= VM)",
    "lcsc": "",
    "dnp": false
   },
-  "C7": {
+  "C16": {
    "value": "100nF",
    "pkg": "0603 25 V X7R",
    "note": "VM, junto ao pino 11",
    "lcsc": "",
    "dnp": false
   },
-  "R12": {
+  "R15": {
    "value": "1.5k 1%",
    "pkg": "0603",
    "note": "IPROPI -> limite de corrente",
@@ -1403,21 +1333,21 @@
    "lcsc": "",
    "dnp": false
   },
-  "R13": {
+  "R11": {
    "value": "15k 1%",
    "pkg": "0603",
    "note": "VREF = 2,0 V",
    "lcsc": "",
    "dnp": false
   },
-  "R14": {
+  "R12": {
    "value": "10k 1%",
    "pkg": "0603",
    "note": "VREF = 2,0 V",
    "lcsc": "",
    "dnp": false
   },
-  "R15": {
+  "R13": {
    "value": "10k",
    "pkg": "0603",
    "note": "nSLEEP sempre alto (pull-down interno de 100k)",
@@ -1445,42 +1375,42 @@
    "lcsc": "C20917",
    "dnp": false
   },
-  "R9": {
+  "R16": {
    "value": "200",
    "pkg": "0603",
    "note": "gate",
    "lcsc": "",
    "dnp": false
   },
-  "R8": {
+  "R17": {
    "value": "10k",
    "pkg": "0603",
    "note": "gate -> GND (desligado no boot)",
    "lcsc": "",
    "dnp": false
   },
-  "C8": {
+  "C17": {
    "value": "100nF",
    "pkg": "0603 25 V",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "SW1": {
+  "SW2": {
    "value": "BOTAO 1",
    "pkg": "chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)",
    "note": "terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4",
    "lcsc": "C19271064",
    "dnp": false
   },
-  "SW2": {
+  "SW3": {
    "value": "BOTAO 2",
    "pkg": "chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)",
    "note": "terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4",
    "lcsc": "C19271064",
    "dnp": false
   },
-  "R5": {
+  "R18": {
    "value": "1k",
    "pkg": "0603",
    "note": "",
@@ -1490,35 +1420,21 @@
   "LED4": {
    "value": "LED C",
    "pkg": "0603",
-   "note": "vermelho; o LED3 em paralelo do EVA-RT foi retirado",
+   "note": "vermelho; o LED em paralelo do EVA-RT foi retirado",
    "lcsc": "",
    "dnp": false
   },
-  "R1": {
+  "R19": {
    "value": "1k",
    "pkg": "0603",
    "note": "",
    "lcsc": "",
    "dnp": false
   },
-  "LED6": {
+  "LED5": {
    "value": "TX",
    "pkg": "0603",
    "note": "",
-   "lcsc": "",
-   "dnp": false
-  },
-  "R2": {
-   "value": "1k",
-   "pkg": "0603",
-   "note": "nao montar com R18 = 4,7k",
-   "lcsc": "",
-   "dnp": false
-  },
-  "LED7": {
-   "value": "RX (opcional)",
-   "pkg": "0603",
-   "note": "nao montar com R18 = 4,7k",
    "lcsc": "",
    "dnp": false
   },
@@ -1529,7 +1445,7 @@
    "lcsc": "",
    "dnp": false
   },
-  "C17": {
+  "C18": {
    "value": "100nF",
    "pkg": "0603",
    "note": "reset automatico pelo DTR",
@@ -1543,24 +1459,24 @@
    "lcsc": "",
    "dnp": false
   },
-  "R16": {
+  "R20": {
    "value": "1k",
    "pkg": "0603",
    "note": "divisor 5 V -> 3,3 V",
    "lcsc": "",
    "dnp": false
   },
-  "R17": {
+  "R21": {
    "value": "2k",
    "pkg": "0603",
    "note": "divisor 5 V -> 3,3 V",
    "lcsc": "",
    "dnp": false
   },
-  "R18": {
+  "R22": {
    "value": "4.7k",
    "pkg": "0603",
-   "note": "4,7k: grava com o HC-05 encaixado (LED7/R2 nao montados); 0 ohm se montar o LED7",
+   "note": "4,7k: grava com o HC-05 encaixado (sem LED de RX)",
    "lcsc": "",
    "dnp": false
   },

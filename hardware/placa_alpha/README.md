@@ -1,5 +1,10 @@
 # Placa base — versão alpha (06/11/2026)
 
+**07/11 — numeração por bloco.** Os designadores foram renumerados na ordem dos blocos do esquemático
+(1 Alimentação, 2 Barra, 3 Sensores de marca, 4 Microcontrolador, 5 Pontes H, 6 Ventoinha, 7 Interface,
+8 Gravação/Bluetooth/ICSP). Este pacote, o KiCad e o CSV já usam os nomes novos; a tabela antigo → novo está
+em `hardware/DESIGNADORES.md`. Saíram LED7/R2 (LED de RX) e J8/J9 (conectores das asas).
+
 **Revisão de 07/11 (noite) — ver a seção "Fluxo no EasyEDA" abaixo.** Traseira reta em y = −33, XT30 em pé
 por dentro do suporte esquerdo (6,4 mm do motor), braços dos sensores de marca com **6,1 mm** de altura
 (y 1,45–7,55), chaves **Jianfu TVBM17-025CF-R** (C19271064) com pads encurtados, cristal **TXC 7A 5032**
@@ -32,13 +37,17 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
 2. **Posições** (`posicoes_easyeda.csv`). Para cada peça: coloque na face indicada (`cima` ou `baixo`), mova
    até o **pino A** ficar em (A_x; A_y) e gire até o **pino B** cair em (B_x; B_y). Os pinos usam a numeração
    do esquemático, então isso vale para qualquer footprint (LCSC ou nosso), e as coordenadas são sempre
-   vistas de cima, também para as peças da face de baixo. Face de baixo: D1, J3, J5, R6, R7, R16, R17, R18,
-   R20, R21, R30, R31, S0, S1. A coluna `rot_previa` é a rotação dos footprints desta prévia (só referência).
+   vistas de cima, também para as peças da face de baixo. Face de baixo: D1, J3, J5, R4, R5, R6, R7, R8,
+   R9, R20, R21, R22, S1, S2. A coluna `rot_previa` é a rotação dos footprints desta prévia (só referência).
 3. **Footprints a ajustar no seu projeto:**
-   - **SW0–SW2 (TVBM17):** pads de **1,2 × 1,2 mm com centro em ±3,7 mm** (de 3,1 a 4,3; 8,6 mm no total). O
+   - **SW1–SW3 (TVBM17):** pads de **1,2 × 1,2 mm com centro em ±3,7 mm** (de 3,1 a 4,3; 8,6 mm no total). O
      padrão do fabricante (9,5 mm) não cabe ao lado do J4; o terminal (8,0 mm de ponta a ponta) assenta
-     inteiro no pad encurtado.
-   - **X1 (TXC 7A, 5032 de 2 pads):** pads de 1,7 × 2,4 mm com centro em ±1,85 mm (datasheet TXC 7A).
+     inteiro no pad encurtado. No projeto RUSH de 07/11 ainda está o `SW-SMD_L3.5-W6.0-P8.20` (C255788, pads
+     2,3 × 2,0 em ±4,15, 10,6 mm no total): troque por `seguidor_alpha:SW_TACT_3x6_SMD_2P`, importado como o
+     J3, o J5 e os M1–M3.
+   - **X1 (TXC 7A, 5032 de 2 pads):** pads de 1,7 × 2,4 mm com centro em ±1,85 mm (datasheet TXC 7A). O
+     footprint da LCSC (`CRYSTAL-SMD_L5.0-W3.2`, pads 1,9 × 2,4 em ±2,05) deixa o pad 2 a 0,13 mm do rasgo
+     nesta posição: use `seguidor_alpha:XTAL_TXC_7A_5032_2P`.
    - **C5:** footprint C1210.
 4. **Regras de projeto:** folga 0,2 mm; cobre–borda 0,3 mm; sinais 0,25 mm; vias 0,6/0,3 (sinais) e 0,8/0,4
    (potência). Larguras pelo caminho da corrente (cobre de 1 oz, o padrão da JLC):
@@ -48,7 +57,7 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
    | VBAT: J1 → C1/C2, DRV8874 (pino 11), M3.1, D1 | ~3 A típicos; 6–8 A de pico (motores travados + ventoinha) | **2,0–3,0 mm** ou polígono | 2,0–3,0 mm |
    | OUT_A1/A2 → M1, OUT_B1/B2 → M2 | até 3 A cada (ITRIP do DRV8874) | **1,5 mm** (mínimo 1,0) | 1,0 mm |
    | ventoinha: VBAT → M3.1, M3.2 → dreno do Q1 (OUT_C), D1 | 1–1,5 A; ~3 A na partida | **1,2 mm** (mínimo 1,0) | 1,0 mm |
-   | VBAT → 78M05 (U5) e +5V | ≤ 0,3 A | 0,6–0,8 mm | 0,3–1,0 mm |
+   | VBAT → 78M05 (U1) e +5V | ≤ 0,3 A | 0,6–0,8 mm | 0,3–1,0 mm |
    | GND | volta de tudo | **plano nas duas faces** | trilhas de 2–3 mm |
    | sinais | mA | 0,25 mm | 0,25 mm |
 
@@ -63,7 +72,7 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
    - **Plano de GND inteiro entre o J1.2 e as cargas:** a volta dos motores e da ventoinha passa pelo plano;
      não deixar trilhas de baixo cortarem o caminho J1.2 → pad térmico dos DRV8874 → source do Q1. Vias de
      costura junto do J1.2, dos pads térmicos e do Q1.
-   - **78M05 (U5):** a aba é GND e dissipa ~0,7 W ((8,4 − 5) V × ~0,2 A): ligar a aba cheia ao plano (sem alívio
+   - **78M05 (U1):** a aba é GND e dissipa ~0,7 W ((8,4 − 5) V × ~0,2 A): ligar a aba cheia ao plano (sem alívio
      térmico) e deixar cobre em volta.
    - Depois de rotear, conferir com a régua do EasyEDA cada trecho de VBAT, OUT_* e da ventoinha.
 
@@ -77,18 +86,17 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
 
 ## Placa em KiCad (`hardware/seguidor_base/`)
 
-`seguidor_base.kicad_pcb` é esta versão alpha completa: contorno, furos e rasgos, os 67
+`seguidor_base.kicad_pcb` é esta versão alpha completa: contorno, furos e rasgos, os 65
 componentes nas posições e faces acima, trilhas, vias e as áreas de GND nas duas faces
 (preenchidas pelo KiCad, folga 0,25 mm). Abre junto com o esquemático no projeto
 `seguidor_base.kicad_pro`: cada footprint está ligado ao símbolo pelo UUID e cada pad está na rede
 do esquemático. Origem auxiliar e da grade no centro da ventoinha.
 
 - **Conferido pelo próprio KiCad 7.0.11** (`drc_kicad.rpt`): 0 violações, 0 pads sem ligação,
-  0 erros de footprint. Paridade com o esquemático: 217 pads, 0 diferenças. Só J8/J9 (pads das
-  asas, não montados) ficam fora da placa, como na prévia.
+  0 erros de footprint. Paridade com o esquemático: 213 pads, 0 diferenças.
 - Regras: folga 0,2 mm, cobre–borda 0,3 mm, trilha mínima 0,2 mm, via mínima 0,5/0,3 mm. O pino 2 (GND)
   do J2 liga ao plano sem alívio térmico: embaixo só cabia 1 raio de alívio, e o KiCad exige 2.
-- As referências S0, S1, R6 e R7 (nos braços estreitos) ficaram na camada F.Fab/B.Fab, sem espaço na
+- As referências S1, S2, R6 e R9 (nos braços estreitos) ficaram na camada F.Fab/B.Fab, sem espaço na
   serigrafia; refazer a serigrafia no EasyEDA.
 - Footprints na biblioteca do projeto `seguidor_alpha.pretty` (já no `fp-lib-table`). **São os
   modelos aproximados da prévia** (pads certos, corpo aproximado na camada F.Fab, sem 3D): trocar
@@ -138,9 +146,8 @@ Pads 1,25 × 2,25 mm em y = −28,575, passo 2,54. Visto de cima (e por trás do
 
 ## Montagem do Bluetooth
 
-R18 = 4,7 kΩ e **LED7 e R2 não montados**: assim dá para gravar pelo J3 com o HC-05 encaixado
-(o conversor ganha do módulo no RX). Os footprints do LED7/R2 ficam na placa; para ter o LED de
-RX, monte LED7/R2, troque o R18 por 0 Ω e tire o módulo antes de gravar.
+R22 = 4,7 kΩ e **sem LED de RX** (o LED7/R2 antigo saiu do esquemático em 07/11): assim dá para
+gravar pelo J3 com o HC-05 encaixado (o conversor ganha do módulo no RX). O LED5 (TX) pisca na gravação.
 
 ## Conferir antes de pedir na JLC
 
@@ -151,10 +158,10 @@ RX, monte LED7/R2, troque o R18 por 0 Ω e tire o módulo antes de gravar.
 - Engrenagem da roda: a prévia supõe a engrenagem encostada no suporte, em |x| = 40…42; o contorno
   não passa de |x| = 40 e o XT30 fica a 10,4 mm desse plano.
 - J3 deitado: folga da barra até o chão (ver relatório).
-- Cristal X1: a prévia usa 3225; HC-49/S não cabe sob a bateria.
-- Esquemático: já regerado (J1 = XT30U-M C99101, J3, Bluetooth e R18 = 4,7k na BOM; campo
-  Footprint apontando para `seguidor_alpha`; botões = TC-3610 / C2845294).
+- Cristal X1: TXC 7A-16.000MAAJ-T (5032 de 2 pads, C2450102), pads 1,7 × 2,4 em ±1,85.
+- Esquemático: já regerado com a numeração por bloco (65 peças, 53 redes; J1 = XT30U-M C99101,
+  botões TVBM17-025CF-R C19271064, R22 = 4,7k; campo Footprint apontando para `seguidor_alpha`).
 - Botões 3 × 6 (TVBM17): a vareta da barra passa por cima de x ≈ 43–47 na frente direita; conferir no
-  conjunto real que a presilha da vareta não encosta na SW2 (0,25 mm da área estimada).
+  conjunto real que a presilha da vareta não encosta na SW3 (0,25 mm da área estimada).
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.

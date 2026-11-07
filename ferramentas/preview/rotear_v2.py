@@ -59,44 +59,44 @@ def via_for(net):
 # ---------------------------------------------------------------- cobre fixo (pre-roteado)
 # Troncos de VBAT como no EVA-RT: face de baixo, do J1 subindo pela esquerda ate C1 e
 # contornando a frente da ventoinha ate C2; na direita, C2 desce pela face de cima ate
-# C15/C7 (VM do U3). Assim o VBAT nao passa entre o ATmega e a ventoinha, por onde saem
+# C14/C16 (VM do U4). Assim o VBAT nao passa entre o ATmega e a ventoinha, por onde saem
 # os sinais para a barra de sensores. Com o XT30 em pe em x = -27, o pino + (J1.1, furo
-# passante) fica sobre o tronco de baixo e liga direto o VM do U2 por cima (C6/C13).
+# passante) fica sobre o tronco de baixo e liga direto o VM do U3 por cima (C13/C11).
 PRE_TRACKS = [
     ('VBAT', 2, 1.2, [(-27.0, -25.3), (-27.0, 3.31), (-22.0, 3.31)]),
     ('VBAT', 2, 1.2, [(-22.0, 3.31), (-14.31, 11.0), (9.0, 11.0), (17.0, 3.0), (17.0, 0.81), (22.0, 0.81)]),
     ('VBAT', 1, 1.0, [(-27.0, -25.3), (-27.0, -20.4), (-24.5, -17.9)]),
     ('VBAT', 1, 1.0, [(22.0, 0.81), (24.49, -1.68), (24.49, -7.3)]),
-    # ventoinha (07/11, larguras): M3.1 (+) colado no tronco; C8 em cima do M3.1; D1 embaixo, logo
+    # ventoinha (07/11, larguras): M3.1 (+) colado no tronco; C17 em cima do M3.1; D1 embaixo, logo
     # atras dos pads (laco de roda-livre curto); OUT_C sobe reto do M3.2 ao dreno do Q1, sem via
     ('VBAT', 1, 1.2, [(24.49, -2.0), (26.33, -2.0)]),
     ('VBAT', 1, 0.6, [(26.67, 1.96), (26.67, -1.0)]),
     ('OUT_C', 1, 1.2, [(28.15, -1.0), (28.15, 9.14)]),
     ('VBAT', 2, 1.0, [(25.95, -4.6), (26.33, -3.2), (26.33, -2.0)]),
     ('OUT_C', 2, 1.0, [(29.25, -4.6), (28.87, -3.2), (28.87, -2.0)]),
-    # U2 (motor esquerdo, 07/11): saidas pre-roteadas ate o M1; pescoco de 0,4 mm so junto do pino
+    # U3 (motor esquerdo, 07/11): saidas pre-roteadas ate o M1; pescoco de 0,4 mm so junto do pino
     ('OUT_A1', 1, 0.4, [(-24.375, -9.675), (-24.375, -8.125)]),
     ('OUT_A1', 1, 1.0, [(-24.375, -8.125), (-35.04, 2.54), (-35.6, 2.54)]),
     ('OUT_A2', 1, 0.4, [(-23.725, -15.225), (-23.725, -16.25), (-25.2, -16.25)]),
     ('OUT_A2', 1, 1.0, [(-25.2, -16.25), (-30.6, -10.85), (-30.6, -4.48), (-35.08, 0.0), (-35.6, 0.0)]),
     ('VBAT', 1, 0.4, [(-23.075, -15.225), (-23.075, -17.6), (-23.9, -17.6)]),
-    # U3 (rot 90): potencia na fileira de cima; OUT2 sai pelo corredor entre os pinos e
-    # C15/C7, VM sobe ate C15.1, OUT1 sai pela direita e contorna o furo do suporte do motor
+    # U4 (rot 90): potencia na fileira de cima; OUT2 sai pelo corredor entre os pinos e
+    # C14/C16, VM sobe ate C14.1, OUT1 sai pela direita e contorna o furo do suporte do motor
     ('OUT_B2', 1, 0.4, [(23.725, -9.675), (23.725, -8.5), (27.6, -8.5)]),
     ('OUT_B2', 1, 1.0, [(27.6, -8.5), (36.08, -0.02), (36.58, 0.0)]),
     ('VBAT', 1, 0.4, [(23.075, -9.675), (23.075, -7.3), (23.9, -7.3)]),
     ('OUT_B1', 1, 0.4, [(24.375, -15.225), (25.3, -15.225)]),
-    # bomba de carga do U3 (pinos 12-14 -> C15.2 e C16), sem cruzar o VM
+    # bomba de carga do U4 (pinos 12-14 -> C14.2 e C15), sem cruzar o VM
     ('VCP_B', 1, 0.25, [(22.425, -9.675), (22.425, -7.3)]),
     ('CPH_B', 1, 0.25, [(21.775, -9.675), (21.775, -8.2), (21.25, -7.675), (21.25, -7.3)]),
     ('CPL_B', 1, 0.25, [(21.125, -9.675), (21.125, -8.6), (19.6, -8.6), (19.6, -7.3)]),
     ('OUT_B1', 1, 1.0, [(25.3, -15.225), (27.0, -15.225), (39.2, -3.025), (39.2, 2.54), (36.58, 2.54)]),
-    # Bluetooth: TXD do HC-05 (J4.3) ao R18.2 pela face de baixo, no corredor entre a coluna
-    # do J4 e os resistores R16-R18, contornando o R18 por cima (o autorroteador dava 6 vias)
+    # Bluetooth: TXD do HC-05 (J4.3) ao R22.2 pela face de baixo, no corredor entre a coluna
+    # do J4 e os resistores R20-R22, contornando o R22 por cima (o autorroteador dava 6 vias)
     ('BT_TXD', 2, 0.25, [(30.0, 5.78), (28.55, 7.23), (28.55, 12.95), (28.3, 13.2), (26.125, 13.2),
                          (25.875, 12.95), (25.875, 12.2)]),
     # cristal (07/11): TXC 7A 5032 de 2 pads ao lado dos pinos 7/8; trilhas curtas pelo roteador
-    # feixe dos sensores (como o octogono do EVA-RT): S0/S1 pela direita do furo da
+    # feixe dos sensores (como o octogono do EVA-RT): S0_A0/S1_A1 pela direita do furo da
     # ventoinha, S2/S3/C0 pela esquerda, cruzando a frente ate a barra J2
     ('S1_A1', 1, 0.25, [(1.039, -18.001), (1.481, -17.559), (9.6, -9.44), (9.6, 13.0),
                         (6.35, 16.25), (6.35, 22.74)]),
@@ -108,8 +108,16 @@ PRE_TRACKS = [
                         (-4.449, 19.0), (1.27, 19.0), (1.27, 22.74)]),
     ('C0_A4', 1, 0.25, [(-2.179, -19.124), (-2.621, -18.682), (-10.8, -10.503), (-10.8, 13.498),
                         (-4.698, 19.6), (-1.27, 19.6), (-1.27, 22.74)]),
+    # 07/11 (numeracao por bloco): com os nomes novos o FreeRouting deixava abertos o VREF do U3 e o +5V
+    # do braco direito; os dois trechos abaixo sao os do roteamento anterior, que ja estava verificado
+    ('VREF', 2, 0.25, [(-5.781, -15.327), (-11.857, -9.251), (-12.386, -9.251), (-12.762, -8.875), (-12.762, -8.346), (-13.281, -7.827), (-21.027, -7.827), (-21.781, -8.581)]),
+    ('VREF', 1, 0.25, [(-21.781, -8.581), (-22.425, -8.581), (-22.425, -9.675)]),
+    ('+5V', 2, 0.4, [(38.035, -8.02), (39.757, -8.02), (43.546, -4.231), (46.072, -1.705), (49.861, 2.084),
+                     (67.86, 2.084), (69.444, 3.668), (70.185, 3.668), (70.253, 3.6), (71.5, 3.6)]),
+    ('+5V', 2, 0.4, [(69.444, 3.668), (68.634, 4.477), (66.408, 4.477), (65.495, 5.39)]),
+    ('+5V', 2, 0.4, [(38.035, -8.02), (38.035, -19.605), (37.04, -20.6)]),
 ]
-PRE_VIAS = []   # o J1 (furo passante) faz a passagem de face do VBAT
+PRE_VIAS = [('VREF', 'VIA_S', (-21.781, -8.581)), ('+5V', 'VIA_P', (37.04, -20.6))]   # o J1 (furo passante) faz a passagem de face do VBAT
 
 
 def fixed_copper():
@@ -125,7 +133,7 @@ def thermal_vias(positions):
     """Vias de GND no pad termico de cada DRV8874 (calor e retorno para a face de baixo)."""
     out = []
     for c in positions:
-        if c['ref'] not in ('U2', 'U3'):
+        if c['ref'] not in ('U3', 'U4'):
             continue
         # pad termico 5,0 (x) x 3,4 (y) com rot +-90; 3 x 2 vias de 0,6/0,3
         for dx in (-1.5, 0.0, 1.5):
@@ -432,6 +440,35 @@ def widen(positions, tracks, vias, nets_widths):
     return merged
 
 
+def sem_tocos(positions, tracks, vias, max_len=1.0):
+    """Tira tocos de trilha (segmento da ponta < max_len com a ponta solta), fora do GND."""
+    while True:
+        objs = copper_objects(positions, tracks, vias)
+        mudou = False
+        novas = []
+        for t in tracks:
+            pts = [list(p) for p in t['xy']]
+            if t['net'] != 'GND':
+                outros = [o['geom'] for o in objs if o['net'] == t['net'] and t['layer'] in o['layers']
+                          and o['name'] != t['id']]
+                for ponta in (0, -1):
+                    if len(pts) < 2:
+                        break
+                    viz = pts[1] if ponta == 0 else pts[-2]
+                    solta = not any(g.distance(Point(pts[ponta])) < t['width'] / 2 for g in outros)
+                    if solta and math.dist(pts[ponta], viz) < max_len:
+                        print('toco retirado:', t['net'], [round(v, 3) for v in pts[ponta]], flush=True)
+                        pts.pop(ponta)
+                        mudou = True
+            if len(pts) >= 2:
+                novas.append({**t, 'xy': pts})
+            else:
+                mudou = True
+        tracks = novas
+        if not mudou:
+            return tracks
+
+
 # ---------------------------------------------------------------- plano de GND
 def ground_pours(positions, tracks, vias):
     objs = copper_objects(positions, tracks, vias)
@@ -590,6 +627,16 @@ def importar():
     widths['VBAT'] = [0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0]   # tronco de bateria o mais largo que couber
     widths['+5V'] = [0.6, 0.5]
     tracks = widen(pos, tracks, vias, widths)
+    # via fixa que o roteador acabou nao usando nas duas faces (ex.: VREF de 07/11): sai
+    def faces_ligadas(v):
+        g = Point(v['xy']).buffer(v['diameter'] / 2, quad_segs=12)
+        return {l for l in (1, 2) if any(o['net'] == v['net'] and l in o['layers'] and o['geom'].distance(g) < 1e-3
+                                        for o in copper_objects(pos, tracks, []))}
+    soltas = [v for v in vias if v['net'] != 'GND' and len(faces_ligadas(v)) < 2]
+    if soltas:
+        print('vias soltas retiradas:', [(v['net'], v['xy']) for v in soltas], flush=True)
+        vias = [v for v in vias if v not in soltas]
+    tracks = sem_tocos(pos, tracks, vias)
     pours = ground_pours(pos, tracks, vias)
     vias += stitching_vias(pos, tracks, vias, pours)
     pours = ground_pours(pos, tracks, vias)

@@ -71,24 +71,24 @@ def main():
     for p in sorted(j3, key=lambda p: p['x']):
         w(f"  | J3.{p['pin']} | {p['x']:+.2f} | `{p['net']}` |")
     w('  Visto de cima (e por trás do robô) a ordem é +5V, GND, RX, TX, DTR da esquerda para a direita, '
-      'igual ao EVA-RT (que tem RESET onde aqui está o DTR; o auto-reset continua pelo C17). '
+      'igual ao EVA-RT (que tem RESET onde aqui está o DTR; o auto-reset continua pelo C18). '
       '**Conferir a ordem dos pinos do conversor CH340G** antes de soldar a barra.')
     w('- **ATmega na posição e rotação do EVA-RT**, (0; −23), −45° (recuou 0,75 mm em relação à prévia).')
     w('- **Componentes espalhados por função, como no EVA-RT**, em vez de amontoados no ATmega:')
-    w('  - divisor de VREF (R13/R14) junto ao U3 e pull-up do nSLEEP (R15) junto ao U2;')
+    w('  - divisor de VREF (R11/R12) junto ao U4 e pull-up do nSLEEP (R13) junto ao U3;')
     w('  - capacitores de cada DRV8874 em fileira, colados nos pinos de potência '
-      '(C6/C13/C14 sob o U2, C7/C15/C16 sobre o U3), R11/R12 (IPROPI) ao lado do pino 6;')
-    w('  - divisor do VBAT (R23/R24/C18) no lugar do LED3/R4 do EVA-RT; C17 (DTR→RESET) junto ao pad DTR;')
-    w('  - cristal à esquerda dos pinos 7/8 com C11/C12; C9 junto ao AVCC; LEDs TX/RX e R1–R3 '
+      '(C13/C11/C12 sob o U3, C16/C14/C15 sobre o U4), R14/R15 (IPROPI) ao lado do pino 6;')
+    w('  - divisor do VBAT (R2/R3/C6) no lugar do LED3/R4 do EVA-RT (designadores de lá); C18 (DTR→RESET) junto ao pad DTR;')
+    w('  - cristal à esquerda dos pinos 7/8 com C9/C10; C7 junto ao AVCC; LED de TX (LED5/R19) e pull-up do reset (R10) '
       'nas posições do EVA-RT. Frente esquerda (5 V) e frente direita (ventoinha, LED C, Bluetooth) '
       'mantidas do EVA-RT.')
     w('- **Cobre desenhado à mão (fixo), o resto pelo FreeRouting 1.9:**')
     w('  - troncos de VBAT na face de baixo, como no EVA-RT: J1 → driver esquerdo → sobe pela esquerda até '
-      'C1 → contorna a frente da ventoinha até C2; na direita desce por cima até C15/C7 (VM do U3);')
-    w('  - feixe dos sensores (S0–S3, C0) em volta do furo da ventoinha até J2, como o octógono do EVA-RT;')
+      'C1 → contorna a frente da ventoinha até C2; na direita desce por cima até C14/C16 (VM do U4);')
+    w('  - feixe dos sensores (S0_A0–S3_A3, C0_A4) em volta do furo da ventoinha até J2, como o octógono do EVA-RT;')
     w('  - saídas de potência dos dois DRV8874 até os motores (OUT1/OUT2/VM), com pescoço de 0,4 mm só junto '
-      'do pino, e a bomba de carga do U3 (VCP/CPH/CPL);')
-    w('  - ventoinha (07/11): + do M3 colado no tronco de VBAT, C8 logo acima dele, D1 embaixo logo atrás dos '
+      'do pino, e a bomba de carga do U4 (VCP/CPH/CPL);')
+    w('  - ventoinha (07/11): + do M3 colado no tronco de VBAT, C17 logo acima dele, D1 embaixo logo atrás dos '
       'pads (laço de roda-livre curto) e OUT_C subindo reto do M3.2 ao dreno do Q1, sem via.\n')
     w('## Larguras e correntes (conferência automática, `larguras.py`)\n')
     w('Para cada rede de potência o verificador acha o **caminho por onde a corrente passa** (poda os ramos '
@@ -114,7 +114,7 @@ def main():
     br = lambda v, c=1: f'{v:.{c}f}'.replace('.', ',')
     w('\n**Pescoços nos pinos do DRV8874.** O pino tem 0,45 mm de pad (o terminal do CI tem 0,19–0,30 mm) e passo '
       '0,65 mm, então a trilha sai com 0,4–0,5 mm e alarga assim que deixa a fileira de pinos. '
-      f'{len(pesc)} pescoços; o maior (VM, entre o pino 11 e o C15/C13, preso entre o OUT2 e o VCP) tem '
+      f'{len(pesc)} pescoços; o maior (VM, entre o pino 11 e o C14/C11, preso entre o OUT2 e o VCP) tem '
       f'{br(pmax)} mm: {br(rmax)} mΩ, ou seja, a 3 A (limite do ITRIP) {3 * rmax:.0f} mV e {9 * rmax:.0f} mW, '
       '+2–3 °C, porque o calor escoa pelo pino e pela trilha larga das pontas. A IPC-2221 vale para trilhas '
       'longas; num pescoço curto quem limita é o terminal do CI.\n')
@@ -122,8 +122,8 @@ def main():
     w('- **Barra do J3 deitada embaixo:** confirmar que a barra/conversor encaixa e que a altura do plástico '
       'não toca o chão (fica atrás da borda, como no EVA-RT).')
     w('- **Cristal X1: TXC 7A-16.000MAAJ-T** (5032 de 2 pads, CL 18 pF, C2450102), em diagonal junto dos pinos 7/8, '
-      'com C11/C12 de 22 pF. Pads 1,7 × 2,4 mm com centro em ±1,85 mm.')
-    w('- **C9** ficou junto ao AVCC (pinos 18/21); os pinos VCC 4/6 recebem o +5V pela trilha, como no EVA-RT '
+      'com C9/C10 de 22 pF. Pads 1,7 × 2,4 mm com centro em ±1,85 mm.')
+    w('- **C7** ficou junto ao AVCC (pinos 18/21); os pinos VCC 4/6 recebem o +5V pela trilha, como no EVA-RT '
       '(que também tem um único 100 nF afastado). Se quiser, cabe um 100 nF extra no esquemático.')
     f = V.folgas_j1(pos)
     nn = lambda v: f'{v:.1f}'.replace('.', ',')
@@ -134,16 +134,16 @@ def main():
       '(|x| 24…40), com chanfro de 45° até o centro em y = −30. A peça é a XT30U-M (C99101, macho de cabo): os copos vão nos furos. Medir o diâmetro dos '
       'copos (furo Ø2,5 / pad Ø3,9 estimados) e cortar rente o que sobrar embaixo (~2,5 mm até o chão). Prender o '
       'cabo da bateria baixo e para trás, longe da ventoinha.')
-    w('- **Botões SW0–SW2: Jianfu TVBM17-025CF-R** (C19271064; 6,1 × 3,7 × 2,5 mm, 2 terminais com 8,0 mm de '
-      'ponta a ponta) em **pads encurtados de 1,2 × 1,2 mm com centro em ±3,7** (8,6 mm no total). SW0 (reset) no pé '
-      'direito; SW1/SW2 entre o J4 e a presilha da vareta da barra (J4 em x = 30,0; pads da ventoinha M3 atrás dele). '
+    w('- **Botões SW1–SW3: Jianfu TVBM17-025CF-R** (C19271064; 6,1 × 3,7 × 2,5 mm, 2 terminais com 8,0 mm de '
+      'ponta a ponta) em **pads encurtados de 1,2 × 1,2 mm com centro em ±3,7** (8,6 mm no total). SW1 (reset) no pé '
+      'direito; SW2/SW3 entre o J4 e a presilha da vareta da barra (J4 em x = 30,0; pads da ventoinha M3 atrás dele). '
       'A vareta passa por cima da faixa x ≈ 43–47: nada de componente ali.')
     w('- **J3 deitado embaixo:** o plástico da barra fica ~1,6 mm abaixo da face de baixo, atrás da borda '
       '(y < −30). Com pneus de Ø≈22 a face de baixo fica ~2,5 mm do chão; conferir a folga real. Alternativa: '
       'soldar a barra só para gravar, ou apoiar a barra nos pads na hora de gravar (como os pads do EVA-RT permitem).')
-    w('- **Bluetooth:** R18 = 4,7 kΩ entre o TXD do HC-05 e o RX do ATmega, com **LED7 e R2 não montados** '
-      '(footprints ficam na placa): o conversor ganha do módulo no RX e dá para gravar com o HC-05 encaixado. '
-      'Se preferir o LED de RX, monte LED7/R2 e troque o R18 por 0 Ω (aí tire o módulo para gravar).')
+    w('- **Bluetooth:** R22 = 4,7 kΩ entre o TXD do HC-05 e o RX do ATmega, **sem LED de RX** '
+      '(saiu do esquemático em 07/11): o conversor ganha do módulo no RX e dá para gravar com o HC-05 encaixado. '
+      'O LED5 (TX) pisca durante a gravação.')
     w('- Motores em balanço (~12 mm para dentro do suporte, como no EVA-RT): travar o motor na abraçadeira '
       '(cola ou fita kapton) e deixar folga nos fios até M1/M2.')
     w('- Altura do rotor sobre a placa: nenhum componente sob o disco de Ø34; só trilhas, como no EVA-RT.')

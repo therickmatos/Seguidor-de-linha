@@ -17,8 +17,8 @@ Convencoes (valem para tudo):
   (campos extras; default (0,0)). Quando o corpo nao e simetrico em relacao aos pads
   (barra 90 graus, XT30PW, DPAK) o centro e diferente da origem.
 - "cortesia" = caixa do corpo + pads + 0,25 mm de folga em cada lado.
-- Para os componentes da placa do EVA-RT que estao na face BOTTOM (S0, S1, J5 e, no EVA-RT,
-  tambem R6, R7, R20, R21, R30, R31) use o lado de LADO_PADRAO_REF ou o lado do CSV original.
+- Para os componentes da placa do EVA-RT que estao na face BOTTOM (S1, S2, J5 e, no EVA-RT,
+  tambem R6, R9, R4, R7, R5, R8) use o lado de LADO_PADRAO_REF ou o lado do CSV original.
 
 Fontes das medidas (resumo; detalhes em "obs" de cada footprint):
 - EVA-RT (.eprj decodificado, valores em mil x 0,0254): TQFP-32, radial D6,3, tantalo 3216,
@@ -33,7 +33,7 @@ import math
 
 SAME = "__igual__"  # rede_pino igual ao pino (default)
 
-LADO_PADRAO_REF = {"J5": "BOTTOM", "S0": "BOTTOM", "S1": "BOTTOM"}
+LADO_PADRAO_REF = {"J5": "BOTTOM", "S1": "BOTTOM", "S2": "BOTTOM"}
 
 
 def _pad(pino, x, y, w, h, forma="rect", furo=None, rede=SAME):
@@ -151,7 +151,7 @@ for _i in range(8):  # borda esquerda, pinos 25..32 de cima para baixo
     _pads_tqfp.append(_pad(25 + _i, -4.281, 2.8 - 0.8 * _i, 1.2, 0.45))
 FOOTPRINTS["TQFP32_7x7_P0.8"] = _fp(
     _pads_tqfp, (7.0, 7.0), 1.2, False,
-    "TQFP-32 7x7 passo 0,8 (U1 ATmega328P-AU). Medidas do footprint EasyEDA do EVA-RT "
+    "TQFP-32 7x7 passo 0,8 (U2 ATmega328P-AU). Medidas do footprint EasyEDA do EVA-RT "
     "(tqfp-32_l7.0-w7.0-p0.80-ls9.0-bl), lidas do .eprj: pads 0,45 de largura; comprimento "
     "1,25 nas bordas superior/inferior e 1,25 (direita) / 1,20 (esquerda) como no EasyEDA. "
     "Pino 1 = primeiro pad da borda inferior, perto do canto inferior-esquerdo; numeracao "
@@ -166,8 +166,8 @@ for _i in range(8):  # pinos 9..16: coluna direita, de baixo para cima
 _pads_htssop.append(_pad(17, 0.0, 0.0, 3.4, 5.0, "rect", None, rede="17"))  # pad termico
 FOOTPRINTS["HTSSOP16_PWP_DRV8874"] = _fp(
     _pads_htssop, (4.4, 5.0), 1.2, False,
-    "HTSSOP-16 com pad termico (U2/U3 DRV8874PWPR). KiCad HTSSOP-16-1EP_4.4x5mm_P0.65mm_"
-    "EP3.4x5mm: pads 1,05 x 0,45, passo 0,65, colunas em x = +-2,775; pad 17 (= U2.17 PAD, "
+    "HTSSOP-16 com pad termico (U3/U4 DRV8874PWPR). KiCad HTSSOP-16-1EP_4.4x5mm_P0.65mm_"
+    "EP3.4x5mm: pads 1,05 x 0,45, passo 0,65, colunas em x = +-2,775; pad 17 (= U3.17 PAD, "
     "GND) 3,4 x 5,0 em (0;0). Pino 1 no canto superior-esquerdo, 1..8 descendo a esquerda, "
     "9..16 subindo a direita (anti-horario). PENDENTE: o datasheet TI nao foi acessivel; o "
     "tamanho do pad termico (3,4 x 5,0 da biblioteca KiCad) precisa de conferencia com a "
@@ -179,7 +179,7 @@ FOOTPRINTS["DPAK_TO252_3"] = _fp(
      _pad("2", 0.0, 2.1, 5.8, 6.4, "rect", None),  # aba = pino 2 (GND)
      _pad("3", 2.28, -4.2, 1.2, 2.2)],
     (6.1, 6.6), 2.3, False,
-    "TO-252 (DPAK) 3 terminais (U5 78M05: 1 = VI, 2 = GND na aba, 3 = VO). KiCad "
+    "TO-252 (DPAK) 3 terminais (U1 78M05: 1 = VI, 2 = GND na aba, 3 = VO). KiCad "
     "Package_TO_SOT_SMD:TO-252-3_TabPin2 girado 90 graus (terminais embaixo, aba em cima). "
     "Terminais 1,2 x 2,2 em (-2,28; -4,2) e (+2,28; -4,2); aba 5,8 x 6,4 em (0; +2,1) = pino 2. "
     "O terminal central (pino 2) e cortado na maioria dos 78M05: nao modelado. Se o componente "
@@ -350,7 +350,7 @@ for _i, (_x, _y) in enumerate(_SW_POS):
                              rede="1" if _y > 0 else "2"))
 FOOTPRINTS["SW_6x6_THT_4P"] = _fp(
     _pads_sw_tht, (6.0, 6.0), 4.5, True,
-    "Botao tatil 6x6 THT de 4 terminais (padrao do comprado, SW0..SW2). Furos em retangulo "
+    "Botao tatil 6x6 THT de 4 terminais (padrao do comprado, SW1..SW3). Furos em retangulo "
     "6,5 x 4,5 (pads em x = +-3,25 e y = +-2,25), furo Ø1,1 e pad Ø2,0, corpo 6 x 6, altura "
     "4,5. Base: KiCad Button_Switch_THT:SW_PUSH_6mm. Pares internos (mesma linha, 6,5 mm "
     "de distancia): pads 1 e 2 (linha de cima, y +2,25) = rede 1 (pino 1 do simbolo); pads 3 "
@@ -373,14 +373,14 @@ FOOTPRINTS["SW_B3U_SMD_2P"] = _fp(
     "Botao B3U-1000P SMD de 2 pads. Pads 1,0 x 1,7 em x = +-1,7 medidos "
     "no EVA-RT (EasyEDA key-smd_b3u-1000pm, e330/e331/e332). Corpo 3,0 x 2,5 mm.")
 
-# No SW0, o simbolo KiCad foi numerado ao contrario do footprint EVA-RT.
+# No SW1, o simbolo KiCad foi numerado ao contrario do footprint EVA-RT.
 # Botao sem polaridade: inverter a correspondencia preserva as trilhas originais.
 FOOTPRINTS["SW_B3U_SMD_2P_RESET"] = _fp(
     [_pad("1", -1.7, 0, 1.0, 1.7, rede="2"),
      _pad("2", 1.7, 0, 1.0, 1.7, rede="1")],
     (3.0, 2.5), 2.5, False,
-    "Mesmo B3U-1000P, com pad fisico 1 = RESET (SW0.2 no esquematico) "
-    "e pad 2 = GND (SW0.1); reproduz as redes do EVA-RT.")
+    "Mesmo B3U-1000P, com pad fisico 1 = RESET (SW1.2 no esquematico) "
+    "e pad 2 = GND (SW1.1); reproduz as redes do EVA-RT.")
 
 # Chave tactil SMD 3 x 6 de 2 terminais. 07/11 (noite): o Erick escolheu a Jianfu TVBM17-025CF-R (LCSC C19271064):
 # corpo 6,1 x 3,7 x 2,5, terminais de 0,6 com 8,0 de ponta a ponta; padrao do fabricante = pads 1,0 x 1,75 a 9,5 no
@@ -398,7 +398,7 @@ FOOTPRINTS["SW_TACT_3x6_SMD_2P"] = _fp(
 FOOTPRINTS["SW_TACT_3x6_SMD_2P_RESET"] = _fp(
     [_pad("1", -3.7, 0, 1.2, 1.2, rede="2"), _pad("2", 3.7, 0, 1.2, 1.2, rede="1")],
     (6.1, 3.7), 2.5, False,
-    "Mesma chave 3 x 6, com pad fisico 1 = RESET (SW0.2 no esquematico) e pad 2 = GND (SW0.1).")
+    "Mesma chave 3 x 6, com pad fisico 1 = RESET (SW1.2 no esquematico) e pad 2 = GND (SW1.1).")
 
 # ---------------------------------------------------------------- sensores de marca
 FOOTPRINTS["QRE1113GR_SMD"] = _fp(
@@ -407,18 +407,16 @@ FOOTPRINTS["QRE1113GR_SMD"] = _fp(
      _pad("3", -2.0, -0.9, 1.66, 0.8),
      _pad("4", 2.0, -0.9, 1.66, 0.8)],
     (3.6, 2.9), 1.7, False,
-    "QRE1113GR SMD horizontal (S0, S1 na face BOTTOM). Pads 1,66 x 0,80 mm, centros "
+    "QRE1113GR SMD horizontal (S1, S2 na face BOTTOM). Pads 1,66 x 0,80 mm, centros "
     "(+/-2,0; +/-0,9), conferidos no Gerber inferior do EVA-RT e associados as redes "
     "originais. Pinos 1/2/3/4 = anodo/catodo/coletor/emissor, conforme onsemi. "
     "Corpo 3,6 x 2,9 x 1,7 mm aproximado; conferir contra a peca e o footprint adotado.")
 
 # ---------------------------------------------------------------- mapeamento REF -> footprint
 REF_FOOTPRINT = {}
-for _r in ["R1", "R2", "R3", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12", "R13",
-           "R14", "R15", "R16", "R17", "R18", "R20", "R21", "R23", "R24", "R30", "R31"]:
+for _r in [f"R{i}" for i in range(1, 23)]:   # R1-R22 (numeracao por bloco de 07/11)
     REF_FOOTPRINT[_r] = "R0603"
-for _r in ["C3", "C4", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "C14", "C15",
-           "C16", "C17", "C18"]:
+for _r in ["C3", "C4"] + [f"C{i}" for i in range(6, 19)]:   # C1/C2 eletroliticos, C5 1210
     REF_FOOTPRINT[_r] = "C0603"
 REF_FOOTPRINT.update({
     "C1": "C_RAD_D6.3_P2.5",
@@ -426,37 +424,35 @@ REF_FOOTPRINT.update({
     "C5": "C1210",
     "D1": "SOD123",
     "Q1": "SOT23_AO3400A",
-    "LED1": "LED0603", "LED2": "LED0603", "LED4": "LED0603",
-    "LED5": "LED0603", "LED6": "LED0603", "LED7": "LED0603",
-    "U1": "TQFP32_7x7_P0.8",
-    "U2": "HTSSOP16_PWP_DRV8874",
+    "LED1": "LED0603", "LED2": "LED0603", "LED3": "LED0603",
+    "LED4": "LED0603", "LED5": "LED0603",
+    "U2": "TQFP32_7x7_P0.8",
     "U3": "HTSSOP16_PWP_DRV8874",
-    "U5": "DPAK_TO252_3",
+    "U4": "HTSSOP16_PWP_DRV8874",
+    "U1": "DPAK_TO252_3",
     "X1": "XTAL_TXC_7A_5032_2P",
     "J1": "XT30_VERTICAL_M_PROPOSTA",
     "J2": "HDR_1x08_P2.54",
     "J3": "HDR_RA_1x05_P2.54",
     "J4": "HDR_F_1x06_P2.54",
     "J5": "ICSP_6P_SMD_BOT",
-    "J8": "WING_L_1x4_SMD",
-    "J9": "WING_R_1x4_SMD",
     "M1": "MOTOR_1020_2P",
     "M2": "MOTOR_1020_2P",
     "M3": "MOTOR_1020_2P",
-    "S0": "QRE1113GR_SMD",
     "S1": "QRE1113GR_SMD",
-    "SW0": "SW_TACT_3x6_SMD_2P_RESET",
-    "SW1": "SW_TACT_3x6_SMD_2P",
+    "S2": "QRE1113GR_SMD",
+    "SW1": "SW_TACT_3x6_SMD_2P_RESET",
     "SW2": "SW_TACT_3x6_SMD_2P",
+    "SW3": "SW_TACT_3x6_SMD_2P",
 })
 
 # alternativas da BOM (nao usadas por padrao)
 ALTERNATIVAS = {
     "J1": ["XT30_RABICHO", "XT30PW_M_PCB"],
     "X1": ["CRISTAL_HC49S_SMD"],
-    "SW0": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
     "SW1": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
     "SW2": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
+    "SW3": ["SW_6x6_SMD_4P", "SW_6x6_THT_4P"],
 }
 
 
@@ -482,7 +478,7 @@ def pads_absolutos(ref, x, y, rot_graus, lado=None):
     """Pads do componente `ref` colocado em (x, y) com rotacao anti-horaria.
 
     lado: 'TOP' ou 'BOTTOM'. Para BOTTOM o x do footprint e espelhado antes de girar.
-    Se lado for None usa LADO_PADRAO_REF (J5, S0 e S1 em BOTTOM; o resto em TOP).
+    Se lado for None usa LADO_PADRAO_REF (J5, S1 e S2 em BOTTOM; o resto em TOP).
     Retorna lista de dicts: pino, rede_pino, x, y (absolutos, mm), w, h, forma, furo.
     w e h trocam de lugar em rotacoes de 90 ou 270 graus.
     """

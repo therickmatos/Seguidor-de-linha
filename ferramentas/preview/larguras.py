@@ -34,16 +34,16 @@ ESPESSURA_1OZ = 0.035       # mm
 
 # rede: (terminais de corrente, corrente tipica A, pico A, largura minima no caminho mm)
 REDES = {
-    'VBAT': (['J1.1', 'U2.11', 'U3.11', 'M3.1', 'D1.1', 'C1.1', 'C2.1'], 3.0, 8.0, 1.0),
-    'VBAT ao 78M05': (['J1.1', 'U5.1'], 0.25, 0.4, 0.4),
-    'OUT_A1': (['U2.8', 'M1.2'], 1.0, 3.0, 1.0),
-    'OUT_A2': (['U2.10', 'M1.1'], 1.0, 3.0, 1.0),
-    'OUT_B1': (['U3.8', 'M2.2'], 1.0, 3.0, 1.0),
-    'OUT_B2': (['U3.10', 'M2.1'], 1.0, 3.0, 1.0),
+    'VBAT': (['J1.1', 'U3.11', 'U4.11', 'M3.1', 'D1.1', 'C1.1', 'C2.1'], 3.0, 8.0, 1.0),
+    'VBAT ao 78M05': (['J1.1', 'U1.1'], 0.25, 0.4, 0.4),
+    'OUT_A1': (['U3.8', 'M1.2'], 1.0, 3.0, 1.0),
+    'OUT_A2': (['U3.10', 'M1.1'], 1.0, 3.0, 1.0),
+    'OUT_B1': (['U4.8', 'M2.2'], 1.0, 3.0, 1.0),
+    'OUT_B2': (['U4.10', 'M2.1'], 1.0, 3.0, 1.0),
     'OUT_C': (['M3.2', 'Q1.3', 'D1.2'], 1.5, 3.0, 1.0),
     '+5V': (None, 0.25, 0.4, 0.4),      # None: todos os pads da rede sao terminais
 }
-PASSO_FINO = ('U2', 'U3')    # pinos de 0,45 mm: a trilha sai na largura do pino
+PASSO_FINO = ('U3', 'U4')    # pinos de 0,45 mm: a trilha sai na largura do pino
 PESCOCO_MM = 2.6             # distancia ao centro do pino de passo fino em que o pescoco e aceito
 
 

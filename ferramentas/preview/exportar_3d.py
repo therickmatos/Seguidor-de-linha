@@ -101,7 +101,7 @@ def main(cobre=True):
         if ref.startswith('C'):
             return '#b89468'
         if ref.startswith('LED'):
-            return {'LED5': '#4fd17a', 'LED4': '#ff5a4a'}.get(ref, '#f2efe4')
+            return {'LED1': '#4fd17a', 'LED4': '#ff5a4a'}.get(ref, '#f2efe4')
         if ref == 'X1':
             return '#b9bec6'
         if ref == 'J1':
@@ -219,7 +219,7 @@ def main(cobre=True):
                        f'{n(fj["corpo_suporte"])} mm do suporte, {n(fj["corpo_motor"])} mm do motor, '
                        f'{n(fj["corpo_bateria"])} mm da bateria e {n(fj["corpo_engrenagem"])} mm do plano da engrenagem '
                        '64T (|x| 40…42, estimada). Traseira com os pés do EVA-RT estendidos em linha reta até y −33; chaves 3 × 6 '
-                       '(TC-3610) em SW0–SW2. O plugue fêmea encaixado e os fios são '
+                       '(TC-3610) em SW1–SW3. O plugue fêmea encaixado e os fios são '
                        'estimados (par com ~20 mm). Use a vista “XT30 (J1)”.'),
         'placa': ('Só posições: o roteamento ainda vai ser refeito para o novo J1 e o novo contorno, então a máscara '
                   'aparece sem trilhas; pads, furos e referências nas duas faces. A face de baixo é vista como está na '

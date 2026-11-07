@@ -24,7 +24,7 @@ for k in list(par):
     if k[0] == 'NET': names[f(k)].add(k[1])
     else: groups[f(k)].add(k)
 errs = 0
-stacked = {('U1','5'),('U1','6'),('U1','21')}  # GND/VCC empilhados no simbolo
+stacked = {('U2','5'),('U2','6'),('U2','21')}  # GND/VCC empilhados no simbolo
 for root, nm in names.items():
     if len(nm) > 1: print('ERRO: nomes fundidos no intent:', nm); errs += 1
 exp = {}

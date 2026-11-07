@@ -11,6 +11,7 @@
 - Responder em **português**, de forma direta e concisa. O Erick (estudante de eletrônica, IFSP) revisa e corrige o que recebe.
 - Antes de afirmar algo sobre o projeto, ler o doc correspondente em `docs/`. As decisões mais novas estão em `docs/DECISOES_2026-11-05.md`, `docs/DECISOES_2026-11-04.md` e `docs/SEGUIDOR_JLC_DECISOES.md`.
 - Unidades em mm. **Referencial do seguidor: origem no centro da ventoinha, +y para a frente** (o mesmo do `.eprj` e do Gerber do EVA-RT).
+- **Designadores numerados por bloco desde 07/11** (R1–R3 na alimentação, R4–R9 nos sensores de marca…): tabela antigo → novo em `hardware/DESIGNADORES.md` (fonte `ferramentas/designadores.py`). Docs e figuras anteriores a 07/11 usam a numeração antiga.
 
 ## O projeto
 Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida): clone do **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto (contorno B "degraus", estilo HLR).
@@ -24,8 +25,8 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Ventoinha: AO3400A (SOT-23) + 1N5819 em paralelo com o motor; PWM no D10.
 - Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR. Cristal (07/11): **TXC 7A-16.000MAAJ-T** (5032 de 2 pads, CL 18 pF, C2450102), em diagonal junto dos pinos 7/8 do ATmega.
 - Gravação: barra macho 1×5 90° 2,54 mm (+5V, GND, RX, TX, DTR) no centro da borda traseira, em cima; conversor CH340G com DTR. ICSP: 6 pads SMD embaixo, posições do EVA-RT.
-- Bluetooth (**obrigatório** desde 05/11): fêmea 1×6 (ordem HC-05) na frente direita (x = 30,0 desde 07/11, 2,5 mm à esquerda do EVA-RT para caber as chaves; y 0,7…13,4), divisor 1k/2k no RXD do módulo; R18 = 4,7k entre o TXD do módulo e o RX_D0, com LED7/R2 não montados — grava com o módulo encaixado (06/11).
-- Botões SW0–SW2 (07/11): **Jianfu TVBM17-025CF-R** (C19271064; 6,1 × 3,7 × 2,5 mm, terminais com 8,0 mm de ponta a ponta), com **pads encurtados** (1,2 × 1,2 em ±3,7; 8,6 mm no total) para caber ao lado do J4. SW0 no pé direito; SW1/SW2 entre o J4 e a presilha da vareta (a vareta passa por cima de x ≈ 43–47). Substitui a B3U-1000P.
+- Bluetooth (**obrigatório** desde 05/11): fêmea 1×6 (ordem HC-05) na frente direita (x = 30,0 desde 07/11, 2,5 mm à esquerda do EVA-RT para caber as chaves; y 0,7…13,4), divisor 1k/2k no RXD do módulo; R22 = 4,7k entre o TXD do módulo e o RX_D0, sem LED de RX (o LED7/R2 antigo saiu em 07/11) — grava com o módulo encaixado.
+- Botões SW1–SW3 (07/11; SW1 = reset, SW2/SW3 = botões 1/2): **Jianfu TVBM17-025CF-R** (C19271064; 6,1 × 3,7 × 2,5 mm, terminais com 8,0 mm de ponta a ponta), com **pads encurtados** (1,2 × 1,2 em ±3,7; 8,6 mm no total) para caber ao lado do J4. SW1 no pé direito; SW2/SW3 entre o J4 e a presilha da vareta (a vareta passa por cima de x ≈ 43–47). Substitui a B3U-1000P.
 - Barra de sensores: **V1 de 12 QRE1113 + 74HC4067** (Gerber em `hardware/barra_v1/`), ligada por barra de pinos **2,54 mm** na base (a barra tem passo de 2,0 mm → cabo misto). Distância barra–eixo L = 67–70 mm.
 - Sensores de marca QRE1113GR nos braços em (±69,5; 4,5); esquerdo = curva (A5), direito = partida/chegada (A6). **Pinagem do QRE1113GR: 1 anodo, 2 catodo, 3 coletor, 4 emissor** — conferir no footprint.
 - Bateria GNB 350 mAh 2S (45 × 20,5 × 12 mm, deitada atrás com 45 mm em x). Conector: **XT30U-M (C99101, macho de cabo, copos soldados nos furos), em pé por dentro do suporte esquerdo** (foto em `hardware/preview/`; lado reto do corpo = +). 78M05 para 5 V.
@@ -44,6 +45,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - **07/11 (tarde):** o Erick refez o esquemático no EasyEDA Pro (projeto "RUSH") e vai **comprar e soldar tudo à mão** (sem PCBA da JLC). Revisão da netlist: 52 de 54 redes iguais à referência; faltam os rótulos MARK_L_A5 (S0.4/R30.1) e MARK_R_A6 (S1.4/R31.1). Trocar o footprint das chaves para o da TC-3601L (C2845294; o de 8,2 mm não cabe ao lado do J4) e o cristal HC-49US por um SMD baixo (o Erick sugeriu o Hosonic HCX-8FA, 8,0 × 4,5 × 1,6 mm, 2 terminais; falta o datasheet com o padrão de pads).
 - **07/11 (noite):** peças definidas pelo Erick: cristal TXC 7A (5032), chave TVBM17-025CF-R, C5 47 µF 1210; braços com 6,1 mm. Kit para o EasyEDA em `hardware/placa_alpha/` (`contorno_furos_easyeda.dxf`, `furos.csv`, `posicoes_easyeda.csv` com dois pinos por peça, regras de largura no README), gerado por `ferramentas/preview/kit_easyeda.py`. O Erick vai posicionar pelo CSV e usar o autorouter do EasyEDA nos sinais (potência à mão).
 - **07/11 — larguras de potência:** conferência automática no caminho da corrente (`ferramentas/preview/larguras.py`). Corrigidos trechos de 0,4–0,6 mm na ventoinha e nas saídas do motor esquerdo: M3 invertido, D1 embaixo atrás do M3, C8 e Q1 girados, R11 0,65 mm à direita, OUT_A1/A2 e OUT_C pré-roteadas; VBAT até 3,0 mm. Só sobram os pescoços nos pinos do DRV8874 (o maior, VM, 0,4 × 2,3 mm). Regras de largura para o EasyEDA no README da `placa_alpha`.
+- **07/11 — projeto RUSH conferido e renumerado:** o `.epro` final do Erick bate com a referência nas 53 redes (C5 cerâmico com os pinos invertidos, sem efeito). Faltam 2 footprints: chaves (ainda o P8.20 de 10,6 mm → `seguidor_alpha:SW_TACT_3x6_SMD_2P`) e X1 (o da LCSC deixa o pad a 0,13 mm do rasgo → `seguidor_alpha:XTAL_TXC_7A_5032_2P`). Designadores renumerados por bloco no `.epro` (`hardware/easyeda/ProPrj_RUSH_-_renumerado.epro`, títulos dos blocos numerados 1–8) e em todo o repositório; saíram LED7/R2 e J8/J9 (65 peças, 213 pads).
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos
@@ -53,6 +55,8 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/contorno/` | contorno B definitivo (DXF) + figuras de conferência (Gerber do EVA-RT, marcas do TRIF) |
 | `hardware/seguidor_base/` | esquemático rev 1.0 e placa alpha (projeto KiCad, PDF, `.kicad_pcb`, `seguidor_alpha.pretty`, DRC), BOM, `REDES.md` (lista de redes para conferir a importação no EasyEDA) |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
+| `hardware/easyeda/` | projeto do EasyEDA Pro do Erick (RUSH), com a numeração por bloco |
+| `hardware/DESIGNADORES.md` | tabela antigo → novo da numeração por bloco (07/11) |
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |

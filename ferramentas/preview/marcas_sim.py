@@ -29,7 +29,7 @@ from shapely.geometry import LineString
 import layout_placa as M
 
 EIXO_Y = -22.59                 # eixo das rodas (medido no gearbox.stl / EVA_RT.eprj)
-QRE = (69.5, 4.5)               # |x|, y dos QRE de marca (S0 esq. = curva, S1 dir. = partida/chegada)
+QRE = (69.5, 4.5)               # |x|, y dos QRE de marca (S1 esq. = curva, S2 dir. = partida/chegada)
 LINHA = 19.0
 M_IN, M_OUT, M_LEN = 49.5, 89.5, 19.0   # marca: de 49,5 a 89,5 do centro da linha, 19 ao longo
 MEIO = (M_IN + M_OUT) / 2

@@ -1,5 +1,8 @@
 # Ferramentas
 
+`designadores.py` — numeração por bloco de 07/11 (mapa antigo → novo e função de troca; `python designadores.py tabela`).
+Os scripts antigos da prévia (v1) não foram atualizados e usam a numeração antiga.
+
 ## esquematico/ — fonte do esquemático
 O esquemático da placa base é gerado por script, direto em S-expression do KiCad (sem GUI).
 **Para mudar o esquemático, edite o `gen.py` e gere de novo**; não edite o `.kicad_sch` à mão, senão a próxima geração desfaz a mudança.

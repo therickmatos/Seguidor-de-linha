@@ -1,9 +1,9 @@
 {
  "folga_mm": 0.2,
  "borda_mm": 0.3,
- "trilhas": 393,
- "vias": 173,
- "trilhas_gnd_removidas_pelo_plano": 115,
+ "trilhas": 398,
+ "vias": 169,
+ "trilhas_gnd_removidas_pelo_plano": 114,
  "abertas_do_freerouting": {},
  "ligadas_pelo_finalizador": [],
  "abertas_final": {},

@@ -41,18 +41,32 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
    - **X1 (TXC 7A, 5032 de 2 pads):** pads de 1,7 × 2,4 mm com centro em ±1,85 mm (datasheet TXC 7A).
    - **C5:** footprint C1210.
 4. **Regras de projeto:** folga 0,2 mm; cobre–borda 0,3 mm; sinais 0,25 mm; vias 0,6/0,3 (sinais) e 0,8/0,4
-   (potência; 2–3 em paralelo ao trocar de face).
+   (potência). Larguras pelo caminho da corrente (cobre de 1 oz, o padrão da JLC):
 
-   | Rede | Largura | Observação |
-   |---|---|---|
-   | VBAT | **2,0 mm** ou polígono | afina para 0,4 mm só no último milímetro do pino 11 do DRV8874 |
-   | OUT_A1/A2/B1/B2 (motores) | 1,5 mm | até 3 A cada (limite do DRV8874); 0,4 mm só na saída dos pinos |
-   | VBAT até o M3 e OUT_C (ventoinha) | ≥ 1,2 mm | ~1–2 A contínuos |
-   | +5V | 0,6–0,8 mm | ≤ 0,3 A |
-   | GND | plano nas duas faces | vias de costura a cada ~5 mm |
-   | sinais | 0,25 mm | |
+   | Caminho | Corrente | Largura | EVA-RT |
+   |---|---|---|---|
+   | VBAT: J1 → C1/C2, DRV8874 (pino 11), M3.1, D1 | ~3 A típicos; 6–8 A de pico (motores travados + ventoinha) | **2,0–3,0 mm** ou polígono | 2,0–3,0 mm |
+   | OUT_A1/A2 → M1, OUT_B1/B2 → M2 | até 3 A cada (ITRIP do DRV8874) | **1,5 mm** (mínimo 1,0) | 1,0 mm |
+   | ventoinha: VBAT → M3.1, M3.2 → dreno do Q1 (OUT_C), D1 | 1–1,5 A; ~3 A na partida | **1,2 mm** (mínimo 1,0) | 1,0 mm |
+   | VBAT → 78M05 (U5) e +5V | ≤ 0,3 A | 0,6–0,8 mm | 0,3–1,0 mm |
+   | GND | volta de tudo | **plano nas duas faces** | trilhas de 2–3 mm |
+   | sinais | mA | 0,25 mm | 0,25 mm |
 
-   Com cobre de 1 oz, 2,0 mm aguentam ~5 A contínuos com +20 °C, e 1,5 mm aguentam ~4 A.
+   Capacidade (IPC-2221, externa, 1 oz, +10 °C / +20 °C): 1,0 mm → 2,4 / 3,2 A; 1,5 mm → 3,2 / 4,4 A;
+   2,0 mm → 4,0 / 5,4 A; 3,0 mm → 5,3 / 7,2 A. Cuidados que valem tanto quanto a largura:
+   - **Pescoço** (trecho fino) só na saída dos pinos do DRV8874 (pad de 0,45 mm, passo 0,65): sai com 0,4 mm e
+     alarga assim que deixa a fileira de pinos, em no máximo ~2 mm. Em qualquer outro lugar do caminho, nada
+     abaixo do mínimo da tabela; o autorouter do EasyEDA costuma afinar a trilha para passar entre pads, então
+     **potência só à mão**.
+   - **Sem via no caminho da potência** se der: os furos de J1, C1/C2, M1, M2 e M3 já fazem a passagem de face.
+     Se precisar, 2–3 vias de 0,8/0,4 lado a lado (~1–1,5 A cada).
+   - **Plano de GND inteiro entre o J1.2 e as cargas:** a volta dos motores e da ventoinha passa pelo plano;
+     não deixar trilhas de baixo cortarem o caminho J1.2 → pad térmico dos DRV8874 → source do Q1. Vias de
+     costura junto do J1.2, dos pads térmicos e do Q1.
+   - **78M05 (U5):** a aba é GND e dissipa ~0,7 W ((8,4 − 5) V × ~0,2 A): ligar a aba cheia ao plano (sem alívio
+     térmico) e deixar cobre em volta.
+   - Depois de rotear, conferir com a régua do EasyEDA cada trecho de VBAT, OUT_* e da ventoinha.
+
 5. **Roteamento:** primeiro **à mão a potência** (VBAT, motores, ventoinha), seguindo `placa_alpha.jpg`
    (importe o `guia_alpha.dxf` numa camada Document como gabarito). Depois o **autorouter só nos sinais**,
    revisando a região do ATmega e do cristal (trilhas do cristal curtas, sem via). Por fim, plano de GND nas
@@ -98,11 +112,12 @@ do esquemático. Origem auxiliar e da grade no centro da ventoinha.
 4. **Posicionar** pelo `posicoes_alpha.csv`. Componentes com face BOTTOM vão na camada de baixo.
    A rotação é a dos footprints desta prévia; nos footprints da LCSC, **oriente pelo pino 1**
    (ponto branco nas imagens), não pelo número da rotação.
-5. **Regras:** folga 0,2 mm; cobre–borda 0,3 mm; sinais 0,25 mm; +5V 0,4–0,6 mm; VBAT e
-   saídas dos motores 1,0–1,2 mm, afinando para 0,4 mm só na saída dos pinos do DRV8874;
-   vias 0,6/0,3 (sinais) e 0,8/0,4 (potência).
+5. **Regras:** folga 0,2 mm; cobre–borda 0,3 mm; sinais 0,25 mm; larguras de potência pela tabela
+   do passo 4 do fluxo acima (VBAT 2–3 mm, motores 1,5, ventoinha 1,2, +5V 0,6–0,8; 0,4 mm só na
+   saída dos pinos do DRV8874); vias 0,6/0,3 (sinais) e 0,8/0,4 (potência).
 6. **Cobre fixo primeiro** (`trilhas_fixas_alpha.csv`): troncos de VBAT na face de baixo,
-   feixe dos sensores em volta da ventoinha, cristal e saídas de potência do U3. Depois
+   feixe dos sensores em volta da ventoinha, saídas de potência dos dois DRV8874 até os motores e
+   o caminho da ventoinha (M3 → Q1, D1). Depois
    rotear o resto seguindo `placa_alpha.jpg`.
 7. **Plano de GND nas duas faces** (folga 0,25 mm), 6 vias térmicas 0,6/0,3 no pad de cada
    DRV8874 e vias de costura a cada ~5 mm onde couber.

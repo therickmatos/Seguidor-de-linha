@@ -6,7 +6,7 @@ C4;100nF;cima;-24,260;10,120;90;1;-24,260;9,295;2;-24,260;10,945;EVA-RT
 C5;47uF;cima;-21,720;8,000;-90;1;-21,720;9,475;2;-21,720;6,525;47 uF ceramico 1210 (07/11), posicao do tantalo do EVA-RT
 C6;100nF;cima;-25,900;-17,600;180;1;-25,075;-17,600;2;-26,725;-17,600;VM-GND junto a VM/PGND
 C7;100nF;cima;25,900;-7,300;0;1;25,075;-7,300;2;26,725;-7,300;VM-GND junto a VM/PGND
-C8;100nF;cima;26,670;2,790;-90;1;26,670;3,615;2;26,670;1,965;EVA-RT
+C8;100nF;cima;26,670;2,790;90;1;26,670;1,965;2;26,670;3,615;100 nF da ventoinha: VBAT (pino 1) embaixo, ligado direto ao M3.1
 C9;100nF;cima;7,400;-21,600;45;1;6,817;-22,183;2;7,983;-21,017;100 nF +5V junto a AVCC/GND (pinos 18/21)
 C10;100nF;cima;5,710;-18,290;135;1;6,293;-18,873;2;5,127;-17,707;AREF, EVA-RT
 C11;22pF;cima;-7,810;-23,940;135;1;-7,227;-24,523;2;-8,393;-23,357;22 pF de XTAL1, junto do pad 1 do X1
@@ -17,7 +17,7 @@ C15;100nF;cima;23,075;-7,300;180;1;23,900;-7,300;2;22,250;-7,300;VCP-VM sobre os
 C16;22nF;cima;20,425;-7,300;180;1;21,250;-7,300;2;19,600;-7,300;CPH-CPL sobre os pinos 13/14
 C17;100nF;cima;8,600;-27,600;0;1;7,775;-27,600;2;9,425;-27,600;DTR-RESET, junto ao pad DTR do J3
 C18;100nF;cima;11,740;-23,350;180;1;12,565;-23,350;2;10,915;-23,350;filtro do A7
-D1;1N5819;baixo;26,500;3,050;-90;1;26,500;1,400;2;26,500;4,700;diodo da ventoinha, embaixo dos pads do motor
+D1;1N5819;baixo;27,600;-4,600;180;1;25,950;-4,600;2;29,250;-4,600;diodo da ventoinha embaixo, logo atras dos pads do M3 (laco de roda-livre curto)
 J1;XT30 (bateria 2S);cima;-27,000;-27,800;270;1;-27,000;-25,300;2;-27,000;-30,300;"XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm), recuado sobre a traseira reta; pino 1 (+, lado reto) para a frente"
 J2;BARRA (1x8, 2,54 mm);cima;0,000;22,740;0;1;-8,890;22,740;8;8,890;22,740;barra de sensores, centro da frente
 J3;GRAVACAO (barra 1x5 2,54 deitada, embaixo);baixo;0,000;-28,575;0;1;-5,080;-28,575;5;5,080;-28,575;gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)
@@ -31,8 +31,8 @@ LED6;TX;cima;-11,940;-21,460;180;1;-11,115;-21,460;2;-12,765;-21,460;TX, EVA-RT
 LED7;RX (opcional);cima;-11,940;-23,370;180;1;-11,115;-23,370;2;-12,765;-23,370;"RX, EVA-RT; NAO MONTAR com R18 = 4,7k"
 M1;1020 esq.;cima;-36,580;1,270;0;1;-36,580;-0,000;2;-36,580;2,540;motor esq.: pads do EVA-RT
 M2;1020 dir.;cima;36,580;1,270;0;1;36,580;-0,000;2;36,580;2,540;motor dir.: pads do EVA-RT
-M3;ventoinha;cima;27,600;-2,000;90;1;28,870;-2,000;2;26,330;-2,000;ventoinha: pads do EVA-RT girados 90 graus, logo atras do J4 (sairam do lugar do J4)
-Q1;AO3400A;cima;26,920;9,140;180;1;27,920;8,190;3;25,920;9,140;AO3400A, EVA-RT
+M3;ventoinha;cima;27,600;-2,000;270;1;26,330;-2,000;2;28,870;-2,000;"ventoinha: pads do EVA-RT logo atras do J4; + (pino 1) a esquerda, junto do tronco VBAT (07/11: correntes)"
+Q1;AO3400A;cima;26,920;9,140;0;1;25,920;10,090;3;27,920;9,140;"AO3400A; dreno (pino 3) a direita, na reta do OUT_C que sobe do M3.2 (07/11)"
 R1;1k;cima;-15,490;-21,460;0;1;-16,315;-21,460;2;-14,665;-21,460;LED TX, EVA-RT
 R2;1k;cima;-15,490;-23,370;0;1;-16,315;-23,370;2;-14,665;-23,370;"LED RX, EVA-RT; NAO MONTAR com R18 = 4,7k"
 R3;10k;cima;-15,490;-19,560;0;1;-16,315;-19,560;2;-14,665;-19,560;pull-up do RESET, EVA-RT
@@ -42,7 +42,7 @@ R7;1k;baixo;61,730;4,570;270;1;61,730;3,745;2;61,730;5,395;braco dir. (asa do EV
 R8;10k;cima;20,570;7,620;-90;1;20,570;8,445;2;20,570;6,795;EVA-RT
 R9;200;cima;20,570;10,790;-90;1;20,570;11,615;2;20,570;9,965;EVA-RT
 R10;1k;cima;-17,910;11,810;0;1;-18,735;11,810;2;-17,085;11,810;EVA-RT
-R11;1.5k 1%;cima;-23,400;-6,600;90;1;-23,400;-7,425;2;-23,400;-5,775;IPROPI A, acima do pino 6
+R11;1.5k 1%;cima;-22,750;-6,600;90;1;-22,750;-7,425;2;-22,750;-5,775;IPROPI A, acima do pino 6 (07/11: 0,65 mm p/ a direita, folga da saida OUT_A1 larga)
 R12;1.5k 1%;cima;23,400;-18,300;270;1;23,400;-17,475;2;23,400;-19,125;IPROPI B, abaixo do pino 6
 R13;15k 1%;cima;24,500;-20,600;180;1;25,325;-20,600;2;23,675;-20,600;divisor VREF (lado +5V)
 R14;10k 1%;cima;22,000;-20,600;180;1;22,825;-20,600;2;21,175;-20,600;divisor VREF (lado GND), abaixo do pino 5

@@ -43,6 +43,7 @@ python rotear_v2.py dsn          # v2/seguidor_v2.dsn
 python rotear_v2.py rotear 100   # FreeRouting -> v2/seguidor_v2.ses
 python rotear_v2.py continuar 100  # (opcional) mais uma rodada a partir do SES
 python rotear_v2.py importar     # finalizador, alargamento, plano de GND, verificação
+python larguras.py               # larguras no caminho da corrente de cada rede de potência (IPC-2221)
 python figura_v2.py              # hardware/preview/placa_v2.jpg
 python relatorio_v2.py           # hardware/preview/RELATORIO_v2.md e posicoes_v2.csv
 python pacote_alpha.py           # hardware/placa_alpha/: imagens, CSV, DXF do contorno e DXF-guia

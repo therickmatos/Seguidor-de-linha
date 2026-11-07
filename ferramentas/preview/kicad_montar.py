@@ -378,6 +378,12 @@ def main():
         fh.write(tabela)
     pcbnew.SaveBoard(caminho, board)
     b = pcbnew.LoadBoard(caminho)
+    # GND da bateria (J1.2) e dos eletroliticos: toda a volta da corrente passa por eles; raios de 1,0 mm
+    # no alivio termico (os de 0,4 mm aguentariam, mas sem folga) e ainda da para soldar com ferro comum
+    for fp in b.GetFootprints():
+        for pad in fp.Pads():
+            if (fp.GetReference(), pad.GetNumber()) in (('J1', '2'), ('C1', '2'), ('C2', '2')):
+                pad.SetThermalSpokeWidth(mm(1.0))
     pcbnew.ZONE_FILLER(b).Fill(b.Zones())
     pcbnew.SaveBoard(caminho, b)
     rpt = os.path.join(tmp, 'drc_kicad.rpt')

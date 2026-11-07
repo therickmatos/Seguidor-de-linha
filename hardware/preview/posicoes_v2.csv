@@ -6,7 +6,7 @@ C4;100nF;C0603;TOP;-24,260;10,120;90;EVA-RT
 C5;47uF;C1210;TOP;-21,720;8,000;-90;47 uF ceramico 1210 (07/11), posicao do tantalo do EVA-RT
 C6;100nF;C0603;TOP;-25,900;-17,600;180;VM-GND junto a VM/PGND
 C7;100nF;C0603;TOP;25,900;-7,300;0;VM-GND junto a VM/PGND
-C8;100nF;C0603;TOP;26,670;2,790;-90;EVA-RT
+C8;100nF;C0603;TOP;26,670;2,790;90;100 nF da ventoinha: VBAT (pino 1) embaixo, ligado direto ao M3.1
 C9;100nF;C0603;TOP;7,400;-21,600;45;100 nF +5V junto a AVCC/GND (pinos 18/21)
 C10;100nF;C0603;TOP;5,710;-18,290;135;AREF, EVA-RT
 C11;22pF;C0603;TOP;-7,810;-23,940;135;22 pF de XTAL1, junto do pad 1 do X1
@@ -17,7 +17,7 @@ C15;100nF;C0603;TOP;23,075;-7,300;180;VCP-VM sobre os pinos 11/12
 C16;22nF;C0603;TOP;20,425;-7,300;180;CPH-CPL sobre os pinos 13/14
 C17;100nF;C0603;TOP;8,600;-27,600;0;DTR-RESET, junto ao pad DTR do J3
 C18;100nF;C0603;TOP;11,740;-23,350;180;filtro do A7
-D1;1N5819;SOD123;BOTTOM;26,500;3,050;-90;diodo da ventoinha, embaixo dos pads do motor
+D1;1N5819;SOD123;BOTTOM;27,600;-4,600;180;diodo da ventoinha embaixo, logo atras dos pads do M3 (laco de roda-livre curto)
 J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-27,000;-27,800;270;"XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm), recuado sobre a traseira reta; pino 1 (+, lado reto) para a frente"
 J2;BARRA (1x8, 2,54 mm);HDR_1x08_P2.54;TOP;0,000;22,740;0;barra de sensores, centro da frente
 J3;GRAVACAO (barra 1x5 2,54 deitada, embaixo);HDR_1x05_P2.54_SMD_DEITADA;BOTTOM;0,000;-28,575;0;gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)
@@ -31,8 +31,8 @@ LED6;TX;LED0603;TOP;-11,940;-21,460;180;TX, EVA-RT
 LED7;RX (opcional);LED0603;TOP;-11,940;-23,370;180;"RX, EVA-RT; NAO MONTAR com R18 = 4,7k"
 M1;1020 esq.;MOTOR_1020_2P;TOP;-36,580;1,270;0;motor esq.: pads do EVA-RT
 M2;1020 dir.;MOTOR_1020_2P;TOP;36,580;1,270;0;motor dir.: pads do EVA-RT
-M3;ventoinha;MOTOR_1020_2P;TOP;27,600;-2,000;90;ventoinha: pads do EVA-RT girados 90 graus, logo atras do J4 (sairam do lugar do J4)
-Q1;AO3400A;SOT23_AO3400A;TOP;26,920;9,140;180;AO3400A, EVA-RT
+M3;ventoinha;MOTOR_1020_2P;TOP;27,600;-2,000;270;"ventoinha: pads do EVA-RT logo atras do J4; + (pino 1) a esquerda, junto do tronco VBAT (07/11: correntes)"
+Q1;AO3400A;SOT23_AO3400A;TOP;26,920;9,140;0;"AO3400A; dreno (pino 3) a direita, na reta do OUT_C que sobe do M3.2 (07/11)"
 R1;1k;R0603;TOP;-15,490;-21,460;0;LED TX, EVA-RT
 R2;1k;R0603;TOP;-15,490;-23,370;0;"LED RX, EVA-RT; NAO MONTAR com R18 = 4,7k"
 R3;10k;R0603;TOP;-15,490;-19,560;0;pull-up do RESET, EVA-RT
@@ -42,7 +42,7 @@ R7;1k;R0603;BOTTOM;61,730;4,570;270;braco dir. (asa do EVA-RT)
 R8;10k;R0603;TOP;20,570;7,620;-90;EVA-RT
 R9;200;R0603;TOP;20,570;10,790;-90;EVA-RT
 R10;1k;R0603;TOP;-17,910;11,810;0;EVA-RT
-R11;1.5k 1%;R0603;TOP;-23,400;-6,600;90;IPROPI A, acima do pino 6
+R11;1.5k 1%;R0603;TOP;-22,750;-6,600;90;IPROPI A, acima do pino 6 (07/11: 0,65 mm p/ a direita, folga da saida OUT_A1 larga)
 R12;1.5k 1%;R0603;TOP;23,400;-18,300;270;IPROPI B, abaixo do pino 6
 R13;15k 1%;R0603;TOP;24,500;-20,600;180;divisor VREF (lado +5V)
 R14;10k 1%;R0603;TOP;22,000;-20,600;180;divisor VREF (lado GND), abaixo do pino 5

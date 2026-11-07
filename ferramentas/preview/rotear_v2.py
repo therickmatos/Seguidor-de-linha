@@ -67,6 +67,19 @@ PRE_TRACKS = [
     ('VBAT', 2, 1.2, [(-22.0, 3.31), (-14.31, 11.0), (9.0, 11.0), (17.0, 3.0), (17.0, 0.81), (22.0, 0.81)]),
     ('VBAT', 1, 1.0, [(-27.0, -25.3), (-27.0, -20.4), (-24.5, -17.9)]),
     ('VBAT', 1, 1.0, [(22.0, 0.81), (24.49, -1.68), (24.49, -7.3)]),
+    # ventoinha (07/11, larguras): M3.1 (+) colado no tronco; C8 em cima do M3.1; D1 embaixo, logo
+    # atras dos pads (laco de roda-livre curto); OUT_C sobe reto do M3.2 ao dreno do Q1, sem via
+    ('VBAT', 1, 1.2, [(24.49, -2.0), (26.33, -2.0)]),
+    ('VBAT', 1, 0.6, [(26.67, 1.96), (26.67, -1.0)]),
+    ('OUT_C', 1, 1.2, [(28.15, -1.0), (28.15, 9.14)]),
+    ('VBAT', 2, 1.0, [(25.95, -4.6), (26.33, -3.2), (26.33, -2.0)]),
+    ('OUT_C', 2, 1.0, [(29.25, -4.6), (28.87, -3.2), (28.87, -2.0)]),
+    # U2 (motor esquerdo, 07/11): saidas pre-roteadas ate o M1; pescoco de 0,4 mm so junto do pino
+    ('OUT_A1', 1, 0.4, [(-24.375, -9.675), (-24.375, -8.125)]),
+    ('OUT_A1', 1, 1.0, [(-24.375, -8.125), (-35.04, 2.54), (-35.6, 2.54)]),
+    ('OUT_A2', 1, 0.4, [(-23.725, -15.225), (-23.725, -16.25), (-25.2, -16.25)]),
+    ('OUT_A2', 1, 1.0, [(-25.2, -16.25), (-30.6, -10.85), (-30.6, -4.48), (-35.08, 0.0), (-35.6, 0.0)]),
+    ('VBAT', 1, 0.4, [(-23.075, -15.225), (-23.075, -17.6), (-23.9, -17.6)]),
     # U3 (rot 90): potencia na fileira de cima; OUT2 sai pelo corredor entre os pinos e
     # C15/C7, VM sobe ate C15.1, OUT1 sai pela direita e contorna o furo do suporte do motor
     ('OUT_B2', 1, 0.4, [(23.725, -9.675), (23.725, -8.5), (27.6, -8.5)]),
@@ -398,7 +411,8 @@ def widen(positions, tracks, vias, nets_widths):
                 continue
             tree = STRtree([o['geom'] for o in others])
             near = [others[int(j)] for j in tree.query(g.buffer(CLEAR))]
-            if all(o['geom'].distance(g) >= CLEAR for o in near):
+            # +0,01: os circulos viram poligonos aqui e o KiCad mede o arco de verdade (deu 0,198)
+            if all(o['geom'].distance(g) >= CLEAR + 0.01 for o in near):
                 t['width'] = w
     # junta pedacos consecutivos de mesma largura (mesma trilha de origem)
     merged = []
@@ -573,7 +587,7 @@ def importar():
             finished.append(net)
             print('finalizador: ligado', net, len(segs), 'trechos,', len(vs), 'vias', flush=True)
     widths = {n: [0.5, 0.6, 0.8, 1.0, 1.2, 1.5] for n in POWER}
-    widths['VBAT'] = [0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0]   # 07/11: tronco de bateria o mais largo que couber
+    widths['VBAT'] = [0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0]   # tronco de bateria o mais largo que couber
     widths['+5V'] = [0.6, 0.5]
     tracks = widen(pos, tracks, vias, widths)
     pours = ground_pours(pos, tracks, vias)

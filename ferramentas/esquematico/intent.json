@@ -1132,8 +1132,8 @@
   },
   "C5": {
    "value": "47uF",
-   "pkg": "tantalo 10 V, 3216 (caso A)",
-   "note": "",
+   "pkg": "ceramico X5R >= 10 V, 1210",
+   "note": "07/11: 1210 (achado pelo Erick); o tantalo 3216 do EVA-RT tambem serve com footprint 3216",
    "lcsc": "",
    "dnp": false
   },
@@ -1272,9 +1272,9 @@
   },
   "X1": {
    "value": "16MHz",
-   "pkg": "HC-49/S SMD ou 3225 (o que vier do doador)",
-   "note": "ou o ressonador CSTCE16M0V13 do EVA-RT (3 pinos), sem C11/C12",
-   "lcsc": "",
+   "pkg": "cristal SMD 5032 de 2 pads (TXC 7A-16.000MAAJ-T)",
+   "note": "16 MHz, CL 18 pF, ESR 50 ohm, +-30 ppm, 1,2 mm de altura (fica sob a bateria)",
+   "lcsc": "C2450102",
    "dnp": false
   },
   "C11": {
@@ -1314,9 +1314,9 @@
   },
   "SW0": {
    "value": "RESET",
-   "pkg": "chave tactil SMD 3x6, 2 terminais (TC-3610)",
-   "note": "equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788",
-   "lcsc": "C2845294",
+   "pkg": "chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)",
+   "note": "terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4",
+   "lcsc": "C19271064",
    "dnp": false
   },
   "U2": {
@@ -1468,16 +1468,16 @@
   },
   "SW1": {
    "value": "BOTAO 1",
-   "pkg": "chave tactil SMD 3x6, 2 terminais (TC-3610)",
-   "note": "equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788",
-   "lcsc": "C2845294",
+   "pkg": "chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)",
+   "note": "terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4",
+   "lcsc": "C19271064",
    "dnp": false
   },
   "SW2": {
    "value": "BOTAO 2",
-   "pkg": "chave tactil SMD 3x6, 2 terminais (TC-3610)",
-   "note": "equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788",
-   "lcsc": "C2845294",
+   "pkg": "chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)",
+   "note": "terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4",
+   "lcsc": "C19271064",
    "dnp": false
   },
   "R5": {

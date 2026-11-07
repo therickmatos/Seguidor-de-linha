@@ -2,7 +2,7 @@
 2;C1 C2;220uF;eletrolitico 25 V, radial D6,3 mm P2,5;;sim;igual;entre os pes da carcaca, como no EVA-RT
 1;C3;220nF;0603 50 V;;sim;igual;
 4;C4 C9 C10 C17;100nF;0603;;sim;"igual; novo";"junto aos pinos VCC; AREF (referencia = AVCC no firmware); reset automatico pelo DTR"
-1;C5;47uF;tantalo 10 V, 3216 (caso A);;sim;igual;
+1;C5;47uF;ceramico X5R >= 10 V, 1210;;sim;igual;"07/11: 1210 (achado pelo Erick); o tantalo 3216 do EVA-RT tambem serve com footprint 3216"
 2;C6 C7;100nF;0603 25 V X7R;;sim;igual;VM, junto ao pino 11
 1;C8;100nF;0603 25 V;;sim;igual;
 2;C11 C12;22pF;0603;;sim;novo;
@@ -34,13 +34,13 @@
 2;R20 R21;220;0603;;sim;igual;
 2;R30 R31;47k;0603;;sim;igual;
 2;S0 S1;QRE1113GR;SMD 4 pinos;;sim;igual;datasheet: 1 = anodo, 2 = catodo, 3 = coletor, 4 = emissor
-1;SW0;RESET;chave tactil SMD 3x6, 2 terminais (TC-3610);C2845294;sim;igual;"equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788"
-1;SW1;BOTAO 1;chave tactil SMD 3x6, 2 terminais (TC-3610);C2845294;sim;igual;"equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788"
-1;SW2;BOTAO 2;chave tactil SMD 3x6, 2 terminais (TC-3610);C2845294;sim;igual;"equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788"
+1;SW0;RESET;chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R);C19271064;sim;igual;"terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4"
+1;SW1;BOTAO 1;chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R);C19271064;sim;igual;"terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4"
+1;SW2;BOTAO 2;chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R);C19271064;sim;igual;"terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4"
 1;U1;ATmega328P-AU;TQFP-32;C14877;sim;igual;do Nano/Uno doador (com bootloader) ou novo + bootloader pelo ICSP
 2;U2 U3;DRV8874PWPR;HTSSOP-16 (PWP), pad termico com vias;C1855818;sim;"IFX_A1 (IFX9201); IFX_B1 (IFX9201)";"esq.; dir."
 1;U5;78M05;TO-252 (DPAK);C111265;sim;igual;
-1;X1;16MHz;HC-49/S SMD ou 3225 (o que vier do doador);;sim;X1 (ressonador 3 pinos);ou o ressonador CSTCE16M0V13 do EVA-RT (3 pinos), sem C11/C12
+1;X1;16MHz;cristal SMD 5032 de 2 pads (TXC 7A-16.000MAAJ-T);C2450102;sim;X1 (ressonador 3 pinos);16 MHz, CL 18 pF, ESR 50 ohm, +-30 ppm, 1,2 mm de altura (fica sob a bateria)
 1;C18;100nF;0603;;opcional (bateria);novo;filtro da medicao (opcional)
 1;J8;ASA ESQ.;4 pads;;nao montar (DNP);novo;opcional: nao montar se o braco for parte da placa base
 1;J9;ASA DIR.;4 pads;;nao montar (DNP);novo;opcional: nao montar se o braco for parte da placa base

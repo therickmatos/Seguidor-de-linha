@@ -58,9 +58,9 @@ R30;47k;baixo;-64,670;5,390;180;1;-65,495;5,390;2;-63,845;5,390;braco esq. (asa 
 R31;47k;baixo;64,670;3,610;0;1;65,495;3,610;2;63,845;3,610;braco dir. (asa do EVA-RT)
 S0;QRE1113GR;baixo;-69,500;4,500;180;1;-67,500;3,600;3;-71,500;5,400;QRE esq. (curva, A5)
 S1;QRE1113GR;baixo;69,500;4,500;0;1;67,500;5,400;3;71,500;3,600;QRE dir. (partida/chegada, A6)
-SW0;RESET;cima;34,500;-31,000;0;1;38,200;-31,000;2;30,800;-31,000;reset, chave 3x6 SMD (TC-3610 / C2845294) no pe direito, 0,7 mm atras do suporte do motor
-SW1;BOTAO 1;cima;35,950;5,840;0;1;32,250;5,840;2;39,650;5,840;botao 1, chave 3x6 SMD (TC-3610), entre o J4 e a presilha da vareta
-SW2;BOTAO 2;cima;35,950;11,300;0;1;32,250;11,300;2;39,650;11,300;botao 2, chave 3x6 SMD (TC-3610), entre o J4 e a presilha da vareta
+SW0;RESET;cima;34,500;-31,000;0;1;38,200;-31,000;2;30,800;-31,000;reset, chave TVBM17-025CF-R (C19271064) no pe direito, 0,7 mm atras do suporte do motor
+SW1;BOTAO 1;cima;35,950;5,840;0;1;32,250;5,840;2;39,650;5,840;botao 1, chave TVBM17-025CF-R, entre o J4 e a presilha da vareta
+SW2;BOTAO 2;cima;35,950;11,300;0;1;32,250;11,300;2;39,650;11,300;botao 2, chave TVBM17-025CF-R, entre o J4 e a presilha da vareta
 U1;ATmega328P-AU;cima;0,005;-23,005;-45;1;-4,999;-24,039;17;4,999;-21,961;posicao e rotacao do EVA-RT (recuado 0,75 mm em relacao a previa anterior)
 U2;DRV8874PWPR;cima;-22,100;-12,450;-90;1;-19,825;-9,675;9;-24,375;-15,225;DRV8874 esq. no lugar do IFX do EVA-RT
 U3;DRV8874PWPR;cima;22,100;-12,450;90;1;19,825;-15,225;9;24,375;-9,675;DRV8874 dir. no lugar do IFX do EVA-RT

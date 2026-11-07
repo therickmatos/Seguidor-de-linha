@@ -12,7 +12,7 @@
 "C2": "seguidor_alpha:C_RAD_D6.3_P2.5",
 "C3": "seguidor_alpha:C0603",
 "C4": "seguidor_alpha:C0603",
-"C5": "seguidor_alpha:C_TANT_3216_A",
+"C5": "seguidor_alpha:C1210",
 "C6": "seguidor_alpha:C0603",
 "C7": "seguidor_alpha:C0603",
 "C8": "seguidor_alpha:C0603",
@@ -65,5 +65,5 @@
 "U2": "seguidor_alpha:HTSSOP16_PWP_DRV8874",
 "U3": "seguidor_alpha:HTSSOP16_PWP_DRV8874",
 "U5": "seguidor_alpha:DPAK_TO252_3",
-"X1": "seguidor_alpha:CRISTAL_3225_4P"
+"X1": "seguidor_alpha:XTAL_TXC_7A_5032_2P"
 }

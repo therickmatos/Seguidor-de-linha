@@ -6,8 +6,8 @@ Pacote para o EasyEDA em `hardware/placa_alpha/` (ver o README de lá): `placa_a
 
 - **Todas as ligações do `REDES.md` estão feitas** (54 redes, 219 pads), conferidas por um verificador independente de conectividade sobre o cobre final (trilhas, vias, pads e plano de GND).
 - Folgas: nenhuma violação abaixo de 0.2 mm entre redes diferentes e de 0.3 mm entre cobre e borda/furos (0 violações no verificador). Não substitui o DRC do EasyEDA.
-- 337 segmentos de trilha (220 em cima, 117 embaixo) e 154 vias: 70 do roteamento, 0 dos troncos de VBAT, 12 térmicas (6 por DRV8874) e 72 de costura do GND.
-- **Plano de GND nas duas faces.** 115 trilhas de GND do autorroteador ficaram redundantes e foram retiradas; a conectividade foi conferida com o plano. No EasyEDA: criar as áreas de cobre GND (cima e baixo) com folga de 0,25 mm e reconstruir antes do DRC.
+- 362 segmentos de trilha (242 em cima, 120 embaixo) e 164 vias: 76 do roteamento, 0 dos troncos de VBAT, 12 térmicas (6 por DRV8874) e 76 de costura do GND.
+- **Plano de GND nas duas faces.** 98 trilhas de GND do autorroteador ficaram redundantes e foram retiradas; a conectividade foi conferida com o plano. No EasyEDA: criar as áreas de cobre GND (cima e baixo) com folga de 0,25 mm e reconstruir antes do DRC.
 
 ## O que mudou em relação à prévia anterior
 
@@ -35,13 +35,13 @@ Pacote para o EasyEDA em `hardware/placa_alpha/` (ver o README de lá): `placa_a
 
 | rede | mín. (mm) | máx. (mm) | trecho < 0,6 mm |
 |---|---|---|---|
-| `VBAT` | 0.40 | 1.20 | 18.3 mm |
+| `VBAT` | 0.40 | 1.20 | 23.9 mm |
 | `OUT_A1` | 0.40 | 1.20 | 4.9 mm |
 | `OUT_A2` | 0.40 | 1.20 | 2.2 mm |
 | `OUT_B1` | 0.40 | 1.20 | 0.9 mm |
 | `OUT_B2` | 0.40 | 1.20 | 3.1 mm |
-| `OUT_C` | 0.40 | 1.20 | 4.0 mm |
-| `+5V` | 0.40 | 0.60 | 79.5 mm |
+| `OUT_C` | 0.40 | 1.20 | 2.5 mm |
+| `+5V` | 0.40 | 0.60 | 135.4 mm |
 
 Os trechos estreitos são as saídas dos pinos 0,45 mm do DRV8874 (passo 0,65) e passagens entre pads; o resto foi alargado até 1,0–1,2 mm onde a folga permitiu. No EasyEDA, alargar onde houver espaço.
 

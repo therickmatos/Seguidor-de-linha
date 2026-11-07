@@ -2,7 +2,8 @@
 
 **Revisão de 07/11:** traseira reta em y = −33 (pés do EVA-RT estendidos), XT30 em pé por dentro do
 suporte esquerdo, a 6,4 mm do motor, e botões SW0–SW2 trocados pela chave 3 × 6 TC-3610 (C2845294 na JLC),
-com o J4 2,5 mm para a esquerda. Roteamento refeito. Tudo (KiCad + este pacote + 3D) também em
+com o J4 2,5 mm para a esquerda. Braços dos sensores de marca com 5,0 mm de altura (y 2,0–7,0), como
+as asas do EVA-RT. Roteamento refeito. Tudo (KiCad + este pacote + 3D) também em
 `hardware/placa_base_alpha.zip`.
 
 Prévia completa da placa base para fazer o layout no EasyEDA Pro. Origem no centro da
@@ -32,6 +33,8 @@ do esquemático. Origem auxiliar e da grade no centro da ventoinha.
   asas, não montados) ficam fora da placa, como na prévia.
 - Regras: folga 0,2 mm, cobre–borda 0,3 mm, trilha mínima 0,2 mm, via mínima 0,5/0,3 mm. O pino 2 (GND)
   do J2 liga ao plano sem alívio térmico: embaixo só cabia 1 raio de alívio, e o KiCad exige 2.
+- As referências S0, S1, R6 e R7 (nos braços estreitos) ficaram na camada F.Fab/B.Fab, sem espaço na
+  serigrafia; refazer a serigrafia no EasyEDA.
 - Footprints na biblioteca do projeto `seguidor_alpha.pretty` (já no `fp-lib-table`). **São os
   modelos aproximados da prévia** (pads certos, corpo aproximado na camada F.Fab, sem 3D): trocar
   pelos da LCSC antes do pedido e repetir o DRC.

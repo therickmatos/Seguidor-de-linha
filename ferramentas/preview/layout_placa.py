@@ -35,7 +35,30 @@ def _pe_traseiro(lado):
     pts = [(40.0, -28.4)] + arco + [(24.0, -33.0), (21.0, -30.0), (20.25, -30.0), (20.25, -28.4)]
     return Polygon([(lado * x, y) for x, y in pts]).buffer(0)
 
-OUTLINE = unary_union([OUTLINE_ORIGINAL, _pe_traseiro(1), _pe_traseiro(-1)]).buffer(0)
+# Bracos (07/11): altura de 5,0 mm (y 2,0..7,0), como as asas de 14 x 5 mm do EVA-RT, no lugar dos 7,4 mm
+# do contorno B (y 0,8..8,2). Mesma ponta em |x| = 74,1 com cantos de R1,5, QRE de marca em (+-69,5; 4,5)
+# e raiz arredondada (R1) na juncao com o ombro em |x| = 50.
+BRACO_Y0, BRACO_Y1, BRACO_PONTA, BRACO_R = 2.0, 7.0, 74.1, 1.5
+
+
+def _braco(lado):
+    x1 = BRACO_PONTA - BRACO_R
+    g = unary_union([box(49.9, BRACO_Y0, x1, BRACO_Y1),
+                     box(x1, BRACO_Y0 + BRACO_R, BRACO_PONTA, BRACO_Y1 - BRACO_R),
+                     Point(x1, BRACO_Y0 + BRACO_R).buffer(BRACO_R, quad_segs=16),
+                     Point(x1, BRACO_Y1 - BRACO_R).buffer(BRACO_R, quad_segs=16)])
+    for yc, ys in ((BRACO_Y0 - 1.0, BRACO_Y0 - 1.0), (BRACO_Y1 + 1.0, BRACO_Y1)):
+        canto = box(50.0, min(ys, ys + 1.0), 51.0, max(ys, ys + 1.0))
+        g = g.union(canto.difference(Point(51.0, yc).buffer(1.0, quad_segs=16)))
+    return affinity.scale(g, xfact=lado, origin=(0, 0)) if lado < 0 else g
+
+
+OUTLINE = unary_union([OUTLINE_ORIGINAL, _pe_traseiro(1), _pe_traseiro(-1)])
+OUTLINE = OUTLINE.difference(unary_union([box(50.0, -1.0, 80.0, 12.0), box(-80.0, -1.0, -50.0, 12.0)]))
+OUTLINE = unary_union([OUTLINE, _braco(1), _braco(-1)]).buffer(0)
+# grade de 0,1 um: evita vertices quase coincidentes (espelhamento) que quebram o GEOS nos planos de GND
+import shapely as _shapely
+OUTLINE = _shapely.set_precision(OUTLINE, 1e-4)
 
 def hole_shape(h):
     if h['tipo'] == 'furo':

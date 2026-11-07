@@ -270,7 +270,7 @@ def figura(res, sens):
     linha = LineString(np.stack([xs, ys], 1))
     lp = linha.buffer(LINHA / 2, cap_style=2)
     ax.add_patch(PPoly(np.array(lp.exterior.coords), closed=True, fc=LINE, ec='none', zorder=2))
-    contorno = np.array(M.OUTLINE_ORIGINAL.exterior.coords)
+    contorno = np.array(M.OUTLINE.exterior.coords)
     for s_m in trocas:
         i = int(round(s_m / DS))
         t = np.array([math.cos(ph[i]), math.sin(ph[i])]); n = np.array([-t[1], t[0]])

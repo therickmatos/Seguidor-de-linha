@@ -396,6 +396,22 @@ def main():
         pcbnew.ZONE_FILLER(b).Fill(b.Zones())
         pcbnew.SaveBoard(caminho, b)
         pcbnew.WriteDRCReport(b, rpt, pcbnew.EDA_UNITS_MILLIMETRES, True)
+    # via de costura de ilha que o preenchimento do KiCad deixou solta (a ilha virou ilha isolada e foi
+    # descartada): nao liga nada; sai, preenche de novo e repete o DRC
+    soltas = {(round(float(x), 3), round(float(y), 3)) for x, y in re.findall(
+        r'\[via_dangling\][^\n]*\n(?:    [^\n]*\n)*?    @\(([\d.]+) mm, ([\d.]+) mm\): Via \[GND\]', open(rpt).read())}
+    if soltas:
+        trilhas = [t for t in b.GetTracks() if t.GetClass() == 'PCB_TRACK' and t.GetNetname() == 'GND']
+        for v in [t for t in b.GetTracks() if t.GetClass() == 'PCB_VIA' and t.GetNetname() == 'GND']:
+            q = v.GetPosition()
+            k = (round(pcbnew.ToMM(q.x), 3), round(pcbnew.ToMM(q.y), 3))
+            if any(abs(k[0] - a) < 0.002 and abs(k[1] - c) < 0.002 for a, c in soltas) and \
+                    not any(t.GetStart() == q or t.GetEnd() == q for t in trilhas):
+                print('via de costura solta retirada: (%.3f; %.3f)' % (k[0] - OX, OY - k[1]))
+                b.Remove(v)
+        pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+        pcbnew.SaveBoard(caminho, b)
+        pcbnew.WriteDRCReport(b, rpt, pcbnew.EDA_UNITS_MILLIMETRES, True)
     txt = open(rpt, encoding='utf8').read().replace(caminho, 'hardware/seguidor_base/' + NOME + '.kicad_pcb')
     open(rpt, 'w', encoding='utf8').write(txt)
     print('conexoes nao roteadas (KiCad):', b.GetConnectivity().GetUnconnectedCount(True))

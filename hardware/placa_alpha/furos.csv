@@ -1,0 +1,16 @@
+nome;tipo;x_mm;y_mm;diametro_mm;largura_mm;altura_mm;obs
+ventoinha;furo NPTH;0,000;0,000;17,00;;;"sem cobre; furo da ventoinha = recorte"
+presilha_E_tras;furo NPTH;-43,750;-1,750;2,00;;;sem cobre
+presilha_E_frente;furo NPTH;-43,750;10,750;2,00;;;sem cobre
+suporte_motor_E_tras;furo NPTH;-35,250;-26,550;2,00;;;sem cobre
+suporte_motor_E_frente;furo NPTH;-35,250;-3,733;2,00;;;sem cobre
+carcaca_SO;furo NPTH;-15,556;-15,556;2,00;;;sem cobre
+carcaca_NO;furo NPTH;-15,556;15,556;2,00;;;sem cobre
+carcaca_SE;furo NPTH;15,556;-15,556;2,00;;;sem cobre
+carcaca_NE;furo NPTH;15,556;15,556;2,00;;;sem cobre
+suporte_motor_D_tras;furo NPTH;35,250;-26,550;2,00;;;sem cobre
+suporte_motor_D_frente;furo NPTH;35,250;-3,733;2,00;;;sem cobre
+presilha_D_tras;furo NPTH;43,750;-1,750;2,00;;;sem cobre
+presilha_D_frente;furo NPTH;43,750;10,750;2,00;;;sem cobre
+velcro_E;rasgo NPTH (pontas R0,5);-16,685;-28,213;;7,00;1,00;1,0 mm = largura minima de fresa da JLC
+velcro_D;rasgo NPTH (pontas R0,5);16,685;-28,213;;7,00;1,00;1,0 mm = largura minima de fresa da JLC

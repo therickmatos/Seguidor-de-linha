@@ -82,11 +82,7 @@ PRE_TRACKS = [
     # do J4 e os resistores R16-R18, contornando o R18 por cima (o autorroteador dava 6 vias)
     ('BT_TXD', 2, 0.25, [(30.0, 5.78), (28.55, 7.23), (28.55, 12.95), (28.3, 13.2), (26.125, 13.2),
                          (25.875, 12.95), (25.875, 12.2)]),
-    # cristal: trilhas curtas desenhadas a mao (pino 7 -> X1.1 -> C11; pino 8 -> X1.3 -> C12)
-    ('XTAL1', 1, 0.25, [(-1.604, -27.433), (-2.046, -27.875), (-5.6, -27.875), (-5.6, -26.55),
-                        (-6.7, -26.55), (-6.7, -25.125)]),
-    ('XTAL2', 1, 0.25, [(-1.039, -27.999), (-1.481, -28.441), (-2.29, -29.25), (-8.9, -29.25),
-                        (-8.9, -28.25), (-10.475, -28.25)]),
+    # cristal (07/11): TXC 7A 5032 de 2 pads ao lado dos pinos 7/8; trilhas curtas pelo roteador
     # feixe dos sensores (como o octogono do EVA-RT): S0/S1 pela direita do furo da
     # ventoinha, S2/S3/C0 pela esquerda, cruzando a frente ate a barra J2
     ('S1_A1', 1, 0.25, [(1.039, -18.001), (1.481, -17.559), (9.6, -9.44), (9.6, 13.0),
@@ -576,7 +572,8 @@ def importar():
                              'status': 'nova', 'finalizador': True})
             finished.append(net)
             print('finalizador: ligado', net, len(segs), 'trechos,', len(vs), 'vias', flush=True)
-    widths = {n: [0.5, 0.6, 0.8, 1.0, 1.2] for n in POWER}
+    widths = {n: [0.5, 0.6, 0.8, 1.0, 1.2, 1.5] for n in POWER}
+    widths['VBAT'] = [0.5, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0]   # 07/11: tronco de bateria o mais largo que couber
     widths['+5V'] = [0.6, 0.5]
     tracks = widen(pos, tracks, vias, widths)
     pours = ground_pours(pos, tracks, vias)

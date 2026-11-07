@@ -55,7 +55,7 @@ part('Regulator_Linear', 'LM78M05_TO252', 'U5', '78M05', g(32), g(13), 0, 'TO-25
      ref_off=(-2.54, -6.35), val_off=(5.08, 6.35))
 S.conn('U5', '1', 'VBAT', bend='up'); S.conn('U5', '2', 'GND'); S.conn('U5', '3', '+5V', bend='up')
 C('C4', '100nF', g(39), g(14)); S.conn('C4', '1', '+5V'); S.conn('C4', '2', 'GND')
-C('C5', '47uF', g(44), g(14), pkg='tantalo 10 V, 3216 (caso A)', pol=True); S.conn('C5', '1', '+5V'); S.conn('C5', '2', 'GND')
+C('C5', '47uF', g(44), g(14), pkg='ceramico X5R >= 10 V, 1210', note='07/11: 1210 (achado pelo Erick); o tantalo 3216 do EVA-RT tambem serve com footprint 3216', pol=True); S.conn('C5', '1', '+5V'); S.conn('C5', '2', 'GND')
 R('R10', '1k', g(49), g(12)); S.conn('R10', '1', '+5V')
 part('Device', 'LED', 'LED5', 'verde', g(49), g(15) + 1.27, 90, '0603', 'indica 5 V presente', ref_off=(2.54, -1.27), val_off=(2.54, 1.27))
 S.link('R10', '2', 'LED5', '2'); S.conn('LED5', '1', 'GND')
@@ -126,8 +126,9 @@ x4, y4, _, _ = S.pinpos('U1', '4'); x18, y18, _, _ = S.pinpos('U1', '18')
 S.wire(x4, y4, x4, y4 - 2.54); S.wire(x18, y18, x18, y18 - 2.54); S.wire(x4, y4 - 2.54, x18, y18 - 2.54)
 S.power('+5V', x4, y4 - 2.54); S.intent += [('U1', '4', '+5V'), ('U1', '18', '+5V')]
 # cristal
-part('Device', 'Crystal', 'X1', '16MHz', g(102), g(14), 0, 'HC-49/S SMD ou 3225 (o que vier do doador)',
-     'ou o ressonador CSTCE16M0V13 do EVA-RT (3 pinos), sem C11/C12', ref_off=(-2.54, -3.81), val_off=(2.54, -3.81))
+part('Device', 'Crystal', 'X1', '16MHz', g(102), g(14), 0, 'cristal SMD 5032 de 2 pads (TXC 7A-16.000MAAJ-T)',
+     '16 MHz, CL 18 pF, ESR 50 ohm, +-30 ppm, 1,2 mm de altura (fica sob a bateria)', lcsc='C2450102',
+     ref_off=(-2.54, -3.81), val_off=(2.54, -3.81))
 S.conn('X1', '1', 'XTAL1'); S.conn('X1', '2', 'XTAL2')
 _X, _Y = g(102), g(14)
 C('C11', '22pF', _X - 6.35, _Y + 6.35); S.conn('C11', '2', 'GND')
@@ -139,7 +140,7 @@ S.intent += [('C11', '1', 'XTAL1'), ('C12', '1', 'XTAL2')]
 C('C9', '100nF', g(60), g(20), note='junto aos pinos VCC'); S.conn('C9', '1', '+5V'); S.conn('C9', '2', 'GND')
 C('C10', '100nF', g(65), g(20), note='AREF (referencia = AVCC no firmware)'); S.conn('C10', '1', 'AREF', bend='right'); S.conn('C10', '2', 'GND')
 R('R3', '10k', g(60), g(36), note='EVA-RT usava 1k; 10k com reset automatico por DTR'); S.conn('R3', '1', '+5V'); S.conn('R3', '2', 'RESET', bend='right')
-part('Switch', 'SW_Push', 'SW0', 'RESET', g(66), g(40), 90, 'chave tactil SMD 3x6, 2 terminais (TC-3610)', 'equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788', lcsc='C2845294',
+part('Switch', 'SW_Push', 'SW0', 'RESET', g(66), g(40), 90, 'chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)', 'terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4', lcsc='C19271064',
      ref_off=(5.08, -1.27), val_off=(5.08, 1.27))
 S.conn('SW0', '2', 'RESET', bend='right'); S.conn('SW0', '1', 'GND')
 note(['Pinos iguais ao EVA-RT 1.2.2: motores D3-D6, ventoinha D10,',
@@ -206,7 +207,7 @@ note(['Q1 do lado do GND, PWM no D10 (Timer1), como no EVA-RT.',
 # ---------------------------------------------------------------- 7 INTERFACE
 frame(146, 164, 276, 224, '7 - INTERFACE (botoes e LEDs da placa)')
 for i, (sw, net, lbl) in enumerate([('SW1', 'B1_D11', 'BOTAO 1'), ('SW2', 'B2_D12', 'BOTAO 2')]):
-    part('Switch', 'SW_Push', sw, lbl, g(66), g(71 + 6 * i), 0, 'chave tactil SMD 3x6, 2 terminais (TC-3610)', 'equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788', lcsc='C2845294',
+    part('Switch', 'SW_Push', sw, lbl, g(66), g(71 + 6 * i), 0, 'chave tactil SMD 3,7 x 6,1, 2 terminais (Jianfu TVBM17-025CF-R)', 'terminais com 8,0 de ponta a ponta; pads encurtados (8,6 no total) para caber ao lado do J4', lcsc='C19271064',
          ref_off=(-2.54, -2.54), val_off=(-2.54, 3.81))
     S.conn(sw, '1', net); S.conn(sw, '2', 'GND', bend='down')
 R('R5', '1k', g(84), g(71), r=90); S.conn('R5', '1', 'LEDC_D13')

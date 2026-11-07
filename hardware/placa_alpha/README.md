@@ -1,9 +1,9 @@
 # Placa base — versão alpha (06/11/2026)
 
-**Revisão de 07/11:** traseira reta em y = −33 (pés do EVA-RT estendidos), XT30 em pé por dentro do
-suporte esquerdo, a 6,4 mm do motor, e botões SW0–SW2 trocados pela chave 3 × 6 TC-3610 (C2845294 na JLC),
-com o J4 2,5 mm para a esquerda. Braços dos sensores de marca com 5,0 mm de altura (y 2,0–7,0), como
-as asas do EVA-RT. Roteamento refeito. Tudo (KiCad + este pacote + 3D) também em
+**Revisão de 07/11 (noite) — ver a seção "Fluxo no EasyEDA" abaixo.** Traseira reta em y = −33, XT30 em pé
+por dentro do suporte esquerdo (6,4 mm do motor), braços dos sensores de marca com **6,1 mm** de altura
+(y 1,45–7,55), chaves **Jianfu TVBM17-025CF-R** (C19271064) com pads encurtados, cristal **TXC 7A 5032**
+(C2450102) em diagonal junto do ATmega, C5 em **1210**. Tudo (KiCad + este pacote + 3D) também em
 `hardware/placa_base_alpha.zip`.
 
 Prévia completa da placa base para fazer o layout no EasyEDA Pro. Origem no centro da
@@ -18,6 +18,47 @@ ventoinha, +y = frente, mm. Detalhes, folgas e verificação em `RELATORIO_alpha
 | `guia_alpha.dxf` | cobre, planos, pads, vias, corpos e referências, uma camada DXF para cada coisa |
 | `trilhas_fixas_alpha.csv` | o cobre desenhado à mão (pontos exatos), para reproduzir primeiro |
 | `RELATORIO_alpha.md` | resultado da verificação, larguras, mudanças e o que conferir |
+| `contorno_furos_easyeda.dxf` | **contorno + furos + rasgos numa camada só**, para importar direto na Board Outline |
+| `furos.csv` | furos e rasgos com coordenadas (para pôr como furo sem metalização, se preferir) |
+| `posicoes_easyeda.csv` | **posição de cada peça por dois pinos** (numeração do esquemático), face e centro |
+
+## Fluxo no EasyEDA a partir do seu esquemático (07/11)
+
+1. **Origem e contorno.** Importe `contorno_furos_easyeda.dxf` na camada **Board Outline**. As formas fechadas
+   de dentro (furos e rasgos) viram recorte; no 3D do EasyEDA elas aparecem como buraco. Confira três pontos: o
+   furo da ventoinha centrado em (0; 0), os furos da carcaça em (±15,556; ±15,556) e o furo traseiro do suporte
+   do motor direito em (35,25; −26,55). Se este aparecer em y = **+**26,55, o EasyEDA está com o y invertido:
+   use −y nos CSVs.
+2. **Posições** (`posicoes_easyeda.csv`). Para cada peça: coloque na face indicada (`cima` ou `baixo`), mova
+   até o **pino A** ficar em (A_x; A_y) e gire até o **pino B** cair em (B_x; B_y). Os pinos usam a numeração
+   do esquemático, então isso vale para qualquer footprint (LCSC ou nosso), e as coordenadas são sempre
+   vistas de cima, também para as peças da face de baixo. Face de baixo: D1, J3, J5, R6, R7, R16, R17, R18,
+   R20, R21, R30, R31, S0, S1. A coluna `rot_previa` é a rotação dos footprints desta prévia (só referência).
+3. **Footprints a ajustar no seu projeto:**
+   - **SW0–SW2 (TVBM17):** pads de **1,2 × 1,2 mm com centro em ±3,7 mm** (de 3,1 a 4,3; 8,6 mm no total). O
+     padrão do fabricante (9,5 mm) não cabe ao lado do J4; o terminal (8,0 mm de ponta a ponta) assenta
+     inteiro no pad encurtado.
+   - **X1 (TXC 7A, 5032 de 2 pads):** pads de 1,7 × 2,4 mm com centro em ±1,85 mm (datasheet TXC 7A).
+   - **C5:** footprint C1210.
+4. **Regras de projeto:** folga 0,2 mm; cobre–borda 0,3 mm; sinais 0,25 mm; vias 0,6/0,3 (sinais) e 0,8/0,4
+   (potência; 2–3 em paralelo ao trocar de face).
+
+   | Rede | Largura | Observação |
+   |---|---|---|
+   | VBAT | **2,0 mm** ou polígono | afina para 0,4 mm só no último milímetro do pino 11 do DRV8874 |
+   | OUT_A1/A2/B1/B2 (motores) | 1,5 mm | até 3 A cada (limite do DRV8874); 0,4 mm só na saída dos pinos |
+   | VBAT até o M3 e OUT_C (ventoinha) | ≥ 1,2 mm | ~1–2 A contínuos |
+   | +5V | 0,6–0,8 mm | ≤ 0,3 A |
+   | GND | plano nas duas faces | vias de costura a cada ~5 mm |
+   | sinais | 0,25 mm | |
+
+   Com cobre de 1 oz, 2,0 mm aguentam ~5 A contínuos com +20 °C, e 1,5 mm aguentam ~4 A.
+5. **Roteamento:** primeiro **à mão a potência** (VBAT, motores, ventoinha), seguindo `placa_alpha.jpg`
+   (importe o `guia_alpha.dxf` numa camada Document como gabarito). Depois o **autorouter só nos sinais**,
+   revisando a região do ATmega e do cristal (trilhas do cristal curtas, sem via). Por fim, plano de GND nas
+   duas faces e DRC.
+6. **DRV8874:** pad térmico com as vias pequenas do footprint, soldado com soprador (sem furo grande).
+
 | `../seguidor_base/seguidor_base.kicad_pcb` | **a mesma placa em KiCad 7**, ligada ao esquemático (ver abaixo) |
 
 ## Placa em KiCad (`hardware/seguidor_base/`)
@@ -98,7 +139,7 @@ RX, monte LED7/R2, troque o R18 por 0 Ω e tire o módulo antes de gravar.
 - Cristal X1: a prévia usa 3225; HC-49/S não cabe sob a bateria.
 - Esquemático: já regerado (J1 = XT30U-M C99101, J3, Bluetooth e R18 = 4,7k na BOM; campo
   Footprint apontando para `seguidor_alpha`; botões = TC-3610 / C2845294).
-- Botões 3 × 6: a vareta da barra passa por cima de x ≈ 43–47 na frente direita; conferir no conjunto real
-  que a presilha da vareta não encosta na SW2 (0,25 mm da área estimada).
+- Botões 3 × 6 (TVBM17): a vareta da barra passa por cima de x ≈ 43–47 na frente direita; conferir no
+  conjunto real que a presilha da vareta não encosta na SW2 (0,25 mm da área estimada).
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.

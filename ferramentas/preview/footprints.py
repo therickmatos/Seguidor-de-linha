@@ -114,6 +114,12 @@ FOOTPRINTS["C_TANT_3216_A"] = _fp(
     "(EasyEDA cap-smd_l3.2-w1.6-rd, e328, mesma peca do C5). Pino 1 = + (-x). "
     "Corpo 3,2 x 1,6 e altura 1,6 (padrao caso A).")
 
+# 07/11: C5 = 47 uF ceramico 1210 (o Erick achou em 1210). KiCad C_1210_3225Metric: pads 1,15 x 2,7 em +-1,475.
+FOOTPRINTS["C1210"] = _fp(
+    [_pad("1", -1.475, 0, 1.15, 2.7), _pad("2", 1.475, 0, 1.15, 2.7)],
+    (3.2, 2.5), 2.5, False,
+    "Capacitor ceramico 1210 (C5, 47 uF). Pads 1,15 x 2,7 em +-1,475 (KiCad C_1210_3225Metric). Corpo 3,2 x 2,5.")
+
 # ---------------------------------------------------------------- semicondutores
 FOOTPRINTS["SOD123"] = _fp(
     [_pad("1", -1.65, 0, 0.9, 1.2), _pad("2", 1.65, 0, 0.9, 1.2)],
@@ -188,6 +194,13 @@ FOOTPRINTS["CRISTAL_HC49S_SMD"] = _fp(
     "Crystal_SMD_HC49-SD: pads 4,5 x 2,0 em +-4,25; corpo 11,4 x 4,7 (F.Fab). Pino 1 = XTAL1, "
     "pino 2 = XTAL2 (sem pinos de GND). Altura 3,5 estimada. Default de X1: por ser o maior, "
     "serve de caso conservador para colisao.")
+
+# 07/11: cristal TXC 7A-16.000MAAJ-T (16 MHz, CL 18 pF, ESR 50, +-30 ppm; LCSC C2450102), 5,0 x 3,2 x 1,2,
+# 2 pads. Padrao sugerido no datasheet TXC 7A: pads 1,7 x 2,4 com 2,0 entre eles (centros em +-1,85).
+FOOTPRINTS["XTAL_TXC_7A_5032_2P"] = _fp(
+    [_pad("1", -1.85, 0, 1.7, 2.4), _pad("2", 1.85, 0, 1.7, 2.4)],
+    (5.0, 3.2), 1.2, False,
+    "Cristal TXC 7A 5032 de 2 pads (X1). Pads 1,7 x 2,4 em +-1,85 (datasheet TXC 7A). Pad 1 = XTAL1, pad 2 = XTAL2.")
 
 FOOTPRINTS["CRISTAL_3225_4P"] = _fp(
     [_pad("1", -1.1, -0.85, 1.4, 1.2, rede="1"),
@@ -369,19 +382,22 @@ FOOTPRINTS["SW_B3U_SMD_2P_RESET"] = _fp(
     "Mesmo B3U-1000P, com pad fisico 1 = RESET (SW0.2 no esquematico) "
     "e pad 2 = GND (SW0.1); reproduz as redes do EVA-RT.")
 
-# Chave tactil SMD 3 x 6 de 2 terminais (07/11, escolha do Erick): TC-3610 (comprada; sem datasheet),
+# Chave tactil SMD 3 x 6 de 2 terminais. 07/11 (noite): o Erick escolheu a Jianfu TVBM17-025CF-R (LCSC C19271064):
+# corpo 6,1 x 3,7 x 2,5, terminais de 0,6 com 8,0 de ponta a ponta; padrao do fabricante = pads 1,0 x 1,75 a 9,5 no
+# total, que nao cabe ao lado do J4. Pads encurtados abaixo (8,6 no total), com o terminal inteiro sobre o pad.
+# Escolha anterior: TC-3610 (comprada; sem datasheet),
 # equivalente JLC HCTL TC-3601L-2.5-260G (C2845294): corpo 6,0 x 3,6 x 2,5, terminais gull-wing com 8,0 de
 # ponta a ponta, pads recomendados de 6,2 a 8,4 (1,0 de largura). Aqui pads de 1,2 x 1,2 de |x| = 3,1 a 4,3
 # (um pouco maiores, para soldar a mao). A HYP 1TS002B (C255788, 4,3 mm de altura) tambem solda neles.
 FOOTPRINTS["SW_TACT_3x6_SMD_2P"] = _fp(
     [_pad("1", -3.7, 0, 1.2, 1.2), _pad("2", 3.7, 0, 1.2, 1.2)],
-    (6.0, 3.6), 2.5, False,
-    "Chave tactil SMD 3 x 6 de 2 terminais (TC-3610; JLC: TC-3601L-2.5-260G, C2845294). Corpo 6,0 x 3,6 x 2,5; "
+    (6.1, 3.7), 2.5, False,
+    "Chave tactil SMD 3 x 6 de 2 terminais (Jianfu TVBM17-025CF-R, C19271064). Corpo 6,1 x 3,7 x 2,5; "
     "pads 1,2 x 1,2 em x = +-3,7 (de 3,1 a 4,3; recomendado pelo fabricante: 6,2 a 8,4).")
 
 FOOTPRINTS["SW_TACT_3x6_SMD_2P_RESET"] = _fp(
     [_pad("1", -3.7, 0, 1.2, 1.2, rede="2"), _pad("2", 3.7, 0, 1.2, 1.2, rede="1")],
-    (6.0, 3.6), 2.5, False,
+    (6.1, 3.7), 2.5, False,
     "Mesma chave 3 x 6, com pad fisico 1 = RESET (SW0.2 no esquematico) e pad 2 = GND (SW0.1).")
 
 # ---------------------------------------------------------------- sensores de marca
@@ -407,7 +423,7 @@ for _r in ["C3", "C4", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "C14"
 REF_FOOTPRINT.update({
     "C1": "C_RAD_D6.3_P2.5",
     "C2": "C_RAD_D6.3_P2.5",
-    "C5": "C_TANT_3216_A",
+    "C5": "C1210",
     "D1": "SOD123",
     "Q1": "SOT23_AO3400A",
     "LED1": "LED0603", "LED2": "LED0603", "LED4": "LED0603",
@@ -416,7 +432,7 @@ REF_FOOTPRINT.update({
     "U2": "HTSSOP16_PWP_DRV8874",
     "U3": "HTSSOP16_PWP_DRV8874",
     "U5": "DPAK_TO252_3",
-    "X1": "CRISTAL_3225_4P",
+    "X1": "XTAL_TXC_7A_5032_2P",
     "J1": "XT30_VERTICAL_M_PROPOSTA",
     "J2": "HDR_1x08_P2.54",
     "J3": "HDR_RA_1x05_P2.54",

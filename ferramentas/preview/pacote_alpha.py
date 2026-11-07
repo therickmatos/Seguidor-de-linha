@@ -110,6 +110,8 @@ def main():
     trilhas_fixas(OUT / 'trilhas_fixas_alpha.csv')
     relatorio_v2.main()
     shutil.copy(M.OUTPUT / 'RELATORIO_v2.md', OUT / 'RELATORIO_alpha.md')
+    import kit_easyeda          # contorno + furos numa camada, furos.csv e posicoes por dois pinos
+    kit_easyeda.main()
     print('pacote em', OUT)
 
 

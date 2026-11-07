@@ -35,10 +35,10 @@ def _pe_traseiro(lado):
     pts = [(40.0, -28.4)] + arco + [(24.0, -33.0), (21.0, -30.0), (20.25, -30.0), (20.25, -28.4)]
     return Polygon([(lado * x, y) for x, y in pts]).buffer(0)
 
-# Bracos (07/11): altura de 5,0 mm (y 2,0..7,0), como as asas de 14 x 5 mm do EVA-RT, no lugar dos 7,4 mm
+# Bracos (07/11): altura de 6,1 mm (y 1,45..7,55; o Erick pediu 6,1 depois de testar 5,0 = asas do EVA-RT), no lugar dos 7,4 mm
 # do contorno B (y 0,8..8,2). Mesma ponta em |x| = 74,1 com cantos de R1,5, QRE de marca em (+-69,5; 4,5)
 # e raiz arredondada (R1) na juncao com o ombro em |x| = 50.
-BRACO_Y0, BRACO_Y1, BRACO_PONTA, BRACO_R = 2.0, 7.0, 74.1, 1.5
+BRACO_Y0, BRACO_Y1, BRACO_PONTA, BRACO_R = 1.45, 7.55, 74.1, 1.5
 
 
 def _braco(lado):

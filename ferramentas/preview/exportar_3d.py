@@ -107,7 +107,7 @@ def main(cobre=True):
         if ref == 'J1':
             return '#e9b51c'
         if ref.startswith('SW'):
-            return '#2c2c30'
+            return '#b9bec6'          # capa metalica da chave 3 x 6
         return '#17171a'
 
     comps = []
@@ -218,7 +218,8 @@ def main(cobre=True):
                        f'({n(j1["x"])}; {n(j1["y"])}), eixo longo em y, pino 1 (+) para a frente: corpo a '
                        f'{n(fj["corpo_suporte"])} mm do suporte, {n(fj["corpo_motor"])} mm do motor, '
                        f'{n(fj["corpo_bateria"])} mm da bateria e {n(fj["corpo_engrenagem"])} mm do plano da engrenagem '
-                       '64T (|x| 40…42, estimada). Traseira do EVA-RT. O plugue fêmea encaixado e os fios são '
+                       '64T (|x| 40…42, estimada). Traseira com os pés do EVA-RT estendidos em linha reta até y −33; chaves 3 × 6 '
+                       '(TC-3610) em SW0–SW2. O plugue fêmea encaixado e os fios são '
                        'estimados (par com ~20 mm). Use a vista “XT30 (J1)”.'),
         'placa': ('Só posições: o roteamento ainda vai ser refeito para o novo J1 e o novo contorno, então a máscara '
                   'aparece sem trilhas; pads, furos e referências nas duas faces. A face de baixo é vista como está na '

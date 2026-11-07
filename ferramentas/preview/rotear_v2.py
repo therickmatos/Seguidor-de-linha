@@ -63,9 +63,9 @@ def via_for(net):
 # os sinais para a barra de sensores. Com o XT30 em pe em x = -27, o pino + (J1.1, furo
 # passante) fica sobre o tronco de baixo e liga direto o VM do U2 por cima (C6/C13).
 PRE_TRACKS = [
-    ('VBAT', 2, 1.2, [(-27.0, -21.2), (-27.0, 3.31), (-22.0, 3.31)]),
+    ('VBAT', 2, 1.2, [(-27.0, -25.3), (-27.0, 3.31), (-22.0, 3.31)]),
     ('VBAT', 2, 1.2, [(-22.0, 3.31), (-14.31, 11.0), (9.0, 11.0), (17.0, 3.0), (17.0, 0.81), (22.0, 0.81)]),
-    ('VBAT', 1, 1.0, [(-27.0, -21.2), (-24.5, -18.7), (-24.5, -17.9)]),
+    ('VBAT', 1, 1.0, [(-27.0, -25.3), (-27.0, -20.4), (-24.5, -17.9)]),
     ('VBAT', 1, 1.0, [(22.0, 0.81), (24.49, -1.68), (24.49, -7.3)]),
     # U3 (rot 90): potencia na fileira de cima; OUT2 sai pelo corredor entre os pinos e
     # C15/C7, VM sobe ate C15.1, OUT1 sai pela direita e contorna o furo do suporte do motor
@@ -80,8 +80,8 @@ PRE_TRACKS = [
     ('OUT_B1', 1, 1.0, [(25.3, -15.225), (27.0, -15.225), (39.2, -3.025), (39.2, 2.54), (36.58, 2.54)]),
     # Bluetooth: TXD do HC-05 (J4.3) ao R18.2 pela face de baixo, no corredor entre a coluna
     # do J4 e os resistores R16-R18, contornando o R18 por cima (o autorroteador dava 6 vias)
-    ('BT_TXD', 2, 0.25, [(32.5, 5.78), (31.05, 7.23), (31.05, 12.95), (30.8, 13.2), (28.625, 13.2),
-                         (28.375, 12.95), (28.375, 12.2)]),
+    ('BT_TXD', 2, 0.25, [(30.0, 5.78), (28.55, 7.23), (28.55, 12.95), (28.3, 13.2), (26.125, 13.2),
+                         (25.875, 12.95), (25.875, 12.2)]),
     # cristal: trilhas curtas desenhadas a mao (pino 7 -> X1.1 -> C11; pino 8 -> X1.3 -> C12)
     ('XTAL1', 1, 0.25, [(-1.604, -27.433), (-2.046, -27.875), (-5.6, -27.875), (-5.6, -26.55),
                         (-6.7, -26.55), (-6.7, -25.125)]),
@@ -371,7 +371,8 @@ def clearance_issues(objs, board):
 # ---------------------------------------------------------------- alargar potencia
 def widen(positions, tracks, vias, nets_widths):
     """Alarga cada segmento das redes indicadas ate a maior largura que mantem as folgas."""
-    board_in = M.BOARD.buffer(-EDGE)
+    # 0,02 mm de margem: o KiCad mede o furo como poligono e acusaria 0,29998 < 0,3
+    board_in = M.BOARD.buffer(-(EDGE + 0.02))
     out = []
     for t in tracks:
         if t['net'] not in nets_widths:

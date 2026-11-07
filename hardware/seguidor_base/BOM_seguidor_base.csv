@@ -34,9 +34,9 @@
 2;R20 R21;220;0603;;sim;igual;
 2;R30 R31;47k;0603;;sim;igual;
 2;S0 S1;QRE1113GR;SMD 4 pinos;;sim;igual;datasheet: 1 = anodo, 2 = catodo, 3 = coletor, 4 = emissor
-1;SW0;RESET;botao tatil 2 pinos (furo) ou B3U-1000P;;sim;igual;
-1;SW1;BOTAO 1;botao tatil 2 pinos (furo) ou B3U-1000P;;sim;igual;
-1;SW2;BOTAO 2;botao tatil 2 pinos (furo) ou B3U-1000P;;sim;igual;
+1;SW0;RESET;chave tactil SMD 3x6, 2 terminais (TC-3610);C2845294;sim;igual;"equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788"
+1;SW1;BOTAO 1;chave tactil SMD 3x6, 2 terminais (TC-3610);C2845294;sim;igual;"equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788"
+1;SW2;BOTAO 2;chave tactil SMD 3x6, 2 terminais (TC-3610);C2845294;sim;igual;"equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788"
 1;U1;ATmega328P-AU;TQFP-32;C14877;sim;igual;do Nano/Uno doador (com bootloader) ou novo + bootloader pelo ICSP
 2;U2 U3;DRV8874PWPR;HTSSOP-16 (PWP), pad termico com vias;C1855818;sim;"IFX_A1 (IFX9201); IFX_B1 (IFX9201)";"esq.; dir."
 1;U5;78M05;TO-252 (DPAK);C111265;sim;igual;

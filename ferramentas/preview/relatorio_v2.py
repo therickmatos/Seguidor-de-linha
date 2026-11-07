@@ -108,10 +108,15 @@ def main():
     w(f"- **XT30 (J1) em pé em ({nn(f['xy'][0])}; {nn(f['xy'][1])})**, eixo longo em y, por dentro do suporte esquerdo, "
       f"com o pino 1 (+) para a frente: corpo a {nn(f['corpo_suporte'])} mm do suporte, {nn(f['corpo_motor'])} mm do "
       f"motor, {nn(f['corpo_bateria'])} mm da bateria e {nn(f['corpo_engrenagem'])} mm do plano da engrenagem da roda; "
-      f"pads a {nn(f['cobre_borda'])} mm da borda. Traseira do EVA-RT (contorno B original, sem os lóbulos até y = −35 "
-      'da primeira alpha). A peça é a XT30U-M (C99101, macho de cabo): os copos vão nos furos. Medir o diâmetro dos '
+      f"pads a {nn(f['cobre_borda'])} mm da borda. Traseira: pés do EVA-RT estendidos em linha reta até y = −33 "
+      '(|x| 24…40), com chanfro de 45° até o centro em y = −30. A peça é a XT30U-M (C99101, macho de cabo): os copos vão nos furos. Medir o diâmetro dos '
       'copos (furo Ø2,5 / pad Ø3,9 estimados) e cortar rente o que sobrar embaixo (~2,5 mm até o chão). Prender o '
       'cabo da bateria baixo e para trás, longe da ventoinha.')
+    w('- **Botões SW0–SW2: chave táctil SMD 3 × 6 de 2 terminais** (TC-3610; na JLC, TC-3601L-2.5-260G, C2845294): '
+      'corpo 6,0 × 3,6 × 2,5 mm, pads 1,2 × 1,2 de |x| = 3,1 a 4,3. SW0 (reset) no pé direito, 0,7 mm atrás do suporte '
+      'do motor; SW1/SW2 entre o J4 e a presilha da vareta da barra (o J4 foi 2,5 mm para a esquerda, x = 30,0, e os '
+      'pads da ventoinha M3 foram para trás dele, girados 90°). A vareta passa por cima da faixa x ≈ 43–47: nada de '
+      'componente ali.')
     w('- **J3 deitado embaixo:** o plástico da barra fica ~1,6 mm abaixo da face de baixo, atrás da borda '
       '(y < −30). Com pneus de Ø≈22 a face de baixo fica ~2,5 mm do chão; conferir a folga real. Alternativa: '
       'soldar a barra só para gravar, ou apoiar a barra nos pads na hora de gravar (como os pads do EVA-RT permitem).')

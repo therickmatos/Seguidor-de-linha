@@ -23,11 +23,19 @@ ROOT = HERE.parent.parent
 OUTPUT = ROOT / 'hardware' / 'preview'
 BOARD_DATA = json.loads((HERE / 'geometria.json').read_text(encoding='utf8'))
 OUTLINE_ORIGINAL = Polygon(BOARD_DATA['contorno'])
-# Traseira: a do contorno B original, que e a do EVA-RT (pes em y = -32 para |x| 33..40, chanfro ate
-# o degrau em y = -28,5 e centro em y = -30). A alpha de 06/11 tinha alongado os dois cantos ate
-# y = -35 para o XT30 deitado no canto esquerdo; desde a noite de 06/11 o XT30 fica em pe por dentro
-# do suporte esquerdo e os lobulos sairam (decisao do Erick). O contorno nao passa de |x| = 40.
-OUTLINE = OUTLINE_ORIGINAL
+# Traseira (07/11): pes do EVA-RT estendidos em linha reta ate y = -33, dos dois lados, de |x| = 40 a
+# |x| = 24, com chanfro de 45 graus ate o centro em y = -30 (|x| = 21). Assim o XT30 em pe recua para
+# longe do motor e a chave de reset 3 x 6 (SW0) cabe no pe direito. A alpha de 06/11 tinha alongado os
+# cantos ate y = -35 (XT30 deitado) e depois voltado ao contorno B original (degrau em y = -28,5).
+# O contorno nao passa de |x| = 40 (engrenagem da roda em |x| 40..42).
+def _pe_traseiro(lado):
+    import math
+    r, cx, cy = 1.0, 40.0 - 1.0, -33.0 + 1.0
+    arco = [(cx + r * math.cos(math.radians(a)), cy + r * math.sin(math.radians(a))) for a in range(0, -91, -10)]
+    pts = [(40.0, -28.4)] + arco + [(24.0, -33.0), (21.0, -30.0), (20.25, -30.0), (20.25, -28.4)]
+    return Polygon([(lado * x, y) for x, y in pts]).buffer(0)
+
+OUTLINE = unary_union([OUTLINE_ORIGINAL, _pe_traseiro(1), _pe_traseiro(-1)]).buffer(0)
 
 def hole_shape(h):
     if h['tipo'] == 'furo':

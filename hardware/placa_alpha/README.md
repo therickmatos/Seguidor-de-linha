@@ -1,7 +1,8 @@
 # Placa base — versão alpha (06/11/2026)
 
-**Revisão da noite de 06/11:** traseira do EVA-RT (sem os lóbulos até y = −35) e XT30 em pé por
-dentro do suporte esquerdo, com o roteamento refeito. Tudo (KiCad + este pacote + 3D) também em
+**Revisão de 07/11:** traseira reta em y = −33 (pés do EVA-RT estendidos), XT30 em pé por dentro do
+suporte esquerdo, a 6,4 mm do motor, e botões SW0–SW2 trocados pela chave 3 × 6 TC-3610 (C2845294 na JLC),
+com o J4 2,5 mm para a esquerda. Roteamento refeito. Tudo (KiCad + este pacote + 3D) também em
 `hardware/placa_base_alpha.zip`.
 
 Prévia completa da placa base para fazer o layout no EasyEDA Pro. Origem no centro da
@@ -87,13 +88,14 @@ RX, monte LED7/R2, troque o R18 por 0 Ω e tire o módulo antes de gravar.
 - XT30 (J1) = **XT30U-M (C99101, macho de cabo)**, em pé por dentro do suporte esquerdo, com os
   copos soldados nos furos: medir o diâmetro dos copos (furos Ø2,5 e pads Ø3,9 são estimados) e
   cortar rente o que sobrar embaixo (~2,5 mm até o chão). Conferir a folga de 0,9 mm até a face
-  interna do suporte. Versão de placa, se preferir: XT30UPB-M (C428721).
+  interna do suporte (até o motor ficam 6,4 mm). Versão de placa, se preferir: XT30UPB-M (C428721).
 - Engrenagem da roda: a prévia supõe a engrenagem encostada no suporte, em |x| = 40…42; o contorno
   não passa de |x| = 40 e o XT30 fica a 10,4 mm desse plano.
 - J3 deitado: folga da barra até o chão (ver relatório).
 - Cristal X1: a prévia usa 3225; HC-49/S não cabe sob a bateria.
 - Esquemático: já regerado (J1 = XT30U-M C99101, J3, Bluetooth e R18 = 4,7k na BOM; campo
-  Footprint apontando para `seguidor_alpha`). Falta decidir os botões (B3U ou 6 × 6 THT, ver
-  `hardware/preview/botoes_6x6.jpg`).
+  Footprint apontando para `seguidor_alpha`; botões = TC-3610 / C2845294).
+- Botões 3 × 6: a vareta da barra passa por cima de x ≈ 43–47 na frente direita; conferir no conjunto real
+  que a presilha da vareta não encosta na SW2 (0,25 mm da área estimada).
 
 Baseado no EVA-RT © EXOTIC TEAM MX — AGPL-3.0.

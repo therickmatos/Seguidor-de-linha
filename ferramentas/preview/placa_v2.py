@@ -47,17 +47,17 @@ T, B = 'TOP', 'BOTTOM'
 # ref: (x, y, rot, face, motivo)
 POS = {
     # ---- mecanica e conectores (fixos)
-    'J1': (-27.0, -23.7, 270, T, 'XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm); pino 1 (+, lado reto) para a frente, junto do VM do U2'),
+    'J1': (-27.0, -27.8, 270, T, 'XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm), recuado sobre a traseira reta; pino 1 (+, lado reto) para a frente'),
     'J2': (0.0, 22.74, 0, T, 'barra de sensores, centro da frente'),
     'J3': (0.0, -28.575, 0, B, 'gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)'),
-    'J4': (32.5, 7.05, 0, T, 'Bluetooth (femea 1x6), frente direita'),
+    'J4': (30.0, 7.05, 0, T, 'Bluetooth (femea 1x6), frente direita; 2,5 mm a esquerda da posicao do EVA-RT para caber as chaves 3x6'),
     'J5': (35.244, -10.901, 0, B, 'ICSP: pads do EVA-RT'),
     'M1': (-36.58, 1.27, 0, T, 'motor esq.: pads do EVA-RT'),
     'M2': (36.58, 1.27, 0, T, 'motor dir.: pads do EVA-RT'),
-    'M3': (29.72, 3.05, 0, T, 'ventoinha: pads do EVA-RT'),
-    'SW0': (36.35, -30.25, 180, T, 'reset, B3U na posicao do EVA-RT'),
-    'SW1': (37.34, 5.84, 0, T, 'B3U na posicao do EVA-RT'),
-    'SW2': (37.34, 11.30, 0, T, 'B3U na posicao do EVA-RT'),
+    'M3': (27.6, -2.0, 90, T, 'ventoinha: pads do EVA-RT girados 90 graus, logo atras do J4 (sairam do lugar do J4)'),
+    'SW0': (34.5, -31.0, 0, T, 'reset, chave 3x6 SMD (TC-3610 / C2845294) no pe direito, 0,7 mm atras do suporte do motor'),
+    'SW1': (35.95, 5.84, 0, T, 'botao 1, chave 3x6 SMD (TC-3610), entre o J4 e a presilha da vareta'),
+    'SW2': (35.95, 11.3, 0, T, 'botao 2, chave 3x6 SMD (TC-3610), entre o J4 e a presilha da vareta'),
     # ---- bracos (sensores de marca)
     'S0': (-69.5, 4.5, 180, B, 'QRE esq. (curva, A5)'),
     'S1': (69.5, 4.5, 0, B, 'QRE dir. (partida/chegada, A6)'),
@@ -86,9 +86,9 @@ POS = {
     'C2': (22.0, 2.06, 90, T, '220 uF VBAT, EVA-RT'),
     'C8': (26.67, 2.79, -90, T, 'EVA-RT'),
     'D1': (26.5, 3.05, -90, B, 'diodo da ventoinha, embaixo dos pads do motor'),
-    'R16': (29.2, 8.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
-    'R17': (29.2, 10.2, 0, B, 'divisor do Bluetooth, embaixo do J4'),
-    'R18': (29.2, 12.2, 0, B, '4,7k entre TXD do HC-05 e RX: grava com o modulo encaixado'),
+    'R16': (26.7, 8.2, 0, B, 'divisor do Bluetooth, embaixo, ao lado do J4'),
+    'R17': (26.7, 10.2, 0, B, 'divisor do Bluetooth, embaixo, ao lado do J4'),
+    'R18': (26.7, 12.2, 0, B, '4,7k entre TXD do HC-05 e RX: grava com o modulo encaixado'),
     # ---- driver esquerdo: sinais (pinos 1-8) em cima, potencia (9-16) embaixo
     'U2': (-22.1, -12.45, -90, T, 'DRV8874 esq. no lugar do IFX do EVA-RT'),
     'C6': (-25.9, -17.6, 180, T, 'VM-GND junto a VM/PGND'),
@@ -197,7 +197,7 @@ def check(positions):
             if g.intersects(CARCACA):
                 problems.append(('pe da carcaca', ref))
             for gb in GEARBOX:
-                if g.intersects(gb) and ref not in ('SW0',):
+                if g.intersects(gb):
                     problems.append(('suporte do motor', ref))
             for pr in PRESILHAS:
                 if g.intersects(pr):

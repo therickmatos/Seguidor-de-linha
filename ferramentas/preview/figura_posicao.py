@@ -91,13 +91,13 @@ def main():
     stroke(ax2.text(-22.3, -25.4, 'bateria', color=BAT, fontsize=7.5, va='top'), 2)
     ax2.set_title('DETALHE: J1 (XT30) EM PÉ NO DEGRAU ESQUERDO', color=WHITE, fontsize=10, fontweight='bold', loc='left')
     stroke(ax2.text(-43.6, -36.4, f"pads Ø3,9 a {n(f['cobre_borda'])} mm da borda (y = −28,5); pino 1 (+) para a "
-                    "frente; tracejado = contorno B original", color=CUR, fontsize=7.5), 2)
+                    "frente; tracejado = contorno B original (degrau em −28,5)", color=CUR, fontsize=7.5), 2)
 
     fig.text(0.04, 0.955, 'PLACA BASE — VERSÃO ALPHA · POSIÇÕES', color=WHITE, fontsize=18, fontweight='bold')
     fig.text(0.04, 0.935, f'J1 (XT30) em pé em ({n(j1["x"])}; {n(j1["y"])}), eixo longo em y, por dentro do suporte '
              f'esquerdo: {n(f["corpo_suporte"])} mm do suporte, {n(f["corpo_motor"])} mm do motor, '
              f'{n(f["corpo_bateria"])} mm da bateria e {n(f["corpo_engrenagem"])} mm do plano da engrenagem. '
-             'Traseira do EVA-RT (contorno B original).', color='#c7d2cc', fontsize=10.5)
+             'Traseira reta em y = −33 (pés do EVA-RT estendidos); chaves 3 × 6 (TC-3610).', color='#c7d2cc', fontsize=10.5)
     fig.text(0.04, 0.918, 'Bege = pads da face de cima, contorno branco = corpo; azul tracejado = face de baixo '
              '(vista através da placa); ponto branco = pino 1. Contorno tracejado = original do contorno B. '
              'Grade de 5 mm, +y = frente.', color='#c7d2cc', fontsize=10.5)

@@ -139,7 +139,7 @@ S.intent += [('C11', '1', 'XTAL1'), ('C12', '1', 'XTAL2')]
 C('C9', '100nF', g(60), g(20), note='junto aos pinos VCC'); S.conn('C9', '1', '+5V'); S.conn('C9', '2', 'GND')
 C('C10', '100nF', g(65), g(20), note='AREF (referencia = AVCC no firmware)'); S.conn('C10', '1', 'AREF', bend='right'); S.conn('C10', '2', 'GND')
 R('R3', '10k', g(60), g(36), note='EVA-RT usava 1k; 10k com reset automatico por DTR'); S.conn('R3', '1', '+5V'); S.conn('R3', '2', 'RESET', bend='right')
-part('Switch', 'SW_Push', 'SW0', 'RESET', g(66), g(40), 90, 'botao tatil 2 pinos (furo) ou B3U-1000P', '',
+part('Switch', 'SW_Push', 'SW0', 'RESET', g(66), g(40), 90, 'chave tactil SMD 3x6, 2 terminais (TC-3610)', 'equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788', lcsc='C2845294',
      ref_off=(5.08, -1.27), val_off=(5.08, 1.27))
 S.conn('SW0', '2', 'RESET', bend='right'); S.conn('SW0', '1', 'GND')
 note(['Pinos iguais ao EVA-RT 1.2.2: motores D3-D6, ventoinha D10,',
@@ -206,7 +206,7 @@ note(['Q1 do lado do GND, PWM no D10 (Timer1), como no EVA-RT.',
 # ---------------------------------------------------------------- 7 INTERFACE
 frame(146, 164, 276, 224, '7 - INTERFACE (botoes e LEDs da placa)')
 for i, (sw, net, lbl) in enumerate([('SW1', 'B1_D11', 'BOTAO 1'), ('SW2', 'B2_D12', 'BOTAO 2')]):
-    part('Switch', 'SW_Push', sw, lbl, g(66), g(71 + 6 * i), 0, 'botao tatil 2 pinos (furo) ou B3U-1000P', '',
+    part('Switch', 'SW_Push', sw, lbl, g(66), g(71 + 6 * i), 0, 'chave tactil SMD 3x6, 2 terminais (TC-3610)', 'equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788', lcsc='C2845294',
          ref_off=(-2.54, -2.54), val_off=(-2.54, 3.81))
     S.conn(sw, '1', net); S.conn(sw, '2', 'GND', bend='down')
 R('R5', '1k', g(84), g(71), r=90); S.conn('R5', '1', 'LEDC_D13')

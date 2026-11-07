@@ -18,10 +18,10 @@ C16;22nF;C0603;TOP;20,425;-7,300;180;CPH-CPL sobre os pinos 13/14
 C17;100nF;C0603;TOP;8,600;-27,600;0;DTR-RESET, junto ao pad DTR do J3
 C18;100nF;C0603;TOP;11,740;-23,350;180;filtro do A7
 D1;1N5819;SOD123;BOTTOM;26,500;3,050;-90;diodo da ventoinha, embaixo dos pads do motor
-J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-27,000;-23,700;270;"XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm); pino 1 (+, lado reto) para a frente, junto do VM do U2"
+J1;XT30 (bateria 2S);XT30_VERTICAL_M_PROPOSTA;TOP;-27,000;-27,800;270;"XT30 em pe, eixo longo em y, por dentro do suporte esq. (0,9 mm), recuado sobre a traseira reta; pino 1 (+, lado reto) para a frente"
 J2;BARRA (1x8, 2,54 mm);HDR_1x08_P2.54;TOP;0,000;22,740;0;barra de sensores, centro da frente
 J3;GRAVACAO (barra 1x5 2,54 deitada, embaixo);HDR_1x05_P2.54_SMD_DEITADA;BOTTOM;0,000;-28,575;0;gravacao: barra deitada embaixo, 5 pads SMD como no EVA-RT (passo 2,54)
-J4;BLUETOOTH (femea 1x6, ordem HC-05);HDR_F_1x06_P2.54;TOP;32,500;7,050;0;Bluetooth (femea 1x6), frente direita
+J4;BLUETOOTH (femea 1x6, ordem HC-05);HDR_F_1x06_P2.54;TOP;30,000;7,050;0;"Bluetooth (femea 1x6), frente direita; 2,5 mm a esquerda da posicao do EVA-RT para caber as chaves 3x6"
 J5;ICSP (pads SMD embaixo);ICSP_6P_SMD_BOT;BOTTOM;35,244;-10,901;0;ICSP: pads do EVA-RT
 LED1;LED A;LED0603;TOP;-69,500;4,500;-90;LED sobre o QRE esq.
 LED2;LED B;LED0603;TOP;69,500;4,500;90;LED sobre o QRE dir.
@@ -31,7 +31,7 @@ LED6;TX;LED0603;TOP;-11,940;-21,460;180;TX, EVA-RT
 LED7;RX (opcional);LED0603;TOP;-11,940;-23,370;180;"RX, EVA-RT; NAO MONTAR com R18 = 4,7k"
 M1;1020 esq.;MOTOR_1020_2P;TOP;-36,580;1,270;0;motor esq.: pads do EVA-RT
 M2;1020 dir.;MOTOR_1020_2P;TOP;36,580;1,270;0;motor dir.: pads do EVA-RT
-M3;ventoinha;MOTOR_1020_2P;TOP;29,720;3,050;0;ventoinha: pads do EVA-RT
+M3;ventoinha;MOTOR_1020_2P;TOP;27,600;-2,000;90;ventoinha: pads do EVA-RT girados 90 graus, logo atras do J4 (sairam do lugar do J4)
 Q1;AO3400A;SOT23_AO3400A;TOP;26,920;9,140;180;AO3400A, EVA-RT
 R1;1k;R0603;TOP;-15,490;-21,460;0;LED TX, EVA-RT
 R2;1k;R0603;TOP;-15,490;-23,370;0;"LED RX, EVA-RT; NAO MONTAR com R18 = 4,7k"
@@ -47,9 +47,9 @@ R12;1.5k 1%;R0603;TOP;23,400;-18,300;270;IPROPI B, abaixo do pino 6
 R13;15k 1%;R0603;TOP;24,500;-20,600;180;divisor VREF (lado +5V)
 R14;10k 1%;R0603;TOP;22,000;-20,600;180;divisor VREF (lado GND), abaixo do pino 5
 R15;10k;R0603;TOP;-21,125;-6,600;270;pull-up nSLEEP, acima do pino 3
-R16;1k;R0603;BOTTOM;29,200;8,200;0;divisor do Bluetooth, embaixo do J4
-R17;2k;R0603;BOTTOM;29,200;10,200;0;divisor do Bluetooth, embaixo do J4
-R18;4.7k;R0603;BOTTOM;29,200;12,200;0;4,7k entre TXD do HC-05 e RX: grava com o modulo encaixado
+R16;1k;R0603;BOTTOM;26,700;8,200;0;divisor do Bluetooth, embaixo, ao lado do J4
+R17;2k;R0603;BOTTOM;26,700;10,200;0;divisor do Bluetooth, embaixo, ao lado do J4
+R18;4.7k;R0603;BOTTOM;26,700;12,200;0;4,7k entre TXD do HC-05 e RX: grava com o modulo encaixado
 R20;220;R0603;BOTTOM;-64,670;3,610;180;braco esq. (asa do EVA-RT)
 R21;220;R0603;BOTTOM;64,670;5,390;0;braco dir. (asa do EVA-RT)
 R23;20k 1%;R0603;TOP;11,740;-19,550;0;divisor VBAT (no lugar do LED3/R4 do EVA-RT)
@@ -57,10 +57,10 @@ R24;10k 1%;R0603;TOP;11,740;-21,450;180;divisor VBAT
 R30;47k;R0603;BOTTOM;-64,670;5,390;180;braco esq. (asa do EVA-RT)
 R31;47k;R0603;BOTTOM;64,670;3,610;0;braco dir. (asa do EVA-RT)
 S0;QRE1113GR;QRE1113GR_SMD;BOTTOM;-69,500;4,500;180;QRE esq. (curva, A5)
-SW0;RESET;SW_B3U_SMD_2P_RESET;TOP;36,350;-30,250;180;reset, B3U na posicao do EVA-RT
+SW0;RESET;SW_TACT_3x6_SMD_2P_RESET;TOP;34,500;-31,000;0;reset, chave 3x6 SMD (TC-3610 / C2845294) no pe direito, 0,7 mm atras do suporte do motor
 S1;QRE1113GR;QRE1113GR_SMD;BOTTOM;69,500;4,500;0;QRE dir. (partida/chegada, A6)
-SW1;BOTAO 1;SW_B3U_SMD_2P;TOP;37,340;5,840;0;B3U na posicao do EVA-RT
-SW2;BOTAO 2;SW_B3U_SMD_2P;TOP;37,340;11,300;0;B3U na posicao do EVA-RT
+SW1;BOTAO 1;SW_TACT_3x6_SMD_2P;TOP;35,950;5,840;0;botao 1, chave 3x6 SMD (TC-3610), entre o J4 e a presilha da vareta
+SW2;BOTAO 2;SW_TACT_3x6_SMD_2P;TOP;35,950;11,300;0;botao 2, chave 3x6 SMD (TC-3610), entre o J4 e a presilha da vareta
 U1;ATmega328P-AU;TQFP32_7x7_P0.8;TOP;0,000;-23,000;-45;posicao e rotacao do EVA-RT (recuado 0,75 mm em relacao a previa anterior)
 U2;DRV8874PWPR;HTSSOP16_PWP_DRV8874;TOP;-22,100;-12,450;-90;DRV8874 esq. no lugar do IFX do EVA-RT
 U3;DRV8874PWPR;HTSSOP16_PWP_DRV8874;TOP;22,100;-12,450;90;DRV8874 dir. no lugar do IFX do EVA-RT

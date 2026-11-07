@@ -33,6 +33,8 @@ Geometria mecânica (contorno B + STL do EVA-RT), biblioteca de footprints da BO
 Estado, convenções e próximos passos: `docs/HANDOFF_PREVIEW_2026-11-05.md`. Dependências em `preview/requirements.txt`.
 `extrair_eprj.py` decodifica o `EVA_RT.eprj` (SQLite + base64/gzip) para texto, de onde saem posições, pads, trilhas e vias do EVA-RT.
 
+No ambiente de nuvem "Seguidor-de-linha", o script de setup já cria o venv `/opt/seguidor-venv` (use `/opt/seguidor-venv/bin/python` no lugar de `python`) e baixa o FreeRouting 1.9.0 em `$FREEROUTING_JAR`; o KiCad (para `kicad_montar.py` e o esquemático) ainda é `sudo apt-get install -y kicad kicad-symbols poppler-utils`.
+
 **Prévia v2 (06/11, atual)** — rodar em `preview/` (FreeRouting 1.9.0: `freerouting-1.9.0.jar` dos releases do GitHub, caminho em `FREEROUTING_JAR`; Java 17+):
 
 ```

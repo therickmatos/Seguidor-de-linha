@@ -1314,9 +1314,9 @@
   },
   "SW0": {
    "value": "RESET",
-   "pkg": "botao tatil 2 pinos (furo) ou B3U-1000P",
-   "note": "",
-   "lcsc": "",
+   "pkg": "chave tactil SMD 3x6, 2 terminais (TC-3610)",
+   "note": "equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788",
+   "lcsc": "C2845294",
    "dnp": false
   },
   "U2": {
@@ -1468,16 +1468,16 @@
   },
   "SW1": {
    "value": "BOTAO 1",
-   "pkg": "botao tatil 2 pinos (furo) ou B3U-1000P",
-   "note": "",
-   "lcsc": "",
+   "pkg": "chave tactil SMD 3x6, 2 terminais (TC-3610)",
+   "note": "equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788",
+   "lcsc": "C2845294",
    "dnp": false
   },
   "SW2": {
    "value": "BOTAO 2",
-   "pkg": "botao tatil 2 pinos (furo) ou B3U-1000P",
-   "note": "",
-   "lcsc": "",
+   "pkg": "chave tactil SMD 3x6, 2 terminais (TC-3610)",
+   "note": "equivalente JLC: TC-3601L-2.5-260G; footprint aceita C255788",
+   "lcsc": "C2845294",
    "dnp": false
   },
   "R5": {

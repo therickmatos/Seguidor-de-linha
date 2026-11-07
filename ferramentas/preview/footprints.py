@@ -369,6 +369,21 @@ FOOTPRINTS["SW_B3U_SMD_2P_RESET"] = _fp(
     "Mesmo B3U-1000P, com pad fisico 1 = RESET (SW0.2 no esquematico) "
     "e pad 2 = GND (SW0.1); reproduz as redes do EVA-RT.")
 
+# Chave tactil SMD 3 x 6 de 2 terminais (07/11, escolha do Erick): TC-3610 (comprada; sem datasheet),
+# equivalente JLC HCTL TC-3601L-2.5-260G (C2845294): corpo 6,0 x 3,6 x 2,5, terminais gull-wing com 8,0 de
+# ponta a ponta, pads recomendados de 6,2 a 8,4 (1,0 de largura). Aqui pads de 1,2 x 1,2 de |x| = 3,1 a 4,3
+# (um pouco maiores, para soldar a mao). A HYP 1TS002B (C255788, 4,3 mm de altura) tambem solda neles.
+FOOTPRINTS["SW_TACT_3x6_SMD_2P"] = _fp(
+    [_pad("1", -3.7, 0, 1.2, 1.2), _pad("2", 3.7, 0, 1.2, 1.2)],
+    (6.0, 3.6), 2.5, False,
+    "Chave tactil SMD 3 x 6 de 2 terminais (TC-3610; JLC: TC-3601L-2.5-260G, C2845294). Corpo 6,0 x 3,6 x 2,5; "
+    "pads 1,2 x 1,2 em x = +-3,7 (de 3,1 a 4,3; recomendado pelo fabricante: 6,2 a 8,4).")
+
+FOOTPRINTS["SW_TACT_3x6_SMD_2P_RESET"] = _fp(
+    [_pad("1", -3.7, 0, 1.2, 1.2, rede="2"), _pad("2", 3.7, 0, 1.2, 1.2, rede="1")],
+    (6.0, 3.6), 2.5, False,
+    "Mesma chave 3 x 6, com pad fisico 1 = RESET (SW0.2 no esquematico) e pad 2 = GND (SW0.1).")
+
 # ---------------------------------------------------------------- sensores de marca
 FOOTPRINTS["QRE1113GR_SMD"] = _fp(
     [_pad("1", 2.0, 0.9, 1.66, 0.8),
@@ -414,9 +429,9 @@ REF_FOOTPRINT.update({
     "M3": "MOTOR_1020_2P",
     "S0": "QRE1113GR_SMD",
     "S1": "QRE1113GR_SMD",
-    "SW0": "SW_B3U_SMD_2P_RESET",
-    "SW1": "SW_B3U_SMD_2P",
-    "SW2": "SW_B3U_SMD_2P",
+    "SW0": "SW_TACT_3x6_SMD_2P_RESET",
+    "SW1": "SW_TACT_3x6_SMD_2P",
+    "SW2": "SW_TACT_3x6_SMD_2P",
 })
 
 # alternativas da BOM (nao usadas por padrao)

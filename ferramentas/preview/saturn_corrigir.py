@@ -1,6 +1,7 @@
 """Correcoes no ProPrj_RUSH_-_SATURN (versao editada pelo Erick no EasyEDA, 08/11/2026).
 
   python saturn_corrigir.py entrada.epro saida.epro
+  python saturn_corrigir.py v2 corrigido.epro pasta saida.epro
 
 O DRC do EasyEDA deu 9 erros: 1 de netlist, 2 de via desconectada e 6 de folga do preenchimento do plano.
 - netlist: a via termica e62 do U3 estava na rede "gnd" (minuscula) -> volta para GND;
@@ -11,6 +12,15 @@ O DRC do EasyEDA deu 9 erros: 1 de netlist, 2 de via desconectada e 6 de folga d
   e do U4.11 ficava com ~1,9 e ~1,65 mm de 0,4 mm -> trecho de 1,0 mm logo depois do pescoco;
 - OUT_B2: dois pedacinhos de 0,25 mm (0,01 e 0,07 mm) que so se sobrepunham ao resto saem.
 Nada mais muda (pecas, demais trilhas, vias e planos).
+
+v2 (08/11, segundo DRC do Erick, 21 erros sobre o arquivo corrigido):
+- 8 "SMD Pad to Via" + 4 "Track to Via" + 4 "Hole to Track" + netlist: as 4 vias de cada DRV8874 (U3/U4)
+  sao do footprint e a rede GND delas era atribuida na placa; o EasyEDA a apaga ao sincronizar com o
+  esquematico. Viram pads passantes numero 17 (o do pad termico), que recebem GND do esquematico;
+- ligacoes faltando (R12.2, R15.2 e 2 vias): com a remocao de ilhas, pedaco de plano que so tem via
+  some, e a corrente de vias R12 -> R15 -> U4 quebrava. Modelo estrito (so conta pedaco de plano que
+  encosta em pad de GND): cada grupo solto (C6.2; C7.2/C8.2/J3.2/U2.21; R3.2; R12.2; R15.2) ganha trilha
+  de GND de 0,3 mm ate o GND principal (rush_gnd.ligar_estrito), mais uma trilha direta no R12.2.
 
 Baseado no EVA-RT (c) EXOTIC TEAM MX, AGPL-3.0.
 """
@@ -85,5 +95,33 @@ def main(entrada, saida):
     R.gravar_epro(placa, saida, lambda r: not (r[0] == 'LINE' and r[1] in tirar), novas, [])
 
 
-if __name__ == '__main__':
+def main_v2(entrada, pasta, saida):
+    import os
+    import grade as G
+    import rush_gnd as RG
+    os.makedirs(pasta, exist_ok=True)
+    p = lambda n: os.path.join(pasta, n)
+    RG.vias_termicas_para_pads(entrada, p('a_pads17.epro'))
+    falhas = RG.ligar_estrito(p('a_pads17.epro'), p('b_ligado.epro'))
+    if falhas:
+        raise SystemExit(f'GND ainda solto: {falhas}')
+    # trilha direta R12.2 -> via de GND em (18,2; -22,2) (antes ligados so pelo plano de cima)
+    placa = C.Placa(p('b_ligado.epro'))
+    objs = placa.objetos()
+    pad = next(o for o in objs if o['ref'] == 'R12.2')
+    via = min((o for o in objs if o['tipo'] == 'via' and o['net'] == 'GND'),
+              key=lambda o: o['geom'].centroid.distance(pad['geom'].centroid.__class__(18.2, -22.2)))
+    r = G.rotear(placa, objs, 'GND', {C.TOP: pad['geom']}, {C.TOP: via['geom']}, 0.3,
+                 custo_camada={C.TOP: 1.0, C.BOT: 50.0}, custo_via=1e6)
+    if not r:
+        raise SystemExit('sem caminho R12.2 -> via')
+    print('R12.2 ->', via['ref'], ':', [t['pts'] for t in r['trilhas']])
+    R.gravar_epro(placa, saida, lambda r: True, r['trilhas'], r['vias'])
+    print(RG.retorno_largo(saida))
+    return C.relatorio(saida, gnd_planos=True)
+
+
+if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == 'v2':
+    main_v2(sys.argv[2], sys.argv[3], sys.argv[4])
+elif __name__ == '__main__':
     main(sys.argv[1], sys.argv[2])

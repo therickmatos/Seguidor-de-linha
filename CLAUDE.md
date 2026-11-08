@@ -1,7 +1,7 @@
 # CLAUDE.md — contexto para o Claude Code
 
-> **Atualização mais recente — 08/11/2026:** placa atual = a versão editada pelo Erick, corrigida:
-> `hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido.epro` (seção 8 do doc). Antes: `RUSH_PCB_plano_vias_v2.epro`,
+> **Atualização mais recente — 08/11/2026:** placa atual = a versão editada pelo Erick, corrigida duas vezes:
+> `hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido_v2.epro` (seção 9 do doc). Antes: `..._corrigido.epro`, `RUSH_PCB_plano_vias_v2.epro`,
 > `RUSH_PCB_plano_vias.epro` e `RUSH_PCB_roteada.epro`. Resumo, conferência e passo a passo no EasyEDA em
 > `docs/ROTEAMENTO_2026-11-08.md`. **Face de baixo no EasyEDA Pro = espelho em y do footprint e depois a
 > rotação** (não espelho em x, como as sessões anteriores usavam).
@@ -54,6 +54,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - **08/11 — versão "plano + vias mínimas" (preferida pelo Erick):** `hardware/easyeda/RUSH_PCB_plano_vias.epro` (`rush_pipeline.py plano`): sem nenhuma trilha de GND e com só 24 vias de GND (encostadas no pad quando cabe), MARK_L_A5 refeito para não cortar o plano de baixo entre o U3 e o J1. Mesma conferência (0 abertas, 0 folgas, KiCad 0 erros de cobre e 0 não roteadas, retorno largo nos terminais de corrente). Detalhes na seção 6 do `docs/ROTEAMENTO_2026-11-08.md`.
 - **08/11 — teste do Erick no EasyEDA e v2:** o DRC deu 108 "free copper region" (ilhas soltas do plano: ligar remoção de ilhas), 8 "SMD Pad to Via" da mesma rede (o EasyEDA não aceita via encostada em pad SMD) e 2 ligações faltando (U3.7, U4.15/U4.16). `hardware/easyeda/RUSH_PCB_plano_vias_v2.epro` (`rush_pipeline.py corrigir`): pinos de GND dos DRV8874 ligados ao pad térmico por dentro (o CPH_B do U4 passa por dentro, então U4.15/16 têm ponte e via), 10 vias afastadas para ≥ 0,2 mm do pad com toco. Restam 6 vias encostadas (R5.1, R5.2, C7.2, R3.2, U2.21, U2.3), que pedem ajuste local do roteamento (seção 7 do `docs/ROTEAMENTO_2026-11-08.md`).
 - **08/11 — SATURN:** o Erick editou as trilhas no EasyEDA (C14/C15/C16 em fileira em y −6,25) e o DRC deu 9 erros: netlist (via térmica e62 do U3 na rede `gnd`), 6 de folga e 2 de via desconectada (preenchimento `POURED` anterior às edições). Corrigido em `hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido.epro` (`ferramentas/preview/saturn_corrigir.py`): `gnd` → GND, `POURED` retirado (reconstruir os planos), VBAT do U3.11/U4.11 alargado depois do pescoço, 2 pedacinhos de 0,25 mm do OUT_B2 retirados.
+- **08/11 — SATURN v2:** o segundo DRC deu 21 erros: as vias térmicas do U3/U4 (do footprint) perdiam a rede GND no "Import Changes" (atribuída na placa) → viraram pads passantes número 17 no footprint; e, com a remoção de ilhas, pedaços de plano só com via somem (R12.2/R15.2 soltos) → modelo estrito (`rush_gnd.estado_estrito`: plano só conta se encosta em pad de GND) e trilhas de GND explícitas (`ligar_estrito`; 20 trechos, 2 vias, nada apagado). `hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido_v2.epro` (`saturn_corrigir.py v2`).
 - **Próximo:** abrir no EasyEDA Pro, reconstruir os planos (folga ≤ 0,3 mm, SMD sólido), DRC, acabamento das trilhas → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos
@@ -63,7 +64,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/contorno/` | contorno B definitivo (DXF) + figuras de conferência (Gerber do EVA-RT, marcas do TRIF) |
 | `hardware/seguidor_base/` | esquemático rev 1.0 e placa alpha (projeto KiCad, PDF, `.kicad_pcb`, `seguidor_alpha.pretty`, DRC), BOM, `REDES.md` (lista de redes para conferir a importação no EasyEDA) |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
-| `hardware/easyeda/` | projeto do EasyEDA Pro do Erick (RUSH), com a numeração por bloco; `ProPrj_RUSH_-_SATURN_2026-11-08_corrigido.epro` = placa atual (08/11) |
+| `hardware/easyeda/` | projeto do EasyEDA Pro do Erick (RUSH), com a numeração por bloco; `ProPrj_RUSH_-_SATURN_2026-11-08_corrigido_v2.epro` = placa atual (08/11) |
 | `hardware/DESIGNADORES.md` | tabela antigo → novo da numeração por bloco (07/11) |
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
@@ -76,7 +77,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Não decidir pelo Erick: base comum × placas separadas já foi decidido (placas separadas); nome do robô: **RUSH** (por enquanto, 07/11); terceira placa do pedido em aberto.
 - O KiCad 7 do Ubuntu não tem ERC pela linha de comando; a conectividade é conferida por `ferramentas/esquematico/check.py`.
 - Peça na face de baixo do EasyEDA Pro: footprint espelhado em **y** e depois girado (conferido no `EVA_RT.eprj`; `easyeda_cobre.transformar`). Scripts e figuras de antes de 08/11 usavam espelho em x.
-- EasyEDA: via não pode encostar em pad SMD, nem da mesma rede (regra "SMD Pad to Via"); o plano não entra entre pinos a 0,65 mm (ligar pinos de GND por trilha).
+- EasyEDA: via não pode encostar em pad SMD, nem da mesma rede (regra "SMD Pad to Via"); o plano não entra entre pinos a 0,65 mm (ligar pinos de GND por trilha). Rede atribuída na placa a via de footprint some no "Import Changes" (usar pad numerado); com remoção de ilhas, pedaço de plano sem pad some — conferir com `rush_gnd.estado_estrito`.
 - Mudança de peça ou de roteamento no `.epro`: conferir com `ferramentas/preview/easyeda_cobre.py arquivo.epro --gnd-planos` (e, se possível, `easyeda_kicad_drc.py`).
 - Mudança no esquemático depois da importação no EasyEDA: fazer no `gen.py` (fonte) e repetir no EasyEDA, para os dois não divergirem.
 - Ficaram fora do repositório (estão no zip original): a conversa com o Claude e seus anexos, os scripts de figuras e de STL, a netlist `.net` (regenerável), figuras de alternativas descartadas (ESP, USB-C), os renders PNG dos PDFs do EVA-RT e os docs do perseguidor e da fenolite (outros projetos).

@@ -81,12 +81,15 @@ Face de baixo = footprint espelhado em **y** e depois girado. Resumo do roteamen
 - `easyeda_kicad_drc.py` — monta a mesma placa no KiCad 7 (python do sistema: `/usr/bin/python3.12`), preenche GND nas duas faces e roda o DRC do KiCad.
 - `easyeda_rotear.py` — DSN/SES do FreeRouting a partir do `.epro` e gravação de trilhas, vias e planos (`POUR`) de volta.
 - `grade.py` — roteador de grade (duas faces, folga garantida por construção) para fechar o que sobra.
-- `rush_rotear.py`, `rush_gnd.py`, `rush_pipeline.py` — as etapas da placa RUSH: fanout de GND, FreeRouting, fechamento, costura, ligação de pads de GND (com arranque), limpeza e planos.
+- `rush_rotear.py`, `rush_gnd.py`, `rush_pipeline.py` — as etapas da placa RUSH: fanout de GND, FreeRouting, fechamento, costura, ligação de pads de GND (com arranque), limpeza e planos. `rush_gnd.estado_estrito` = GND como o EasyEDA vê com remoção de ilhas (pedaço de plano só conta se encosta em pad de GND).
+- `saturn_corrigir.py` — correções sobre a versão editada pelo Erick (SATURN): DRC 1 e, com `v2`, DRC 2 (vias térmicas do DRV8874 → pads 17, GND explícito onde o plano dependia de ilha só com via).
 
 ```
 python rush_pipeline.py entrada.epro pasta saida.epro 2.5 30           # 1a versao (fanout + malha de costura)
 python rush_pipeline.py plano roteada.epro pasta saida.epro            # plano puro + vias minimas
-python rush_pipeline.py corrigir plano_vias.epro pasta saida.epro      # correcoes do DRC do EasyEDA (v2, atual)
+python rush_pipeline.py corrigir plano_vias.epro pasta saida.epro      # correcoes do DRC do EasyEDA (v2)
+python saturn_corrigir.py SATURN.epro SATURN_corrigido.epro             # SATURN: 1o DRC
+python saturn_corrigir.py v2 SATURN_corrigido.epro pasta saida.epro     # SATURN: 2o DRC (atual)
 python easyeda_cobre.py saida.epro --gnd-planos
 /usr/bin/python3.12 easyeda_kicad_drc.py saida.epro conf.kicad_pcb 0.25
 ```

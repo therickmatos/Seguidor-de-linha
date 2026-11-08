@@ -2,8 +2,9 @@
 
 Baseado no EVA-RT (c) EXOTIC TEAM MX, AGPL-3.0.
 
-**Arquivo para abrir no EasyEDA Pro (versão atual, "plano + vias mínimas", ver a seção 6):**
-`hardware/easyeda/RUSH_PCB_plano_vias.epro` (figura `RUSH_plano_vias.png`). A primeira versão, com
+**Arquivo atual (versão editada pelo Erick, corrigida — seção 9):**
+`hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido_v2.epro`. Antes: `..._corrigido.epro` (seção 8) e a
+versão "plano + vias mínimas" `hardware/easyeda/RUSH_PCB_plano_vias.epro` (figura `RUSH_plano_vias.png`, seção 6). A primeira versão, com
 fanout e malha de costura (201 vias de GND), é `hardware/easyeda/RUSH_PCB_roteada.epro` (figura
 `RUSH_roteada.png`); as seções 2–5 descrevem essa primeira versão. Ponto de partida: `hardware/easyeda/RUSH_PCB_nova_com_cobre.epro`,
 o arquivo do Erick com o cobre do agente anterior.
@@ -234,3 +235,41 @@ EasyEDA não as acusou.
 O verificador passou a ler trilhas em arco (`ARC`) e o preenchimento salvo pelo EasyEDA (`POURED`, em
 unidades de 10 mil, primeiro anel = contorno, os seguintes = furos), e mede pescoço/gargalo no eixo da trilha.
 
+
+## 9. SATURN corrigido v2 — segundo DRC do Erick (08/11)
+
+O DRC do EasyEDA sobre o `..._corrigido.epro` (depois do Shift+B) deu 21 erros:
+
+| Erro | Causa | Correção |
+|---|---|---|
+| 8 × "SMD Pad to Via" (mesmo footprint), 4 × "Track to Via", 4 × "Hole to Track" | as 4 vias de cada DRV8874 (U3/U4) são do footprint e a rede GND delas era atribuída **na placa**; ao sincronizar com o esquemático ("Import Changes") o EasyEDA apaga essa atribuição e as vias ficam sem rede — aí o pad térmico, a trilha de GND do Erick (e1354–e1358, do pino até o centro do pad térmico do U3) e os furos viram "outra rede" | no footprint do DRV8874 as 4 vias viram **pads passantes com o número 17** (o do pad térmico; furo 0,3048, Ø 0,6096, iguais às vias); a rede GND passa a vir do pino 17 do esquemático e sobrevive ao "Import Changes" |
+| Netlist Error | mesma origem (rede atribuída na placa a um "pad" sem número) | idem |
+| Connection Error R12.2, R15.2 e 2 vias | com a remoção de ilhas, pedaço de plano que só tem via (sem pad) some; a corrente R12.2 → via → plano de baixo → via → R15.2 → via → plano de cima do U4 quebrava | trilhas de GND explícitas (abaixo) |
+
+Para achar tudo o que essa regra quebra, o verificador ganhou o **modelo estrito**
+(`rush_gnd.estado_estrito`): um pedaço de plano só conta se encostar num pad de GND. Grupos de GND
+soltos nesse modelo: C6.2; C7.2/C8.2/J3.2/U2.21; R3.2; R12.2; R15.2 (e 10 vias e 3 trilhas de GND do
+Erick que dependiam deles). `rush_gnd.ligar_estrito` liga cada grupo ao GND principal por trilha de 0,3 mm
+(roteador de grade, via 0,6/0,3 só onde precisa, sempre com trilha dos dois lados):
+
+- **R12.2 → R15.2 → U4:** tronco na face de baixo em x ≈ 20,1–20,4, de y −20,0 até a via do U4 em
+  (20,5; −13,3), com ramal em y −19,8 até a via do R15.2 (21,6; −19,6); na face de cima, trilha direta do
+  R12.2 até a via (18,2; −22,2) e dela até a via nova (19,2; −20,9), que desce para o tronco;
+- **C6.2 / R3.2:** da via (13,8; −23,1) do C6.2, face de baixo em y ≈ −22,3 passando pela via do R3.2
+  (14,7; −22,2) até a via nova (17,4; −22,3), que sobe para a trilha de cima acima;
+- **C7.2/C8.2/J3.2/U2.21:** trilha curta na face de baixo entre as vias (12,1; −20,6) e (12,45; −22,0).
+
+Total: 20 trechos de trilha de GND e 2 vias novas; **nada foi apagado nem movido** (peças, contorno, furos,
+planos e as demais trilhas iguais ao `..._corrigido.epro`). Figura da região:
+`hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido_v2_gnd.png` (trilhas de GND em verde).
+
+Arquivo: `hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido_v2.epro`
+(`python saturn_corrigir.py v2 ProPrj_RUSH_-_SATURN_2026-11-08_corrigido.epro pasta saida.epro`).
+Conferência: 0 abertas, 0 folgas, 0 cobre perto da borda, larguras na regra; modelo estrito com **todos**
+os pads, vias e trilhas de GND no GND principal; KiCad 0 erros de cobre e 0 não roteadas (o mesmo aviso
+do pedacinho de 0,1 mm do PWMC_D10 em (1,3; −22,5), que já estava no arquivo do Erick); retorno largo nos
+terminais de corrente.
+
+No EasyEDA: abrir, reconstruir os planos (Shift+B, remoção de ilhas ligada) e rodar o DRC. Se ele
+perguntar sobre atualizar o footprint do DRV8874 pela biblioteca, **não** atualizar (voltariam as vias sem
+rede). As 6 vias encostadas em pad SMD (seção 7) continuam e não foram acusadas.

@@ -900,3 +900,126 @@ def afastar_vias(entrada, saida, raio=1.6, passo=0.05):
 
 if __name__ == '__main__' and sys.argv[1] == 'afastar':
     afastar_vias(sys.argv[2], sys.argv[3])
+
+
+# ---------------------------------------------- EasyEDA: vias termicas como pads e ilhas sem pad
+def vias_termicas_para_pads(entrada, saida, fp_uuid='77b480dde1d158db', numero='17'):
+    """As vias do footprint do DRV8874 (dentro do pad termico) viram pads passantes com o numero do pad
+    termico (17). A rede delas passa a vir do pino 17 do esquematico (GND), e nao de uma atribuicao feita
+    na placa, que o EasyEDA apaga ao sincronizar com o esquematico ("Import Changes")."""
+    import io
+    import zipfile
+    placa = C.Placa(entrada)
+    nome_fp = f'FOOTPRINT/{fp_uuid}.efoo'
+    linhas = C.linhas_json(placa.dados[nome_fp])
+    novas, ids = [], []
+    for r in linhas:
+        if r[0] == 'VIA':
+            # ["VIA", id, 0, rede, "", x, y, furo, diametro, ...] -> pad passante redondo
+            novas.append(['PAD', r[1], 0, '', 12, numero, r[5], r[6], 0, ['ROUND', r[7], r[7]],
+                          ['ELLIPSE', r[8], r[8]], [], 0, 0, 0, 1, 0, None, None, None, None, 0])
+            ids.append(r[1])
+        else:
+            novas.append(r)
+    print('vias do footprint convertidas em pads', numero, ':', ids)
+    placa.dados[nome_fp] = ('\n'.join(json.dumps(r, ensure_ascii=False, separators=(',', ':')) for r in novas) + '\n').encode('utf8')
+    comps = {c['id'] for c in placa.comps.values() if c['fp'] == fp_uuid}
+    rows = []
+    for r in placa.rows:
+        if r[0] == 'PAD_NET' and r[1] in comps and r[4] in ids:
+            r = [r[0], r[1], numero, 'GND', r[4], r[5]]
+        rows.append(r)
+    placa.rows = rows
+    R.gravar_epro(placa, saida, lambda r: True, [], [])
+
+
+def estado_estrito(placa, objs=None, folga=0.254, largura_min=0.15):
+    """Como estado(), mas um pedaco de plano so conta se encostar num pad de GND (o EasyEDA, com a
+    remocao de ilhas, apaga pedacos que so tem via ou trilha)."""
+    objs = objs or placa.objetos()
+    pl = placa.planos_gnd(objs, folga=folga, largura_min=largura_min)
+    ilhas = {lay: _partes(pl[lay]) for lay in (C.TOP, C.BOT)}
+    gnd = [o for o in objs if o['net'] == 'GND']
+    pads = [o for o in gnd if o['tipo'] == 'pad']
+    vivas = {}
+    for lay in (C.TOP, C.BOT):
+        vivas[lay] = [g for g in ilhas[lay] if any(lay in o['layers'] and g.intersection(o['geom']).area > 0.01 for o in pads)]
+    uf = UF()
+    for k, o in enumerate(gnd):
+        uf.find(('obj', k))
+        for lay in o['layers']:
+            for j, g in enumerate(vivas[lay]):
+                if g.intersects(o['geom']) and (o['tipo'] == 'via' or g.intersection(o['geom']).area > 0.01):
+                    uf.union(('obj', k), (lay, j))
+    tree = STRtree([o['geom'] for o in gnd])
+    for k, o in enumerate(gnd):
+        for j in tree.query(o['geom'], predicate='intersects'):
+            j = int(j)
+            if j != k and o['layers'] & gnd[j]['layers']:
+                uf.union(('obj', k), ('obj', j))
+    return vivas, gnd, uf
+
+
+def ligar_estrito(entrada, saida, w=0.3, rodadas=8):
+    """Liga, por trilha (e via, se precisar, sempre com trilha dos dois lados), cada grupo de GND que fica
+    solto no modelo estrito ao grupo do J1.2. Devolve a lista dos grupos que nao deu para ligar ([] = ok)."""
+    import grade as G
+    atual = entrada
+    for rodada in range(rodadas):
+        placa = C.Placa(atual)
+        objs = placa.objetos()
+        vivas, gnd, uf = estado_estrito(placa, objs)
+        raiz = uf.find(('obj', next(k for k, o in enumerate(gnd) if o['ref'] == 'J1.2')))
+        grupos = collections.defaultdict(list)
+        for k, o in enumerate(gnd):
+            if uf.find(('obj', k)) != raiz:
+                grupos[uf.find(('obj', k))].append(o)
+        soltos = [g for g in grupos.values() if any(o['tipo'] == 'pad' for o in g)]
+        print(f'rodada {rodada}: grupos de GND soltos (modelo estrito):', [[o['ref'] for o in g if o['tipo'] == 'pad'] for g in soltos])
+        if not soltos:
+            break
+        alvo = {}
+        for lay in (C.TOP, C.BOT):
+            partes = [g for j, g in enumerate(vivas[lay]) if uf.find((lay, j)) == raiz]
+            partes += [o['geom'] for k, o in enumerate(gnd) if lay in o['layers'] and uf.find(('obj', k)) == raiz]
+            alvo[lay] = unary_union(partes)
+        novas_t, novas_v = [], []
+        falhas = []
+        for g in soltos:          # liga o primeiro que der (o cobre novo muda o resto)
+            r0 = uf.find(('obj', gnd.index(g[0])))
+            orig = {}
+            for lay in (C.TOP, C.BOT):
+                gs = [o['geom'] for o in g if lay in o['layers']]
+                gs += [h for j, h in enumerate(vivas[lay]) if uf.find((lay, j)) == r0]
+                if gs:
+                    orig[lay] = unary_union(gs)
+            r = None
+            for margem in (4.0, 9.0):
+                r = G.rotear(placa, objs, 'GND', orig, alvo, w, via=VIA_GND, margem=margem, custo_via=200)
+                if r:
+                    break
+            nomes = [o['ref'] for o in g if o['tipo'] == 'pad']
+            if not r:
+                falhas.append(nomes)
+                continue
+            print('  ', nomes, f"-> {len(r['trilhas'])} trilha(s), {len(r['vias'])} via(s)")
+            novas_t += r['trilhas']
+            novas_v += r['vias']
+            break
+        if not novas_t and not novas_v:
+            print('  sem caminho para', falhas)
+            import shutil
+            shutil.copy(atual, saida)
+            if atual != entrada:
+                os.remove(atual)
+            return falhas
+        prox = saida + f'.e{rodada}.tmp'
+        R.gravar_epro(placa, prox, lambda r: True, novas_t, novas_v)
+        if atual != entrada:
+            os.remove(atual)
+        atual = prox
+    import shutil
+    shutil.copy(atual, saida)
+    if atual != entrada:
+        os.remove(atual)
+    return []

@@ -114,6 +114,64 @@ def _caminho(lista):
     return pts
 
 
+def arco_pontos(p1, p2, angulo, passo_graus=1.0):
+    """Pontos de um arco de p1 a p2 que varre `angulo` graus (positivo = anti-horario)."""
+    th = math.radians(angulo)
+    if abs(th) < 1e-9:
+        return [p1, p2]
+    (x1, y1), (x2, y2) = p1, p2
+    c = math.dist(p1, p2)
+    r = c / (2 * math.sin(abs(th) / 2))
+    mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+    ux, uy = (x2 - x1) / c, (y2 - y1) / c
+    nx, ny = -uy, ux                      # normal a esquerda da corda
+    h = r * math.cos(th / 2)
+    s = 1 if th > 0 else -1
+    cx, cy = mx + s * nx * h, my + s * ny * h
+    a1 = math.atan2(y1 - cy, x1 - cx)
+    n = max(2, int(abs(angulo) / passo_graus) + 1)
+    pts = [(cx + r * math.cos(a1 + th * k / n), cy + r * math.sin(a1 + th * k / n)) for k in range(n + 1)]
+    pts[0], pts[-1] = p1, p2
+    return pts
+
+
+def poured(placa):
+    """Preenchimento salvo pelo EasyEDA (linhas POURED): {pour_id: [Polygon]} (arcos viram retas)."""
+    out = collections.defaultdict(list)
+
+    def anel_pts(anel):
+        pts, i = [], 0
+        while i < len(anel):
+            v = anel[i]
+            if v == 'L':
+                i += 1
+                continue
+            if v == 'ARC':
+                # arco do ponto anterior ate (x, y), varrendo `angulo` graus (mesma convencao do ARC de trilha)
+                ang, x, y = anel[i + 1], anel[i + 2] * MIL * 10, anel[i + 3] * MIL * 10
+                if pts and math.dist(pts[-1], (x, y)) > 1e-6:
+                    pts += arco_pontos(pts[-1], (x, y), ang, passo_graus=10.0)[1:]
+                else:
+                    pts.append((x, y))
+                i += 4
+                continue
+            if isinstance(v, str):
+                i += 1
+                continue
+            pts.append((anel[i] * MIL * 10, anel[i + 1] * MIL * 10))   # POURED: unidade de 10 mil
+            i += 2
+        return pts
+    for r in placa.rows:
+        if r[0] != 'POURED':
+            continue
+        # primeiro anel = contorno, os seguintes = furos
+        aneis = [anel_pts(a) for a in r[5]]
+        aneis = [a for a in aneis if len(a) >= 3]
+        if aneis:
+            out[r[2]].append(Polygon(aneis[0], aneis[1:]).buffer(0))
+    return out
+
+
 def colocar(g, x, y, rot, baixo):
     if baixo:
         g = affinity.scale(g, 1, -1, origin=(0, 0))
@@ -190,6 +248,13 @@ class Placa:
                 self.tracks.append({'id': r[1], 'net': r[3] or None, 'layer': r[4],
                                     'a': (r[5] * MIL, r[6] * MIL), 'b': (r[7] * MIL, r[8] * MIL),
                                     'w': r[9] * MIL, 'lock': r[10] if len(r) > 10 else 0})
+            elif r[0] == 'ARC' and r[4] in (TOP, BOT):
+                # trilha em arco: ["ARC", id, ?, rede, camada, x1, y1, x2, y2, angulo (graus), largura, trava]
+                # vira segmentos curtos (id#k); o sentido do angulo so muda o lado do bojo
+                pts = arco_pontos((r[5] * MIL, r[6] * MIL), (r[7] * MIL, r[8] * MIL), r[9])
+                for k, (a, b) in enumerate(zip(pts, pts[1:])):
+                    self.tracks.append({'id': f'{r[1]}#{k}', 'net': r[3] or None, 'layer': r[4], 'a': a, 'b': b,
+                                        'w': r[10] * MIL, 'lock': r[11] if len(r) > 11 else 0, 'arco': r[1]})
             elif r[0] == 'VIA':
                 self.vias.append({'id': r[1], 'net': r[3] or None, 'x': r[5] * MIL, 'y': r[6] * MIL,
                                   'furo': r[7] * MIL, 'd': r[8] * MIL, 'comp': None})
@@ -321,6 +386,12 @@ def _segs(ts):
                         for t in ts])
 
 
+def _eixo(ts):
+    """Eixo (linha central) das trilhas: o comprimento de pescoco e gargalo e medido ao longo dele."""
+    from shapely.geometry import MultiLineString
+    return unary_union([LineString([t['a'], t['b']]) for t in ts if t['a'] != t['b']] or [Point(1e6, 1e6)])
+
+
 def _clusters(ts):
     """Agrupa trilhas que se tocam (mesma camada)."""
     pai = list(range(len(ts)))
@@ -345,7 +416,7 @@ def larguras(placa):
     """Trilhas de potencia abaixo do minimo, medidas como cadeias continuas.
 
     - pescoco (largura < gargalo): so na saida de pino do DRV8874, >= 0,4 mm e no maximo 1,5 mm
-      de comprimento fora do pad (ate encostar em cobre mais largo);
+      de comprimento fora do pad (ate encostar em cobre mais largo), medido no eixo da trilha;
     - gargalo (gargalo <= largura < minimo): no maximo 3 mm por cadeia, fora de pads e de cobre largo;
       o VBAT no ramo da ventoinha (M3.1, D1.1, C17.1) e o OUT_C tem minimo de 1,0 mm.
     Devolve lista de (rede, ids, largura minima, comprimento, motivo)."""
@@ -372,14 +443,14 @@ def larguras(placa):
                     wp = min(t['w'] for t in pesc)
                     gp = _segs(pesc)
                     drv = [p for p in toca if p['des'] in DRV and p['geom'].distance(gp) < 1e-3]
-                    L = gp.difference(unary_union([pads_c, largas, _segs(garg) if garg else Point(1e6, 1e6)])).area / wp
+                    L = _eixo(pesc).difference(unary_union([pads_c, largas, _segs(garg) if garg else Point(1e6, 1e6)])).length
                     if drv and wp >= PESCOCO_W - TOL and L <= PESCOCO_L + 0.05:
                         prob.append((net, ids, round(wp, 3), round(L, 2), f'pescoco {drv[0]["des"]}.{drv[0]["num"]} (aceito)'))
                     else:
                         prob.append((net, ids, round(wp, 3), round(L, 2), 'PESCOCO FORA DA REGRA'))
                 if garg:
                     gg = _segs(garg)
-                    L = gg.difference(unary_union([pads_c, largas])).area / min(t['w'] for t in garg)
+                    L = _eixo(garg).difference(unary_union([pads_c, largas])).length
                     if L <= GARGALO_MAX_MM + 0.05:
                         prob.append((net, ','.join(t['id'] for t in garg), round(min(t['w'] for t in garg), 3), round(L, 2), 'gargalo curto (aceito)'))
                     else:

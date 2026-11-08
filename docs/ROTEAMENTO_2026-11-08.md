@@ -208,3 +208,29 @@ borda de baixo do braço, abrindo o plano em volta do R5; lado direito do ATmega
 caminho). A tentativa automática de arrancar e refazer sinais nessas regiões só criou problemas novos
 (cada sinal refeito cortava o plano em outro ponto), então isso precisa de um ajuste local feito com cuidado.
 
+## 8. SATURN (versão editada pelo Erick) — correções do DRC (08/11)
+
+O Erick limpou as trilhas no EasyEDA (cristal, sinais, um arco no S1_A1 em volta do furo da ventoinha),
+subiu C14/C15/C16 para uma fileira em y = −6,25 (o CPH_B do U4 passou a ir por fora) e salvou como
+`hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08.epro`. O DRC do EasyEDA deu 9 erros:
+
+| Erro | Causa | Correção |
+|---|---|---|
+| Netlist Error (PCB × esquemático) | a via térmica e62 do U3 estava na rede `gnd` (minúscula) | volta para `GND` |
+| 6 × Clearance "Copper Region (Filled)" (face de baixo) | o preenchimento salvo (linhas `POURED`) é anterior às últimas edições: o plano encosta em trilhas e vias que mudaram de lugar (VBAT do R2, VREF, vias do PWMA/PWMC) | linhas `POURED` retiradas; o EasyEDA refaz ao reconstruir os planos |
+| 2 × Connection Error "Via (GND) … disconnected" | mesma origem (preenchimento desatualizado) e a via `gnd`; com as trilhas atuais todos os pads e vias de GND fecham | — (se alguma ainda aparecer depois do Shift+B, ela não liga pad nenhum e pode ser apagada) |
+
+Também corrigido (regra de largura do Erick, não acusada pelo EasyEDA): o pescoço de 0,4 mm do VBAT no
+U3.11 (~1,9 mm) e no U4.11 (~1,65 mm) ganhou um trecho de 1,0 mm logo depois (pescoço exposto ~0,4–0,5 mm),
+e saíram dois pedacinhos de 0,25 mm do OUT_B2 (0,01 e 0,07 mm). O pescoço do OUT_B2 (0,4 mm) tem 1,42 mm
+medido no eixo — dentro da regra.
+
+Arquivo: `hardware/easyeda/ProPrj_RUSH_-_SATURN_2026-11-08_corrigido.epro` (`ferramentas/preview/saturn_corrigir.py`).
+Nada mais mudou. Conferência: 0 abertas, 0 folgas, larguras na regra; KiCad 0 erros de cobre e 0 não
+roteadas (só o aviso de um pedacinho de 0,1 mm do PWMC_D10 com uma ponta solta, que já estava no arquivo);
+retorno largo nos terminais de corrente. As 6 vias encostadas em pad SMD da seção 7 continuam, mas o
+EasyEDA não as acusou.
+
+O verificador passou a ler trilhas em arco (`ARC`) e o preenchimento salvo pelo EasyEDA (`POURED`, em
+unidades de 10 mil, primeiro anel = contorno, os seguintes = furos), e mede pescoço/gargalo no eixo da trilha.
+

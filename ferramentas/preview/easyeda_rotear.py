@@ -237,10 +237,10 @@ def mil(v):
     return round(v / C.MIL, 4)
 
 
-def gravar_epro(placa, saida, manter, novas_trilhas, novas_vias, pours=(), prefixo='r'):
+def gravar_epro(placa, saida, manter, novas_trilhas, novas_vias, pours=None, prefixo='r'):
     """Reescreve o .epro: mantem as LINE/VIA para as quais manter(row) e verdadeiro, acrescenta as novas.
     novas_trilhas: dicts com net, layer, w, pts; novas_vias: net, x, y, d, furo.
-    pours: lista de linhas POUR prontas (listas)."""
+    pours: lista de linhas POUR prontas (listas) que substituem as do arquivo; None mantem as do arquivo."""
     usados = {r[1] for r in placa.rows if len(r) > 1 and isinstance(r[1], str)}
     cont = [1]
 
@@ -253,7 +253,7 @@ def gravar_epro(placa, saida, manter, novas_trilhas, novas_vias, pours=(), prefi
     for r in placa.rows:
         if r[0] in ('LINE', 'VIA') and not manter(r):
             continue
-        if r[0] == 'POUR':
+        if r[0] == 'POUR' and pours is not None:
             continue
         out.append(r)
     # novos itens no fim, como as LINE/VIA do arquivo original
@@ -266,7 +266,7 @@ def gravar_epro(placa, saida, manter, novas_trilhas, novas_vias, pours=(), prefi
     for v in novas_vias:
         novos.append(['VIA', prox(), 0, v['net'], '', mil(v['x']), mil(v['y']), mil(v['furo']), mil(v['d']), 0,
                       None, None, 0, []])
-    for p in pours:
+    for p in pours or []:
         p = list(p)
         p[1] = prox()
         novos.append(p)

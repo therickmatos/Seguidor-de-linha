@@ -47,6 +47,28 @@ def depois_do_freerouting(pasta_fr, base_fanout, pasta, saida):
     return C.relatorio(saida, gnd_planos=True)
 
 
+def plano_e_vias(entrada, pasta, saida):
+    """Versao "so o plano" (08/11, pedido do Erick): parte da placa roteada sem nenhuma via ou trilha
+    de GND, refaz o MARK_L_A5 por cima (ele cortava o plano de baixo entre o U3 e o J1) e poe so as
+    vias que faltam: uma por grupo de pads de GND solto, encostada no pad quando cabe, e o reforco do
+    retorno dos terminais de corrente; no fim tira as vias e trilhas de GND que o plano ja dispensa."""
+    os.makedirs(pasta, exist_ok=True)
+    p = lambda n: os.path.join(pasta, n)
+    placa = C.Placa(entrada)
+    import easyeda_rotear as R
+    R.gravar_epro(placa, p('a_so_plano.epro'), lambda r: not (r[0] in ('LINE', 'VIA') and r[3] == 'GND'), [], [])
+    RR.refazer_rede(p('a_so_plano.epro'), p('b_mark.epro'), 'MARK_L_A5', custo_b=3.0, custo_via=250)
+    G.vias_minimas(p('b_mark.epro'), p('c_vias.epro'))
+    G.reforco_retorno(p('c_vias.epro'), p('d_reforco.epro'))
+    G.podar_gnd(p('d_reforco.epro'), saida, base=p('b_mark.epro'))
+    print(G.retorno_largo(saida))
+    return C.relatorio(saida, gnd_planos=True)
+
+
+if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == 'plano':
+    plano_e_vias(sys.argv[2], sys.argv[3], sys.argv[4])
+    sys.exit()
+
 if __name__ == '__main__':
     entrada, pasta, saida = sys.argv[1:4]
     os.makedirs(pasta, exist_ok=True)

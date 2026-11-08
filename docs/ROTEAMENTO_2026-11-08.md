@@ -2,8 +2,10 @@
 
 Baseado no EVA-RT (c) EXOTIC TEAM MX, AGPL-3.0.
 
-**Arquivo para abrir no EasyEDA Pro:** `hardware/easyeda/RUSH_PCB_roteada.epro`
-(figura: `hardware/easyeda/RUSH_roteada.png`). Ponto de partida: `hardware/easyeda/RUSH_PCB_nova_com_cobre.epro`,
+**Arquivo para abrir no EasyEDA Pro (versão atual, "plano + vias mínimas", ver a seção 6):**
+`hardware/easyeda/RUSH_PCB_plano_vias.epro` (figura `RUSH_plano_vias.png`). A primeira versão, com
+fanout e malha de costura (201 vias de GND), é `hardware/easyeda/RUSH_PCB_roteada.epro` (figura
+`RUSH_roteada.png`); as seções 2–5 descrevem essa primeira versão. Ponto de partida: `hardware/easyeda/RUSH_PCB_nova_com_cobre.epro`,
 o arquivo do Erick com o cobre do agente anterior.
 
 Fora do cobre, o `.epro` entregue é **idêntico** ao de partida: as mesmas 65 peças nas mesmas posições,
@@ -106,3 +108,64 @@ python rush_gnd.py retorno saida.epro                           # volta da corre
 
 O FreeRouting não dá sempre o mesmo resultado: o arquivo entregue saiu da variante com custo 2,5 na face
 de baixo e custo 30 por via, seguida das mesmas etapas do `rush_pipeline.py`.
+
+## 6. Versão "plano + vias mínimas" (pedido do Erick, 08/11)
+
+O Erick preferiu não encher a placa de vias: plano de GND nas duas faces primeiro e, depois de ver
+onde a ligação falha, só as vias necessárias, de preferência encostadas no próprio pad. A ideia veio de
+um teste dele no EasyEDA, em que uma via em cima de uma ligação de componente levou a ligação para a outra
+face e resolveu o conflito.
+
+Arquivo: `hardware/easyeda/RUSH_PCB_plano_vias.epro` (`rush_pipeline.py plano`). Partindo da versão
+anterior:
+
+1. **Tirei todo o cobre de GND da placa** (201 vias e 101 trechos). Com o plano puro, 20 grupos de pads
+   de GND ficavam fora do GND principal (os pads perto do ATmega, os capacitores de desacoplamento, LEDs,
+   botões, U4.15/U4.16, J3.2…).
+2. **Refiz o MARK_L_A5** (sensor de marca esquerdo → ATmega pino 28): a trilha dele corria embaixo em
+   y ≈ −17,3 e separava o plano de baixo sob o U3 do plano do J1, deixando a volta da corrente do motor
+   esquerdo só por gargalos com menos de 1 mm. Refeita com a face de baixo mais cara, com as mesmas 5 vias.
+3. **Uma via por grupo solto**: primeiro uma via encostada no pad (sobrepondo 0,1 mm da borda, com o furo
+   fora do pad) que cai no plano principal da outra face; sem lugar, uma via no pedaço de plano do grupo;
+   em último caso, trilha + vias pelo roteador de grade.
+4. **Poda:** cada via e cada trecho de GND novo saiu, um de cada vez, quando a ligação de todos os pads
+   e o retorno largo dos terminais de corrente continuavam valendo. Todas as trilhas de GND saíram (dentro
+   de cada bolsão, o próprio plano liga o pad à via) e 4 vias também.
+
+Resultado: **24 vias de GND** (10 de 0,8/0,4 encostadas em pads; 14 de 0,6/0,3), nenhuma trilha de GND.
+Sinais, potência, peças e planos (`POUR`) iguais à versão anterior, exceto o MARK_L_A5.
+
+Conferência: `easyeda_cobre.py --gnd-planos` com 0 abertas, 0 folgas, 0 furo-furo e larguras na regra;
+DRC do KiCad com plano a 0,25 e a 0,3 mm com 0 erros de cobre e 0 não roteadas; retorno largo
+(≥ 1 mm) do J1.2 até U3.9, U3.17, U4.9, U4.17, Q1.2, C1.2, C2.2, C13.2, C16.2 e C17.2.
+
+As vias que ficaram (posição em mm) e o que se solta do GND principal sem cada uma (conferido tirando
+uma via de cada vez):
+
+| Via | Sem ela, solta |
+|---|---|
+| (−65,62; 5,77) 0,8, no pad | R5.2 |
+| (−27,55; −19,50) 0,8, encostada | C13.2 (e o retorno largo dele) |
+| (−23,37; 6,32) 0,8, encostada | C3.2, C4.2, C5.1 |
+| (−22,25; 13,26) 0,8, encostada | LED1.1 |
+| (−4,81; −25,94) 0,8, encostada | U2.3, U2.5 |
+| (2,19; −20,43) 0,6, encostada | U2.21 |
+| (14,70; −22,20) 0,6 | R3.2 |
+| (9,80; −19,20) 0,6 | C8.2 |
+| (8,00; −21,75), (12,00; −20,60), (12,50; −22,10), (13,80; −23,30), (18,20; −22,20), (21,80; −22,20), (24,50; −18,80) — 0,6 | **corrente** que leva C6.2, C7.2, C8.2, R3.2, R12.2, J3.2 e U2.21 até o GND principal |
+| (20,33; 6,91) 0,8, encostada | R17.2 |
+| (20,39; −8,55) 0,8, encostada | U4.15, U4.16 |
+| (20,50; −13,30) e (21,60; −17,80) 0,6 | R15.2 |
+| (28,75; −5,75) 0,6 | C16.2 (e o retorno largo dele) |
+| (38,00; −13,00) 0,6 | SW1.1 (pelo pedaço de plano dele) |
+| (39,09; 10,38) 0,8, encostada | SW3.2 |
+| (21,95; 13,82) 0,8, encostada | LED4.1 |
+| (69,16; 3,00) 0,8, encostada | LED3.1 |
+
+**Ponto fraco:** a região à direita do ATmega (C6, C7, C8, R3, R12, R15, J3.2 e o pino 21 do ATmega)
+fica em bolsões fechados por sinais nas duas faces e chega ao GND principal por uma corrente de 7 vias,
+alternando de face. Funciona (só passa corrente de sinal e de desacoplamento), mas cada via dessa corrente
+é um ponto único. Para melhorar sem pôr mais vias, dá para mudar de face ou de caminho 1–2 trilhas de sinal
+nessa região, como foi feito com o MARK_L_A5, e abrir o plano. Depois de mexer, conferir de novo com
+`easyeda_cobre.py --gnd-planos`.
+

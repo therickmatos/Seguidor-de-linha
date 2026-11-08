@@ -84,7 +84,8 @@ Face de baixo = footprint espelhado em **y** e depois girado. Resumo do roteamen
 - `rush_rotear.py`, `rush_gnd.py`, `rush_pipeline.py` — as etapas da placa RUSH: fanout de GND, FreeRouting, fechamento, costura, ligação de pads de GND (com arranque), limpeza e planos.
 
 ```
-python rush_pipeline.py entrada.epro pasta saida.epro 2.5 30
+python rush_pipeline.py entrada.epro pasta saida.epro 2.5 30           # 1a versao (fanout + malha de costura)
+python rush_pipeline.py plano roteada.epro pasta saida.epro            # plano puro + vias minimas (atual)
 python easyeda_cobre.py saida.epro --gnd-planos
 /usr/bin/python3.12 easyeda_kicad_drc.py saida.epro conf.kicad_pcb 0.25
 ```

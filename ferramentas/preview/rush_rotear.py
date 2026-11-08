@@ -236,3 +236,46 @@ def finalizar(entrada, saida):
 
 if __name__ == '__main__' and sys.argv[1] == 'finalizar':
     finalizar(sys.argv[2], sys.argv[3])
+
+
+def refazer_rede(entrada, saida, net, custo_b=3.0, custo_via=250):
+    """Arranca uma rede de sinal inteira e refaz com o roteador de grade (face de baixo custo_b vezes
+    mais cara, via custando custo_via passos de grade)."""
+    import grade as G
+    p0 = C.Placa(entrada)
+    ids = {t['id'] for t in p0.tracks if t['net'] == net} | {v['id'] for v in p0.vias if v['net'] == net and not v['comp']}
+    tmp = saida + '.tmp'
+    R.gravar_epro(p0, tmp, lambda r: not (r[0] in ('LINE', 'VIA') and r[1] in ids), [], [])
+    placa = C.Placa(tmp)
+    objs = placa.objetos()
+    w = larguras({net})[net]
+    tr, vi = [], []
+    while True:
+        ilhas = G.ilhas_da_rede(placa, objs, net)
+        if len(ilhas) < 2:
+            break
+        ilhas.sort(key=len)
+        r = None
+        for margem in (4.0, 10.0, 25.0):
+            r = G.rotear(placa, objs, net, G.por_camada(ilhas[0]), G.por_camada([o for g in ilhas[1:] for o in g]), w,
+                         margem=margem, custo_camada={C.TOP: 1.0, C.BOT: custo_b}, custo_via=custo_via)
+            if r:
+                break
+        if not r:
+            raise SystemExit(f'sem caminho para {net}')
+        tr += r['trilhas']
+        vi += r['vias']
+        for t in r['trilhas']:
+            for a, b in zip(t['pts'], t['pts'][1:]):
+                objs.append({'tipo': 'trilha', 'net': net, 'layers': {t['layer']},
+                             'geom': C.LineString([a, b]).buffer(w / 2, quad_segs=8), 'ref': 'novo', 'obj': None})
+        for v in r['vias']:
+            objs.append({'tipo': 'via', 'net': net, 'layers': {C.TOP, C.BOT},
+                         'geom': C.Point(v['x'], v['y']).buffer(v['d'] / 2, quad_segs=12), 'ref': 'novo', 'obj': v})
+    R.gravar_epro(placa, saida, lambda r: True, tr, vi)
+    os.remove(tmp)
+    print(f'{net}: {len(tr)} trilhas, {len(vi)} vias')
+
+
+if __name__ == '__main__' and sys.argv[1] == 'refazer':
+    refazer_rede(sys.argv[2], sys.argv[3], sys.argv[4])

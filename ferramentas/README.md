@@ -71,3 +71,21 @@ python kicad_exportar.py           # (venv) v2/kicad_dados.json e esquematico/fo
 Por último, `python3 ../empacotar.py` monta `hardware/placa_base_alpha.zip` (projeto KiCad, pacote para o EasyEDA e prévia 3D).
 
 O `kicad_montar.py` grava em `hardware/seguidor_base/` a placa, a biblioteca `seguidor_alpha.pretty`, o `fp-lib-table`, as regras no `.kicad_pro` (mantendo o que o esquemático já tinha) e o `drc_kicad.rpt`, e para com erro se algum pad sair do lugar do modelo. Se o `footprints_alpha.json` mudar (footprint novo ou trocado), regere o esquemático antes do `kicad_montar.py`.
+
+## preview/ — roteamento no EasyEDA (08/11, placa RUSH)
+Trabalham direto no `.epro` do EasyEDA Pro (zip com o `.epcb` em JSON por linha, unidades em mil).
+Face de baixo = footprint espelhado em **y** e depois girado. Resumo do roteamento: `docs/ROTEAMENTO_2026-11-08.md`.
+
+- `easyeda_cobre.py` — lê o `.epro` (peças, pads com rede, trilhas, vias, contorno, furos) e confere ligações (com `--gnd-planos`, o GND ligado pelos planos simulados a 0,3 mm), folgas, borda/furos, furo-furo, larguras de potência (pescoço e gargalo medidos como cadeia) e vias.
+- `easyeda_cobre_figura.py` — figura das duas faces com os planos simulados e as ligações abertas.
+- `easyeda_kicad_drc.py` — monta a mesma placa no KiCad 7 (python do sistema: `/usr/bin/python3.12`), preenche GND nas duas faces e roda o DRC do KiCad.
+- `easyeda_rotear.py` — DSN/SES do FreeRouting a partir do `.epro` e gravação de trilhas, vias e planos (`POUR`) de volta.
+- `grade.py` — roteador de grade (duas faces, folga garantida por construção) para fechar o que sobra.
+- `rush_rotear.py`, `rush_gnd.py`, `rush_pipeline.py` — as etapas da placa RUSH: fanout de GND, FreeRouting, fechamento, costura, ligação de pads de GND (com arranque), limpeza e planos.
+
+```
+python rush_pipeline.py entrada.epro pasta saida.epro 2.5 30
+python easyeda_cobre.py saida.epro --gnd-planos
+/usr/bin/python3.12 easyeda_kicad_drc.py saida.epro conf.kicad_pcb 0.25
+```
+

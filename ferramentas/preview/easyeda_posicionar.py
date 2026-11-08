@@ -5,8 +5,9 @@ e coloca o contorno, os furos e os rasgos. Feito para o projeto RUSH do Erick (0
 
 - Cada peca do .epcb (achada pelo designador) recebe posicao, rotacao e face calculadas para o
   footprint DELA (o do EasyEDA): os pads com o mesmo numero do esquematico sao ajustados, por minimos
-  quadrados, aos pads da referencia (placa_v2 + footprints da previa). Face de baixo = espelho em x do
-  footprint e depois a rotacao (convencao do EasyEDA, a mesma usada para reproduzir o EVA-RT).
+  quadrados, aos pads da referencia (placa_v2 + footprints da previa). Face de baixo = espelho em y do
+  footprint e depois a rotacao (convencao do EasyEDA; ate 08/11/2026 este script usava espelho em x,
+  o que esta errado: as pecas de baixo do projeto RUSH ficaram giradas 180 graus em relacao ao calculado).
 - Origem = centro do furo da ventoinha, +y = frente (o EasyEDA Pro guarda a placa em mil, y para cima).
 - Contorno (POLY na camada 11, em segmentos, como no EVA-RT), furos (FILL circular na camada 12, como os
   furos do EVA-RT) e rasgos do velcro (laco fechado na camada 11, recorte interno).
@@ -69,8 +70,12 @@ def pads_footprint(dados, uuid):
 
 
 def transformar(px, py, x, y, rot, baixo):
+    # face de baixo no EasyEDA Pro: espelho em y do footprint e depois a rotacao. Corrigido em 08/11/2026
+    # (antes era espelho em x, o que deixava as pecas de baixo giradas 180 graus em relacao ao calculado);
+    # conferido no EVA_RT.eprj: com espelho em y as 79 pontas de trilha das pecas de baixo caem em pads
+    # da mesma rede. Ver easyeda_cobre.py.
     if baixo:
-        px = -px
+        py = -py
     t = math.radians(rot)
     return x + px * math.cos(t) - py * math.sin(t), y + px * math.sin(t) + py * math.cos(t)
 
@@ -85,16 +90,16 @@ def forma_pad(p, x, y, rot, baixo):
              LineString([(0, -(h - w) / 2), (0, (h - w) / 2)]).buffer(w / 2, quad_segs=12))
     else:
         g = box(-w / 2, -h / 2, w / 2, h / 2)
-    ang = (p['rot'] * (-1 if baixo else 1)) + rot
+    g = affinity.rotate(g, p['rot'] or 0, origin=(0, 0))
     if baixo:
-        g = affinity.scale(g, -1, 1, origin=(0, 0))
-    g = affinity.rotate(g, ang, origin=(0, 0))
+        g = affinity.scale(g, 1, -1, origin=(0, 0))
+    g = affinity.rotate(g, rot, origin=(0, 0))
     return affinity.translate(g, cx, cy)
 
 
 def ajustar(locais, alvos, baixo):
-    """Rotacao + translacao (com espelho em x se baixo) que leva os pads locais aos alvos."""
-    a = [(-x if baixo else x, y) for x, y in locais]
+    """Rotacao + translacao (com espelho em y se baixo) que leva os pads locais aos alvos."""
+    a = [(x, -y if baixo else y) for x, y in locais]
     ax, ay = sum(p[0] for p in a) / len(a), sum(p[1] for p in a) / len(a)
     qx, qy = sum(p[0] for p in alvos) / len(alvos), sum(p[1] for p in alvos) / len(alvos)
     s_cross = sum((p[0] - ax) * (q[1] - qy) - (p[1] - ay) * (q[0] - qx) for p, q in zip(a, alvos))

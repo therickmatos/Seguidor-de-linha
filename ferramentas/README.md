@@ -85,7 +85,8 @@ Face de baixo = footprint espelhado em **y** e depois girado. Resumo do roteamen
 
 ```
 python rush_pipeline.py entrada.epro pasta saida.epro 2.5 30           # 1a versao (fanout + malha de costura)
-python rush_pipeline.py plano roteada.epro pasta saida.epro            # plano puro + vias minimas (atual)
+python rush_pipeline.py plano roteada.epro pasta saida.epro            # plano puro + vias minimas
+python rush_pipeline.py corrigir plano_vias.epro pasta saida.epro      # correcoes do DRC do EasyEDA (v2, atual)
 python easyeda_cobre.py saida.epro --gnd-planos
 /usr/bin/python3.12 easyeda_kicad_drc.py saida.epro conf.kicad_pcb 0.25
 ```

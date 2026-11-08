@@ -390,11 +390,20 @@ def larguras(placa):
     return prob
 
 
+VIA_PAD_SMD = 0.2   # borda da via ate pad SMD, mesmo da mesma rede (regra "SMD Pad to Via" do EasyEDA)
+
+
 def vias(placa):
     prob = []
+    smd = [p for p in placa.pads if len(p['layers']) == 1]
     for v in placa.vias:
         if v['comp']:
             continue
+        P = Point(v['x'], v['y'])
+        for p in smd:
+            d = p['geom'].distance(P) - v['d'] / 2
+            if d < VIA_PAD_SMD - TOL:
+                prob.append(('via perto de pad SMD', v['id'], v['net'], f"{p['des']}.{p['num']}", round(d, 3)))
         if v['net'] in CRISTAL:
             prob.append(('via no cristal', v['id'], v['net']))
         if v['net'] in REDES_POT_VIA and (v['d'] < VIA_POT[0] - TOL or v['furo'] < VIA_POT[1] - TOL):

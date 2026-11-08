@@ -51,19 +51,47 @@ def plano_e_vias(entrada, pasta, saida):
     """Versao "so o plano" (08/11, pedido do Erick): parte da placa roteada sem nenhuma via ou trilha
     de GND, refaz o MARK_L_A5 por cima (ele cortava o plano de baixo entre o U3 e o J1) e poe so as
     vias que faltam: uma por grupo de pads de GND solto, encostada no pad quando cabe, e o reforco do
-    retorno dos terminais de corrente; no fim tira as vias e trilhas de GND que o plano ja dispensa."""
+    retorno dos terminais de corrente; no fim tira as vias e trilhas de GND que o plano ja dispensa.
+    Pinos de GND dos DRV8874 ligados ao pad termico por dentro (ligar_drv) e vias sempre a >= 0,2 mm
+    de pad SMD, com toco de trilha (regras do EasyEDA, 08/11)."""
     os.makedirs(pasta, exist_ok=True)
     p = lambda n: os.path.join(pasta, n)
     placa = C.Placa(entrada)
     import easyeda_rotear as R
     R.gravar_epro(placa, p('a_so_plano.epro'), lambda r: not (r[0] in ('LINE', 'VIA') and r[3] == 'GND'), [], [])
     RR.refazer_rede(p('a_so_plano.epro'), p('b_mark.epro'), 'MARK_L_A5', custo_b=3.0, custo_via=250)
-    G.vias_minimas(p('b_mark.epro'), p('c_vias.epro'))
+    G.ligar_drv(p('b_mark.epro'), p('b_drv.epro'))
+    G.vias_minimas(p('b_drv.epro'), p('c_vias.epro'))
     G.reforco_retorno(p('c_vias.epro'), p('d_reforco.epro'))
-    G.podar_gnd(p('d_reforco.epro'), saida, base=p('b_mark.epro'))
+    G.podar_gnd(p('d_reforco.epro'), saida, base=p('b_drv.epro'))
     print(G.retorno_largo(saida))
     return C.relatorio(saida, gnd_planos=True)
 
+
+def corrigir_easyeda(entrada, pasta, saida):
+    """Correcoes depois do teste do Erick no EasyEDA (08/11) sobre a versao "plano + vias minimas":
+    - pinos de GND dos DRV8874 ligados ao pad termico por dentro (U3.7 ficava solto) e pontes entre
+      pinos de GND vizinhos (U4.15/U4.16 ficavam soltos);
+    - vias encostadas em pad SMD (regra "SMD Pad to Via" do EasyEDA, mesmo da mesma rede) afastadas
+      para >= 0,2 mm, no mesmo pedaco de plano, com toco de trilha ate o pad; onde 0,2 nao cabe,
+      tenta >= 0,05 (sem encostar). As que nao cabem nem assim ficam e sao listadas."""
+    os.makedirs(pasta, exist_ok=True)
+    p = lambda n: os.path.join(pasta, n)
+    G.ligar_drv(entrada, p('a_drv.epro'))
+    G.afastar_vias(p('a_drv.epro'), p('b_afastado.epro'))
+    folga = G.FOLGA_VIA_PAD
+    G.FOLGA_VIA_PAD = 0.05
+    try:
+        G.afastar_vias(p('b_afastado.epro'), saida, raio=1.2)
+    finally:
+        G.FOLGA_VIA_PAD = folga
+    print(G.retorno_largo(saida))
+    return C.relatorio(saida, gnd_planos=True)
+
+
+if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == 'corrigir':
+    corrigir_easyeda(sys.argv[2], sys.argv[3], sys.argv[4])
+    sys.exit()
 
 if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == 'plano':
     plano_e_vias(sys.argv[2], sys.argv[3], sys.argv[4])

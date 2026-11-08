@@ -31,7 +31,7 @@ def _mascara(geom, X, Y):
 
 
 def rotear(placa, objs, net, origem, alvo, largura, via=(0.6, 0.3), margem=4.0, passo=None,
-           custo_camada=None, custo_via=60, macio=None, sem_via_em_pad=True, janela=None):
+           custo_camada=None, custo_via=60, macio=None, sem_via_em_pad=True, janela=None, pen=400.0):
     """origem/alvo: {camada: geometria} do cobre (da rede) de onde sai e aonde chega.
     custo_camada: {camada: fator}. macio: conjunto de redes cujas trilhas podem ser cruzadas (custo alto).
     Devolve dict(trilhas, vias, cruzadas) ou None."""
@@ -82,7 +82,8 @@ def rotear(placa, objs, net, origem, alvo, largura, via=(0.6, 0.3), margem=4.0, 
             vm &= ~_mascara(unary_union([o['geom'] for o in moles]).buffer(rv + FOLGA + erro, quad_segs=6), X, Y)
         via_ok = vm if via_ok is None else (via_ok & vm)
     if sem_via_em_pad:
-        via_ok &= ~_mascara(todos_pads.buffer(0.1), X, Y)
+        # o EasyEDA acusa via encostada em pad SMD mesmo da mesma rede: borda da via a >= 0,2 de qualquer pad
+        via_ok &= ~_mascara(todos_pads.buffer(rv + FOLGA + erro), X, Y)
     # furos: anel a >= 0,15 mm de qualquer via existente e furo a >= 0,35 mm de furo de pad passante
     furos = [o['geom'].buffer(rv + 0.15) for o in objs if o['tipo'] == 'via' and o['geom'].intersects(win)]
     furos += [shapely.Point(*o['obj']['centro']).buffer(o['obj']['furo'] / 2 + via[1] / 2 + 0.35)
@@ -110,7 +111,7 @@ def rotear(placa, objs, net, origem, alvo, largura, via=(0.6, 0.3), margem=4.0, 
            (-1, -1, 1.4142), (-1, 1, 1.4142), (1, -1, 1.4142), (1, 1, 1.4142)]
     pai = {}
     fim = None
-    PEN = 400.0
+    PEN = pen
     while fila:
         d, lay, iy, ix = heapq.heappop(fila)
         if d > dist.get((lay, iy, ix), 1e18):

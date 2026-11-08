@@ -92,7 +92,7 @@ if __name__ == '__main__':
         aplicar(sys.argv[2], sys.argv[3], sys.argv[4], *sys.argv[5:])
 
 
-def fechar(entrada, saida, custo_b=2.0):
+def fechar(entrada, saida, custo_b=2.0, custo_via=60):
     """Fecha as ligacoes de sinal que o FreeRouting deixou abertas, com o roteador de grade."""
     import grade as G
     placa = C.Placa(entrada)
@@ -111,7 +111,7 @@ def fechar(entrada, saida, custo_b=2.0):
             r = None
             for margem in (4.0, 10.0, 25.0):
                 r = G.rotear(placa, objs, net, orig, alvo, w, margem=margem,
-                             custo_camada={C.TOP: 1.0, C.BOT: custo_b})
+                             custo_camada={C.TOP: 1.0, C.BOT: custo_b}, custo_via=custo_via)
                 if r:
                     break
             if not r:

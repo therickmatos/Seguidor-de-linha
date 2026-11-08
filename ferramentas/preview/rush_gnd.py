@@ -24,7 +24,7 @@ import sys
 
 import shapely
 from shapely.geometry import MultiPolygon, Point
-from shapely.ops import unary_union
+from shapely.ops import nearest_points, unary_union
 from shapely.strtree import STRtree
 
 import easyeda_cobre as C
@@ -331,7 +331,7 @@ if __name__ == '__main__' and sys.argv[1] == 'retorno':
     print(retorno_largo(sys.argv[2]))
 
 
-def ligar_com_arranque(entrada, saida):
+def ligar_com_arranque(entrada, saida, so=None, pen=400.0, custo_via=40):
     """Para cada grupo de pads de GND ainda solto: caminho ate o GND principal que pode cruzar trilhas
     de sinal; as trilhas cruzadas sao arrancadas e o GND novo entra. Depois e preciso refazer os
     sinais arrancados (rush_rotear.py fechar)."""
@@ -356,6 +356,8 @@ def ligar_com_arranque(entrada, saida):
     for g in grupos.values():
         if not any(o['tipo'] == 'pad' for o in g):
             continue
+        if so and not any(o['ref'] in so for o in g):
+            continue
         orig = {}
         for lay in (C.TOP, C.BOT):
             gs = [o['geom'] for o in g if lay in o['layers']]
@@ -363,7 +365,12 @@ def ligar_com_arranque(entrada, saida):
             gs += [ilhas[lay][j] for j in range(len(ilhas[lay])) if uf.find((lay, j)) == uf.find(('obj', gnd.index(g[0])))]
             if gs:
                 orig[lay] = unary_union(gs)
-        r = G.rotear(placa, objs, 'GND', orig, alvo, W_GND, via=VIA_GND, margem=4.0, macio=sinais, custo_via=40)
+        r = None
+        for margem in (4.0, 9.0):
+            r = G.rotear(placa, objs, 'GND', orig, alvo, W_GND, via=VIA_GND, margem=margem, macio=sinais,
+                         custo_via=custo_via, pen=pen)
+            if r:
+                break
         if not r:
             print('sem caminho mesmo arrancando:', [o['ref'] for o in g if o['tipo'] == 'pad'])
             continue
@@ -430,6 +437,9 @@ if __name__ == '__main__' and sys.argv[1] == 'fundir':
 
 
 # ------------------------------------------------------------- so o plano + as vias que faltam
+FOLGA_VIA_PAD = 0.2     # borda da via ate a borda de pad SMD (regra "SMD Pad to Via" do EasyEDA)
+
+
 def _via_valida(placa, objs_outros, furos, x, y, d, furo):
     """Via de GND em (x, y): folga de 0,2 do cobre de outras redes nas duas faces, 0,3 da borda e dos
     furos sem cobre, furo a >= 0,3 de outros furos."""
@@ -448,11 +458,11 @@ def _via_valida(placa, objs_outros, furos, x, y, d, furo):
     return True
 
 
-def vias_minimas(entrada, saida, via_no_pad=True):
+def vias_minimas(entrada, saida, via_no_pad=False, arrancar_sinais=False):
     """Parte do plano puro (sem vias nem trilhas de GND da placa) e poe so as vias que faltam:
-    para cada grupo de pads de GND fora do GND principal (o do J1.2), uma via encostada no pad
-    (sobrepondo a borda do pad em 0,1 mm, o furo fica fora do pad) que caia num pedaco do plano
-    principal na outra face. Sem lugar na borda do pad: via no pad (se via_no_pad), depois via em
+    para cada grupo de pads de GND fora do GND principal (o do J1.2), uma via a FOLGA_VIA_PAD da borda
+    do pad, ligada a ele por um toco de trilha, que caia num pedaco do plano principal na outra face
+    (o EasyEDA acusa via encostada em pad SMD, mesmo da mesma rede). Sem lugar perto do pad: via em
     qualquer ponto do pedaco de plano do grupo e, por ultimo, trilha + via pelo roteador de grade."""
     import grade as G
     placa = C.Placa(entrada)
@@ -465,6 +475,7 @@ def vias_minimas(entrada, saida, via_no_pad=True):
     furos = [((v['x'], v['y']), v['furo']) for v in placa.vias]
     furos += [(p['centro'], p['furo']) for p in placa.pads if p['furo'] and not p['des'].startswith('PAD:')]
     k_de = {id(o): k for k, o in enumerate(gnd)}
+    smd = unary_union([p['geom'] for p in placa.pads if len(p['layers']) == 1])
     principal = lambda: uf.find(('obj', next(k for k, o in enumerate(gnd) if o['ref'] == 'J1.2')))
 
     def ilha_em(lay, P):
@@ -473,6 +484,9 @@ def vias_minimas(entrada, saida, via_no_pad=True):
                 return j, g.boundary.distance(P)
         return None, 0
     novas_v, novas_t, relato = [], [], []
+    import rush_rotear as RR
+    sinais = {p['net'] for p in placa.pads if p['net']} - RR.FIXAS - {'GND'}
+    arrancadas = set()
     for rodada in range(40):
         raiz = principal()
         soltos = collections.defaultdict(list)
@@ -488,32 +502,34 @@ def vias_minimas(entrada, saida, via_no_pad=True):
             melhores = []
             for o in grupo:
                 pad = o['obj']
-                lay = next(iter(pad['layers'])) if len(pad['layers']) == 1 else None
-                camadas_destino = [C.BOT if lay == C.TOP else C.TOP] if lay else [C.TOP, C.BOT]
-                anel = pad['geom'].buffer(d / 2 - 0.1).exterior
-                pts = [anel.interpolate(t, normalized=True) for t in [i / 48 for i in range(48)]]
-                if via_no_pad:
-                    c = pad['geom'].centroid
-                    pts_pad = [c] + [pad['geom'].buffer(-0.05).exterior.interpolate(t, normalized=True)
-                                     for t in [i / 16 for i in range(16)]] if not pad['geom'].buffer(-0.05).is_empty else [c]
-                else:
-                    pts_pad = []
-                for tipo, lista in (('borda', pts), ('no pad', pts_pad)):
-                    for P in lista:
-                        if not _via_valida(placa, outros, furos, P.x, P.y, d, furo):
-                            continue
-                        for dest in camadas_destino:
-                            j, prof = ilha_em(dest, P)
-                            if j is not None and uf.find((dest, j)) == raiz:
-                                melhores.append((tipo != 'borda', -prof, P.x, P.y, o['ref'], tipo))
+                if len(pad['layers']) != 1:
+                    continue
+                lay = next(iter(pad['layers']))
+                dest = C.BOT if lay == C.TOP else C.TOP
+                # via afastada do pad (borda a FOLGA_VIA_PAD) e um toco de trilha do pad ate ela
+                anel = pad['geom'].buffer(d / 2 + FOLGA_VIA_PAD + 0.01).exterior
+                for t in [i / 64 for i in range(64)]:
+                    P = anel.interpolate(t, normalized=True)
+                    if not _via_valida(placa, outros, furos, P.x, P.y, d, furo) or smd.distance(P) < d / 2 + FOLGA_VIA_PAD:
+                        continue
+                    a, _ = nearest_points(pad['geom'].buffer(-0.05), P)
+                    toco = C.LineString([(a.x, a.y), (P.x, P.y)])
+                    if outros[lay] is not None and outros[lay].distance(toco) < W_GND / 2 + 0.2 + 0.01:
+                        continue
+                    jj, prof = ilha_em(dest, P)
+                    if jj is not None and uf.find((dest, jj)) == raiz:
+                        melhores.append((round(toco.length, 2), -prof, P.x, P.y, o['ref'], [(a.x, a.y), (P.x, P.y)], lay))
             if melhores:
                 melhores.sort()
-                _, prof, x, y, ref, tipo = melhores[0]
+                comp, prof, x, y, ref, pts, lay_t = melhores[0]
                 novas_v.append({'net': 'GND', 'x': x, 'y': y, 'd': d, 'furo': furo})
+                novas_t.append({'net': 'GND', 'layer': lay_t, 'w': W_GND, 'pts': pts})
                 furos.append(((x, y), furo))
                 objs.append({'tipo': 'via', 'net': 'GND', 'layers': {C.TOP, C.BOT},
                              'geom': Point(x, y).buffer(d / 2, quad_segs=12), 'ref': 'novo', 'obj': novas_v[-1]})
-                relato.append((ref, f'via {d}/{furo} ({tipo})', [g['ref'] for g in grupo]))
+                objs.append({'tipo': 'trilha', 'net': 'GND', 'layers': {lay_t},
+                             'geom': C.LineString(pts).buffer(W_GND / 2, quad_segs=8), 'ref': 'novo', 'obj': None})
+                relato.append((ref, f'via {d}/{furo} com toco de {comp} mm', [g['ref'] for g in grupo]))
                 k = k_de[id(next(o for o in grupo if o['ref'] == ref))]
                 uf.union(('obj', k), ('obj', next(kk for kk, o in enumerate(gnd) if o['ref'] == 'J1.2')))
                 # a via tambem liga as ilhas que toca
@@ -537,7 +553,8 @@ def vias_minimas(entrada, saida, via_no_pad=True):
                 for x, y in pontos(g.buffer(-0.3), 0.25):
                     P = Point(x, y)
                     jj, prof = ilha_em(outra, P)
-                    if jj is not None and uf.find((outra, jj)) == raiz and _via_valida(placa, outros, furos, x, y, 0.6, 0.3):
+                    if jj is not None and uf.find((outra, jj)) == raiz and _via_valida(placa, outros, furos, x, y, 0.6, 0.3) \
+                            and smd.distance(P) >= 0.3 + FOLGA_VIA_PAD:
                         dist = min(o['geom'].distance(P) for o in grupo)
                         cand.append((dist, -prof, x, y, lay, j, outra, jj))
         if cand:
@@ -564,9 +581,14 @@ def vias_minimas(entrada, saida, via_no_pad=True):
                 orig[lay] = unary_union(gs)
         r = None
         for margem in (4.0, 9.0):
-            r = G.rotear(placa, objs, 'GND', orig, alvo, W_GND, via=VIA_GND, margem=margem, custo_via=CUSTO_VIA)
+            r = G.rotear(placa, objs, 'GND', orig, alvo, W_GND, via=VIA_GND, margem=margem, custo_via=CUSTO_VIA,
+                         macio=sinais if arrancar_sinais else None)
             if r:
                 break
+        if r and r['cruzadas']:
+            # trilhas de sinal no caminho: saem (sao refeitas depois por outro caminho)
+            arrancadas.update(r['cruzadas'])
+            objs[:] = [o for o in objs if not (o['tipo'] == 'trilha' and o['ref'] in r['cruzadas'])]
         if not r:
             relato.append((grupo[0]['ref'], 'SEM SAIDA', [g['ref'] for g in grupo]))
             for o in grupo:       # nao tenta de novo
@@ -579,7 +601,9 @@ def vias_minimas(entrada, saida, via_no_pad=True):
             objs.append({'tipo': 'via', 'net': 'GND', 'layers': {C.TOP, C.BOT},
                          'geom': Point(v['x'], v['y']).buffer(v['d'] / 2, quad_segs=12), 'ref': 'novo', 'obj': v})
         uf.union(('obj', k_de[id(grupo[0])]), ('obj', next(kk for kk, o in enumerate(gnd) if o['ref'] == 'J1.2')))
-        relato.append((grupo[0]['ref'], f"trilha + {len(r['vias'])} via(s)", [g['ref'] for g in grupo]))
+        relato.append((grupo[0]['ref'], f"trilha + {len(r['vias'])} via(s)" +
+                       (f", arrancando {len(r['cruzadas'])} trecho(s) de sinal" if r['cruzadas'] else ''),
+                       [g['ref'] for g in grupo]))
         for t in r['trilhas']:
             for a, b in zip(t['pts'], t['pts'][1:]):
                 objs.append({'tipo': 'trilha', 'net': 'GND', 'layers': {t['layer']},
@@ -587,8 +611,9 @@ def vias_minimas(entrada, saida, via_no_pad=True):
     for x in relato:
         print(*x)
     print('vias novas:', len(novas_v), '| trilhas novas:', sum(len(t['pts']) - 1 for t in novas_t))
-    pours = [r for r in placa.rows if r[0] == 'POUR']
-    R.gravar_epro(placa, saida, lambda r: True, novas_t, novas_v, pours=pours)
+    if arrancadas:
+        print('trechos de sinal arrancados (refazer com rush_rotear.fechar):', sorted(arrancadas))
+    R.gravar_epro(placa, saida, lambda r: not (r[0] == 'LINE' and r[1] in arrancadas), novas_t, novas_v)
     return relato
 
 
@@ -624,21 +649,12 @@ def reforco_retorno(entrada, saida, largura=1.0, raio=4.0, max_vias=6):
         g_t = next(o['geom'] for o in itens if o['ref'] == t)
         rt = uf.find(('o', ref[t]))
         cand = []
-        # 1) via encostada no pad do terminal (sobrepoe 0,1 mm da borda), caindo num corredor largo do J1.2
-        anel = g_t.buffer(0.4 - 0.1).exterior
-        for i in range(64):
-            P = anel.interpolate(i / 64, normalized=True)
-            if not _via_valida(placa, outros, furos, P.x, P.y, 0.8, 0.4):
-                continue
-            for lay in (C.TOP, C.BOT):
-                if any(g.buffer(-0.4).contains(P) and uf.find((lay, j)) == raiz for j, g in enumerate(largos[lay])):
-                    cand.append((0.0, P.x, P.y))
-                    break
-        # 2) via perto do terminal ligando o corredor largo dele ao do J1.2
-        if not cand:
+        smd = unary_union([p['geom'] for p in placa.pads if len(p['layers']) == 1])
+        # via perto do terminal (sem encostar em pad SMD) ligando o corredor largo dele ao do J1.2
+        if True:
             for x, y in pontos(g_t.buffer(raio), 0.25):
                 P = Point(x, y)
-                if not _via_valida(placa, outros, furos, x, y, 0.8, 0.4):
+                if not _via_valida(placa, outros, furos, x, y, 0.8, 0.4) or smd.distance(P) < 0.4 + FOLGA_VIA_PAD:
                     continue
                 lados = {}
                 for lay in (C.TOP, C.BOT):
@@ -719,3 +735,168 @@ def podar_gnd(entrada, saida, base=None, largura=1.0):
 
 if __name__ == '__main__' and sys.argv[1] == 'podar':
     podar_gnd(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else None)
+
+
+def ligar_drv(entrada, saida, w=0.3):
+    """Pinos de GND do DRV8874 (U3, U4) ligados ao pad termico do proprio CI por dentro: trilha reta da
+    ponta interna do pino ate o pad termico, para os pinos alinhados com ele; o pino vizinho de GND que
+    nao fica alinhado (16) e ligado ao 15 por uma ponte nas pontas internas. Sem via. Recomendacao do
+    datasheet; no EasyEDA o plano nao entra entre pinos a 0,65 mm (U3.7, U4.15/U4.16 ficavam soltos)."""
+    placa = C.Placa(entrada)
+    objs = placa.objetos()
+    outros_top = unary_union([o['geom'] for o in objs if C.TOP in o['layers'] and o['net'] != 'GND'])
+    livre = lambda pts: outros_top.distance(C.LineString(pts).buffer(w / 2, quad_segs=8)) >= 0.2 + 0.01
+    novas = []
+    for des in ('U3', 'U4'):
+        pads = {p['num']: p for p in placa.pads if p['des'] == des}
+        tp = pads['17']['geom']
+        tx0, ty0, tx1, ty1 = tp.bounds
+        tcy = (ty0 + ty1) / 2
+        def ponta(p):
+            x0, y0, x1, y1 = p['geom'].bounds
+            cx = (x0 + x1) / 2
+            return cx, (y0 + 0.1 if abs(y0 - tcy) < abs(y1 - tcy) else y1 - 0.1)
+        alinhados = []
+        for num, p in pads.items():
+            if num == '17' or p['net'] != 'GND':
+                continue
+            cx, cy = ponta(p)
+            if tx0 + 0.05 <= cx <= tx1 - 0.05:     # a ponta da trilha cai no pad termico
+                ty = ty1 - 0.2 if cy > tcy else ty0 + 0.2
+                if not livre([(cx, cy), (cx, ty)]):
+                    print(f'  {des}.{num}: trilha de outra rede entre o pino e o pad termico; fica para as vias')
+                    continue
+                novas.append({'net': 'GND', 'layer': C.TOP, 'w': w, 'pts': [(cx, cy), (cx, ty)]})
+                alinhados.append(num)
+        def ponta_fora(p):
+            x0, y0, x1, y1 = p['geom'].bounds
+            return (x0 + x1) / 2, (y1 - 0.1 if abs(y1 - tcy) > abs(y0 - tcy) else y0 + 0.1)
+        feitos = set()
+        for num, p in pads.items():
+            if num == '17' or p['net'] != 'GND' or num in alinhados:
+                continue
+            cx, cy = ponta(p)
+            # pino de GND vizinho (passo 0,65): ponte nas pontas de dentro se o vizinho vai ao pad termico,
+            # senao ponte nas pontas de fora (os dois ficam juntos para a via que vier depois)
+            viz = [(n, q) for n, q in pads.items() if n != num and n != '17' and q['net'] == 'GND'
+                   and abs(ponta(q)[1] - cy) < 1e-6 and abs(ponta(q)[0] - cx) < 0.7]
+            for n, q in viz:
+                if frozenset((num, n)) in feitos:
+                    continue
+                if n in alinhados:
+                    pts = [(cx, cy), ponta(q)]
+                else:
+                    pts = [ponta_fora(p), ponta_fora(q)]
+                if livre(pts):
+                    novas.append({'net': 'GND', 'layer': C.TOP, 'w': w, 'pts': pts})
+                    feitos.add(frozenset((num, n)))
+        print(des, 'pinos de GND ligados ao pad termico:', alinhados)
+    R.gravar_epro(placa, saida, lambda r: True, novas, [])
+    return novas
+
+
+if __name__ == '__main__' and sys.argv[1] == 'drv':
+    ligar_drv(sys.argv[2], sys.argv[3])
+
+
+def afastar_vias(entrada, saida, raio=1.6, passo=0.05):
+    """Vias a menos de FOLGA_VIA_PAD de um pad SMD (regra "SMD Pad to Via" do EasyEDA, mesmo da mesma
+    rede) vao para o ponto mais perto que respeite a regra, sem mudar as ligacoes: a via nova fica no
+    mesmo pedaco de plano das duas faces; trilhas que terminavam nela sao esticadas ate o lugar novo; e,
+    se a via encostava num pad da mesma rede, um toco de trilha liga o pad a ela."""
+    import numpy as np
+    placa = C.Placa(entrada)
+    objs = placa.objetos()
+    pl = placa.planos_gnd(objs)
+    ilhas = {lay: _partes(pl[lay]) for lay in (C.TOP, C.BOT)}
+    smd = [p for p in placa.pads if len(p['layers']) == 1]
+    smd_u = unary_union([p['geom'] for p in smd])
+    furos = [((v['x'], v['y']), v['furo'], v['id']) for v in placa.vias]
+    furos += [(p['centro'], p['furo'], None) for p in placa.pads if p['furo'] and not p['des'].startswith('PAD:')]
+    mover, novas_t = {}, []
+    linhas_mod = {}
+    for v in placa.vias:
+        if v['comp']:
+            continue
+        P0 = Point(v['x'], v['y'])
+        r = v['d'] / 2
+        if smd_u.distance(P0) >= r + FOLGA_VIA_PAD - 1e-4:
+            continue
+        net = v['net']
+        outros = {}
+        for lay in (C.TOP, C.BOT):
+            gs = [o['geom'] for o in objs if lay in o['layers'] and o['net'] != net and o['ref'] != v['id']]
+            outros[lay] = unary_union(gs) if gs else None
+        tocados = [p for p in smd if p['net'] == net and p['geom'].distance(P0) < r + 1e-3]
+        ligadas = [t for t in placa.tracks if t['net'] == net and
+                   min(math.dist(t['a'], (v['x'], v['y'])), math.dist(t['b'], (v['x'], v['y']))) < 1e-3]
+        ilha0 = {}
+        for lay in (C.TOP, C.BOT):
+            ilha0[lay] = next((j for j, g in enumerate(ilhas[lay]) if g.contains(P0)), None)
+        melhor = None
+        for dx in np.arange(-raio, raio + 1e-9, passo):
+            for dy in np.arange(-raio, raio + 1e-9, passo):
+                d0 = math.hypot(dx, dy)
+                if d0 > raio or (melhor and d0 >= melhor[0]):
+                    continue
+                x, y = v['x'] + dx, v['y'] + dy
+                P = Point(x, y)
+                if smd_u.distance(P) < r + FOLGA_VIA_PAD:
+                    continue
+                if not placa.borda.buffer(-(C.FOLGA_BORDA + r)).contains(P):
+                    continue
+                if any(outros[lay] is not None and outros[lay].distance(P) < r + 0.2 + 0.01 for lay in (C.TOP, C.BOT)):
+                    continue
+                if any(fid != v['id'] and math.dist((x, y), c) - f / 2 - v['furo'] / 2 < 0.3 + 0.01 for c, f, fid in furos):
+                    continue
+                if net == 'GND' and any(ilha0[lay] is not None and not ilhas[lay][ilha0[lay]].contains(P) for lay in (C.TOP, C.BOT)):
+                    continue
+                ok = True
+                novos_pts = []
+                for t in ligadas:
+                    a = (x, y) if math.dist(t['a'], (v['x'], v['y'])) < 1e-3 else t['a']
+                    b = (x, y) if math.dist(t['b'], (v['x'], v['y'])) < 1e-3 else t['b']
+                    g = C.LineString([a, b]).buffer(t['w'] / 2, quad_segs=8)
+                    if outros[t['layer']] is not None and outros[t['layer']].distance(g) < 0.2 + 0.01:
+                        ok = False
+                        break
+                    novos_pts.append((t['id'], a, b))
+                if not ok:
+                    continue
+                tocos = []
+                for p in tocados:
+                    lay = next(iter(p['layers']))
+                    a, _ = nearest_points(p['geom'].buffer(-0.05), P)
+                    toco = C.LineString([(a.x, a.y), (x, y)])
+                    if outros[lay] is not None and outros[lay].distance(toco.buffer(W_GND / 2)) < 0.2 + 0.01:
+                        ok = False
+                        break
+                    tocos.append({'net': net, 'layer': lay, 'w': W_GND, 'pts': [(a.x, a.y), (x, y)]})
+                if ok:
+                    melhor = (d0, x, y, novos_pts, tocos)
+        if melhor is None:
+            print('sem lugar para afastar a via', v['id'], net, (round(v['x'], 2), round(v['y'], 2)))
+            continue
+        d0, x, y, novos_pts, tocos = melhor
+        mover[v['id']] = (x, y)
+        for tid, a, b in novos_pts:
+            linhas_mod[tid] = (a, b)
+        novas_t += tocos
+        furos = [(c, f, fid) if fid != v['id'] else ((x, y), f, fid) for c, f, fid in furos]
+        print(f"via {v['id']} ({net}) movida {d0:.2f} mm; {len(tocos)} toco(s), {len(novos_pts)} trilha(s) esticada(s)")
+    rows = []
+    for r in placa.rows:
+        if r[0] == 'VIA' and r[1] in mover:
+            r = list(r)
+            r[5], r[6] = R.mil(mover[r[1]][0]), R.mil(mover[r[1]][1])
+        elif r[0] == 'LINE' and r[1] in linhas_mod:
+            r = list(r)
+            (ax, ay), (bx, by) = linhas_mod[r[1]]
+            r[5], r[6], r[7], r[8] = R.mil(ax), R.mil(ay), R.mil(bx), R.mil(by)
+        rows.append(r)
+    placa.rows = rows
+    R.gravar_epro(placa, saida, lambda r: True, novas_t, [])
+
+
+if __name__ == '__main__' and sys.argv[1] == 'afastar':
+    afastar_vias(sys.argv[2], sys.argv[3])

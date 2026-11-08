@@ -169,3 +169,42 @@ alternando de face. Funciona (só passa corrente de sinal e de desacoplamento), 
 nessa região, como foi feito com o MARK_L_A5, e abrir o plano. Depois de mexer, conferir de novo com
 `easyeda_cobre.py --gnd-planos`.
 
+## 7. Teste no EasyEDA e versão v2 (08/11)
+
+O DRC do EasyEDA no `RUSH_PCB_plano_vias.epro` deu 117 erros:
+
+- **108 "Connection Error … free copper region"**: pedaços soltos do próprio plano de GND (bolsões
+  cercados por trilhas, sem pad nem via). O EasyEDA conta cada um como erro. Some ao ligar a remoção de
+  ilhas nas propriedades do plano e reconstruir.
+- **8 "Clearance Error in the same net → SMD Pad to Via"**: o EasyEDA não aceita via encostada em pad
+  SMD, mesmo da mesma rede (a solda escorre para o furo). As vias "encostadas no pad" da seção 6 caíam nisso.
+- **2 ligações faltando de verdade**: U3.7 e U4.15/U4.16, pinos de GND do DRV8874 entre pinos de outra
+  rede a 0,65 mm, onde o plano não entra. A minha simulação deixava passar uma faixa finíssima rente ao
+  pino (U3.7) e contava a via que só tocava a ponta do U4.16. No U4, o CPH_B passa por dentro, entre os
+  pinos e o pad térmico (o C14 fica bem em cima dos pinos 13/14, então ele não cabe por fora).
+
+**v2** — `hardware/easyeda/RUSH_PCB_plano_vias_v2.epro` (`rush_pipeline.py corrigir`):
+
+- U3.7, U3.15 e U4.7 ligados ao pad térmico do próprio CI por uma trilha curta por dentro; U3.16 ligado ao
+  U3.15 pelas pontas de dentro; U4.15 e U4.16 ligados entre si pelas pontas de fora e a via deles afastada.
+- 10 das 16 vias a menos de 0,2 mm de pad SMD afastadas para ≥ 0,2 mm, no mesmo pedaço de plano das duas
+  faces, com um toco de 0,3 mm até o pad.
+- O verificador (`easyeda_cobre.py`) passou a acusar via a menos de 0,2 mm de pad SMD de qualquer rede.
+- Sinais, potência e planos iguais à versão anterior. KiCad: 0 erros de cobre e 0 não roteadas.
+
+**Ficam 6 vias encostadas em pad SMD**, onde não cabe via a ≥ 0,05 mm sem mudar o roteamento em volta:
+
+| Via | Pad | Situação |
+|---|---|---|
+| MARK_L_A5 (−64,43; 5,73) 0,6 | R5.1 | sobrepõe 0,19 mm |
+| GND (−65,62; 5,77) 0,8 | R5.2 | via no pad; o laço do +5V e o MARK_L_A5 fecham o bolsão do R5.2 no braço |
+| GND (8,00; −21,75) 0,6 | C7.2 | sobrepõe 0,24 mm |
+| GND (14,70; −22,20) 0,6 | R3.2 | sobrepõe 0,07 mm |
+| GND (2,19; −20,43) 0,6 | U2.21 | encosta 0,1 mm |
+| GND (−4,81; −25,94) 0,8 | U2.3 | encosta 0,1 mm (furo fora do pad) |
+
+Resolver essas 6 pede refazer o roteamento dessas duas regiões (braço esquerdo: passar o +5V do S1.3 pela
+borda de baixo do braço, abrindo o plano em volta do R5; lado direito do ATmega: mudar 1–2 sinais de
+caminho). A tentativa automática de arrancar e refazer sinais nessas regiões só criou problemas novos
+(cada sinal refeito cortava o plano em outro ponto), então isso precisa de um ajuste local feito com cuidado.
+

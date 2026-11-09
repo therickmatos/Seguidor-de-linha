@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sensores de marca × marcas do TRIF · RUSH SATURN v3</title>
+<style>
+:root { --bg:#101214; --painel:#16191c; --borda:#2a2d31; --fg:#e8e6e0; --cinza:#8a8f96; --verde:#7fd18b; --verm:#f2766b; --amar:#e8c25a; --azul:#5aa9f2; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { padding: 16px 22px 10px; border-bottom: 1px solid var(--borda); }
+header h1 { margin: 0; font-size: 21px; }
+header p { margin: 4px 0 0; color: var(--cinza); font-size: 13px; }
+.wrap { display: grid; grid-template-columns: 290px 1fr; min-height: calc(100vh - 70px); }
+aside { border-right: 1px solid var(--borda); padding: 12px 16px; background: var(--painel); }
+aside section { margin-bottom: 16px; }
+aside h3, main h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--cinza); margin: 0 0 6px; font-weight: 600; }
+main { padding: 10px 20px 30px; min-width: 0; }
+input, select, textarea, button { font: inherit; color: var(--fg); background: #0c0e10; border: 1px solid var(--borda); border-radius: 6px; }
+input[type=number] { width: 72px; padding: 3px 6px; }
+input[type=range] { width: 100%; accent-color: var(--amar); }
+select { padding: 4px 6px; max-width: 100%; }
+button { padding: 4px 10px; cursor: pointer; }
+button:hover { border-color: var(--cinza); }
+button.on { background: #2b2410; border-color: var(--amar); color: var(--amar); }
+.row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 4px 0; }
+.presets { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.presets button { padding: 2px 8px; font-size: 13px; }
+.hidden { display: none !important; }
+small, .cinza { color: var(--cinza); }
+.legenda div { display: flex; align-items: center; gap: 8px; font-size: 12.5px; margin: 3px 0; }
+.legenda i { display: inline-block; width: 14px; height: 10px; border-radius: 2px; }
+nav.abas { display: flex; gap: 4px; border-bottom: 1px solid var(--borda); margin-bottom: 12px; flex-wrap: wrap; }
+nav.abas button { border: none; border-bottom: 2px solid transparent; border-radius: 0; background: none; padding: 8px 14px; color: var(--cinza); }
+nav.abas button.on { color: var(--fg); border-bottom-color: var(--amar); background: none; }
+section.aba { display: none; }
+section.aba.on { display: block; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin: 10px 0; }
+.card { background: var(--painel); border: 1px solid var(--borda); border-left: 3px solid var(--cinza); border-radius: 6px; padding: 8px 12px; }
+.card.ok { border-left-color: var(--verde); }
+.card.ruim { border-left-color: var(--verm); }
+.card .ct { font-size: 12px; color: var(--cinza); }
+.card .cv { font-size: 22px; font-weight: 650; margin: 2px 0; }
+.card .cs { font-size: 12.5px; color: #c9c6bf; }
+.caixa { position: relative; border: 1px solid var(--borda); border-radius: 6px; overflow: hidden; }
+canvas { display: block; width: 100%; touch-action: none; }
+#cvPista { height: 470px; cursor: grab; }
+#cvInsp { height: 400px; }
+#cvBat { height: 260px; }
+#cvCen { height: 420px; }
+#cvCmp, #cvY { height: 380px; }
+.dica { position: absolute; left: 8px; bottom: 6px; font-size: 11.5px; color: var(--cinza); pointer-events: none; }
+.toggles { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; margin: 6px 0; align-items: center; }
+.toggles label { display: flex; gap: 5px; align-items: center; }
+.scrub { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; margin: 8px 0 4px; }
+#leitura { font-size: 12.5px; color: #c9c6bf; min-height: 2.6em; }
+.grid2 { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.1fr); gap: 18px; margin-top: 14px; }
+@media (max-width: 1100px) { .wrap { grid-template-columns: 1fr; } aside { border-right: none; border-bottom: 1px solid var(--borda); } .grid2 { grid-template-columns: 1fr; } }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--borda); }
+th { color: var(--cinza); font-weight: 600; font-size: 12px; position: sticky; top: 0; background: var(--bg); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr[data-i], tbody tr[data-j] { cursor: pointer; }
+tbody tr:hover { background: #1a1d21; }
+tbody tr.sel { background: #262113; }
+.tok { color: var(--verde); }
+.truim { color: var(--verm); }
+.scroll { max-height: 420px; overflow: auto; border: 1px solid var(--borda); border-radius: 6px; }
+#inspInfo { font-size: 13px; margin: 6px 0 0; }
+textarea { width: 100%; min-height: 64px; padding: 6px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; }
+.ajuda { font-size: 12.5px; color: var(--cinza); margin: 4px 0; }
+.erro { color: var(--verm); font-size: 13px; }
+.texto { max-width: 920px; }
+.texto h2 { font-size: 17px; margin: 22px 0 6px; }
+.texto p, .texto li { color: #d4d1ca; }
+.texto code { background: #1b1e22; padding: 1px 5px; border-radius: 4px; font-size: 12.5px; }
+.destaque { background: var(--painel); border: 1px solid var(--borda); border-left: 3px solid var(--amar); border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+footer { color: var(--cinza); font-size: 12px; padding: 14px 22px; border-top: 1px solid var(--borda); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sensores de marca × marcas do TRIF · RUSH SATURN v3</h1>
+  <p>Simulação cinemática dos QRE de marca nos braços em pistas no formato da regra (marca 40 × 19 mm a 40 mm da borda da linha). Mude L, o modelo de seguimento ou a posição do QRE e veja quais marcas o robô lê.</p>
+</header>
+<div class="wrap">
+<aside>
+  <section>
+    <h3>Distância barra–eixo (L)</h3>
+    <div class="row"><input type="range" id="Lr" min="55" max="110" step="0.5"><input type="number" id="Ln" step="0.5" min="40" max="140"> mm</div>
+    <div class="presets"><button data-l="67">67</button><button data-l="70">70</button><button data-l="82">82</button><button data-l="95">95</button><button data-l="98">98 · EVA-RT</button></div>
+    <small>Do eixo das rodas à linha dos sensores da barra. 98 mm = vareta do EVA-RT (medido na foto); 67–70 = vareta cortada.</small>
+  </section>
+  <section>
+    <h3>Seguimento da linha</h3>
+    <select id="modelo">
+      <option value="ideal">Barra ideal sobre a linha</option>
+      <option value="P5">Controle P firme (5 mm de erro na R100)</option>
+      <option value="P12">Controle P solto (12 mm de erro na R100)</option>
+      <option value="desvio">Barra deslocada (desvio fixo)</option>
+    </select>
+    <div id="desvioBox" class="row hidden"><input type="number" id="desvio" step="1"> mm <small>(+ = para a esquerda)</small></div>
+  </section>
+  <section>
+    <h3>Comparar com</h3>
+    <label class="row"><input type="checkbox" id="fantasma"> outro L = <input type="number" id="Lcmp" step="0.5" min="40" max="140"> mm</label>
+    <small>Aparece em cinza tracejado nos detalhes e nas tabelas.</small>
+  </section>
+  <section>
+    <h3>QRE de marca</h3>
+    <div class="row">x = ± <input type="number" id="qreX" step="0.5"> y = <input type="number" id="qreY" step="0.5"> <button id="qreReset" title="voltar à posição da v3">v3</button></div>
+    <small>Posição na placa (mm, origem no centro da ventoinha). v3: (±69,5; 4,5). Eixo das rodas em y = −22,59.</small>
+  </section>
+  <section>
+    <h3>Firmware EVA-RT 1.2.2 · parada</h3>
+    <div class="row">velocidade <input type="number" id="vel" step="0.1" min="0.1" max="6"> m/s</div>
+    <div class="row">timer da marca <select id="timer"><option value="30">30 ms</option><option value="20">20 ms</option><option value="10">10 ms</option></select></div>
+    <small>O robô desliga quando o QRE direito vê branco e o esquerdo não vê nada dentro do timer (Marks.ino). As marcas de curvatura não são usadas.</small>
+  </section>
+  <section class="legenda">
+    <h3>Legenda</h3>
+    <div><i style="background:var(--amar)"></i> QRE esquerdo (curvatura, A5)</div>
+    <div><i style="background:var(--azul)"></i> QRE direito (partida/chegada, A6)</div>
+    <div><i style="background:var(--verde)"></i> marca de curvatura lida</div>
+    <div><i style="background:var(--azul)"></i> marca de partida/chegada lida</div>
+    <div><i style="background:var(--verm)"></i> marca perdida</div>
+  </section>
+</aside>
+<main>
+  <nav class="abas">
+    <button data-aba="pista" class="on">Pista</button>
+    <button data-aba="bateria">Bateria de curvas</button>
+    <button data-aba="comparar">Comparar L</button>
+    <button data-aba="metodo">Método e regra</button>
+  </nav>
+
+  <section class="aba on" id="aba-pista">
+    <div class="row">
+      <select id="pistaSel"><option value="teste">Pista de teste fechada</option><option value="texto">Pista digitada</option></select>
+      <span id="pistaInfo" class="cinza"></span>
+    </div>
+    <div id="textoBox" class="hidden">
+      <textarea id="texto" spellcheck="false"></textarea>
+      <div class="ajuda"><code>S800</code> reta de 800 mm · <code>E100/90</code> curva à esquerda de raio 100 e 90° · <code>D200/45</code> curva à direita · <code>P</code> e <code>C</code> marca de partida e de chegada neste ponto (lado direito). As marcas de curvatura entram sozinhas em cada troca de curvatura (lado esquerdo). O robô larga em s = 0 com a barra sobre a linha.</div>
+      <div id="textoErro" class="erro"></div>
+    </div>
+    <div class="cards" id="cardsPista"></div>
+    <div class="caixa">
+      <canvas id="cvPista"></canvas>
+      <div class="dica">roda do mouse = zoom · arrastar = mover · duplo clique = ver tudo · clique numa marca = inspecionar</div>
+    </div>
+    <div class="toggles">
+      <label><input type="checkbox" id="tE"> trajetória do QRE esquerdo</label>
+      <label><input type="checkbox" id="tD"> do QRE direito</label>
+      <label><input type="checkbox" id="tB"> da barra</label>
+      <label><input type="checkbox" id="seguir"> seguir o robô</label>
+      <button id="verTudo">ver a pista toda</button>
+    </div>
+    <div class="scrub">
+      <button id="play">animar</button>
+      <input type="range" id="scrub" min="0" max="1" value="0">
+      <select id="velAnim" title="velocidade da animação"><option value="0.25">0,25×</option><option value="1" selected>1×</option><option value="4">4×</option></select>
+    </div>
+    <div id="leitura"></div>
+    <div class="grid2">
+      <div>
+        <h3>Inspecionar marca</h3>
+        <select id="marcaSel"></select>
+        <div class="caixa" style="margin-top:6px"><canvas id="cvInsp"></canvas><div class="dica">robô no instante em que o QRE cruza o meio da marca</div></div>
+        <p id="inspInfo"></p>
+      </div>
+      <div>
+        <h3>Marcas da pista</h3>
+        <div class="scroll"><table id="tabMarcas"></table></div>
+        <p class="ajuda">QRE = distância do QRE ao centro da linha quando ele cruza o meio da marca (a marca vai de 49,5 a 89,5 mm). Prof. = quanto o QRE entra na marca (&gt; 0 = lida).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="aba" id="aba-bateria">
+    <p class="cinza">272 trechos de pista: curvas simples R100–R500 de 45° a 180°, curvas encadeadas no mesmo sentido (troca de raio) e curvas em S, para os dois lados, com 800 mm de reta antes e 600 mm depois. São 768 marcas de curvatura por valor de L. O modelo e a posição do QRE seguem o painel da esquerda.</p>
+    <div class="cards" id="cardsBat"></div>
+    <div id="batStatus" class="cinza"></div>
+    <div class="caixa" style="margin-top:8px"><canvas id="cvBat"></canvas></div>
+    <div class="grid2">
+      <div><h3>Perdas pelo que vem antes da marca</h3><table id="tabGrupos"></table></div>
+      <div><h3>Marcas perdidas no L atual</h3><div class="scroll"><table id="tabPerdidas"></table></div></div>
+    </div>
+    <h3 id="cenTit" style="margin-top:16px">Trecho</h3>
+    <div class="caixa"><canvas id="cvCen"></canvas><div class="dica">robô no L atual (colorido) e no L de comparação (cinza tracejado)</div></div>
+  </section>
+
+  <section class="aba" id="aba-comparar">
+    <div class="row"><button id="btnCmp">Calcular</button><span id="cmpStatus" class="cinza"></span></div>
+    <div class="caixa"><canvas id="cvCmp"></canvas></div>
+    <table id="tabCmp" style="margin-top:10px; max-width:760px"></table>
+    <div class="row" style="margin-top:18px"><button id="btnY">Varrer y do QRE</button><span id="yStatus" class="cinza"></span></div>
+    <div class="caixa"><canvas id="cvY"></canvas></div>
+  </section>
+
+  <section class="aba texto" id="aba-metodo">
+    <div class="destaque">
+      <b>Conclusão (09/11/2026).</b> Com a vareta do EVA-RT (L ≈ 98 mm) o RUSH SATURN v3 completa a volta válida: o QRE direito lê partida e chegada em todos os casos e a parada do firmware 1.2.2 acontece logo depois da chegada. O que se perde são marcas de curvatura (17/21 na pista de teste, 672/768 na bateria com barra ideal), quase todas logo depois de uma R100. O firmware 1.2.2 não usa essas marcas e a regra não exige lê-las; elas só importam para um firmware que mapeia a pista. Com L = 67–70 mm o robô lê todas.
+    </div>
+    <h2>Geometria</h2>
+    <ul>
+      <li>Placa v3 lida do <code>ProPrj_RUSH - SATURN - v3_2026-11-09.epro</code> (PCB em mil): QRE de marca em (±69,5; 4,5); suportes de motor em (±35,25; −26,55/−3,73); presilhas da vareta em (±43,75; −1,75/10,75). São as posições do EVA-RT e do contorno B (v1).</li>
+      <li>Eixo das rodas em y = −22,59: furo traseiro do suporte + <code>gearbox.stl</code> (eixo a 3,96 mm do furo). O QRE fica 27,09 mm à frente do eixo.</li>
+      <li>Barra V1: sensores nas posições da VISION do EVA-RT. L é medido até a linha de S5/S6 (y = 6,96 no referencial da barra).</li>
+      <li>L do EVA-RT ≈ 98 mm (±2–3): medido na foto de baixo do EVA-RT (<code>images/EVA-RT_01_1.jpg</code>), com homografia calibrada em 8 furos de posição conhecida (resíduo &lt; 0,5 mm). Furos do conector da barra em y ≈ 68,4, sensores em y ≈ 75,1, vareta de y ≈ −7 a +78. Bate com os 117 mm de comprimento do README do EVA-RT. Os docs do repositório usam L = 82 com vareta de ~56 mm; a foto não sustenta esse valor.</li>
+    </ul>
+    <h2>Regra usada</h2>
+    <p>Regulamento RoboCore Line Follower (revisão de 16/01/2024), base citada para o TRIF. A página do TRIF no site do IFSP não abriu durante a análise; confira o edital de 2026.</p>
+    <ul>
+      <li>4.7: partida e chegada em reta, 1 m entre elas, marcas no lado direito, 40 × 19 mm a 40 mm da linha.</li>
+      <li>4.13: 250 mm de reta antes e depois da área de partida/chegada. 4.14: raio mínimo de 100 mm.</li>
+      <li>4.15: marca no lado esquerdo em cada troca de curvatura. 4.17: tolerância de ±3 mm nas marcas.</li>
+      <li>5.7: a volta vale se o robô parar sozinho dentro da área de partida/chegada. A regra não exige ler as marcas de curvatura.</li>
+      <li>Linha de 19 mm → marca de 49,5 a 89,5 mm do centro da linha (meio em 69,5).</li>
+    </ul>
+    <h2>Modelos</h2>
+    <ul>
+      <li><b>Barra ideal:</b> o centro da barra fica sobre a linha e o eixo segue como reboque (sem escorregamento).</li>
+      <li><b>Controle P:</b> o robô gira proporcionalmente ao erro lido na barra. O ganho é escolhido pelo erro que sobra numa R100 longa: 5 mm (firme) ou 12 mm (solto). Se a linha sai da barra (±46 mm), gira no máximo para o último lado visto.</li>
+      <li><b>Barra deslocada:</b> barra ideal com desvio lateral fixo na pista toda (caso pessimista).</li>
+      <li><b>Leitura da marca:</b> o QRE precisa entrar no retângulo da marca (profundidade &gt; 0). "Folga de 4 mm" = entrou pelo menos 4 mm (cobre a tolerância de ±3 mm da regra).</li>
+      <li><b>Firmware 1.2.2:</b> <code>updateMarkState()</code> emulado amostra a amostra. O QRE vê branco 1 mm para dentro da linha ou de qualquer marca. Subida no QRE direito arma a parada; o QRE esquerdo ativo dentro do timer cancela; a parada só vale depois de 1 s de corrida.</li>
+    </ul>
+    <h2>Pista de teste</h2>
+    <p>Circuito fechado no sentido horário, volta de 9,45 m: canto R100 → R200 à direita (o caso C2 da análise anterior), S suave de R300, chicane de R150, meandro com grampos R100 para os dois lados (pernas a 200 mm, o mínimo da regra), curva R400 de 180° e a reta de partida/chegada com 250 mm de reta antes e depois da área. 21 marcas de curvatura + partida e chegada.</p>
+    <h2>Limites</h2>
+    <ul>
+      <li>Modelo cinemático: sem escorregamento, sem atraso de controle e sem velocidade.</li>
+      <li>O QRE é tratado como um ponto (com 1 mm de margem na emulação do firmware).</li>
+      <li>L do EVA-RT medido por foto: ±2–3 mm. Com L = 95 os resultados ficam quase iguais aos de L = 98.</li>
+    </ul>
+  </section>
+</main>
+</div>
+<footer>Seguidor baseado no <a href="https://github.com/EXOTIC-TEAM-MX/EVA-RT" style="color:var(--azul)">EVA-RT</a> (© EXOTIC TEAM MX, AGPL-3.0). Simulação de 09/11/2026; o mesmo modelo em Python deu os mesmos números (768 marcas por L).</footer>
+<script id="dados" type="application/json">{"contorno":[[-39.0,-33.0],[-39.174,-32.985],[-39.342,-32.94],[-39.5,-32.866],[-39.643,-32.766],[-39.766,-32.643],[-39.866,-32.5],[-39.94,-32.342],[-39.985,-32.174],[-40.0,-32.0],[-40.0,-31.0],[-40.0,-28.4],[-40.0,-9.831],[-40.015,-9.675],[-40.061,-9.525],[-40.135,-9.387],[-40.234,-9.266],[-44.766,-4.734],[-44.887,-4.635],[-45.025,-4.561],[-45.175,-4.515],[-45.331,-4.5],[-49.2,-4.5],[-49.378,-4.48],[-49.547,-4.421],[-49.699,-4.325],[-49.825,-4.199],[-49.921,-4.047],[-49.98,-3.878],[-50.0,-3.7],[-50.0,-1.0],[-50.0,0.45],[-50.005,0.548],[-50.019,0.645],[-50.043,0.74],[-50.076,0.833],[-50.118,0.921],[-50.169,1.006],[-50.227,1.084],[-50.293,1.157],[-50.366,1.223],[-50.444,1.282],[-50.529,1.332],[-50.617,1.374],[-50.71,1.407],[-50.805,1.431],[-50.902,1.445],[-51.0,1.45],[-72.6,1.45],[-72.747,1.457],[-72.893,1.479],[-73.035,1.515],[-73.174,1.564],[-73.307,1.627],[-73.433,1.703],[-73.552,1.79],[-73.661,1.889],[-73.759,1.998],[-73.847,2.117],[-73.923,2.243],[-73.986,2.376],[-74.035,2.515],[-74.071,2.657],[-74.093,2.803],[-74.1,2.95],[-74.1,6.05],[-74.093,6.197],[-74.071,6.343],[-74.035,6.485],[-73.986,6.624],[-73.923,6.757],[-73.847,6.883],[-73.759,7.002],[-73.661,7.111],[-73.552,7.21],[-73.433,7.297],[-73.307,7.373],[-73.174,7.436],[-73.035,7.485],[-72.893,7.521],[-72.747,7.543],[-72.6,7.55],[-51.0,7.55],[-50.902,7.555],[-50.805,7.569],[-50.71,7.593],[-50.617,7.626],[-50.529,7.668],[-50.444,7.719],[-50.366,7.777],[-50.293,7.843],[-50.227,7.916],[-50.169,7.994],[-50.118,8.079],[-50.076,8.167],[-50.043,8.26],[-50.019,8.355],[-50.005,8.452],[-50.0,8.55],[-50.0,12.0],[-50.0,13.0],[-49.962,13.191],[-49.854,13.354],[-49.691,13.462],[-49.5,13.5],[-40.12,13.5],[-40.001,13.509],[-39.885,13.535],[-33.615,15.465],[-33.499,15.491],[-33.38,15.5],[-27.731,15.5],[-27.582,15.514],[-27.438,15.556],[-27.304,15.623],[-21.196,19.477],[-21.062,19.544],[-20.918,19.586],[-20.769,19.6],[-13.728,19.6],[-13.584,19.618],[-13.449,19.669],[-13.33,19.752],[-11.001,21.821],[-10.893,21.949],[-10.824,22.103],[-10.8,22.269],[-10.8,24.091],[-10.766,24.271],[-10.67,24.427],[-10.524,24.538],[-8.506,25.547],[-8.397,25.587],[-8.282,25.6],[0.0,25.6],[8.282,25.6],[8.397,25.587],[8.506,25.547],[10.524,24.538],[10.67,24.427],[10.766,24.271],[10.8,24.091],[10.8,22.269],[10.824,22.103],[10.893,21.949],[11.001,21.821],[13.33,19.752],[13.449,19.669],[13.584,19.618],[13.728,19.6],[20.769,19.6],[20.918,19.586],[21.062,19.544],[21.196,19.477],[27.304,15.623],[27.438,15.556],[27.582,15.514],[27.731,15.5],[33.38,15.5],[33.499,15.491],[33.615,15.465],[39.885,13.535],[40.001,13.509],[40.12,13.5],[49.5,13.5],[49.691,13.462],[49.854,13.354],[49.962,13.191],[50.0,13.0],[50.0,12.0],[50.0,8.55],[50.005,8.452],[50.019,8.355],[50.043,8.26],[50.076,8.167],[50.118,8.079],[50.169,7.994],[50.227,7.916],[50.293,7.843],[50.366,7.777],[50.444,7.719],[50.529,7.668],[50.617,7.626],[50.71,7.593],[50.805,7.569],[50.902,7.555],[51.0,7.55],[72.6,7.55],[72.747,7.543],[72.893,7.521],[73.035,7.485],[73.174,7.436],[73.307,7.373],[73.433,7.297],[73.552,7.21],[73.661,7.111],[73.759,7.002],[73.847,6.883],[73.923,6.757],[73.986,6.624],[74.035,6.485],[74.071,6.343],[74.093,6.197],[74.1,6.05],[74.1,2.95],[74.093,2.803],[74.071,2.657],[74.035,2.515],[73.986,2.376],[73.923,2.243],[73.847,2.117],[73.759,1.998],[73.661,1.889],[73.552,1.79],[73.433,1.703],[73.307,1.627],[73.174,1.564],[73.035,1.515],[72.893,1.479],[72.747,1.457],[72.6,1.45],[51.0,1.45],[50.902,1.445],[50.805,1.431],[50.71,1.407],[50.617,1.374],[50.529,1.332],[50.444,1.282],[50.366,1.223],[50.293,1.157],[50.227,1.084],[50.169,1.006],[50.118,0.921],[50.076,0.833],[50.043,0.74],[50.019,0.645],[50.005,0.548],[50.0,0.45],[50.0,-1.0],[50.0,-3.7],[49.98,-3.878],[49.921,-4.047],[49.825,-4.199],[49.699,-4.325],[49.547,-4.421],[49.378,-4.48],[49.2,-4.5],[45.331,-4.5],[45.175,-4.515],[45.025,-4.561],[44.887,-4.635],[44.766,-4.734],[40.234,-9.266],[40.135,-9.387],[40.061,-9.525],[40.015,-9.675],[40.0,-9.831],[40.0,-28.4],[40.0,-31.0],[40.0,-32.0],[39.985,-32.174],[39.94,-32.342],[39.866,-32.5],[39.766,-32.643],[39.643,-32.766],[39.5,-32.866],[39.342,-32.94],[39.174,-32.985],[39.0,-33.0],[24.0,-33.0],[21.0,-30.0],[20.251,-30.0],[20.25,-30.0],[0.0,-30.0],[-20.25,-30.0],[-20.251,-30.0],[-21.0,-30.0],[-24.0,-33.0],[-39.0,-33.0]],"barra":[[[41.0,-1.0],[41.0,-4.5]],[[41.0,-4.5],[43.0,-6.5]],[[43.0,-6.5],[48.221,-6.5]],[[48.221,-6.5],[48.252,3.382]],[[-41.0,-1.0],[-41.0,-4.5]],[[-41.0,-4.5],[-43.0,-6.5]],[[-43.0,-6.5],[-48.222,-6.5]],[[-48.222,-6.5],[-48.252,3.382]],[[48.252,3.382],[28.7,7.65]],[[28.7,7.65],[28.7,7.65]],[[28.7,7.65],[10.0,9.888]],[[10.0,9.888],[10.0,9.888]],[[10.0,9.888],[-10.0,9.888]],[[-10.0,9.888],[-10.0,9.888]],[[-10.0,9.888],[-28.7,7.65]],[[-28.7,7.65],[-28.7,7.65]],[[-28.7,7.65],[-48.252,3.382]],[[41.0,-1.0],[27.45,1.338]],[[27.45,1.338],[12.661,2.15]],[[12.661,2.15],[9.25,-1.262]],[[9.25,-1.262],[6.75,-1.262]],[[6.75,-1.262],[5.25,-2.762]],[[5.25,-2.762],[-5.25,-2.762]],[[-5.25,-2.762],[-6.75,-1.262]],[[-6.75,-1.262],[-9.25,-1.262]],[[-9.25,-1.262],[-12.661,2.15]],[[-12.661,2.15],[-27.45,1.338]],[[-27.45,1.338],[-41.0,-1.0]],[[-41.0,-1.0],[-41.0,-4.5]],[[-41.0,-4.5],[-43.0,-6.5]],[[-43.0,-6.5],[-48.252,-6.495]],[[-48.252,-6.495],[-48.252,3.382]],[[48.252,3.382],[28.7,7.65]],[[28.7,7.65],[10.0,9.888]],[[10.0,9.888],[10.0,9.888]],[[10.0,9.888],[-10.0,9.888]],[[-10.0,9.888],[-10.0,9.888]],[[-10.0,9.888],[-28.7,7.65]],[[-28.7,7.65],[-28.7,7.65]],[[-28.7,7.65],[-48.252,3.382]],[[41.0,-1.0],[27.45,1.338]],[[27.45,1.338],[12.661,2.15]],[[12.661,2.15],[9.25,-1.262]],[[9.25,-1.262],[6.75,-1.262]],[[6.75,-1.262],[5.25,-2.762]],[[5.25,-2.762],[-5.25,-2.762]],[[-5.25,-2.762],[-6.75,-1.262]],[[-6.75,-1.262],[-9.25,-1.262]],[[-9.25,-1.262],[-12.661,2.15]],[[-12.661,2.15],[-27.45,1.338]],[[-27.45,1.338],[-41.0,-1.0]],[[-45.651,-3.685],[-43.601,-3.685]],[[-43.601,-3.685],[-45.651,-3.685]],[[41.0,-1.0],[41.0,-4.5]],[[41.0,-4.5],[43.0,-6.5]],[[43.0,-6.5],[48.252,-6.495]],[[48.252,-6.495],[48.252,3.382]],[[45.651,-3.685],[43.601,-3.685]],[[43.601,-3.685],[45.651,-3.685]]]}</script>
+<script id="sim">'use strict';
+/* Núcleo da simulação (sem DOM). Porte de sim_marcas.py / pista_sim.py.
+   Referencial do robô: origem no centro da ventoinha, +y para a frente, mm. */
+
+const GEO = {
+  Y_EIXO: -22.59,      // eixo das rodas (furos dos suportes + gearbox.stl)
+  QRE_X: 69.5,         // QRE de marca nos braços
+  QRE_Y: 4.5,
+  MEIA_LINHA: 9.5,     // linha de 19 mm
+  MARCA_INI: 49.5,     // marca de 40 x 19 mm a 40 mm da borda da linha
+  MARCA_FIM: 89.5,
+  MARCA_MEIA: 9.5,     // 19 mm ao longo da linha
+  BAR_MEIA: 46.0,      // alcance útil da barra V1 (S0/S11 em ±42,5)
+  BAR_Y_CENTRO: 6.96,  // S5/S6 no referencial da barra
+  ESPACO_QRE: 1.0,     // o QRE dispara 1 mm para dentro da área branca
+};
+const dQRE = () => GEO.QRE_Y - GEO.Y_EIXO;
+const DEG = Math.PI / 180;
+const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+const modp = (a, m) => ((a % m) + m) % m;
+
+function rotulo(sg) {
+  if (sg.t === 'S') return `reta ${Math.round(sg.L)}`;
+  return `R${Math.round(sg.R)} ${Math.round(Math.abs(sg.ang))}° ${sg.ang > 0 ? 'esq' : 'dir'}`;
+}
+
+function segPoint(sg, ds) {
+  if (sg.k === 0) {
+    return { x: sg.x0 + ds * Math.cos(sg.h0), y: sg.y0 + ds * Math.sin(sg.h0), h: sg.h0 };
+  }
+  const h = sg.h0 + sg.k * ds;
+  return { x: sg.cx + Math.sin(h) / sg.k, y: sg.cy - Math.cos(h) / sg.k, h };
+}
+
+/* Ponto do segmento mais próximo de (x, y). lat = distância com sinal (+ = à esquerda). */
+function segClosest(sg, x, y) {
+  if (sg.k === 0) {
+    const c = Math.cos(sg.h0), s = Math.sin(sg.h0);
+    const t = clamp((x - sg.x0) * c + (y - sg.y0) * s, 0, sg.len);
+    const qx = sg.x0 + t * c, qy = sg.y0 + t * s;
+    return { ds: t, lat: -(x - qx) * s + (y - qy) * c, d: Math.hypot(x - qx, y - qy), h: sg.h0 };
+  }
+  const wx = x - sg.cx, wy = y - sg.cy, r = Math.hypot(wx, wy), phi = Math.atan2(wy, wx);
+  const hc = sg.k > 0 ? phi + Math.PI / 2 : phi - Math.PI / 2;
+  const dh = sg.k > 0 ? modp(hc - sg.h0, 2 * Math.PI) : -modp(sg.h0 - hc, 2 * Math.PI);
+  let ds = dh / sg.k;
+  const R = 1 / Math.abs(sg.k);
+  if (ds <= sg.len) {
+    return { ds, lat: Math.sign(sg.k) * (R - r), d: Math.abs(R - r), h: sg.h0 + sg.k * ds };
+  }
+  const p0 = segPoint(sg, 0), p1 = segPoint(sg, sg.len);
+  const d0 = Math.hypot(x - p0.x, y - p0.y), d1 = Math.hypot(x - p1.x, y - p1.y);
+  const q = d0 < d1 ? p0 : p1;
+  ds = d0 < d1 ? 0 : sg.len;
+  return { ds, lat: -(x - q.x) * Math.sin(q.h) + (y - q.y) * Math.cos(q.h), d: Math.min(d0, d1), h: q.h };
+}
+
+class Pista {
+  /* segs: [{t:'S', L}, {t:'A', R, ang}] (ang > 0 = esquerda); pc: [{s, tipo:'partida'|'chegada'}] */
+  constructor(segs, pc = [], ds = 0.5) {
+    this.segs = segs.map((s) => ({ ...s }));
+    let x = 0, y = 0, h = 0, s = 0;
+    for (const sg of this.segs) {
+      sg.x0 = x; sg.y0 = y; sg.h0 = h; sg.s0 = s;
+      if (sg.t === 'S') { sg.len = sg.L; sg.k = 0; }
+      else {
+        sg.len = sg.R * Math.abs(sg.ang) * DEG;
+        sg.k = Math.sign(sg.ang) / sg.R;
+        sg.cx = x - Math.sin(h) / sg.k;
+        sg.cy = y + Math.cos(h) / sg.k;
+      }
+      const e = segPoint(sg, sg.len);
+      x = e.x; y = e.y; h = e.h; s += sg.len; sg.s1 = s;
+    }
+    this.total = s;
+    this.end = { x, y, h };
+    this.pc = pc;
+    // amostras (mesma discretização do Python)
+    let n = 1;
+    for (const sg of this.segs) n += Math.max(1, Math.round(sg.len / ds));
+    this.px = new Float64Array(n); this.py = new Float64Array(n);
+    this.ph = new Float64Array(n); this.ps = new Float64Array(n);
+    let k = 1;
+    for (const sg of this.segs) {
+      const m = Math.max(1, Math.round(sg.len / ds)), d = sg.len / m;
+      const p0 = segPoint(sg, 0);
+      sg.bx0 = sg.bx1 = p0.x; sg.by0 = sg.by1 = p0.y;
+      for (let i = 1; i <= m; i++, k++) {
+        const p = segPoint(sg, i * d);
+        this.px[k] = p.x; this.py[k] = p.y; this.ph[k] = p.h; this.ps[k] = sg.s0 + i * d;
+        if (p.x < sg.bx0) sg.bx0 = p.x; if (p.x > sg.bx1) sg.bx1 = p.x;
+        if (p.y < sg.by0) sg.by0 = p.y; if (p.y > sg.by1) sg.by1 = p.y;
+      }
+    }
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    for (let i = 0; i < n; i++) {
+      x0 = Math.min(x0, this.px[i]); x1 = Math.max(x1, this.px[i]);
+      y0 = Math.min(y0, this.py[i]); y1 = Math.max(y1, this.py[i]);
+    }
+    this.bbox = { x0, x1, y0, y1 };
+  }
+
+  segIndex(s) {
+    let a = 0, b = this.segs.length - 1;
+    while (a < b) { const m = (a + b) >> 1; if (this.segs[m].s1 < s) a = m + 1; else b = m; }
+    return a;
+  }
+
+  pointAt(s) {
+    const sg = this.segs[this.segIndex(s)];
+    return segPoint(sg, clamp(s - sg.s0, 0, sg.len));
+  }
+
+  closest(x, y, hint) {
+    // segmento atual; vizinhos só quando o ponto cai na ponta dele
+    const segs = this.segs, nseg = segs.length;
+    let best = segClosest(segs[hint], x, y);
+    best.seg = hint;
+    const tenta = (j) => {
+      if (j < 0 || j >= nseg) return;
+      const r = segClosest(segs[j], x, y);
+      if (r.d < best.d - 1e-9) { best = r; best.seg = j; }
+    };
+    if (best.ds >= segs[hint].len - 1e-9) { tenta(hint + 1); if (best.seg === hint + 1 && best.ds >= segs[hint + 1].len - 1e-9) tenta(hint + 2); }
+    else if (best.ds <= 1e-9) tenta(hint - 1);
+    best.s = segs[best.seg].s0 + best.ds;
+    return best;
+  }
+
+  dist(x, y) {
+    let d = Infinity;
+    for (const sg of this.segs) {
+      // descarte rápido pela caixa do segmento
+      const ex = x < sg.bx0 ? sg.bx0 - x : x > sg.bx1 ? x - sg.bx1 : 0;
+      const ey = y < sg.by0 ? sg.by0 - y : y > sg.by1 ? y - sg.by1 : 0;
+      if (ex >= d || ey >= d || ex * ex + ey * ey >= d * d) continue;
+      const r = segClosest(sg, x, y).d;
+      if (r < d) d = r;
+    }
+    return d;
+  }
+
+  marcasCurvatura() {
+    const out = [];
+    for (let j = 1; j < this.segs.length; j++) {
+      const a = this.segs[j - 1], b = this.segs[j];
+      if (Math.abs(a.k - b.k) > 1e-12) {
+        out.push({ s: a.s1, lado: +1, tipo: 'curva', desc: `${rotulo(a)} → ${rotulo(b)}`, antes: a, depois: b });
+      }
+    }
+    return out;
+  }
+
+  marcas() {
+    const m = this.marcasCurvatura();
+    for (const x of this.pc) m.push({ s: x.s, lado: -1, tipo: x.tipo, desc: x.tipo, antes: null, depois: null });
+    m.sort((a, b) => a.s - b.s);
+    let c = 0;
+    for (const x of m) if (x.tipo === 'curva') x.nome = `M${++c}`; else x.nome = x.tipo === 'partida' ? 'Partida' : 'Chegada';
+    return m;
+  }
+}
+
+/* ---------------------------------------------------------------- trajeto */
+class Trajeto {
+  constructor(L, ax, ay, ux, uy, sb, perdeu) {
+    Object.assign(this, { L, ax, ay, ux, uy, sb, perdeu, n: ax.length });
+  }
+  corpo(i, fx, fy) {   // fx lateral (+ = esquerda), fy à frente do eixo
+    const ux = this.ux[i], uy = this.uy[i];
+    return [this.ax[i] + fy * ux - fx * uy, this.ay[i] + fy * uy + fx * ux];
+  }
+  qre(i, lado) { return this.corpo(i, lado * GEO.QRE_X, dQRE()); }
+  barra(i) { return this.corpo(i, 0, this.L); }
+  rumo(i) { return Math.atan2(this.uy[i], this.ux[i]); }
+}
+
+function simIdeal(p, L, desvio = 0) {
+  const n = p.px.length;
+  const ax = new Float64Array(n), ay = new Float64Array(n), ux = new Float64Array(n), uy = new Float64Array(n);
+  const bx = (i) => p.px[i] - desvio * Math.sin(p.ph[i]);
+  const by = (i) => p.py[i] + desvio * Math.cos(p.ph[i]);
+  let a_x = bx(0) - L * Math.cos(p.ph[0]), a_y = by(0) - L * Math.sin(p.ph[0]);
+  ax[0] = a_x; ay[0] = a_y; ux[0] = Math.cos(p.ph[0]); uy[0] = Math.sin(p.ph[0]);
+  let pbx = bx(0), pby = by(0);
+  for (let i = 1; i < n; i++) {
+    const cbx = bx(i), cby = by(i);
+    const vx0 = (pbx - a_x) / L, vy0 = (pby - a_y) / L;
+    const pr = vx0 * (cbx - pbx) + vy0 * (cby - pby);
+    a_x += pr * vx0; a_y += pr * vy0;
+    let vx = cbx - a_x, vy = cby - a_y;
+    const nv = Math.hypot(vx, vy); vx /= nv; vy /= nv;
+    a_x = cbx - L * vx; a_y = cby - L * vy;
+    ax[i] = a_x; ay[i] = a_y; ux[i] = vx; uy[i] = vy;
+    pbx = cbx; pby = cby;
+  }
+  return new Trajeto(L, ax, ay, ux, uy, Float64Array.from(p.ps), new Uint8Array(n));
+}
+
+function ganhoP(L, erroR100) {
+  const Rb = 100 + erroR100;
+  const ra = Math.sqrt(Math.max(Rb * Rb - L * L, 1e-6));
+  return (1 / ra) / erroR100;
+}
+
+function simP(p, L, erroR100, passo = 0.5) {
+  const K = ganhoP(L, erroR100);
+  let th = p.ph[0];
+  let a_x = p.px[0] - L * Math.cos(th), a_y = p.py[0] - L * Math.sin(th);
+  let hint = 0, ultimo = 0;
+  const AX = [a_x], AY = [a_y], TH = [th], SB = [0], LO = [0];
+  const nmax = Math.floor(1.6 * p.total / passo);
+  for (let it = 0; it < nmax; it++) {
+    const ux = Math.cos(th), uy = Math.sin(th), lx = -uy, ly = ux;
+    const Bx = a_x + L * ux, By = a_y + L * uy;
+    const c = p.closest(Bx, By, hint);
+    hint = c.seg;
+    const nx = -Math.sin(c.h), ny = Math.cos(c.h);
+    const dperp = c.lat;
+    const cc = lx * nx + ly * ny;
+    let e = Math.abs(cc) > 1e-3 ? -dperp / cc : (dperp > 0 ? -1e3 : 1e3);
+    const lost = Math.abs(e) > GEO.BAR_MEIA;
+    if (lost) e = Math.sign(ultimo || e) * GEO.BAR_MEIA; else ultimo = e;
+    const dth = clamp(K * e * passo, -passo / 5, passo / 5);
+    const thm = th + dth / 2;
+    a_x += passo * Math.cos(thm); a_y += passo * Math.sin(thm);
+    th += dth;
+    AX.push(a_x); AY.push(a_y); TH.push(th); SB.push(c.s); LO.push(lost ? 1 : 0);
+    if (c.s >= p.total - 1.5) break;
+  }
+  const n = AX.length;
+  const ux = new Float64Array(n), uy = new Float64Array(n);
+  for (let i = 0; i < n; i++) { ux[i] = Math.cos(TH[i]); uy[i] = Math.sin(TH[i]); }
+  return new Trajeto(L, Float64Array.from(AX), Float64Array.from(AY), ux, uy, Float64Array.from(SB), Uint8Array.from(LO));
+}
+
+/* modelo: {tipo:'ideal'} | {tipo:'P', erro} | {tipo:'desvio', mm} */
+function simula(p, L, modelo) {
+  if (modelo.tipo === 'P') return simP(p, L, modelo.erro);
+  if (modelo.tipo === 'desvio') return simIdeal(p, L, modelo.mm);
+  return simIdeal(p, L, 0);
+}
+
+/* ---------------------------------------------------------------- marcas */
+function avaliaMarca(p, tr, m) {
+  const P = p.pointAt(m.s);
+  const tx = Math.cos(P.h), ty = Math.sin(P.h);
+  const nx = -ty * m.lado, ny = tx * m.lado;
+  let prof = -99, lat = NaN, kMid = -1, prevAl = null, prevLa = 0, kMin = -1, alMin = Infinity;
+  for (let i = 0; i < tr.n; i++) {
+    if (Math.abs(tr.sb[i] - m.s) >= 200) continue;
+    const [qx, qy] = tr.qre(i, m.lado);
+    const rx = qx - P.x, ry = qy - P.y;
+    const al = rx * tx + ry * ty, la = rx * nx + ry * ny;
+    if (Math.abs(al) < Math.abs(alMin)) { alMin = al; kMin = i; }
+    if (!(Math.abs(al) < 60 && la > -40 && la < 160)) continue;
+    const pr = Math.min(GEO.MARCA_MEIA - Math.abs(al), la - GEO.MARCA_INI, GEO.MARCA_FIM - la);
+    if (pr > prof) prof = pr;
+    if (prevAl !== null && Number.isNaN(lat) && Math.sign(prevAl) !== Math.sign(al)) {
+      const f = -prevAl / (al - prevAl);
+      lat = prevLa + f * (la - prevLa);
+      kMid = i;
+    }
+    prevAl = al; prevLa = la;
+  }
+  return { prof, lat, k: kMid >= 0 ? kMid : kMin, lida: prof > 0 };
+}
+
+function distMinLinha(p, tr, lado, passo = 1) {
+  let d = Infinity, k = -1;
+  for (let i = 0; i < tr.n; i += passo) {
+    const [x, y] = tr.qre(i, lado);
+    const r = p.dist(x, y);
+    if (r < d) { d = r; k = i; }
+  }
+  return { d, k };
+}
+
+/* área branca sob o QRE: linha ou qualquer marca */
+function brancoEm(p, marcas, x, y) {
+  const e = GEO.ESPACO_QRE;
+  if (p.dist(x, y) < GEO.MEIA_LINHA - e) return true;
+  for (const m of marcas) {
+    const P = m._P || (m._P = p.pointAt(m.s));
+    const tx = Math.cos(P.h), ty = Math.sin(P.h);
+    const rx = x - P.x, ry = y - P.y;
+    const al = rx * tx + ry * ty, la = (-rx * ty + ry * tx) * m.lado;
+    if (Math.abs(al) < GEO.MARCA_MEIA - e && la > GEO.MARCA_INI + e && la < GEO.MARCA_FIM - e) return true;
+  }
+  return false;
+}
+
+/* updateMarkState() do EVA-RT 1.2.2 (Marks.ino). Devolve {k, wl, wr}. */
+function firmwareParada(p, tr, marcas, v_mm_s, timer_ms, t_min_ms = 1000) {
+  const n = tr.n;
+  const wl = new Uint8Array(n), wr = new Uint8Array(n);
+  for (let i = 0; i < n; i++) {
+    const [lx, ly] = tr.qre(i, +1), [rx, ry] = tr.qre(i, -1);
+    wl[i] = brancoEm(p, marcas, lx, ly) ? 1 : 0;
+    wr[i] = brancoEm(p, marcas, rx, ry) ? 1 : 0;
+  }
+  let t = 0, off = false;
+  const estado = [false, false], tb = [0, 0], passado = [false, false];
+  let [bx0, by0] = tr.barra(0);
+  for (let k = 0; k < n; k++) {
+    const [bx, by] = tr.barra(k);
+    t += Math.hypot(bx - bx0, by - by0) / v_mm_s * 1000; bx0 = bx; by0 = by;
+    const val = [!!wl[k], !!wr[k]];
+    for (let i = 0; i < 2; i++) {
+      if (val[i] && !passado[i]) { tb[i] = t; estado[i] = true; off = i === 1; }
+      if (estado[i]) {
+        if (i === 0) off = false;
+        if (t - tb[i] >= timer_ms) {
+          estado[i] = false;
+          if (i === 1 && off && t >= t_min_ms) return { k, wl, wr, t };
+        }
+      }
+    }
+    passado[0] = val[0]; passado[1] = val[1];
+  }
+  return { k: -1, wl, wr, t };
+}
+
+/* ---------------------------------------------------------------- pistas */
+const S = (L) => ({ t: 'S', L });
+const A = (R, ang) => ({ t: 'A', R, ang });
+
+function pistaTeste() {
+  const laco = [
+    A(100, -90), A(200, -90),                  // canto: R100 dir -> R200 dir
+    S(300),
+    A(300, +30), A(300, -60), A(300, +30),     // S suave de R300
+    S(200),
+    A(150, +60), A(150, -120), A(150, +60),    // chicane R150
+    S(600),
+    A(100, +90), S(300),                       // meandro com grampos R100
+    A(100, -180), S(200),
+    A(100, +180), S(200),
+    A(100, -90),
+    S(400),
+    A(400, -180),                              // volta grande R400
+  ];
+  const ini = [S(750)];
+  const p0 = new Pista(ini.concat(laco));
+  const xFim = p0.end.x, xPartida = 500, xChegada = xPartida - 1000;
+  const segs = ini.concat(laco, [S(0 - xFim)]);       // fecha o circuito em x = 0 (onde o robô larga)
+  const sChegada = p0.total + (xChegada - xFim);
+  const p = new Pista(segs, [{ s: 500, tipo: 'partida' }, { s: sChegada, tipo: 'chegada' }]);
+  p.nome = 'Pista de teste fechada';
+  p.volta = p.total;
+  return p;
+}
+
+/* "S800 D100/90 E200/45 P C" -> Pista. S = reta, E/D = curva esq/dir (raio/ângulo), P/C = marca. */
+function parsePista(txt) {
+  const segs = [], pc = [];
+  let s = 0;
+  const toks = txt.trim().split(/[\s,;]+/).filter(Boolean);
+  if (!toks.length) throw new Error('pista vazia');
+  for (const t of toks) {
+    let m;
+    if ((m = /^S(\d+(?:\.\d+)?)$/i.exec(t))) {
+      const L = +m[1]; if (L <= 0) throw new Error(`reta inválida: ${t}`);
+      segs.push(S(L)); s += L;
+    } else if ((m = /^([ED])(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/i.exec(t))) {
+      const R = +m[2], ang = +m[3];
+      if (R < 1 || ang <= 0) throw new Error(`curva inválida: ${t}`);
+      segs.push(A(R, m[1].toUpperCase() === 'E' ? ang : -ang)); s += R * ang * DEG;
+    } else if (/^P$/i.test(t)) pc.push({ s, tipo: 'partida' });
+    else if (/^C$/i.test(t)) pc.push({ s, tipo: 'chegada' });
+    else throw new Error(`não entendi "${t}"`);
+  }
+  if (!segs.length) throw new Error('sem segmentos');
+  return new Pista(segs, pc);
+}
+
+/* ---------------------------------------------------------------- bateria */
+const RAIOS = [100, 150, 200, 300, 400, 500];
+function cenarios() {
+  const out = [];
+  for (const R of RAIOS) for (const ang of [45, 90, 135, 180]) for (const d of [1, -1])
+    out.push({ fam: 'simples', segs: [S(800), A(R, d * ang), S(600)] });
+  for (const R1 of [100, 200, 300, 500]) for (const R2 of [100, 200, 300, 500]) {
+    if (R1 === R2) continue;
+    for (const a1 of [45, 90]) for (const a2 of [45, 90]) for (const d of [1, -1])
+      out.push({ fam: 'encadeada', segs: [S(800), A(R1, d * a1), A(R2, d * a2), S(600)] });
+  }
+  for (const R1 of [100, 150, 200, 300]) for (const R2 of [100, 150, 200, 300])
+    for (const a1 of [45, 90]) for (const a2 of [45, 90]) for (const d of [1, -1])
+      out.push({ fam: 'S', segs: [S(800), A(R1, d * a1), A(R2, -d * a2), S(600)] });
+  return out;
+}
+
+function chaveAntes(m) {
+  const a = m.antes;
+  if (!a || a.t === 'S') return 'reta';
+  return `R${a.R} ${a.ang > 0 ? 'esq' : 'dir'}`;
+}
+
+/* roda os cenários [i0, i1) e acumula em res */
+function bateriaParcial(cen, i0, i1, L, modelo, res, opts = {}) {
+  for (let c = i0; c < i1; c++) {
+    const p = new Pista(cen[c].segs);
+    const tr = simula(p, L, modelo);
+    for (const m of p.marcasCurvatura()) {
+      const r = avaliaMarca(p, tr, m);
+      res.linhas.push({ c, fam: cen[c].fam, desc: m.desc, antes: chaveAntes(m), prof: r.prof, lat: r.lat, s: m.s });
+    }
+    if (opts.dist) {
+      const d = distMinLinha(p, tr, -1, 2).d;
+      if (d < res.dDir) { res.dDir = d; res.cDir = c; }
+    }
+  }
+}
+
+function resumoBateria(res) {
+  const n = res.linhas.length;
+  let lidas = 0, folga = 0;
+  const lats = [];
+  for (const r of res.linhas) {
+    if (r.prof > 0) lidas++;
+    if (r.prof >= 4) folga++;
+    if (!Number.isNaN(r.lat)) lats.push(r.lat);
+  }
+  lats.sort((a, b) => a - b);
+  const q = (f) => lats[Math.min(lats.length - 1, Math.floor(f * (lats.length - 1)))];
+  return { n, lidas, folga, min: lats[0], max: lats[lats.length - 1], p5: q(0.05), med: q(0.5), p95: q(0.95), dDir: res.dDir };
+}
+
+function bateria(L, modelo, opts = {}) {
+  const cen = cenarios();
+  const res = { linhas: [], dDir: Infinity, cDir: -1 };
+  bateriaParcial(cen, 0, cen.length, L, modelo, res, opts);
+  return res;
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { GEO, Pista, simIdeal, simP, simula, avaliaMarca, distMinLinha, firmwareParada,
+    pistaTeste, parsePista, cenarios, bateria, bateriaParcial, resumoBateria, ganhoP, rotulo };
+}
+</script>
+<script id="app">'use strict';
+/* Interface do site. Depende de sim.js (carregado antes) e do bloco #dados. */
+
+const $ = (id) => document.getElementById(id);
+const fmt = (v, d = 1) => (Number.isFinite(v) ? v.toFixed(d).replace('.', ',') : '—');
+const COR = { BG: '#101214', FG: '#e8e6e0', GRID: '#24272b', VERDE: '#7fd18b', VERM: '#f2766b', AMAR: '#e8c25a',
+  AZUL: '#5aa9f2', CINZA: '#8a8f96', LINHA: '#d9d6cf', PAINEL: '#16191c' };
+const DADOS = JSON.parse($('dados').textContent);
+const GEO0 = { ...GEO };
+const PRESETS = [67, 70, 82, 95, 98];
+const CEN = cenarios();
+
+const st = {
+  L: 98, modelo: 'ideal', desvio: 10, Lcmp: 70, fantasma: true,
+  qreX: GEO0.QRE_X, qreY: GEO0.QRE_Y, vel: 1.5, timer: 30,
+  pista: 'teste', texto: 'S500 P S300 D100/90 D200/90 S400 E100/180 S400 C S300',
+  sel: -1, scrub: 0, playing: false, seguir: false,
+  trajE: true, trajD: true, trajB: false, aba: 'pista',
+};
+
+function modeloObj() {
+  if (st.modelo === 'P5') return { tipo: 'P', erro: 5 };
+  if (st.modelo === 'P12') return { tipo: 'P', erro: 12 };
+  if (st.modelo === 'desvio') return { tipo: 'desvio', mm: st.desvio };
+  return { tipo: 'ideal' };
+}
+function nomeModelo() {
+  return { ideal: 'barra ideal', P5: 'P firme', P12: 'P solto', desvio: `barra ${st.desvio > 0 ? '+' : ''}${st.desvio} mm` }[st.modelo];
+}
+const nomeL = (L) => `L = ${fmt(L, L % 1 ? 1 : 0)}${Math.abs(L - 98) < 1e-9 ? ' (EVA-RT)' : ''}`;
+function aplicaGeo() { GEO.QRE_X = st.qreX; GEO.QRE_Y = st.qreY; }
+
+/* ================================================================ canvas e vista */
+function prepara(cv) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  }
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = COR.BG; ctx.fillRect(0, 0, w, h);
+  return { ctx, w, h };
+}
+
+class Vista {
+  constructor(cv, desenha, clique) {
+    this.cv = cv; this.desenha = desenha; this.clique = clique;
+    this.s = 1; this.ox = 0; this.oy = 0; this.caixa = null; this.ok = false;
+    cv.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+      const wx = this.wx(mx), wy = this.wy(my);
+      this.s *= Math.exp(-e.deltaY * 0.0015);
+      this.ox = mx - this.s * wx; this.oy = my + this.s * wy;
+      this.desenha();
+    }, { passive: false });
+    let ini = null;
+    cv.addEventListener('pointerdown', (e) => { ini = { x: e.clientX, y: e.clientY, ox: this.ox, oy: this.oy, mov: false }; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener('pointermove', (e) => {
+      if (!ini) return;
+      const dx = e.clientX - ini.x, dy = e.clientY - ini.y;
+      if (Math.abs(dx) + Math.abs(dy) > 3) ini.mov = true;
+      if (ini.mov) { this.ox = ini.ox + dx; this.oy = ini.oy + dy; this.desenha(); }
+    });
+    cv.addEventListener('pointerup', (e) => {
+      if (ini && !ini.mov && this.clique) {
+        const r = cv.getBoundingClientRect();
+        this.clique(this.wx(e.clientX - r.left), this.wy(e.clientY - r.top));
+      }
+      ini = null;
+    });
+    cv.addEventListener('dblclick', () => { if (this.caixa) { this.ajusta(this.caixa); this.desenha(); } });
+  }
+  ajusta(b, pad = 24) {
+    this.caixa = b;
+    const w = this.cv.clientWidth, h = this.cv.clientHeight;
+    if (!w || !h) return;
+    this.s = Math.min((w - 2 * pad) / (b.x1 - b.x0), (h - 2 * pad) / (b.y1 - b.y0));
+    this.ox = w / 2 - this.s * (b.x0 + b.x1) / 2;
+    this.oy = h / 2 + this.s * (b.y0 + b.y1) / 2;
+    this.ok = true;
+  }
+  centra(x, y) { const w = this.cv.clientWidth, h = this.cv.clientHeight; this.ox = w / 2 - this.s * x; this.oy = h / 2 + this.s * y; }
+  X(x) { return this.ox + this.s * x; }
+  Y(y) { return this.oy - this.s * y; }
+  wx(px) { return (px - this.ox) / this.s; }
+  wy(py) { return (this.oy - py) / this.s; }
+}
+
+/* ================================================================ desenho */
+function desenhaLinha(ctx, V, p) {
+  const passo = Math.max(1, Math.floor(0.6 / (V.s * 0.5)));
+  ctx.save();
+  ctx.strokeStyle = COR.LINHA;
+  ctx.lineWidth = Math.max(19 * V.s, 1.4);
+  ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(V.X(p.px[0]), V.Y(p.py[0]));
+  for (let i = passo; i < p.px.length; i += passo) ctx.lineTo(V.X(p.px[i]), V.Y(p.py[i]));
+  ctx.lineTo(V.X(p.px[p.px.length - 1]), V.Y(p.py[p.py.length - 1]));
+  ctx.stroke();
+  ctx.restore();
+}
+
+function cantosMarca(p, m) {
+  const P = p.pointAt(m.s);
+  const tx = Math.cos(P.h), ty = Math.sin(P.h), nx = -ty * m.lado, ny = tx * m.lado;
+  return { P, tx, ty, nx, ny,
+    c: [[-9.5, GEO.MARCA_INI], [9.5, GEO.MARCA_INI], [9.5, GEO.MARCA_FIM], [-9.5, GEO.MARCA_FIM]].map(([a, b]) => [P.x + a * tx + b * nx, P.y + a * ty + b * ny]) };
+}
+
+function desenhaMarca(ctx, V, p, m, cor, contorno) {
+  const { c } = cantosMarca(p, m);
+  ctx.beginPath();
+  c.forEach(([x, y], i) => (i ? ctx.lineTo(V.X(x), V.Y(y)) : ctx.moveTo(V.X(x), V.Y(y))));
+  ctx.closePath();
+  ctx.fillStyle = cor; ctx.fill();
+  const minPx = 3;
+  if (V.s * 19 < minPx) { ctx.strokeStyle = cor; ctx.lineWidth = minPx; ctx.stroke(); }
+  if (contorno) { ctx.strokeStyle = COR.FG; ctx.lineWidth = 1.5; ctx.stroke(); }
+}
+
+function rotuloMarca(ctx, V, p, m, cor) {
+  const { P, nx, ny } = cantosMarca(p, m);
+  const d = Math.max(125, 18 / V.s + 90);
+  ctx.fillStyle = cor; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(m.nome, V.X(P.x + nx * d), V.Y(P.y + ny * d));
+}
+
+function desenhaTraj(ctx, V, tr, qual, cor, tracejado) {
+  const passo = Math.max(1, Math.floor(0.8 / (V.s * 0.5)));
+  ctx.save();
+  ctx.strokeStyle = cor; ctx.lineWidth = 1; ctx.globalAlpha = 0.85;
+  if (tracejado) ctx.setLineDash([4, 3]);
+  ctx.beginPath();
+  for (let i = 0; i < tr.n; i += passo) {
+    const [x, y] = qual === 'b' ? tr.barra(i) : tr.qre(i, qual);
+    if (i) ctx.lineTo(V.X(x), V.Y(y)); else ctx.moveTo(V.X(x), V.Y(y));
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+function desenhaRobo(ctx, V, tr, i, cor, op = {}) {
+  if (i < 0 || i >= tr.n) return;
+  const alpha = op.alpha ?? 1, lw = op.lw ?? 1.3;
+  const ax = tr.ax[i], ay = tr.ay[i], ux = tr.ux[i], uy = tr.uy[i];
+  const T = (x, y) => { const f = y - GEO.Y_EIXO; return [V.X(ax + f * ux + x * uy), V.Y(ay + f * uy - x * ux)]; };
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.lineWidth = lw; ctx.strokeStyle = cor;
+  if (op.tracejado) ctx.setLineDash([5, 3]);
+  // rodas
+  for (const sx of [-1, 1]) {
+    const r = [T(sx * 45, GEO.Y_EIXO - 11), T(sx * 58, GEO.Y_EIXO - 11), T(sx * 58, GEO.Y_EIXO + 11), T(sx * 45, GEO.Y_EIXO + 11)];
+    ctx.beginPath(); r.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+    ctx.fillStyle = 'rgba(138,143,150,0.55)'; ctx.fill(); ctx.stroke();
+  }
+  // placa
+  ctx.beginPath();
+  DADOS.contorno.forEach(([x, y], k) => { const [X, Y] = T(x, y); if (k) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
+  ctx.closePath();
+  ctx.fillStyle = cor; ctx.globalAlpha = alpha * 0.16; ctx.fill(); ctx.globalAlpha = alpha; ctx.stroke();
+  // varetas e barra
+  const yb = GEO.Y_EIXO + tr.L - GEO.BAR_Y_CENTRO;
+  ctx.beginPath();
+  for (const sx of [-1, 1]) { const [x0, y0] = T(sx * 48.5, -7); const [x1, y1] = T(sx * 48.5, yb); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); }
+  for (const [[x0, y0], [x1, y1]] of DADOS.barra) { const a = T(x0, yb + y0), b = T(x1, yb + y1); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); }
+  ctx.stroke();
+  // eixo
+  ctx.setLineDash([2, 3]); ctx.lineWidth = 0.8;
+  ctx.beginPath(); const e0 = T(-58, GEO.Y_EIXO), e1 = T(58, GEO.Y_EIXO); ctx.moveTo(e0[0], e0[1]); ctx.lineTo(e1[0], e1[1]); ctx.stroke();
+  ctx.setLineDash([]);
+  // QREs: esquerdo (curva) em x = -QRE_X, direito (partida/chegada) em x = +QRE_X
+  const rq = Math.max(3, 2.2 * V.s);
+  for (const [sx, c] of [[-1, COR.AMAR], [1, COR.AZUL]]) {
+    const [x, y] = T(sx * GEO.QRE_X, GEO.QRE_Y);
+    ctx.beginPath(); ctx.arc(x, y, rq, 0, 2 * Math.PI);
+    ctx.fillStyle = COR.BG; ctx.fill(); ctx.lineWidth = 1.8; ctx.strokeStyle = op.cinza ? cor : c; ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function grade(ctx, V, w, h, passo) {
+  ctx.save();
+  ctx.strokeStyle = COR.GRID; ctx.lineWidth = 1;
+  const x0 = Math.floor(V.wx(0) / passo) * passo, x1 = V.wx(w), y0 = Math.floor(V.wy(h) / passo) * passo, y1 = V.wy(0);
+  ctx.beginPath();
+  for (let x = x0; x <= x1; x += passo) { ctx.moveTo(V.X(x), 0); ctx.lineTo(V.X(x), h); }
+  for (let y = y0; y <= y1; y += passo) { ctx.moveTo(0, V.Y(y)); ctx.lineTo(w, V.Y(y)); }
+  ctx.stroke();
+  ctx.restore();
+}
+
+function passoGrade(V) {
+  const alvo = 80 / V.s;
+  for (const p of [5, 10, 20, 50, 100, 200, 500, 1000, 2000]) if (p >= alvo) return p;
+  return 5000;
+}
+
+function corMarca(m, r) {
+  if (!r) return COR.CINZA;
+  if (m.tipo === 'curva') return r.lida ? COR.VERDE : COR.VERM;
+  return r.lida ? COR.AZUL : COR.VERM;
+}
+
+/* vista de detalhe: uma marca, o robô no L atual e o fantasma no L de comparação */
+function desenhaDetalhe(V, w, h, ctx, p, ms, m, tr, trc, av, avc) {
+  grade(ctx, V, w, h, passoGrade(V));
+  desenhaLinha(ctx, V, p);
+  for (const mm of ms) desenhaMarca(ctx, V, p, mm, mm === m ? corMarca(m, av) : 'rgba(138,143,150,0.55)', mm === m);
+  const lado = m.lado;
+  if (trc) {
+    desenhaTraj(ctx, V, trc, lado, COR.CINZA, true);
+    desenhaRobo(ctx, V, trc, avc.k, COR.CINZA, { alpha: 0.75, tracejado: true, lw: 1, cinza: true });
+  }
+  desenhaTraj(ctx, V, tr, lado, lado > 0 ? COR.AMAR : COR.AZUL, false);
+  desenhaRobo(ctx, V, tr, av.k, av.lida ? COR.VERDE : COR.VERM, { lw: 1.4 });
+  // faixa de 49,5 a 89,5 mm marcada na normal da marca
+  const { P, nx, ny } = cantosMarca(p, m);
+  ctx.save(); ctx.strokeStyle = 'rgba(232,230,224,0.35)'; ctx.setLineDash([3, 4]); ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(V.X(P.x), V.Y(P.y)); ctx.lineTo(V.X(P.x + nx * 110), V.Y(P.y + ny * 110)); ctx.stroke(); ctx.restore();
+}
+
+function caixaMarca(p, m, meia = 160) {
+  const { P, nx, ny } = cantosMarca(p, m);
+  const cx = P.x + nx * 40, cy = P.y + ny * 40;
+  return { x0: cx - meia, x1: cx + meia, y0: cy - meia, y1: cy + meia };
+}
+
+/* ================================================================ aba Pista */
+let cur = null;
+const vPista = new Vista($('cvPista'), () => desenhaPista(), (x, y) => cliquePista(x, y));
+const vInsp = new Vista($('cvInsp'), () => desenhaInsp(), null);
+
+function recalcPista() {
+  aplicaGeo();
+  let p;
+  $('textoErro').textContent = '';
+  try {
+    p = st.pista === 'teste' ? pistaTeste() : parsePista(st.texto);
+  } catch (e) {
+    $('textoErro').textContent = 'Erro na pista: ' + e.message;
+    return;
+  }
+  const ms = p.marcas();
+  const mod = modeloObj();
+  const tr = simula(p, st.L, mod);
+  const trc = st.fantasma ? simula(p, st.Lcmp, mod) : null;
+  const av = ms.map((m) => avaliaMarca(p, tr, m));
+  const avc = trc ? ms.map((m) => avaliaMarca(p, trc, m)) : null;
+  const dDir = distMinLinha(p, tr, -1);
+  const fw = firmwareParada(p, tr, ms, st.vel * 1000, st.timer);
+  const novaPista = !cur || cur.p.nome !== p.nome || cur.p.total !== p.total || cur.texto !== st.texto;
+  cur = { p, ms, tr, trc, av, avc, dDir, fw, texto: st.texto };
+  if (novaPista) {
+    const b = p.bbox, m = 140;
+    vPista.ajusta({ x0: b.x0 - m, x1: b.x1 + m, y0: b.y0 - m, y1: b.y1 + m });
+    st.sel = -1;
+  }
+  if (st.sel < 0 || st.sel >= ms.length) {
+    const k = ms.findIndex((m, i) => m.tipo === 'curva' && !av[i].lida);
+    st.sel = k >= 0 ? k : ms.findIndex((m) => m.tipo === 'curva');
+  }
+  $('scrub').max = tr.n - 1;
+  if (st.scrub > tr.n - 1) st.scrub = tr.n - 1;
+  preencheMarcas();
+  cardsPista();
+  selecionaMarca(st.sel, false);
+  desenhaPista();
+  leitura();
+}
+
+function cardsPista() {
+  const { p, ms, av, avc, dDir, fw, tr } = cur;
+  const ic = ms.map((m, i) => i).filter((i) => ms[i].tipo === 'curva');
+  const ip = ms.map((m, i) => i).filter((i) => ms[i].tipo !== 'curva');
+  const lidas = ic.filter((i) => av[i].lida).length, folga = ic.filter((i) => av[i].prof >= 4).length;
+  const lidasC = avc ? ic.filter((i) => avc[i].lida).length : null;
+  const pcl = ip.filter((i) => av[i].lida).length;
+  const cheg = ms.find((m) => m.tipo === 'chegada');
+  let parada, ok;
+  if (fw.k < 0) { parada = cheg ? 'Não para: passa da chegada sem desligar.' : 'Não para (pista sem marca de chegada).'; ok = false; }
+  else {
+    const s = tr.sb[fw.k];
+    if (!cheg) { parada = `Para em s = ${fmt(s / 1000, 2)} m (pista sem chegada).`; ok = false; }
+    else if (s < cheg.s - 1) { parada = `Para ANTES da chegada: s = ${fmt(s / 1000, 2)} m, ${fmt(cheg.s - s, 0)} mm antes.`; ok = false; }
+    else if (s - cheg.s <= 1000) { parada = `Para ${fmt(s - cheg.s, 0)} mm depois da chegada, dentro da área de 1 m.`; ok = true; }
+    else { parada = `Para ${fmt(s - cheg.s, 0)} mm depois da chegada, fora da área.`; ok = false; }
+  }
+  const risco = dDir.d < GEO.MEIA_LINHA + 3;
+  const card = (tit, val, sub, cls) => `<div class="card ${cls || ''}"><div class="ct">${tit}</div><div class="cv">${val}</div><div class="cs">${sub}</div></div>`;
+  $('cardsPista').innerHTML =
+    card('Marcas de curvatura · QRE esquerdo', `${lidas}/${ic.length}`,
+      `com 4 mm de folga: ${folga}${lidasC !== null ? ` · ${nomeL(st.Lcmp)}: ${lidasC}/${ic.length}` : ''}`, lidas === ic.length ? 'ok' : 'ruim') +
+    card('Partida/chegada · QRE direito', ip.length ? `${pcl}/${ip.length}` : '—',
+      ip.length ? ip.map((i) => `${ms[i].nome}: ${fmt(av[i].lat)} mm`).join(' · ') : 'pista sem marcas de partida/chegada', ip.length && pcl === ip.length ? 'ok' : 'ruim') +
+    card(`Parada do firmware 1.2.2 (${fmt(st.vel, 1)} m/s, ${st.timer} ms)`, ok ? 'OK' : 'Falha', parada, ok ? 'ok' : 'ruim') +
+    card('QRE direito × linha', `${fmt(dDir.d)} mm`, `menor distância ao centro da linha, cruzamentos incluídos (borda a 9,5 mm)${risco ? ' · passa sobre a linha: veja a parada do firmware ao lado' : ''}`, risco ? 'ruim' : 'ok');
+  $('pistaInfo').textContent = `${p.nome ? p.nome + ' · ' : ''}${fmt(p.total / 1000, 2)} m de linha · ${ic.length} marcas de curvatura · ${nomeModelo()}`;
+}
+
+function desenhaPista() {
+  if (!cur) return;
+  const cv = $('cvPista');
+  const { ctx, w, h } = prepara(cv);
+  if (!vPista.ok && vPista.caixa) vPista.ajusta(vPista.caixa);
+  const V = vPista, { p, ms, tr, av, fw } = cur;
+  if (st.seguir) { const [bx, by] = tr.corpo(st.scrub, 0, tr.L / 2); V.centra(bx, by); }
+  grade(ctx, V, w, h, passoGrade(V));
+  desenhaLinha(ctx, V, p);
+  if (st.trajB) desenhaTraj(ctx, V, tr, 'b', COR.CINZA);
+  if (st.trajE) desenhaTraj(ctx, V, tr, +1, COR.AMAR);
+  if (st.trajD) desenhaTraj(ctx, V, tr, -1, COR.AZUL);
+  ms.forEach((m, i) => desenhaMarca(ctx, V, p, m, corMarca(m, av[i]), i === st.sel));
+  ms.forEach((m, i) => { if (m.tipo !== 'curva' || !av[i].lida || V.s > 0.12 || i === st.sel) rotuloMarca(ctx, V, p, m, corMarca(m, av[i])); });
+  if (fw.k >= 0) {
+    const [x, y] = tr.barra(fw.k);
+    ctx.save(); ctx.strokeStyle = COR.FG; ctx.lineWidth = 2;
+    const X = V.X(x), Y = V.Y(y);
+    ctx.beginPath(); ctx.moveTo(X - 6, Y - 6); ctx.lineTo(X + 6, Y + 6); ctx.moveTo(X - 6, Y + 6); ctx.lineTo(X + 6, Y - 6); ctx.stroke();
+    ctx.fillStyle = COR.FG; ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.fillText('parada', X + 9, Y - 8);
+    ctx.restore();
+  }
+  desenhaRobo(ctx, V, tr, st.scrub, COR.FG, { lw: 1.2 });
+}
+
+function cliquePista(x, y) {
+  if (!cur) return;
+  const { p, ms } = cur;
+  let best = -1, bd = Infinity;
+  ms.forEach((m, i) => {
+    const { P, tx, ty, nx, ny } = cantosMarca(p, m);
+    const rx = x - P.x, ry = y - P.y, al = rx * tx + ry * ty, la = rx * nx + ry * ny;
+    const tol = Math.max(8, 10 / vPista.s);
+    const dx = Math.max(0, Math.abs(al) - 9.5), dy = Math.max(0, GEO.MARCA_INI - la, la - GEO.MARCA_FIM);
+    const d = Math.hypot(dx, dy);
+    if (d < tol && d < bd) { bd = d; best = i; }
+  });
+  if (best >= 0) selecionaMarca(best, true);
+}
+
+function selecionaMarca(i, moveRobo) {
+  if (!cur || i < 0) { $('inspInfo').textContent = ''; return; }
+  st.sel = i;
+  $('marcaSel').value = String(i);
+  const { p, ms, av } = cur;
+  vInsp.ajusta(caixaMarca(p, ms[i]), 8);
+  if (moveRobo && av[i].k >= 0) { st.scrub = av[i].k; $('scrub').value = st.scrub; leitura(); }
+  document.querySelectorAll('#tabMarcas tr[data-i]').forEach((tr) => tr.classList.toggle('sel', +tr.dataset.i === i));
+  desenhaInsp();
+  desenhaPista();
+}
+
+function desenhaInsp() {
+  const cv = $('cvInsp');
+  const { ctx, w, h } = prepara(cv);
+  if (!cur || st.sel < 0) return;
+  if (!vInsp.ok && vInsp.caixa) vInsp.ajusta(vInsp.caixa, 8);
+  const { p, ms, tr, trc, av, avc } = cur;
+  const m = ms[st.sel], r = av[st.sel];
+  desenhaDetalhe(vInsp, w, h, ctx, p, ms, m, tr, trc, r, avc ? avc[st.sel] : null);
+  const est = r.lida ? 'LIDA' : 'PERDIDA';
+  $('inspInfo').innerHTML = `<b class="${r.lida ? 'tok' : 'truim'}">${m.nome} · ${est}</b> · ${m.desc === m.tipo ? (m.tipo === 'partida' ? 'marca de partida (lado direito)' : 'marca de chegada (lado direito)') : m.desc}<br>` +
+    `${nomeL(st.L)}: QRE a <b>${fmt(r.lat)}</b> mm do centro da linha no meio da marca (a marca vai de 49,5 a 89,5; Δ ${fmt(r.lat - 69.5)} mm do meio)` +
+    (avc ? `<br><span class="cinza">${nomeL(st.Lcmp)} (cinza tracejado): ${fmt(avc[st.sel].lat)} mm · ${avc[st.sel].lida ? 'lida' : 'perdida'}</span>` : '');
+}
+
+function preencheMarcas() {
+  const { ms, av, avc } = cur;
+  $('marcaSel').innerHTML = ms.map((m, i) => `<option value="${i}">${m.nome} · ${av[i].lida ? 'lida' : 'PERDIDA'} · ${m.tipo === 'curva' ? m.desc : m.tipo}</option>`).join('');
+  const linhas = ms.map((m, i) => {
+    const r = av[i], c = avc ? avc[i] : null;
+    return `<tr data-i="${i}" class="${i === st.sel ? 'sel' : ''}"><td>${m.nome}</td><td>${m.tipo === 'curva' ? m.desc : m.tipo + ' (dir.)'}</td>` +
+      `<td class="num">${fmt(r.lat)}</td><td class="num">${fmt(r.prof)}</td><td class="${r.lida ? 'tok' : 'truim'}">${r.lida ? 'lida' : 'perdida'}</td>` +
+      (c ? `<td class="num cinza">${fmt(c.lat)}</td><td class="${c.lida ? 'tok' : 'truim'}">${c.lida ? 'lida' : 'perdida'}</td>` : '') + '</tr>';
+  }).join('');
+  $('tabMarcas').innerHTML = `<thead><tr><th>Marca</th><th>Transição</th><th>QRE (mm)</th><th>Prof. (mm)</th><th>${nomeL(st.L)}</th>` +
+    (avc ? `<th>QRE (mm)</th><th>${nomeL(st.Lcmp)}</th>` : '') + `</tr></thead><tbody>${linhas}</tbody>`;
+  document.querySelectorAll('#tabMarcas tr[data-i]').forEach((tr) => tr.addEventListener('click', () => selecionaMarca(+tr.dataset.i, true)));
+}
+
+function leitura() {
+  if (!cur) return;
+  const { p, tr, fw } = cur;
+  const i = st.scrub;
+  const [bx, by] = tr.barra(i);
+  const eB = p.dist(bx, by);
+  const sb = tr.sb[i];
+  const P = p.pointAt(sb);
+  let dh = (tr.rumo(i) - P.h) / DEG; dh = ((dh + 540) % 360) - 180;
+  const [lx, ly] = tr.qre(i, +1), [rx, ry] = tr.qre(i, -1);
+  const dl = p.dist(lx, ly), dr = p.dist(rx, ry);
+  const wl = fw.wl[i] ? '<b class="tok">branco</b>' : 'preto', wr = fw.wr[i] ? '<b class="tok">branco</b>' : 'preto';
+  $('leitura').innerHTML = `barra em s = ${fmt(sb / 1000, 3)} m · erro da barra ${fmt(eB)} mm · rumo × linha ${fmt(dh)}° · ` +
+    `<span style="color:${COR.AMAR}">QRE esq</span> a ${fmt(dl)} mm da linha (${wl}) · <span style="color:${COR.AZUL}">QRE dir</span> a ${fmt(dr)} mm (${wr})`;
+}
+
+let animT = 0;
+function anima(t) {
+  if (!st.playing || !cur) return;
+  const dt = animT ? (t - animT) / 1000 : 0; animT = t;
+  const vel = +$('velAnim').value;
+  st.scrub = Math.min(cur.tr.n - 1, st.scrub + Math.max(1, Math.round(st.vel * 1000 * vel * dt / 0.5)));
+  $('scrub').value = st.scrub;
+  leitura(); desenhaPista();
+  if (st.scrub >= cur.tr.n - 1) { st.playing = false; $('play').textContent = 'animar'; return; }
+  requestAnimationFrame(anima);
+}
+
+/* ================================================================ filas (Web Worker) */
+const SIM_SRC = $('sim').textContent;
+const WORKER_SRC = SIM_SRC + `
+function rodaJob(j) {
+  Object.assign(GEO, j.geo);
+  if (j.tipo === 'bateria') {
+    const res = bateria(j.L, j.modelo, { dist: !!j.dist });
+    return { resumo: resumoBateria(res), linhas: j.linhas ? res.linhas : null, cDir: res.cDir };
+  }
+  const p = pistaTeste(), tr = simula(p, j.L, j.modelo);
+  let n = 0, l = 0;
+  for (const m of p.marcas()) if (m.tipo === 'curva') { n++; if (avaliaMarca(p, tr, m).lida) l++; }
+  return { n, lidas: l };
+}
+if (typeof self !== 'undefined' && typeof window === 'undefined') self.onmessage = (ev) => self.postMessage({ id: ev.data.id, out: rodaJob(ev.data) });
+`;
+// mesma função na página, para o caso de o navegador não aceitar Worker
+const rodaJobLocal = new Function('GEO', 'bateria', 'resumoBateria', 'pistaTeste', 'simula', 'avaliaMarca',
+  WORKER_SRC.slice(WORKER_SRC.indexOf('function rodaJob')).replace(/if \(typeof self[\s\S]*$/, '') + '; return rodaJob;')(
+  GEO, bateria, resumoBateria, pistaTeste, simula, avaliaMarca);
+
+class Fila {
+  constructor() { this.pend = new Map(); this.seq = 0; this.novo(); }
+  novo() {
+    this.w = null;
+    try {
+      this.w = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' })));
+      this.w.onmessage = (ev) => { const cb = this.pend.get(ev.data.id); if (cb) { this.pend.delete(ev.data.id); cb(ev.data.out); } };
+      this.w.onerror = () => { this.w = null; };
+    } catch (e) { this.w = null; }
+  }
+  job(j) {
+    return new Promise((res) => {
+      if (!this.w) { setTimeout(() => { const g = { ...GEO }; const out = rodaJobLocal(j); Object.assign(GEO, g); res(out); }, 0); return; }
+      j.id = ++this.seq; this.pend.set(j.id, res); this.w.postMessage(j);
+    });
+  }
+  cancela() { if (this.w) this.w.terminate(); this.pend.clear(); this.novo(); }
+}
+const filaBat = new Fila(), filaCmp = new Fila();
+
+/* ================================================================ aba Bateria */
+let bat = null, batGen = 0, batSuja = true;
+const vCen = new Vista($('cvCen'), () => desenhaCen(), null);
+let cenSel = null;
+
+async function recalcBateria() {
+  batSuja = false;
+  const g = ++batGen;
+  filaBat.cancela();
+  const modelo = modeloObj(), geo = { QRE_X: st.qreX, QRE_Y: st.qreY };
+  bat = { cur: null, cmp: null, rows: new Map(), modelo: nomeModelo(), L: st.L, Lcmp: st.fantasma ? st.Lcmp : null };
+  cenSel = null; desenhaCen();
+  const lista = [st.L];
+  if (st.fantasma && st.Lcmp !== st.L) lista.push(st.Lcmp);
+  for (const L of PRESETS) if (!lista.includes(L)) lista.push(L);
+  let k = 0;
+  for (const L of lista) {
+    $('batStatus').textContent = `calculando ${nomeL(L)} (${++k}/${lista.length})…`;
+    const out = await filaBat.job({ tipo: 'bateria', L, modelo, geo, dist: L === st.L, linhas: L === st.L || L === bat.Lcmp });
+    if (g !== batGen) return;
+    bat.rows.set(L, out.resumo);
+    if (L === st.L) bat.cur = out;
+    if (L === bat.Lcmp) bat.cmp = out;
+    renderBateria();
+  }
+  $('batStatus').textContent = `${CEN.length} trechos · ${bat.cur.resumo.n} marcas de curvatura por L · ${bat.modelo}`;
+}
+
+function renderBateria() {
+  if (!bat || !bat.cur) return;
+  const r = bat.cur.resumo, c = bat.cmp ? bat.cmp.resumo : null;
+  const card = (tit, val, sub, cls) => `<div class="card ${cls || ''}"><div class="ct">${tit}</div><div class="cv">${val}</div><div class="cs">${sub}</div></div>`;
+  $('cardsBat').innerHTML =
+    card(`Marcas lidas · ${nomeL(bat.L)}`, `${r.lidas}/${r.n}`, `${fmt(100 * r.lidas / r.n)}% · com 4 mm de folga: ${r.folga}`, r.lidas === r.n ? 'ok' : 'ruim') +
+    (c ? card(`Marcas lidas · ${nomeL(bat.Lcmp)}`, `${c.lidas}/${c.n}`, `${fmt(100 * c.lidas / c.n)}% · com 4 mm de folga: ${c.folga}`, c.lidas === c.n ? 'ok' : 'ruim') : '') +
+    card('QRE no meio da marca', `${fmt(r.min)} a ${fmt(r.max)} mm`, `5% a 95%: ${fmt(r.p5)} a ${fmt(r.p95)} · mediana ${fmt(r.med)} · a marca vai de 49,5 a 89,5`, '') +
+    card('QRE direito × linha (curvas até 180°)', `${fmt(r.dDir)} mm`, 'menor distância ao centro da linha (borda a 9,5 mm)', r.dDir < 12.5 ? 'ruim' : 'ok');
+  desenhaBat();
+  // grupos
+  const grupos = new Map();
+  const conta = (linhas, idx) => { for (const x of linhas) { if (!grupos.has(x.antes)) grupos.set(x.antes, [0, 0, 0, 0]); const g = grupos.get(x.antes); g[idx]++; if (x.prof <= 0) g[idx + 1]++; } };
+  conta(bat.cur.linhas, 0);
+  if (bat.cmp) conta(bat.cmp.linhas, 2);
+  const ordem = [...grupos.keys()].sort((a, b) => (a === 'reta' ? -1 : b === 'reta' ? 1 : parseInt(a.slice(1)) - parseInt(b.slice(1)) || a.localeCompare(b)));
+  $('tabGrupos').innerHTML = `<thead><tr><th>Antes da marca</th><th>${nomeL(bat.L)}: perdidas</th>${bat.cmp ? `<th>${nomeL(bat.Lcmp)}: perdidas</th>` : ''}</tr></thead><tbody>` +
+    ordem.map((k) => { const g = grupos.get(k); return `<tr><td>${k === 'reta' ? 'reta (entrada de curva)' : k}</td><td class="num ${g[1] ? 'truim' : 'tok'}">${g[1]}/${g[0]}</td>${bat.cmp ? `<td class="num ${g[3] ? 'truim' : 'tok'}">${g[3]}/${g[2]}</td>` : ''}</tr>`; }).join('') + '</tbody>';
+  const perd = bat.cur.linhas.filter((x) => x.prof <= 0);
+  $('tabPerdidas').innerHTML = `<thead><tr><th>Trecho</th><th>Marca</th><th>QRE (mm)</th><th>Prof.</th></tr></thead><tbody>` +
+    (perd.length ? perd.map((x, j) => `<tr data-j="${j}"><td>${CEN[x.c].segs.slice(1, -1).map(rotulo).join(' + ')}</td><td>${x.desc}</td><td class="num">${fmt(x.lat)}</td><td class="num">${fmt(x.prof)}</td></tr>`).join('')
+      : '<tr><td colspan="4" class="tok">nenhuma</td></tr>') + '</tbody>';
+  document.querySelectorAll('#tabPerdidas tr[data-j]').forEach((tr) => tr.addEventListener('click', () => {
+    document.querySelectorAll('#tabPerdidas tr').forEach((t) => t.classList.remove('sel'));
+    tr.classList.add('sel');
+    abreCenario(perd[+tr.dataset.j]);
+  }));
+}
+
+function desenhaBat() {
+  const cv = $('cvBat');
+  const Ls = [...bat.rows.keys()].sort((a, b) => a - b);
+  cv.style.height = `${60 + Ls.length * 34}px`;
+  const { ctx, w, h } = prepara(cv);
+  const xl = 150, xr = w - 230, v0 = 20, v1 = 120;
+  const X = (v) => xl + (Math.min(v1, Math.max(v0, v)) - v0) / (v1 - v0) * (xr - xl);
+  ctx.fillStyle = 'rgba(255,255,255,0.05)'; ctx.fillRect(X(49.5), 18, X(89.5) - X(49.5), h - 48);
+  ctx.fillStyle = 'rgba(127,209,139,0.06)'; ctx.fillRect(X(53.5), 18, X(85.5) - X(53.5), h - 48);
+  ctx.strokeStyle = COR.AMAR; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(69.5), 18); ctx.lineTo(X(69.5), h - 30); ctx.stroke();
+  ctx.font = '11px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = COR.CINZA;
+  for (let v = 20; v <= 120; v += 10) { ctx.fillText(String(v), X(v), h - 14); ctx.fillRect(X(v), h - 30, 1, 4); }
+  ctx.fillText('borda', X(49.5), 12); ctx.fillText('borda', X(89.5), 12); ctx.fillStyle = COR.AMAR; ctx.fillText('meio', X(69.5), 12);
+  Ls.forEach((L, k) => {
+    const r = bat.rows.get(L), y = 36 + k * 34;
+    const cor = r.lidas === r.n ? COR.VERDE : r.lidas / r.n > 0.97 ? COR.AMAR : COR.VERM;
+    ctx.textAlign = 'right'; ctx.fillStyle = L === bat.L ? COR.FG : COR.CINZA;
+    ctx.font = (L === bat.L ? 'bold ' : '') + '12px system-ui, sans-serif';
+    ctx.fillText(nomeL(L), xl - 12, y + 4);
+    ctx.strokeStyle = cor; ctx.lineCap = 'round';
+    ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(r.min), y); ctx.lineTo(X(r.max), y); ctx.stroke();
+    ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(X(r.p5), y); ctx.lineTo(X(r.p95), y); ctx.stroke();
+    ctx.lineCap = 'butt'; ctx.strokeStyle = COR.BG; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(r.med), y - 6); ctx.lineTo(X(r.med), y + 6); ctx.stroke();
+    if (r.max > v1) { ctx.fillStyle = cor; ctx.textAlign = 'left'; ctx.font = '11px system-ui'; ctx.fillText(`→ ${fmt(r.max, 0)}`, X(v1) + 4, y + 4); }
+    ctx.textAlign = 'left'; ctx.fillStyle = COR.FG; ctx.font = '12px system-ui, sans-serif';
+    ctx.fillText(`${r.lidas}/${r.n}  ·  folga 4 mm: ${r.folga}`, xr + 60, y + 4);
+  });
+  ctx.textAlign = 'center'; ctx.fillStyle = COR.CINZA; ctx.font = '11px system-ui, sans-serif';
+  ctx.fillText('distância do QRE ao centro da linha no meio da marca (mm) · traço fino = mín…máx, grosso = 5%…95%, risco = mediana', (xl + xr) / 2, h - 1);
+}
+
+function abreCenario(x) {
+  aplicaGeo();
+  const p = new Pista(CEN[x.c].segs);
+  const ms = p.marcas();
+  const m = ms.find((mm) => Math.abs(mm.s - x.s) < 1e-6);
+  const mod = modeloObj();
+  const tr = simula(p, bat.L, mod), trc = bat.Lcmp ? simula(p, bat.Lcmp, mod) : null;
+  cenSel = { p, ms, m, tr, trc, av: avaliaMarca(p, tr, m), avc: trc ? avaliaMarca(p, trc, m) : null };
+  vCen.ajusta(caixaMarca(p, m, 170), 8);
+  $('cenTit').textContent = `${CEN[x.c].segs.slice(1, -1).map(rotulo).join(' + ')} · marca ${m.nome}: ${m.desc}`;
+  desenhaCen();
+}
+
+function desenhaCen() {
+  const cv = $('cvCen');
+  const { ctx, w, h } = prepara(cv);
+  if (!cenSel) {
+    ctx.fillStyle = COR.CINZA; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Clique numa marca perdida para ver o trecho.', w / 2, h / 2); return;
+  }
+  const { p, ms, m, tr, trc, av, avc } = cenSel;
+  desenhaDetalhe(vCen, w, h, ctx, p, ms, m, tr, trc, av, avc);
+  ctx.fillStyle = COR.FG; ctx.font = '12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText(`${nomeL(bat.L)}: QRE a ${fmt(av.lat)} mm · ${av.lida ? 'lida' : 'perdida'}`, 10, 18);
+  if (avc) { ctx.fillStyle = COR.CINZA; ctx.fillText(`${nomeL(bat.Lcmp)}: ${fmt(avc.lat)} mm · ${avc.lida ? 'lida' : 'perdida'}`, 10, 36); }
+}
+
+/* ================================================================ aba Comparar */
+let cmp = null, cmpGen = 0, cmpSuja = true, yv = null, yGen = 0;
+const LS_CMP = (() => { const a = []; for (let L = 60; L <= 104; L += 2) a.push(L); for (const L of [67, 95, 98]) a.push(L); return a.sort((x, y) => x - y); })();
+const MODS_CMP = [['ideal', { tipo: 'ideal' }, COR.AMAR], ['P firme (5 mm)', { tipo: 'P', erro: 5 }, COR.VERDE], ['P solto (12 mm)', { tipo: 'P', erro: 12 }, COR.AZUL]];
+
+async function recalcComparar() {
+  cmpSuja = false;
+  const g = ++cmpGen;
+  filaCmp.cancela();
+  const geo = { QRE_X: st.qreX, QRE_Y: st.qreY };
+  cmp = { series: MODS_CMP.map(() => new Map()), pista: new Map() };
+  const total = LS_CMP.length * (MODS_CMP.length + 1);
+  let k = 0;
+  for (const L of LS_CMP) {
+    for (let j = 0; j < MODS_CMP.length; j++) {
+      $('cmpStatus').textContent = `calculando ${nomeL(L)} · ${MODS_CMP[j][0]} (${++k}/${total})…`;
+      const out = await filaCmp.job({ tipo: 'bateria', L, modelo: MODS_CMP[j][1], geo, dist: false, linhas: false });
+      if (g !== cmpGen) return;
+      cmp.series[j].set(L, out.resumo);
+      desenhaCmp();
+    }
+    const out = await filaCmp.job({ tipo: 'pista', L, modelo: { tipo: 'ideal' }, geo });
+    if (g !== cmpGen) return;
+    cmp.pista.set(L, out); k++;
+    desenhaCmp();
+  }
+  $('cmpStatus').textContent = `pronto · QRE em (±${fmt(st.qreX)}; ${fmt(st.qreY)})`;
+}
+
+function grafico(cv, op) {
+  const { ctx, w, h } = prepara(cv);
+  const xl = 64, xr = w - 24, yt = 34, yb = h - 46;
+  const X = (v) => xl + (v - op.x0) / (op.x1 - op.x0) * (xr - xl);
+  const Y = (v) => yb - (v - op.y0) / (op.y1 - op.y0) * (yb - yt);
+  ctx.font = '11px system-ui, sans-serif'; ctx.fillStyle = COR.CINZA; ctx.strokeStyle = COR.GRID; ctx.lineWidth = 1;
+  ctx.textAlign = 'right';
+  for (let v = op.y0; v <= op.y1 + 1e-9; v += op.dy) { ctx.beginPath(); ctx.moveTo(xl, Y(v)); ctx.lineTo(xr, Y(v)); ctx.stroke(); ctx.fillText(fmt(v, 0), xl - 6, Y(v) + 4); }
+  ctx.textAlign = 'center';
+  for (let v = op.x0; v <= op.x1 + 1e-9; v += op.dx) { ctx.beginPath(); ctx.moveTo(X(v), yt); ctx.lineTo(X(v), yb); ctx.stroke(); ctx.fillText(fmt(v, 0), X(v), yb + 16); }
+  ctx.fillText(op.xlab, (xl + xr) / 2, h - 10);
+  ctx.save(); ctx.translate(16, (yt + yb) / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(op.ylab, 0, 0); ctx.restore();
+  ctx.fillStyle = COR.FG; ctx.textAlign = 'left'; ctx.font = '13px system-ui, sans-serif'; ctx.fillText(op.tit, xl, 18);
+  for (const vl of op.vlinhas || []) {
+    ctx.strokeStyle = vl.cor; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(X(vl.x), yt); ctx.lineTo(X(vl.x), yb); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = vl.cor; ctx.font = '11px system-ui'; ctx.fillText(vl.txt, X(vl.x) + 4, yt + 12);
+  }
+  let ly = yt + 8;
+  for (const s of op.series) {
+    const pts = s.pts.filter((q) => Number.isFinite(q[1])).sort((a, b) => a[0] - b[0]);
+    ctx.strokeStyle = s.cor; ctx.fillStyle = s.cor; ctx.lineWidth = 2;
+    ctx.beginPath(); pts.forEach(([x, y], k) => (k ? ctx.lineTo(X(x), Y(Math.max(op.y0, y))) : ctx.moveTo(X(x), Y(Math.max(op.y0, y))))); ctx.stroke();
+    for (const [x, y] of pts) { ctx.beginPath(); ctx.arc(X(x), Y(Math.max(op.y0, y)), 2.6, 0, 2 * Math.PI); ctx.fill(); }
+    ctx.font = '12px system-ui'; ctx.textAlign = 'right'; ctx.fillText(s.nome, xr - 8, ly + 12); ly += 16;
+  }
+}
+
+function desenhaCmp() {
+  const cv = $('cvCmp');
+  if (!cmp) { const { ctx, w, h } = prepara(cv); ctx.fillStyle = COR.CINZA; ctx.textAlign = 'center'; ctx.font = '13px system-ui'; ctx.fillText('Clique em Calcular.', w / 2, h / 2); return; }
+  const series = MODS_CMP.map(([nome, , cor], j) => ({ nome: `bateria · ${nome}`, cor, pts: [...cmp.series[j].entries()].map(([L, r]) => [L, 100 * r.lidas / r.n]) }));
+  series.push({ nome: 'pista de teste (21 marcas) · ideal', cor: COR.FG, pts: [...cmp.pista.entries()].map(([L, r]) => [L, 100 * r.lidas / r.n]) });
+  grafico(cv, { x0: 60, x1: 104, dx: 4, y0: 75, y1: 100, dy: 5, xlab: 'L = distância do eixo à linha dos sensores da barra (mm)', ylab: 'marcas de curvatura lidas (%)',
+    tit: 'Marcas de curvatura lidas × L', series, vlinhas: [{ x: 70, txt: 'L 70', cor: COR.VERDE }, { x: 98, txt: 'EVA-RT', cor: COR.VERM }] });
+  const tab = [...new Set([67, 70, 82, 95, 98])].map((L) => {
+    const c = MODS_CMP.map((_, j) => cmp.series[j].get(L)).map((r) => (r ? `${r.lidas}/${r.n}` : '…'));
+    const pr = cmp.pista.get(L);
+    return `<tr><td>${nomeL(L)}</td>${c.map((v) => `<td class="num">${v}</td>`).join('')}<td class="num">${pr ? `${pr.lidas}/${pr.n}` : '…'}</td></tr>`;
+  }).join('');
+  $('tabCmp').innerHTML = `<thead><tr><th></th>${MODS_CMP.map(([n]) => `<th class="num">bateria · ${n}</th>`).join('')}<th class="num">pista de teste</th></tr></thead><tbody>${tab}</tbody>`;
+}
+
+async function recalcY() {
+  const g = ++yGen;
+  const fila = new Fila();
+  const ys = [-20, -10, 0, 4.5, 10, 20, 30, 40, 50, 60, 70];
+  const mods = [['ideal', { tipo: 'ideal' }, COR.AMAR], ['P firme (5 mm)', { tipo: 'P', erro: 5 }, COR.VERDE]];
+  yv = { L: st.L, x: st.qreX, series: mods.map(() => new Map()), mods };
+  let k = 0;
+  for (const y of ys) for (let j = 0; j < mods.length; j++) {
+    $('yStatus').textContent = `calculando y = ${fmt(y)} · ${mods[j][0]} (${++k}/${ys.length * mods.length})…`;
+    const out = await fila.job({ tipo: 'bateria', L: st.L, modelo: mods[j][1], geo: { QRE_X: st.qreX, QRE_Y: y }, dist: false, linhas: false });
+    if (g !== yGen) { fila.cancela(); return; }
+    yv.series[j].set(y, out.resumo);
+    desenhaY();
+  }
+  $('yStatus').textContent = `pronto · ${nomeL(yv.L)}, QRE em x = ±${fmt(yv.x)}`;
+}
+
+function desenhaY() {
+  const cv = $('cvY');
+  if (!yv) { const { ctx, w, h } = prepara(cv); ctx.fillStyle = COR.CINZA; ctx.textAlign = 'center'; ctx.font = '13px system-ui'; ctx.fillText('Clique em "Varrer y do QRE" para calcular com o L atual.', w / 2, h / 2); return; }
+  const series = yv.mods.map(([nome, , cor], j) => ({ nome, cor, pts: [...yv.series[j].entries()].map(([y, r]) => [y, 100 * r.lidas / r.n]) }));
+  grafico(cv, { x0: -20, x1: 80, dx: 10, y0: 75, y1: 100, dy: 5, xlab: `y do QRE de marca (mm) · eixo em ${fmt(GEO0.Y_EIXO)} · barra em ${fmt(GEO0.Y_EIXO + yv.L)}`, ylab: 'marcas lidas (%)',
+    tit: `${nomeL(yv.L)} fixo: e se o QRE (x = ±${fmt(yv.x)}) mudasse de y?`, series, vlinhas: [{ x: GEO0.QRE_Y, txt: 'braço da v3 (y = 4,5)', cor: COR.CINZA }] });
+}
+
+/* ================================================================ controles */
+function sincronizaControles() {
+  $('Lr').value = st.L; $('Ln').value = st.L;
+  $('modelo').value = st.modelo; $('desvio').value = st.desvio;
+  $('desvioBox').classList.toggle('hidden', st.modelo !== 'desvio');
+  $('fantasma').checked = st.fantasma; $('Lcmp').value = st.Lcmp;
+  $('qreX').value = st.qreX; $('qreY').value = st.qreY;
+  $('vel').value = st.vel; $('timer').value = String(st.timer);
+  $('pistaSel').value = st.pista; $('texto').value = st.texto;
+  $('textoBox').classList.toggle('hidden', st.pista !== 'texto');
+  document.querySelectorAll('.presets button').forEach((b) => b.classList.toggle('on', +b.dataset.l === st.L));
+}
+
+let tMudou = 0;
+function mudou(oque = 'tudo') {
+  sincronizaControles();
+  clearTimeout(tMudou);
+  tMudou = setTimeout(() => {
+    recalcPista();
+    if (oque !== 'firmware' && oque !== 'pista') {
+      batSuja = true; cmpSuja = true;
+      if (st.aba === 'bateria') recalcBateria();
+      if (st.aba === 'comparar') $('cmpStatus').textContent = 'parâmetros mudaram · clique em Calcular';
+    }
+  }, 120);
+}
+
+function num(id, padrao) { const v = parseFloat(String($(id).value).replace(',', '.')); return Number.isFinite(v) ? v : padrao; }
+
+$('Lr').addEventListener('input', () => { st.L = num('Lr', st.L); mudou(); });
+$('Ln').addEventListener('change', () => { st.L = clamp(num('Ln', st.L), 40, 140); mudou(); });
+document.querySelectorAll('.presets button').forEach((b) => b.addEventListener('click', () => { st.L = +b.dataset.l; mudou(); }));
+$('modelo').addEventListener('change', () => { st.modelo = $('modelo').value; mudou(); });
+$('desvio').addEventListener('change', () => { st.desvio = clamp(num('desvio', 10), -40, 40); mudou(); });
+$('fantasma').addEventListener('change', () => { st.fantasma = $('fantasma').checked; mudou(); });
+$('Lcmp').addEventListener('change', () => { st.Lcmp = clamp(num('Lcmp', 70), 40, 140); mudou(); });
+$('qreX').addEventListener('change', () => { st.qreX = clamp(num('qreX', GEO0.QRE_X), 20, 120); mudou(); });
+$('qreY').addEventListener('change', () => { st.qreY = clamp(num('qreY', GEO0.QRE_Y), -40, 100); mudou(); });
+$('qreReset').addEventListener('click', () => { st.qreX = GEO0.QRE_X; st.qreY = GEO0.QRE_Y; mudou(); });
+$('vel').addEventListener('change', () => { st.vel = clamp(num('vel', 1.5), 0.1, 6); mudou('firmware'); });
+$('timer').addEventListener('change', () => { st.timer = +$('timer').value; mudou('firmware'); });
+$('pistaSel').addEventListener('change', () => { st.pista = $('pistaSel').value; mudou('pista'); });
+$('texto').addEventListener('input', () => { st.texto = $('texto').value; if (st.pista === 'texto') mudou('pista'); });
+$('marcaSel').addEventListener('change', () => selecionaMarca(+$('marcaSel').value, true));
+$('scrub').addEventListener('input', () => { st.scrub = +$('scrub').value; leitura(); desenhaPista(); });
+$('play').addEventListener('click', () => {
+  if (!cur) return;
+  st.playing = !st.playing; $('play').textContent = st.playing ? 'pausar' : 'animar';
+  if (st.playing) { if (st.scrub >= cur.tr.n - 1) st.scrub = 0; animT = 0; requestAnimationFrame(anima); }
+});
+for (const [id, k] of [['tE', 'trajE'], ['tD', 'trajD'], ['tB', 'trajB'], ['seguir', 'seguir']]) {
+  $(id).checked = st[k];
+  $(id).addEventListener('change', () => { st[k] = $(id).checked; desenhaPista(); });
+}
+$('verTudo').addEventListener('click', () => { st.seguir = false; $('seguir').checked = false; vPista.ajusta(vPista.caixa); desenhaPista(); });
+$('btnCmp').addEventListener('click', () => recalcComparar());
+$('btnY').addEventListener('click', () => recalcY());
+
+document.querySelectorAll('nav.abas button').forEach((b) => b.addEventListener('click', () => abreAba(b.dataset.aba)));
+function abreAba(a) {
+  st.aba = a;
+  document.querySelectorAll('nav.abas button').forEach((b) => b.classList.toggle('on', b.dataset.aba === a));
+  document.querySelectorAll('section.aba').forEach((s) => s.classList.toggle('on', s.id === `aba-${a}`));
+  if (location.hash !== `#${a}`) history.replaceState(null, '', `#${a}`);
+  requestAnimationFrame(() => {
+    if (a === 'pista') { desenhaPista(); desenhaInsp(); }
+    if (a === 'bateria') { if (batSuja || !bat) recalcBateria(); else renderBateria(); desenhaCen(); }
+    if (a === 'comparar') { if (!cmp) recalcComparar(); else desenhaCmp(); desenhaY(); }
+  });
+}
+
+window.addEventListener('resize', () => {
+  if (st.aba === 'pista') { desenhaPista(); desenhaInsp(); }
+  if (st.aba === 'bateria' && bat) { desenhaBat(); desenhaCen(); }
+  if (st.aba === 'comparar') { desenhaCmp(); desenhaY(); }
+});
+
+sincronizaControles();
+recalcPista();
+abreAba(['pista', 'bateria', 'comparar', 'metodo'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'pista');
+</script>
+</body>
+</html>

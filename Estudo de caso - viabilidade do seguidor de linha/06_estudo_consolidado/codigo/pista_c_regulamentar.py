@@ -20,6 +20,7 @@ MARK_GAP=40.
 FINISH_X=900.
 START_X=1900.
 RADIUS=150.
+MIRROR_X=3300.
 
 # Polígono orientado no sentido de prova. A seção (x=1900, y=2500)
 # é cruzada uma vez em cada direção, por segmentos retos perpendiculares.
@@ -125,10 +126,31 @@ def build(step=.5):
             ar=_sample(p,4.)[:,1:3];keep=ar[:,0]>=1750
             if keep.any():estimated.append(ar[keep].tolist())
     extrema=cycle[:,1:3];minx,miny=extrema.min(axis=0)-250;maxx,maxy=extrema.max(axis=0)+250
-    return track,cycle,marks,dict(start=float(abs_s(start_phase)-250),end=float(abs_s(finish_phase)+180),
+    meta=dict(start=float(abs_s(start_phase)-250),end=float(abs_s(finish_phase)+180),
         period=period,crossing=crossing.tolist(),crossing_s=float(times[0]),crossing_second_s=float(times[1]),
         estimated=estimated,mat=[float(minx),float(miny),float(maxx),float(maxy)],
         blocks=blocks,boundaries=boundaries,note='Pista simulada inspirada na foto; não é planta oficial.')
+    # Espelha o traçado e o sentido, preservando o lado relativo das marcas:
+    # curva à esquerda e partida/chegada à direita do robô. Espelhar também os
+    # retângulos, sem reconstruí-los, inverteria esses lados após a reflexão.
+    for a in (track,cycle):
+        a[:,1]=MIRROR_X-a[:,1]
+        a[:,3]=np.unwrap(math.pi-a[:,3])
+    for b in boundaries:
+        b['x']=MIRROR_X-b['x'];b['phi']=math.pi-b['phi']
+        b['previous_k']=-b['previous_k'];b['next_k']=-b['next_k']
+    for p in blocks:
+        p['start'][0]=MIRROR_X-p['start'][0]
+        p['phi']=math.pi-p['phi'];p['k']=-p['k']
+    for m in marks:
+        m['x']=MIRROR_X-m['x'];m['phi']=math.pi-m['phi']
+        if m['kind']=='curva':
+            b=boundaries[m['piece_id']]
+            m['transition']=f"{b['previous_k']:.6g} → {b['next_k']:.6g}"
+    meta['crossing'][0]=MIRROR_X-meta['crossing'][0]
+    meta['estimated']=[[[MIRROR_X-x,y] for x,y in segment] for segment in estimated]
+    xa,ya,xb,yb=meta['mat'];meta['mat']=[MIRROR_X-xb,ya,MIRROR_X-xa,yb]
+    return track,cycle,marks,meta
 
 
 def check(step=2.):

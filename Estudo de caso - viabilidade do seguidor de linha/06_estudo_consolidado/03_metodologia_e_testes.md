@@ -25,8 +25,10 @@ O [HTML](simulador.html) é autocontido e abre sem instalar pacotes. Para recons
 ```sh
 python -m pip install -r codigo/requisitos.txt
 python codigo/gerar_trif_2024_2025.py
+python codigo/pista_trif2025.py
 python codigo/pista_c_regulamentar.py
 python codigo/validar_duas_pistas.py
+python codigo/gerar_imagens.py
 ```
 
-Execute os comandos a partir deste diretório dentro da pasta de estudo: eles reutilizam os módulos arquivados em `../05_codigo/originais/` e as cotas visuais em `../03_simulacoes/`. Os resultados vão para `dados/`. O gerador grava novamente `simulador.html`. A verificação geométrica não valida hardware, e a animação usa velocidade arbitrária.
+Execute os comandos a partir deste diretório dentro da pasta de estudo: eles reutilizam os módulos arquivados em `../05_codigo/originais/` e as cotas visuais em `../03_simulacoes/`. Os resultados vão para `dados/`. O gerador grava novamente `simulador.html`, e o último comando recria as prévias. A verificação geométrica não valida hardware, e a animação usa velocidade arbitrária.

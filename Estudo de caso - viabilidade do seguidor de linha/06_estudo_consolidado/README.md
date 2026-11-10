@@ -6,16 +6,16 @@ Este diretório reúne a análise realizada até **10/11/2026** sobre o RUSH/SAT
 
 [Baixar o simulador autocontido](simulador.html) e abri-lo no Chrome ou Edge. Ao navegar pelo GitHub, use a opção de download: a página de código do GitHub não executa o HTML. O arquivo funciona sem internet e contém somente duas pistas:
 
-- **TRIF 2025:** modelo inspirado nas fotografias, com 20 marcações.
-- **TRIF 2024:** modelo inspirado na fotografia e redesenhado com retas, arcos e marcações nominais do TRIF 2026, com 35 marcações.
+- **TRIF 2025:** modelo redesenhado com base também na [nova fotografia](imagens/referencia_trif_2025.png), com 26 marcações nominais.
+- **TRIF 2024:** modelo espelhado para inverter o sentido visual de percurso, com 35 marcações nominais.
 
 **Nenhuma é uma planta oficial medida.** Nas duas há trechos ou dimensões estimados, e a trajetória correta no cruzamento é imposta. O programa anima a geometria; não prova que o robô real seguirá a linha ou lerá uma fita.
 
 ## Conclusão para a decisão atual
 
-Com os QRE originais em X = ±69,5 mm e Y = 4,5 mm, barra centrada e **63,14 mm entre os furos**, o centro dos sensores intersectou **20/20** marcas do modelo 2025 e **22/35** do modelo 2024. As contagens incluem as marcas de partida e chegada. Elas não demonstram sinal óptico, resposta do controlador ou volta válida.
+Com os QRE originais em X = ±69,5 mm e Y = 4,5 mm, barra centrada e **63,14 mm entre os furos**, o centro dos sensores intersectou **17/26** marcas do modelo 2025 e **21/35** do modelo 2024 espelhado. As contagens incluem as marcas de partida e chegada. Elas não demonstram sinal óptico, resposta do controlador ou volta válida.
 
-Nos dois modelos atuais, aproximar a barra para **60 mm entre os furos**, mantendo os sensores originais, conservou essas mesmas contagens nominais. Levar o QRE esquerdo 1 mm para fora reduziu o modelo 2025 para **17/20** e manteve 22/35 no modelo 2024. Esses cenários não justificam afirmar que aumentar as abas, aproximar a barra ou manter a v3 garantirá todas as leituras.
+Com **60 mm entre os furos** e os sensores originais, os resultados foram 17/26 e 22/35, respectivamente. Levar somente o QRE esquerdo 1 mm para fora também resultou em 17/26 e 22/35. Nenhum desses cenários demonstra leitura segura de todas as marcas.
 
 Para a preparação da competição, a alternativa mais simples é começar com a geometria original dos QRE e, se a montagem permitir, comparar fisicamente distâncias próximas de 60–63,14 mm entre os furos. Ajustar o controle e calibrar os sinais requer testes; não há evidência aqui de que uma das distâncias seja mais rápida. A leitura de todas as marcas esquerdas pode ajudar estratégias de velocidade, mas não é um requisito isolado de volta válida; a passagem pela linha e a parada precisam ser verificadas conforme o regulamento.
 

@@ -17,14 +17,15 @@ def build_data():
     b,bcycle,bmarks,bmeta=track25.build(STEP)
     c,ccycle,cmarks,cmeta=track24.build(STEP)
     specs=[
-        ('TRIF 2025 · modelo inspirado nas fotos · 20 marcas',b,bcycle,bmarks,bmeta,False),
-        ('TRIF 2024 · modelo adaptado às regras · 35 marcas',c,ccycle,cmarks,cmeta,True),
+        (f'TRIF 2025 · modelo inspirado nas fotos · {len(bmarks)} marcas',b,bcycle,bmarks,bmeta,False),
+        (f'TRIF 2024 · modelo espelhado · {len(cmarks)} marcas',c,ccycle,cmarks,cmeta,True),
     ]
     tracks=[]
     for name,track,cycle,marks,meta,is24 in specs:
         extra=dict(crossing=meta['crossing'],crossing_s=meta['crossing_s'],
-                   crossing_second_s=meta['crossing_second_s'])
-        if is24:extra.update(photo=True,rule_based=True,mat=meta['mat'],estimated=meta['estimated'])
+                   crossing_second_s=meta['crossing_second_s'],photo=True,rule_based=True,
+                   display_rotate=not is24,estimated=meta['estimated'])
+        if is24:extra['mat']=meta['mat']
         points=np.vstack([cycle[::3,1:3],cycle[-1,1:3]])
         tracks.append(dict(name=name,track=track.round(5).tolist(),cycle=points.round(3).tolist(),
                            marks=sorted(marks,key=lambda m:m['s']),start=meta['start'],end=meta['end'],**extra))
@@ -37,7 +38,7 @@ def build_data():
 
 def static_svg(t,rotate=False):
     def project(x,y):
-        if rotate:x,y=y,-x
+        if rotate:x,y=-y,x
         return x,-y
     p=[project(*q) for q in t['cycle']];xs=[q[0] for q in p];ys=[q[1] for q in p]
     pad=300 if t.get('mat') else 180
@@ -68,7 +69,7 @@ def render(data):
     template=template.replace('Duas pistas de teste, incluindo uma inspirada nas fotos do TRIF 2025. O ponto virtual central da barra permanece sobre a linha; ajuste as medidas e inspecione as marcas.',
         'Dois modelos inspirados em fotografias do TRIF 2025 e 2024. Um sensor de marca por lado; as pistas não são plantas oficiais.')
     template=template.replace('Pista A · 19 marcas','TRIF 2025 · modelo inspirado nas fotos')
-    template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · modelo adaptado às regras')
+    template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · modelo espelhado')
     template=template.replace('A pista B é uma aproximação das fotos; o traçado e as medidas exatas não foram fornecidos.',
         'Ambas as pistas são aproximações: dimensões, trechos ocultos e marcas não reproduzem uma planta oficial.')
     template=template.replace('<strong>Pista C:</strong>','<strong>TRIF 2024:</strong>')
@@ -78,12 +79,12 @@ def render(data):
     template=re.sub(r'<select id="preset">.*?</select>',keep_options,template,count=1,flags=re.S)
     details='''<details class="panel"><summary>Premissas, limites e como interpretar</summary>
     <ul>
-      <li>TRIF 2025: pista hipotética inspirada em fotografias, com 20 marcas. TRIF 2024: modelo inspirado na fotografia e redesenhado com retas e arcos, com 35 marcas. Nenhuma é a planta oficial; não se conhecem as medidas e os trechos que não aparecem nas imagens.</li>
+      <li>TRIF 2025: modelo revisado conforme a nova foto, com o retorno fora da imagem desenhado por hipótese. TRIF 2024: modelo espelhado a pedido do usuário. Nenhuma é planta oficial; medidas, partes ocultas e marcações são estimadas.</li>
       <li>No modelo de 2024, faixa de 19 mm, marcas de 19 × 40 mm a 40 mm da borda, raio mínimo de 150 mm e cruzamento de 90°. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
       <li>Fitas nominais intersectadas conta o centro pontual do QRE ao atravessar o retângulo. A região comum é uma faixa mais conservadora, não uma probabilidade e não prova sinal óptico. Passagens curtas são destacadas.</li>
       <li>Um QRE esquerdo e um direito; posição original X = ±69,5 mm e Y = 4,5 mm. A distância entre furos não é L: L vai do eixo ao ponto central virtual da barra.</li>
       <li>A barra segue a linha ou uma trajetória com desvio lateral fixo. O corpo é rígido e sem derrapagem; o caminho no cruzamento é imposto. Não são modelados PID, motores, tempo, óptica, ADC nem falsos sinais.</li>
-      <li>O destaque amarelo representa um trecho fora da foto, desenhado por hipótese. Outros trechos e todas as dimensões também são aproximados.</li>
+      <li>O destaque amarelo representa trecho fora da foto, desenhado por hipótese. As marcas de curva ficam à esquerda e as de partida e chegada à direita no sentido do robô; suas posições são nominais, não medições das fotos.</li>
     </ul>
     <p>Fontes: <a href="https://ifsp.edu.br/index.php/trif/83-pesquisa/6044-trif2026">IFSP · TRIF 2026</a>; <a href="https://github.com/EXOTIC-TEAM-MX/EVA-RT">EVA-RT · projeto original</a>.</p></details>'''
     template=re.sub(r'<details class="panel">.*?</details>',details,template,count=1,flags=re.S)

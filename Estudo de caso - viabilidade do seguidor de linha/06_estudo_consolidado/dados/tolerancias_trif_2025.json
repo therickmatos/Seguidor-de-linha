@@ -1,5 +1,5 @@
 {
-  "note": "Resultados históricos da pista inspirada no TRIF 2025; 81 combinações discretas, não probabilidades.",
+  "note": "HISTÓRICO: modelo 2025 anterior à correção pela nova foto; não se aplica à pista atual. As 81 combinações são discretas, não probabilidades.",
   "step_mm": 0.25,
   "combinations": 81,
   "sensor_y_mm": 4.5,

@@ -2,48 +2,44 @@
 
 ## O que as pistas representam
 
-Os dois desenhos são modelos para ensaio, não plantas oficiais:
+Os dois desenhos são modelos para ensaio, não plantas oficiais nem medições da pista:
 
-- **TRIF 2025:** construído a partir das fotos recebidas, com retas, curvas, cruzamento e 20 marcas hipotéticas. Partes ocultas e dimensões foram estimadas. A conferência geométrica não é uma certificação integral do percurso.
-- **TRIF 2024:** inspirado em uma foto de 23/11/2024. O desenho foi adaptado ao regulamento de 2026: retas analíticas, arcos circulares, um cruzamento e 35 marcas. O fechamento fora da imagem foi escolhido como hipótese; a posição exata e as dimensões da pista fotografada são desconhecidas.
+- **TRIF 2025:** redesenhado a partir das fotografias, inclusive a [imagem recebida na correção](imagens/referencia_trif_2025.png). Contém a reta longa, o retorno inferior, a alça superior, o S e um cruzamento. O trecho à esquerda que sai do enquadramento foi fechado por hipótese e aparece em amarelo. As proporções e o raio de cada curva são estimados; as 26 marcas são nominais, não uma contagem confirmada na fotografia.
+- **TRIF 2024:** desenho anterior espelhado horizontalmente para inverter o sentido visual da passagem. O traçado, as retas e os arcos foram preservados. As marcas são construídas novamente para ficar **à esquerda nas curvas e à direita na partida e na chegada em relação ao robô**; portanto, a posição de cada fita não é uma reflexão literal do desenho anterior. A parte que não aparece na foto continua hipotética.
 
-### Medidas do modelo 2024
+As [prévias de 2025](imagens/trif_2025.png) e [2024](imagens/trif_2024.png) identificam o sentido de início; o simulador permite percorrer as duas. Em ambos os casos, as posições das marcas e as medidas foram escolhidas para testar o robô segundo o modelo nominal do TRIF 2026. A trajetória no cruzamento é imposta pelo programa.
 
-| Verificação geométrica | Resultado |
-|---|---:|
-| Largura da linha | 19 mm |
-| Largura × comprimento transversal da marca | 19 × 40 mm |
-| Afastamento nominal da borda da linha | 40 mm |
-| Mudanças de curvatura e marcas esquerdas | 33 |
-| Partida/chegada à direita | 2, separadas 1.000 mm |
-| Menor raio dos arcos | 150 mm |
-| Cruzamento | 90°, com pelo menos 450 mm de reta em cada aproximação |
-| Menor distância entre bordas de trechos independentes examinados | 231 mm |
-| Menor distância da linha à borda da manta simulada | 240,5 mm |
+## Geometria dos modelos
 
-Os pares de trechos imediatamente ligados e o cruzamento permitido são tratados separadamente no cálculo. Os portões opcionais e as propriedades físicas da manta não foram modelados. A conferência cobre condições geométricas, não é certificação oficial. O arquivo [validação geométrica](dados/validacao_pista_c_regulamentar.json) contém os valores e limites.
+| Verificação | TRIF 2025 | TRIF 2024 |
+|---|---:|---:|
+| Largura da linha | 19 mm | 19 mm |
+| Marca: largura × comprimento transversal | 19 × 40 mm | 19 × 40 mm |
+| Afastamento nominal da borda da linha | 40 mm | 40 mm |
+| Marcas esquerdas de curva | 24 | 33 |
+| Partida e chegada à direita | 2, separadas 1.000 mm | 2, separadas 1.000 mm |
+| Menor raio dos arcos | 150 mm | 150 mm |
+| Cruzamento | 90°, com pelo menos 650 mm de reta nas aproximações | 90°, com pelo menos 450 mm de reta nas aproximações |
+
+No modelo 2024, a menor distância entre bordas de trechos independentes examinados é de 231 mm, e a menor distância da linha à borda da manta simulada é de 240,5 mm. Pares imediatamente ligados e o cruzamento permitido recebem tratamento separado. Os portões e as propriedades físicas da manta não foram modelados. As checagens ([2025](dados/validacao_pista_trif2025.json), [2024](dados/validacao_pista_c_regulamentar.json)) são geométricas e não constituem certificação oficial.
 
 ## Interseções nominais
 
-Um ponto representa o centro de cada QRE; a barra virtual segue o centro da linha. A coluna “comum” conta marcas nas quais o ponto cruzou também uma região interna conservadora, não uma porcentagem de leituras reais. Todos os números abaixo incluem partida e chegada.
+Um ponto representa o centro de cada QRE; a barra virtual segue o centro da linha. A coluna “comum” conta marcas nas quais o ponto cruzou também uma região interna conservadora, não uma porcentagem de leituras reais. Todos os números incluem partida e chegada.
 
 | Configuração | TRIF 2025 | Comum | TRIF 2024 | Comum |
 |---|---:|---:|---:|---:|
-| 63,14 mm entre furos; QRE originais | 20/20 | 14/20 | 22/35 | 20/35 |
-| 63,14 mm; esquerdo −68 mm; direito original | 20/20 | 14/20 | 21/35 | 20/35 |
-| 63,14 mm; esquerdo −70,5 mm; direito original | 17/20 | 14/20 | 22/35 | 20/35 |
-| 60 mm entre furos; QRE originais | 20/20 | 14/20 | 22/35 | 20/35 |
+| 63,14 mm entre furos; QRE originais | 17/26 | 15/26 | 21/35 | 18/35 |
+| 63,14 mm; esquerdo −68 mm; direito original | 18/26 | 15/26 | 20/35 | 19/35 |
+| 63,14 mm; esquerdo −70,5 mm; direito original | 17/26 | 15/26 | 22/35 | 18/35 |
+| 60 mm entre furos; QRE originais | 17/26 | 15/26 | 22/35 | 19/35 |
 
-Os cálculos foram refeitos com passo de 0,25 mm e interseção independente dos segmentos com os retângulos. [Dados por configuração](dados/resultados_duas_pistas.json) incluem as marcas não cruzadas. A animação usa passo de 0,5 mm e deve ser interpretada como visualização do mesmo cenário idealizado.
+Os cálculos foram refeitos com passo de 0,25 mm e interseção independente dos segmentos com os retângulos. Os [dados por configuração](dados/resultados_duas_pistas.json) incluem as marcas não cruzadas. A animação usa passo de 0,5 mm e representa o mesmo cenário idealizado.
 
-No caso original de 63,14 mm, as duas marcas direitas foram intersectadas nos dois modelos. Isso não confirma sua leitura elétrica nem a lógica de largada ou parada. No modelo 2024, as outras 13 marcas não intersectadas são de curva; isso não prova que o robô sairia da linha ou perderia a volta.
+No caso original de 63,14 mm, as duas marcas direitas foram intersectadas em ambos os modelos. Isso não confirma sua leitura elétrica nem a lógica de largada ou parada. As marcas restantes sem interseção são de curva; isso não prova que o robô sairia da linha ou perderia a volta.
 
-## Margem e tolerâncias
+## Margem, tolerâncias e histórico
 
-Um total completo pode esconder uma passagem quase tangente. No modelo 2025, com sensores originais e desvio fixo de −2 mm, uma marca teve somente cerca de **0,065 mm** de avanço geométrico, apesar do total nominal de 20/20. Outro caso de uma pista sintética anterior teve passagem de 0,081 mm. Não são sinais ou durações medidos; não devem ser classificados como leitura segura.
+Um total completo pode esconder uma passagem quase tangente. O simulador destaca interseções muito curtas, mas mesmo as demais exigem verificação física. A região comum é uma faixa geométrica conservadora, não uma probabilidade de detecção. Desvio fixo também não representa a oscilação dinâmica de um PID.
 
-Em uma [varredura separada do modelo 2025](dados/tolerancias_trif_2025.json), com a barra centrada, somente **14/20 marcas** foram intersectadas em todas as 81 combinações discretas de dimensões escolhidas. As 81 combinações não são probabilidades nem substituem tolerâncias de montagem, campo óptico e controle. Desvio fixo de ±2 mm também não representa a oscilação dinâmica de um PID.
-
-## Histórico e comparabilidade
-
-Um estudo anterior usou uma pista sintética de 19 marcas, outra de sete marcas e montagens diferentes. O resultado 19/19 da imagem anterior correspondia a uma configuração de barra e sensor diferente; um segundo circuito registrou 6/7. Esses ensaios explicam por que um acerto em uma pista não garante outro percurso. Eles não são as pistas atuais do simulador e não representam uma competição fotografada. O [registro histórico](../README.md) preserva suas hipóteses e resultados.
+Os resultados de **20/20** para a pista 2025 anterior e **22/35** para a 2024 anterior correspondem aos desenhos antes desta correção. O [arquivo histórico de tolerâncias](dados/tolerancias_trif_2025.json), inclusive a varredura de 81 combinações, pertence à versão antiga do modelo 2025 e **não se aplica à pista atual**. Outro estudo usou uma pista sintética de 19 marcas e uma de sete; seus resultados e hipóteses permanecem no [registro histórico](../README.md). Não compare diretamente as contagens, pois os percursos, os sentidos e a quantidade de marcas mudaram.

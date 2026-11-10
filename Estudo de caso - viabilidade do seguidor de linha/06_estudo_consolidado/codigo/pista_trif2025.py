@@ -1,105 +1,162 @@
-"""Pista B inspirada em fotos do TRIF 2025, não reprodução metrológica.
+"""Modelo aproximado da pista TRIF 2025 a partir das fotos do usuário.
 
-A geometria é hipotética. Constrói retas, curvas R200, um S e um
-cruzamento; aplica o mesmo modelo de marcações do TRIF 2026.
+Retas e arcos são hipóteses em milímetros, não medidas da fotografia. O laço
+à esquerda da imagem continua fora do enquadramento e é fechado por hipótese.
+As marcações são reconstruídas segundo o modelo nominal de 2026, não copiadas
+uma a uma da imagem. Um cruzamento tem a passagem previamente determinada.
 """
-import json,math
+import json
+import math
 from pathlib import Path
+
 import numpy as np
-from shapely.geometry import LineString,Polygon,Point
-import simular_comparar as model
+from shapely.geometry import LineString, Point
+from simular_comparar import lap
+from pista_c_regulamentar import _polygon
 
 HERE=Path(__file__).resolve().parent
-RADIUS=200.
-CORNER=RADIUS*math.pi/2
-DIAGONAL=RADIUS*math.pi/4
-SHIFT=2*RADIUS*(1-math.cos(math.pi/4))
-S_ADVANCE=2*RADIUS*math.sin(math.pi/4)
+OUT=(HERE.parent/'dados') if HERE.name=='codigo' else HERE
+START_X=1900.
+FINISH_X=900.
+CROSSING=np.array([1900.,1600.])
 
-def segments():
-    # Início: (0,900), norte. Os módulos retornam para o início com a
-    # mesma orientação. O S desloca-se para leste e depois retorna.
-    end_vertical=1400-S_ADVANCE-350-S_ADVANCE+400
-    return [(2300,0),(CORNER,-1/RADIUS),(800,0),(CORNER,-1/RADIUS),
-      (1200,0),(CORNER,-1/RADIUS),(2000,0),(CORNER,1/RADIUS),(200,0),
-      (DIAGONAL,1/RADIUS),(DIAGONAL,-1/RADIUS),(350,0),
-      (DIAGONAL,-1/RADIUS),(DIAGONAL,1/RADIUS),(end_vertical,0),
-      (CORNER,1/RADIUS),(800,0),(CORNER,1/RADIUS),(1300,0)]
+# Coordenadas giradas 90° em relação à visualização da foto. O percurso segue
+# a reta longa, o trecho superior parcialmente encoberto, o S, o cruzamento,
+# a alça superior e a reta interna até a curva larga de retorno.
+VERTICES=np.array([
+ (0,0),(3300,0),(3300,3500),(2900,3500),(2900,2600),
+ (2600,2600),(2600,2200),(2300,2200),(2300,2500),
+ (1900,2500),(1900,800),(2850,800),(2850,1600),(0,1600)
+],dtype=float)
+RADII=np.array([500.]+[150.]*12+[500.])
 
-def orient(tr):
-    z=tr.copy();z[:,1]=-tr[:,2];z[:,2]=900+tr[:,1];z[:,3]=tr[:,3]+math.pi/2
-    return z
+
+def pieces():
+    corners=[];n=len(VERTICES)
+    for i,v in enumerate(VERTICES):
+        before=v-VERTICES[i-1];after=VERTICES[(i+1)%n]-v
+        before/=np.linalg.norm(before);after/=np.linalg.norm(after)
+        dot=float(np.dot(before,after));cross=float(before[0]*after[1]-before[1]*after[0])
+        if abs(dot)>1e-12 or abs(abs(cross)-1)>1e-12:
+            raise ValueError(f'Vertice {i} não é ortogonal')
+        radius=RADII[i]
+        corners.append(dict(entry=v-radius*before,exit=v+radius*after,
+            angle=math.atan2(before[1],before[0]),length=math.pi*radius/2,
+            k=math.copysign(1/radius,cross)))
+    raw=[]
+    for i,c in enumerate(corners):
+        j=(i+1)%n;d=corners[j]['entry']-c['exit']
+        direction=VERTICES[j]-VERTICES[i];direction/=np.linalg.norm(direction)
+        if float(np.dot(d,direction)) < -1e-8:
+            raise ValueError(f'Arcos sobrepostos no trecho {i}')
+        distance=float(np.linalg.norm(d))
+        if distance>1e-8:
+            raw.append(dict(start=c['exit'].copy(),phi=math.atan2(direction[1],direction[0]),
+                length=distance,k=0.,kind='reta'))
+        nxt=corners[j]
+        raw.append(dict(start=nxt['entry'].copy(),phi=nxt['angle'],length=nxt['length'],
+                        k=nxt['k'],kind='arco'))
+    merged=[]
+    for p in raw:
+        if merged and abs(merged[-1]['k']-p['k'])<1e-12:
+            merged[-1]['length']+=p['length']
+        else:
+            merged.append(p.copy())
+    for i,p in enumerate(merged):p['id']=i
+    return merged
+
+
+def _sample(piece,step):
+    return lap.integrate(piece['start'],piece['phi'],piece['length'],piece['k'],step)
+
 
 def build(step=.5):
-    seg=segments();cycle,_=model.old.path(seg,step);cycle=orient(cycle)
-    track,_=model.old.path(seg*3,step);track=orient(track)
-    period=float(cycle[-1,0]);ends=np.cumsum([s[0] for s in seg]);marks=[]
-    def at(s):return track[int(np.argmin(abs(track[:,0]-s)))]
-    def mk(s,label,side,kind,transition):
-        p=at(s)
-        return dict(s=float(p[0]),x=float(p[1]),y=float(p[2]),phi=float(p[3]),side=side,
-                    label=label,kind=kind,transition=transition)
-    marks.append(mk(period,'Partida',-1,'partida','reta principal'))
-    for i,s in enumerate(ends[:-1]):
-        if abs(seg[i][1]-seg[i+1][1])>1e-12:
-            def desc(k):return 'reta' if not k else f'R{round(abs(1/k))} '+('esquerda' if k>0 else 'direita')
-            marks.append(mk(period+s,f'T{i+1}',1,'curva',desc(seg[i][1])+' → '+desc(seg[i+1][1])))
-    marks.append(mk(2*period-1000,'Chegada',-1,'chegada','reta principal'))
-    marks.sort(key=lambda m:m['s'])
-    return track,cycle,marks,dict(start=period,end=2*period-1000+180,
-        crossing_s=period+900,crossing=[0,1800],period=period,segments=seg,
-        crossing_second_s=period+ends[5]+1000)
+    blocks=pieces();parts=[];boundaries=[];offset=0.
+    for i,p in enumerate(blocks):
+        a=_sample(p,step);a[:,0]+=offset
+        boundaries.append(dict(s=offset,x=float(a[0,1]),y=float(a[0,2]),phi=float(a[0,3]),
+            previous_k=float(blocks[i-1]['k']),next_k=float(p['k']),piece_id=i))
+        parts.append(a[:-1]);offset=float(a[-1,0])
+    cycle=np.vstack(parts+[a[-1:]]);cycle[:,3]=np.unwrap(cycle[:,3])
+    period=float(cycle[-1,0])
+    if np.linalg.norm(cycle[-1,1:3]-cycle[0,1:3])>1e-6:raise ValueError('Pista aberta')
+    turns=round((cycle[-1,3]-cycle[0,3])/(2*math.pi))*2*math.pi
+    laps=[]
+    for i in range(3):
+        a=cycle[:-1].copy();a[:,0]+=i*period;a[:,3]+=i*turns;laps.append(a)
+    a=cycle[-1:].copy();a[:,0]+=2*period;a[:,3]+=2*turns;laps.append(a)
+    track=np.vstack(laps)
+    start_phase=START_X-RADII[0];finish_phase=FINISH_X-RADII[0]
+    def abs_s(s):return period+start_phase+((s-start_phase)%period)
+    marks=[]
+    for b in boundaries:
+        if abs(b['previous_k']-b['next_k'])<1e-12:continue
+        marks.append(dict(s=float(abs_s(b['s'])),x=b['x'],y=b['y'],phi=b['phi'],side=1,
+            kind='curva',label='C',transition=f"{b['previous_k']:.6g} → {b['next_k']:.6g}",
+            halfWidth=9.5,inner=49.5,outer=89.5,piece_id=b['piece_id']))
+    marks.extend([
+        dict(s=float(abs_s(start_phase)),x=START_X,y=0.,phi=0.,side=-1,kind='partida',label='Partida',halfWidth=9.5,inner=49.5,outer=89.5),
+        dict(s=float(abs_s(finish_phase)),x=FINISH_X,y=0.,phi=0.,side=-1,kind='chegada',label='Chegada',halfWidth=9.5,inner=49.5,outer=89.5)])
+    marks.sort(key=lambda m:m['s']);count=0
+    for m in marks:
+        if m['kind']=='curva':count+=1;m['label']=f'C{count:02d}'
+    times=[]
+    for p,b in zip(blocks,boundaries):
+        if p['kind']!='reta':continue
+        line=LineString(_sample(p,max(step,2.))[:,1:3]);point=Point(*CROSSING)
+        if line.distance(point)<1e-6:times.append(float(abs_s(b['s']+line.project(point))))
+    if len(times)!=2:raise ValueError(f'Cruzamento inesperado: {times}')
+    # Parte à esquerda da fotografia está fora de quadro, inclusive o retorno.
+    estimated=[]
+    for p in blocks:
+        a=_sample(p,4.)[:,1:3];keep=a[:,1]>=2900
+        if np.count_nonzero(keep)>=2:estimated.append(a[keep].tolist())
+    return track,cycle,marks,dict(start=float(abs_s(start_phase)-250),
+        end=float(abs_s(finish_phase)+180),period=period,crossing=CROSSING.tolist(),
+        crossing_s=min(times),crossing_second_s=max(times),estimated=estimated,
+        blocks=blocks,boundaries=boundaries,note='Modelo inspirado na foto; retorno fora do enquadramento é hipotético.')
+
 
 def check_geometry(cycle,marks,meta):
-    ends=np.r_[0,np.cumsum([p[0] for p in meta['segments']])]
-    parts=[]
-    for a,b in zip(ends[:-1],ends[1:]):
-        start=int(np.argmin(abs(cycle[:,0]-a)));end=int(np.argmin(abs(cycle[:,0]-b)))
-        parts.append(LineString(cycle[start:end+1,1:3]))
-    found=[]
-    for i in range(len(parts)):
-        for j in range(i+1,len(parts)):
-            if j==i+1 or (i==0 and j==len(parts)-1):continue
-            xy=parts[i].intersection(parts[j])
-            if not xy.is_empty:
-                if xy.geom_type!='Point':raise ValueError(f'Interseção inesperada: {i}, {j}: {xy.geom_type}')
-                found.append(dict(piece_a=i,piece_b=j,x=xy.x,y=xy.y))
-    if len(found)!=1 or Point(found[0]['x'],found[0]['y']).distance(Point(meta['crossing']))>1e-6:
-        raise ValueError(f'Esperado um só cruzamento: {found}')
-    line=LineString(cycle[:,1:3]);polys=[]
-    for m in marks:
-        t=np.array([math.cos(m['phi']),math.sin(m['phi'])]); n=np.array([-t[1],t[0]])*m['side']
-        polys.append(Polygon([np.array([m['x'],m['y']])+u*t+v*n for u,v in [(-9.5,49.5),(9.5,49.5),(9.5,89.5),(-9.5,89.5)]]))
-    overlaps=[(marks[i]['label'],marks[j]['label']) for i in range(len(polys)) for j in range(i+1,len(polys)) if polys[i].intersection(polys[j]).area>1e-7]
-    gaps=[line.distance(p)-9.5 for p in polys]
+    blocks=meta['blocks'];lines=[LineString(_sample(p,2.)[:,1:3]) for p in blocks]
+    crossings=[];n=len(lines)
+    for i in range(n):
+        for j in range(i+1,n):
+            if min(j-i,n-(j-i))<=1:continue
+            inter=lines[i].intersection(lines[j])
+            if not inter.is_empty:
+                if inter.geom_type!='Point':raise ValueError(f'Interseção inesperada {i}/{j}: {inter.geom_type}')
+                crossings.append((i,j,inter))
+    if len(crossings)!=1 or crossings[0][2].distance(Point(*CROSSING))>1e-6:
+        raise ValueError(f'Cruzamentos inesperados: {crossings}')
+    i,j,point=crossings[0]
+    if blocks[i]['k'] or blocks[j]['k']:raise ValueError('Cruzamento não está em retas')
+    angle=abs(math.degrees(math.atan2(math.sin(blocks[i]['phi']-blocks[j]['phi']),
+                                     math.cos(blocks[i]['phi']-blocks[j]['phi']))))
+    angle=min(angle,180-angle)
+    clearance=min(min(lines[k].project(point),lines[k].length-lines[k].project(point)) for k in (i,j))
+    polys=[_polygon(m) for m in marks]
+    overlaps=[(marks[a]['label'],marks[b]['label']) for a in range(len(polys)) for b in range(a+1,len(polys))
+              if polys[a].intersection(polys[b]).area>1e-7]
+    guide=LineString(cycle[:,1:3]);gaps=[guide.distance(p)-9.5 for p in polys]
     closure=float(np.linalg.norm(cycle[-1,1:3]-cycle[0,1:3]))
-    result=dict(length_mm=meta['period'],start_to_finish_mm=meta['period']-1000,
-       closure_error_mm=closure,line_width_mm=19,minimum_radius_mm=RADIUS,
-       n_crossings=len(found),crossings=found,crossing_angle_degrees=90,
-       main_straight_before_cross_mm=1800-(-400),main_straight_after_cross_mm=3200-1800,
-       other_straight_before_cross_mm=1000,other_straight_after_cross_mm=1000,
-       finish_to_start_mm=1000,straight_before_finish_mm=300,straight_after_start_before_cross_mm=900,
-       marks=len(marks),mark_overlaps=overlaps,min_mark_edge_to_line_mm=min(gaps),max_mark_edge_to_line_mm=max(gaps),
-       fully_certified_against_rules=False)
-    assert closure<1e-6 and not overlaps and min(gaps)>=37-.02 and max(gaps)<=43+.02
+    joins=[float(np.linalg.norm(_sample(p,2.)[-1,1:3]-blocks[(i+1)%n]['start'])) for i,p in enumerate(blocks)]
+    result=dict(period_mm=meta['period'],marks=len(marks),curve_marks=len(marks)-2,
+        closure_mm=closure,max_join_error_mm=max(joins),line_width_mm=19,minimum_radius_mm=float(min(RADII)),
+        crossings=1,crossing_angle_degrees=angle,crossing_straight_clearance_mm=clearance,
+        start_finish_distance_mm=START_X-FINISH_X,marker_overlaps=overlaps,
+        min_marker_gap_mm=min(gaps),max_marker_gap_mm=max(gaps),
+        estimated='Trecho à esquerda fora da fotografia; geometria e demais medidas aproximadas.',
+        limitations='Modelo hipotético, não planta medida ou certificação oficial.')
+    assert closure<1e-6 and max(joins)<1e-6 and abs(angle-90)<1e-8 and clearance>=250
+    assert not overlaps and min(gaps)>=37-.05 and max(gaps)<=43+.05
+    assert all(m['side']==1 for m in marks if m['kind']=='curva')
+    assert all(m['side']==-1 for m in marks if m['kind'] in ('partida','chegada'))
     return result
 
-def report():
-    track,cycle,marks,meta=build(.25)
-    checks=check_geometry(cycle,marks,meta)
-    cases=[]
-    for label,L,x,y in [('63 mm entre furos',model.L_HOLE,69.5,4.5),('Vão EVA',model.L_GAP,69.5,4.5),
-        ('Ajuste anterior −8/+1',84.79548357898653,69.5,5.5),('L70',70,69.5,4.5),
-        ('L65',65,69.5,4.5),('L60',60,69.5,4.5)]:
-        result=model.candidate(label,L,x,y,[(track,cycle,marks)])
-        q=result['tracks'][0]
-        cases.append(dict(label=label,L=L,x=x,y=y,nominal=q['read'],common=q['common'],total=q['total'],
-            missed=q['missed'],events=q['events']))
-        print(label,'nominal',q['read'],'/',q['total'],'comum',q['common'],'falhas',q['missed'],flush=True)
-    out=dict(warning='Pista aproximada a partir de fotos, não é a planta oficial nem prova de controle em cruzamentos.',
-      source_images='Duas imagens fornecidas pelo usuário, TRIF 2025 Campus Votuporanga',
-      checked=checks,cases=cases)
-    (HERE/'resultados_pista_trif2025.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf8')
-    print('VERIFICAÇÃO',json.dumps(checks,ensure_ascii=False),flush=True)
 
-if __name__=='__main__':report()
+if __name__=='__main__':
+    _,cycle,marks,meta=build(.5);result=check_geometry(cycle,marks,meta)
+    OUT.mkdir(parents=True,exist_ok=True)
+    (OUT/'validacao_pista_trif2025.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf8',newline='\n')
+    print(json.dumps(result,ensure_ascii=False,indent=2))

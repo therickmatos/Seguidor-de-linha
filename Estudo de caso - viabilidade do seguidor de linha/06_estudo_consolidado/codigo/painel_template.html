@@ -62,7 +62,7 @@
     </section>
     <aside class="panel controls">
       <div class="full"><label for="course">Pista de teste</label><select id="course"></select></div>
-      <div id="photoWarning" class="notice full" hidden><strong>Pista C:</strong> modelo inspirado na foto, redesenhado com retas, arcos e marcações nominais do TRIF 2026. O formato e as medidas não são a planta real da fotografia; o trecho amarelo foi completado por hipótese. As contagens mostram apenas interseções neste modelo e não garantem leituras físicas.</div>
+      <div id="photoWarning" class="notice full" hidden><strong>Referência fotográfica:</strong> modelo desenhado com retas, arcos e marcações nominais do TRIF 2026. O formato e as medidas não são uma planta medida; o trecho amarelo foi completado por hipótese. As contagens mostram apenas interseções neste modelo e não garantem leituras físicas.</div>
       <div class="full"><label for="preset">Configuração</label><select id="preset">
         <option value="holes">63,14 mm entre furos · sensores atuais</option>
         <option value="one_asym68">63,14 mm · um QRE por lado · esquerdo a 68 mm</option>
@@ -212,7 +212,7 @@ function draw(){
   if(!frames.length)return;
   const W=canvas.clientWidth,H=canvas.clientHeight,t=DATA.tracks[course],f=frames[Math.max(0,Math.min(frames.length-1,tick))],e=events[selected];
   ctx.clearRect(0,0,W,H);let minX,maxX,minY,maxY;
-  const rotated=Boolean(t.crossing)&&!zoomed&&!t.photo, orient=(x,y)=>rotated?[y,-x]:[x,y];
+  const rotated=Boolean(t.display_rotate)&&!zoomed, orient=(x,y)=>rotated?[-y,x]:[x,y];
   if(zoomed){const spanX=Math.max(390,300*W/H),spanY=spanX*H/W;minX=f[1]-spanX/2;maxX=f[1]+spanX/2;minY=f[2]-spanY/2;maxY=f[2]+spanY/2;}
   else {const p=t.cycle.map(q=>orient(...q)),xs=p.map(q=>q[0]),ys=p.map(q=>q[1]),pad=t.mat?300:180;minX=Math.min(...xs)-pad;maxX=Math.max(...xs)+pad;minY=Math.min(...ys)-pad;maxY=Math.max(...ys)+pad;}
   const scale=Math.min((W-20)/(maxX-minX),(H-20)/(maxY-minY)),cx=(minX+maxX)/2,cy=(minY+maxY)/2;

@@ -3,7 +3,7 @@
   "snapshot_date": "2026-11-10",
   "repository": "therickmatos/Seguidor-de-linha",
   "publication_branch": "claude/vibrant-feynman-stdvz2",
-  "publication_parent_commit": "19e776fdbdd70827279edf4b30ef5fcbe7a7f98d",
+  "publication_parent_commit": "bc6e00a94acae716590a72f25590861bc7b034b6",
   "local_checkout_commit": "2735eb77e76ba8f7917d6bcb5af11f41af7abab3",
   "scope": "Somente os arquivos desta pasta; sem alterar a fonte CAD recebida ou aplicar um ajuste simulado.",
   "self_excluded": true,
@@ -238,57 +238,63 @@
     },
     {
       "path": "06_estudo_consolidado/01_montagem_e_decisao.md",
-      "bytes": 3623,
-      "sha256": "6eaca8ee156ca412f1dba09b279dfebc7890765708388447aae309ed1bef1195",
-      "git_blob_sha1": "326b2d8985cd233d2ea76dde58733e0f7d24696e"
+      "bytes": 3641,
+      "sha256": "8078ee59380ab465e71cd83543a9efeeb986e6f82c13f6f7fe25e13a9b8cfa94",
+      "git_blob_sha1": "d762826c8f5a151558e8e82e87c6a34e23b5b174"
     },
     {
       "path": "06_estudo_consolidado/02_pistas_e_resultados.md",
-      "bytes": 4282,
-      "sha256": "d88ae319a1815dfa74e59fabc05228c1dce7f822331810dde479109b49089458",
-      "git_blob_sha1": "26d95ede458ec6c035225178753a15c1c4029e04"
+      "bytes": 4605,
+      "sha256": "a6c80325830e16615c799b7af01e0416b2e2bcedc86c7b12bdbe749ff7a67bdd",
+      "git_blob_sha1": "f8c968b60c98a5d3b6e0685b0a3116725c9cf6e3"
     },
     {
       "path": "06_estudo_consolidado/03_metodologia_e_testes.md",
-      "bytes": 3176,
-      "sha256": "1a8fcd2e491a2bd6c36be86cb7fbf7beeb807d1cc31f5a56b67e2f16fdfe76f6",
-      "git_blob_sha1": "3f7bbc071810081e88a45ef859a4ef3d2ed3adaa"
+      "bytes": 3279,
+      "sha256": "412f8286dcbb0e2a733ce02198fab97dc9b7c2d42246830eca8b816fdd778b64",
+      "git_blob_sha1": "6ea3d53f317fcb3ffd9f734b82253cfe4c37610f"
     },
     {
       "path": "06_estudo_consolidado/README.md",
-      "bytes": 3512,
-      "sha256": "ecf689d0cf9ee4cdd8b67efa0b7ea97cd02e479835a9e2c0d684a562a4256001",
-      "git_blob_sha1": "a8649b318547c13d201c87a45d2f803505b81151"
+      "bytes": 3435,
+      "sha256": "0c138af826b550fd1dc9fb056a9c366a0a0e640c857c7319a1976a53b77caa9d",
+      "git_blob_sha1": "1ec2195e49d2cdc427eec46e91d47b086ac9510b"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/gerar_imagens.py",
+      "bytes": 2242,
+      "sha256": "d7b20c7e78255be222c2bb19ffb20d8669d84be207162a094d1467d4eb242d23",
+      "git_blob_sha1": "451400788facb678f03dc35de2e9a27825bbb7af"
     },
     {
       "path": "06_estudo_consolidado/codigo/gerar_trif_2024_2025.py",
-      "bytes": 9048,
-      "sha256": "549573af603e16886cfb56282eb372dded3ebf72971484046c076de0a863f830",
-      "git_blob_sha1": "1e5b447725359a4e8a1d3224505f0fdf7534df47"
+      "bytes": 9151,
+      "sha256": "299985b323270eeeb7086ada5f66c0d528055c211150675c31050d320fbf622c",
+      "git_blob_sha1": "68a8ea48ada833b1665428b05097cce7142ee0fd"
     },
     {
       "path": "06_estudo_consolidado/codigo/painel_template.html",
-      "bytes": 36419,
-      "sha256": "4eff3c09246c3e8a7c5c25b29ab1c0508766090fdf29279e4dc21dfb2c455acf",
-      "git_blob_sha1": "31da6edcf8daf1a2cce06fc9daedda008dc3c3d5"
+      "bytes": 36401,
+      "sha256": "a5eb5aa804dc149f038449f984db0bf968832012ffffd2fc7cceb480e3df2232",
+      "git_blob_sha1": "63b335e21c0069b6b2a7d72af4c7cf4641869899"
     },
     {
       "path": "06_estudo_consolidado/codigo/pista_c_regulamentar.py",
-      "bytes": 12302,
-      "sha256": "079a7d5695b11920d525a0e67c3a0c9ac0119366804329e87d04db5d246a7303",
-      "git_blob_sha1": "f2c899a73f0de3a12139daf79aa34513df908d40"
+      "bytes": 13370,
+      "sha256": "3e86650fd5e8bc9eba0e71d540985dd27e9be3c8c84585c82f4929b35a59e1c7",
+      "git_blob_sha1": "81e63bc3ef1005ab788c9b47f379054fe573fa3c"
     },
     {
       "path": "06_estudo_consolidado/codigo/pista_trif2025.py",
-      "bytes": 5706,
-      "sha256": "ecdb4cb7ba9419520212d68bc0be74c3015123427d34419d3da7c6c74e2dc90e",
-      "git_blob_sha1": "dc36d84143d318f69c4ab7b86b88c78ee7892019"
+      "bytes": 8332,
+      "sha256": "49b50dcf7c7c0af1784c93ba9c07c2072a661de63d7748696a4b9a16d0434114",
+      "git_blob_sha1": "fec1df7164b30ee837b7fff677955420a748e1b8"
     },
     {
       "path": "06_estudo_consolidado/codigo/requisitos.txt",
-      "bytes": 37,
-      "sha256": "6b31945d5fd7ddd30400099a60a08042b14c9dc25a416abb6a65491101a41715",
-      "git_blob_sha1": "a9eab1408b0470fae06d9dab4d1bab26450d61bb"
+      "bytes": 53,
+      "sha256": "75b882a18e654ec103d57a383cd6feadd26fa5b6763953ccbd9cce44699501a5",
+      "git_blob_sha1": "a2467dfd5206dbac202016acbe91cd15eab000f5"
     },
     {
       "path": "06_estudo_consolidado/codigo/simular_comparar.py",
@@ -304,45 +310,57 @@
     },
     {
       "path": "06_estudo_consolidado/codigo/verificar_duas_pistas.js",
-      "bytes": 4356,
-      "sha256": "a57394c8f970d029ebdb1cd833c43c6f2b79e69cff9047a3e54ff045ddcb4a7d",
-      "git_blob_sha1": "a2c949f868a9ccdb4910e4746c2abd55e412f5b9"
+      "bytes": 5281,
+      "sha256": "0fd765df1bd29e656b31f58f54a85a5da127e754b005a95c3363e13c3465929c",
+      "git_blob_sha1": "73d65c818aa2a31c663434708f748d2abe1a9977"
     },
     {
       "path": "06_estudo_consolidado/dados/resultados_duas_pistas.json",
-      "bytes": 6078,
-      "sha256": "a7f2d2fc842c62d5304860b8b0856e1bcd3d8db68a88c98dc1aca8b4c70c684b",
-      "git_blob_sha1": "7cb796bdb86678e538aaeec7667d91545e5376b0"
+      "bytes": 6607,
+      "sha256": "525cf173b28eebf751b03552bc871e2f50c38875a8f5d804d220b18a2c5c1e31",
+      "git_blob_sha1": "2e9ffe04bf850c0c64b0115770196c479b32fc21"
     },
     {
       "path": "06_estudo_consolidado/dados/tolerancias_trif_2025.json",
-      "bytes": 10218,
-      "sha256": "0a33c689a42b0180a4c4171b06a6b75434d066f9b9dabb04a5b9788711cc9b56",
-      "git_blob_sha1": "28e86fcf5c9b021befe2e9dde7f2668fdc865295"
+      "bytes": 10265,
+      "sha256": "15acdc334cb76ce9a76e530e17fdf76cd11506da527c1be3ab2c95b2d9cb1778",
+      "git_blob_sha1": "184db245bd951b1dae817f5e900f625e52a41528"
     },
     {
       "path": "06_estudo_consolidado/dados/validacao_pista_c_regulamentar.json",
-      "bytes": 1146,
-      "sha256": "13a8bd716bdfbb724a1bf3a862bcd3b3b22b0b1b20faf95b20558dc2854929d5",
-      "git_blob_sha1": "37df6e98bf837c7e99d52a47af63e1ca0be4209f"
+      "bytes": 1160,
+      "sha256": "b8a5f3704ba223c095e5d63b9947533b7d0239d2145a4bf326731000e3645cc7",
+      "git_blob_sha1": "3dbdc44887defe0c4f0b93953c4b91845ab616c1"
+    },
+    {
+      "path": "06_estudo_consolidado/dados/validacao_pista_trif2025.json",
+      "bytes": 637,
+      "sha256": "5141fa75d7e749a693dbeae8c7048fa7d0d48bf677327bb168bfeb32105fe7ef",
+      "git_blob_sha1": "94d80dd9918363a5a1df774fe7d15446bbd07f06"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/referencia_trif_2025.png",
+      "bytes": 337782,
+      "sha256": "106b4166c7a111a52849360792fe341977ae6e69af290031fac77a725e4f3e00",
+      "git_blob_sha1": "4ab1628d366fc29f1df2773b7dca559f73365f62"
     },
     {
       "path": "06_estudo_consolidado/imagens/trif_2024.png",
-      "bytes": 33739,
-      "sha256": "44bda87c7ce4d389ddf5ee5e9f8c6f3987454de47a836fbaf6a89bd4da93ea81",
-      "git_blob_sha1": "00d9a2a294cb866134a9b152325e8af994b338e9"
+      "bytes": 53156,
+      "sha256": "cefe543e9bae9554ea74bea3374846e42dae06a4105c57ee1fec6e1b90c8f305",
+      "git_blob_sha1": "2656fc0905fd1d044e9b3f59cfb643f6ef819503"
     },
     {
       "path": "06_estudo_consolidado/imagens/trif_2025.png",
-      "bytes": 33406,
-      "sha256": "74e4e7780a6a79158aec9e0050f0db56032e239daff4e5a401c2851d6f67ca69",
-      "git_blob_sha1": "abbd3f514d5b78618c80228cf0b67f6af490d61f"
+      "bytes": 48078,
+      "sha256": "17301d2e6510686b35058b5f9c5f4c1ad43b4a5ebb21fad389027984fd80f451",
+      "git_blob_sha1": "a0318b76b326c03ee42f392d664e26e016613728"
     },
     {
       "path": "06_estudo_consolidado/simulador.html",
-      "bytes": 7559159,
-      "sha256": "77a54e13046466c68324505c018bbbcbac695d0f62265e0be80eef0c6bade5ba",
-      "git_blob_sha1": "38a0495c4aba27ca806e34fbdb04b8decad53c25"
+      "bytes": 8716106,
+      "sha256": "77b0efa9b8f2974ca8603a19a909e91f2ea9076295206debb453efc4a0e0dbc2",
+      "git_blob_sha1": "f33ab07922297f150b7471ff4cc796ca2ac1eab7"
     },
     {
       "path": "LICENSE",

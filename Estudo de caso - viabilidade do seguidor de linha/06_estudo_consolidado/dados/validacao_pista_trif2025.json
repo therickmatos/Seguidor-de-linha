@@ -1,0 +1,18 @@
+{
+  "period_mm": 16498.229715025707,
+  "marks": 26,
+  "curve_marks": 24,
+  "closure_mm": 5.684341886080802e-14,
+  "max_join_error_mm": 2.2737367544323206e-13,
+  "line_width_mm": 19,
+  "minimum_radius_mm": 150.0,
+  "crossings": 1,
+  "crossing_angle_degrees": 89.99999999999999,
+  "crossing_straight_clearance_mm": 650.0,
+  "start_finish_distance_mm": 1000.0,
+  "marker_overlaps": [],
+  "min_marker_gap_mm": 39.55180405905107,
+  "max_marker_gap_mm": 40.0,
+  "estimated": "Trecho à esquerda fora da fotografia; geometria e demais medidas aproximadas.",
+  "limitations": "Modelo hipotético, não planta medida ou certificação oficial."
+}

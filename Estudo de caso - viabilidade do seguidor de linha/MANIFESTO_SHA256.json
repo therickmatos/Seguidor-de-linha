@@ -3,7 +3,7 @@
   "snapshot_date": "2026-11-10",
   "repository": "therickmatos/Seguidor-de-linha",
   "publication_branch": "claude/vibrant-feynman-stdvz2",
-  "publication_parent_commit": "bc6e00a94acae716590a72f25590861bc7b034b6",
+  "publication_parent_commit": "bc251060e7347b4e78a36dcace5b7094add036ce",
   "local_checkout_commit": "2735eb77e76ba8f7917d6bcb5af11f41af7abab3",
   "scope": "Somente os arquivos desta pasta; sem alterar a fonte CAD recebida ou aplicar um ajuste simulado.",
   "self_excluded": true,
@@ -238,15 +238,15 @@
     },
     {
       "path": "06_estudo_consolidado/01_montagem_e_decisao.md",
-      "bytes": 3641,
-      "sha256": "8078ee59380ab465e71cd83543a9efeeb986e6f82c13f6f7fe25e13a9b8cfa94",
-      "git_blob_sha1": "d762826c8f5a151558e8e82e87c6a34e23b5b174"
+      "bytes": 3645,
+      "sha256": "e08a796dec9d8bca5c92a8ff388899046cccd560a54622f2c7d7d2d74f3823e5",
+      "git_blob_sha1": "e2303bd6dd901cd41bf00500770cd24983c4bdbd"
     },
     {
       "path": "06_estudo_consolidado/02_pistas_e_resultados.md",
-      "bytes": 4605,
-      "sha256": "a6c80325830e16615c799b7af01e0416b2e2bcedc86c7b12bdbe749ff7a67bdd",
-      "git_blob_sha1": "f8c968b60c98a5d3b6e0685b0a3116725c9cf6e3"
+      "bytes": 5471,
+      "sha256": "236e3dc5f265b3fef2bf8626d1273fe092ba20591052fe794c0e0ec96cb06396",
+      "git_blob_sha1": "78ea1b6d7340bc44bf53dfecf7625e6ff11e96ac"
     },
     {
       "path": "06_estudo_consolidado/03_metodologia_e_testes.md",
@@ -256,27 +256,27 @@
     },
     {
       "path": "06_estudo_consolidado/README.md",
-      "bytes": 3435,
-      "sha256": "0c138af826b550fd1dc9fb056a9c366a0a0e640c857c7319a1976a53b77caa9d",
-      "git_blob_sha1": "1ec2195e49d2cdc427eec46e91d47b086ac9510b"
+      "bytes": 3441,
+      "sha256": "1ed39894cc595d8b5ae747bc7e4308938813d422174d1291ba028023acea2d8b",
+      "git_blob_sha1": "92f2bffb0c4d24bd705ec8059fdf1581151e879c"
     },
     {
       "path": "06_estudo_consolidado/codigo/gerar_imagens.py",
-      "bytes": 2242,
-      "sha256": "d7b20c7e78255be222c2bb19ffb20d8669d84be207162a094d1467d4eb242d23",
-      "git_blob_sha1": "451400788facb678f03dc35de2e9a27825bbb7af"
+      "bytes": 2282,
+      "sha256": "2e73d4062c2e03f6e0127e7c21c8bf7520101c8858b9d9a9b8c209752e1c8dab",
+      "git_blob_sha1": "b25b934ecfad2d624bb8fa8b6593e0ba1154162f"
     },
     {
       "path": "06_estudo_consolidado/codigo/gerar_trif_2024_2025.py",
-      "bytes": 9151,
-      "sha256": "299985b323270eeeb7086ada5f66c0d528055c211150675c31050d320fbf622c",
-      "git_blob_sha1": "68a8ea48ada833b1665428b05097cce7142ee0fd"
+      "bytes": 9046,
+      "sha256": "1e05c4056091d86de1421568d7d984ad69a965596d44bdbca4fc7102aac32ea0",
+      "git_blob_sha1": "b6e4a63b1fa214e8e40c8b643b995057f7271c56"
     },
     {
       "path": "06_estudo_consolidado/codigo/painel_template.html",
-      "bytes": 36401,
-      "sha256": "a5eb5aa804dc149f038449f984db0bf968832012ffffd2fc7cceb480e3df2232",
-      "git_blob_sha1": "63b335e21c0069b6b2a7d72af4c7cf4641869899"
+      "bytes": 36415,
+      "sha256": "fd0b9faed0fbd347127ef9fdd277caffd009a2b5a01b3f816fc104057a0a4483",
+      "git_blob_sha1": "de0f6f16861676ba3e7f142211e019ed185bce4a"
     },
     {
       "path": "06_estudo_consolidado/codigo/pista_c_regulamentar.py",
@@ -286,9 +286,9 @@
     },
     {
       "path": "06_estudo_consolidado/codigo/pista_trif2025.py",
-      "bytes": 8332,
-      "sha256": "49b50dcf7c7c0af1784c93ba9c07c2072a661de63d7748696a4b9a16d0434114",
-      "git_blob_sha1": "fec1df7164b30ee837b7fff677955420a748e1b8"
+      "bytes": 11328,
+      "sha256": "88d234eed806a99a895e5fb692909390070c067b03d9f7384418560316a1cbc3",
+      "git_blob_sha1": "238798e4d24cf78d11417cb1c3fb9f9f1322d173"
     },
     {
       "path": "06_estudo_consolidado/codigo/requisitos.txt",
@@ -310,15 +310,15 @@
     },
     {
       "path": "06_estudo_consolidado/codigo/verificar_duas_pistas.js",
-      "bytes": 5281,
-      "sha256": "0fd765df1bd29e656b31f58f54a85a5da127e754b005a95c3363e13c3465929c",
-      "git_blob_sha1": "73d65c818aa2a31c663434708f748d2abe1a9977"
+      "bytes": 5465,
+      "sha256": "6239925d4e62cfd41f47a8c8cadad82935d782799ebdd8d706dc79d8a0499caa",
+      "git_blob_sha1": "ad639021bcc0da9665c21e0f5f756920f3065f4a"
     },
     {
       "path": "06_estudo_consolidado/dados/resultados_duas_pistas.json",
-      "bytes": 6607,
-      "sha256": "525cf173b28eebf751b03552bc871e2f50c38875a8f5d804d220b18a2c5c1e31",
-      "git_blob_sha1": "2e9ffe04bf850c0c64b0115770196c479b32fc21"
+      "bytes": 6277,
+      "sha256": "cee1e0fa02374b3058a05aab1d8a98d218deb522a6885a2f7ad2c8aebba10a47",
+      "git_blob_sha1": "8a6df23df294aa83877c634dad9b527ee372321e"
     },
     {
       "path": "06_estudo_consolidado/dados/tolerancias_trif_2025.json",
@@ -334,9 +334,33 @@
     },
     {
       "path": "06_estudo_consolidado/dados/validacao_pista_trif2025.json",
-      "bytes": 637,
-      "sha256": "5141fa75d7e749a693dbeae8c7048fa7d0d48bf677327bb168bfeb32105fe7ef",
-      "git_blob_sha1": "94d80dd9918363a5a1df774fe7d15446bbd07f06"
+      "bytes": 1162,
+      "sha256": "7848b7b1c702718c49846ebef0077458eec984cfcee76d6d2c1488ffa58f6bbf",
+      "git_blob_sha1": "1d9141f441477ddcfd95334e64d3339e72327f5d"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/rascunho_aereo_trif_2025.png",
+      "bytes": 702557,
+      "sha256": "f9c0ae616ff7f0263662c2d5d255b86097be29afa27832d656a906ced39109db",
+      "git_blob_sha1": "2931e119f1bf36a3d46a0755884b4273f470cd0d"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/referencia_2025_angulo_2.png",
+      "bytes": 369259,
+      "sha256": "54d3b615ba4d4c62c615df3f0918385a33d6003014ab02f7356b284114de6eab",
+      "git_blob_sha1": "734906dcff2aa33e67e4e1a7bb25f13dd44762b8"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/referencia_2025_angulo_3.png",
+      "bytes": 212323,
+      "sha256": "b913213afc04fa15bfcea18686b0bdb6e0de5874f73f52caf5f90a5c1cf8e974",
+      "git_blob_sha1": "fe756644e1854e48d19cc2f44d4f7f473c3f0e15"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/referencia_2025_angulo_4.png",
+      "bytes": 306727,
+      "sha256": "c8509337fd851cd963fa29b1c38ae89685ffb9eb63a5900b05bae39d97f07634",
+      "git_blob_sha1": "59e1f0e6c89e19015580d2935509206bd6083f8e"
     },
     {
       "path": "06_estudo_consolidado/imagens/referencia_trif_2025.png",
@@ -352,15 +376,15 @@
     },
     {
       "path": "06_estudo_consolidado/imagens/trif_2025.png",
-      "bytes": 48078,
-      "sha256": "17301d2e6510686b35058b5f9c5f4c1ad43b4a5ebb21fad389027984fd80f451",
-      "git_blob_sha1": "a0318b76b326c03ee42f392d664e26e016613728"
+      "bytes": 55975,
+      "sha256": "c56002a306aa541f6979841735a072e7b56a24e65bf6b3dc505b9c57d205b949",
+      "git_blob_sha1": "522abb00dc7722d1ea69ced198416b87f7733b21"
     },
     {
       "path": "06_estudo_consolidado/simulador.html",
-      "bytes": 8716106,
-      "sha256": "77b0efa9b8f2974ca8603a19a909e91f2ea9076295206debb453efc4a0e0dbc2",
-      "git_blob_sha1": "f33ab07922297f150b7471ff4cc796ca2ac1eab7"
+      "bytes": 10997920,
+      "sha256": "afcff7b46b326f40b6800f631cc67a0215dc78042eee174045b05754b249ac37",
+      "git_blob_sha1": "ac16531b468522c454cded86c757ab7216a140b0"
     },
     {
       "path": "LICENSE",

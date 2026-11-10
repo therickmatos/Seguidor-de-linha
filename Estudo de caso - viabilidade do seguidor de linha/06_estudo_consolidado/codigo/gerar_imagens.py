@@ -35,12 +35,12 @@ def draw(module,year,rotate):
     ax.annotate('',xy=end,xytext=begin,arrowprops=dict(arrowstyle='->',color='#8bf0c9',lw=3))
     ax.set_aspect('equal');ax.axis('off')
     ax.set_title(f'TRIF {year} — modelo aproximado',color='white',fontsize=20)
-    legend=[Line2D([0],[0],color='#ffc47b',ls='--',label='trecho hipotético'),
-            Patch(color='#a3d4ff',label='marcas de curva'),Patch(color='#ffc47b',label='partida / chegada')]
-    fig.legend(handles=legend,loc='lower center',ncol=3,frameon=False,labelcolor='white',fontsize=9)
+    legend=[Patch(color='#a3d4ff',label='marcas de curva'),Patch(color='#ffc47b',label='partida / chegada')]
+    if meta['estimated']:legend.insert(0,Line2D([0],[0],color='#ffc47b',ls='--',label='trecho hipotético'))
+    fig.legend(handles=legend,loc='lower center',ncol=len(legend),frameon=False,labelcolor='white',fontsize=9)
     fig.tight_layout(rect=(0,.04,1,1));OUT.mkdir(parents=True,exist_ok=True)
     fig.savefig(OUT/f'trif_{year}.png',dpi=120,facecolor=fig.get_facecolor());plt.close(fig)
 
 
 if __name__=='__main__':
-    draw(track25,'2025',True);draw(track24,'2024',False)
+    draw(track25,'2025',False);draw(track24,'2024',False)

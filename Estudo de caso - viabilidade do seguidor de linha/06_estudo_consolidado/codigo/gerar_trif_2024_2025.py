@@ -24,7 +24,7 @@ def build_data():
     for name,track,cycle,marks,meta,is24 in specs:
         extra=dict(crossing=meta['crossing'],crossing_s=meta['crossing_s'],
                    crossing_second_s=meta['crossing_second_s'],photo=True,rule_based=True,
-                   display_rotate=not is24,estimated=meta['estimated'])
+                   display_rotate=False,estimated=meta['estimated'])
         if is24:extra['mat']=meta['mat']
         points=np.vstack([cycle[::3,1:3],cycle[-1,1:3]])
         tracks.append(dict(name=name,track=track.round(5).tolist(),cycle=points.round(3).tolist(),
@@ -67,7 +67,7 @@ def static_svg(t,rotate=False):
 def render(data):
     template=(HERE/'painel_template.html').read_text(encoding='utf8')
     template=template.replace('Duas pistas de teste, incluindo uma inspirada nas fotos do TRIF 2025. O ponto virtual central da barra permanece sobre a linha; ajuste as medidas e inspecione as marcas.',
-        'Dois modelos inspirados em fotografias do TRIF 2025 e 2024. Um sensor de marca por lado; as pistas não são plantas oficiais.')
+        'Dois modelos inspirados em fotografias e no rascunho do TRIF 2025. Um sensor de marca por lado; as pistas não são plantas oficiais.')
     template=template.replace('Pista A · 19 marcas','TRIF 2025 · modelo inspirado nas fotos')
     template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · modelo espelhado')
     template=template.replace('A pista B é uma aproximação das fotos; o traçado e as medidas exatas não foram fornecidos.',
@@ -79,8 +79,8 @@ def render(data):
     template=re.sub(r'<select id="preset">.*?</select>',keep_options,template,count=1,flags=re.S)
     details='''<details class="panel"><summary>Premissas, limites e como interpretar</summary>
     <ul>
-      <li>TRIF 2025: modelo revisado conforme a nova foto, com o retorno fora da imagem desenhado por hipótese. TRIF 2024: modelo espelhado a pedido do usuário. Nenhuma é planta oficial; medidas, partes ocultas e marcações são estimadas.</li>
-      <li>No modelo de 2024, faixa de 19 mm, marcas de 19 × 40 mm a 40 mm da borda, raio mínimo de 150 mm e cruzamento de 90°. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
+      <li>TRIF 2025: modelo revisado conforme o rascunho aéreo e as fotografias fornecidas. TRIF 2024: modelo espelhado a pedido do usuário. Nenhuma é planta oficial; a escala e as posições das marcas são estimadas.</li>
+      <li>Em ambos, faixa de 19 mm e marcas de 19 × 40 mm a 40 mm da borda; na esquerda ao mudar a curvatura, na direita para partida e chegada. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
       <li>Fitas nominais intersectadas conta o centro pontual do QRE ao atravessar o retângulo. A região comum é uma faixa mais conservadora, não uma probabilidade e não prova sinal óptico. Passagens curtas são destacadas.</li>
       <li>Um QRE esquerdo e um direito; posição original X = ±69,5 mm e Y = 4,5 mm. A distância entre furos não é L: L vai do eixo ao ponto central virtual da barra.</li>
       <li>A barra segue a linha ou uma trajetória com desvio lateral fixo. O corpo é rígido e sem derrapagem; o caminho no cruzamento é imposto. Não são modelados PID, motores, tempo, óptica, ADC nem falsos sinais.</li>
@@ -88,7 +88,6 @@ def render(data):
     </ul>
     <p>Fontes: <a href="https://ifsp.edu.br/index.php/trif/83-pesquisa/6044-trif2026">IFSP · TRIF 2026</a>; <a href="https://github.com/EXOTIC-TEAM-MX/EVA-RT">EVA-RT · projeto original</a>.</p></details>'''
     template=re.sub(r'<details class="panel">.*?</details>',details,template,count=1,flags=re.S)
-    template=template.replace('let course=0, L=DATA.Lholes','let course=1, L=DATA.Lholes')
     template=template.replace('rightOverride=null, barOffset=0, zoomed=true,','rightOverride=null, barOffset=0, zoomed=false,')
     template=template.replace('selected=7, timer=null,viewCross=false;','selected=0, timer=null,viewCross=false;')
     template=template.replace('<button id="zoom">Ver pista inteira</button>','<button id="zoom">Ver detalhe</button>')
@@ -100,7 +99,7 @@ def render(data):
     template=template.replace("changePreset();resize();document.body.classList.replace('initializing','ready');",
         "changePreset();tick=nearest(DATA.tracks[course].start);$('progress').value=0;resize();document.body.classList.replace('initializing','ready');")
     return (template.replace('/*__DADOS_DA_PISTA__*/',json.dumps(data,ensure_ascii=False,separators=(',',':')))
-        .replace('<!--__PREVIA_PISTA_A__-->',static_svg(data['tracks'][0],rotate=True))
+        .replace('<!--__PREVIA_PISTA_A__-->',static_svg(data['tracks'][0]))
         .replace('<!--__PREVIA_PISTA_B__-->',static_svg(data['tracks'][1]))
         .replace('<!--__PREVIA_PISTA_C_FIGURE__-->',''))
 

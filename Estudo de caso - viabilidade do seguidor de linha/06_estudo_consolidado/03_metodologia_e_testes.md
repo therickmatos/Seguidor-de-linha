@@ -16,7 +16,7 @@ A leitura de uma marca esquerda pode ser útil para mapear transições e decidi
 4. Validar partida, chegada, desaceleração e parada na área correta; impedir contagens repetidas da mesma marca e conferir a lógica em cruzamentos. Ajustar regras de rearme com dados de pista, sem ignorar marcas próximas.
 5. Só então aumentar a velocidade e comparar estabilidade e tempo, repetindo sob variação razoável de alinhamento, altura e superfície. A distância entre furos, sozinha, não determina o desempenho.
 
-O estudo não implementou firmware, não alterou CAD nem Gerbers e não inspecionou trilhas. Não foram realizados testes físicos. O campo óptico real pode gerar uma leitura quando o centro não cruza a marca, mas também pode falhar apesar de uma interseção muito curta.
+O estudo não implementou firmware, não alterou o arquivo original de CAD nem Gerbers e não inspecionou trilhas. O contorno experimental do chassi baixo é gerado apenas para o simulador a partir da geometria do v3. Não foram realizados testes físicos. O campo óptico real pode gerar uma leitura quando o centro não cruza a marca, mas também pode falhar apesar de uma interseção muito curta.
 
 ## Reprodução
 
@@ -32,3 +32,14 @@ python codigo/gerar_imagens.py
 ```
 
 Execute os comandos a partir deste diretório dentro da pasta de estudo: eles reutilizam os módulos arquivados em `../05_codigo/originais/` e as cotas visuais em `../03_simulacoes/`. Os resultados vão para `dados/`. O gerador grava novamente `simulador.html`, e o último comando recria as prévias. A verificação geométrica não valida hardware, e a animação usa velocidade arbitrária.
+
+O módulo `codigo/chassi_dois_sensores.py` extrai o contorno e os recortes do projeto v3, gera as abas baixas e verifica a preservação dos 15 recortes e das regiões central e traseira. As posições dos sensores ficam definidas nesse módulo.
+
+Para verificar a interface com Node.js e Chrome instalados:
+
+```sh
+npm install --no-save playwright-core
+node codigo/verificar_duas_pistas.js
+```
+
+O teste procura o Chrome no caminho padrão do Windows. Em outro local, defina a variável `CHROME_PATH` para o executável do navegador. Ele compara os resultados por marca com `dados/resultados_duas_pistas.json`, verifica a contagem única, as configurações originais, o contorno, a animação e as telas estreitas. A variável opcional `ROBOT_SCREENSHOT_DIR` indica uma pasta existente para salvar as capturas da interface.

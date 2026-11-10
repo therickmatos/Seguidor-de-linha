@@ -6,13 +6,19 @@
   "results": [
     {
       "track": "2025",
+      "preset": "holes",
       "configuration": "63,14 · QRE originais",
       "hole_distance_mm": 63.141,
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 107.11535601056767,
       "nominal": 24,
       "common": 16,
+      "left_nominal": 22,
+      "right_nominal": 2,
+      "left_common": 14,
+      "right_common": 2,
       "total": 33,
       "misses": [
         "C06",
@@ -31,26 +37,423 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         }
       ]
     },
     {
       "track": "2025",
+      "preset": "one_asym68",
       "configuration": "63,14 · esquerdo 68",
       "hole_distance_mm": 63.141,
       "left_abs_mm": 68.0,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 107.11535601056767,
       "nominal": 22,
       "common": 19,
+      "left_nominal": 20,
+      "right_nominal": 2,
+      "left_common": 17,
+      "right_common": 2,
       "total": 33,
       "misses": [
         "C06",
@@ -71,26 +474,425 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         }
       ]
     },
     {
       "track": "2025",
+      "preset": "one_out1",
       "configuration": "63,14 · esquerdo +1 para fora",
       "hole_distance_mm": 63.141,
       "left_abs_mm": 70.5,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 107.11535601056767,
       "nominal": 24,
       "common": 15,
+      "left_nominal": 22,
+      "right_nominal": 2,
+      "left_common": 13,
+      "right_common": 2,
       "total": 33,
       "misses": [
         "C06",
@@ -109,26 +911,421 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         }
       ]
     },
     {
       "track": "2025",
+      "preset": "one_60",
       "configuration": "60 · QRE originais",
       "hole_distance_mm": 60.0,
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 103.97403767331764,
       "nominal": 24,
       "common": 16,
+      "left_nominal": 22,
+      "right_nominal": 2,
+      "left_common": 14,
+      "right_common": 2,
       "total": 33,
       "misses": [
         "C06",
@@ -147,26 +1344,1929 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ]
+    },
+    {
+      "track": "2025",
+      "preset": "chassi_baixo_2",
+      "configuration": "Chassi baixo · dois QRE por lado · 60 mm",
+      "hole_distance_mm": 60.0,
+      "left_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "right_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "sensor_y_mm": 20.0,
+      "L_mm": 103.97403767331764,
+      "nominal": 33,
+      "common": 33,
+      "left_nominal": 31,
+      "right_nominal": 2,
+      "left_common": 31,
+      "right_common": 2,
+      "total": 33,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ]
+    },
+    {
+      "track": "2025",
+      "preset": "chassi_baixo_2_65",
+      "configuration": "Chassi baixo · dois QRE por lado · 65 mm",
+      "hole_distance_mm": 65.0,
+      "left_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "right_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "sensor_y_mm": 20.0,
+      "L_mm": 108.97452992342416,
+      "nominal": 33,
+      "common": 33,
+      "left_nominal": 31,
+      "right_nominal": 2,
+      "left_common": 31,
+      "right_common": 2,
+      "total": 33,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ]
+    },
+    {
+      "track": "2025",
+      "preset": "chassi_baixo_2_70",
+      "configuration": "Chassi baixo · dois QRE por lado · 70 mm",
+      "hole_distance_mm": 70.0,
+      "left_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "right_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "sensor_y_mm": 20.0,
+      "L_mm": 113.97495184315028,
+      "nominal": 33,
+      "common": 30,
+      "left_nominal": 31,
+      "right_nominal": 2,
+      "left_common": 28,
+      "right_common": 2,
+      "total": 33,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25,
+            77.75
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
         }
       ]
     },
     {
       "track": "2024",
+      "preset": "holes",
       "configuration": "63,14 · QRE originais",
       "hole_distance_mm": 63.141,
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 107.11535601056767,
       "nominal": 21,
       "common": 18,
+      "left_nominal": 19,
+      "right_nominal": 2,
+      "left_common": 16,
+      "right_common": 2,
       "total": 35,
       "misses": [
         "C02",
@@ -190,26 +3290,439 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         }
       ]
     },
     {
       "track": "2024",
+      "preset": "one_asym68",
       "configuration": "63,14 · esquerdo 68",
       "hole_distance_mm": 63.141,
       "left_abs_mm": 68.0,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 107.11535601056767,
       "nominal": 20,
       "common": 19,
+      "left_nominal": 18,
+      "right_nominal": 2,
+      "left_common": 17,
+      "right_common": 2,
       "total": 35,
       "misses": [
         "C02",
@@ -234,26 +3747,439 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            68.0
+          ],
+          "sensors_common_mm": [
+            68.0
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         }
       ]
     },
     {
       "track": "2024",
+      "preset": "one_out1",
       "configuration": "63,14 · esquerdo +1 para fora",
       "hole_distance_mm": 63.141,
       "left_abs_mm": 70.5,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 107.11535601056767,
       "nominal": 22,
       "common": 18,
+      "left_nominal": 20,
+      "right_nominal": 2,
+      "left_common": 16,
+      "right_common": 2,
       "total": 35,
       "misses": [
         "C02",
@@ -276,26 +4202,441 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            70.5
+          ],
+          "sensors_common_mm": [
+            70.5
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         }
       ]
     },
     {
       "track": "2024",
+      "preset": "one_60",
       "configuration": "60 · QRE originais",
       "hole_distance_mm": 60.0,
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
+      "sensor_y_mm": 4.5,
       "L_mm": 103.97403767331764,
       "nominal": 22,
       "common": 19,
+      "left_nominal": 20,
+      "right_nominal": 2,
+      "left_common": 17,
+      "right_common": 2,
       "total": 35,
       "misses": [
         "C02",
@@ -318,14 +4659,1978 @@
           "side": -1,
           "kind": "partida",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
         },
         {
           "mark": "Chegada",
           "side": -1,
           "kind": "chegada",
           "nominal": true,
-          "common": true
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": false,
+          "common": false,
+          "sensors_hit_mm": [],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            69.5
+          ],
+          "sensors_common_mm": [
+            69.5
+          ]
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "preset": "chassi_baixo_2",
+      "configuration": "Chassi baixo · dois QRE por lado · 60 mm",
+      "hole_distance_mm": 60.0,
+      "left_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "right_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "sensor_y_mm": 20.0,
+      "L_mm": 103.97403767331764,
+      "nominal": 35,
+      "common": 35,
+      "left_nominal": 33,
+      "right_nominal": 2,
+      "left_common": 33,
+      "right_common": 2,
+      "total": 35,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "preset": "chassi_baixo_2_65",
+      "configuration": "Chassi baixo · dois QRE por lado · 65 mm",
+      "hole_distance_mm": 65.0,
+      "left_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "right_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "sensor_y_mm": 20.0,
+      "L_mm": 108.97452992342416,
+      "nominal": 35,
+      "common": 35,
+      "left_nominal": 33,
+      "right_nominal": 2,
+      "left_common": 33,
+      "right_common": 2,
+      "total": 35,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "preset": "chassi_baixo_2_70",
+      "configuration": "Chassi baixo · dois QRE por lado · 70 mm",
+      "hole_distance_mm": 70.0,
+      "left_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "right_abs_mm": [
+        52.25,
+        77.75
+      ],
+      "sensor_y_mm": 20.0,
+      "L_mm": 113.97495184315028,
+      "nominal": 35,
+      "common": 34,
+      "left_nominal": 33,
+      "right_nominal": 2,
+      "left_common": 32,
+      "right_common": 2,
+      "total": 35,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        }
+      ],
+      "events": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C01",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C02",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C03",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C04",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C05",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C06",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C07",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C08",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C09",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C10",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C11",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C12",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C13",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C14",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C15",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C16",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C17",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C18",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C19",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C20",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C21",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C22",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C23",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C24",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C25",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C26",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C27",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C28",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25
+          ],
+          "sensors_common_mm": [
+            52.25
+          ]
+        },
+        {
+          "mark": "C29",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C30",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C31",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": false,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": []
+        },
+        {
+          "mark": "C32",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "C33",
+          "side": 1,
+          "kind": "curva",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true,
+          "sensors_hit_mm": [
+            52.25,
+            77.75
+          ],
+          "sensors_common_mm": [
+            77.75
+          ]
         }
       ]
     }

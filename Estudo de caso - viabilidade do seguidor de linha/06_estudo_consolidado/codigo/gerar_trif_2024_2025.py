@@ -7,6 +7,7 @@ import numpy as np
 import simular_comparar as model
 import pista_trif2025 as track25
 import pista_c_regulamentar as track24
+from chassi_dois_sensores import build_geometry
 
 HERE=Path(__file__).resolve().parent
 CASE=model.CASE
@@ -33,7 +34,7 @@ def build_data():
     geo=raw['geometry']
     return dict(tracks=tracks,outline=[[round(a,3),round(b,3)] for a,b,_,_ in geo['outline_segments']],
                 front=geo['front_sensor_centres'],wheels=geo['wheel_hulls'],axle=model.AXLE,
-                Lholes=model.L_HOLE,Lgap=model.L_GAP)
+                Lholes=model.L_HOLE,Lgap=model.L_GAP,lowChassis=build_geometry())
 
 
 def static_svg(t,rotate=False):
@@ -67,22 +68,24 @@ def static_svg(t,rotate=False):
 def render(data):
     template=(HERE/'painel_template.html').read_text(encoding='utf8')
     template=template.replace('Duas pistas de teste, incluindo uma inspirada nas fotos do TRIF 2025. O ponto virtual central da barra permanece sobre a linha; ajuste as medidas e inspecione as marcas.',
-        'Dois modelos inspirados em fotografias e no rascunho do TRIF 2025. Um sensor de marca por lado; as pistas não são plantas oficiais.')
+        'Dois modelos inspirados em fotografias e no rascunho do TRIF 2025. Compare o v3 original com o chassi baixo de dois sensores por lado; as pistas não são plantas oficiais.')
     template=template.replace('Pista A · 19 marcas','TRIF 2025 · modelo inspirado nas fotos')
     template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · modelo espelhado')
     template=template.replace('A pista B é uma aproximação das fotos; o traçado e as medidas exatas não foram fornecidos.',
         'Ambas as pistas são aproximações: dimensões, trechos ocultos e marcas não reproduzem uma planta oficial.')
     template=template.replace('<strong>Pista C:</strong>','<strong>TRIF 2024:</strong>')
-    allowed={'holes','one_asym68','one_out1','one_out2','one_sym1','one_sym2','one_60','one_60_68','one_60_685','wide','custom'}
+    allowed={'holes','one_asym68','one_out1','one_out2','one_sym1','one_sym2','one_60','one_60_68','one_60_685','wide','chassi_baixo_2','custom'}
     def keep_options(match):
-        return re.sub(r'<option value="([^"]+)">.*?</option>',lambda o:o.group(0) if o.group(1) in allowed else '',match.group(0))
+        return re.sub(r'<option value="([^"]+)"[^>]*>.*?</option>',lambda o:o.group(0) if o.group(1) in allowed else '',match.group(0))
     template=re.sub(r'<select id="preset">.*?</select>',keep_options,template,count=1,flags=re.S)
     details='''<details class="panel"><summary>Premissas, limites e como interpretar</summary>
     <ul>
       <li>TRIF 2025: modelo revisado conforme o rascunho aéreo e as fotografias fornecidas. TRIF 2024: modelo espelhado a pedido do usuário. Nenhuma é planta oficial; a escala e as posições das marcas são estimadas.</li>
       <li>Em ambos, faixa de 19 mm e marcas de 19 × 40 mm a 40 mm da borda; na esquerda ao mudar a curvatura, na direita para partida e chegada. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
       <li>Fitas nominais intersectadas conta o centro pontual do QRE ao atravessar o retângulo. A região comum é uma faixa mais conservadora, não uma probabilidade e não prova sinal óptico. Passagens curtas são destacadas.</li>
-      <li>Um QRE esquerdo e um direito; posição original X = ±69,5 mm e Y = 4,5 mm. A distância entre furos não é L: L vai do eixo ao ponto central virtual da barra.</li>
+      <li>V3 original: um QRE esquerdo e um direito em X = ±69,5 mm e Y = 4,5 mm. O teste de chassi baixo usa dois por lado em X = ±52,25/±77,75 mm, Y = 20 mm e 60 mm entre furos; o contorno experimental preserva os 15 recortes mecânicos do v3. A distância entre furos não é L: L vai do eixo ao ponto central virtual da barra.</li>
+      <li>No chassi com dois sensores, cada fita é contada uma única vez se algum sensor do lado correto a intersecta. A região comum usa o mesmo critério. Os sinais elétricos, a dupla contagem no firmware e a identificação do cruzamento não são simulados.</li>
+      <li>As linhas tracejadas representam o sensor externo. O contorno do chassi baixo permanece fixo ao personalizar as medidas; deslocar centros dos sensores na tela não redesenha a PCB nem valida a montagem.</li>
       <li>A barra segue a linha ou uma trajetória com desvio lateral fixo. O corpo é rígido e sem derrapagem; o caminho no cruzamento é imposto. Não são modelados PID, motores, tempo, óptica, ADC nem falsos sinais.</li>
       <li>O destaque amarelo representa trecho fora da foto, desenhado por hipótese. As marcas de curva ficam à esquerda e as de partida e chegada à direita no sentido do robô; suas posições são nominais, não medições das fotos.</li>
     </ul>

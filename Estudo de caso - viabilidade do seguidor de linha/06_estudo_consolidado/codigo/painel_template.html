@@ -48,7 +48,7 @@
   <div class="shell" id="livePanel">
     <section class="panel" aria-label="Simulação">
       <div class="metrics" aria-live="polite">
-        <div class="metric"><span>Fitas nominais intersectadas</span><strong id="scoreNom">—</strong></div>
+        <div class="metric"><span>Fitas nominais intersectadas</span><strong id="scoreNom">—</strong><span id="scoreSides"></span></div>
         <div class="metric"><span>Região comum de tolerâncias</span><strong id="scoreCommon">—</strong></div>
         <div class="metric"><span>Montagem estimada</span><strong id="spacing">—</strong></div>
       </div>
@@ -57,6 +57,7 @@
       <div class="row"><button id="play" class="primary">Simular percurso</button><button id="restart">Voltar ao início</button><button id="next">Próxima marca</button><button id="zoom">Ver pista inteira</button><button id="crossing" hidden>Ver cruzamento</button><input id="progress" class="range-line" aria-label="Posição no percurso" type="range" min="0" max="1000" value="0"></div>
       <p id="markDetail" class="result" aria-live="polite"></p>
       <p id="guideSignal" class="small"></p>
+      <p id="pairLegend" class="small" hidden>Dois sensores por lado: E1/D1 internos, E2/D2 externos. Trajetória contínua do interno e tracejada do externo. Cada marca é contada uma vez.</p>
       <p id="crossWarning" class="notice" hidden><strong>Cruzamento:</strong> a trajetória correta é imposta pela simulação. Ela não mostra se o PID ou os sensores reais identificarão o cruzamento ou produzirão um disparo indevido.</p>
       <p class="small">Animação por distância: a velocidade visual é arbitrária. Para uma marca selecionada, as curvas coloridas mostram o caminho dos centros dos sensores nas proximidades.</p>
     </section>
@@ -64,6 +65,7 @@
       <div class="full"><label for="course">Pista de teste</label><select id="course"></select></div>
       <div id="photoWarning" class="notice full" hidden><strong>Referência visual:</strong> modelo desenhado com retas, arcos e marcações nominais do TRIF 2026. O formato e as medidas não são uma planta medida; quando há trechos amarelos, eles foram completados por hipótese. As contagens mostram apenas interseções neste modelo e não garantem leituras físicas.</div>
       <div class="full"><label for="preset">Configuração</label><select id="preset">
+        <option value="chassi_baixo_2" selected>Chassi baixo · 2 sensores por lado · furos 60 mm</option>
         <option value="holes">63,14 mm entre furos · sensores atuais</option>
         <option value="one_asym68">63,14 mm · um QRE por lado · esquerdo a 68 mm</option>
         <option value="one_out1">63,14 mm · QRE esquerdo +1 mm para fora</option>
@@ -97,7 +99,7 @@
         <option value="wings">Abas prolongadas hipotéticas · L 92,8 mm</option>
         <option value="custom">Medidas personalizadas</option>
       </select></div>
-      <div><label for="L">L: eixo → centro da barra <span class="small">(mm)</span></label><div class="num"><input id="Lslide" type="range" min="58" max="110" step="0.5"><input id="L" type="number" min="58" max="110" step="0.1"></div></div>
+      <div><label for="L">L: eixo → centro da barra <span class="small">(mm)</span></label><div class="num"><input id="Lslide" type="range" min="58" max="115" step="0.5"><input id="L" type="number" min="58" max="115" step="0.1"></div></div>
       <div><label for="X">X: sensor principal → centro do robô <span class="small">(mm)</span></label><div class="num"><input id="Xslide" type="range" min="35" max="110" step="0.25"><input id="X" type="number" min="35" max="110" step="0.25"></div></div>
       <div><label for="Y">Y: posição na PCB, à frente da origem <span class="small">(mm)</span></label><div class="num"><input id="Yslide" type="range" min="0" max="55" step="0.5"><input id="Y" type="number" min="0" max="55" step="0.5"></div></div>
       <div class="full"><label for="barOffset">Desvio fixo da barra em relação à linha</label><select id="barOffset"><option value="-2">−2 mm</option><option value="0" selected>0 mm · barra centrada</option><option value="2">+2 mm</option></select><div class="small">Positivo aponta à esquerda no sentido do percurso. Desvio fixo não simula um PID.</div></div>
@@ -137,9 +139,19 @@ const $=id=>document.getElementById(id), AX=DATA.axle;
 const fmtX=n=>n.toFixed(2).replace(/0$/,'');
 let course=0, L=DATA.Lholes, X=69.5, Y=4.5, extras=[], leftOnly=false, rightOverride=null, barOffset=0, zoomed=true, playing=false, tick=0, last=0;
 let frames=[],events=[],tracesL=[],tracesR=[],selected=7, timer=null,viewCross=false;
+let chassisMode='v3';
 const canvas=$('view'),ctx=canvas.getContext('2d');
 const presets={holes:[DATA.Lholes,69.5,4.5],one_asym68:[DATA.Lholes,68,4.5,[],false,[69.5]],one_out1:[DATA.Lholes,70.5,4.5,[],false,[69.5]],one_out2:[DATA.Lholes,71.5,4.5,[],false,[69.5]],one_sym1:[DATA.Lholes,70.5,4.5],one_sym2:[DATA.Lholes,71.5,4.5],one_60:[103.97403767331764,69.5,4.5],one_60_68:[103.97403767331764,68,4.5,[],false,[69.5]],one_60_685:[103.97403767331764,68.5,4.5,[],false,[69.5]],wide:[DATA.Lholes,77,4.5],design_7:[DATA.Lholes,66,4.5,[73]],design_12:[DATA.Lholes,68,4.5,[80]],design_20:[DATA.Lholes,53,4.5,[73]],design_26:[DATA.Lholes,54,4.5,[80]],design_325:[DATA.Lholes,51,4.5,[83.5]],design_margem:[DATA.Lholes,50,4.5,[84]],design_limite:[DATA.Lholes,50.5,4.5,[85]],two_compact:[103.97403767331764,47,4.5,[84.5],false,[56,69.5]],two_compact58:[101.97381700559937,47.25,4.5,[84.25],false,[56,69.5]],two_asym:[103.97403767331764,47,4.5,[85],false,[69.5,84]],two60:[103.97403767331764,47,4.5,[84]],two63:[DATA.Lholes,47,4.5,[84]],two:[DATA.Lholes,50,4.5,[84]],three_left:[DATA.Lholes,69.5,4.5,[42,101],true],three:[DATA.Lholes,69.5,4.5,[42,101]],gap:[DATA.Lgap,69.5,4.5],old:[84.79548358,69.5,5.5],l70:[70,69.5,4.5],l65:[65,69.5,4.5],l60:[60,69.5,4.5],wings:[DATA.Lgap,77,48.5]};
 DATA.tracks.forEach((t,i)=>{const o=document.createElement('option');o.value=i;o.textContent=t.name;$('course').append(o)});
+presets.chassi_baixo_2=[DATA.lowChassis.L,DATA.lowChassis.sensor_x[0],DATA.lowChassis.sensor_y,[DATA.lowChassis.sensor_x[1]]];
+function currentChassis(){return chassisMode==='low_two'?DATA.lowChassis:{outline:DATA.outline,cutouts:DATA.lowChassis.cutouts}}
+function pointInRing(x,y,ring){
+  let inside=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+    const [xi,yi]=ring[i],[xj,yj]=ring[j];
+    if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;
+  }return inside;
+}
+function sensorInsideChassis(x,y){const shape=currentChassis();return pointInRing(x,y,shape.outline)&&!shape.cutouts.some(r=>pointInRing(x,y,r))}
 function configDisplay(){
   for(const [id,val] of [['L',L],['X',X],['Y',Y]]){$(id).value=id==='X'?fmtX(val):val.toFixed(id==='L'?2:1);$(id+'slide').value=val}
   const gap=L+AX-6.9577325-2.76151-25.6;
@@ -147,9 +159,11 @@ function configDisplay(){
   const holes=Math.hypot(dy,44.62624-43.75);
   $('spacing').textContent=`vão ${gap.toFixed(1)} mm`;
   const all=[X,...extras].sort((a,b)=>a-b),rights=rightOverride|| (leftOnly?[X]:all),xmax=Math.max(...all,...rights);
-  $('mount').classList.toggle('danger',gap<0||Y>7||xmax>71);$('multiWarning').hidden=extras.length===0;
+  const proposed=chassisMode==='low_two',outside=all.some(v=>!sensorInsideChassis(-v,Y))||rights.some(v=>!sensorInsideChassis(v,Y));
+  $('mount').classList.toggle('danger',gap<0||outside);$('multiWarning').hidden=extras.length===0;$('pairLegend').hidden=extras.length===0;
   const qre=(leftOnly||rightOverride)?`<strong>Esquerda:</strong> ${all.map(v=>'−'+fmtX(v)).join(' / ')} mm<br><strong>Direita:</strong> ${rights.map(v=>'+'+fmtX(v)).join(' / ')} mm`:`<strong>QRE em cada lado:</strong> ${all.map(v=>'±'+fmtX(v)).join(' / ')} mm`;
-  $('mount').innerHTML=`<strong>Vão:</strong> ${gap.toFixed(1)} mm<br><strong>Furos:</strong> ${holes.toFixed(1)} mm<br>${qre} · Y ${Y.toFixed(1)} mm${gap<0?'<br>O recorte e a base se sobrepõem.':''}${Y>7||xmax>71?'<br>Posição fora da aba atual: exige novo desenho.':''}${xmax>69.5&&Math.abs(Y-4.5)<0.01?'<br>Extensões tracejadas: desenho esquemático.':''}${extras.length?'<br>As posições adicionais ficam fixas ao mover X principal.':''}<br><span class="small">Não verifica patim, varetas, roteamento ou montagem.</span>`;
+  const chassis=proposed?`<strong>Chassi baixo experimental:</strong> ${DATA.lowChassis.width.toFixed(1)} × ${DATA.lowChassis.length.toFixed(1)} mm; 15 recortes do v3 preservados.<br>`:'';
+  $('mount').innerHTML=`${chassis}<strong>Vão:</strong> ${gap.toFixed(1)} mm<br><strong>Furos:</strong> ${holes.toFixed(1)} mm<br>${qre} · Y ${Y.toFixed(1)} mm${gap<0?'<br>O recorte e a base se sobrepõem.':''}${outside?'<br>Um ou mais centros de QRE estão fora do contorno exibido.':''}${!proposed&&xmax>69.5&&Math.abs(Y-4.5)<0.01?'<br>Extensões tracejadas: desenho esquemático.':''}${extras.length?'<br>As posições adicionais ficam fixas ao mover X principal.':''}${proposed?'<br>Contorno fixo: personalizar X/Y não redesenha a placa.':''}<br><span class="small">Não verifica patim, varetas, roteamento ou montagem.</span>`;
 }
 function clip(a,b,h,lo,hi){
   let t0=0,t1=1;
@@ -189,6 +203,8 @@ function compute(){
     return {...m,hit,common,best,bestIdx,dist,sensorsHit};
   });
   $('scoreNom').textContent=`${events.filter(e=>e.hit).length} / ${events.length}`;
+  const leftEvents=events.filter(e=>e.side===1),rightEvents=events.filter(e=>e.side===-1);
+  $('scoreSides').textContent=`Esquerda ${leftEvents.filter(e=>e.hit).length}/${leftEvents.length} · Direita ${rightEvents.filter(e=>e.hit).length}/${rightEvents.length}`;
   $('scoreCommon').textContent=allowCommon?`${events.filter(e=>e.common).length} / ${events.length}`:'—';
   const touches=events.filter(e=>e.hit&&e.dist<1);$('touchWarning').hidden=touches.length===0;
   if(touches.length)$('touchWarning').innerHTML=`<strong>Passagem muito curta:</strong> ${touches.map(e=>e.label+' ('+e.dist.toFixed(2)+' mm)').join(', ')}. Interseção inferior a 1 mm de avanço não demonstra leitura segura. Outros resultados também exigem teste físico.`;
@@ -224,25 +240,27 @@ function draw(){
   for(const m of events){const c=Math.cos(m.phi),s=Math.sin(m.phi),n=[-s*m.side,c*m.side],half=m.halfWidth??9.5,inner=m.inner??49.5,outer=m.outer??89.5;const corners=[[-half,inner],[half,inner],[half,outer],[-half,outer]].map(([u,v])=>P(m.x+u*c+v*n[0],m.y+u*s+v*n[1]));ctx.beginPath();ctx.moveTo(...corners[0]);corners.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath();ctx.fillStyle=m===e?'#f474ad':(m.hit?'#9fb4c9':'#e16565');ctx.globalAlpha=m===e?.87:.65;ctx.fill();ctx.globalAlpha=1;}
   if(t.crossing){const q=P(...t.crossing);ctx.beginPath();ctx.arc(q[0],q[1],Math.max(6,12*scale),0,2*Math.PI);ctx.strokeStyle='#6dceff';ctx.lineWidth=1.5;ctx.stroke()}
   const targetS=viewCross?t.crossing_s:e.s;
-  for(const [sets,col] of [[tracesL,'#67b6ff'],[tracesR,'#ffb44d']])for(let j=0;j<sets.length;j++){const line=[];for(let i=0;i<frames.length;i++)if(Math.abs(frames[i][0]-targetS)<175)line.push(sets[j][i]);ctx.globalAlpha=j?0.65:1;path(line,col,1.5)}ctx.globalAlpha=1;
+  for(const [sets,col] of [[tracesL,'#67b6ff'],[tracesR,'#ffb44d']])for(let j=0;j<sets.length;j++){const line=[];for(let i=0;i<frames.length;i++)if(Math.abs(frames[i][0]-targetS)<175)line.push(sets[j][i]);ctx.globalAlpha=j?0.75:1;ctx.setLineDash(j?[5,3]:[]);path(line,col,1.5)}ctx.globalAlpha=1;ctx.setLineDash([]);
   const [ss,bx,by,a]=f,c=Math.cos(a),sn=Math.sin(a);
   const world=(x,y)=>[bx+(y-AX-L)*c+x*sn,by+(y-AX-L)*sn-x*c];
   for(const wheel of DATA.wheels){const pts=wheel.map(([x,y])=>P(...world(x,y)));ctx.beginPath();ctx.moveTo(...pts[0]);pts.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath();ctx.fillStyle='#a6b4bf';ctx.fill();ctx.strokeStyle='#d0dde4';ctx.lineWidth=1;ctx.stroke()}
   const leftMax=Math.max(X,...extras),rightMax=Math.max(...(rightOverride||(leftOnly?[X]:[X,...extras])));
-  if(Math.abs(Y-4.5)<0.01){for(const [sign,xend] of [[-1,leftMax],[1,rightMax]])if(xend>69.5){const pts=[[sign*72.6,1.45],[sign*(xend+4.6),1.45],[sign*(xend+4.6),7.55],[sign*72.6,7.55]].map(q=>P(...world(...q)));ctx.beginPath();ctx.moveTo(...pts[0]);pts.slice(1).forEach(q=>ctx.lineTo(...q));ctx.closePath();ctx.fillStyle='#355464b8';ctx.fill();ctx.strokeStyle='#e3c787';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([])}}
-  const outline=DATA.outline.map(([x,y])=>P(...world(x,y)));ctx.beginPath();ctx.moveTo(...outline[0]);outline.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath();ctx.fillStyle='#355464b8';ctx.fill();ctx.strokeStyle='#a8c0cb';ctx.lineWidth=1;ctx.stroke();
+  if(chassisMode==='v3'&&Math.abs(Y-4.5)<0.01){for(const [sign,xend] of [[-1,leftMax],[1,rightMax]])if(xend>69.5){const pts=[[sign*72.6,1.45],[sign*(xend+4.6),1.45],[sign*(xend+4.6),7.55],[sign*72.6,7.55]].map(q=>P(...world(...q)));ctx.beginPath();ctx.moveTo(...pts[0]);pts.slice(1).forEach(q=>ctx.lineTo(...q));ctx.closePath();ctx.fillStyle='#355464b8';ctx.fill();ctx.strokeStyle='#e3c787';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([])}}
+  const chassis=currentChassis();ctx.beginPath();
+  for(const ring of [chassis.outline,...chassis.cutouts]){const points=ring.map(([x,y])=>P(...world(x,y)));ctx.moveTo(...points[0]);points.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath()}
+  ctx.fillStyle='#355464b8';ctx.fill('evenodd');ctx.strokeStyle='#a8c0cb';ctx.lineWidth=1;ctx.stroke();
   const bar=DATA.front.map(([x,y])=>P(bx+(y-6.9577325)*c+x*sn,by+(y-6.9577325)*sn-x*c));ctx.beginPath();bar.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.strokeStyle='#88e4cc';ctx.lineWidth=Math.max(2,2.4*scale);ctx.stroke();
   for(const p of bar){ctx.beginPath();ctx.arc(p[0],p[1],Math.max(1.5,1.3*scale),0,2*Math.PI);ctx.fillStyle='#b7f5e6';ctx.fill()}
-  const onLine=[];for(const [sets,col,side,positions] of [[tracesL,'#67b6ff','E',[X,...extras]],[tracesR,'#ffb44d','D',rightOverride|| (leftOnly?[X]:[X,...extras])]])for(let j=0;j<sets.length;j++){const xy=sets[j][tick],active=onGuide(xy,t.cycle),q=P(...xy);if(active)onLine.push(side+fmtX(positions[j]));ctx.beginPath();ctx.arc(q[0],q[1],Math.max(3,2.1*scale),0,2*Math.PI);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=active?'#ff6868':'#fff';ctx.lineWidth=active?2.5:1;ctx.stroke()}
+  const onLine=[];for(const [sets,col,side,positions] of [[tracesL,'#67b6ff','E',[X,...extras]],[tracesR,'#ffb44d','D',rightOverride|| (leftOnly?[X]:[X,...extras])]])for(let j=0;j<sets.length;j++){const xy=sets[j][tick],active=onGuide(xy,t.cycle),q=P(...xy);if(active)onLine.push(side+fmtX(positions[j]));ctx.beginPath();ctx.arc(q[0],q[1],Math.max(3,2.1*scale),0,2*Math.PI);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=active?'#ff6868':'#fff';ctx.lineWidth=active?2.5:1;ctx.stroke();if(zoomed&&sets.length>1){ctx.fillStyle=col;ctx.font='11px system-ui';ctx.fillText(side+(j+1),q[0]+7,q[1]-6)}}
   $('guideSignal').textContent=onLine.length?'QRE sobre a linha-guia (contorno vermelho): '+onLine.join(', ')+' · situação geométrica, sem limiar óptico.':'Contorno vermelho nos QRE indica passagem geométrica sobre a linha-guia.';
   const b=P(bx,by);ctx.beginPath();ctx.arc(b[0],b[1],Math.max(2,1.6*scale),0,2*Math.PI);ctx.fillStyle='#7ff0cd';ctx.fill();
   ctx.fillStyle='#e8f0f7';ctx.font='12px system-ui';ctx.fillText(zoomed?'Detalhe acompanhando a barra':(rotated?'Pista completa · girada 90°':'Pista completa'),12,20);
 }
-function changePreset(){const p=presets[$('preset').value];if(!p)return;[L,X,Y]=p;extras=p[3]?[...p[3]]:[];leftOnly=Boolean(p[4]);rightOverride=p[5]?[...p[5]]:null;playing=false;$('play').textContent='Simular percurso';compute()}
+function changePreset(){const p=presets[$('preset').value];if(!p)return;[L,X,Y]=p;extras=p[3]?[...p[3]]:[];leftOnly=Boolean(p[4]);rightOverride=p[5]?[...p[5]]:null;chassisMode=$('preset').value==='chassi_baixo_2'?'low_two':'v3';playing=false;$('play').textContent='Simular percurso';compute()}
 $('preset').addEventListener('change',changePreset);
 $('barOffset').addEventListener('change',()=>{barOffset=Number($('barOffset').value);playing=false;$('play').textContent='Simular percurso';compute()});
 $('course').addEventListener('change',()=>{course=Number($('course').value);selected=course===0?7:(DATA.tracks[course].photo?0:2);zoomed=course===0;$('zoom').textContent=zoomed?'Ver pista inteira':'Ver detalhe';playing=false;$('play').textContent='Simular percurso';compute();if(DATA.tracks[course].photo){tick=nearest(DATA.tracks[course].start);$('progress').value=0;draw()}});
-for(const id of ['L','X','Y'])for(const suf of ['', 'slide'])$(id+suf).addEventListener('input',e=>{let v=Number(e.target.value);if(!Number.isFinite(v))return;const limit=id==='L'?[58,110]:id==='X'?[35,110]:[0,55];v=Math.max(limit[0],Math.min(limit[1],v));if(id==='L')L=v;else if(id==='X')X=v;else Y=v;$(id).value=v;$(id+'slide').value=v;$('preset').value='custom';clearTimeout(timer);timer=setTimeout(compute,100)});
+for(const id of ['L','X','Y'])for(const suf of ['', 'slide'])$(id+suf).addEventListener('input',e=>{let v=Number(e.target.value);if(!Number.isFinite(v))return;const limit=id==='L'?[58,115]:id==='X'?[35,110]:[0,55];v=Math.max(limit[0],Math.min(limit[1],v));if(id==='L')L=v;else if(id==='X')X=v;else Y=v;$(id).value=v;$(id+'slide').value=v;$('preset').value='custom';clearTimeout(timer);timer=setTimeout(compute,100)});
 $('mark').addEventListener('change',()=>{selected=Number($('mark').value);playing=false;$('play').textContent='Simular percurso';seekEvent()});
 $('next').addEventListener('click',()=>{selected=(selected+1)%events.length;$('mark').value=selected;playing=false;$('play').textContent='Simular percurso';seekEvent()});
 $('zoom').addEventListener('click',()=>{zoomed=!zoomed;$('zoom').textContent=zoomed?'Ver pista inteira':'Ver detalhe';draw()});

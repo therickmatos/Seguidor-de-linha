@@ -13,7 +13,7 @@ O projeto [RUSH/SATURN v3](../01_projeto/ProPrj_RUSH%20-%20SATURN%20-%20v3_2026-
 | Largura da PCB entre pontas | 148,2 mm |
 | Eixo estimado das rodas | Y = −22,59 mm |
 
-Os QRE permanecem na mesma posição longitudinal da v3. Posições alternativas e contornos nas imagens são hipóteses geométricas: não representam uma PCB fabricável ou alterada.
+Nas configurações originais, os QRE permanecem na mesma posição longitudinal da v3. O novo ensaio de chassi baixo usa Y = 20 mm e dois QRE por lado. Posições alternativas e contornos nas imagens são hipóteses geométricas: não representam uma PCB roteada para fabricação.
 
 ## Não confundir as três distâncias
 
@@ -37,4 +37,10 @@ Os resultados detalhados estão em [Pistas e resultados](02_pistas_e_resultados.
 
 Uma haste ou montagem ajustável entre aproximadamente 60 e 63,14 mm pode facilitar a comparação em bancada, se for viável na construção. O ajuste é uma proposta, não uma modificação já feita. Não se comprovou que uma distância reproduza o desempenho do EVA-RT, pois a simulação não inclui controle dinâmico, motores ou tempo de volta.
 
-As hipóteses históricas com mais sensores foram registradas antes da definição atual de **um por lado**. Algumas atingiram 19/19 e 20/20 em pistas sintéticas anteriores, mas perderam margem sob perturbações ou falharam em outro ensaio; não comprovam resultado para o modelo atual. Não foram adicionadas opções de múltiplos sensores ao simulador consolidado.
+## Chassi baixo com dois sensores por lado
+
+O novo teste do simulador usa X = ±52,25 e ±77,75 mm, Y = 20 mm e 60 mm entre furos. O contorno mede 164,7 × 58,6 mm: aumenta 8,25 mm em cada ponta em relação à largura original e mantém a altura longitudinal da base. As abas chegam a Y = 24,6 mm, dentro da frente original em Y = 25,6 mm.
+
+O desenho conserva a região central de |X| ≤ 45 mm, toda a região de Y ≤ 0 e os 15 recortes originais: 12 furos de fixação, abertura central e dois rasgos. Os centros dos quatro sensores ficam dentro do contorno. Isso não verifica a área dos componentes, trilhas ou interferência com os demais elementos da montagem.
+
+As duas pistas atuais foram verificadas com esse contorno e essas posições. Veja [cotas e resultados do teste](04_teste_chassi_dois_sensores.md). As hipóteses históricas com mais sensores, que atingiram 19/19 ou 20/20 em pistas sintéticas anteriores, continuam sendo ensaios distintos e não fundamentam os totais atuais.

@@ -35,8 +35,13 @@ Um ponto representa o centro de cada QRE; a barra virtual segue o centro da linh
 | 63,14 mm; esquerdo −68 mm; direito original | 22/33 | 19/33 | 20/35 | 19/35 |
 | 63,14 mm; esquerdo −70,5 mm; direito original | 24/33 | 15/33 | 22/35 | 18/35 |
 | 60 mm entre furos; QRE originais | 24/33 | 16/33 | 22/35 | 19/35 |
+| 60 mm; chassi baixo, dois QRE por lado | 33/33 | 33/33 | 35/35 | 35/35 |
+| 65 mm; chassi baixo, dois QRE por lado | 33/33 | 33/33 | 35/35 | 35/35 |
+| 70 mm; chassi baixo, dois QRE por lado | 33/33 | 30/33 | 35/35 | 34/35 |
 
-Os cálculos foram refeitos com passo de 0,25 mm e interseção independente dos segmentos com os retângulos. Os [dados por configuração](dados/resultados_duas_pistas.json) incluem as marcas não cruzadas. A animação usa passo de 0,5 mm e representa o mesmo cenário idealizado.
+No chassi baixo, os dois QRE de cada lado ficam em |X| = 52,25 e 77,75 mm, Y = 20 mm. Cada marca conta uma vez se algum sensor do lado correspondente a intersecta. A 60 mm, os totais se dividem em **31/31 à esquerda e 2/2 à direita em 2025**, e **33/33 à esquerda e 2/2 à direita em 2024**, também na região comum. A 70 mm, todas as marcas nominais ainda são intersectadas, mas algumas deixam de cruzar a região comum.
+
+Os cálculos foram refeitos com passo de 0,25 mm e interseção independente dos segmentos com os retângulos. Os [dados por configuração](dados/resultados_duas_pistas.json) incluem os resultados por marca, sensores que a intersectam e totais por lado. A animação usa passo de 0,5 mm e representa o mesmo cenário idealizado. A verificação automatizada no navegador compara cada marca do chassi baixo a 60, 65 e 70 mm com o cálculo independente.
 
 No caso original de 63,14 mm, as duas marcas direitas foram intersectadas em ambos os modelos. Isso não confirma sua leitura elétrica nem a lógica de largada ou parada. As marcas restantes sem interseção são de curva; isso não prova que o robô sairia da linha ou perderia a volta.
 

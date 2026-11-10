@@ -11,15 +11,17 @@
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
       "L_mm": 107.11535601056767,
-      "nominal": 26,
-      "common": 22,
+      "nominal": 24,
+      "common": 18,
       "total": 31,
       "misses": [
+        "C06",
         "C10",
         "C12",
         "C16",
         "C17",
-        "C18"
+        "C18",
+        "C25"
       ],
       "start_finish": [
         {
@@ -45,11 +47,17 @@
       "left_abs_mm": 68.0,
       "right_abs_mm": 69.5,
       "L_mm": 107.11535601056767,
-      "nominal": 29,
+      "nominal": 23,
       "common": 22,
       "total": 31,
       "misses": [
+        "C06",
+        "C07",
+        "C10",
         "C12",
+        "C16",
+        "C17",
+        "C18",
         "C25"
       ],
       "start_finish": [
@@ -76,12 +84,14 @@
       "left_abs_mm": 70.5,
       "right_abs_mm": 69.5,
       "L_mm": 107.11535601056767,
-      "nominal": 26,
-      "common": 22,
+      "nominal": 24,
+      "common": 17,
       "total": 31,
       "misses": [
+        "C06",
         "C10",
         "C12",
+        "C14",
         "C16",
         "C17",
         "C18"
@@ -110,11 +120,16 @@
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
       "L_mm": 103.97403767331764,
-      "nominal": 30,
-      "common": 22,
+      "nominal": 25,
+      "common": 19,
       "total": 31,
       "misses": [
-        "C12"
+        "C06",
+        "C10",
+        "C12",
+        "C16",
+        "C17",
+        "C18"
       ],
       "start_finish": [
         {

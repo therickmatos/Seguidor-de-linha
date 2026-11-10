@@ -13,9 +13,9 @@ Este diretório reúne a análise realizada até **10/11/2026** sobre o RUSH/SAT
 
 ## Conclusão para a decisão atual
 
-Com os QRE originais em X = ±69,5 mm e Y = 4,5 mm, barra centrada e **63,14 mm entre os furos**, o centro dos sensores intersectou **26/31** marcas do modelo 2025 e **21/35** do modelo 2024 espelhado. As contagens incluem as marcas de partida e chegada. Elas não demonstram sinal óptico, resposta do controlador ou volta válida.
+Com os QRE originais em X = ±69,5 mm e Y = 4,5 mm, barra centrada e **63,14 mm entre os furos**, o centro dos sensores intersectou **24/31** marcas do modelo 2025 e **21/35** do modelo 2024 espelhado. As contagens incluem as marcas de partida e chegada. Elas não demonstram sinal óptico, resposta do controlador ou volta válida.
 
-Com **60 mm entre os furos** e os sensores originais, os resultados foram 30/31 e 22/35, respectivamente. Levar somente o QRE esquerdo 1 mm para fora resultou em 26/31 e 22/35. Nenhum desses cenários demonstra leitura segura de todas as marcas.
+Com **60 mm entre os furos** e os sensores originais, os resultados foram 25/31 e 22/35, respectivamente. Levar somente o QRE esquerdo 1 mm para fora resultou em 24/31 e 22/35. Nenhum desses cenários demonstra leitura segura de todas as marcas.
 
 Para a preparação da competição, a alternativa mais simples é começar com a geometria original dos QRE e, se a montagem permitir, comparar fisicamente distâncias próximas de 60–63,14 mm entre os furos. Ajustar o controle e calibrar os sinais requer testes; não há evidência aqui de que uma das distâncias seja mais rápida. A leitura de todas as marcas esquerdas pode ajudar estratégias de velocidade, mas não é um requisito isolado de volta válida; a passagem pela linha e a parada precisam ser verificadas conforme o regulamento.
 

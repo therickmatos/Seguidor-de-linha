@@ -16,14 +16,14 @@ from pista_c_regulamentar import _polygon
 
 HERE=Path(__file__).resolve().parent
 OUT=(HERE.parent/'dados') if HERE.name=='codigo' else HERE
-SCALE=4.25  # mm por unidade do desenho; escala escolhida, não medida
+SCALE=3.55  # mm por unidade do desenho; escala escolhida, não medida
 SCREEN_HEIGHT=1050.
 SKETCH_VERTICES=np.array([
  (1280,1023),(1280,55),(108,55),(108,230),
  (260,230),(260,148),(605,148),(605,228),
  (765,228),(640,510),(1150,510),(1150,440),
- (1120,400),(1120,108),(830,108),(830,228),
- (935,228),(880,1023)
+ (1120,400),(1120,118),(830,118),(830,238),
+ (935,238),(880,1023)
 ],dtype=float)
 VERTICES=np.column_stack((SKETCH_VERTICES[:,0]*SCALE,(SCREEN_HEIGHT-SKETCH_VERTICES[:,1])*SCALE))
 # Na saída da pequena alça superior, as curvas de sentidos opostos se tocam
@@ -177,7 +177,7 @@ def check_geometry(cycle,marks,meta):
         gates_modelled=False,limitations='Modelo hipotético; checagem discretizada, exclui cruzamento e trechos separados por menos de 500 mm ao longo da linha; sem portas físicas, não certificação oficial.')
     assert closure<1e-6 and max(joins)<1e-6 and max(angles)<1e-8 and 85<=angle<=95 and clearance>=250
     assert min(RADII)>=100 and min_distance-19>=200 and before_finish>=250 and after_start>=250
-    assert abs(result['start_finish_distance_mm']-1000)<1e-8 and result['within_pro_limit']
+    assert abs(result['start_finish_distance_mm']-1000)<1e-8 and result['within_pro_limit'] and result['within_junior_limit']
     assert not overlaps and min(gaps)>=37-.05 and max(gaps)<=43+.05
     assert all(m['side']==1 for m in marks if m['kind']=='curva')
     assert all(m['side']==-1 for m in marks if m['kind'] in ('partida','chegada'))

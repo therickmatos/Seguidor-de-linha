@@ -17,16 +17,16 @@ const fs=require('fs');
   if(options.length!==2||!options[0].includes('2025')||!options[1].includes('2024'))throw Error('Menu incorreto: '+JSON.stringify(options));
   if(await page.locator('#course').inputValue()!=='0')throw Error('2025 deve iniciar selecionada.');
   if(!await page.locator('#photoWarning').isVisible())throw Error('Falta aviso de pista hipotética.');
-  if(await page.locator('#scoreCommon').innerText()!=='18 / 31')throw Error('Região comum de 2025 incorreta.');
+  if(await page.locator('#scoreCommon').innerText()!=='16 / 33')throw Error('Região comum de 2025 incorreta.');
   if(await page.locator('#progress').inputValue()!=='0')throw Error('A simulação deve começar na posição inicial.');
   const payload=await page.evaluate(()=>({tracks:DATA.tracks.length,marks:events.length,left:events.filter(e=>e.side===1).length,right:events.filter(e=>e.side===-1).length,sensors:[tracesL.length,tracesR.length]}));
-  if(JSON.stringify(payload)!==JSON.stringify({tracks:2,marks:31,left:29,right:2,sensors:[1,1]}))throw Error('Dados inesperados: '+JSON.stringify(payload));
+  if(JSON.stringify(payload)!==JSON.stringify({tracks:2,marks:33,left:31,right:2,sensors:[1,1]}))throw Error('Dados inesperados: '+JSON.stringify(payload));
   const geometry=await page.evaluate(()=>DATA.tracks.map(t=>({
     marks:t.marks.length,curveLeft:t.marks.filter(m=>m.kind==='curva'&&m.side===1).length,
     finishRight:t.marks.filter(m=>['partida','chegada'].includes(m.kind)&&m.side===-1).length,
     estimated:t.estimated.length,firstX:t.cycle[0][0],firstHeading:t.track[0][3],rotate:t.display_rotate
   })));
-  if(geometry[0].marks!==31||geometry[0].curveLeft!==29||geometry[0].finishRight!==2||geometry[0].rotate||Math.sin(geometry[0].firstHeading)<.999)throw Error('Modelo 2025 inesperado: '+JSON.stringify(geometry[0]));
+  if(geometry[0].marks!==33||geometry[0].curveLeft!==31||geometry[0].finishRight!==2||geometry[0].rotate||Math.sin(geometry[0].firstHeading)<.999)throw Error('Modelo 2025 inesperado: '+JSON.stringify(geometry[0]));
   if(geometry[1].marks!==35||geometry[1].curveLeft!==33||geometry[1].finishRight!==2||!geometry[1].estimated||geometry[1].rotate||Math.abs(geometry[1].firstX-3150)>.01||Math.cos(geometry[1].firstHeading)>-.999)throw Error('Espelhamento ou lados de 2024 incorretos: '+JSON.stringify(geometry[1]));
   const presets=await page.locator('#preset option').allTextContents();
   if(presets.some(s=>/dois QRE|três QRE|adicional/i.test(s)))throw Error('Há opções com sensores adicionais.');
@@ -36,11 +36,11 @@ const fs=require('fs');
   }
   await check('holes',1,'21 / 35');if(process.env.ROBOT_SCREENSHOT_PATH)await page.screenshot({path:process.env.ROBOT_SCREENSHOT_PATH,fullPage:true});
   await check('one_asym68',1,'20 / 35');await check('one_out1',1,'22 / 35');await check('one_60',1,'22 / 35');
-  await check('holes',0,'24 / 31');if(!await page.locator('#photoWarning').isVisible())throw Error('Falta aviso fotográfico em 2025.');
-  await check('one_asym68',0,'23 / 31');await check('one_out1',0,'24 / 31');await check('one_60',0,'25 / 31');
+  await check('holes',0,'24 / 33');if(!await page.locator('#photoWarning').isVisible())throw Error('Falta aviso fotográfico em 2025.');
+  await check('one_asym68',0,'22 / 33');await check('one_out1',0,'24 / 33');await check('one_60',0,'24 / 33');
   await page.click('#crossing');if(!(await page.locator('#markDetail').innerText()).includes('caminho foi definido'))throw Error('Falta aviso do cruzamento de 2025.');
   await page.selectOption('#preset','holes');await page.selectOption('#barOffset','2');
-  if(await page.locator('#scoreNom').innerText()!=='24 / 31')throw Error('Desvio fixo de 2025 divergente.');
+  if(await page.locator('#scoreNom').innerText()!=='23 / 33')throw Error('Desvio fixo de 2025 divergente.');
   await page.selectOption('#barOffset','0');await check('holes',1,'21 / 35');
   await page.click('#crossing');if(!(await page.locator('#markDetail').innerText()).includes('caminho foi definido'))throw Error('Falta aviso do cruzamento.');
   await page.click('#play');const old=await page.locator('#progress').inputValue();await page.waitForTimeout(600);const now=await page.locator('#progress').inputValue();if(old===now)throw Error('Animação não avançou.');await page.click('#play');

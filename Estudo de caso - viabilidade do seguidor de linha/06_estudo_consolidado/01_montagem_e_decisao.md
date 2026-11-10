@@ -31,9 +31,9 @@ Os **63,141 mm** vieram da medição no print do usuário, de furo a furo. O com
 Os resultados detalhados estão em [Pistas e resultados](02_pistas_e_resultados.md). Com um QRE por lado, na posição longitudinal original:
 
 - **V3 e 63,14 mm:** referência para a comparação; não se demonstrou leitura de todas as marcas.
-- **V3 e 60 mm:** passou de 24/31 para 25/31 interseções no modelo 2025 e de 21/35 para 22/35 no 2024 espelhado. É uma posição possível para testar, não uma prova de ganho de velocidade ou de estabilidade.
-- **QRE esquerdo em X = −68 mm:** não exige alongar a ponta pela geometria, mas requer ajuste local de montagem. Passou de 24/31 para 23/31 no modelo 2025 e de 21/35 para 20/35 no 2024; não há evidência para recomendá-lo como melhoria geral.
-- **QRE esquerdo 1 mm para fora:** preservando os 4,6 mm originais até a ponta, corresponde a aproximadamente +1 mm na aba esquerda. Conservou 24/31 no modelo 2025 e passou a 22/35 no 2024. Alongar a aba sem mover o sensor não altera sua trajetória geométrica.
+- **V3 e 60 mm:** manteve 24/33 interseções no modelo 2025 e passou de 21/35 para 22/35 no 2024 espelhado. É uma posição possível para testar, não uma prova de ganho de velocidade ou de estabilidade.
+- **QRE esquerdo em X = −68 mm:** não exige alongar a ponta pela geometria, mas requer ajuste local de montagem. Passou de 24/33 para 22/33 no modelo 2025 e de 21/35 para 20/35 no 2024; não há evidência para recomendá-lo como melhoria geral.
+- **QRE esquerdo 1 mm para fora:** preservando os 4,6 mm originais até a ponta, corresponde a aproximadamente +1 mm na aba esquerda. Conservou 24/33 no modelo 2025 e passou a 22/35 no 2024. Alongar a aba sem mover o sensor não altera sua trajetória geométrica.
 
 Uma haste ou montagem ajustável entre aproximadamente 60 e 63,14 mm pode facilitar a comparação em bancada, se for viável na construção. O ajuste é uma proposta, não uma modificação já feita. Não se comprovou que uma distância reproduza o desempenho do EVA-RT, pois a simulação não inclui controle dinâmico, motores ou tempo de volta.
 

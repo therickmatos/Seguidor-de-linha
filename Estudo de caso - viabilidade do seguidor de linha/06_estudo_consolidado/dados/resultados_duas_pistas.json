@@ -12,16 +12,18 @@
       "right_abs_mm": 69.5,
       "L_mm": 107.11535601056767,
       "nominal": 24,
-      "common": 18,
-      "total": 31,
+      "common": 16,
+      "total": 33,
       "misses": [
         "C06",
-        "C10",
+        "C08",
         "C12",
+        "C14",
         "C16",
-        "C17",
         "C18",
-        "C25"
+        "C19",
+        "C20",
+        "C29"
       ],
       "start_finish": [
         {
@@ -47,18 +49,21 @@
       "left_abs_mm": 68.0,
       "right_abs_mm": 69.5,
       "L_mm": 107.11535601056767,
-      "nominal": 23,
-      "common": 22,
-      "total": 31,
+      "nominal": 22,
+      "common": 19,
+      "total": 33,
       "misses": [
         "C06",
-        "C07",
-        "C10",
+        "C08",
+        "C09",
         "C12",
+        "C14",
         "C16",
-        "C17",
         "C18",
-        "C25"
+        "C19",
+        "C20",
+        "C27",
+        "C29"
       ],
       "start_finish": [
         {
@@ -85,16 +90,18 @@
       "right_abs_mm": 69.5,
       "L_mm": 107.11535601056767,
       "nominal": 24,
-      "common": 17,
-      "total": 31,
+      "common": 15,
+      "total": 33,
       "misses": [
         "C06",
-        "C10",
+        "C08",
         "C12",
         "C14",
         "C16",
-        "C17",
-        "C18"
+        "C18",
+        "C19",
+        "C20",
+        "C29"
       ],
       "start_finish": [
         {
@@ -120,16 +127,19 @@
       "left_abs_mm": 69.5,
       "right_abs_mm": 69.5,
       "L_mm": 103.97403767331764,
-      "nominal": 25,
-      "common": 19,
-      "total": 31,
+      "nominal": 24,
+      "common": 16,
+      "total": 33,
       "misses": [
         "C06",
-        "C10",
+        "C08",
         "C12",
+        "C14",
         "C16",
-        "C17",
-        "C18"
+        "C18",
+        "C19",
+        "C20",
+        "C29"
       ],
       "start_finish": [
         {

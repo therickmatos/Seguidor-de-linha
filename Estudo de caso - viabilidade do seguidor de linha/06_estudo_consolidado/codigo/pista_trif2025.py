@@ -21,9 +21,9 @@ SCREEN_HEIGHT=1050.
 SKETCH_VERTICES=np.array([
  (1280,1023),(1280,55),(108,55),(108,230),
  (260,230),(260,148),(605,148),(605,228),
- (765,228),(640,510),(1150,510),(1150,440),
+ (740,228),(740,510),(1150,510),(1150,440),
  (1120,400),(1120,118),(830,118),(830,238),
- (935,238),(880,1023)
+ (935,238),(935,1023)
 ],dtype=float)
 VERTICES=np.column_stack((SKETCH_VERTICES[:,0]*SCALE,(SCREEN_HEIGHT-SKETCH_VERTICES[:,1])*SCALE))
 # Na saída da pequena alça superior, as curvas de sentidos opostos se tocam
@@ -31,7 +31,7 @@ VERTICES=np.column_stack((SKETCH_VERTICES[:,0]*SCALE,(SCREEN_HEIGHT-SKETCH_VERTI
 _turn=abs(math.atan2(SKETCH_VERTICES[17,1]-SKETCH_VERTICES[16,1],
                      SKETCH_VERTICES[17,0]-SKETCH_VERTICES[16,0]))
 _radius16=(SKETCH_VERTICES[16,0]-SKETCH_VERTICES[15,0]-60.)/math.tan(_turn/2)
-RADII=np.array([125.,75.,87.5,87.5,41.,41.,40.,40.,40.,60.,50.,40.,40.,75.,60.,60.,_radius16,125.])*SCALE
+RADII=np.array([125.,75.,87.5,30.,41.,41.,40.,40.,40.,30.,50.,40.,40.,75.,60.,60.,_radius16,30.])*SCALE
 START_POINT=np.array([1280.*SCALE,(SCREEN_HEIGHT-360.)*SCALE])
 FINISH_POINT=START_POINT-np.array([0.,1000.])
 _cross=LineString(VERTICES[9:11]).intersection(LineString(VERTICES[16:18]))
@@ -181,6 +181,11 @@ def check_geometry(cycle,marks,meta):
     assert not overlaps and min(gaps)>=37-.05 and max(gaps)<=43+.05
     assert all(m['side']==1 for m in marks if m['kind']=='curva')
     assert all(m['side']==-1 for m in marks if m['kind'] in ('partida','chegada'))
+    # As três retas destacadas no rascunho são exatamente verticais; não são
+    # polígonos desenhados à mão nem segmentos levemente inclinados.
+    for x in (SKETCH_VERTICES[3,0],SKETCH_VERTICES[8,0],SKETCH_VERTICES[16,0]):
+        assert any(p['kind']=='reta' and abs(p['start'][0]-x*SCALE)<1e-6 and
+                   abs(math.cos(p['phi']))<1e-10 and p['length']>100 for p in blocks)
     boundaries=meta['boundaries']
     assert sum(abs(b['previous_k']-b['next_k'])>1e-12 for b in boundaries)==sum(m['kind']=='curva' for m in marks)
     for m in (v for v in marks if v['kind']=='curva'):

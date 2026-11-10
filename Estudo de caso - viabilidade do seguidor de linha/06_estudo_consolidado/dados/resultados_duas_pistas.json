@@ -1,0 +1,293 @@
+{
+  "step_mm": 0.25,
+  "offset_mm": 0,
+  "mark_model": "19 × 40 mm, 40 mm da borda da linha",
+  "note": "Interseções geométricas apenas; não modela sinal óptico, dinâmica ou PID.",
+  "results": [
+    {
+      "track": "2025",
+      "configuration": "63,14 · QRE originais",
+      "hole_distance_mm": 63.141,
+      "left_abs_mm": 69.5,
+      "right_abs_mm": 69.5,
+      "L_mm": 107.11535601056767,
+      "nominal": 20,
+      "common": 14,
+      "total": 20,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2025",
+      "configuration": "63,14 · esquerdo 68",
+      "hole_distance_mm": 63.141,
+      "left_abs_mm": 68.0,
+      "right_abs_mm": 69.5,
+      "L_mm": 107.11535601056767,
+      "nominal": 20,
+      "common": 14,
+      "total": 20,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2025",
+      "configuration": "63,14 · esquerdo +1 para fora",
+      "hole_distance_mm": 63.141,
+      "left_abs_mm": 70.5,
+      "right_abs_mm": 69.5,
+      "L_mm": 107.11535601056767,
+      "nominal": 17,
+      "common": 14,
+      "total": 20,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2025",
+      "configuration": "60 · QRE originais",
+      "hole_distance_mm": 60.0,
+      "left_abs_mm": 69.5,
+      "right_abs_mm": 69.5,
+      "L_mm": 103.97403767331764,
+      "nominal": 20,
+      "common": 14,
+      "total": 20,
+      "misses": [],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "configuration": "63,14 · QRE originais",
+      "hole_distance_mm": 63.141,
+      "left_abs_mm": 69.5,
+      "right_abs_mm": 69.5,
+      "L_mm": 107.11535601056767,
+      "nominal": 22,
+      "common": 20,
+      "total": 35,
+      "misses": [
+        "C02",
+        "C06",
+        "C11",
+        "C13",
+        "C15",
+        "C17",
+        "C19",
+        "C21",
+        "C23",
+        "C25",
+        "C29",
+        "C31",
+        "C33"
+      ],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "configuration": "63,14 · esquerdo 68",
+      "hole_distance_mm": 63.141,
+      "left_abs_mm": 68.0,
+      "right_abs_mm": 69.5,
+      "L_mm": 107.11535601056767,
+      "nominal": 21,
+      "common": 20,
+      "total": 35,
+      "misses": [
+        "C02",
+        "C06",
+        "C11",
+        "C13",
+        "C15",
+        "C17",
+        "C19",
+        "C21",
+        "C23",
+        "C25",
+        "C27",
+        "C29",
+        "C31",
+        "C33"
+      ],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "configuration": "63,14 · esquerdo +1 para fora",
+      "hole_distance_mm": 63.141,
+      "left_abs_mm": 70.5,
+      "right_abs_mm": 69.5,
+      "L_mm": 107.11535601056767,
+      "nominal": 22,
+      "common": 20,
+      "total": 35,
+      "misses": [
+        "C02",
+        "C06",
+        "C11",
+        "C13",
+        "C15",
+        "C17",
+        "C19",
+        "C21",
+        "C23",
+        "C25",
+        "C29",
+        "C31",
+        "C33"
+      ],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    },
+    {
+      "track": "2024",
+      "configuration": "60 · QRE originais",
+      "hole_distance_mm": 60.0,
+      "left_abs_mm": 69.5,
+      "right_abs_mm": 69.5,
+      "L_mm": 103.97403767331764,
+      "nominal": 22,
+      "common": 20,
+      "total": 35,
+      "misses": [
+        "C02",
+        "C06",
+        "C11",
+        "C13",
+        "C15",
+        "C17",
+        "C19",
+        "C21",
+        "C23",
+        "C25",
+        "C29",
+        "C31",
+        "C33"
+      ],
+      "start_finish": [
+        {
+          "mark": "Partida",
+          "side": -1,
+          "kind": "partida",
+          "nominal": true,
+          "common": true
+        },
+        {
+          "mark": "Chegada",
+          "side": -1,
+          "kind": "chegada",
+          "nominal": true,
+          "common": true
+        }
+      ]
+    }
+  ]
+}

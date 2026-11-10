@@ -1,9 +1,9 @@
 {
   "study": "Estudo de caso - viabilidade do seguidor de linha",
-  "snapshot_date": "2026-11-09",
+  "snapshot_date": "2026-11-10",
   "repository": "therickmatos/Seguidor-de-linha",
   "publication_branch": "claude/vibrant-feynman-stdvz2",
-  "publication_parent_commit": "aa8e6d188cd19d1e603d95962f69c202d97d9333",
+  "publication_parent_commit": "19e776fdbdd70827279edf4b30ef5fcbe7a7f98d",
   "local_checkout_commit": "2735eb77e76ba8f7917d6bcb5af11f41af7abab3",
   "scope": "Somente os arquivos desta pasta; sem alterar a fonte CAD recebida ou aplicar um ajuste simulado.",
   "self_excluded": true,
@@ -237,6 +237,114 @@
       "git_blob_sha1": "bb3f5424ece9e4debd83433f0c8cefba0c080ee2"
     },
     {
+      "path": "06_estudo_consolidado/01_montagem_e_decisao.md",
+      "bytes": 3623,
+      "sha256": "6eaca8ee156ca412f1dba09b279dfebc7890765708388447aae309ed1bef1195",
+      "git_blob_sha1": "326b2d8985cd233d2ea76dde58733e0f7d24696e"
+    },
+    {
+      "path": "06_estudo_consolidado/02_pistas_e_resultados.md",
+      "bytes": 4282,
+      "sha256": "d88ae319a1815dfa74e59fabc05228c1dce7f822331810dde479109b49089458",
+      "git_blob_sha1": "26d95ede458ec6c035225178753a15c1c4029e04"
+    },
+    {
+      "path": "06_estudo_consolidado/03_metodologia_e_testes.md",
+      "bytes": 3176,
+      "sha256": "1a8fcd2e491a2bd6c36be86cb7fbf7beeb807d1cc31f5a56b67e2f16fdfe76f6",
+      "git_blob_sha1": "3f7bbc071810081e88a45ef859a4ef3d2ed3adaa"
+    },
+    {
+      "path": "06_estudo_consolidado/README.md",
+      "bytes": 3512,
+      "sha256": "ecf689d0cf9ee4cdd8b67efa0b7ea97cd02e479835a9e2c0d684a562a4256001",
+      "git_blob_sha1": "a8649b318547c13d201c87a45d2f803505b81151"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/gerar_trif_2024_2025.py",
+      "bytes": 9048,
+      "sha256": "549573af603e16886cfb56282eb372dded3ebf72971484046c076de0a863f830",
+      "git_blob_sha1": "1e5b447725359a4e8a1d3224505f0fdf7534df47"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/painel_template.html",
+      "bytes": 36419,
+      "sha256": "4eff3c09246c3e8a7c5c25b29ab1c0508766090fdf29279e4dc21dfb2c455acf",
+      "git_blob_sha1": "31da6edcf8daf1a2cce06fc9daedda008dc3c3d5"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/pista_c_regulamentar.py",
+      "bytes": 12302,
+      "sha256": "079a7d5695b11920d525a0e67c3a0c9ac0119366804329e87d04db5d246a7303",
+      "git_blob_sha1": "f2c899a73f0de3a12139daf79aa34513df908d40"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/pista_trif2025.py",
+      "bytes": 5706,
+      "sha256": "ecdb4cb7ba9419520212d68bc0be74c3015123427d34419d3da7c6c74e2dc90e",
+      "git_blob_sha1": "dc36d84143d318f69c4ab7b86b88c78ee7892019"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/requisitos.txt",
+      "bytes": 37,
+      "sha256": "6b31945d5fd7ddd30400099a60a08042b14c9dc25a416abb6a65491101a41715",
+      "git_blob_sha1": "a9eab1408b0470fae06d9dab4d1bab26450d61bb"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/simular_comparar.py",
+      "bytes": 5650,
+      "sha256": "04226fff61bc966452d6aedb72d69020bb76cb9fd11ceb55209066165b89141b",
+      "git_blob_sha1": "543dee48c18c5ffac8844059a648645e6143d365"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/validar_duas_pistas.py",
+      "bytes": 2996,
+      "sha256": "086edcf1ea433f0800b9aac75b175cc666673f0baf2f7d921d71b702e5ebece3",
+      "git_blob_sha1": "ff472f8ac163cc5be66ce6e0c8245a45affd0bc7"
+    },
+    {
+      "path": "06_estudo_consolidado/codigo/verificar_duas_pistas.js",
+      "bytes": 4356,
+      "sha256": "a57394c8f970d029ebdb1cd833c43c6f2b79e69cff9047a3e54ff045ddcb4a7d",
+      "git_blob_sha1": "a2c949f868a9ccdb4910e4746c2abd55e412f5b9"
+    },
+    {
+      "path": "06_estudo_consolidado/dados/resultados_duas_pistas.json",
+      "bytes": 6078,
+      "sha256": "a7f2d2fc842c62d5304860b8b0856e1bcd3d8db68a88c98dc1aca8b4c70c684b",
+      "git_blob_sha1": "7cb796bdb86678e538aaeec7667d91545e5376b0"
+    },
+    {
+      "path": "06_estudo_consolidado/dados/tolerancias_trif_2025.json",
+      "bytes": 10218,
+      "sha256": "0a33c689a42b0180a4c4171b06a6b75434d066f9b9dabb04a5b9788711cc9b56",
+      "git_blob_sha1": "28e86fcf5c9b021befe2e9dde7f2668fdc865295"
+    },
+    {
+      "path": "06_estudo_consolidado/dados/validacao_pista_c_regulamentar.json",
+      "bytes": 1146,
+      "sha256": "13a8bd716bdfbb724a1bf3a862bcd3b3b22b0b1b20faf95b20558dc2854929d5",
+      "git_blob_sha1": "37df6e98bf837c7e99d52a47af63e1ca0be4209f"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/trif_2024.png",
+      "bytes": 33739,
+      "sha256": "44bda87c7ce4d389ddf5ee5e9f8c6f3987454de47a836fbaf6a89bd4da93ea81",
+      "git_blob_sha1": "00d9a2a294cb866134a9b152325e8af994b338e9"
+    },
+    {
+      "path": "06_estudo_consolidado/imagens/trif_2025.png",
+      "bytes": 33406,
+      "sha256": "74e4e7780a6a79158aec9e0050f0db56032e239daff4e5a401c2851d6f67ca69",
+      "git_blob_sha1": "abbd3f514d5b78618c80228cf0b67f6af490d61f"
+    },
+    {
+      "path": "06_estudo_consolidado/simulador.html",
+      "bytes": 7559159,
+      "sha256": "77a54e13046466c68324505c018bbbcbac695d0f62265e0be80eef0c6bade5ba",
+      "git_blob_sha1": "38a0495c4aba27ca806e34fbdb04b8decad53c25"
+    },
+    {
       "path": "LICENSE",
       "bytes": 35184,
       "sha256": "6f1e622c82a380075843bb084a7ec3b1f1d12a4a02526d75e78b0924a860aa75",
@@ -244,9 +352,9 @@
     },
     {
       "path": "README.md",
-      "bytes": 12524,
-      "sha256": "941744c69c5e66169811cb13d5d182220828450a475629706373d7ee56d3b832",
-      "git_blob_sha1": "6d9bfdc8d58eaf315c6e7efb0efa2929a27904db"
+      "bytes": 12836,
+      "sha256": "88154f9c9eaef4abc5eb974108839915dd9fb74fefc9c5383cd614ddcf82934b",
+      "git_blob_sha1": "a850c516e6b2622464dd42dbed06b8046ab16433"
     },
     {
       "path": "REPRODUCAO.md",
@@ -254,5 +362,7 @@
       "sha256": "e45b2ed43d39d5801125d1666f8d02054affa7c8369aeff5edbe65d6c76ca920",
       "git_blob_sha1": "1fa83060e57fe94c3c8aa377efa7c5f1387e1f4f"
     }
-  ]
+  ],
+  "previous_snapshot_date": "2026-11-09",
+  "update_note": "Inclui estudo consolidado, simulador com modelos TRIF 2024 e 2025 e ponteiro no README histórico."
 }

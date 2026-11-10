@@ -1,5 +1,7 @@
 # Estudo de caso - viabilidade do seguidor de linha
 
+> **Atualização de 10/11/2026:** o [estudo consolidado e o simulador com os modelos TRIF 2025 e 2024](06_estudo_consolidado/README.md) reúnem as conclusões mais recentes. O texto abaixo registra o estudo anterior, com outras pistas e hipóteses de montagem; seus resultados devem ser lidos como histórico.
+
 Registro do estudo realizado em 09/11/2026 sobre a leitura das marcações laterais do **RUSH / SATURN v3**, baseado no EVA-RT, para a **7ª edição do TRIF 2026**. O objetivo é apoiar a decisão sobre a PCB a encomendar, preservando o contexto e as correções da análise.
 
 **Situação ao encerrar este registro:** a configuração com vão de aproximadamente 26,9 mm e sensores avançados 1 mm passou pelas 19 marcas nominais da primeira volta, mas perdeu uma das sete marcas de um segundo circuito fechado. Isso demonstra uma limitação da trajetória cinemática testada; não demonstra impossibilidade de funcionamento com outro controle. A configuração ainda não está validada como solução garantida de leitura para fabricação.

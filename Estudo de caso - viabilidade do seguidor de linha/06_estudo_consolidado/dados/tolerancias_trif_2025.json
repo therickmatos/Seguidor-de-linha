@@ -1,0 +1,574 @@
+{
+  "note": "Resultados históricos da pista inspirada no TRIF 2025; 81 combinações discretas, não probabilidades.",
+  "step_mm": 0.25,
+  "combinations": 81,
+  "sensor_y_mm": 4.5,
+  "results": [
+    {
+      "holes_mm": 63.141,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "original",
+      "left_positions_mm": [
+        69.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        0.06518109277369405
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "interno_68",
+      "left_positions_mm": [
+        68.0
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 14,
+      "misses": [
+        "T2",
+        "T4",
+        "T6"
+      ],
+      "weakest_hit": [
+        "T12",
+        17.08756047553077
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "interno_685",
+      "left_positions_mm": [
+        68.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 14,
+      "misses": [
+        "T2",
+        "T4",
+        "T6"
+      ],
+      "weakest_hit": [
+        "T12",
+        17.068399077234627
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "fora_mais_1",
+      "left_positions_mm": [
+        70.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        5.5780645753324904
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "fora_mais_2",
+      "left_positions_mm": [
+        71.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        2.9352177018424936
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "original",
+      "left_positions_mm": [
+        69.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        1.845839548005987
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "interno_68",
+      "left_positions_mm": [
+        68.0
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        3.621866679341317
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "interno_685",
+      "left_positions_mm": [
+        68.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        6.344044491504138
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "fora_mais_1",
+      "left_positions_mm": [
+        70.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 14,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T4",
+        16.52246342393988
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "fora_mais_2",
+      "left_positions_mm": [
+        71.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 16,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.796181623419372
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "original",
+      "left_positions_mm": [
+        69.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 15,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.713733928382297
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "interno_68",
+      "left_positions_mm": [
+        68.0
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 14,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T4",
+        14.857620295519368
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "interno_685",
+      "left_positions_mm": [
+        68.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 14,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.750511858390446
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "fora_mais_1",
+      "left_positions_mm": [
+        70.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 15,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.677169994675182
+      ]
+    },
+    {
+      "holes_mm": 63.141,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "fora_mais_2",
+      "left_positions_mm": [
+        71.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 15,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T10",
+        14.650155763049744
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "original",
+      "left_positions_mm": [
+        69.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        6.121730191942267
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "interno_68",
+      "left_positions_mm": [
+        68.0
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 14,
+      "misses": [
+        "T2",
+        "T4",
+        "T6"
+      ],
+      "weakest_hit": [
+        "T12",
+        17.05279916583702
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "interno_685",
+      "left_positions_mm": [
+        68.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        0.476961669746044
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "fora_mais_1",
+      "left_positions_mm": [
+        70.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        11.443920732035455
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": -2.0,
+      "track": "B",
+      "case": "fora_mais_2",
+      "left_positions_mm": [
+        71.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        11.23999127995244
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "original",
+      "left_positions_mm": [
+        69.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        10.095046410566038
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "interno_68",
+      "left_positions_mm": [
+        68.0
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        9.580282621985656
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "interno_685",
+      "left_positions_mm": [
+        68.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 14,
+      "misses": [],
+      "weakest_hit": [
+        "T4",
+        12.208356540526022
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "fora_mais_1",
+      "left_positions_mm": [
+        70.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 17,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        3.341588591578924
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 0.0,
+      "track": "B",
+      "case": "fora_mais_2",
+      "left_positions_mm": [
+        71.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 17,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.76450488898785
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "original",
+      "left_positions_mm": [
+        69.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 17,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.682114729070403
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "interno_68",
+      "left_positions_mm": [
+        68.0
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 17,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        5.640838122765988
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "interno_685",
+      "left_positions_mm": [
+        68.5
+      ],
+      "hits": 20,
+      "total": 20,
+      "all_81": 17,
+      "misses": [],
+      "weakest_hit": [
+        "T18",
+        2.2569255555671175
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "fora_mais_1",
+      "left_positions_mm": [
+        70.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 15,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.646076767641624
+      ]
+    },
+    {
+      "holes_mm": 60.0,
+      "offset_mm": 2.0,
+      "track": "B",
+      "case": "fora_mais_2",
+      "left_positions_mm": [
+        71.5
+      ],
+      "hits": 17,
+      "total": 20,
+      "all_81": 15,
+      "misses": [
+        "T8",
+        "T16",
+        "T18"
+      ],
+      "weakest_hit": [
+        "T12",
+        16.61024221176389
+      ]
+    }
+  ]
+}

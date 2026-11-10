@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RUSH v3 · marcas do TRIF 2026</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#192432;background:#f3f5f8;font-size:15px}
+    *{box-sizing:border-box} body{margin:0} main{max-width:1450px;margin:auto;padding:24px}
+    h1{font-size:clamp(22px,3vw,32px);margin:0 0 6px;letter-spacing:-.025em} h2{font-size:17px;margin:0 0 10px}
+    p{line-height:1.48;margin:7px 0}.sub{color:#516174;max-width:1000px}
+    .shell{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start;margin-top:18px}
+    .panel{background:#fff;border:1px solid #dce2e9;border-radius:14px;padding:17px;box-shadow:0 3px 12px #1d30490a}
+    .controls{display:grid;gap:13px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    label{display:block;font-weight:650;font-size:13px;margin:0 0 5px}.small{font-size:12px;color:#596b7f;font-weight:400}
+    select,input[type=number]{border:1px solid #b8c3d0;border-radius:7px;background:#fff;color:#192432;padding:9px;width:100%;font:inherit}
+    input[type=range]{width:100%;accent-color:#1c64b4;cursor:pointer}.num{display:grid;grid-template-columns:1fr 91px;gap:10px;align-items:center}
+    button{font:inherit;border:1px solid #b8c3d0;background:#fff;color:#233349;border-radius:8px;padding:9px 13px;cursor:pointer}
+    button:hover{background:#eef3f9}.primary{background:#1d5fa6;color:#fff;border-color:#1d5fa6}.primary:hover{background:#184f8b}
+    .metrics{display:flex;gap:20px;flex-wrap:wrap;margin:0 0 12px}.metric strong{font-size:20px;color:#172c41}.metric span{display:block;color:#617083;font-size:12px}
+    .viewport{background:#111822;border-radius:10px;overflow:hidden} canvas{display:block;width:100%;height:510px}
+    .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:#4b5b6c;margin:10px 0}
+    .swatch{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+    .notice{background:#f1f6fc;border-left:3px solid #5286ba;padding:10px 12px;border-radius:4px;color:#334b62;line-height:1.4}
+    .notice strong{color:#20374c}.danger{background:#fff3f0;border-color:#d06751}
+    #livePanel{display:none} body.initializing #livePanel,body.ready #livePanel{display:grid} body.ready #fallback{display:none}
+    #fallback{margin-top:18px} .fallback-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:15px}
+    .fallback-grid figure{margin:0}.fallback-grid figcaption{font-weight:650;margin-bottom:7px}.fallback-grid svg{display:block;width:100%;height:330px;background:#111822;border-radius:10px}
+    .result{font-weight:650;color:#193e65;min-height:42px}.separator{height:1px;background:#e4e9ee}
+    details{margin-top:17px} summary{font-weight:650;cursor:pointer} ul{padding-left:20px;line-height:1.5} code{background:#f1f3f5;padding:1px 4px;border-radius:3px}
+    a{color:#175a9f}.range-line{flex:1;min-width:150px}.track-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:900px){.shell{grid-template-columns:1fr}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.full{grid-column:1/-1} canvas{height:420px}}
+    @media(max-width:540px){main{padding:12px}.panel{padding:12px}.controls{grid-template-columns:1fr}.full{grid-column:auto} canvas{height:340px}.track-controls{grid-template-columns:1fr}.metrics{gap:12px}.fallback-grid{grid-template-columns:1fr}.fallback-grid svg{height:290px}}
+  </style>
+</head>
+<body><main>
+  <header><h1>RUSH v3: sensores × marcas TRIF</h1>
+  <p class="sub">Duas pistas de teste, incluindo uma inspirada nas fotos do TRIF 2025. O ponto virtual central da barra permanece sobre a linha; ajuste as medidas e inspecione as marcas.</p></header>
+  <section id="fallback" class="panel" aria-label="Prévia das pistas">
+    <h2>Prévia das duas pistas</h2>
+    <p class="notice"><strong>A animação não iniciou nesta janela.</strong> As pistas aparecem abaixo em versão estática. Para usar os controles e simular o robô, abra este arquivo no Google Chrome ou no Microsoft Edge pelo Explorador de Arquivos.</p>
+    <div class="fallback-grid">
+      <figure><figcaption>Pista A · 19 marcas</figcaption><!--__PREVIA_PISTA_A__--></figure>
+      <figure><figcaption>Pista B · inspirada no TRIF 2025</figcaption><!--__PREVIA_PISTA_B__--></figure>
+      <!--__PREVIA_PISTA_C_FIGURE__-->
+    </div>
+    <p class="small">A pista B é uma aproximação das fotos; o traçado e as medidas exatas não foram fornecidos.</p>
+  </section>
+  <div class="shell" id="livePanel">
+    <section class="panel" aria-label="Simulação">
+      <div class="metrics" aria-live="polite">
+        <div class="metric"><span>Fitas nominais intersectadas</span><strong id="scoreNom">—</strong></div>
+        <div class="metric"><span>Região comum de tolerâncias</span><strong id="scoreCommon">—</strong></div>
+        <div class="metric"><span>Montagem estimada</span><strong id="spacing">—</strong></div>
+      </div>
+      <div class="viewport"><canvas id="view" role="img" aria-label="Pista e trajetórias do robô e de seus sensores laterais"></canvas></div>
+      <div class="legend"><span><i class="swatch" style="background:#c0cbd4"></i>linha branca</span><span><i class="swatch" style="background:#67b6ff"></i>sensor esquerdo</span><span><i class="swatch" style="background:#ffb44d"></i>sensor direito</span><span><i class="swatch" style="background:#f474ad"></i>marca selecionada</span><span id="crossLegend" hidden><i class="swatch" style="background:#6dceff"></i>cruzamento</span><span id="estimatedLegend" hidden><i class="swatch" style="background:#f9bf5d"></i>trecho estimado</span></div>
+      <div class="row"><button id="play" class="primary">Simular percurso</button><button id="restart">Voltar ao início</button><button id="next">Próxima marca</button><button id="zoom">Ver pista inteira</button><button id="crossing" hidden>Ver cruzamento</button><input id="progress" class="range-line" aria-label="Posição no percurso" type="range" min="0" max="1000" value="0"></div>
+      <p id="markDetail" class="result" aria-live="polite"></p>
+      <p id="guideSignal" class="small"></p>
+      <p id="crossWarning" class="notice" hidden><strong>Cruzamento:</strong> a trajetória correta é imposta pela simulação. Ela não mostra se o PID ou os sensores reais identificarão o cruzamento ou produzirão um disparo indevido.</p>
+      <p class="small">Animação por distância: a velocidade visual é arbitrária. Para uma marca selecionada, as curvas coloridas mostram o caminho dos centros dos sensores nas proximidades.</p>
+    </section>
+    <aside class="panel controls">
+      <div class="full"><label for="course">Pista de teste</label><select id="course"></select></div>
+      <div id="photoWarning" class="notice full" hidden><strong>Pista C:</strong> modelo inspirado na foto, redesenhado com retas, arcos e marcações nominais do TRIF 2026. O formato e as medidas não são a planta real da fotografia; o trecho amarelo foi completado por hipótese. As contagens mostram apenas interseções neste modelo e não garantem leituras físicas.</div>
+      <div class="full"><label for="preset">Configuração</label><select id="preset">
+        <option value="holes">63,14 mm entre furos · sensores atuais</option>
+        <option value="one_asym68">63,14 mm · um QRE por lado · esquerdo a 68 mm</option>
+        <option value="one_out1">63,14 mm · QRE esquerdo +1 mm para fora</option>
+        <option value="one_out2">63,14 mm · QRE esquerdo +2 mm para fora</option>
+        <option value="one_sym1">63,14 mm · abas +1 mm de cada lado · QRE para fora</option>
+        <option value="one_sym2">63,14 mm · abas +2 mm de cada lado · QRE para fora</option>
+        <option value="one_60">60 mm entre furos · sensores atuais</option>
+        <option value="one_60_68">60 mm · QRE esquerdo a 68 mm</option>
+        <option value="one_60_685">60 mm · QRE esquerdo a 68,5 mm · teste de tangência</option>
+        <option value="wide">63,14 mm entre furos · abas +7,5 mm por lado</option>
+        <option value="design_7">63,14 mm · aba +3,5 mm · QRE próximos (66 / 73)</option>
+        <option value="design_12">63,14 mm · aba +10,5 mm · QRE próximos (68 / 80)</option>
+        <option value="design_20">63,14 mm · aba +3,5 mm · QRE X 53 / 73</option>
+        <option value="design_26">63,14 mm · aba +10,5 mm · QRE X 54 / 80</option>
+        <option value="design_325">63,14 mm · aba +14 mm · QRE X 51 / 83,5</option>
+        <option value="design_margem">63,14 mm · aba +14,5 mm · QRE X 50 / 84</option>
+        <option value="design_limite">63,14 mm · aba +15,5 mm · QRE X 50,5 / 85</option>
+        <option value="two_compact">60 mm · dois QRE por lado · aba esquerda compacta</option>
+        <option value="two_compact58">58 mm · dois QRE por lado · margem maior</option>
+        <option value="two_asym">60 mm · dois QRE por lado, configuração assimétrica</option>
+        <option value="two60">60 mm · dois QRE por lado, X 47 e 84</option>
+        <option value="two63">63,14 mm · dois QRE por lado, X 47 e 84</option>
+        <option value="two">63,14 mm · dois QRE por lado, X 50 e 84</option>
+        <option value="three_left">63,14 mm · três QRE à esquerda e um à direita</option>
+        <option value="three">63,14 mm · três QRE por lado, X 42 / 69,5 / 101</option>
+        <option value="gap">Vão EVA estimado · sensores atuais</option>
+        <option value="old">Estudo anterior · barra −8 / QRE +1 mm</option>
+        <option value="l70">Protótipo compacto · L 70 mm</option>
+        <option value="l65">Protótipo compacto · L 65 mm</option>
+        <option value="l60">Protótipo compacto · L 60 mm</option>
+        <option value="wings">Abas prolongadas hipotéticas · L 92,8 mm</option>
+        <option value="custom">Medidas personalizadas</option>
+      </select></div>
+      <div><label for="L">L: eixo → centro da barra <span class="small">(mm)</span></label><div class="num"><input id="Lslide" type="range" min="58" max="110" step="0.5"><input id="L" type="number" min="58" max="110" step="0.1"></div></div>
+      <div><label for="X">X: sensor principal → centro do robô <span class="small">(mm)</span></label><div class="num"><input id="Xslide" type="range" min="35" max="110" step="0.25"><input id="X" type="number" min="35" max="110" step="0.25"></div></div>
+      <div><label for="Y">Y: posição na PCB, à frente da origem <span class="small">(mm)</span></label><div class="num"><input id="Yslide" type="range" min="0" max="55" step="0.5"><input id="Y" type="number" min="0" max="55" step="0.5"></div></div>
+      <div class="full"><label for="barOffset">Desvio fixo da barra em relação à linha</label><select id="barOffset"><option value="-2">−2 mm</option><option value="0" selected>0 mm · barra centrada</option><option value="2">+2 mm</option></select><div class="small">Positivo aponta à esquerda no sentido do percurso. Desvio fixo não simula um PID.</div></div>
+      <div class="full"><label for="mark">Inspecionar marca</label><select id="mark"></select></div>
+      <div id="mount" class="notice full"></div>
+      <div class="notice full"><strong>O que significa “intersectada”:</strong> apenas o centro geométrico do QRE passou por um retângulo. Isso não é garantia de sinal elétrico, controle PID, aderência ou volta válida.</div>
+      <div id="touchWarning" class="notice danger full" hidden></div>
+      <div id="multiWarning" class="notice danger full" hidden><strong>Atenção aos sinais extras:</strong> o QRE interno pode enxergar a linha principal em curvas. A contagem soma os acertos geométricos; não inclui falsos disparos nem valida o firmware.<br><br>O indicador “região comum” é conservador por sensor: um valor abaixo do total, por si só, não indica que a marca será perdida pelo conjunto.</div>
+    </aside>
+  </div>
+  <details class="panel"><summary>Premissas, limites e como interpretar</summary>
+    <ul>
+      <li>As pistas são construídas para teste. A pista A é a mesma da análise anterior. A pista B tem 20 marcas e foi inspirada nas fotos do TRIF 2025; as medidas e os trechos não visíveis são hipotéticos. A pista C, quando disponível, é uma adaptação da fotografia construída com retas e arcos, nas medidas nominais do TRIF. Nenhuma é planta oficial da prova de 2026.</li>
+      <li>Faixa branca de 19 mm; marca de 40 × 19 mm, a 40 mm da borda da linha. Região nominal: 49,5 a 89,5 mm do centro. A região comum usada aqui vai de 53 a 83 mm, com meia largura longitudinal de 9 mm; cruzá-la não prova leitura óptica.</li>
+      <li>A contagem “região comum” verifica se algum sensor cruza a parte que todas as fitas consideradas compartilham. Se não cruzar essa região, a leitura ainda pode acontecer: sensores diferentes podem cobrir diferentes formatos de fita. O indicador não é uma taxa de falhas nem um teste completo de todas as tolerâncias.</li>
+      <li>O centro da barra segue a linha ou uma trajetória com desvio fixo de −2, 0 ou +2 mm, selecionado no painel. O corpo é rígido, sem escorregamento lateral. A orientação é integrada pela cinemática do eixo. O sensor é um ponto; o passo espacial da apresentação é ≤ 1 mm e cada segmento é recortado pelo retângulo completo. Valores perto de zero indicam tangência e não demonstram leitura segura.</li>
+      <li>O centro entre os dois QRE do meio da V1 é um ponto virtual; os sensores são discretos e o controle real tem atraso, saturação e erro. A pista B contém um cruzamento, mas a trajetória correta por ele é imposta. O programa não simula óptica, ADC, firmware, reconhecimento de cruzamentos, frenagem, desníveis ou tempo físico de volta.</li>
+      <li>O vão base–barra é medido da borda frontal central da v3 ao recorte traseiro central da V1. A distância entre furos é entre o furo frontal da base e o furo lateral da V1, considerando o deslocamento transversal. Esses números são estimativas para a montagem especificada no relatório.</li>
+      <li>Coordenadas X e Y alteradas são estudos geométricos. A opção de abas prolongadas exige um novo desenho de PCB, avaliação mecânica e elétrica, e testes; não é uma alteração já feita.</li>
+      <li>Na configuração “abas +7,5 mm por lado”, os QRE laterais permanecem no Y original e são deslocados de X = ±69,5 para ±77 mm. As extensões tracejadas são apenas esquemáticas e não representam um novo projeto de PCB.</li>
+      <li>Nas configurações de múltiplos QRE, cada fita é contada uma vez se pelo menos um sensor do lado correto a cruza. O simulador não decide se os sinais são marcas, linha principal ou cruzamento. As leituras devem ser separadas eletricamente e tratadas em firmware.</li>
+      <li>Em “60 mm · dois QRE por lado”, os pares estão em X = −47/−84 e +47/+84 mm; os sensores atuais em ±69,5 mm precisam ser reposicionados. Um teste separado de 81 combinações discretas de dimensões cruzou todas as marcas da A e da B com desvio fixo de −2, 0 e +2 mm; no pior dos casos da pista A o melhor sensor cruzou a fita enquanto a barra avançou somente cerca de 1,1 mm, o que pode não gerar uma leitura confiável. Com 63,14 mm e barra centrada, a mesma dupla também cruzou todas as marcas nas 81 combinações, mas alguns desvios fixos de 2 mm perderam marcas. Na terceira pista de teste, C2 não foi detectada com o centro da barra na linha. Esses testes são geométricos, não probabilidades de acerto.</li>
+      <li>Na configuração assimétrica de 60 mm, os QREs ficam em X = −47/−85 mm à esquerda e +69,5/+84 mm à direita, todos em Y = 4,5 mm. O mesmo teste de 81 combinações e desvios fixos de −2, 0 e +2 mm cruzou todas as marcas da A e B; o menor avanço do melhor sensor foi aproximadamente 3,2 mm na A e 7,2 mm na B. Na terceira pista, a marca C2 permaneceu sem cobertura. Não há validação do sinal elétrico nem do controle.</li>
+      <li>Na configuração de aba esquerda compacta com 60 mm entre furos, os centros dos QREs ficam em X = −47/−84,5 mm à esquerda e +56/+69,5 mm à direita, no Y original de 4,5 mm. A extensão desenhada é só à esquerda; estima-se +15 mm na ponta ao preservar 4,6 mm do centro do QRE à borda como na v3. Em A e B, o pior trecho contínuo do melhor QRE foi cerca de 2,77 mm de avanço da barra nas 81 combinações de dimensões e desvios fixos de −2/0/+2 mm. Se cada QRE esquerdo também for deslocado independentemente até ±0,5 mm em X, o pior trecho cai a 0,29 mm, nas posições discretas investigadas. Não é um projeto de fabricação nem demonstra leitura segura.</li>
+      <li>Na alternativa com um QRE por lado e 63,14 mm entre furos, a posição hipotética é X = −68 mm à esquerda e +69,5 mm à direita, no Y original de 4,5 mm. Na pista A nominal, os centros intersectam 16 das 19 marcas; na B hipotética, 20 das 20. Na A, as marcas M7, M9 e M11 não são cruzadas. Com desvio fixo da barra de ±2 mm, o total nominal muda. A posição em X = −68 mm foi estudada geometricamente; a montagem e o sinal não foram validados.</li>
+      <li>As novas opções de um QRE com 60 mm representam a distância entre furos da base e da barra, não a distância entre eixo e barra. A 63,14 mm, os exemplos de +1 e +2 mm levam somente o sensor esquerdo para fora, permanecendo o direito na posição original; as extensões da aba são esquemáticas e preservam aproximadamente a margem atual entre o centro e a ponta. Em 60 mm, X esquerdo 68,5 mm e desvio fixo +2 mm, há interseção de apenas cerca de 0,08 mm em uma marca da A: não interprete o total como leitura segura. As tolerâncias dimensionais requerem a análise separada em <code>MELHORIA_DISCRETA_V3.md</code>.</li>
+      <li>Nas opções “aba” de 63,14 mm, há dois sensores por lado no mesmo Y original (4,5 mm), espelhados em X. O tamanho extra da aba preserva 4,6 mm entre centro do sensor externo e ponta da PCB. As extensões tracejadas são desenhos conceituais. Nos casos nominais, X 66/73 cruza 17/19 e 20/20; X 68/80 e X 53/73 cruzam 18/19 e 20/20; X 54/80, X 51/83,5, X 50/84 e X 50,5/85 cruzam 19/19 e 20/20. Variações de posição e dimensões podem perder marcas, e uma terceira pista de teste perde C2. O painel não modela o sinal óptico nem falsos disparos.</li>
+      <li>Na opção de 58 mm, os centros à esquerda são −47,25/−84,25 mm, e à direita permanecem +56/+69,5 mm. Nos mesmos cenários, o menor trecho contínuo do melhor sensor esquerdo foi de aproximadamente 5,29 mm sem erro de posicionamento, ou 3,65 mm com deslocamentos independentes amostrados até ±0,5 mm. Não se modelou a ótica. Essa distância entre furos é 2 mm menor que a faixa de 60–65 mm solicitada e a velocidade real ainda precisa ser medida.</li>
+    </ul>
+    <p>Fontes: <a href="https://ifsp.edu.br/index.php/trif/83-pesquisa/6044-trif2026">IFSP · regras TRIF 2026</a>; <a href="https://github.com/EXOTIC-TEAM-MX/EVA-RT">EVA-RT · projeto original</a>; <a href="https://github.com/therickmatos/Seguidor-de-linha/tree/claude/vibrant-feynman-stdvz2/Estudo%20de%20caso%20-%20viabilidade%20do%20seguidor%20de%20linha">estudo arquivado do projeto</a>. Código de referência baseado no EVA-RT, © EXOTIC TEAM MX, AGPL-3.0.</p>
+  </details>
+</main>
+<script>
+'use strict';
+const DATA=/*__DADOS_DA_PISTA__*/;
+const $=id=>document.getElementById(id), AX=DATA.axle;
+const fmtX=n=>n.toFixed(2).replace(/0$/,'');
+let course=0, L=DATA.Lholes, X=69.5, Y=4.5, extras=[], leftOnly=false, rightOverride=null, barOffset=0, zoomed=true, playing=false, tick=0, last=0;
+let frames=[],events=[],tracesL=[],tracesR=[],selected=7, timer=null,viewCross=false;
+const canvas=$('view'),ctx=canvas.getContext('2d');
+const presets={holes:[DATA.Lholes,69.5,4.5],one_asym68:[DATA.Lholes,68,4.5,[],false,[69.5]],one_out1:[DATA.Lholes,70.5,4.5,[],false,[69.5]],one_out2:[DATA.Lholes,71.5,4.5,[],false,[69.5]],one_sym1:[DATA.Lholes,70.5,4.5],one_sym2:[DATA.Lholes,71.5,4.5],one_60:[103.97403767331764,69.5,4.5],one_60_68:[103.97403767331764,68,4.5,[],false,[69.5]],one_60_685:[103.97403767331764,68.5,4.5,[],false,[69.5]],wide:[DATA.Lholes,77,4.5],design_7:[DATA.Lholes,66,4.5,[73]],design_12:[DATA.Lholes,68,4.5,[80]],design_20:[DATA.Lholes,53,4.5,[73]],design_26:[DATA.Lholes,54,4.5,[80]],design_325:[DATA.Lholes,51,4.5,[83.5]],design_margem:[DATA.Lholes,50,4.5,[84]],design_limite:[DATA.Lholes,50.5,4.5,[85]],two_compact:[103.97403767331764,47,4.5,[84.5],false,[56,69.5]],two_compact58:[101.97381700559937,47.25,4.5,[84.25],false,[56,69.5]],two_asym:[103.97403767331764,47,4.5,[85],false,[69.5,84]],two60:[103.97403767331764,47,4.5,[84]],two63:[DATA.Lholes,47,4.5,[84]],two:[DATA.Lholes,50,4.5,[84]],three_left:[DATA.Lholes,69.5,4.5,[42,101],true],three:[DATA.Lholes,69.5,4.5,[42,101]],gap:[DATA.Lgap,69.5,4.5],old:[84.79548358,69.5,5.5],l70:[70,69.5,4.5],l65:[65,69.5,4.5],l60:[60,69.5,4.5],wings:[DATA.Lgap,77,48.5]};
+DATA.tracks.forEach((t,i)=>{const o=document.createElement('option');o.value=i;o.textContent=t.name;$('course').append(o)});
+function configDisplay(){
+  for(const [id,val] of [['L',L],['X',X],['Y',Y]]){$(id).value=id==='X'?fmtX(val):val.toFixed(id==='L'?2:1);$(id+'slide').value=val}
+  const gap=L+AX-6.9577325-2.76151-25.6;
+  const dy=L+AX-6.9577325-3.68496-10.75;
+  const holes=Math.hypot(dy,44.62624-43.75);
+  $('spacing').textContent=`vão ${gap.toFixed(1)} mm`;
+  const all=[X,...extras].sort((a,b)=>a-b),rights=rightOverride|| (leftOnly?[X]:all),xmax=Math.max(...all,...rights);
+  $('mount').classList.toggle('danger',gap<0||Y>7||xmax>71);$('multiWarning').hidden=extras.length===0;
+  const qre=(leftOnly||rightOverride)?`<strong>Esquerda:</strong> ${all.map(v=>'−'+fmtX(v)).join(' / ')} mm<br><strong>Direita:</strong> ${rights.map(v=>'+'+fmtX(v)).join(' / ')} mm`:`<strong>QRE em cada lado:</strong> ${all.map(v=>'±'+fmtX(v)).join(' / ')} mm`;
+  $('mount').innerHTML=`<strong>Vão:</strong> ${gap.toFixed(1)} mm<br><strong>Furos:</strong> ${holes.toFixed(1)} mm<br>${qre} · Y ${Y.toFixed(1)} mm${gap<0?'<br>O recorte e a base se sobrepõem.':''}${Y>7||xmax>71?'<br>Posição fora da aba atual: exige novo desenho.':''}${xmax>69.5&&Math.abs(Y-4.5)<0.01?'<br>Extensões tracejadas: desenho esquemático.':''}${extras.length?'<br>As posições adicionais ficam fixas ao mover X principal.':''}<br><span class="small">Não verifica patim, varetas, roteamento ou montagem.</span>`;
+}
+function clip(a,b,h,lo,hi){
+  let t0=0,t1=1;
+  for(const [p,d,mn,mx] of [[a[0],b[0]-a[0],-h,h],[a[1],b[1]-a[1],lo,hi]]){
+    if(Math.abs(d)<1e-12){if(p<mn||p>mx)return null;}
+    else{let q=(mn-p)/d,r=(mx-p)/d;if(q>r)[q,r]=[r,q];t0=Math.max(t0,q);t1=Math.min(t1,r);if(t1<=t0)return null;}
+  }
+  return [t0,t1];
+}
+function compute(){
+  const tr=DATA.tracks[course].track,allowCommon=!DATA.tracks[course].photo||DATA.tracks[course].rule_based,offsetsL=[X,...extras],offsetsR=rightOverride|| (leftOnly?[X]:[X,...extras]);frames=new Array(tr.length);
+  tracesL=offsetsL.map(()=>new Array(tr.length));tracesR=offsetsR.map(()=>new Array(tr.length));
+  let a=tr[0][3];
+  for(let i=0;i<tr.length;i++){
+    if(i){const h=tr[i][0]-tr[i-1][0],p=tr[i-1][3],dp=tr[i][3]-p,factor=1-barOffset*dp/h;
+      const k1=factor*Math.sin(p-a)/L,k2=factor*Math.sin(p+dp/2-a-h*k1/2)/L,k3=factor*Math.sin(p+dp/2-a-h*k2/2)/L,k4=factor*Math.sin(p+dp-a-h*k3)/L;
+      a+=h*(k1+2*k2+2*k3+k4)/6;
+    }
+    const s=tr[i][0],bx=tr[i][1]-barOffset*Math.sin(tr[i][3]),by=tr[i][2]+barOffset*Math.cos(tr[i][3]),c=Math.cos(a),sn=Math.sin(a),lead=Y-AX-L;
+    frames[i]=[s,bx,by,a];offsetsL.forEach((v,j)=>{tracesL[j][i]=[bx+lead*c-v*sn,by+lead*sn+v*c]});offsetsR.forEach((v,j)=>{tracesR[j][i]=[bx+lead*c+v*sn,by+lead*sn-v*c]});
+  }
+  events=DATA.tracks[course].marks.map(m=>{
+    const co=Math.cos(m.phi),si=Math.sin(m.phi),sets=m.side>0?tracesL:tracesR,offsets=m.side>0?offsetsL:offsetsR,half=m.halfWidth??9.5,inner=m.inner??49.5,outer=m.outer??89.5;
+    let hit=false,common=false,best=-Infinity,bestIdx=0,dist=0;const sensorsHit=[];
+    sets.forEach((pts,j)=>{
+      let prev=null,prevS=0,localHit=false,localDist=0,run=0,continuing=false;
+      for(let i=0;i<tr.length;i++){
+        if(tr[i][0]<m.s-200||tr[i][0]>m.s+300){prev=null;run=0;continuing=false;continue}
+        const dx=pts[i][0]-m.x,dy=pts[i][1]-m.y,u=dx*co+dy*si,v=m.side*(-dx*si+dy*co);
+        const margin=Math.min(half-Math.abs(u),v-inner,outer-v);if(margin>best){best=margin;bestIdx=i}
+        if(prev){const c=clip(prev,[u,v],half,inner,outer);if(c){localHit=true;if(!continuing||c[0]>1e-8)run=0;run+=(c[1]-c[0])*(tr[i][0]-prevS);localDist=Math.max(localDist,run);continuing=c[1]>1-1e-8}else{run=0;continuing=false}
+          if(allowCommon&&clip(prev,[u,v],9,53,83))common=true;}
+        prev=[u,v];prevS=tr[i][0];
+      }
+      if(localHit){hit=true;sensorsHit.push(offsets[j])}dist=Math.max(dist,localDist);
+    });
+    return {...m,hit,common,best,bestIdx,dist,sensorsHit};
+  });
+  $('scoreNom').textContent=`${events.filter(e=>e.hit).length} / ${events.length}`;
+  $('scoreCommon').textContent=allowCommon?`${events.filter(e=>e.common).length} / ${events.length}`:'—';
+  const touches=events.filter(e=>e.hit&&e.dist<1);$('touchWarning').hidden=touches.length===0;
+  if(touches.length)$('touchWarning').innerHTML=`<strong>Passagem muito curta:</strong> ${touches.map(e=>e.label+' ('+e.dist.toFixed(2)+' mm)').join(', ')}. Interseção inferior a 1 mm de avanço não demonstra leitura segura. Outros resultados também exigem teste físico.`;
+  $('crossing').hidden=!DATA.tracks[course].crossing;$('crossWarning').hidden=!DATA.tracks[course].crossing;$('crossLegend').hidden=!DATA.tracks[course].crossing;
+  $('photoWarning').hidden=!DATA.tracks[course].photo;$('estimatedLegend').hidden=!(DATA.tracks[course].estimated||[]).length;
+  const mark=$('mark');mark.replaceChildren();events.forEach((e,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${e.label} · ${e.hit?'intersectada':'perdida'}${e.common?' · tolerâncias':''}`;mark.append(o)});
+  selected=Math.min(selected,events.length-1);mark.value=selected;configDisplay();seekEvent();
+}
+function nearest(s){let lo=0,hi=frames.length-1;while(lo<hi){let m=(lo+hi)>>1;if(frames[m][0]<s)lo=m+1;else hi=m}return lo}
+function onGuide(q,cycle){
+  const r=9.5,r2=r*r;for(let i=1;i<cycle.length;i++){const a=cycle[i-1],b=cycle[i];
+    if(q[0]<Math.min(a[0],b[0])-r||q[0]>Math.max(a[0],b[0])+r||q[1]<Math.min(a[1],b[1])-r||q[1]>Math.max(a[1],b[1])+r)continue;
+    const dx=b[0]-a[0],dy=b[1]-a[1],den=dx*dx+dy*dy,k=den?Math.max(0,Math.min(1,((q[0]-a[0])*dx+(q[1]-a[1])*dy)/den)):0;
+    if((q[0]-a[0]-k*dx)**2+(q[1]-a[1]-k*dy)**2<=r2)return true;
+  }return false;
+}
+function seekEvent(){viewCross=false;tick=events[selected].bestIdx;const t=DATA.tracks[course];$('progress').value=1000*(frames[tick][0]-t.start)/(t.end-t.start);updateDetail();draw()}
+function updateDetail(){const e=events[selected],t=DATA.tracks[course],photo=t.photo&&!t.rule_based;$('markDetail').textContent=`${e.label}: ${e.hit?'a trajetória cruza a marca':'o centro do sensor não cruza a marca'}${photo?' estimada a partir da foto':` nominal; ${e.common?'cruza':'não cruza'} a região comum`}.${e.hit&&extras.length?' QRE a '+e.sensorsHit.map(fmtX).join(' / ')+' mm do centro.':''} Maior trecho de um sensor na marca: ${e.dist.toFixed(1)} mm de avanço da barra.`}
+function resize(){const r=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+function draw(){
+  if(!frames.length)return;
+  const W=canvas.clientWidth,H=canvas.clientHeight,t=DATA.tracks[course],f=frames[Math.max(0,Math.min(frames.length-1,tick))],e=events[selected];
+  ctx.clearRect(0,0,W,H);let minX,maxX,minY,maxY;
+  const rotated=Boolean(t.crossing)&&!zoomed&&!t.photo, orient=(x,y)=>rotated?[y,-x]:[x,y];
+  if(zoomed){const spanX=Math.max(390,300*W/H),spanY=spanX*H/W;minX=f[1]-spanX/2;maxX=f[1]+spanX/2;minY=f[2]-spanY/2;maxY=f[2]+spanY/2;}
+  else {const p=t.cycle.map(q=>orient(...q)),xs=p.map(q=>q[0]),ys=p.map(q=>q[1]),pad=t.mat?300:180;minX=Math.min(...xs)-pad;maxX=Math.max(...xs)+pad;minY=Math.min(...ys)-pad;maxY=Math.max(...ys)+pad;}
+  const scale=Math.min((W-20)/(maxX-minX),(H-20)/(maxY-minY)),cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+  const P=(x,y)=>{const p=orient(x,y);return [W/2+(p[0]-cx)*scale,H/2-(p[1]-cy)*scale]};
+  function path(arr,color,width){if(!arr.length)return;ctx.beginPath();let p=P(arr[0][0],arr[0][1]);ctx.moveTo(...p);for(let i=1;i<arr.length;i++){p=P(arr[i][0],arr[i][1]);ctx.lineTo(...p)}ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke()}
+  if(t.mat){const [xa,ya,xb,yb]=t.mat,mp=[[xa,ya],[xb,ya],[xb,yb],[xa,yb]].map(q=>P(...q));ctx.beginPath();ctx.moveTo(...mp[0]);mp.slice(1).forEach(q=>ctx.lineTo(...q));ctx.closePath();ctx.fillStyle='#17222c';ctx.fill();ctx.strokeStyle='#526473';ctx.lineWidth=1;ctx.stroke()}
+  path(t.cycle,'#f2f4ef',Math.max(1,19*scale));
+  if(t.estimated){ctx.setLineDash([8,5]);for(const segment of t.estimated)path(segment,'#f9bf5d',Math.max(2,8*scale));ctx.setLineDash([])}
+  for(const m of events){const c=Math.cos(m.phi),s=Math.sin(m.phi),n=[-s*m.side,c*m.side],half=m.halfWidth??9.5,inner=m.inner??49.5,outer=m.outer??89.5;const corners=[[-half,inner],[half,inner],[half,outer],[-half,outer]].map(([u,v])=>P(m.x+u*c+v*n[0],m.y+u*s+v*n[1]));ctx.beginPath();ctx.moveTo(...corners[0]);corners.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath();ctx.fillStyle=m===e?'#f474ad':(m.hit?'#9fb4c9':'#e16565');ctx.globalAlpha=m===e?.87:.65;ctx.fill();ctx.globalAlpha=1;}
+  if(t.crossing){const q=P(...t.crossing);ctx.beginPath();ctx.arc(q[0],q[1],Math.max(6,12*scale),0,2*Math.PI);ctx.strokeStyle='#6dceff';ctx.lineWidth=1.5;ctx.stroke()}
+  const targetS=viewCross?t.crossing_s:e.s;
+  for(const [sets,col] of [[tracesL,'#67b6ff'],[tracesR,'#ffb44d']])for(let j=0;j<sets.length;j++){const line=[];for(let i=0;i<frames.length;i++)if(Math.abs(frames[i][0]-targetS)<175)line.push(sets[j][i]);ctx.globalAlpha=j?0.65:1;path(line,col,1.5)}ctx.globalAlpha=1;
+  const [ss,bx,by,a]=f,c=Math.cos(a),sn=Math.sin(a);
+  const world=(x,y)=>[bx+(y-AX-L)*c+x*sn,by+(y-AX-L)*sn-x*c];
+  for(const wheel of DATA.wheels){const pts=wheel.map(([x,y])=>P(...world(x,y)));ctx.beginPath();ctx.moveTo(...pts[0]);pts.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath();ctx.fillStyle='#a6b4bf';ctx.fill();ctx.strokeStyle='#d0dde4';ctx.lineWidth=1;ctx.stroke()}
+  const leftMax=Math.max(X,...extras),rightMax=Math.max(...(rightOverride||(leftOnly?[X]:[X,...extras])));
+  if(Math.abs(Y-4.5)<0.01){for(const [sign,xend] of [[-1,leftMax],[1,rightMax]])if(xend>69.5){const pts=[[sign*72.6,1.45],[sign*(xend+4.6),1.45],[sign*(xend+4.6),7.55],[sign*72.6,7.55]].map(q=>P(...world(...q)));ctx.beginPath();ctx.moveTo(...pts[0]);pts.slice(1).forEach(q=>ctx.lineTo(...q));ctx.closePath();ctx.fillStyle='#355464b8';ctx.fill();ctx.strokeStyle='#e3c787';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([])}}
+  const outline=DATA.outline.map(([x,y])=>P(...world(x,y)));ctx.beginPath();ctx.moveTo(...outline[0]);outline.slice(1).forEach(p=>ctx.lineTo(...p));ctx.closePath();ctx.fillStyle='#355464b8';ctx.fill();ctx.strokeStyle='#a8c0cb';ctx.lineWidth=1;ctx.stroke();
+  const bar=DATA.front.map(([x,y])=>P(bx+(y-6.9577325)*c+x*sn,by+(y-6.9577325)*sn-x*c));ctx.beginPath();bar.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.strokeStyle='#88e4cc';ctx.lineWidth=Math.max(2,2.4*scale);ctx.stroke();
+  for(const p of bar){ctx.beginPath();ctx.arc(p[0],p[1],Math.max(1.5,1.3*scale),0,2*Math.PI);ctx.fillStyle='#b7f5e6';ctx.fill()}
+  const onLine=[];for(const [sets,col,side,positions] of [[tracesL,'#67b6ff','E',[X,...extras]],[tracesR,'#ffb44d','D',rightOverride|| (leftOnly?[X]:[X,...extras])]])for(let j=0;j<sets.length;j++){const xy=sets[j][tick],active=onGuide(xy,t.cycle),q=P(...xy);if(active)onLine.push(side+fmtX(positions[j]));ctx.beginPath();ctx.arc(q[0],q[1],Math.max(3,2.1*scale),0,2*Math.PI);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=active?'#ff6868':'#fff';ctx.lineWidth=active?2.5:1;ctx.stroke()}
+  $('guideSignal').textContent=onLine.length?'QRE sobre a linha-guia (contorno vermelho): '+onLine.join(', ')+' · situação geométrica, sem limiar óptico.':'Contorno vermelho nos QRE indica passagem geométrica sobre a linha-guia.';
+  const b=P(bx,by);ctx.beginPath();ctx.arc(b[0],b[1],Math.max(2,1.6*scale),0,2*Math.PI);ctx.fillStyle='#7ff0cd';ctx.fill();
+  ctx.fillStyle='#e8f0f7';ctx.font='12px system-ui';ctx.fillText(zoomed?'Detalhe acompanhando a barra':(rotated?'Pista completa · girada 90°':'Pista completa'),12,20);
+}
+function changePreset(){const p=presets[$('preset').value];if(!p)return;[L,X,Y]=p;extras=p[3]?[...p[3]]:[];leftOnly=Boolean(p[4]);rightOverride=p[5]?[...p[5]]:null;playing=false;$('play').textContent='Simular percurso';compute()}
+$('preset').addEventListener('change',changePreset);
+$('barOffset').addEventListener('change',()=>{barOffset=Number($('barOffset').value);playing=false;$('play').textContent='Simular percurso';compute()});
+$('course').addEventListener('change',()=>{course=Number($('course').value);selected=course===0?7:(DATA.tracks[course].photo?0:2);zoomed=course===0;$('zoom').textContent=zoomed?'Ver pista inteira':'Ver detalhe';playing=false;$('play').textContent='Simular percurso';compute();if(DATA.tracks[course].photo){tick=nearest(DATA.tracks[course].start);$('progress').value=0;draw()}});
+for(const id of ['L','X','Y'])for(const suf of ['', 'slide'])$(id+suf).addEventListener('input',e=>{let v=Number(e.target.value);if(!Number.isFinite(v))return;const limit=id==='L'?[58,110]:id==='X'?[35,110]:[0,55];v=Math.max(limit[0],Math.min(limit[1],v));if(id==='L')L=v;else if(id==='X')X=v;else Y=v;$(id).value=v;$(id+'slide').value=v;$('preset').value='custom';clearTimeout(timer);timer=setTimeout(compute,100)});
+$('mark').addEventListener('change',()=>{selected=Number($('mark').value);playing=false;$('play').textContent='Simular percurso';seekEvent()});
+$('next').addEventListener('click',()=>{selected=(selected+1)%events.length;$('mark').value=selected;playing=false;$('play').textContent='Simular percurso';seekEvent()});
+$('zoom').addEventListener('click',()=>{zoomed=!zoomed;$('zoom').textContent=zoomed?'Ver pista inteira':'Ver detalhe';draw()});
+$('crossing').addEventListener('click',()=>{const t=DATA.tracks[course];if(!t.crossing)return;playing=false;$('play').textContent='Simular percurso';viewCross=true;zoomed=true;$('zoom').textContent='Ver pista inteira';tick=nearest(t.crossing_s);$('progress').value=1000*(frames[tick][0]-t.start)/(t.end-t.start);$('markDetail').textContent='Cruzamento: o robô atravessa a linha porque o caminho foi definido no modelo; a detecção de cruzamento e falsos disparos não são simulados.';draw()});
+$('progress').addEventListener('input',()=>{const t=DATA.tracks[course],s=t.start+(t.end-t.start)*Number($('progress').value)/1000;tick=nearest(s);draw()});
+$('restart').addEventListener('click',()=>{playing=false;viewCross=false;$('play').textContent='Simular percurso';tick=nearest(DATA.tracks[course].start);$('progress').value=0;draw()});
+$('play').addEventListener('click',()=>{playing=!playing;$('play').textContent=playing?'Pausar':'Simular percurso';if(playing){const t=DATA.tracks[course];if(frames[tick][0]>=t.end-1||frames[tick][0]<t.start)tick=nearest(t.start);last=0;requestAnimationFrame(animate)}});
+function animate(ms){if(!playing)return;if(last){const t=DATA.tracks[course],s=frames[tick][0]+Math.min(.08,(ms-last)/1000)*750;if(s>=t.end){playing=false;$('play').textContent='Simular percurso';tick=nearest(t.end)}else tick=nearest(s);$('progress').value=1000*(frames[tick][0]-t.start)/(t.end-t.start);draw()}last=ms;if(playing)requestAnimationFrame(animate)}
+window.addEventListener('resize',resize);
+try{document.body.classList.add('initializing');changePreset();resize();document.body.classList.replace('initializing','ready');}
+catch(error){document.body.classList.remove('initializing');console.error('Não foi possível iniciar a simulação.',error);}
+</script>
+</body></html>

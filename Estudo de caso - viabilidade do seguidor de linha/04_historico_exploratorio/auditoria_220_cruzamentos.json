@@ -1,0 +1,1789 @@
+{
+  "total": 220,
+  "rejected_by_crossing_check": 20,
+  "not_rejected_but_not_fully_validated": 200,
+  "audit_step_mm": 0.5,
+  "note": "Não certifica os demais itens do edital. Aproximações por reta incluem geometrias duplicadas.",
+  "cases": [
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 90,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": null,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            250.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            200.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            2
+          ],
+          "point_mm": [
+            117.15729,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            2
+          ],
+          "point_mm": [
+            8e-05,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -100,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            250.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            200.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            2
+          ],
+          "point_mm": [
+            117.15729,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 100,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            2
+          ],
+          "point_mm": [
+            8e-05,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            300.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            200.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            100.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -150,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            300.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            200.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            100.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 150,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            300.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            250.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            100.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -200,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            300.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            250.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "reprovada_nesta_checagem",
+      "problems": [
+        {
+          "segments": [
+            0,
+            3
+          ],
+          "point_mm": [
+            100.0,
+            0.0
+          ],
+          "rule": "4.6: curva conhecida a menos de 250 mm do cruzamento"
+        }
+      ]
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 200,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -300,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 300,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": -500,
+      "after_signed_radius_mm": 500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": null,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 100,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 150,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 200,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": 300,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    },
+    {
+      "before_signed_radius_mm": 500,
+      "after_signed_radius_mm": -500,
+      "incoming_angle_deg": 180,
+      "status": "nao_reprovada_nesta_checagem",
+      "problems": []
+    }
+  ]
+}

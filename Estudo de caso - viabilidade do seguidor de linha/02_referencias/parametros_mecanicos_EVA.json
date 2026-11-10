@@ -1,0 +1,79 @@
+{
+  "axle_document_y_mm": -22.59999544,
+  "axle_from_stl_y_mm": -22.587743818986525,
+  "axle_stl_vs_document_mm": 0.01225162101347621,
+  "front_reference_document_y_mm": 77.40000522,
+  "document_axis_reference_L_mm": 100.00000066,
+  "front_board_translation_y_mm": 70.40000398000001,
+  "V1_central_sensor_local_y_mm": 6.9577325000000005,
+  "V1_central_sensor_assembled_y_mm": 77.35773648000001,
+  "estimated_L_same_board_reference_mm": 99.95773192000001,
+  "estimated_L_preserving_VISION_mount_hole_y_mm": 100.14273192000002,
+  "front_board_shift_for_L70_mm": -29.957731920000015,
+  "central_rear_notch_V1_y_mm": -2.76151,
+  "rear_notch_to_central_sensors_mm": 9.7192425,
+  "L_min_for_notch_gap0_at_nose25p6_mm": 57.91923794,
+  "wheel_stl_flange_diameter_mm": 16.500000815018026,
+  "wheel_stl_tire_seat_diameter_mm": 13.0,
+  "wheel_axle_above_pcb_top_mm": 7.000000000000186,
+  "V1_side_hole_spacing_mm": 89.25248,
+  "VISION_side_hole_spacing_mm": 88.0,
+  "V1_side_hole_delta_each_x_mm": 0.62624,
+  "V1_side_hole_delta_y_mm": -0.185,
+  "front_sensor_centres": [
+    [
+      -42.50362,
+      1.909815
+    ],
+    [
+      -34.88507,
+      3.58718
+    ],
+    [
+      -27.201005000000002,
+      4.93287
+    ],
+    [
+      -19.465845,
+      5.9443525
+    ],
+    [
+      -11.694125000000001,
+      6.61973
+    ],
+    [
+      -3.9004399999999997,
+      6.957735
+    ],
+    [
+      3.90057,
+      6.957730000000001
+    ],
+    [
+      11.694255,
+      6.619725
+    ],
+    [
+      19.4659725,
+      5.944335
+    ],
+    [
+      27.2011325,
+      4.93285
+    ],
+    [
+      34.8852,
+      3.587155
+    ],
+    [
+      42.50374,
+      1.9097825000000002
+    ]
+  ],
+  "missing": [
+    "Comprimento instalado das varetas ou posição longitudinal final da barra",
+    "Diâmetro externo do pneu montado (STL inclui apenas o aro)",
+    "Adaptação do sensor_sledge original para os furos da barra V1"
+  ],
+  "qualification": "Estimativa pela disposição da camada Document; não comprova montagem física do autor"
+}

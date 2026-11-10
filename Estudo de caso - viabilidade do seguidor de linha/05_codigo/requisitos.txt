@@ -1,0 +1,3 @@
+# Versões presentes no ambiente usado para conferir este registro.
+numpy==2.5.4
+shapely==2.2.0

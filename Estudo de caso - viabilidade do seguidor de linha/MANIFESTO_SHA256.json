@@ -1,0 +1,258 @@
+{
+  "study": "Estudo de caso - viabilidade do seguidor de linha",
+  "snapshot_date": "2026-11-09",
+  "repository": "therickmatos/Seguidor-de-linha",
+  "publication_branch": "claude/vibrant-feynman-stdvz2",
+  "publication_parent_commit": "aa8e6d188cd19d1e603d95962f69c202d97d9333",
+  "local_checkout_commit": "2735eb77e76ba8f7917d6bcb5af11f41af7abab3",
+  "scope": "Somente os arquivos desta pasta; sem alterar a fonte CAD recebida ou aplicar um ajuste simulado.",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 32,
+      "sha256": "c862420affd132182688b6b9cd210fef14fc0fcf7d464035ac6ebd1ca5613928",
+      "git_blob_sha1": "a20011c770573ffc987e046b68a800bd53181f30"
+    },
+    {
+      "path": "01_projeto/ProPrj_RUSH - SATURN - v3_2026-11-09.epro",
+      "bytes": 228991,
+      "sha256": "ecc0495a237022ebb8a2ca117a50deeefd051657176f5c42b0f6bf40fd09cb57",
+      "git_blob_sha1": "c9b7c82b7bd9301ac10f5445775c5d4102f0a758"
+    },
+    {
+      "path": "02_referencias/EVA_RT_CREDITOS.md",
+      "bytes": 1486,
+      "sha256": "386b3c6d2364a96bc56c4fbc0f92c89ecd2157d3657d5f46b82bea3a6300250e",
+      "git_blob_sha1": "3d9f7ffb9112a3580962c7de144de5ac75381377"
+    },
+    {
+      "path": "02_referencias/TRIF 2026 - Seguidor de Linha.pdf",
+      "bytes": 445643,
+      "sha256": "aea4b389c0e52306c994d7b208fabbad884eb79d30f278899e0bfb56ed059be6",
+      "git_blob_sha1": "88fd106d16be485bd536feafe8436c94a5a9b176"
+    },
+    {
+      "path": "02_referencias/V1_Barra_de_sensores_PCB_2026-03.zip",
+      "bytes": 102996,
+      "sha256": "8d6a41ada1fe633506b71a113bc5b1c762600e572f3b8c733ed2c9e4b80a5820",
+      "git_blob_sha1": "f2e3b60c83c91f91e99c8453c6183bc03597d38e"
+    },
+    {
+      "path": "02_referencias/parametros_mecanicos_EVA.json",
+      "bytes": 2077,
+      "sha256": "6a86e5279448abcc11befd0ae130149cc49241216965d4e9788fba77e0040cc0",
+      "git_blob_sha1": "1c4bf588f0c8dee91cac5f8b6af85d00aecbdab7"
+    },
+    {
+      "path": "02_referencias/stl/barilla_clamp.stl",
+      "bytes": 39484,
+      "sha256": "26555a644475e1206e19c4d61ea53fdcd7b0c9da9527bcbca3353631992f7442",
+      "git_blob_sha1": "7edc0e36c2abacd76608c5a22725f4ecc1a849ef"
+    },
+    {
+      "path": "02_referencias/stl/barilla_connection.stl",
+      "bytes": 46784,
+      "sha256": "1b50fb1a9af56ad2de60103542463839194462e952707da60a11ddb6c352f407",
+      "git_blob_sha1": "61cf9e47ca50a6dc739477bf0377c7fe41be81e6"
+    },
+    {
+      "path": "02_referencias/stl/gearbox.stl",
+      "bytes": 95484,
+      "sha256": "2c89af8ac3edb6ee9176fad37bb9e124472a4e583fa3d68ae486cdaa48beaffa",
+      "git_blob_sha1": "68cefeb2a83784c71f42cd30e0f081eb4502346c"
+    },
+    {
+      "path": "02_referencias/stl/sensor_sledge.stl",
+      "bytes": 52084,
+      "sha256": "63d1fa5e0b10af08dd4b9893c459058bdc34e5a139cc0795fdca91c692335b7d",
+      "git_blob_sha1": "c5f3e1d620c654052490a15cd1707d56cff0cdb0"
+    },
+    {
+      "path": "02_referencias/stl/wheel_rim.stl",
+      "bytes": 140584,
+      "sha256": "f3be42f99b73e8d05f7947aa3417f52f3a42df4a22abd071953f9ad6fb0d3726",
+      "git_blob_sha1": "0c8996c8d5876357b884c3a3c1caed9145c53b5e"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/README.md",
+      "bytes": 1124,
+      "sha256": "4cea986c4771ae0799c149771cb290de68b8420d4a256a7d627d897b16ab1d60",
+      "git_blob_sha1": "77e82396f0d7e4890a89d01f9c4aa8205e5cc3c8"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/analise_volta.json",
+      "bytes": 545416,
+      "sha256": "862e485a9a7220f6dae09e3605d7aa5870439f26bb750f4e94b80b33addaf03a",
+      "git_blob_sha1": "45529fed7f189fb2557d2acf6a6cbe698d6b0035"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/marcas_perdidas.png",
+      "bytes": 150243,
+      "sha256": "2c5a9af96e13240c04fa07dc382438d8dc3319a9eb230cabdff51316d93a162e",
+      "git_blob_sha1": "18cd2b285eb9c771940dcc6f9c5271e43b8d44b9"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/passagens_marcas.csv",
+      "bytes": 4516,
+      "sha256": "5ca0647a65c47cbb1b0cae70d5218e818c2023e7e8ce268ef0f206db3f59e629",
+      "git_blob_sha1": "24a04bb2420a7a92997871baf20fd43387913c8d"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/pista_e_trajetorias.png",
+      "bytes": 144560,
+      "sha256": "161ecd56eb4cf1ac634e2742c20f77b0bbf7e25d6bcebe8c9ea1da0a0049e404",
+      "git_blob_sha1": "303168383f6706df74eff5318f5c8b56062e162f"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/reproducao_conferida.json",
+      "bytes": 14181,
+      "sha256": "21d08dbbe02beff482e73e6b7f06815baec1b82053f928e7f89ccedc587408ef",
+      "git_blob_sha1": "1ee5759f7bcb52c22040b795244f2fd662fad837"
+    },
+    {
+      "path": "03_simulacoes/01_base_original/validacao.json",
+      "bytes": 232,
+      "sha256": "51514ed7e61a22f937517bfd4107e55f8029060753c4b93390a0b4405b2af447",
+      "git_blob_sha1": "82916c603349c6e20791f320008d51ce4e59ae8a"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/RESULTADO.md",
+      "bytes": 2828,
+      "sha256": "b407977fe33e68187599385d7839ce6b2decf266b3a63e95ab129f81d60e6bab",
+      "git_blob_sha1": "942bdf7e27e30948e6bc27ad095cf923838b4f5a"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/ajuste_circuito_7_reproduzido.json",
+      "bytes": 6261,
+      "sha256": "0ea7dfa387b7d3f0e61588d3f510a4a2e42fdc59ed7236db0d9bec45b3bfeca7",
+      "git_blob_sha1": "99b353453cddf92e9ee1c7f416cbbcbff6909dec"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/ajuste_volta_19_reproduzido.json",
+      "bytes": 13790,
+      "sha256": "8406f0281d494952efa99633d822912dfcd78dd66174ae3fa0e5f595ad044a32",
+      "git_blob_sha1": "c3a0390ea8c0d8e77151001656a62807684d260d"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/circuito_6_de_7.html",
+      "bytes": 203472,
+      "sha256": "90f4bd4a52cc1e881ae4550f591397f2b6217b2d1359df6ea3f0b3878407cebf",
+      "git_blob_sha1": "9f9ce8b1b9d6101546166f592d55603aaf6e6548"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/circuito_e_falha.png",
+      "bytes": 119397,
+      "sha256": "90b4330040e7d9e3bc6eda0c905db2f2b536db5a82bbe082f4dec8368841c37a",
+      "git_blob_sha1": "735a01b11f583503bb79472a1d1d27f42d87f341"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/comparacao_animacao.json",
+      "bytes": 249658,
+      "sha256": "2212ebf7db1b7f8b6e877c0d671cd21bc64799edc8d147d914e50f8fdd0c44f2",
+      "git_blob_sha1": "7ddbabba41d2b354405052e334bffa7780881577"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/verificacao_circuito_6_de_7.json",
+      "bytes": 70673,
+      "sha256": "bdbfa37343bf8961efcd999ddc54f57caf9bf2994eaf32249daf77dabd8b7546",
+      "git_blob_sha1": "e26109280323b05fb977ddcc1b5eb1fd55c670a2"
+    },
+    {
+      "path": "03_simulacoes/02_ajuste_8mm_1mm/volta_19_de_19.html",
+      "bytes": 269770,
+      "sha256": "4f63e2e9b966ec6ef688e0af65c3930f1dee1748065f4b560a67e958728d9f43",
+      "git_blob_sha1": "67ed7af770b84140ac58a392c5643b868b9ea362"
+    },
+    {
+      "path": "04_historico_exploratorio/README.md",
+      "bytes": 2229,
+      "sha256": "a4b7ec1879c16da16eeb7a4fdc78c91c8d1b678e586d3912c6212df45c38930d",
+      "git_blob_sha1": "ebdc9ff7e36e85cd1dc7a280c11433b2a3d8ecac"
+    },
+    {
+      "path": "04_historico_exploratorio/auditoria_220_cruzamentos.json",
+      "bytes": 48658,
+      "sha256": "0187824dae9534c5f90a28ec2f73f09abde5b7e8ac56e4958dd78444dd8d0b7d",
+      "git_blob_sha1": "ec17f3483d921cd5a6e910317b4ac2c4c56d7038"
+    },
+    {
+      "path": "04_historico_exploratorio/busca_combinada.json",
+      "bytes": 3229,
+      "sha256": "bf3bd5d21582de63daa593b9fc9fdcdc879034d72dece6ae8a908f1933ab542e",
+      "git_blob_sha1": "79aac4a2782fc9797d40308f127965ddc4dc348e"
+    },
+    {
+      "path": "04_historico_exploratorio/comparacao_preliminar.json",
+      "bytes": 12218,
+      "sha256": "0ed10cf30a3502ddcb12df7b28c4c51280deac014853b7d2e0ba47f2a4292a72",
+      "git_blob_sha1": "3693ce6d5862fce758aa1c2b5b908a51179bb878"
+    },
+    {
+      "path": "04_historico_exploratorio/resultado_432_passagens_nao_reproduzido.png",
+      "bytes": 1235987,
+      "sha256": "5cbbee5d31926fbb85983d13fbc00076d26c4f66320020ad64ae7eac512b0209",
+      "git_blob_sha1": "ddd4651b8b8818d8a2b78b56fc90f34e7a44842d"
+    },
+    {
+      "path": "04_historico_exploratorio/solucoes_confirmadas.json",
+      "bytes": 3442,
+      "sha256": "6966506a972f02184368533125f3c5af72218807cd0dd57f9c8410e83eede9b6",
+      "git_blob_sha1": "b2c9cc1e5a88bf4bdb84ee81abe8a52a37c137d3"
+    },
+    {
+      "path": "05_codigo/fontes_visuais/circuito_6_de_7.fragment.html",
+      "bytes": 115218,
+      "sha256": "fc73056ab01bc78f18c8c214165dd4d0845a5ed60450a7a07f028a0be677df74",
+      "git_blob_sha1": "7085c4b5c8099f6b759474943c688c04c7cf27e6"
+    },
+    {
+      "path": "05_codigo/fontes_visuais/volta_19_de_19.fragment.html",
+      "bytes": 179470,
+      "sha256": "ba8ca3975798ffc95eabea366ab0db9159e0db1db8ee2782822f1155ac8b6599",
+      "git_blob_sha1": "9ef0b594cb712f96e669b726d6335cec00cbb573"
+    },
+    {
+      "path": "05_codigo/originais/simular_marcas_trif.py",
+      "bytes": 10103,
+      "sha256": "285f50f2ed10475f0ce301ca1bd369c643c4f0bdd0e0174b0fa13a0600dbbd8b",
+      "git_blob_sha1": "401c52afbccb9616f394681aa53a31ef4034fe69"
+    },
+    {
+      "path": "05_codigo/originais/simular_volta_trif.py",
+      "bytes": 14067,
+      "sha256": "49698eac359bc1f8ed34b61af1df824fcb840d9e2730f6c4f916fd55c6c3b63f",
+      "git_blob_sha1": "5b52348e2b53a6503bb28b6456db42d9bca9fa77"
+    },
+    {
+      "path": "05_codigo/reproduzir_estudo.py",
+      "bytes": 10063,
+      "sha256": "043efcd7c370011c18a934ed6b8075d678019827e2bab790e536ef08105d804c",
+      "git_blob_sha1": "a953d4469d9771b31501d076c72503beeae0016f"
+    },
+    {
+      "path": "05_codigo/requisitos.txt",
+      "bytes": 96,
+      "sha256": "56a205e46c7ed21e6fa30e2cce613c78bc5e9e350319c21992b9634aa678f603",
+      "git_blob_sha1": "bb3f5424ece9e4debd83433f0c8cefba0c080ee2"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 35184,
+      "sha256": "6f1e622c82a380075843bb084a7ec3b1f1d12a4a02526d75e78b0924a860aa75",
+      "git_blob_sha1": "ada1a8176b23b97e70d89300c3f06c3c471bec2c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12524,
+      "sha256": "941744c69c5e66169811cb13d5d182220828450a475629706373d7ee56d3b832",
+      "git_blob_sha1": "6d9bfdc8d58eaf315c6e7efb0efa2929a27904db"
+    },
+    {
+      "path": "REPRODUCAO.md",
+      "bytes": 3155,
+      "sha256": "e45b2ed43d39d5801125d1666f8d02054affa7c8369aeff5edbe65d6c76ca920",
+      "git_blob_sha1": "1fa83060e57fe94c3c8aa377efa7c5f1387e1f4f"
+    }
+  ]
+}

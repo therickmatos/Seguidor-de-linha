@@ -1,0 +1,233 @@
+{
+  "config": {
+    "L_mm": 84.79548357898653,
+    "gap_mm": 26.88849766,
+    "side_sensor_offset_mm": 69.5,
+    "sensor_y_mm": 5.5,
+    "axle_y_mm": -22.587743818986525
+  },
+  "segments": [
+    [
+      3000.0,
+      0.0
+    ],
+    [
+      157.07963267948966,
+      -0.01
+    ],
+    [
+      314.1592653589793,
+      -0.005
+    ],
+    [
+      2900.0,
+      0.0
+    ],
+    [
+      471.23889803846896,
+      -0.006666666666666667
+    ]
+  ],
+  "checks": {
+    "closed_error_mm": 3.4548413451294663e-13,
+    "no_crossings": true,
+    "length_mm": 6842.477796076939,
+    "min_radius_mm": 100.0,
+    "parallel_straight_edge_gap_mm": 281.0,
+    "opposite_arcs_gap_mm": 2900.0,
+    "mark_overlap_count": 0,
+    "effective_mark_edge_gap_mm": [
+      40.000000000000384,
+      40.0,
+      39.9999999999996,
+      40.00000000000034,
+      39.99999999999932,
+      39.99999999999997,
+      40.00000000000043
+    ],
+    "finish_before_start_mm": 1000,
+    "straight_before_finish_mm": 500,
+    "straight_after_start_mm": 1500,
+    "manta_edge_margin_mm": 290.5,
+    "gates_modelled": false
+  },
+  "independent_checks": [
+    {
+      "mark": "C1",
+      "shapely_read": true,
+      "matches_clip": true
+    },
+    {
+      "mark": "C2",
+      "shapely_read": false,
+      "matches_clip": true
+    },
+    {
+      "mark": "C3",
+      "shapely_read": true,
+      "matches_clip": true
+    },
+    {
+      "mark": "C4",
+      "shapely_read": true,
+      "matches_clip": true
+    },
+    {
+      "mark": "C5",
+      "shapely_read": true,
+      "matches_clip": true
+    },
+    {
+      "mark": "Partida",
+      "shapely_read": true,
+      "matches_clip": true
+    },
+    {
+      "mark": "Chegada",
+      "shapely_read": true,
+      "matches_clip": true
+    }
+  ],
+  "step_mm": 0.25,
+  "nominal_read": 6,
+  "common_tolerance_read": 6,
+  "total": 7,
+  "missed": [
+    "C2"
+  ],
+  "events": [
+    {
+      "s": 9842.477796076939,
+      "x": 3000.0,
+      "y": 3.937275663235638e-13,
+      "phi": -6.283185307179586,
+      "side": 1,
+      "label": "C1",
+      "kind": "curva",
+      "read": true,
+      "common_tolerance_read": true,
+      "centre_distance_mm": 63.59479300316708,
+      "centre_error_mm": -5.9052069968329235,
+      "centre_within_1mm": false,
+      "centre_plane_s": 9892.454490419228,
+      "closest_centre_distance_mm": 5.766639577401849,
+      "entry_s": 9884.56511924372,
+      "exit_s": 9900.302423394018,
+      "bar_travel_on_mark_mm": 15.73730415029786
+    },
+    {
+      "s": 9999.557428756429,
+      "x": 3100.0,
+      "y": -99.99999999999957,
+      "phi": -7.853981633974483,
+      "side": 1,
+      "label": "C2",
+      "kind": "curva",
+      "read": false,
+      "common_tolerance_read": false,
+      "centre_distance_mm": 42.12708064416553,
+      "centre_error_mm": -27.37291935583447,
+      "centre_within_1mm": false,
+      "centre_plane_s": 10071.925095584766,
+      "closest_centre_distance_mm": 27.288367756805247,
+      "entry_s": null,
+      "exit_s": null,
+      "bar_travel_on_mark_mm": 0
+    },
+    {
+      "s": 10313.716694115408,
+      "x": 2900.0,
+      "y": -299.9999999999996,
+      "phi": -9.42477796076938,
+      "side": 1,
+      "label": "C3",
+      "kind": "curva",
+      "read": true,
+      "common_tolerance_read": true,
+      "centre_distance_mm": 56.78405646159935,
+      "centre_error_mm": -12.715943538400651,
+      "centre_within_1mm": false,
+      "centre_plane_s": 10383.1543507452,
+      "closest_centre_distance_mm": 12.588283457557178,
+      "entry_s": 10374.810171400084,
+      "exit_s": 10391.570285541175,
+      "bar_travel_on_mark_mm": 16.760114141090526
+    },
+    {
+      "s": 13213.716694115408,
+      "x": 0.0,
+      "y": -300.0000000000007,
+      "phi": -9.42477796076938,
+      "side": 1,
+      "label": "C4",
+      "kind": "curva",
+      "read": true,
+      "common_tolerance_read": true,
+      "centre_distance_mm": 65.3263558074143,
+      "centre_error_mm": -4.173644192585698,
+      "centre_within_1mm": false,
+      "centre_plane_s": 13265.274638094981,
+      "closest_centre_distance_mm": 4.122680848644479,
+      "entry_s": 13257.073759839564,
+      "exit_s": 13273.400762186957,
+      "bar_travel_on_mark_mm": 16.32700234739241
+    },
+    {
+      "s": 13684.955592153878,
+      "x": -1.2858791391047208e-13,
+      "y": -6.821210263296962e-13,
+      "phi": -12.566370614359172,
+      "side": 1,
+      "label": "C5",
+      "kind": "curva",
+      "read": true,
+      "common_tolerance_read": true,
+      "centre_distance_mm": 52.643827022901405,
+      "centre_error_mm": -16.856172977098595,
+      "centre_within_1mm": false,
+      "centre_plane_s": 13757.582337066719,
+      "closest_centre_distance_mm": 16.570980475251584,
+      "entry_s": 13749.419078318138,
+      "exit_s": 13765.812106485608,
+      "bar_travel_on_mark_mm": 16.39302816746931
+    },
+    {
+      "s": 8342.477796076939,
+      "x": 1500.0,
+      "y": 2.633352657935786e-14,
+      "phi": -6.283185307179586,
+      "side": -1,
+      "label": "Partida",
+      "kind": "partida",
+      "read": true,
+      "common_tolerance_read": true,
+      "centre_distance_mm": 69.500000370462,
+      "centre_error_mm": 3.704620041844464e-07,
+      "centre_within_1mm": true,
+      "centre_plane_s": 8399.185535382907,
+      "closest_centre_distance_mm": 3.704620041844464e-07,
+      "entry_s": 8389.685535329081,
+      "exit_s": 8408.685535431028,
+      "bar_travel_on_mark_mm": 19.00000010194708
+    },
+    {
+      "s": 14184.955592153878,
+      "x": 499.9999999999999,
+      "y": -4.3719166650022553e-13,
+      "phi": -12.566370614359172,
+      "side": -1,
+      "label": "Chegada",
+      "kind": "chegada",
+      "read": true,
+      "common_tolerance_read": true,
+      "centre_distance_mm": 69.54903333608601,
+      "centre_error_mm": 0.049033336086012014,
+      "centre_within_1mm": true,
+      "centre_plane_s": 14241.603184430083,
+      "closest_centre_distance_mm": 0.04903332788088969,
+      "entry_s": 14232.096045395121,
+      "exit_s": 14251.109565301515,
+      "bar_travel_on_mark_mm": 19.013519906393412
+    }
+  ]
+}

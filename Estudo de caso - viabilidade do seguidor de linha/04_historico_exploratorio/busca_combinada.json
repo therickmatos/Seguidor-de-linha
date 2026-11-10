@@ -1,0 +1,144 @@
+[
+  {
+    "L": 92.79548357898653,
+    "b": 85.0,
+    "y": 40.0,
+    "margin": -1.1323259238609111,
+    "subset_common": 5,
+    "stress_read": 206,
+    "stress_common": 118,
+    "min_distance": 48.36767407613909,
+    "max_distance": 90.20241172396277
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 85.0,
+    "y": 35.0,
+    "margin": -2.197915990509699,
+    "subset_common": 7,
+    "stress_read": 173,
+    "stress_common": 118,
+    "min_distance": 47.95389066755664,
+    "max_distance": 91.95152135762514
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 85.0,
+    "y": 30.0,
+    "margin": -4.1298035472288035,
+    "subset_common": 6,
+    "stress_read": 162,
+    "stress_common": 107,
+    "min_distance": 46.34586528207966,
+    "max_distance": 94.00126838446987
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 80.0,
+    "y": 40.0,
+    "margin": -4.467994987479877,
+    "subset_common": 6,
+    "stress_read": 218,
+    "stress_common": 156,
+    "min_distance": 45.03200501252012,
+    "max_distance": 85.48647370131451
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 90.0,
+    "y": 40.0,
+    "margin": -5.3526474658309695,
+    "subset_common": 4,
+    "stress_read": 148,
+    "stress_common": 91,
+    "min_distance": 47.55150190115096,
+    "max_distance": 94.93472125762788
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 80.0,
+    "y": 45.0,
+    "margin": -5.663941762534407,
+    "subset_common": 6,
+    "stress_read": 209,
+    "stress_common": 179,
+    "min_distance": 43.83605823746559,
+    "max_distance": 83.87497987716328
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 80.0,
+    "y": 35.0,
+    "margin": -6.264129769144972,
+    "subset_common": 7,
+    "stress_read": 217,
+    "stress_common": 151,
+    "min_distance": 43.23587023085503,
+    "max_distance": 87.28198953327504
+  },
+  {
+    "L": 92.79548357898653,
+    "b": 85.0,
+    "y": 45.0,
+    "margin": -6.275032093819384,
+    "subset_common": 5,
+    "stress_read": 210,
+    "stress_common": 131,
+    "min_distance": 43.224967906180616,
+    "max_distance": 88.62377080721407
+  },
+  {
+    "L": 70,
+    "b": 69.5,
+    "y": 30,
+    "stress_read": 220,
+    "stress_common": 210,
+    "min_distance": 50.87397396173209,
+    "max_distance": 71.64646425493746
+  },
+  {
+    "L": 70,
+    "b": 69.5,
+    "y": 40,
+    "stress_read": 210,
+    "stress_common": 210,
+    "min_distance": 40.99346073823149,
+    "max_distance": 69.84675456438666
+  },
+  {
+    "L": 67,
+    "b": 69.5,
+    "y": 25,
+    "stress_read": 220,
+    "stress_common": 220,
+    "min_distance": 53.50094117546354,
+    "max_distance": 72.12082178035887
+  },
+  {
+    "L": 64,
+    "b": 69.5,
+    "y": 20.5,
+    "stress_read": 220,
+    "stress_common": 220,
+    "min_distance": 54.41047317116545,
+    "max_distance": 72.52610077969479
+  },
+  {
+    "L": 62,
+    "b": 70,
+    "y": 5.5,
+    "stress_read": 220,
+    "stress_common": 220,
+    "min_distance": 53.16570318498877,
+    "max_distance": 77.75765101470536
+  },
+  {
+    "L": 62,
+    "b": 69.5,
+    "y": 10.5,
+    "stress_read": 220,
+    "stress_common": 220,
+    "min_distance": 53.54931680109205,
+    "max_distance": 75.24706549679628
+  }
+]

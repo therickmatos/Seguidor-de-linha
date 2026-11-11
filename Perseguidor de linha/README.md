@@ -8,6 +8,7 @@ Baseado no EVA-RT (© EXOTIC TEAM MX, AGPL-3.0). Origem no centro da ventoinha, 
 | `RUSH_perseguidor_entalhe_A.epro` | projeto EasyEDA Pro (esquemático + PCB) com o J6 (KY-022) já roteado. A versão anterior, sem o J6, está no histórico do git |
 | `figuras/perseguidor_J6_zoom.png` | J6 e as rotas novas (vermelho = cima, azul = baixo) |
 | `figuras/perseguidor_placa.png` | placa inteira, as duas camadas |
+| `figuras/perseguidor_2d.png` | vista 2D das duas faces (cima e baixo) |
 | `../ferramentas/perseguidor/` | scripts usados na revisão (leitura do `.epro`, DRC, roteador, simulação do polígono de GND) |
 
 Observação: a placa do perseguidor saiu de uma versão do seguidor anterior à v4 (posições e rotas iguais às do SATURN v3, menos os braços). Correções feitas na v4 do seguidor não estão aqui.

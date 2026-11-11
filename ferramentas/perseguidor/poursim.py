@@ -23,5 +23,5 @@ def copper_sim(proj):
             if poly.area > 100: items.append((L, net, poly, 'pour', f'sim{L}_{k}'))
     return items
 epro.copper = copper_sim
-sys.argv = [sys.argv[0]] + sys.argv[1:]
-exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'drc.py')).read().replace('from epro import *', 'from epro import *\ncopper = copper_sim'))
+if __name__ == '__main__':
+  exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'drc.py')).read().replace('from epro import *', 'from epro import *\ncopper = copper_sim'))

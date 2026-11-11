@@ -78,3 +78,14 @@ Mesmo circuito da v3 nos 4 sensores, com **um capacitor a mais, não montado (DN
 - **Pinos novos:** D8 e D9 ficam no mesmo registrador (`PINB & 0b11`). A leitura custa um ciclo, e as bordas podem ser pegas por interrupção de mudança de pino (PCINT0/PCINT1) para medir o tempo com precisão.
 - **Timer1:** D9 é o OC1A do Timer1, que gera o PWM da ventoinha no D10 (OC1B). Como entrada não há conflito, desde que o firmware não ligue a saída OC1A.
 - **Lógica a definir:** marca de curva = E1 **ou** E2, contada uma vez; parada = só D2, como no 1.2.2. Ignorar E1/D1 enquanto a barra indicar curva fechada, porque é aí que eles podem ver a linha principal.
+
+## Projeto EasyEDA da v4 (11/11/2026)
+
+`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro` (raiz do repositório), gerado por `codigo/v4_epro/build.py` a partir da v3. Contorno asa de gaivota, QRE externos e componentes da aba movidos e roteados, QRE internos S3 (E1) e S4 (D1) com 220 Ω, 47 kΩ e 10 nF DNP.
+
+Ao abrir no EasyEDA Pro:
+
+1. **Refazer o cobre** (*Reconstruir todas as áreas de cobre*). O cobre antigo foi removido porque cobria as abas velhas.
+2. **Rotear duas trilhas:** `MARK_L2_D8` (C19/R24, perto de (−48; 6), até o pino 12 do ATmega) e `MARK_R2_D9` (C20/R26, perto de (+48; 6), até o pino 13). Os pinos ficam em (2,8; −26,4) e (3,4; −25,8). As linhas de ligação (ratsnest) já aparecem.
+3. Rodar o **DRC** e conferir o 3D: os QRE internos estão girados 45°, e os rótulos de serigrafia dos componentes novos e movidos podem precisar de ajuste.
+4. Conferir na BOM que C19 e C20 saem como **DNP**.

@@ -52,6 +52,21 @@ Para poder ajustar depois da placa pronta, deixar o resistor de emissor dos inte
 
 **Opcional, para testar na pista:** um jumper de solda de 3 pads por lado, para escolher qual sensor do lado (interno ou externo) vai no analógico e qual no digital. Custa 2 jumpers e um pouco de roteamento na raiz da aba. Dá para trocar o par do A5/A6 sem refazer a placa, caso os testes físicos contrariem o modelo.
 
+## Para o pedido de hoje (recomendação)
+
+Mesmo circuito da v3 nos 4 sensores, com **um capacitor a mais, não montado (DNP), em cada interno**:
+
+| Por sensor interno (E1 → D8, D1 → D9) | Ligação |
+|---|---|
+| QRE1113GR | 1 anodo → 220 Ω → +5V; 2 catodo → GND; 3 coletor → +5V; 4 emissor → rede `MARK_L2_D8` / `MARK_R2_D9` |
+| 47 kΩ (0603) | rede do sensor → GND (montar) |
+| 10 nF (0603), **DNP** | rede do sensor → GND (só pads) |
+
+- **Montado assim (47 kΩ, sem capacitor):** leitura digital simples, `digitalRead`.
+- **Se a leitura no preto ou no branco ficar duvidosa:** retirar o 47 kΩ (ou trocar por ~1 MΩ) e soldar o 10 nF. O firmware descarrega o capacitor pondo o pino em LOW, passa o pino a entrada e mede quanto tempo o fototransistor leva para levá-lo a HIGH. No branco são dezenas a centenas de µs; no preto o tempo passa de ~1 ms (timeout = preto). Assim se tem um valor contínuo, que pode ser **calibrado como o analógico**, sem trocar a placa.
+- Os pads extras ficam na mesma rede, sem mudar a topologia. Colocar o 47 kΩ e o capacitor perto do pino do ATmega ou na raiz da aba, com acesso para o ferro.
+- Sem jumper de troca entre analógico e digital: a geometria e a emulação apontam com clareza para os externos no A5/A6, e o jumper só complica o roteamento.
+
 ## O que muda no esquemático (fonte: `ferramentas/esquematico/gen.py`)
 
 - S0/S1, os QRE atuais de `MARK_L_A5`/`MARK_R_A6`, passam a ser os externos E2/D2. A mudança é só de posição no layout, sem mudança elétrica.

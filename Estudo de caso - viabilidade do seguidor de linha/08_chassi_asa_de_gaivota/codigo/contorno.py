@@ -7,11 +7,11 @@ O que muda em relação à v3: só as abas laterais. O corpo (|x| <= 50), a fren
 (nariz e degraus), a traseira e os 15 recortes (furo Ø17, 12 furos de fixação e
 2 rasgos) ficam idênticos.
 
-Aba (estilo 'fujitora', padrão): nasce no canto dianteiro do corpo, sobe a 45°,
-faz uma curva de raio 16 mm e segue horizontal até a ponta em semicírculo, como as
-abas do Fujitora (OPR). Largura 6,1 mm (igual à v3), alargando até 7 mm na raiz.
-O centro do QRE externo fica a 4,6 mm da ponta, como na v3. O estilo 'suave'
-(primeira proposta, subida de ~17°) continua disponível no parâmetro ESTILO.
+Aba (estilo 'fujitora', padrão): silhueta das abas do Fujitora (OPR) em traço
+geométrico. Largura constante de 6,1 mm (igual à v3), subida reta a 45° desde o
+canto dianteiro do corpo, dobra de raio 6 mm e trecho horizontal até a ponta,
+que é cópia da ponta da aba da v3 (cantos r 1,45; QRE a 4,6 mm da borda).
+O estilo 'suave' (primeira proposta, subida de ~17°) continua no parâmetro ESTILO.
 
 Uso:  python3 contorno.py   → gera ../saida/*.dxf, *.png e contorno.json
 """
@@ -39,10 +39,11 @@ TIP = 4.6                    # centro do QRE externo até a ponta (v3 = 4,6)
 #  'suave'    : versão de 11/11 (joelho na raiz, subida de ~17°, ponta com cantos r 1,45).
 ESTILO = 'fujitora'
 if ESTILO == 'fujitora':
-    W_ROOT = 7.0             # largura na raiz
-    TIP_R = W_TIP / 2 - 1e-4 # ponta em semicírculo
+    W_ROOT = W_TIP           # largura constante (traço mais geométrico)
+    TIP_R = None             # ponta copiada da aba da v3 (cantos r 1,45)
     RISE_ANGLE = 45.0        # inclinação da subida (graus)
-    BEND_R = 16.0            # raio da curva subida → horizontal (linha de centro)
+    BEND_R = 6.0             # raio da dobra subida → horizontal (linha de centro)
+    ROOT_R = 2.0             # raio dos cantos côncavos entre aba e corpo
 else:
     W_ROOT = 8.0
     TIP_R = 1.45             # raio dos cantos da ponta (v3 = 1,45)
@@ -51,7 +52,7 @@ else:
     KNEE_R = 14.0            # raio do joelho
     BEND_X = 70.0            # onde a subida termina e a ponta horizontal começa
     BEND_R = 30.0            # raio da curva da linha de centro (suaviza a dobra)
-ROOT_R = 4.0                 # raio dos cantos côncavos entre aba e corpo
+    ROOT_R = 4.0             # raio dos cantos côncavos entre aba e corpo
 QRE = (2.7, 3.4)             # corpo do QRE1113GR no footprint da v3 (x × y, rotação 180°)
 X_MIN_TOP = 42.5             # o arredondamento da raiz não entra em |x| < 42,5 (corpo da v3 intacto)
 
@@ -117,8 +118,15 @@ def arm_polygon():
     right = c - normal * half[:, None]
     poly = Polygon(np.vstack((left, right[::-1])))
     poly = poly.buffer(0)
-    # cantos da ponta com r = TIP_R (abertura morfológica só na região da ponta)
     tipzone = box(SENSOR_OUT[0], -50, 200, 100)
+    if TIP_R is None:
+        # ponta idêntica à da v3: o trecho da aba da v3 além do QRE (x > 69,5),
+        # transladado do QRE da v3 (69,5; 4,5) para o QRE externo
+        v3, _ = geometria_v3.load()
+        tip = affinity.translate(v3.intersection(box(69.5, -50, 200, 100)),
+                                 SENSOR_OUT[0] - 69.5, SENSOR_OUT[1] - 4.5)
+        return unary_union([poly.difference(tipzone), tip]).buffer(1e-6).buffer(-1e-6)
+    # cantos da ponta com r = TIP_R (abertura morfológica só na região da ponta)
     rounded = poly.buffer(-TIP_R, join_style='round').buffer(TIP_R, join_style='round', quad_segs=16)
     return unary_union([poly.difference(tipzone), rounded.intersection(tipzone)]).buffer(0)
 

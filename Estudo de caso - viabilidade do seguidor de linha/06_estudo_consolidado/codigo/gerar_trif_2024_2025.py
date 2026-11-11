@@ -9,6 +9,20 @@ import pista_trif2025 as track25
 import pista_c_regulamentar as track24
 import pista_eva_rt_teste as trackeva
 from chassi_dois_sensores import build_geometry
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'08_chassi_asa_de_gaivota'/'codigo'))
+import contorno as gaivota
+
+
+def gull_geometry():
+    """Contorno asa de gaivota (estudo 08), com 63,14 mm entre furos."""
+    _,outer,_,cuts,_,_=gaivota.build()
+    xmin,ymin,xmax,ymax=outer.bounds
+    def points(ring):return [[round(x,4),round(y,4)] for x,y in ring.coords]
+    return dict(id='asa_gaivota',name='Asa de gaivota · 2 sensores por lado',outline=points(outer.exterior),
+                cutouts=[points(c.exterior) for c in cuts],sensor_in=list(gaivota.SENSOR_IN),
+                sensor_out=list(gaivota.SENSOR_OUT),hole_distance=63.141,L=model.L_HOLE,
+                width=xmax-xmin,length=ymax-ymin)
 
 HERE=Path(__file__).resolve().parent
 CASE=model.CASE
@@ -38,7 +52,7 @@ def build_data():
     geo=raw['geometry']
     return dict(tracks=tracks,outline=[[round(a,3),round(b,3)] for a,b,_,_ in geo['outline_segments']],
                 front=geo['front_sensor_centres'],wheels=geo['wheel_hulls'],axle=model.AXLE,
-                Lholes=model.L_HOLE,Lgap=model.L_GAP,lowChassis=build_geometry())
+                Lholes=model.L_HOLE,Lgap=model.L_GAP,lowChassis=build_geometry(),gullChassis=gull_geometry())
 
 
 def static_svg(t,rotate=False):
@@ -73,13 +87,13 @@ def static_svg(t,rotate=False):
 def render(data):
     template=(HERE/'painel_template.html').read_text(encoding='utf8')
     template=template.replace('Duas pistas de teste, incluindo uma inspirada nas fotos do TRIF 2025. O ponto virtual central da barra permanece sobre a linha; ajuste as medidas e inspecione as marcas.',
-        'Três modelos: TRIF 2025 e TRIF 2024 (inspirados em fotografias e rascunho) e a pista de teste do EVA-RT (reconstruída de um quadro de vídeo). Compare o v3 original, o EVA-RT original e o chassi baixo de dois sensores por lado; as pistas não são plantas oficiais.')
+        'Três modelos: TRIF 2025 e TRIF 2024 (inspirados em fotografias e rascunho) e a pista de teste do EVA-RT (reconstruída de um quadro de vídeo). Compare a placa asa de gaivota (dois sensores por lado, posição escolhida no estudo 08), o v3 original, o EVA-RT original e o chassi baixo; as pistas não são plantas oficiais.')
     template=template.replace('Prévia das duas pistas','Prévia das pistas').replace('Pista A · 19 marcas','TRIF 2025 · modelo inspirado nas fotos')
     template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · sentido corrigido')
     template=template.replace('A pista B é uma aproximação das fotos; o traçado e as medidas exatas não foram fornecidos.',
         'As três pistas são aproximações: dimensões, trechos ocultos e marcas não reproduzem uma planta oficial.')
     template=template.replace('<strong>Pista C:</strong>','<strong>TRIF 2024:</strong>')
-    allowed={'v3_l70','v3_l85','eva_rt_original','holes','one_asym68','one_out1','one_out2','one_sym1','one_sym2','one_60','one_60_68','one_60_685','wide','chassi_baixo_2','custom'}
+    allowed={'asa_gaivota','v3_l70','v3_l85','eva_rt_original','holes','one_asym68','one_out1','one_out2','one_sym1','one_sym2','one_60','one_60_68','one_60_685','wide','chassi_baixo_2','custom'}
     def keep_options(match):
         return re.sub(r'<option value="([^"]+)"[^>]*>.*?</option>',lambda o:o.group(0) if o.group(1) in allowed else '',match.group(0))
     template=re.sub(r'<select id="preset">.*?</select>',keep_options,template,count=1,flags=re.S)
@@ -89,6 +103,7 @@ def render(data):
       <li>Nos três, faixa de 19 mm e marcas de 19 × 40 mm a 40 mm da borda; na esquerda ao mudar a curvatura, na direita para partida e chegada. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
       <li>Fitas nominais intersectadas conta o centro pontual do QRE ao atravessar o retângulo. A região comum é uma faixa mais conservadora, não uma probabilidade e não prova sinal óptico. Passagens curtas são destacadas.</li>
       <li>V3 original: um QRE esquerdo e um direito em X = ±69,5 mm e Y = 4,5 mm. O teste de chassi baixo usa dois por lado em X = ±52,25/±77,75 mm, Y = 20 mm e 60 mm entre furos; o contorno experimental preserva os 15 recortes mecânicos do v3. A distância entre furos não é L: L vai do eixo ao ponto central virtual da barra.</li>
+      <li>Asa de gaivota (estudo 08): QRE internos em X = ±50,5 mm, Y = 14 mm; externos em X = ±82 mm, Y = 20 mm; 63,14 mm entre furos (L ≈ 107,1 mm). O contorno é o do arquivo DXF do estudo 08: corpo, frente, traseira e 15 recortes iguais aos da v3. Os sensores internos passam perto da linha principal em curvas fechadas; isso não é contado como falso disparo aqui.</li>
       <li>No chassi com dois sensores, cada fita é contada uma única vez se algum sensor do lado correto a intersecta. A região comum usa o mesmo critério. Os sinais elétricos, a dupla contagem no firmware e a identificação do cruzamento não são simulados.</li>
       <li>As linhas tracejadas representam o sensor externo. O contorno do chassi baixo permanece fixo ao personalizar as medidas; deslocar centros dos sensores na tela não redesenha a PCB nem valida a montagem.</li>
       <li>A barra segue a linha ou uma trajetória com desvio lateral fixo. O corpo é rígido e sem derrapagem; o caminho no cruzamento é imposto. Não são modelados PID, motores, tempo, óptica, ADC nem falsos sinais.</li>

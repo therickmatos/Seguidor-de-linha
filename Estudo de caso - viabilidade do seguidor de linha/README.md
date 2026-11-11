@@ -2,6 +2,8 @@
 
 > **Atualização de 11/11/2026:** a [análise do firmware e da geometria](07_firmware_e_geometria/README.md) explica por que a v3 leu poucas marcas no estudo de 10/11 (barra a L ≈ 107 mm) e mostra que a placa atual, com um QRE por lado, lê todas com L = 70 mm.
 >
+> **Decisão posterior (11/11/2026):** depois dos testes físicos, o Erick escolheu o chassi asa de gaivota com dois QRE por lado e a barra a 63–65 mm entre furos. A posição dos sensores e o contorno estão em [08_chassi_asa_de_gaivota](08_chassi_asa_de_gaivota/README.md).
+>
 > **Atualização de 10/11/2026:** o [estudo consolidado e o simulador com os modelos TRIF 2025 e 2024](06_estudo_consolidado/README.md) reúnem as conclusões mais recentes. O texto abaixo registra o estudo anterior, com outras pistas e hipóteses de montagem; seus resultados devem ser lidos como histórico.
 
 Registro do estudo realizado em 09/11/2026 sobre a leitura das marcações laterais do **RUSH / SATURN v3**, baseado no EVA-RT, para a **7ª edição do TRIF 2026**. O objetivo é apoiar a decisão sobre a PCB a encomendar, preservando o contexto e as correções da análise.

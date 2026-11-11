@@ -12,7 +12,7 @@ Este diretório reúne a análise realizada até **10/11/2026** sobre o RUSH/SAT
 
 **Nenhuma é uma planta oficial medida.** Nas três há trechos ou dimensões estimados, e a trajetória correta no cruzamento é imposta. O programa anima a geometria; não prova que o robô real seguirá a linha ou lerá uma fita.
 
-O arquivo abre com **v3 atual · 1 sensor por lado · L 70 mm (26 mm entre furos)**. Escolha a pista, clique em **Simular percurso** ou use **Próxima marca** e **Ver detalhe**. Em **Configuração** também estão a v3 com L 85 mm, o EVA-RT original (L 100 mm), a v3 a 63,14 e 60 mm entre furos e o chassi baixo de dois sensores por lado (E1/D1 internos; E2/D2 externos). Os totais separam esquerda e direita, e cada marca é contada uma única vez.
+O arquivo abre com **Asa de gaivota · 2 sensores por lado · 63,14 mm entre furos**, o contorno escolhido no [estudo 08](../08_chassi_asa_de_gaivota/README.md). Escolha a pista, clique em **Simular percurso** ou use **Próxima marca** e **Ver detalhe**. Em **Configuração** também estão a v3 com L 70 mm (26 mm entre furos) e L 85 mm, o EVA-RT original (L 100 mm), a v3 a 63,14 e 60 mm entre furos e o chassi baixo de dois sensores por lado (E1/D1 internos; E2/D2 externos). Os totais separam esquerda e direita, e cada marca é contada uma única vez.
 
 ## Atualização de 11/11/2026
 

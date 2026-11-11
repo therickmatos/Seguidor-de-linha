@@ -1,6 +1,6 @@
 # Teste do chassi baixo com dois sensores por lado
 
-No [simulador](simulador.html), selecione a configuração **Chassi baixo · 2 sensores por lado · furos 60 mm** (desde 11/11/2026 ele abre com a v3 atual em L 70 mm; veja a [análise do firmware e da geometria](../07_firmware_e_geometria/README.md)). São quatro sensores de marcas ao todo, além da barra frontal que acompanha a linha.
+No [simulador](simulador.html), selecione a configuração **Chassi baixo · 2 sensores por lado · furos 60 mm** (desde 11/11/2026 ele abre com a asa de gaivota do [estudo 08](../08_chassi_asa_de_gaivota/README.md), que substitui este esboço; veja a [análise do firmware e da geometria](../07_firmware_e_geometria/README.md)). São quatro sensores de marcas ao todo, além da barra frontal que acompanha a linha.
 
 ## Como testar
 

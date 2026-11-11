@@ -65,7 +65,8 @@
       <div class="full"><label for="course">Pista de teste</label><select id="course"></select></div>
       <div id="photoWarning" class="notice full" hidden><strong>Referência visual:</strong> modelo desenhado com retas, arcos e marcações nominais do TRIF 2026. O formato e as medidas não são uma planta medida; quando há trechos amarelos, eles foram completados por hipótese. As contagens mostram apenas interseções neste modelo e não garantem leituras físicas.</div>
       <div class="full"><label for="preset">Configuração</label><select id="preset">
-        <option value="v3_l70" selected>v3 atual · 1 sensor por lado · L 70 mm (26 mm entre furos)</option>
+        <option value="asa_gaivota" selected>Asa de gaivota · 2 sensores por lado · 63,14 mm entre furos</option>
+        <option value="v3_l70">v3 atual · 1 sensor por lado · L 70 mm (26 mm entre furos)</option>
         <option value="v3_l85">v3 atual · 1 sensor por lado · L 85 mm (41 mm entre furos)</option>
         <option value="eva_rt_original">EVA-RT original · L 100 mm · 1 sensor por lado</option>
         <option value="chassi_baixo_2">Chassi baixo · 2 sensores por lado · furos 60 mm</option>
@@ -140,14 +141,16 @@
 const DATA=/*__DADOS_DA_PISTA__*/;
 const $=id=>document.getElementById(id), AX=DATA.axle;
 const fmtX=n=>n.toFixed(2).replace(/0$/,'');
-let course=0, L=DATA.Lholes, X=69.5, Y=4.5, extras=[], leftOnly=false, rightOverride=null, barOffset=0, zoomed=true, playing=false, tick=0, last=0;
+let course=0, L=DATA.Lholes, X=69.5, Y=4.5, extras=[], extraDY=[], leftOnly=false, rightOverride=null, barOffset=0, zoomed=true, playing=false, tick=0, last=0;
 let frames=[],events=[],tracesL=[],tracesR=[],selected=7, timer=null,viewCross=false;
 let chassisMode='v3', crossIdx=0;
 const canvas=$('view'),ctx=canvas.getContext('2d');
 const presets={v3_l70:[70.0,69.5,4.5],v3_l85:[85.0,69.5,4.5],eva_rt_original:[100.0,69.5,4.5],holes:[DATA.Lholes,69.5,4.5],one_asym68:[DATA.Lholes,68,4.5,[],false,[69.5]],one_out1:[DATA.Lholes,70.5,4.5,[],false,[69.5]],one_out2:[DATA.Lholes,71.5,4.5,[],false,[69.5]],one_sym1:[DATA.Lholes,70.5,4.5],one_sym2:[DATA.Lholes,71.5,4.5],one_60:[103.97403767331764,69.5,4.5],one_60_68:[103.97403767331764,68,4.5,[],false,[69.5]],one_60_685:[103.97403767331764,68.5,4.5,[],false,[69.5]],wide:[DATA.Lholes,77,4.5],design_7:[DATA.Lholes,66,4.5,[73]],design_12:[DATA.Lholes,68,4.5,[80]],design_20:[DATA.Lholes,53,4.5,[73]],design_26:[DATA.Lholes,54,4.5,[80]],design_325:[DATA.Lholes,51,4.5,[83.5]],design_margem:[DATA.Lholes,50,4.5,[84]],design_limite:[DATA.Lholes,50.5,4.5,[85]],two_compact:[103.97403767331764,47,4.5,[84.5],false,[56,69.5]],two_compact58:[101.97381700559937,47.25,4.5,[84.25],false,[56,69.5]],two_asym:[103.97403767331764,47,4.5,[85],false,[69.5,84]],two60:[103.97403767331764,47,4.5,[84]],two63:[DATA.Lholes,47,4.5,[84]],two:[DATA.Lholes,50,4.5,[84]],three_left:[DATA.Lholes,69.5,4.5,[42,101],true],three:[DATA.Lholes,69.5,4.5,[42,101]],gap:[DATA.Lgap,69.5,4.5],old:[84.79548358,69.5,5.5],l70:[70,69.5,4.5],l65:[65,69.5,4.5],l60:[60,69.5,4.5],wings:[DATA.Lgap,77,48.5]};
 DATA.tracks.forEach((t,i)=>{const o=document.createElement('option');o.value=i;o.textContent=t.name;$('course').append(o)});
 presets.chassi_baixo_2=[DATA.lowChassis.L,DATA.lowChassis.sensor_x[0],DATA.lowChassis.sensor_y,[DATA.lowChassis.sensor_x[1]]];
-function currentChassis(){return chassisMode==='low_two'?DATA.lowChassis:{outline:DATA.outline,cutouts:DATA.lowChassis.cutouts}}
+presets.asa_gaivota=[DATA.gullChassis.L,DATA.gullChassis.sensor_in[0],DATA.gullChassis.sensor_in[1],[DATA.gullChassis.sensor_out[0]],false,null,[DATA.gullChassis.sensor_out[1]-DATA.gullChassis.sensor_in[1]]];
+function currentChassis(){return chassisMode==='low_two'?DATA.lowChassis:chassisMode==='gull'?DATA.gullChassis:{outline:DATA.outline,cutouts:DATA.lowChassis.cutouts}}
+function sensorY(v){const k=extras.indexOf(v);return v===X||k<0?Y:Y+(extraDY[k]||0)}
 function pointInRing(x,y,ring){
   let inside=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){
     const [xi,yi]=ring[i],[xj,yj]=ring[j];
@@ -162,11 +165,11 @@ function configDisplay(){
   const holes=Math.hypot(dy,44.62624-43.75);
   $('spacing').textContent=`vão ${gap.toFixed(1)} mm`;
   const all=[X,...extras].sort((a,b)=>a-b),rights=rightOverride|| (leftOnly?[X]:all),xmax=Math.max(...all,...rights);
-  const proposed=chassisMode==='low_two',outside=all.some(v=>!sensorInsideChassis(-v,Y))||rights.some(v=>!sensorInsideChassis(v,Y));
+  const proposed=chassisMode!=='v3',outside=all.some(v=>!sensorInsideChassis(-v,sensorY(v)))||rights.some(v=>!sensorInsideChassis(v,sensorY(v)));
   $('mount').classList.toggle('danger',gap<0||outside);$('multiWarning').hidden=extras.length===0;$('pairLegend').hidden=extras.length===0;
   const qre=(leftOnly||rightOverride)?`<strong>Esquerda:</strong> ${all.map(v=>'−'+fmtX(v)).join(' / ')} mm<br><strong>Direita:</strong> ${rights.map(v=>'+'+fmtX(v)).join(' / ')} mm`:`<strong>QRE em cada lado:</strong> ${all.map(v=>'±'+fmtX(v)).join(' / ')} mm`;
-  const chassis=proposed?`<strong>Chassi baixo experimental:</strong> ${DATA.lowChassis.width.toFixed(1)} × ${DATA.lowChassis.length.toFixed(1)} mm; 15 recortes do v3 preservados.<br>`:'';
-  $('mount').innerHTML=`${chassis}<strong>Vão:</strong> ${gap.toFixed(1)} mm<br><strong>Furos:</strong> ${holes.toFixed(1)} mm<br>${qre} · Y ${Y.toFixed(1)} mm${gap<0?'<br>O recorte e a base se sobrepõem.':''}${outside?'<br>Um ou mais centros de QRE estão fora do contorno exibido.':''}${!proposed&&xmax>69.5&&Math.abs(Y-4.5)<0.01?'<br>Extensões tracejadas: desenho esquemático.':''}${extras.length?'<br>As posições adicionais ficam fixas ao mover X principal.':''}${proposed?'<br>Contorno fixo: personalizar X/Y não redesenha a placa.':''}<br><span class="small">Não verifica patim, varetas, roteamento ou montagem.</span>`;
+  const chassis=chassisMode==='gull'?`<strong>Asa de gaivota:</strong> ${DATA.gullChassis.width.toFixed(1)} × ${DATA.gullChassis.length.toFixed(1)} mm; corpo, frente, traseira e 15 recortes da v3 preservados.<br>`:proposed?`<strong>Chassi baixo experimental:</strong> ${DATA.lowChassis.width.toFixed(1)} × ${DATA.lowChassis.length.toFixed(1)} mm; 15 recortes do v3 preservados.<br>`:'';
+  $('mount').innerHTML=`${chassis}<strong>Vão:</strong> ${gap.toFixed(1)} mm<br><strong>Furos:</strong> ${holes.toFixed(1)} mm<br>${qre} · Y ${[X,...extras].map(v=>sensorY(v).toFixed(1)).filter((v,i,a)=>a.indexOf(v)===i).join(' / ')} mm${gap<0?'<br>O recorte e a base se sobrepõem.':''}${outside?'<br>Um ou mais centros de QRE estão fora do contorno exibido.':''}${!proposed&&xmax>69.5&&Math.abs(Y-4.5)<0.01?'<br>Extensões tracejadas: desenho esquemático.':''}${extras.length?'<br>As posições adicionais ficam fixas ao mover X principal.':''}${proposed?'<br>Contorno fixo: personalizar X/Y não redesenha a placa.':''}<br><span class="small">Não verifica patim, varetas, roteamento ou montagem.</span>`;
 }
 function clip(a,b,h,lo,hi){
   let t0=0,t1=1;
@@ -185,8 +188,8 @@ function compute(){
       const k1=factor*Math.sin(p-a)/L,k2=factor*Math.sin(p+dp/2-a-h*k1/2)/L,k3=factor*Math.sin(p+dp/2-a-h*k2/2)/L,k4=factor*Math.sin(p+dp-a-h*k3)/L;
       a+=h*(k1+2*k2+2*k3+k4)/6;
     }
-    const s=tr[i][0],bx=tr[i][1]-barOffset*Math.sin(tr[i][3]),by=tr[i][2]+barOffset*Math.cos(tr[i][3]),c=Math.cos(a),sn=Math.sin(a),lead=Y-AX-L;
-    frames[i]=[s,bx,by,a];offsetsL.forEach((v,j)=>{tracesL[j][i]=[bx+lead*c-v*sn,by+lead*sn+v*c]});offsetsR.forEach((v,j)=>{tracesR[j][i]=[bx+lead*c+v*sn,by+lead*sn-v*c]});
+    const s=tr[i][0],bx=tr[i][1]-barOffset*Math.sin(tr[i][3]),by=tr[i][2]+barOffset*Math.cos(tr[i][3]),c=Math.cos(a),sn=Math.sin(a);
+    frames[i]=[s,bx,by,a];offsetsL.forEach((v,j)=>{const lead=sensorY(v)-AX-L;tracesL[j][i]=[bx+lead*c-v*sn,by+lead*sn+v*c]});offsetsR.forEach((v,j)=>{const lead=sensorY(v)-AX-L;tracesR[j][i]=[bx+lead*c+v*sn,by+lead*sn-v*c]});
   }
   events=DATA.tracks[course].marks.map(m=>{
     const co=Math.cos(m.phi),si=Math.sin(m.phi),sets=m.side>0?tracesL:tracesR,offsets=m.side>0?offsetsL:offsetsR,half=m.halfWidth??9.5,inner=m.inner??49.5,outer=m.outer??89.5;
@@ -259,7 +262,7 @@ function draw(){
   const b=P(bx,by);ctx.beginPath();ctx.arc(b[0],b[1],Math.max(2,1.6*scale),0,2*Math.PI);ctx.fillStyle='#7ff0cd';ctx.fill();
   ctx.fillStyle='#e8f0f7';ctx.font='12px system-ui';ctx.fillText(zoomed?'Detalhe acompanhando a barra':(rotated?'Pista completa · girada 90°':'Pista completa'),12,20);
 }
-function changePreset(){const p=presets[$('preset').value];if(!p)return;[L,X,Y]=p;extras=p[3]?[...p[3]]:[];leftOnly=Boolean(p[4]);rightOverride=p[5]?[...p[5]]:null;chassisMode=$('preset').value==='chassi_baixo_2'?'low_two':'v3';playing=false;$('play').textContent='Simular percurso';compute()}
+function changePreset(){const p=presets[$('preset').value];if(!p)return;[L,X,Y]=p;extras=p[3]?[...p[3]]:[];leftOnly=Boolean(p[4]);rightOverride=p[5]?[...p[5]]:null;extraDY=p[6]?[...p[6]]:[];chassisMode=$('preset').value==='chassi_baixo_2'?'low_two':$('preset').value==='asa_gaivota'?'gull':'v3';playing=false;$('play').textContent='Simular percurso';compute()}
 $('preset').addEventListener('change',changePreset);
 $('barOffset').addEventListener('change',()=>{barOffset=Number($('barOffset').value);playing=false;$('play').textContent='Simular percurso';compute()});
 $('course').addEventListener('change',()=>{course=Number($('course').value);selected=course===0?7:(DATA.tracks[course].photo?0:2);zoomed=course===0;$('zoom').textContent=zoomed?'Ver pista inteira':'Ver detalhe';playing=false;$('play').textContent='Simular percurso';compute();if(DATA.tracks[course].photo){tick=nearest(DATA.tracks[course].start);$('progress').value=0;draw()}});

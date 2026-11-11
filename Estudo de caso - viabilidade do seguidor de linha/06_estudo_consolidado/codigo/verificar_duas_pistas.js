@@ -18,10 +18,25 @@ const fs=require('fs');
   if(options.length!==3||!options[0].includes('2025')||!options[1].includes('2024 · sentido corrigido')||!options[2].includes('EVA-RT'))throw Error('Menu incorreto: '+JSON.stringify(options));
   if(await page.locator('#course').inputValue()!=='0')throw Error('2025 deve iniciar selecionada.');
   if(!await page.locator('#photoWarning').isVisible())throw Error('Falta aviso de pista hipotética.');
-  if(await page.locator('#preset').inputValue()!=='v3_l70')throw Error('A v3 com L 70 mm deve iniciar selecionada.');
+  if(await page.locator('#progress').inputValue()!=='0')throw Error('A simulação deve começar na posição inicial.');
+  if(await page.locator('#preset').inputValue()!=='asa_gaivota')throw Error('A asa de gaivota deve iniciar selecionada.');
+  // Asa de gaivota (estudo 08): contagens do simulador × verificação Python (passo 0,25 mm), cenário ideal.
+  const gullRows=JSON.parse(fs.readFileSync(path.join(__dirname,'..','..','08_chassi_asa_de_gaivota','dados','resultados.json'),'utf8'))
+    .resultados.filter(r=>r.config==='Asa de gaivota · 63,14 mm'&&r.scenario==='ideal');
+  for(const course of [0,1,2]){
+    await page.selectOption('#course',String(course));
+    const row=gullRows.find(r=>r.track===['TRIF 2025','TRIF 2024','EVA-RT teste'][course]);
+    if(!row)throw Error('Falta validação Python da asa de gaivota: pista '+course);
+    const g=await page.evaluate(()=>({mode:chassisMode,sensors:[tracesL.length,tracesR.length],x:[X,...extras],y:[X,...extras].map(sensorY),
+      inside:[X,...extras].every(v=>sensorInsideChassis(v,sensorY(v))&&sensorInsideChassis(-v,sensorY(v))),cutouts:currentChassis().cutouts.length,
+      nominal:document.getElementById('scoreNom').textContent,common:document.getElementById('scoreCommon').textContent}));
+    if(g.mode!=='gull'||JSON.stringify(g.sensors)!=='[2,2]'||JSON.stringify(g.x)!=='[50.5,82]'||JSON.stringify(g.y)!=='[14,20]'||!g.inside||g.cutouts!==15)throw Error('Asa de gaivota incorreta: '+JSON.stringify(g));
+    if(g.nominal!==`${row.nominal} / ${row.total}`||g.common!==`${row.common} / ${row.total}`)throw Error('Asa de gaivota diverge do Python: '+JSON.stringify({g,row:{n:row.nominal,c:row.common,t:row.total}}));
+    if(await page.locator('#mount').evaluate(e=>e.classList.contains('danger')))throw Error('Asa de gaivota marcada fora do contorno.');
+  }
+  await page.selectOption('#course','0');await page.selectOption('#preset','v3_l70');
   if(await page.locator('#scoreNom').innerText()!=='33 / 33'||await page.locator('#scoreCommon').innerText()!=='33 / 33')throw Error('v3 L 70 em 2025 incorreta.');
   if(await page.evaluate(()=>chassisMode!=='v3'||tracesL.length!==1||tracesR.length!==1))throw Error('A v3 inicial deve ter um sensor por lado.');
-  if(await page.locator('#progress').inputValue()!=='0')throw Error('A simulação deve começar na posição inicial.');
   await page.selectOption('#preset','chassi_baixo_2');
   if(await page.locator('#scoreCommon').innerText()!=='33 / 33')throw Error('Região comum do novo chassi em 2025 incorreta.');
   const payload=await page.evaluate(()=>({tracks:DATA.tracks.length,marks:events.length,left:events.filter(e=>e.side===1).length,right:events.filter(e=>e.side===-1).length,sensors:[tracesL.length,tracesR.length]}));
@@ -100,6 +115,6 @@ const fs=require('fs');
   const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto(url,{waitUntil:'load'});
   if(!await nojs.locator('#fallback').isVisible()||await nojs.locator('#fallback svg').count()!==3)throw Error('Prévia estática sem três pistas.');
   if(errors.length)throw Error(errors.join('\n'));
-  console.log(JSON.stringify({resultado:'ok',pistas:options,payload,testes:'chassi de quatro QRE em 60/65/70 mm contra validação Python por marca, contorno e recortes, contagem única, retorno ao v3, desvios, cruzamento, animação, tela estreita e prévia estática'}));
+  console.log(JSON.stringify({resultado:'ok',pistas:options,payload,testes:'asa de gaivota contra a verificação Python (três pistas), chassi de quatro QRE em 60/65/70 mm contra validação Python por marca, contorno e recortes, contagem única, retorno ao v3, desvios, cruzamento, animação, tela estreita e prévia estática'}));
   }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});

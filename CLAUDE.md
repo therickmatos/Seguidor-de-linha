@@ -30,6 +30,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - **A fonte do esquemático é o KiCad**, gerado por `ferramentas/esquematico/gen.py` (feito com o Claude em outra sessão). Mudança no esquemático → editar o `gen.py` e regerar (passo a passo em `ferramentas/README.md`).
 - **Em andamento:** o Erick está importando o esquemático do KiCad no EasyEDA Pro para fazer o layout e encomendar na JLC. Conferir a importação rede por rede com `hardware/seguidor_base/REDES.md` (54 redes, 7 pinos sem ligação).
 - **11/11/2026, marcas do TRIF:** a v3 (`ProPrj_RUSH - SATURN - v3_2026-11-09.epro`, um QRE por lado em ±69,5; 4,5) lê todas as marcas dos modelos TRIF 2024/2025 e da pista de teste do EVA-RT com L = 70 mm; não precisa de chassi novo nem de dois sensores por lado. O firmware 1.2.2 não usa marcas de curva (o sensor esquerdo só veta a parada nos cruzamentos). Ver `Estudo de caso - viabilidade do seguidor de linha/07_firmware_e_geometria/README.md`. Em aberto: o Erick tinha preferido manter a distância do EVA-RT (L 100); a escolha entre L 70, 85 e 100 é dele e se faz na vareta, não na PCB.
+- **11/11/2026, decisão do Erick após testes físicos:** chassi **asa de gaivota com dois QRE por lado** e barra a 63–65 mm entre furos (L ≈ 107–109). Proposta de posição e contorno em `Estudo de caso - viabilidade do seguidor de linha/08_chassi_asa_de_gaivota/` (E1/D1 em (±50,5; 14), E2/D2 em (±82; 20); DXF `saida/asa_gaivota_contorno.dxf`, 173,2 × 58,6 mm, corpo/frente/traseira/recortes da v3). Ainda aguarda o OK do Erick; pinos e firmware das 4 entradas são a próxima fase (os QRE internos podem ver a linha em curva fechada).
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos
@@ -41,7 +42,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
-| `Estudo de caso - viabilidade do seguidor de linha/` | simulações das marcas do TRIF: `06_estudo_consolidado/` (simulador HTML com TRIF 2024, 2025 e pista de teste do EVA-RT) e `07_firmware_e_geometria/` (emulação de `Marks.ino`, varredura de L, recomendação) |
+| `Estudo de caso - viabilidade do seguidor de linha/` | simulações das marcas do TRIF: `06_estudo_consolidado/` (simulador HTML com TRIF 2024, 2025 e pista de teste do EVA-RT) `07_firmware_e_geometria/` (emulação de `Marks.ino`, varredura de L) e `08_chassi_asa_de_gaivota/` (posição dos 4 QRE e contorno asa de gaivota) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
 
 ## Cuidados

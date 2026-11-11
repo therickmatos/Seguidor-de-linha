@@ -1,4 +1,4 @@
-"""Recalcula cruzamentos geométricos nos modelos TRIF 2025 e 2024."""
+"""Recalcula cruzamentos geométricos nos modelos TRIF 2025, TRIF 2024 e pista de teste do EVA-RT."""
 from pathlib import Path
 import json
 import math
@@ -7,6 +7,7 @@ from shapely.geometry import LineString,box
 import simular_comparar as sim
 import pista_trif2025 as pista25
 import pista_c_regulamentar as pista24
+import pista_eva_rt_teste as pistaeva
 from chassi_dois_sensores import SENSOR_X, SENSOR_Y, length_from_holes
 
 HERE=Path(__file__).resolve().parent
@@ -19,20 +20,24 @@ CASES=[('holes','63,14 · QRE originais',63.141,[69.5],[69.5],4.5),
        ('one_60','60 · QRE originais',60.,[69.5],[69.5],4.5),
        ('chassi_baixo_2','Chassi baixo · dois QRE por lado · 60 mm',60.,SENSOR_X,SENSOR_X,SENSOR_Y),
        ('chassi_baixo_2_65','Chassi baixo · dois QRE por lado · 65 mm',65.,SENSOR_X,SENSOR_X,SENSOR_Y),
-       ('chassi_baixo_2_70','Chassi baixo · dois QRE por lado · 70 mm',70.,SENSOR_X,SENSOR_X,SENSOR_Y)]
+       ('chassi_baixo_2_70','Chassi baixo · dois QRE por lado · 70 mm',70.,SENSOR_X,SENSOR_X,SENSOR_Y),
+       # 7º campo opcional: L explícito (eixo → centro da barra), sem passar pela distância entre furos.
+       ('eva_rt_original','EVA-RT original · L 100 mm · 1 sensor por lado',None,[69.5],[69.5],4.5,100.),
+       ('v3_l85','v3 atual · L 85 mm · 1 sensor por lado',None,[69.5],[69.5],4.5,85.),
+       ('v3_l70','v3 atual · L 70 mm · 1 sensor por lado',None,[69.5],[69.5],4.5,70.)]
 
 
 def main():
-    b,bc,bm,_=pista25.build(STEP);c,cc,cm,_=pista24.build(STEP)
+    b,bc,bm,_=pista25.build(STEP);c,cc,cm,_=pista24.build(STEP);e,ec,em,_=pistaeva.build(STEP)
     rows=[]
-    for name,track,marks in [('2025',b,bm),('2024',c,cm)]:
+    for name,track,marks in [('2025',b,bm),('2024',c,cm),('EVA-RT',e,em)]:
         cache={}
-        for preset,label,holes,left,right,sensor_y in CASES:
-            L=length_from_holes(holes)
-            if holes not in cache:
+        for preset,label,holes,left,right,sensor_y,*explicit in CASES:
+            L=explicit[0] if explicit else length_from_holes(holes)
+            if L not in cache:
                 alpha=sim.old.pose(track,L)
-                cache[holes]={'alpha':alpha,'paths':{}}
-            slot=cache[holes]
+                cache[L]={'alpha':alpha,'paths':{}}
+            slot=cache[L]
             for side,positions in [(1,left),(-1,right)]:
                 for x in positions:
                     key=(side,x,sensor_y)

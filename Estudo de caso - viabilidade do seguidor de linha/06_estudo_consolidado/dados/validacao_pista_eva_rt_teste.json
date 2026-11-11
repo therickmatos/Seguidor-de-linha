@@ -1,0 +1,90 @@
+{
+  "modelo": "aproximado, reconstruído de um quadro de vídeo (perspectiva retificada)",
+  "period_mm": 10970.106766552464,
+  "closure_mm": 3.989177016483779e-13,
+  "max_join_error_mm": 3.989177016483779e-13,
+  "max_join_angle_error_rad": 4.898587196589413e-16,
+  "pieces": 24,
+  "arcs": 16,
+  "straights": 8,
+  "min_radius_mm": 101.08,
+  "radii_mm": [
+    101.1,
+    101.3,
+    102.1,
+    102.3,
+    102.6,
+    102.8,
+    105.0,
+    110.9,
+    151.8,
+    154.0,
+    154.2,
+    156.0,
+    170.1,
+    208.2
+  ],
+  "largest_radius_mm": 208.2,
+  "hairpin_right_radius_mm": 101.08,
+  "hairpin_lower_radius_mm": 208.2,
+  "shortest_straight_mm": 125.58,
+  "crossings": 3,
+  "crossing_angles_degrees": [
+    89.53661117363318,
+    89.30299284050362,
+    89.49650766335935
+  ],
+  "crossing_points_mm": [
+    [
+      1284.5,
+      618.3
+    ],
+    [
+      1080.8,
+      617.8
+    ],
+    [
+      876.9,
+      617.4
+    ]
+  ],
+  "scale_factor_adopted": 0.96,
+  "line_width_adopted_mm": 19.0,
+  "board_assumed_mm": [
+    2440.0,
+    1220.0
+  ],
+  "start_finish_distance_mm": 515.5018091199735,
+  "start_finish_distance_note": "medida entre as duas marcas isoladas da reta de baixo na foto (centros projetados na reta); inferior a 1 m",
+  "marks": 26,
+  "curve_marks": 24,
+  "photo_marks": 27,
+  "photo_curve_marks": 25,
+  "generated_marks_within_80mm_of_a_photo_mark": 26,
+  "photo_marks_within_80mm_of_a_generated_mark": 26,
+  "median_generated_to_photo_mm": 2.4673964263018275,
+  "generated_marks_without_photo_mark": [],
+  "photo_marks_without_generated_mark": [
+    [
+      422.5,
+      952.5
+    ]
+  ],
+  "marker_overlaps": [],
+  "min_independent_centreline_mm": 96.12418460676436,
+  "min_independent_tape_edge_mm": 77.12418460676436,
+  "min_independent_pair": [
+    8,
+    13
+  ],
+  "straight_before_finish_mm": 101.44744588676328,
+  "regulation_violations": {
+    "radius_below_100": false,
+    "straight_below_200": true,
+    "independent_edge_below_200": true,
+    "start_finish_not_1m": true
+  },
+  "estimated": "escala (linha 19 mm; placa suposta 2440 x 1220); trecho do grampo de baixo cortado pela borda da imagem; reta de baixo sob o robô; raios e comprimentos ajustados à imagem (~1,3 mm RMS); marcas geradas pela regra, não copiadas",
+  "gates_modelled": false,
+  "limitations": "Aproximação de um quadro de vídeo, não planta nem medição; checagem só geométrica."
+}

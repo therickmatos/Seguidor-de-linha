@@ -89,10 +89,28 @@ def sweep(tracks, Ls, Ys):
     return grid
 
 
+def drift(tracks, Ls, Es):
+    """Sensibilidade a "abrir na curva": marcas de curva lidas e parada do firmware."""
+    out = {}
+    for n, T in tracks.items():
+        for L in Ls:
+            for e in Es:
+                r = A.evaluate(T, L, (X,), (X,), Y, e100=e)
+                v = A.firmware_verdict(r, 30.0)
+                out[f'{n}|{L:g}|{e:g}'] = dict(nominal=r['left_nominal'], common=r['left_common'],
+                                              total=r['left_total'], right=r['right_nominal'],
+                                              stop_ok=bool(v['ok'] and not v['false_stops']),
+                                              false_stops=len(v['false_stops']))
+    return out
+
+
 def main():
     tracks = A.load_tracks(STEP)
     names = list(tracks)
     rows = config_rows(tracks)
+    tracks = A.load_tracks(0.5)          # varreduras em passo maior (só contagens)
+    Ld, Es = [107.1, 100, 85, 70], [0, 10, 20, 30]
+    dr = drift(tracks, Ld, Es)
     Ls = [60, 65, 70, 75, 80, 85, 90, 95, 100, 107.1]
     Ys = [4.5, 10, 15, 20, 25]
     grid = sweep(tracks, Ls, Ys)
@@ -103,7 +121,7 @@ def main():
     (OUT / 'resultados.json').write_text(json.dumps(dict(
         step_mm=STEP, sensor_x=X, sensor_y=Y, axle_y=A.AXLE, tracks=names,
         note='Conferência geométrica; não modela PID, óptica, derrapagem nem tempo.',
-        configs=rows, sweep_L_Y=grid, hairpin_right_sensor_clearance_mm=hair),
+        configs=rows, sweep_L_Y=grid, drift_sensitivity=dr, hairpin_right_sensor_clearance_mm=hair),
         ensure_ascii=False, indent=1), encoding='utf8', newline='\n')
 
     md = []
@@ -113,7 +131,8 @@ def main():
     for r in rows:
         stop = r['first_stop']['30']
         falses = r['false_stops']['30']
-        verdict = 'na chegada' if stop == 'chegada' and not falses else f'FALSA: {falses}'
+        verdict = 'na chegada' if stop == 'chegada' and not falses else (
+            f"FALSA ({len(falses)}×; a 1ª sobre «{falses[0][0]}» a {falses[0][1] / 1000:.1f} m da partida)")
         md.append(f"| {r['track']} | {r['config']} | {r['L']:.1f} | {r['holes_front']:.1f} | {r['left']} | "
                   f"{r['left_common']} | {r['left_shift5']}/{r['left'].split('/')[1]} | {r['right']} | "
                   f"{r['crossings']} (defasagem ≤ {r['max_crossing_gap']:.1f} mm) | {verdict} |")
@@ -126,6 +145,18 @@ def main():
             md.append(f'| {L:g} | ' + ' | '.join(
                 f"{grid[f'{L:g}|{y:g}'][n]['nominal']} / {grid[f'{L:g}|{y:g}'][n]['common']}" for y in Ys) + ' |')
         md.append('')
+    md.append('### Sensibilidade a "abrir na curva" (centro da barra e mm para fora numa curva de raio 100)\n')
+    md.append('Célula: marcas de curva lidas (nominal) · parada do firmware com janela de 30 mm.\n')
+    md.append('| Pista | L | ' + ' | '.join(f'abre {e} mm' for e in Es) + ' |')
+    md.append('|---|---:|' + '---|' * len(Es))
+    for n in names:
+        for L in Ld:
+            cells = []
+            for e in Es:
+                c = dr[f'{n}|{L:g}|{e:g}']
+                cells.append(f"{c['nominal']}/{c['total']} · " + ('chegada' if c['stop_ok'] else f"FALSA ({c['false_stops']}×)"))
+            md.append(f'| {n} | {L:g} | ' + ' | '.join(cells) + ' |')
+    md.append('')
     md.append('### Curva à esquerda: folga do sensor direito até a borda da linha (mm)\n')
     md.append('| Raio | Ângulo | ' + ' | '.join(f'L {L:g}' for L in Lh) + ' |')
     md.append('|---:|---:|' + '---:|' * len(Lh))

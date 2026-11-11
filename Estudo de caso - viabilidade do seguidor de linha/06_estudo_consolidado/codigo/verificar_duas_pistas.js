@@ -1,4 +1,4 @@
-const {chromium}=require('playwright-core');
+let chromium;try{({chromium}=require('playwright-core'))}catch(e){({chromium}=require('playwright'))}
 const {pathToFileURL}=require('url');
 const path=require('path');
 const fs=require('fs');
@@ -15,21 +15,25 @@ const fs=require('fs');
   const url=pathToFileURL(path.resolve(html)).href;
   await page.goto(url,{waitUntil:'load'});
   const options=await page.locator('#course option').allTextContents();
-  if(options.length!==2||!options[0].includes('2025')||!options[1].includes('2024'))throw Error('Menu incorreto: '+JSON.stringify(options));
+  if(options.length!==3||!options[0].includes('2025')||!options[1].includes('2024 · sentido corrigido')||!options[2].includes('EVA-RT'))throw Error('Menu incorreto: '+JSON.stringify(options));
   if(await page.locator('#course').inputValue()!=='0')throw Error('2025 deve iniciar selecionada.');
   if(!await page.locator('#photoWarning').isVisible())throw Error('Falta aviso de pista hipotética.');
-  if(await page.locator('#preset').inputValue()!=='chassi_baixo_2')throw Error('O teste de chassi baixo deve iniciar selecionado.');
-  if(await page.locator('#scoreCommon').innerText()!=='33 / 33')throw Error('Região comum do novo chassi em 2025 incorreta.');
+  if(await page.locator('#preset').inputValue()!=='v3_l70')throw Error('A v3 com L 70 mm deve iniciar selecionada.');
+  if(await page.locator('#scoreNom').innerText()!=='33 / 33'||await page.locator('#scoreCommon').innerText()!=='33 / 33')throw Error('v3 L 70 em 2025 incorreta.');
+  if(await page.evaluate(()=>chassisMode!=='v3'||tracesL.length!==1||tracesR.length!==1))throw Error('A v3 inicial deve ter um sensor por lado.');
   if(await page.locator('#progress').inputValue()!=='0')throw Error('A simulação deve começar na posição inicial.');
+  await page.selectOption('#preset','chassi_baixo_2');
+  if(await page.locator('#scoreCommon').innerText()!=='33 / 33')throw Error('Região comum do novo chassi em 2025 incorreta.');
   const payload=await page.evaluate(()=>({tracks:DATA.tracks.length,marks:events.length,left:events.filter(e=>e.side===1).length,right:events.filter(e=>e.side===-1).length,sensors:[tracesL.length,tracesR.length]}));
-  if(JSON.stringify(payload)!==JSON.stringify({tracks:2,marks:33,left:31,right:2,sensors:[2,2]}))throw Error('Dados inesperados: '+JSON.stringify(payload));
+  if(JSON.stringify(payload)!==JSON.stringify({tracks:3,marks:33,left:31,right:2,sensors:[2,2]}))throw Error('Dados inesperados: '+JSON.stringify(payload));
   const geometry=await page.evaluate(()=>DATA.tracks.map(t=>({
     marks:t.marks.length,curveLeft:t.marks.filter(m=>m.kind==='curva'&&m.side===1).length,
     finishRight:t.marks.filter(m=>['partida','chegada'].includes(m.kind)&&m.side===-1).length,
     estimated:t.estimated.length,firstX:t.cycle[0][0],firstHeading:t.track[0][3],rotate:t.display_rotate
   })));
   if(geometry[0].marks!==33||geometry[0].curveLeft!==31||geometry[0].finishRight!==2||geometry[0].rotate||Math.sin(geometry[0].firstHeading)<.999)throw Error('Modelo 2025 inesperado: '+JSON.stringify(geometry[0]));
-  if(geometry[1].marks!==35||geometry[1].curveLeft!==33||geometry[1].finishRight!==2||!geometry[1].estimated||geometry[1].rotate||Math.abs(geometry[1].firstX-3150)>.01||Math.cos(geometry[1].firstHeading)>-.999)throw Error('Espelhamento ou lados de 2024 incorretos: '+JSON.stringify(geometry[1]));
+  if(geometry[1].marks!==35||geometry[1].curveLeft!==33||geometry[1].finishRight!==2||!geometry[1].estimated||geometry[1].rotate||Math.abs(geometry[1].firstX-150)>.01||Math.cos(geometry[1].firstHeading)<.999)throw Error('Sentido ou lados de 2024 incorretos: '+JSON.stringify(geometry[1]));
+  if(geometry[2].marks!==26||geometry[2].curveLeft!==24||geometry[2].finishRight!==2||geometry[2].rotate)throw Error('Pista EVA-RT inesperada: '+JSON.stringify(geometry[2]));
   const presets=await page.locator('#preset option').allTextContents();
   if(presets.some(s=>/dois QRE|três QRE|adicional/i.test(s)))throw Error('Há opções históricas de sensores adicionais fora do novo teste.');
   if(!presets.some(s=>s.includes('Chassi baixo')))throw Error('Falta a opção de chassi baixo.');
@@ -40,7 +44,7 @@ const fs=require('fs');
   const expected=JSON.parse(fs.readFileSync(path.join(__dirname,'..','dados','resultados_duas_pistas.json'),'utf8')).results;
   async function validateLow(course,preset='chassi_baixo_2'){
     await page.selectOption('#course',String(course));
-    const year=course===0?'2025':'2024',row=expected.find(r=>r.track===year&&r.preset===preset);
+    const year=['2025','2024','EVA-RT'][course],row=expected.find(r=>r.track===year&&r.preset===preset);
     if(!row)throw Error('Falta validação Python: '+year+'/'+preset);
     await page.selectOption('#preset','chassi_baixo_2');
     if(preset!=='chassi_baixo_2'){
@@ -62,11 +66,11 @@ const fs=require('fs');
     if(!observed.sides.includes(`Esquerda ${row.left_nominal}/${row.total-2}`)||!observed.sides.includes('Direita 2/2'))throw Error('Totais por lado incorretos.');
     if(await page.locator('#mount').evaluate(e=>e.classList.contains('danger')))throw Error('QRE válido marcado fora do contorno.');
   }
-  for(const course of [0,1]){
+  for(const course of [0,1,2]){
     await validateLow(course);
     if(process.env.ROBOT_SCREENSHOT_DIR){
       await page.click('#zoom');await page.selectOption('#mark','1');
-      await page.screenshot({path:path.join(process.env.ROBOT_SCREENSHOT_DIR,`chassi_dois_${course===0?'2025':'2024'}.png`),fullPage:true});
+      await page.screenshot({path:path.join(process.env.ROBOT_SCREENSHOT_DIR,`chassi_dois_${['2025','2024','eva_rt'][course]}.png`),fullPage:true});
       await page.click('#zoom');
     }
     await validateLow(course,'chassi_baixo_2_65');await validateLow(course,'chassi_baixo_2_70');
@@ -74,16 +78,19 @@ const fs=require('fs');
   await page.locator('#X').fill('110');
   await page.waitForFunction(()=>document.getElementById('mount').textContent.includes('fora do contorno'));
   if(await page.evaluate(()=>chassisMode)!=='low_two')throw Error('Personalizar X perdeu o contorno fixo.');
-  await check('holes',1,'21 / 35');
+  await check('holes',1,'20 / 35');
   if(await page.evaluate(()=>chassisMode!=='v3'||tracesL.length!==1||tracesR.length!==1))throw Error('Retorno ao v3 não restaurou os sensores.');
   if(process.env.ROBOT_SCREENSHOT_PATH)await page.screenshot({path:process.env.ROBOT_SCREENSHOT_PATH,fullPage:true});
-  await check('one_asym68',1,'20 / 35');await check('one_out1',1,'22 / 35');await check('one_60',1,'22 / 35');
+  await check('one_asym68',1,'20 / 35');await check('one_out1',1,'21 / 35');await check('one_60',1,'21 / 35');
+  await check('v3_l70',1,'35 / 35');await check('v3_l70',2,'26 / 26');await check('v3_l85',0,'30 / 33');await check('v3_l85',1,'35 / 35');await check('v3_l85',2,'25 / 26');
+  await check('eva_rt_original',1,'23 / 35');await check('eva_rt_original',0,'26 / 33');await check('eva_rt_original',2,'22 / 26');
+  for(const [c,cnt] of [[0,1],[1,1],[2,3]]){await page.selectOption('#course',String(c));await page.click('#crossing');for(let i=1;i<cnt;i++)await page.click('#crossing');if(!(await page.locator('#markDetail').innerText()).includes('Cruzamento '+cnt+(cnt>1?'/'+cnt:'')))throw Error('Navegação de cruzamentos falhou na pista '+c);}
   await check('holes',0,'24 / 33');if(!await page.locator('#photoWarning').isVisible())throw Error('Falta aviso fotográfico em 2025.');
   await check('one_asym68',0,'22 / 33');await check('one_out1',0,'24 / 33');await check('one_60',0,'24 / 33');
   await page.click('#crossing');if(!(await page.locator('#markDetail').innerText()).includes('caminho foi definido'))throw Error('Falta aviso do cruzamento de 2025.');
   await page.selectOption('#preset','holes');await page.selectOption('#barOffset','2');
   if(await page.locator('#scoreNom').innerText()!=='23 / 33')throw Error('Desvio fixo de 2025 divergente.');
-  await page.selectOption('#barOffset','0');await check('holes',1,'21 / 35');
+  await page.selectOption('#barOffset','0');await check('holes',1,'20 / 35');
   await page.click('#crossing');if(!(await page.locator('#markDetail').innerText()).includes('caminho foi definido'))throw Error('Falta aviso do cruzamento.');
   await page.click('#play');const old=await page.locator('#progress').inputValue();await page.waitForTimeout(600);const now=await page.locator('#progress').inputValue();if(old===now)throw Error('Animação não avançou.');await page.click('#play');
   await page.click('#restart');if(await page.locator('#progress').inputValue()!=='0')throw Error('Falha ao voltar ao início.');
@@ -91,7 +98,7 @@ const fs=require('fs');
   await page.setViewportSize({width:390,height:844});const sizes=await page.evaluate(()=>({window:innerWidth,body:document.documentElement.scrollWidth}));if(sizes.body>sizes.window)throw Error('Rolagem horizontal no celular.');
   if(process.env.ROBOT_SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.ROBOT_SCREENSHOT_DIR,'chassi_dois_mobile.png'),fullPage:true});
   const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto(url,{waitUntil:'load'});
-  if(!await nojs.locator('#fallback').isVisible()||await nojs.locator('#fallback svg').count()!==2)throw Error('Prévia estática sem duas pistas.');
+  if(!await nojs.locator('#fallback').isVisible()||await nojs.locator('#fallback svg').count()!==3)throw Error('Prévia estática sem três pistas.');
   if(errors.length)throw Error(errors.join('\n'));
   console.log(JSON.stringify({resultado:'ok',pistas:options,payload,testes:'chassi de quatro QRE em 60/65/70 mm contra validação Python por marca, contorno e recortes, contagem única, retorno ao v3, desvios, cruzamento, animação, tela estreita e prévia estática'}));
   }finally{await browser.close()}

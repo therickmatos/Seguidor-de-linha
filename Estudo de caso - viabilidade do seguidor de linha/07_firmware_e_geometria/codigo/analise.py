@@ -69,16 +69,46 @@ def load_tracks(step=0.5, names=None):
         crossings = meta.get('crossings')
         if crossings is None:
             crossings = [meta['crossing']]
-        crossings = [c['xy'] if isinstance(c, dict) else c for c in crossings]
+        crossings = [[c['x'], c['y']] if isinstance(c, dict) else c for c in crossings]
         out[name] = dict(track=np.asarray(track), cycle=np.asarray(cycle), marks=marks, meta=meta,
                          crossings=np.asarray(crossings, dtype=float).reshape(-1, 2),
                          tree=cKDTree(np.asarray(cycle)[:, 1:3]))
     return out
 
 
-def pose(track, L):
-    """Orientação do robô (RK4) com o centro da barra sobre a linha."""
+def drift_track(track, e100, lag=40.0):
+    """Trajetória do centro da barra quando o robô "abre" nas curvas.
+
+    Um PD sem integral precisa de erro para virar: em curva, a linha fica
+    deslocada para o lado de dentro da barra. Aqui o centro da barra é levado
+    para FORA da curva em e = e100 × (100 mm / raio), com atraso de 1ª ordem
+    de `lag` mm ao longo do percurso. e100 = 0 devolve a própria linha.
+    Devolve (track_novo, comprimento_real): a coluna 0 continua sendo a
+    posição ao longo da linha, para localizar marcas; o comprimento real da
+    trajetória deslocada serve para integrar a orientação.
+    """
+    if not e100:
+        return track, track[:, 0]
     s, phi = track[:, 0], np.unwrap(track[:, 3])
+    kappa = np.gradient(phi, s)
+    target = e100 * 100.0 * kappa
+    e = np.empty(len(s))
+    e[0] = target[0]
+    for i in range(1, len(s)):
+        a = 1.0 - math.exp(-(s[i] - s[i - 1]) / lag)
+        e[i] = e[i - 1] + a * (target[i] - e[i - 1])
+    x = track[:, 1] + e * np.sin(phi)        # −e · normal esquerda
+    y = track[:, 2] - e * np.cos(phi)
+    dx, dy = np.gradient(x), np.gradient(y)
+    out = track.copy()
+    out[:, 1], out[:, 2], out[:, 3] = x, y, np.unwrap(np.arctan2(dy, dx))
+    arc = np.r_[0.0, np.cumsum(np.hypot(np.diff(x), np.diff(y)))]
+    return out, arc
+
+
+def pose(track, L, arc=None):
+    """Orientação do robô (RK4) com o centro da barra sobre a trajetória dada."""
+    s, phi = (track[:, 0] if arc is None else arc), np.unwrap(track[:, 3])
     alpha = np.empty(len(track))
     alpha[0] = phi[0]
     a = float(phi[0])
@@ -147,6 +177,28 @@ def white_events(T, points, s, lo, hi, r=0.0):
     return events, float(dist.min())
 
 
+def _segment_hits(u, v, box):
+    """Algum segmento da polilinha (u, v) atravessa o retângulo? (Liang–Barsky vetorizado)
+
+    Equivale ao teste do estudo 06 (interseção de segmentos, não só de pontos
+    amostrados), para que as contagens coincidam com as do simulador.
+    """
+    half, inner, outer = box
+    u0, v0, du, dv = u[:-1], v[:-1], np.diff(u), np.diff(v)
+    lo, hi = np.zeros(len(du)), np.ones(len(du))
+    with np.errstate(divide='ignore', invalid='ignore'):
+        for p0, d, mn, mx in ((u0, du, -half, half), (v0, dv, inner, outer)):
+            a, b = (mn - p0) / d, (mx - p0) / d
+            tmin, tmax = np.minimum(a, b), np.maximum(a, b)
+            flat = np.abs(d) < 1e-12
+            inside = (p0 >= mn) & (p0 <= mx)
+            tmin = np.where(flat, np.where(inside, 0.0, 2.0), tmin)
+            tmax = np.where(flat, np.where(inside, 1.0, -1.0), tmax)
+            lo, hi = np.maximum(lo, tmin), np.minimum(hi, tmax)
+    length = (hi - lo) * np.hypot(du, dv)
+    return bool(np.any((hi > lo) & (length > 1e-8)))
+
+
 def marks_read(T, points_by_side, s, box=MARK):
     """Para cada marca: algum sensor do lado certo cruza o retângulo? (contagem do estudo 06)."""
     out = []
@@ -157,17 +209,20 @@ def marks_read(T, points_by_side, s, box=MARK):
             u, v = _mark_uv(pts[lo:hi], m)
             mg = np.minimum(np.minimum(box[0] - np.abs(u), v - box[1]), box[2] - v)
             margin = max(margin, float(mg.max()))
-            hit = hit or margin > 0
+            hit = hit or _segment_hits(u, v, box)
         out.append(dict(label=m['label'], kind=m['kind'], side=m['side'], hit=hit, margin=margin))
     return out
 
 
-def evaluate(T, L, left=(69.5,), right=(69.5,), y=4.5, r_false=3.0, alpha=None):
-    """Contagem de marcas + emulação do firmware para uma configuração."""
-    track = T['track']
+def evaluate(T, L, left=(69.5,), right=(69.5,), y=4.5, r_false=3.0, alpha=None, e100=0.0):
+    """Contagem de marcas + emulação do firmware para uma configuração.
+
+    e100 > 0: o centro da barra abre e100 mm numa curva de raio 100 (ver drift_track).
+    """
+    track, arc = drift_track(T['track'], e100)
     s = track[:, 0]
     if alpha is None:
-        alpha = pose(track, L)
+        alpha = pose(track, L, arc)
     paths = {1: [sensor_path(track, alpha, L, x, y) for x in left],
              -1: [sensor_path(track, alpha, L, -x, y) for x in right]}
     nominal = marks_read(T, paths, s, MARK)

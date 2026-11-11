@@ -1,4 +1,4 @@
-"""Gera o simulador local autocontido com somente os modelos TRIF 2025/2024."""
+"""Gera o simulador local autocontido com os modelos TRIF 2025, TRIF 2024 e pista de teste do EVA-RT."""
 import json
 import math
 import re
@@ -7,6 +7,7 @@ import numpy as np
 import simular_comparar as model
 import pista_trif2025 as track25
 import pista_c_regulamentar as track24
+import pista_eva_rt_teste as trackeva
 from chassi_dois_sensores import build_geometry
 
 HERE=Path(__file__).resolve().parent
@@ -17,15 +18,18 @@ STEP=.5
 def build_data():
     b,bcycle,bmarks,bmeta=track25.build(STEP)
     c,ccycle,cmarks,cmeta=track24.build(STEP)
+    e,ecycle,emarks,emeta=trackeva.build(STEP)
     specs=[
         (f'TRIF 2025 · modelo inspirado nas fotos · {len(bmarks)} marcas',b,bcycle,bmarks,bmeta,False),
-        (f'TRIF 2024 · modelo espelhado · {len(cmarks)} marcas',c,ccycle,cmarks,cmeta,True),
+        (f'TRIF 2024 · sentido corrigido · {len(cmarks)} marcas',c,ccycle,cmarks,cmeta,True),
+        (f'Pista de teste do EVA-RT · modelo aproximado da foto · {len(emarks)} marcas',e,ecycle,emarks,emeta,True),
     ]
     tracks=[]
     for name,track,cycle,marks,meta,is24 in specs:
         extra=dict(crossing=meta['crossing'],crossing_s=meta['crossing_s'],
                    crossing_second_s=meta['crossing_second_s'],photo=True,rule_based=True,
-                   display_rotate=False,estimated=meta['estimated'])
+                   display_rotate=False,estimated=meta['estimated'],
+                   crossings=meta.get('crossings') or [dict(x=meta['crossing'][0],y=meta['crossing'][1],s=meta['crossing_s'],second_s=meta['crossing_second_s'])])
         if is24:extra['mat']=meta['mat']
         points=np.vstack([cycle[::3,1:3],cycle[-1,1:3]])
         tracks.append(dict(name=name,track=track.round(5).tolist(),cycle=points.round(3).tolist(),
@@ -61,27 +65,28 @@ def static_svg(t,rotate=False):
     for segment in t.get('estimated',[]):
         q=' '.join(f'{x:.1f},{y:.1f}' for x,y in (project(*r) for r in segment[::2]))
         out.append(f'<polyline points="{q}" fill="none" stroke="#f9bf5d" stroke-width="8" stroke-dasharray="22 15"/>')
-    x,y=project(*t['crossing']);out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="28" fill="none" stroke="#6dceff" stroke-width="8"/>')
+    for c in t['crossings']:
+        x,y=project(c['x'],c['y']);out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="28" fill="none" stroke="#6dceff" stroke-width="8"/>')
     return ''.join(out)+'</svg>'
 
 
 def render(data):
     template=(HERE/'painel_template.html').read_text(encoding='utf8')
     template=template.replace('Duas pistas de teste, incluindo uma inspirada nas fotos do TRIF 2025. O ponto virtual central da barra permanece sobre a linha; ajuste as medidas e inspecione as marcas.',
-        'Dois modelos inspirados em fotografias e no rascunho do TRIF 2025. Compare o v3 original com o chassi baixo de dois sensores por lado; as pistas não são plantas oficiais.')
-    template=template.replace('Pista A · 19 marcas','TRIF 2025 · modelo inspirado nas fotos')
-    template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · modelo espelhado')
+        'Três modelos: TRIF 2025 e TRIF 2024 (inspirados em fotografias e rascunho) e a pista de teste do EVA-RT (reconstruída de um quadro de vídeo). Compare o v3 original, o EVA-RT original e o chassi baixo de dois sensores por lado; as pistas não são plantas oficiais.')
+    template=template.replace('Prévia das duas pistas','Prévia das pistas').replace('Pista A · 19 marcas','TRIF 2025 · modelo inspirado nas fotos')
+    template=template.replace('Pista B · inspirada no TRIF 2025','TRIF 2024 · sentido corrigido')
     template=template.replace('A pista B é uma aproximação das fotos; o traçado e as medidas exatas não foram fornecidos.',
-        'Ambas as pistas são aproximações: dimensões, trechos ocultos e marcas não reproduzem uma planta oficial.')
+        'As três pistas são aproximações: dimensões, trechos ocultos e marcas não reproduzem uma planta oficial.')
     template=template.replace('<strong>Pista C:</strong>','<strong>TRIF 2024:</strong>')
-    allowed={'holes','one_asym68','one_out1','one_out2','one_sym1','one_sym2','one_60','one_60_68','one_60_685','wide','chassi_baixo_2','custom'}
+    allowed={'v3_l70','v3_l85','eva_rt_original','holes','one_asym68','one_out1','one_out2','one_sym1','one_sym2','one_60','one_60_68','one_60_685','wide','chassi_baixo_2','custom'}
     def keep_options(match):
         return re.sub(r'<option value="([^"]+)"[^>]*>.*?</option>',lambda o:o.group(0) if o.group(1) in allowed else '',match.group(0))
     template=re.sub(r'<select id="preset">.*?</select>',keep_options,template,count=1,flags=re.S)
     details='''<details class="panel"><summary>Premissas, limites e como interpretar</summary>
     <ul>
-      <li>TRIF 2025: modelo revisado conforme o rascunho aéreo e as fotografias fornecidas. TRIF 2024: modelo espelhado a pedido do usuário. Nenhuma é planta oficial; a escala e as posições das marcas são estimadas.</li>
-      <li>Em ambos, faixa de 19 mm e marcas de 19 × 40 mm a 40 mm da borda; na esquerda ao mudar a curvatura, na direita para partida e chegada. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
+      <li>TRIF 2025: modelo revisado conforme o rascunho aéreo e as fotografias fornecidas. TRIF 2024: mesmo desenho de antes, percorrido no sentido corrigido (marcas regeradas pela regra). Pista do EVA-RT: modelo aproximado reconstruído de um quadro de vídeo (perspectiva retificada, escala ajustada para linha de 19 mm; trechos sob o robô e cortados pela borda da imagem são hipóteses; marcas geradas pela regra, não copiadas da foto). Nenhuma é planta oficial; a escala e as posições das marcas são estimadas.</li>
+      <li>Nos três, faixa de 19 mm e marcas de 19 × 40 mm a 40 mm da borda; na esquerda ao mudar a curvatura, na direita para partida e chegada. A conferência é geométrica; portas, aderência, desníveis e montagem real não foram certificados.</li>
       <li>Fitas nominais intersectadas conta o centro pontual do QRE ao atravessar o retângulo. A região comum é uma faixa mais conservadora, não uma probabilidade e não prova sinal óptico. Passagens curtas são destacadas.</li>
       <li>V3 original: um QRE esquerdo e um direito em X = ±69,5 mm e Y = 4,5 mm. O teste de chassi baixo usa dois por lado em X = ±52,25/±77,75 mm, Y = 20 mm e 60 mm entre furos; o contorno experimental preserva os 15 recortes mecânicos do v3. A distância entre furos não é L: L vai do eixo ao ponto central virtual da barra.</li>
       <li>No chassi com dois sensores, cada fita é contada uma única vez se algum sensor do lado correto a intersecta. A região comum usa o mesmo critério. Os sinais elétricos, a dupla contagem no firmware e a identificação do cruzamento não são simulados.</li>
@@ -104,15 +109,15 @@ def render(data):
     return (template.replace('/*__DADOS_DA_PISTA__*/',json.dumps(data,ensure_ascii=False,separators=(',',':')))
         .replace('<!--__PREVIA_PISTA_A__-->',static_svg(data['tracks'][0]))
         .replace('<!--__PREVIA_PISTA_B__-->',static_svg(data['tracks'][1]))
-        .replace('<!--__PREVIA_PISTA_C_FIGURE__-->',''))
+        .replace('<!--__PREVIA_PISTA_C_FIGURE__-->',f'<figure><figcaption>Pista de teste do EVA-RT · modelo aproximado</figcaption>{static_svg(data["tracks"][2])}</figure>'))
 
 
 def main():
-    data=build_data();assert len(data['tracks'])==2
+    data=build_data();assert len(data['tracks'])==3
     html=render(data)
     target=(HERE.parent/'simulador.html') if HERE.name=='codigo' else (HERE/'simulador_pista_foto.html')
     target.write_text(html,encoding='utf8',newline='\n')
-    print(f'Simulador: {target} ({len(html.encode("utf8"))} bytes); somente TRIF 2025 e 2024.')
+    print(f'Simulador: {target} ({len(html.encode("utf8"))} bytes); TRIF 2025, TRIF 2024 e pista do EVA-RT.')
 
 
 if __name__=='__main__':main()

@@ -19,6 +19,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Gravação: barra macho 1×5 90° 2,54 mm (+5V, GND, RX, TX, DTR) no centro da borda traseira, em cima; conversor CH340G com DTR. ICSP: 6 pads SMD embaixo, posições do EVA-RT.
 - Bluetooth opcional: fêmea 1×6 (ordem HC-05) na frente direita (x ≈ 32,5; y 0,7…13,4), divisor 1k/2k.
 - Barra de sensores: **V1 de 12 QRE1113 + 74HC4067** (Gerber em `hardware/barra_v1/`), ligada por barra de pinos **2,54 mm** na base (a barra tem passo de 2,0 mm → cabo misto). Distância barra–eixo L = 67–70 mm.
+- **L não é a distância entre furos.** L vai do eixo das rodas (y = −22,59) à linha dos sensores centrais da barra. Entre o furo da frente da base (y = 10,75) e o furo da barra V1: L = distância + 43,97 mm (L 70 ↔ 26 mm; L 100, igual ao EVA-RT ↔ 56 mm; 63,14 mm ↔ L 107,1).
 - Sensores de marca QRE1113GR nos braços em (±69,5; 4,5); esquerdo = curva (A5), direito = partida/chegada (A6). **Pinagem do QRE1113GR: 1 anodo, 2 catodo, 3 coletor, 4 emissor** — conferir no footprint.
 - Bateria GNB 350 mAh 2S (45 × 20,5 × 12 mm), XT30. 78M05 para 5 V.
 - Contorno definitivo: `hardware/contorno/EVA-RT_contorno_B_degraus.dxf` (148,2 × 57,6 mm, braços integrados, furo Ø17).
@@ -28,6 +29,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Esquemático rev 1.0 pronto: `hardware/seguidor_base/` (projeto KiCad, PDF, BOM, `REDES.md`).
 - **A fonte do esquemático é o KiCad**, gerado por `ferramentas/esquematico/gen.py` (feito com o Claude em outra sessão). Mudança no esquemático → editar o `gen.py` e regerar (passo a passo em `ferramentas/README.md`).
 - **Em andamento:** o Erick está importando o esquemático do KiCad no EasyEDA Pro para fazer o layout e encomendar na JLC. Conferir a importação rede por rede com `hardware/seguidor_base/REDES.md` (54 redes, 7 pinos sem ligação).
+- **11/11/2026, marcas do TRIF:** a v3 (`ProPrj_RUSH - SATURN - v3_2026-11-09.epro`, um QRE por lado em ±69,5; 4,5) lê todas as marcas dos modelos TRIF 2024/2025 e da pista de teste do EVA-RT com L = 70 mm; não precisa de chassi novo nem de dois sensores por lado. O firmware 1.2.2 não usa marcas de curva (o sensor esquerdo só veta a parada nos cruzamentos). Ver `Estudo de caso - viabilidade do seguidor de linha/07_firmware_e_geometria/README.md`. Em aberto: o Erick tinha preferido manter a distância do EVA-RT (L 100); a escolha entre L 70, 85 e 100 é dele e se faz na vareta, não na PCB.
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos
@@ -39,6 +41,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
+| `Estudo de caso - viabilidade do seguidor de linha/` | simulações das marcas do TRIF: `06_estudo_consolidado/` (simulador HTML com TRIF 2024, 2025 e pista de teste do EVA-RT) e `07_firmware_e_geometria/` (emulação de `Marks.ino`, varredura de L, recomendação) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
 
 ## Cuidados

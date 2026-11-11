@@ -1,0 +1,2818 @@
+{
+ "step_mm": 0.25,
+ "sensor_x": 69.5,
+ "sensor_y": 4.5,
+ "axle_y": -22.587743818986525,
+ "tracks": [
+  "TRIF 2025",
+  "TRIF 2024",
+  "EVA-RT teste"
+ ],
+ "note": "Conferência geométrica; não modela PID, óptica, derrapagem nem tempo.",
+ "configs": [
+  {
+   "track": "TRIF 2025",
+   "config": "v3 · 63,14 mm entre furos",
+   "L": 107.11535601056767,
+   "holes_front": 63.14099999999999,
+   "left": "22/31",
+   "left_common": "14/31",
+   "left_shift5": 19,
+   "right": "2/2",
+   "missed": [
+    "C06",
+    "C08",
+    "C12",
+    "C14",
+    "C16",
+    "C18",
+    "C19",
+    "C20",
+    "C29"
+   ],
+   "min_margin_left": -10.906332531939256,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.25,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     68,
+     822.5
+    ],
+    [
+     "cruzamento",
+     null,
+     9798,
+     0.2
+    ],
+    [
+     "cruzamento",
+     null,
+     14333,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     18497,
+     920.7
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "EVA-RT original (L 100)",
+   "L": 100.0,
+   "holes_front": 56.026416194048345,
+   "left": "24/31",
+   "left_common": "19/31",
+   "left_shift5": 23,
+   "right": "2/2",
+   "missed": [
+    "C06",
+    "C14",
+    "C16",
+    "C18",
+    "C19",
+    "C20",
+    "C29"
+   ],
+   "min_margin_left": -7.526348374278314,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.25,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     61,
+     821.5
+    ],
+    [
+     "cruzamento",
+     null,
+     9791,
+     0.2
+    ],
+    [
+     "cruzamento",
+     null,
+     14326,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     18490,
+     920.2
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "v3 · L 85",
+   "L": 85.0,
+   "holes_front": 41.02892152029249,
+   "left": "28/31",
+   "left_common": "23/31",
+   "left_shift5": 28,
+   "right": "2/2",
+   "missed": [
+    "C06",
+    "C16",
+    "C29"
+   ],
+   "min_margin_left": -0.3268540687540735,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.0,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     46,
+     819.7
+    ],
+    [
+     "cruzamento",
+     null,
+     9775,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     14311,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     18475,
+     919.2
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "v3 · L 80",
+   "L": 80.0,
+   "holes_front": 36.03022015347929,
+   "left": "31/31",
+   "left_common": "28/31",
+   "left_shift5": 28,
+   "right": "2/2",
+   "missed": [],
+   "min_margin_left": 2.2781738621035856,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.0,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     41,
+     819.2
+    ],
+    [
+     "cruzamento",
+     null,
+     9770,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     14306,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     18470,
+     918.7
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "v3 · L 70",
+   "L": 70.0,
+   "holes_front": 26.034313716476486,
+   "left": "31/31",
+   "left_common": "31/31",
+   "left_shift5": 31,
+   "right": "2/2",
+   "missed": [],
+   "min_margin_left": 8.257537000947195,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.0,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     31,
+     818.2
+    ],
+    [
+     "cruzamento",
+     null,
+     9760,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     14296,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     18460,
+     918.2
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "v3 · 63,14 mm entre furos",
+   "L": 107.11535601056767,
+   "holes_front": 63.14099999999999,
+   "left": "18/33",
+   "left_common": "17/33",
+   "left_shift5": 19,
+   "right": "2/2",
+   "missed": [
+    "C02",
+    "C04",
+    "C06",
+    "C08",
+    "C10",
+    "C12",
+    "C14",
+    "C16",
+    "C18",
+    "C20",
+    "C22",
+    "C24",
+    "C27",
+    "C29",
+    "C33"
+   ],
+   "min_margin_left": -4.982406378705491,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.75,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     68,
+     764.0
+    ],
+    [
+     "cruzamento",
+     null,
+     9353,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     11560,
+     0.8
+    ],
+    [
+     "chegada",
+     "Chegada",
+     19080,
+     1471.7
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "EVA-RT original (L 100)",
+   "L": 100.0,
+   "holes_front": 56.026416194048345,
+   "left": "21/33",
+   "left_common": "17/33",
+   "left_shift5": 21,
+   "right": "2/2",
+   "missed": [
+    "C02",
+    "C04",
+    "C06",
+    "C10",
+    "C12",
+    "C14",
+    "C16",
+    "C18",
+    "C20",
+    "C22",
+    "C27",
+    "C33"
+   ],
+   "min_margin_left": -2.185021103944109,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.5,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     60,
+     761.5
+    ],
+    [
+     "cruzamento",
+     null,
+     9345,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     11553,
+     0.5
+    ],
+    [
+     "chegada",
+     "Chegada",
+     19072,
+     1264.0
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "v3 · L 85",
+   "L": 85.0,
+   "holes_front": 41.02892152029249,
+   "left": "33/33",
+   "left_common": "23/33",
+   "left_shift5": 23,
+   "right": "2/2",
+   "missed": [],
+   "min_margin_left": 3.6100830331633915,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.25,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     46,
+     757.0
+    ],
+    [
+     "cruzamento",
+     null,
+     9330,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     11538,
+     0.2
+    ],
+    [
+     "chegada",
+     "Chegada",
+     19057,
+     1294.0
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "v3 · L 80",
+   "L": 80.0,
+   "holes_front": 36.03022015347929,
+   "left": "33/33",
+   "left_common": "23/33",
+   "left_shift5": 33,
+   "right": "2/2",
+   "missed": [],
+   "min_margin_left": 5.449172312154133,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.0,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     40,
+     755.7
+    ],
+    [
+     "cruzamento",
+     null,
+     9325,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     11532,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     19052,
+     1293.0
+    ]
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "v3 · L 70",
+   "L": 70.0,
+   "holes_front": 26.034313716476486,
+   "left": "33/33",
+   "left_common": "33/33",
+   "left_shift5": 33,
+   "right": "2/2",
+   "missed": [],
+   "min_margin_left": 9.045343136221163,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 2,
+   "max_crossing_gap": 0.0,
+   "first_stop": {
+    "10": "chegada",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     30,
+     753.5
+    ],
+    [
+     "cruzamento",
+     null,
+     9315,
+     0.0
+    ],
+    [
+     "cruzamento",
+     null,
+     11522,
+     0.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     19042,
+     1291.0
+    ]
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "v3 · 63,14 mm entre furos",
+   "L": 107.11535601056767,
+   "holes_front": 63.14099999999999,
+   "left": "18/24",
+   "left_common": "13/24",
+   "left_shift5": 13,
+   "right": "2/2",
+   "missed": [
+    "C08",
+    "C12",
+    "C14",
+    "C16",
+    "C18",
+    "C24"
+   ],
+   "min_margin_left": -15.310380116327039,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 6,
+   "max_crossing_gap": 55.44756075324767,
+   "first_stop": {
+    "10": "linha",
+    "30": "linha",
+    "60": "linha"
+   },
+   "false_stops": {
+    "10": [
+     [
+      "linha",
+      3518
+     ],
+     [
+      "cruzamento",
+      3888
+     ],
+     [
+      "cruzamento",
+      4364
+     ],
+     [
+      "linha",
+      4736
+     ],
+     [
+      "cruzamento",
+      4920
+     ],
+     [
+      "linha",
+      6201
+     ],
+     [
+      "linha",
+      8407
+     ],
+     [
+      "linha",
+      9367
+     ]
+    ],
+    "30": [
+     [
+      "linha",
+      3518
+     ],
+     [
+      "cruzamento",
+      3888
+     ],
+     [
+      "cruzamento",
+      4364
+     ],
+     [
+      "linha",
+      4736
+     ],
+     [
+      "cruzamento",
+      4920
+     ],
+     [
+      "linha",
+      6201
+     ],
+     [
+      "linha",
+      8407
+     ],
+     [
+      "linha",
+      9367
+     ]
+    ],
+    "60": [
+     [
+      "linha",
+      3518
+     ],
+     [
+      "linha",
+      4736
+     ],
+     [
+      "linha",
+      6201
+     ],
+     [
+      "linha",
+      8407
+     ],
+     [
+      "linha",
+      9367
+     ]
+    ]
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     68,
+     111.2
+    ],
+    [
+     "cruzamento",
+     null,
+     2783,
+     1.0
+    ],
+    [
+     "cruzamento",
+     null,
+     2986,
+     1.8
+    ],
+    [
+     "cruzamento",
+     null,
+     3190,
+     1.2
+    ],
+    [
+     "linha",
+     null,
+     3518,
+     87.7
+    ],
+    [
+     "cruzamento",
+     null,
+     3888,
+     55.4
+    ],
+    [
+     "cruzamento",
+     null,
+     4364,
+     40.5
+    ],
+    [
+     "linha",
+     null,
+     4736,
+     141.2
+    ],
+    [
+     "cruzamento",
+     null,
+     4920,
+     43.7
+    ],
+    [
+     "linha",
+     null,
+     6201,
+     90.7
+    ],
+    [
+     "linha",
+     null,
+     8407,
+     102.0
+    ],
+    [
+     "linha",
+     null,
+     9367,
+     69.2
+    ],
+    [
+     "chegada",
+     "Chegada",
+     10535,
+     483.6
+    ]
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "EVA-RT original (L 100)",
+   "L": 100.0,
+   "holes_front": 56.026416194048345,
+   "left": "20/24",
+   "left_common": "14/24",
+   "left_shift5": 16,
+   "right": "2/2",
+   "missed": [
+    "C12",
+    "C14",
+    "C16",
+    "C24"
+   ],
+   "min_margin_left": -11.108862730336071,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 6,
+   "max_crossing_gap": 44.45795411746985,
+   "first_stop": {
+    "10": "linha",
+    "30": "linha",
+    "60": "linha"
+   },
+   "false_stops": {
+    "10": [
+     [
+      "linha",
+      3602
+     ],
+     [
+      "cruzamento",
+      3880
+     ],
+     [
+      "cruzamento",
+      4361
+     ],
+     [
+      "cruzamento",
+      4912
+     ],
+     [
+      "linha",
+      8496
+     ]
+    ],
+    "30": [
+     [
+      "linha",
+      3602
+     ],
+     [
+      "cruzamento",
+      3880
+     ],
+     [
+      "cruzamento",
+      4361
+     ],
+     [
+      "cruzamento",
+      4912
+     ],
+     [
+      "linha",
+      8496
+     ]
+    ],
+    "60": [
+     [
+      "linha",
+      3602
+     ],
+     [
+      "linha",
+      8496
+     ]
+    ]
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     61,
+     109.5
+    ],
+    [
+     "cruzamento",
+     null,
+     2776,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     2979,
+     1.8
+    ],
+    [
+     "cruzamento",
+     null,
+     3183,
+     1.2
+    ],
+    [
+     "linha",
+     null,
+     3602,
+     88.5
+    ],
+    [
+     "cruzamento",
+     null,
+     3880,
+     44.5
+    ],
+    [
+     "cruzamento",
+     null,
+     4361,
+     35.0
+    ],
+    [
+     "cruzamento",
+     null,
+     4912,
+     38.0
+    ],
+    [
+     "linha",
+     null,
+     8496,
+     181.7
+    ],
+    [
+     "linha",
+     null,
+     9455,
+     9.2
+    ],
+    [
+     "chegada",
+     "Chegada",
+     10527,
+     490.6
+    ]
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "v3 · L 85",
+   "L": 85.0,
+   "holes_front": 41.02892152029249,
+   "left": "23/24",
+   "left_common": "20/24",
+   "left_shift5": 22,
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin_left": -2.8089985158033954,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 6,
+   "max_crossing_gap": 28.972599312510283,
+   "first_stop": {
+    "10": "cruzamento",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [
+     [
+      "cruzamento",
+      3861
+     ],
+     [
+      "cruzamento",
+      4353
+     ],
+     [
+      "cruzamento",
+      4895
+     ]
+    ],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     46,
+     105.7
+    ],
+    [
+     "cruzamento",
+     null,
+     2761,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     2964,
+     1.8
+    ],
+    [
+     "cruzamento",
+     null,
+     3168,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     3861,
+     29.0
+    ],
+    [
+     "cruzamento",
+     null,
+     4353,
+     24.7
+    ],
+    [
+     "cruzamento",
+     null,
+     4895,
+     27.7
+    ],
+    [
+     "chegada",
+     "Chegada",
+     10509,
+     259.9
+    ]
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "v3 · L 80",
+   "L": 80.0,
+   "holes_front": 36.03022015347929,
+   "left": "23/24",
+   "left_common": "22/24",
+   "left_shift5": 22,
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin_left": -0.28919628917925877,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 6,
+   "max_crossing_gap": 24.976378717679836,
+   "first_stop": {
+    "10": "cruzamento",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [
+     [
+      "cruzamento",
+      3855
+     ],
+     [
+      "cruzamento",
+      4351
+     ],
+     [
+      "cruzamento",
+      4889
+     ]
+    ],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     41,
+     104.7
+    ],
+    [
+     "cruzamento",
+     null,
+     2756,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     2959,
+     1.8
+    ],
+    [
+     "cruzamento",
+     null,
+     3163,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     3855,
+     25.0
+    ],
+    [
+     "cruzamento",
+     null,
+     4351,
+     21.5
+    ],
+    [
+     "cruzamento",
+     null,
+     4889,
+     24.5
+    ],
+    [
+     "chegada",
+     "Chegada",
+     10503,
+     243.9
+    ]
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "v3 · L 70",
+   "L": 70.0,
+   "holes_front": 26.034313716476486,
+   "left": "24/24",
+   "left_common": "24/24",
+   "left_shift5": 24,
+   "right": "2/2",
+   "missed": [],
+   "min_margin_left": 4.434270368183199,
+   "start_read": true,
+   "finish_read": true,
+   "crossings": 6,
+   "max_crossing_gap": 18.987397959186637,
+   "first_stop": {
+    "10": "cruzamento",
+    "30": "chegada",
+    "60": "chegada"
+   },
+   "false_stops": {
+    "10": [
+     [
+      "cruzamento",
+      3843
+     ],
+     [
+      "cruzamento",
+      4344
+     ],
+     [
+      "cruzamento",
+      4877
+     ]
+    ],
+    "30": [],
+    "60": []
+   },
+   "right_events": [
+    [
+     "partida",
+     "Partida",
+     31,
+     103.0
+    ],
+    [
+     "cruzamento",
+     null,
+     2746,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     2949,
+     1.8
+    ],
+    [
+     "cruzamento",
+     null,
+     3153,
+     1.2
+    ],
+    [
+     "cruzamento",
+     null,
+     3843,
+     18.5
+    ],
+    [
+     "cruzamento",
+     null,
+     4344,
+     16.0
+    ],
+    [
+     "cruzamento",
+     null,
+     4877,
+     19.0
+    ],
+    [
+     "chegada",
+     "Chegada",
+     10492,
+     216.2
+    ]
+   ]
+  }
+ ],
+ "sweep_L_Y": {
+  "60|4.5": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.242564043369388
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.265632847885847
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 8.559610909304858
+   }
+  },
+  "60|10": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.278642920321094
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.21968317801997
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 9.083993683498989
+   }
+  },
+  "60|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.250672616858541
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.205968956814097
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 9.193274375922583
+   }
+  },
+  "60|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.272357932462896
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.26820432883688
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 7.726715945734817
+   }
+  },
+  "60|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.237614234620654
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.26139447636228
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 3.2698958378747918
+   }
+  },
+  "65|4.5": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.268018552043031
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.263817738137284
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 6.55141757775197
+   }
+  },
+  "65|10": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.251299182203468
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.23092166457264
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 7.067883354167151
+   }
+  },
+  "65|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.279755515703755
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.230974214395694
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 7.651568134066155
+   }
+  },
+  "65|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.263022997082775
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.217873505249365
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 8.254557210196907
+   }
+  },
+  "65|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.278512757870434
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.254637592932347
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 4.181313591635089
+   }
+  },
+  "70|4.5": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 8.255908282438895
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.045343136211159
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 4.37020188342035
+   }
+  },
+  "70|10": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.224472789372161
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.312476769693141
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 4.882060348341163
+   }
+  },
+  "70|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.231394870437725
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.288905148608027
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 5.471972244462485
+   }
+  },
+  "70|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.21080014427525
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.265406076955859
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 6.04170995182168
+   }
+  },
+  "70|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.20267639165559
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.281416700176575
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 4.9967686489323455
+   }
+  },
+  "75|4.5": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 28,
+    "total": 31,
+    "right": 2,
+    "min_margin": 5.340877564603716
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 7.239985878895823
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": 2.1526653571314114
+   }
+  },
+  "75|10": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 8.001011728628782
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 7.862571565027338
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": 2.583911405564642
+   }
+  },
+  "75|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 8.40636611635
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 8.269379915232093
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 3.113101045607152
+   }
+  },
+  "75|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 8.897361931489286
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 8.762391604467439
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 3.69612522807493
+   }
+  },
+  "75|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 9.200672292728996
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 9.221626868939884
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 24,
+    "total": 24,
+    "right": 2,
+    "min_margin": 4.461630593614693
+   }
+  },
+  "80|4.5": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 28,
+    "total": 31,
+    "right": 2,
+    "min_margin": 2.2781738620919896
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 23,
+    "total": 33,
+    "right": 2,
+    "min_margin": 5.4219703650055635
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -0.29998589549532895
+   }
+  },
+  "80|10": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 28,
+    "total": 31,
+    "right": 2,
+    "min_margin": 6.072489630967311
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 6.161985613828165
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": 0.1487240045195506
+   }
+  },
+  "80|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 6.850355241310808
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 6.558954920996484
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": 0.647846415539922
+   }
+  },
+  "80|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 7.325667670522307
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 7.038366636952787
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": 1.2728930655376516
+   }
+  },
+  "80|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 7.889016472772255
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 7.606891274972099
+   },
+   "EVA-RT teste": {
+    "nominal": 24,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": 1.9191083718630821
+   }
+  },
+  "85|4.5": {
+   "TRIF 2025": {
+    "nominal": 28,
+    "common": 23,
+    "total": 31,
+    "right": 2,
+    "min_margin": -0.32807628992350146
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 23,
+    "total": 33,
+    "right": 2,
+    "min_margin": 3.579466449870324
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 20,
+    "total": 24,
+    "right": 2,
+    "min_margin": -2.883715121002737
+   }
+  },
+  "85|10": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 26,
+    "total": 31,
+    "right": 2,
+    "min_margin": 2.916929647404004
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 23,
+    "total": 33,
+    "right": 2,
+    "min_margin": 4.354068817984398
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -2.3731597379622684
+   }
+  },
+  "85|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 5.3303164262542815
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 4.743160860068997
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -1.9375276387270048
+   }
+  },
+  "85|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 5.782035843101308
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 5.211532762068828
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -1.3360908248227386
+   }
+  },
+  "85|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 6.3012883129213115
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 5.765266563380692
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 23,
+    "total": 24,
+    "right": 2,
+    "min_margin": -0.6273968249609467
+   }
+  },
+  "90|4.5": {
+   "TRIF 2025": {
+    "nominal": 28,
+    "common": 23,
+    "total": 31,
+    "right": 2,
+    "min_margin": -2.7590813332357698
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 21,
+    "total": 33,
+    "right": 2,
+    "min_margin": 1.7041971167759584
+   },
+   "EVA-RT teste": {
+    "nominal": 21,
+    "common": 19,
+    "total": 24,
+    "right": 2,
+    "min_margin": -5.5412030910546335
+   }
+  },
+  "90|10": {
+   "TRIF 2025": {
+    "nominal": 28,
+    "common": 23,
+    "total": 31,
+    "right": 2,
+    "min_margin": -0.36010428994609356
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 21,
+    "total": 33,
+    "right": 2,
+    "min_margin": 2.5468883283515424
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 21,
+    "total": 24,
+    "right": 2,
+    "min_margin": -5.0276511903913885
+   }
+  },
+  "90|15": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 23,
+    "total": 31,
+    "right": 2,
+    "min_margin": 3.314819484537111
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 21,
+    "total": 33,
+    "right": 2,
+    "min_margin": 2.928734197224003
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -4.597057909871573
+   }
+  },
+  "90|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 30,
+    "total": 31,
+    "right": 2,
+    "min_margin": 4.167397802844334
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 23,
+    "total": 33,
+    "right": 2,
+    "min_margin": 3.386887236719417
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -4.073508690637986
+   }
+  },
+  "90|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 31,
+    "total": 31,
+    "right": 2,
+    "min_margin": 4.695714983209655
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 33,
+    "total": 33,
+    "right": 2,
+    "min_margin": 3.9269170296738594
+   },
+   "EVA-RT teste": {
+    "nominal": 23,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -3.380446656890644
+   }
+  },
+  "95|4.5": {
+   "TRIF 2025": {
+    "nominal": 28,
+    "common": 22,
+    "total": 31,
+    "right": 2,
+    "min_margin": -5.163197890438369
+   },
+   "TRIF 2024": {
+    "nominal": 30,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -0.2099110083827327
+   },
+   "EVA-RT teste": {
+    "nominal": 21,
+    "common": 17,
+    "total": 24,
+    "right": 2,
+    "min_margin": -8.317634717202374
+   }
+  },
+  "95|10": {
+   "TRIF 2025": {
+    "nominal": 28,
+    "common": 22,
+    "total": 31,
+    "right": 2,
+    "min_margin": -3.4035629498930575
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 18,
+    "total": 33,
+    "right": 2,
+    "min_margin": 0.5322740413184874
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 19,
+    "total": 24,
+    "right": 2,
+    "min_margin": -7.81508316377203
+   }
+  },
+  "95|15": {
+   "TRIF 2025": {
+    "nominal": 29,
+    "common": 22,
+    "total": 31,
+    "right": 2,
+    "min_margin": -0.044386848238445964
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 18,
+    "total": 33,
+    "right": 2,
+    "min_margin": 0.9093006159812376
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 20,
+    "total": 24,
+    "right": 2,
+    "min_margin": -7.372289011076617
+   }
+  },
+  "95|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 22,
+    "total": 31,
+    "right": 2,
+    "min_margin": 2.495344784491408
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 19,
+    "total": 33,
+    "right": 2,
+    "min_margin": 1.360344720562125
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -6.8543496292767045
+   }
+  },
+  "95|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 27,
+    "total": 31,
+    "right": 2,
+    "min_margin": 3.010011737751938
+   },
+   "TRIF 2024": {
+    "nominal": 33,
+    "common": 21,
+    "total": 33,
+    "right": 2,
+    "min_margin": 1.8905457690079857
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 22,
+    "total": 24,
+    "right": 2,
+    "min_margin": -6.240349699860722
+   }
+  },
+  "100|4.5": {
+   "TRIF 2025": {
+    "nominal": 24,
+    "common": 19,
+    "total": 31,
+    "right": 2,
+    "min_margin": -7.531634390987165
+   },
+   "TRIF 2024": {
+    "nominal": 21,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -2.227645483037122
+   },
+   "EVA-RT teste": {
+    "nominal": 20,
+    "common": 14,
+    "total": 24,
+    "right": 2,
+    "min_margin": -11.193175913684257
+   }
+  },
+  "100|10": {
+   "TRIF 2025": {
+    "nominal": 26,
+    "common": 20,
+    "total": 31,
+    "right": 2,
+    "min_margin": -6.028888644649442
+   },
+   "TRIF 2024": {
+    "nominal": 22,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -1.4685462161203304
+   },
+   "EVA-RT teste": {
+    "nominal": 21,
+    "common": 18,
+    "total": 24,
+    "right": 2,
+    "min_margin": -10.697945723085482
+   }
+  },
+  "100|15": {
+   "TRIF 2025": {
+    "nominal": 28,
+    "common": 20,
+    "total": 31,
+    "right": 2,
+    "min_margin": -3.507977366643672
+   },
+   "TRIF 2024": {
+    "nominal": 22,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -1.1088276502746286
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 19,
+    "total": 24,
+    "right": 2,
+    "min_margin": -10.243868078310399
+   }
+  },
+  "100|20": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 21,
+    "total": 31,
+    "right": 2,
+    "min_margin": 0.3352668313241338
+   },
+   "TRIF 2024": {
+    "nominal": 32,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -0.7354190334892738
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 20,
+    "total": 24,
+    "right": 2,
+    "min_margin": -9.729710709417454
+   }
+  },
+  "100|25": {
+   "TRIF 2025": {
+    "nominal": 31,
+    "common": 22,
+    "total": 31,
+    "right": 2,
+    "min_margin": 1.3012370899868984
+   },
+   "TRIF 2024": {
+    "nominal": 32,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -0.24465545184887105
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 20,
+    "total": 24,
+    "right": 2,
+    "min_margin": -9.121964208332145
+   }
+  },
+  "107.1|4.5": {
+   "TRIF 2025": {
+    "nominal": 22,
+    "common": 14,
+    "total": 31,
+    "right": 2,
+    "min_margin": -10.885582147539935
+   },
+   "TRIF 2024": {
+    "nominal": 18,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -4.975313106966496
+   },
+   "EVA-RT teste": {
+    "nominal": 18,
+    "common": 13,
+    "total": 24,
+    "right": 2,
+    "min_margin": -15.347897660070942
+   }
+  },
+  "107.1|10": {
+   "TRIF 2025": {
+    "nominal": 22,
+    "common": 14,
+    "total": 31,
+    "right": 2,
+    "min_margin": -9.657751031234511
+   },
+   "TRIF 2024": {
+    "nominal": 18,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -4.58017645636391
+   },
+   "EVA-RT teste": {
+    "nominal": 21,
+    "common": 14,
+    "total": 24,
+    "right": 2,
+    "min_margin": -14.990816566036777
+   }
+  },
+  "107.1|15": {
+   "TRIF 2025": {
+    "nominal": 22,
+    "common": 16,
+    "total": 31,
+    "right": 2,
+    "min_margin": -7.9588950596715335
+   },
+   "TRIF 2024": {
+    "nominal": 19,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -4.257556391384583
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 15,
+    "total": 24,
+    "right": 2,
+    "min_margin": -14.564809907072707
+   }
+  },
+  "107.1|20": {
+   "TRIF 2025": {
+    "nominal": 23,
+    "common": 17,
+    "total": 31,
+    "right": 2,
+    "min_margin": -4.709704186998806
+   },
+   "TRIF 2024": {
+    "nominal": 20,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -3.8191956308185127
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 19,
+    "total": 24,
+    "right": 2,
+    "min_margin": -14.009042383786003
+   }
+  },
+  "107.1|25": {
+   "TRIF 2025": {
+    "nominal": 26,
+    "common": 19,
+    "total": 31,
+    "right": 2,
+    "min_margin": -1.097848424381482
+   },
+   "TRIF 2024": {
+    "nominal": 20,
+    "common": 17,
+    "total": 33,
+    "right": 2,
+    "min_margin": -3.3071542887238365
+   },
+   "EVA-RT teste": {
+    "nominal": 22,
+    "common": 20,
+    "total": 24,
+    "right": 2,
+    "min_margin": -13.372177969966796
+   }
+  }
+ },
+ "drift_sensitivity": {
+  "TRIF 2025|107.1|0": {
+   "nominal": 22,
+   "common": 14,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|107.1|10": {
+   "nominal": 26,
+   "common": 19,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|107.1|20": {
+   "nominal": 31,
+   "common": 22,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|107.1|30": {
+   "nominal": 31,
+   "common": 29,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|100|0": {
+   "nominal": 24,
+   "common": 19,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|100|10": {
+   "nominal": 28,
+   "common": 22,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|100|20": {
+   "nominal": 31,
+   "common": 29,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|100|30": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|85|0": {
+   "nominal": 28,
+   "common": 23,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|85|10": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|85|20": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|85|30": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|70|0": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|70|10": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|70|20": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2025|70|30": {
+   "nominal": 31,
+   "common": 31,
+   "total": 31,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|107.1|0": {
+   "nominal": 18,
+   "common": 17,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|107.1|10": {
+   "nominal": 21,
+   "common": 17,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|107.1|20": {
+   "nominal": 33,
+   "common": 19,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|107.1|30": {
+   "nominal": 33,
+   "common": 21,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|100|0": {
+   "nominal": 21,
+   "common": 17,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|100|10": {
+   "nominal": 33,
+   "common": 18,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|100|20": {
+   "nominal": 33,
+   "common": 22,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|100|30": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|85|0": {
+   "nominal": 33,
+   "common": 23,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|85|10": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|85|20": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|85|30": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|70|0": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|70|10": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|70|20": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "TRIF 2024|70|30": {
+   "nominal": 33,
+   "common": 33,
+   "total": 33,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|107.1|0": {
+   "nominal": 18,
+   "common": 13,
+   "total": 24,
+   "right": 2,
+   "stop_ok": false,
+   "false_stops": 8
+  },
+  "EVA-RT teste|107.1|10": {
+   "nominal": 21,
+   "common": 17,
+   "total": 24,
+   "right": 2,
+   "stop_ok": false,
+   "false_stops": 3
+  },
+  "EVA-RT teste|107.1|20": {
+   "nominal": 23,
+   "common": 18,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|107.1|30": {
+   "nominal": 24,
+   "common": 22,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|100|0": {
+   "nominal": 20,
+   "common": 14,
+   "total": 24,
+   "right": 2,
+   "stop_ok": false,
+   "false_stops": 5
+  },
+  "EVA-RT teste|100|10": {
+   "nominal": 21,
+   "common": 17,
+   "total": 24,
+   "right": 2,
+   "stop_ok": false,
+   "false_stops": 1
+  },
+  "EVA-RT teste|100|20": {
+   "nominal": 23,
+   "common": 23,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|100|30": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|85|0": {
+   "nominal": 23,
+   "common": 20,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|85|10": {
+   "nominal": 24,
+   "common": 23,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|85|20": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|85|30": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|70|0": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|70|10": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|70|20": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  },
+  "EVA-RT teste|70|30": {
+   "nominal": 24,
+   "common": 24,
+   "total": 24,
+   "right": 2,
+   "stop_ok": true,
+   "false_stops": 0
+  }
+ },
+ "hairpin_right_sensor_clearance_mm": {
+  "100|90": {
+   "70": 40.02186809095463,
+   "80": 34.58661071280308,
+   "85": 31.786821139858503,
+   "90": 28.941325912195545,
+   "95": 26.056224047012925,
+   "100": 23.136050308010724,
+   "107.1": 18.9372686411221
+  },
+  "100|180": {
+   "70": 35.27678455231271,
+   "80": 26.504225633561653,
+   "85": 21.670328451688782,
+   "90": 16.552253393224944,
+   "95": 11.161230650896638,
+   "100": 5.507049402697316,
+   "107.1": -2.9516876192863952
+  },
+  "110|90": {
+   "70": 41.3605796673501,
+   "80": 36.119911608302026,
+   "85": 33.40746020050177,
+   "90": 30.64373485415807,
+   "95": 27.83496661522549,
+   "100": 24.986015009328064,
+   "107.1": 20.880732692695343
+  },
+  "110|180": {
+   "70": 37.86947887418654,
+   "80": 29.943242321540495,
+   "85": 25.555063552589615,
+   "90": 20.89374273927793,
+   "95": 15.968131167783902,
+   "100": 10.78712774089976,
+   "107.1": 3.0094602099055887
+  },
+  "120|90": {
+   "70": 42.57349112800801,
+   "80": 37.52708645471783,
+   "85": 34.90256151762968,
+   "90": 32.221251523284714,
+   "95": 29.48954120531745,
+   "100": 26.713480918635106,
+   "107.1": 22.703920803013233
+  },
+  "120|180": {
+   "70": 39.99985252617146,
+   "80": 32.79912278251203,
+   "85": 28.797954262424135,
+   "90": 24.536755115037337,
+   "95": 20.02195367998194,
+   "100": 15.260304271413801,
+   "107.1": 8.089494837995328
+  },
+  "150|90": {
+   "70": 45.57619108480998,
+   "80": 41.092289501859675,
+   "85": 38.728048405015976,
+   "90": 36.293352493185715,
+   "95": 33.795261234554715,
+   "100": 31.24008943639783,
+   "107.1": 27.52459491944569
+  },
+  "150|180": {
+   "70": 44.53037556308753,
+   "80": 38.951255477868436,
+   "85": 35.835451145939906,
+   "90": 32.50203681866887,
+   "95": 28.951654607628825,
+   "100": 25.18655935325777,
+   "107.1": 19.47711992916141
+  }
+ }
+}

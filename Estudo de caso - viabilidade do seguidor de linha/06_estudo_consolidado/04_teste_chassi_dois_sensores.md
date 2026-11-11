@@ -1,11 +1,11 @@
 # Teste do chassi baixo com dois sensores por lado
 
-O [simulador](simulador.html) abre com a configuração **Chassi baixo · 2 sensores por lado · furos 60 mm**. São quatro sensores de marcas ao todo, além da barra frontal que acompanha a linha.
+No [simulador](simulador.html), selecione a configuração **Chassi baixo · 2 sensores por lado · furos 60 mm** (desde 11/11/2026 ele abre com a v3 atual em L 70 mm; veja a [análise do firmware e da geometria](../07_firmware_e_geometria/README.md)). São quatro sensores de marcas ao todo, além da barra frontal que acompanha a linha.
 
 ## Como testar
 
 1. Baixe o HTML e abra-o no Chrome ou Edge. A página de código do GitHub não executa o simulador.
-2. Escolha **TRIF 2025** ou **TRIF 2024** em **Pista de teste**.
+2. Escolha **TRIF 2025**, **TRIF 2024 · sentido corrigido** ou **Pista de teste do EVA-RT** em **Pista de teste**.
 3. Clique em **Simular percurso** para animar a passagem. Use **Próxima marca**, **Inspecionar marca** e **Ver detalhe** para examinar cada fita.
 4. Observe os totais separados de esquerda e direita. E1/D1 identificam os sensores internos; E2/D2, os externos. As trajetórias externas são tracejadas.
 5. Para comparar, selecione uma configuração original de um sensor por lado. Selecionar novamente o chassi baixo restaura suas medidas iniciais.
@@ -31,19 +31,21 @@ O contorno deriva do [projeto v3 original](../01_projeto/ProPrj_RUSH%20-%20SATUR
 
 Ao personalizar X/Y, o contorno permanece fixo. O campo X move os sensores internos; os externos continuam a 77,75 mm do centro. O simulador informa se algum centro fica fora da placa. Isso não verifica o espaço para encapsulamentos, fixações, trilhas ou componentes.
 
-## Resultados nas duas pistas atuais
+## Resultados nas pistas TRIF 2025 e TRIF 2024
 
 Barra centrada, sem desvio fixo:
 
 | Furos | L | 2025 nominal | 2025 região comum | 2024 nominal | 2024 região comum |
 |---:|---:|---:|---:|---:|---:|
 | 60 mm | 103,974 mm | 33/33 | 33/33 | 35/35 | 35/35 |
-| 65 mm | 108,975 mm | 33/33 | 33/33 | 35/35 | 35/35 |
-| 70 mm | 113,975 mm | 33/33 | 30/33 | 35/35 | 34/35 |
+| 65 mm | 108,975 mm | 33/33 | 33/33 | 35/35 | 34/35 |
+| 70 mm | 113,975 mm | 33/33 | 30/33 | 34/35 | 33/35 |
+
+Na pista de teste do EVA-RT (modelo aproximado de um quadro de vídeo, ver [Pistas e resultados](02_pistas_e_resultados.md)), o chassi baixo intersectou 25/26 marcas a 60, 65 e 70 mm (região comum 25, 24 e 23/26).
 
 A 60 mm, são **31/31 marcas esquerdas e 2/2 direitas em 2025** e **33/33 esquerdas e 2/2 direitas em 2024**. Todas também cruzam a região comum. O teste inicia em 60 mm; para comparar 65 ou 70 mm, altere L conforme a tabela.
 
-Os resultados foram calculados em Python com passo de 0,25 mm e interseção de segmentos com os retângulos das marcas. A interface usa passo de 0,5 mm; o teste automatizado compara o resultado de cada marca, nominal e comum, nas seis combinações acima. Veja os [dados completos](dados/resultados_duas_pistas.json) e as [instruções para reproduzir](03_metodologia_e_testes.md#reprodução).
+Os resultados foram calculados em Python com passo de 0,25 mm e interseção de segmentos com os retângulos das marcas. A interface usa passo de 0,5 mm; o teste automatizado compara o resultado de cada marca, nominal e comum, nas combinações acima (três pistas × três distâncias). Veja os [dados completos](dados/resultados_duas_pistas.json) e as [instruções para reproduzir](03_metodologia_e_testes.md#reprodução).
 
 ## Alcance do ensaio
 

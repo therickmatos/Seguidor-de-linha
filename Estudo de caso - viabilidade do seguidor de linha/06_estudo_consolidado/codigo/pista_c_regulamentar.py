@@ -2,6 +2,9 @@
 
 Retas e arcos exatos; a fotografia não fornece planta nem dimensões reais.
 Não há portas físicas, superfícies, eletrônica ou controle de robô modelados.
+
+TRIF 2024 · sentido corrigido: o desenho é o mesmo do modelo espelhado anterior,
+mas a poligonal é percorrida ao contrário e as marcas são geradas de novo pela regra.
 """
 from pathlib import Path
 import json
@@ -17,20 +20,27 @@ LINE_WIDTH=19.
 MARK_WIDTH=19.
 MARK_LENGTH=40.
 MARK_GAP=40.
-FINISH_X=900.
-START_X=1900.
+# Posições na reta de baixo, no referencial de construção (antes do espelhamento).
+# O robô percorre essa reta em x decrescente: a chegada fica 1 m ATRÁS da partida.
+FINISH_X=1900.
+START_X=900.
 RADIUS=150.
 MIRROR_X=3300.
 
-# Polígono orientado no sentido de prova. A seção (x=1900, y=2500)
-# é cruzada uma vez em cada direção, por segmentos retos perpendiculares.
-VERTICES=np.array([
+# Polígono desenhado no sentido ANTIGO de prova (o desenho final é o mesmo de
+# antes); a seção (x=1900, y=2500) é cruzada uma vez em cada direção, por
+# segmentos retos perpendiculares.
+_VERTICES_ANTIGO=np.array([
  (0,0),(3300,0),(3300,1750),(2300,1750),(2300,800),
  (1300,800),(1300,1100),(1600,1100),(1600,1400),(1900,1400),
  (1900,3100),(1300,3100),(1300,2500),(2900,2500),(2900,3400),
  (950,3400),(950,350),(500,350),(500,700),(0,700)
 ],dtype=float)
-RADII=np.array([150.,150.,500.,500.]+[RADIUS]*16)
+_RADII_ANTIGO=np.array([150.,150.,500.,500.]+[RADIUS]*16)
+# Sentido corrigido: mesma poligonal percorrida ao contrário. O roll de 2 faz a
+# primeira peça ser a reta de baixo (de (3150,0) a (150,0), antes do espelho).
+VERTICES=np.roll(_VERTICES_ANTIGO[::-1],2,axis=0)
+RADII=np.roll(_RADII_ANTIGO[::-1],2)
 
 
 def _corners():
@@ -95,8 +105,9 @@ def build(step=.5):
         a=cycle[:-1].copy();a[:,0]+=i*period;a[:,3]+=i*turns;track.append(a)
     end=cycle[-1:].copy();end[:,0]+=2*period;end[:,3]+=2*turns;track.append(end)
     track=np.vstack(track)
-    # Primeira reta inicia na saída da curva em (150, 0).
-    start_phase=START_X-RADII[0];finish_phase=FINISH_X-RADII[0]
+    # A primeira reta inicia na saída da curva em (3150, 0) e segue em -x.
+    x0=VERTICES[0,0]-RADII[0]
+    start_phase=x0-START_X;finish_phase=x0-FINISH_X
     def abs_s(s):return period+start_phase+((s-start_phase)%period)
     marks=[]
     for b in boundaries:
@@ -105,8 +116,8 @@ def build(step=.5):
             side=1,kind='curva',label='M',transition=f"{b['previous_k']:.6g} → {b['next_k']:.6g}",
             halfWidth=9.5,inner=49.5,outer=89.5,piece_id=b['piece_id']))
     marks.extend([
-        dict(s=float(abs_s(start_phase)),x=START_X,y=0.,phi=0.,side=-1,kind='partida',label='Partida',halfWidth=9.5,inner=49.5,outer=89.5),
-        dict(s=float(abs_s(finish_phase)),x=FINISH_X,y=0.,phi=0.,side=-1,kind='chegada',label='Chegada',halfWidth=9.5,inner=49.5,outer=89.5)
+        dict(s=float(abs_s(start_phase)),x=START_X,y=0.,phi=math.pi,side=-1,kind='partida',label='Partida',halfWidth=9.5,inner=49.5,outer=89.5),
+        dict(s=float(abs_s(finish_phase)),x=FINISH_X,y=0.,phi=math.pi,side=-1,kind='chegada',label='Chegada',halfWidth=9.5,inner=49.5,outer=89.5)
     ])
     marks.sort(key=lambda m:m['s']);count=0
     for m in marks:
@@ -214,8 +225,8 @@ def check(step=2.):
         max_join_error_mm=max(join_errors),max_join_angle_error_rad=max(angle_errors),
         min_radius_mm=float(min(1/abs(p['k']) for p in blocks if p['k'])),
         crossing_angle_degrees=angle,crossing_straight_clearance_mm=straight_clearance,
-        start_finish_distance_mm=START_X-FINISH_X,start_before_mm=FINISH_X-RADII[0],
-        start_after_mm=VERTICES[1,0]-RADII[1]-START_X,
+        start_finish_distance_mm=FINISH_X-START_X,start_before_mm=VERTICES[0,0]-RADII[0]-FINISH_X,
+        start_after_mm=START_X-(VERTICES[1,0]+RADII[1]),
         line_width_mm=LINE_WIDTH,mark_width_mm=MARK_WIDTH,mark_length_mm=MARK_LENGTH,
         mark_gap_from_line_edge_mm=MARK_GAP,edge_clearance_mm=250-LINE_WIDTH/2,
         marker_overlaps=overlaps,min_actual_marker_gap_mm=min(actual_gaps),max_actual_marker_gap_mm=max(actual_gaps),

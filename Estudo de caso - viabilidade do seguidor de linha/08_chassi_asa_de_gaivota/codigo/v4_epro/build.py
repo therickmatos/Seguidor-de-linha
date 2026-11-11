@@ -72,6 +72,11 @@ for r in pcb:
 pcb = out
 
 v3, outer, board, cuts, sensors, edge = C.build()
+# rótulos do S1/S2 (externos): a translação os deixaria na borda de baixo da aba; ficam logo abaixo dos pads
+for r in pcb:
+    if r[0] == 'ATTR' and r[7] == 'Designator' and r[3] in ('e226', 'e230'):
+        sx = -1 if r[3] == 'e226' else 1
+        r[5] = round(mil(sx * 83.0), 4); r[6] = round(mil(13.75), 4)
 for (x1, y1), (x2, y2) in zip(outer.exterior.coords[:-1], outer.exterior.coords[1:]):
     pcb.append(['POLY', pid(), 0, '', 11, 10, [round(mil(x1), 4), round(mil(y1), 4), 'L', round(mil(x2), 4), round(mil(y2), 4)], 0])
 
@@ -139,7 +144,7 @@ def arm_pt(sx, s, d):     # ponto no referencial do QRE interno (s ao longo da a
 B5 = 0.3   # largura das trilhas novas de alimentação na camada de baixo
 SIDES = {
   1: dict(des='S4', sig='MARK_R2_D9', anode='QRE_D1_A', r220='R25', r47='R26', cap='C20', rot=45,
-          r220pos=(46.9, 11.3, 90), r47pos=(48.6, 5.6, 90), cappos=(47.1, 5.6, 90),
+          r220pos=(46.9, 11.3, 90), r47pos=(48.6, 5.6, 270), cappos=(47.1, 5.6, 90),
           vias=[('+5V', 46.9, 46.9 - 37.914), ('GND', 47.85, 3.6), ('GND', 51.98, 17.61), ('+5V', 53.6, 53.6 - 37.914)],
           lines=[('+5V', [(52.55, 14.78), (53.6, 53.6 - 37.914)], B5),
                  ('GND', [(51.28, 16.05), (51.98, 17.61)], B5),
@@ -150,7 +155,7 @@ SIDES = {
                  ('GND', [(48.6, 4.85), (47.85, 4.1), (47.85, 3.6)], B5),
                  ('GND', [(47.1, 4.85), (47.85, 4.1)], B5)]),
   -1: dict(des='S3', sig='MARK_L2_D8', anode='QRE_E1_A', r220='R23', r47='R24', cap='C19', rot=315,
-          r220pos=(-57.5, 17.6, 0), r47pos=(-48.6, 5.6, 90), cappos=(-47.1, 5.6, 90),
+          r220pos=(-57.5, 17.6, 0), r47pos=(-48.6, 5.6, 270), cappos=(-47.1, 5.6, 90),
           vias=[('+5V', -49.0, 49.0 - 37.914), ('GND', -47.4, 13.0), ('GND', -47.85, 1.9), ('+5V', -59.5, 15.76)],
           lines=[('+5V', [(-49.72, 11.95), (-49.0, 49.0 - 37.914)], B5),
                  ('GND', [(-48.45, 13.22), (-47.4, 13.0)], B5),
@@ -164,7 +169,7 @@ SIDES = {
 for sx, I in SIDES.items():
     add_comp('e230', I['des'], sx * 50.5, 14.0, I['rot'], {'1': I['anode'], '2': 'GND', '3': '+5V', '4': I['sig']})
     x, y, r = I['r220pos']; add_comp('e162', I['r220'], x, y, r, {'1': '+5V', '2': I['anode']}, name='220', value='220')
-    x, y, r = I['r47pos']; add_comp('e162', I['r47'], x, y, r, {'1': 'GND', '2': I['sig']}, name='47k', value='47k')
+    x, y, r = I['r47pos']; add_comp('e162', I['r47'], x, y, r, {'1': I['sig'], '2': 'GND'}, name='47k', value='47k')
     x, y, r = I['cappos']; add_comp('e13', I['cap'], x, y, r, {'1': 'GND', '2': I['sig']}, name='10nF', value='10nF', dnp='yes',
                                      desc='DNP: montar so para leitura por tempo de descarga (ver PINOS.md)')
     for net, vx, vy in I['vias']: via(net, vx, vy)
@@ -254,7 +259,7 @@ SCH_ADD += copy_block((140, 360, 245, 345), 330, -20, {'S2': 'S4', 'R7': 'R25', 
 SCH_ADD += cap_block(345 + 330, 285 - 20, 'C20', 'MARK_R2_D9')
 for y, n in ((920, 'MARK_L2_D8'), (910, 'MARK_R2_D9')):          # pinos 12 (PB0) e 13 (PB1) do ATmega
     wid = sid(); SCH_ADD += [['WIRE', wid, [[765, y, 745, y]], 'st13', 0], ['ATTR', sid(), wid, 'NET', n, 0, 1, 765, y, 0, 'st17', 0]]
-SCH_ADD.append(['TEXT', sid(), 580, 470, 0, 'E1/D1 internos (D8/D9) - asa de gaivota', 'st12'])
+SCH_ADD.append(['TEXT', sid(), 560, 520, 0, 'E1/D1 internos (D8/D9) - asa de gaivota', 'st12'])
 sch_out = sch + SCH_ADD
 
 def write_epro(dst=DST):

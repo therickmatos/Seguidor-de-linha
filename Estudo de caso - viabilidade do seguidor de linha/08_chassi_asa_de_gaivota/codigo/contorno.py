@@ -7,9 +7,11 @@ O que muda em relação à v3: só as abas laterais. O corpo (|x| <= 50), a fren
 (nariz e degraus), a traseira e os 15 recortes (furo Ø17, 12 furos de fixação e
 2 rasgos) ficam idênticos.
 
-Aba: nasce no canto dianteiro do corpo, sobe em ângulo suave e termina numa
-ponta horizontal, como a da v3 (centro do QRE a 4,6 mm da ponta, cantos r 1,45).
-Largura 6,1 mm na parte externa (igual à v3), alargando até 8 mm na raiz.
+Aba (estilo 'fujitora', padrão): nasce no canto dianteiro do corpo, sobe a 45°,
+faz uma curva de raio 16 mm e segue horizontal até a ponta em semicírculo, como as
+abas do Fujitora (OPR). Largura 6,1 mm (igual à v3), alargando até 7 mm na raiz.
+O centro do QRE externo fica a 4,6 mm da ponta, como na v3. O estilo 'suave'
+(primeira proposta, subida de ~17°) continua disponível no parâmetro ESTILO.
 
 Uso:  python3 contorno.py   → gera ../saida/*.dxf, *.png e contorno.json
 """
@@ -30,17 +32,28 @@ OUT = Path(__file__).resolve().parent.parent / 'saida'
 SENSOR_IN = (50.5, 14.0)     # E1/D1: sensor interno
 SENSOR_OUT = (82.0, 20.0)    # E2/D2: sensor externo
 W_TIP = 6.1                  # largura da aba na parte externa (v3 = 6,1)
-W_ROOT = 8.0                 # largura na raiz
 TIP = 4.6                    # centro do QRE externo até a ponta (v3 = 4,6)
-TIP_R = 1.45                 # raio dos cantos da ponta (v3 = 1,45)
-ROOT = (44.0, 7.0)           # início da linha de centro (dentro do corpo)
-KNEE = (52.0, 14.6)          # joelho: a raiz sobe mais inclinada até aqui
-KNEE_R = 14.0                # raio do joelho
-BEND_X = 70.0                # onde a subida termina e a ponta horizontal começa
-BEND_R = 30.0                # raio da curva da linha de centro (suaviza a dobra)
+# Estilo da aba:
+#  'fujitora' (padrão): sobe a RISE_ANGLE° desde o corpo, curva de raio BEND_R e trecho
+#               horizontal longo até a ponta toda arredondada (silhueta do Fujitora/OPR).
+#  'suave'    : versão de 11/11 (joelho na raiz, subida de ~17°, ponta com cantos r 1,45).
+ESTILO = 'fujitora'
+if ESTILO == 'fujitora':
+    W_ROOT = 7.0             # largura na raiz
+    TIP_R = W_TIP / 2 - 1e-4 # ponta em semicírculo
+    RISE_ANGLE = 45.0        # inclinação da subida (graus)
+    BEND_R = 16.0            # raio da curva subida → horizontal (linha de centro)
+else:
+    W_ROOT = 8.0
+    TIP_R = 1.45             # raio dos cantos da ponta (v3 = 1,45)
+    ROOT = (44.0, 7.0)       # início da linha de centro (dentro do corpo)
+    KNEE = (52.0, 14.6)      # joelho: a raiz sobe mais inclinada até aqui
+    KNEE_R = 14.0            # raio do joelho
+    BEND_X = 70.0            # onde a subida termina e a ponta horizontal começa
+    BEND_R = 30.0            # raio da curva da linha de centro (suaviza a dobra)
 ROOT_R = 4.0                 # raio dos cantos côncavos entre aba e corpo
 QRE = (2.7, 3.4)             # corpo do QRE1113GR no footprint da v3 (x × y, rotação 180°)
-X_MIN_TOP = 45.0             # o arredondamento da raiz não entra em |x| < 45 (corpo da v3 intacto)
+X_MIN_TOP = 42.5             # o arredondamento da raiz não entra em |x| < 42,5 (corpo da v3 intacto)
 
 
 def _fillet_polyline(pts, radius, n=48):
@@ -68,8 +81,15 @@ def _fillet_polyline(pts, radius, n=48):
 
 
 def centerline():
-    """Linha de centro da aba direita: raiz dentro do corpo → joelho (sobe mais) → subida suave → ponta horizontal."""
+    """Linha de centro da aba direita, da raiz (dentro do corpo) até a ponta."""
+    x_in, y_in = SENSOR_IN
     x_out, y_out = SENSOR_OUT
+    if ESTILO == 'fujitora':
+        a = math.radians(RISE_ANGLE)
+        corner = (x_in + (y_out - y_in) / math.tan(a), y_out)      # reta pelo sensor interno
+        root = (x_in - 7.0 * math.cos(a), y_in - 7.0 * math.sin(a))
+        c = _fillet_polyline([root, corner, (x_out + TIP, y_out)], BEND_R, n=64)
+        return c[np.r_[True, np.hypot(*np.diff(c, axis=0).T) > 1e-9]]
     tip = (x_out + TIP, y_out)
     c = np.vstack((_fillet_polyline([ROOT, KNEE, (BEND_X, y_out)], KNEE_R)[:-1],
                    _fillet_polyline([KNEE, (BEND_X, y_out), tip], BEND_R)[1:]))
@@ -89,7 +109,7 @@ def arm_polygon():
     normal = np.column_stack((-tang[:, 1], tang[:, 0]))
     # largura: W_ROOT até o sensor interno, afunila até W_TIP no início da ponta horizontal
     s_in = s[np.argmin(np.linalg.norm(c - SENSOR_IN, axis=1))]
-    s_bend = s[np.argmin(np.abs(c[:, 0] - BEND_X))]
+    s_bend = s[np.argmax(c[:, 1] >= SENSOR_OUT[1] - 1e-6)]        # início do trecho horizontal
     frac = np.clip((s - s_in) / (s_bend - s_in), 0, 1)
     frac = 0.5 - 0.5 * np.cos(math.pi * frac)          # transição suave
     half = (W_ROOT + (W_TIP - W_ROOT) * frac) / 2
@@ -124,7 +144,7 @@ def build():
     assert outer.is_valid and outer.geom_type == 'Polygon'
     assert board.is_valid and board.geom_type == 'Polygon' and len(board.interiors) == 15
     assert all(outer.covers(c) for c in cuts), 'algum recorte da v3 ficou fora da placa'
-    keep = box(-45, -100, 45, 100).union(box(-200, -100, 200, 0.0))
+    keep = box(-X_MIN_TOP, -100, X_MIN_TOP, 100).union(box(-200, -100, 200, 0.0))
     assert outer.symmetric_difference(v3).intersection(keep).area < 1e-2, 'corpo/traseira da v3 alterados'
     sensors = [(sx * x, y) for sx in (1, -1) for x, y in (SENSOR_IN, SENSOR_OUT)]
     edge = {f'{p}': outer.exterior.distance(Point(p)) for p in sensors}
@@ -234,7 +254,8 @@ def main():
         frente_aba_y_mm=round(max(y for x, y in outer.exterior.coords if abs(x) > 50), 2),
         nariz_y_mm=round(ymax, 2),
         largura_aba_ponta_mm=W_TIP, largura_aba_raiz_mm=W_ROOT,
-        angulo_subida_graus=round(math.degrees(math.atan2(SENSOR_OUT[1] - SENSOR_IN[1], BEND_X - SENSOR_IN[0])), 1),
+        estilo=ESTILO,
+        angulo_subida_graus=RISE_ANGLE if ESTILO == 'fujitora' else round(math.degrees(math.atan2(SENSOR_OUT[1] - SENSOR_IN[1], BEND_X - SENSOR_IN[0])), 1),
         area_placa_mm2=round(board.area, 1), area_v3_mm2=round(v3.difference(unary_union(cuts)).area, 1),
         recortes_v3_preservados=len(board.interiors),
         outline=[[round(x, 4), round(y, 4)] for x, y in outer.exterior.coords],

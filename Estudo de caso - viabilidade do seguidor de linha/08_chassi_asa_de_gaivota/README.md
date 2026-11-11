@@ -11,7 +11,7 @@ Premissas desta etapa (decididas pelo Erick depois dos testes com as abas): chas
 | E1 / D1 (internos) | ∓50,5 / +50,5 | 14 |
 | E2 / D2 (externos) | ∓82 / +82 | 20 |
 
-- **Contorno:** [`saida/asa_gaivota_contorno.dxf`](saida/asa_gaivota_contorno.dxf), com 173,2 × 58,6 mm. O corpo (|x| ≤ 50), a frente, a traseira e os 15 recortes (Ø17, 12 furos e 2 rasgos) são os da v3. Mudam só as abas: nascem no canto dianteiro do corpo, sobem ~17° e terminam numa ponta horizontal igual à da v3 (6,1 mm de largura, QRE a 4,6 mm da ponta, cantos r 1,45). A raiz alarga até 8 mm. A frente da aba fica em y = 23,05, atrás do nariz (y = 25,6).
+- **Contorno:** [`saida/asa_gaivota_contorno.dxf`](saida/asa_gaivota_contorno.dxf), com 173,2 × 58,6 mm. O corpo (|x| ≤ 50), a frente, a traseira e os 15 recortes (Ø17, 12 furos e 2 rasgos) são os da v3. Mudam só as abas, no estilo das do Fujitora (OPR): nascem no canto dianteiro do corpo, sobem a 45°, fazem uma curva de raio 16 mm e seguem horizontais até a ponta em semicírculo. A largura é 6,1 mm, como na v3, e alarga até 7 mm na raiz. O centro do QRE externo fica a 4,6 mm da ponta. A curva de concordância com o ombro do corpo avança 2,5 mm para dentro de x = 45 (0,4 mm² acima de y = 13,5); o resto do corpo é idêntico. A frente da aba fica em y = 23,05, atrás do nariz (y = 25,6).
 - **Resultado (63,14 mm entre furos):** lê **33/33 marcas no TRIF 2025 e 35/35 no TRIF 2024** em todos os cenários testados: ideal, desvio fixo de ±3 e ±5 mm e "abre na curva" de 10 a 30 mm. No caso ideal, o centro do QRE passa pelo menos **5,2 mm** dentro da fita na pior marca. Com ±3 mm de desvio, a margem mínima é 3,2 mm; com ±5 mm, 1,4 mm.
 - **O que ficou apertado:** o sensor interno passa a **1,9 mm da borda da linha principal** na curva mais fechada do modelo de 2025, no caso ideal. Com 3 mm de desvio, ou num grampo de 180° com R100 (o regulamento permite), ele **passa sobre a linha**. A geometria não resolve isso sem perder marcas: ver [cuidados para o firmware](#cuidados-para-a-próxima-fase-firmware-e-pinos).
 
@@ -25,7 +25,9 @@ O que a varredura mostrou ([tabela completa](dados/escolha.md); TRIF 2024 + 2025
 
 1. **As marcas pedem dois alcances diferentes.** Com L ≈ 107 mm, o deslocamento lateral do robô ao passar pela marca varia muito. Na saída de curva à esquerda, o corpo está para dentro, e a fita fica perto do corpo: algumas marcas só são lidas com x ≤ ~51 mm. Na saída de curva à direita, acontece o contrário: outras só com x ≥ ~78 mm. Por isso **o interno precisa ficar colado ao corpo (x ≈ 50) e o externo bem para fora (x ≈ 82)**. Com o interno em x = 55, a pior marca já fica fora da fita.
 2. **O interno ganha ao avançar um pouco, o externo quase não.** Com o externo em x = 82, mudar o y dele de 14 para 20 não muda quase nada. Já o interno vai de 3,5 mm de margem (y = 8) para 5,1 mm (y = 14) e estabiliza. Por isso o interno ficou em y = 14 (canto do corpo), e não mais à frente.
-3. **O externo em y = 20 é escolha de forma**, não de leitura: dá a subida suave característica da asa de gaivota, sem passar da frente da placa. O mesmo vale para qualquer y entre 14 e 22.
+3. **O externo em y = 20 é escolha de forma**, não de leitura: dá a subida característica da asa de gaivota sem passar da frente da placa. O mesmo vale para qualquer y entre 14 e 22. O formato da aba entre os sensores também não altera a leitura, só as posições dos QRE.
+
+**Formato:** a primeira proposta tinha subida de ~17° e ponta com cantos retos, como a v3. A versão atual (pedido de 11/11) imita a silhueta do Fujitora: subida curta a 45° e trecho horizontal longo. A anterior continua no `contorno.py` (`ESTILO = 'suave'`).
 
 Trecho da tabela, com o externo em (82; 20):
 
@@ -85,8 +87,8 @@ Em grampos de 180° com raio 100–120 mm, qualquer sensor interno perto do corp
 
 - O DXF tem só o contorno e o Ø17 na camada `BOARD_OUTLINE`, como o `EVA-RT_contorno_B_degraus.dxf`. Os furos e rasgos vêm do projeto da v3. O [`saida/asa_gaivota_referencia.dxf`](saida/asa_gaivota_referencia.dxf) traz, em camadas separadas, os recortes, a posição e o corpo dos 4 QRE e o contorno da v3, para conferência.
 - **E1/D1** ficam na raiz da aba, no canto dianteiro do corpo. O QRE fica embaixo; a presilha da vareta, em cima, com furo em (±43,75; 10,75). Manter componentes de cima e porcas fora do espaço da presilha, que tem 9,5 × 7 mm no STL e orientação a conferir no 3D.
-- **E2/D2** ficam na ponta horizontal, que tem o mesmo desenho da v3 (6,1 mm), com espaço para o 220 Ω, o 47 kΩ, o 1 kΩ e o LED, como na v3 (x ≈ 72–86).
-- As abas ficam em y ≥ ~6 na raiz, longe das rodas e da gearbox, que estão em y < −4,5. Mesmo assim, conferir no 3D com os STL antes do Gerber.
+- **E2/D2** ficam no trecho horizontal (6,1 mm de largura, de x ≈ 62 até a ponta), com espaço para o 220 Ω, o 47 kΩ, o 1 kΩ e o LED, como na v3 (x ≈ 72–86).
+- As abas ficam em y ≥ ~7 na raiz, longe das rodas e da gearbox, que estão em y < −4,5. Mesmo assim, conferir no 3D com os STL antes do Gerber.
 - A aba tem cerca de 37 mm em balanço, contra 24 mm na v3. Em FR-4 de 1,6 mm deve aguentar, mas vale evitar furos e vias grandes na raiz.
 
 ## Limites

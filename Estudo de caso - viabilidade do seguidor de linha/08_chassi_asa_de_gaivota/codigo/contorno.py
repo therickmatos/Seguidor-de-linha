@@ -86,6 +86,9 @@ def centerline():
     x_in, y_in = SENSOR_IN
     x_out, y_out = SENSOR_OUT
     if ESTILO == 'fujitora':
+        if y_out - y_in < 0.5:                                      # aba reta, sem subida
+            c = np.array([(x_in - 4.0, y_in), (x_out + TIP, y_out)])   # nasce no ombro do corpo
+            return np.vstack([np.linspace(c[0], c[1], 200)])
         a = math.radians(RISE_ANGLE)
         corner = (x_in + (y_out - y_in) / math.tan(a), y_out)      # reta pelo sensor interno
         root = (x_in - 7.0 * math.cos(a), y_in - 7.0 * math.sin(a))
@@ -228,11 +231,11 @@ def low_chassis():
     return Polygon(build_geometry()['outline'])
 
 
-def main():
+def main(nome='asa_gaivota'):
     v3, outer, board, cuts, sensors, edge = build()
     OUT.mkdir(parents=True, exist_ok=True)
 
-    write_dxf(OUT / 'asa_gaivota_contorno.dxf', outer)
+    write_dxf(OUT / f'{nome}_contorno.dxf', outer)
 
     def sensor_marks(msp):
         for x, y in sensors:
@@ -242,13 +245,13 @@ def main():
                                close=True, dxfattribs={'layer': 'SENSORES_REF'})
         msp.add_lwpolyline([tuple(p) for p in np.asarray(v3.exterior.coords)[:-1]], close=True,
                            dxfattribs={'layer': 'V3_REF'})
-    write_dxf(OUT / 'asa_gaivota_referencia.dxf', outer, cuts, [sensor_marks])
+    write_dxf(OUT / f'{nome}_referencia.dxf', outer, cuts, [sensor_marks])
 
     try:
         low = low_chassis()
     except Exception:          # o esboço anterior é só comparação
         low = None
-    figure(OUT / 'asa_gaivota.png', v3, outer, board, cuts, sensors, low)
+    figure(OUT / f'{nome}.png', v3, outer, board, cuts, sensors, low)
 
     xmin, ymin, xmax, ymax = outer.bounds
     info = dict(
@@ -269,9 +272,16 @@ def main():
         outline=[[round(x, 4), round(y, 4)] for x, y in outer.exterior.coords],
         cutouts=[[[round(x, 4), round(y, 4)] for x, y in c.exterior.coords] for c in cuts],
     )
-    (OUT / 'contorno.json').write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding='utf8', newline='\n')
+    (OUT / ('contorno.json' if nome == 'asa_gaivota' else f'{nome}.json')).write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding='utf8', newline='\n')
     print({k: v for k, v in info.items() if k not in ('outline', 'cutouts')})
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    ap = argparse.ArgumentParser(description='Gera o contorno; sem argumentos, a versão adotada.')
+    ap.add_argument('--externo', nargs=2, type=float, metavar=('X', 'Y'), help='posição do QRE externo (lado direito)')
+    ap.add_argument('--nome', default='asa_gaivota', help='prefixo dos arquivos de saída')
+    args = ap.parse_args()
+    if args.externo:
+        SENSOR_OUT = tuple(args.externo)
+    main(args.nome)

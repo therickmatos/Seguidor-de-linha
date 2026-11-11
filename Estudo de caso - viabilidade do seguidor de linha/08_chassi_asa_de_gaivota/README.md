@@ -46,6 +46,24 @@ Trecho da tabela, com o externo em (82; 20):
 
 **Alternativa mais estreita:** externo em x = 80 (largura 169,2 mm). No ideal, a margem cai de 5,1 para 4,0 mm; com ±3 mm, de 2,3 para 1,2 mm.
 
+## Quão baixa e curta a aba pode ser
+
+Mantendo todas as marcas do TRIF 2024 e 2025 em todos os cenários (63,14 mm entre furos), com o interno fixo em (50,5; 14):
+
+| Externo (x; y) | Margem ideal (2025 / 2024) | Com ±3 mm | Com ±5 mm | Com ±5 mm a 65 mm entre furos | Largura | Frente da aba |
+|---|---|---:|---:|---:|---:|---:|
+| (82; 20), adotada | 5,2 / 6,7 | 3,2 | 1,4 | 0,4 | 173,2 | y = 23,05 |
+| (81,5; 16), mínimo com asa | 5,5 / 5,9 | 3,0 | 1,1 | 0,2 | 172,2 | y = 19,05 |
+| (81,5; 14), mínimo absoluto (aba reta) | 5,4 / 5,7 | 2,8 | 0,9 | 0,0 | 172,2 | y = 17,05 |
+
+Margens na pior marca das duas pistas, exceto a coluna "ideal". Verificação em passo 0,25 mm, com todos os cenários lendo todas as marcas nas três linhas. A perda vem quase toda do TRIF 2024: baixar e encurtar o externo, juntos, custam ~0,5 mm de margem no pior caso. A 65 mm entre furos, o mínimo absoluto fica sem folga com ±5 mm.
+
+- **Interno:** y = 14 é o mínimo. Em y = 13 a margem com ±5 mm cai para 0,1 mm a 65 mm entre furos; em 12 fica negativa.
+- **Externo, altura:** pode descer de 20 para 14 perdendo no máximo 0,6 mm. Abaixo de 14 a aba desceria em direção à ponta, o que não ajuda.
+- **Externo, alcance:** x = 81,5 empata com 82; x = 81 zera a margem com ±5 mm; x = 80 perde marcas.
+
+Gerar: `python3 contorno.py --externo 81.5 16 --nome exemplo_minimo_asa` (e `81.5 14 ... exemplo_minimo_reta`). Comparação em [`saida/comparacao_minimo.png`](saida/comparacao_minimo.png). Os exemplos não estão no simulador.
+
 ## Resultados (passo 0,25 mm, [`codigo/verificar.py`](codigo/verificar.py))
 
 Pior caso de cada grupo de cenários; "margem" na pior marca. Tabelas completas, marca a marca, em [`dados/tabelas.md`](dados/tabelas.md).

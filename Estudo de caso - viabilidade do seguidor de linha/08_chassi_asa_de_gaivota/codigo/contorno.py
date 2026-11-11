@@ -30,7 +30,7 @@ OUT = Path(__file__).resolve().parent.parent / 'saida'
 
 # --- Parâmetros (lado direito; o esquerdo é espelhado) -------------------------
 SENSOR_IN = (50.5, 14.0)     # E1/D1: sensor interno
-SENSOR_OUT = (82.0, 20.0)    # E2/D2: sensor externo
+SENSOR_OUT = (81.5, 16.0)    # E2/D2: sensor externo (mínimo com asa; antes (82; 20))
 W_TIP = 6.1                  # largura da aba na parte externa (v3 = 6,1)
 TIP = 4.6                    # centro do QRE externo até a ponta (v3 = 4,6)
 # Estilo da aba:

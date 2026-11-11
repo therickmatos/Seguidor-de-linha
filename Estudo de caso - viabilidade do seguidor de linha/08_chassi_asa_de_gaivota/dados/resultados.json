@@ -7,8 +7,8 @@
    14.0
   ],
   "externo": [
-   82.0,
-   20.0
+   81.5,
+   16.0
   ]
  },
  "nota": "Conferência geométrica: centro do QRE × retângulo da marca. Não modela PID, óptica, derrapagem nem tempo.",
@@ -16,6 +16,726 @@
   {
    "track": "TRIF 2025",
    "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.527577868873976,
+   "min_margin_common": 0.8554091374016934,
+   "worst_mark": "C30",
+   "line_clearance": [
+    1.9089445789158912,
+    32.79777125305908
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.000000164846824,
+   "min_margin_common": 0.49832081345812185,
+   "worst_mark": "Partida",
+   "line_clearance": [
+    5.50837496511061,
+    36.40142059981132
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 30,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 3.2434677080977963,
+   "min_margin_common": -1.9708873361237238,
+   "worst_mark": "C06",
+   "line_clearance": [
+    -1.7032995149832404,
+    29.181415711885037
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 3.6479155966940198,
+   "min_margin_common": 0.6252863774038815,
+   "worst_mark": "C14",
+   "line_clearance": [
+    3.5142990320627447,
+    34.4843341686847
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 30,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 1.3842365676055692,
+   "min_margin_common": -3.8435232341730625,
+   "worst_mark": "C06",
+   "line_clearance": [
+    -4.118495183494608,
+    26.763233695352845
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.515324186727867,
+   "min_margin_common": 0.42610134842871616,
+   "worst_mark": "C25",
+   "line_clearance": [
+    8.586024365380958,
+    39.47284091035116
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.633690534977632,
+   "min_margin_common": 0.7408788377329074,
+   "worst_mark": "C07",
+   "line_clearance": [
+    15.25569847372389,
+    46.16307707829531
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 107.11535601056767,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.572248201275215,
+   "min_margin_common": 0.3555898254976455,
+   "worst_mark": "C13",
+   "line_clearance": [
+    21.23708224414077,
+    52.2894281632984
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 32,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.068889684919839,
+   "min_margin_common": -0.1126828782071243,
+   "worst_mark": "C06",
+   "line_clearance": [
+    0.7151878054606158,
+    31.60885205297371
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 4.86947889560588,
+   "min_margin_common": 0.4979842661150542,
+   "worst_mark": "C14",
+   "line_clearance": [
+    4.325066539323714,
+    35.22279287400827
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 30,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 2.2576302088214106,
+   "min_margin_common": -2.9135648914062813,
+   "worst_mark": "C06",
+   "line_clearance": [
+    -2.9073948971034813,
+    27.982103443861952
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 3.008703607831194,
+   "min_margin_common": -0.010516944100800174,
+   "worst_mark": "C14",
+   "line_clearance": [
+    2.5378091210261733,
+    33.51337801415853
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 30,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 0.3789325445823124,
+   "min_margin_common": -4.804356526288757,
+   "worst_mark": "C06",
+   "line_clearance": [
+    -5.3288172072495,
+    25.556848396733344
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.427352709394654,
+   "min_margin_common": 0.33122212269825013,
+   "worst_mark": "C01",
+   "line_clearance": [
+    7.32878163639073,
+    38.22090788086371
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.758210199269797,
+   "min_margin_common": 0.7978444478144411,
+   "worst_mark": "C07",
+   "line_clearance": [
+    13.954476284948498,
+    44.86588527302011
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 108.97452992342416,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.556372225506038,
+   "min_margin_common": 0.5896607937888803,
+   "worst_mark": "C13",
+   "line_clearance": [
+    20.183245930288,
+    51.23595345156208
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.376550404704176,
+   "min_margin_common": 0.9025900160168021,
+   "worst_mark": "C03",
+   "line_clearance": [
+    3.273316839538671,
+    34.15611034827974
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.000000109749635,
+   "min_margin_common": 0.49865326607869065,
+   "worst_mark": "Partida",
+   "line_clearance": [
+    6.860434701853894,
+    37.74767562744289
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 30,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 4.407212931020808,
+   "min_margin_common": -0.8657507475536477,
+   "worst_mark": "C06",
+   "line_clearance": [
+    -0.32692148497385887,
+    30.551565974225085
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 4.353433545576081,
+   "min_margin_common": 1.3858833238446095,
+   "worst_mark": "C14",
+   "line_clearance": [
+    4.636839984989763,
+    35.600595312039275
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 30,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 2.5330761703748976,
+   "min_margin_common": -2.7425820438097617,
+   "worst_mark": "C06",
+   "line_clearance": [
+    -2.734445968051223,
+    28.14140428909119
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.229194611062674,
+   "min_margin_common": 0.5447256271312426,
+   "worst_mark": "C25",
+   "line_clearance": [
+    10.024239481603573,
+    40.90480272291711
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.841964275313899,
+   "min_margin_common": 0.6572909796454951,
+   "worst_mark": "C05",
+   "line_clearance": [
+    16.743551733575703,
+    47.64638717223172
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 104.97414258006236,
+   "total": 33,
+   "nominal": 33,
+   "common": 33,
+   "left": "31/31",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.592302792042574,
+   "min_margin_common": 0.5354794061654502,
+   "worst_mark": "C13",
+   "line_clearance": [
+    22.439596186135585,
+    53.49167387256646
+   ]
+  },
+  {
+   "track": "TRIF 2025",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -45,7 +765,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -75,7 +795,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -105,7 +825,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -135,7 +855,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -165,7 +885,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -195,7 +915,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -225,7 +945,7 @@
   },
   {
    "track": "TRIF 2025",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -251,486 +971,6 @@
    "line_clearance": [
     21.23708224414077,
     53.17955425524938
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "ideal",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 32,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.068889684919839,
-   "min_margin_common": -0.1126828782071243,
-   "worst_mark": "C06",
-   "line_clearance": [
-    0.7151878054606158,
-    32.78021896014034
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -3 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 4.500000228258614,
-   "min_margin_common": 0.4979842661150542,
-   "worst_mark": "Partida",
-   "line_clearance": [
-    4.325066539323714,
-    36.38967560451028
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +3 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 30,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 2.2576302088214106,
-   "min_margin_common": -2.9135648914062813,
-   "worst_mark": "C06",
-   "line_clearance": [
-    -2.9073948971034813,
-    29.157932037748296
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -5 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 3.7296627881087225,
-   "min_margin_common": 0.7386136399209136,
-   "worst_mark": "C14",
-   "line_clearance": [
-    2.5378091210261733,
-    34.57968376227407
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +5 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 30,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 0.3789325445823124,
-   "min_margin_common": -4.804356526288757,
-   "worst_mark": "C06",
-   "line_clearance": [
-    -5.3288172072495,
-    26.735593498763805
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 10 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.284502233041161,
-   "min_margin_common": 0.0840775738736852,
-   "worst_mark": "C01",
-   "line_clearance": [
-    7.32878163639073,
-    39.39405601028529
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 20 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.604250447596769,
-   "min_margin_common": 0.51567040282589,
-   "worst_mark": "C13",
-   "line_clearance": [
-    13.954476284948498,
-    46.017208097747485
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 30 mm",
-   "L": 108.97452992342416,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.556372225506038,
-   "min_margin_common": 0.16362617668482926,
-   "worst_mark": "C13",
-   "line_clearance": [
-    20.183245930288,
-    52.12456013387233
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "ideal",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.36051797413208,
-   "min_margin_common": 0.9025900160168021,
-   "worst_mark": "C30",
-   "line_clearance": [
-    3.273316839538671,
-    35.33859224147375
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -3 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 4.500000107654159,
-   "min_margin_common": 0.49865326607869065,
-   "worst_mark": "Partida",
-   "line_clearance": [
-    6.860434701853894,
-    38.92558229879074
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +3 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 30,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 4.407212931020808,
-   "min_margin_common": -0.8657507475536477,
-   "worst_mark": "C06",
-   "line_clearance": [
-    -0.32692148497385887,
-    31.738834338428497
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -5 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 4.9513363158612265,
-   "min_margin_common": 1.3846739003309452,
-   "worst_mark": "C31",
-   "line_clearance": [
-    4.636839984989763,
-    36.68458798158725
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +5 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 30,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 2.5330761703748976,
-   "min_margin_common": -2.7425820438097617,
-   "worst_mark": "C06",
-   "line_clearance": [
-    -2.734445968051223,
-    29.331816136295863
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 10 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.229194611062674,
-   "min_margin_common": 0.21884970669125892,
-   "worst_mark": "C25",
-   "line_clearance": [
-    10.024239481603573,
-    42.09017191620456
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 20 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.560433800160354,
-   "min_margin_common": 0.4785662509175381,
-   "worst_mark": "C13",
-   "line_clearance": [
-    16.743551733575703,
-    48.80755038278682
-   ]
-  },
-  {
-   "track": "TRIF 2025",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 30 mm",
-   "L": 104.97414258006236,
-   "total": 33,
-   "nominal": 33,
-   "common": 33,
-   "left": "31/31",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.095832864462409,
-   "min_margin_common": 0.5354794061654502,
-   "worst_mark": "C10",
-   "line_clearance": [
-    22.439596186135585,
-    54.38297814984372
    ]
   },
   {
@@ -1243,6 +1483,726 @@
      14.0
     ],
     [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.897772543828182,
+   "min_margin_common": 1.15118227369328,
+   "worst_mark": "C27",
+   "line_clearance": [
+    3.5000650220403333,
+    34.31585382474882
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 2.979887491170757,
+   "min_margin_common": 0.017125351746251738,
+   "worst_mark": "C27",
+   "line_clearance": [
+    -0.30371033071901365,
+    30.500694449394146
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.403401553257822,
+   "min_margin_common": 2.1628962043243973,
+   "worst_mark": "C30",
+   "line_clearance": [
+    5.417303363569488,
+    36.34616684308252
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 34,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 1.0716709112756462,
+   "min_margin_common": -1.896384077420862,
+   "worst_mark": "C27",
+   "line_clearance": [
+    -2.8567387200797167,
+    27.940507226922044
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.070121853432283,
+   "min_margin_common": 1.7536191225458424,
+   "worst_mark": "C06",
+   "line_clearance": [
+    3.0850201388387273,
+    34.01113806213877
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.3020729939999,
+   "min_margin_common": 1.5000000169786603,
+   "worst_mark": "C11",
+   "line_clearance": [
+    10.751497967667468,
+    41.60469561879683
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.963085933757611,
+   "min_margin_common": 1.3513387195889663,
+   "worst_mark": "C21",
+   "line_clearance": [
+    17.36029603936734,
+    48.27247997865387
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 107.11535601056767,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.789581222118073,
+   "min_margin_common": 0.453817410304282,
+   "worst_mark": "C31",
+   "line_clearance": [
+    21.970066423755608,
+    53.023644260731785
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.042380733925484,
+   "min_margin_common": 1.1851310210447537,
+   "worst_mark": "C27",
+   "line_clearance": [
+    2.065079283817022,
+    32.88138147958036
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 34,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 2.1144037497849695,
+   "min_margin_common": -0.799547189756133,
+   "worst_mark": "C27",
+   "line_clearance": [
+    -1.7649200720849105,
+    29.04124236473605
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.401090375234503,
+   "min_margin_common": 2.1670844756494034,
+   "worst_mark": "C30",
+   "line_clearance": [
+    4.296634895724566,
+    35.228201376900905
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 33,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 0.19991036492933745,
+   "min_margin_common": -2.76111429875823,
+   "worst_mark": "C27",
+   "line_clearance": [
+    -4.335125965317056,
+    26.463870384076067
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 6.2228579145580625,
+   "min_margin_common": 0.942034917656656,
+   "worst_mark": "C06",
+   "line_clearance": [
+    1.956116394743189,
+    32.88456020112427
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.668008407679736,
+   "min_margin_common": 1.5000000253263153,
+   "worst_mark": "C11",
+   "line_clearance": [
+    9.327614686693792,
+    40.180119554440125
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.58397586816227,
+   "min_margin_common": 1.5000000209438156,
+   "worst_mark": "C21",
+   "line_clearance": [
+    15.973463695170139,
+    46.8838641221487
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 108.97452992342416,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 6.114578503847483,
+   "min_margin_common": 0.678682156626337,
+   "worst_mark": "C31",
+   "line_clearance": [
+    20.945124267922637,
+    51.99867709149959
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 6.845611745326892,
+   "min_margin_common": 1.1330267553277054,
+   "worst_mark": "C27",
+   "line_clearance": [
+    5.1284811164343544,
+    35.943221455203116
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 3.9392414130758198,
+   "min_margin_common": 0.4998527255856473,
+   "worst_mark": "C27",
+   "line_clearance": [
+    1.3531498716514747,
+    32.157286044914876
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.405550621101952,
+   "min_margin_common": 2.1578023100666996,
+   "worst_mark": "C30",
+   "line_clearance": [
+    6.691172301522474,
+    37.61680716569299
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 34,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 2.038205633771213,
+   "min_margin_common": -0.9375195832008103,
+   "worst_mark": "C27",
+   "line_clearance": [
+    -1.1795960507628909,
+    29.616803352234925
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.154506556852539,
+   "min_margin_common": 2.7124248964655635,
+   "worst_mark": "C25",
+   "line_clearance": [
+    4.368370180975999,
+    35.29164626552219
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 6.930382945462224,
+   "min_margin_common": 1.500000010549499,
+   "worst_mark": "C32",
+   "line_clearance": [
+    12.364203470847162,
+    43.21811241322735
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.456086516925552,
+   "min_margin_common": 1.2154474044623385,
+   "worst_mark": "C05",
+   "line_clearance": [
+    18.927004023079686,
+    49.841540353437914
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 104.97414258006236,
+   "total": 35,
+   "nominal": 35,
+   "common": 35,
+   "left": "33/33",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.427259749482857,
+   "min_margin_common": 0.3676172310670154,
+   "worst_mark": "C31",
+   "line_clearance": [
+    23.138306116814526,
+    54.191773652047424
+   ]
+  },
+  {
+   "track": "TRIF 2024",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
      82.0,
      20.0
     ]
@@ -1265,7 +2225,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1295,7 +2255,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1325,7 +2285,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1355,7 +2315,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1385,7 +2345,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1415,7 +2375,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1445,7 +2405,7 @@
   },
   {
    "track": "TRIF 2024",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -1471,486 +2431,6 @@
    "line_clearance": [
     21.970066423755608,
     53.90800682931597
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "ideal",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.7949273935404335,
-   "min_margin_common": 0.8227255139627232,
-   "worst_mark": "C27",
-   "line_clearance": [
-    2.065079283817022,
-    34.12861484182691
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -3 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 34,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 2.866926812300335,
-   "min_margin_common": -0.06792713255162397,
-   "worst_mark": "C27",
-   "line_clearance": [
-    -1.7649200720849105,
-    30.297644379936678
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +3 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.401090375234503,
-   "min_margin_common": 2.1670844756494034,
-   "worst_mark": "C30",
-   "line_clearance": [
-    4.296634895724566,
-    36.3548733738328
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -5 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 34,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 0.9524027262605159,
-   "min_margin_common": -2.008883441042258,
-   "worst_mark": "C27",
-   "line_clearance": [
-    -4.335125965317056,
-    27.726348920104705
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +5 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 6.2228579145580625,
-   "min_margin_common": 0.942034917656656,
-   "worst_mark": "C06",
-   "line_clearance": [
-    1.956116394743189,
-    34.01440992429893
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 10 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 7.500000023560517,
-   "min_margin_common": 1.000000024894149,
-   "worst_mark": "Partida",
-   "line_clearance": [
-    9.327614686693792,
-    41.393902087268636
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 20 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.743483158949857,
-   "min_margin_common": 1.0000000205862989,
-   "worst_mark": "C21",
-   "line_clearance": [
-    15.973463695170139,
-    48.035881158820985
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 30 mm",
-   "L": 108.97452992342416,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.6654949877528225,
-   "min_margin_common": 0.008306917997515484,
-   "worst_mark": "C28",
-   "line_clearance": [
-    20.945124267922637,
-    52.882438998906075
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "ideal",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 6.824124851834995,
-   "min_margin_common": 0.7682996329147045,
-   "worst_mark": "C30",
-   "line_clearance": [
-    5.1284811164343544,
-    37.19174257036955
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -3 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 4.5000000117681225,
-   "min_margin_common": 0.4998527255856473,
-   "worst_mark": "Partida",
-   "line_clearance": [
-    1.3531498716514747,
-    33.415333011724385
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +3 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.405550621101952,
-   "min_margin_common": 2.1578023100666996,
-   "worst_mark": "C30",
-   "line_clearance": [
-    6.691172301522474,
-    38.750541384423215
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -5 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 34,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 2.7956014256529897,
-   "min_margin_common": -0.1803860455895574,
-   "worst_mark": "C27",
-   "line_clearance": [
-    -1.1795960507628909,
-    30.881131705702423
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +5 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 7.106591927616122,
-   "min_margin_common": 2.5875607568569876,
-   "worst_mark": "C25",
-   "line_clearance": [
-    4.368370180975999,
-    36.4286509730192
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 10 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 6.930382945462224,
-   "min_margin_common": 1.0000000103479607,
-   "worst_mark": "C32",
-   "line_clearance": [
-    12.364203470847162,
-    44.43019897618372
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 20 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.537634562882545,
-   "min_margin_common": 1.0000000083582847,
-   "worst_mark": "C05",
-   "line_clearance": [
-    18.927004023079686,
-    50.98909128718937
-   ]
-  },
-  {
-   "track": "TRIF 2024",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 30 mm",
-   "L": 104.97414258006236,
-   "total": 35,
-   "nominal": 35,
-   "common": 35,
-   "left": "33/33",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.222022770752915,
-   "min_margin_common": 0.3676172310670154,
-   "worst_mark": "C28",
-   "line_clearance": [
-    23.138306116814526,
-    55.07668948500638
    ]
   },
   {
@@ -2488,6 +2968,756 @@
      14.0
     ],
     [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -4.913900116194931,
+   "min_margin_common": -7.6541000884639345,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.478204526887305,
+    -1.0277533754795058
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -8.115528156411543,
+   "min_margin_common": -10.908453597409675,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.480067363768342,
+    1.8744541370133305
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -1.6976714869117302,
+   "min_margin_common": -4.467281696951062,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.485081115901117,
+    -7.787409260678291
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 25,
+   "common": 24,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -10.287235095400085,
+   "min_margin_common": -13.071624600186809,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.490468301426539,
+    -1.9403459976966095
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 26,
+   "common": 23,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 0.3922878669056331,
+   "min_margin_common": -4.540689856419277,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.471359549943235,
+    -9.455987952282594
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 26,
+   "common": 25,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 0.04643376197486759,
+   "min_margin_common": -2.7876447032951006,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.486991649858012,
+    3.1312702283668887
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 26,
+   "common": 26,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.174967212296224,
+   "min_margin_common": 1.1940261878552008,
+   "worst_mark": "C07",
+   "line_clearance": [
+    0.8796145658791534,
+    1.6051261566788053
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 107.11535601056767,
+   "total": 26,
+   "nominal": 26,
+   "common": 26,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.654186969865279,
+   "min_margin_common": 1.5662257069664918,
+   "worst_mark": "C06",
+   "line_clearance": [
+    10.248107402879612,
+    -0.6783371065273389
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -6.049344908498014,
+   "min_margin_common": -8.782489061687407,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.491157160181778,
+    -4.587417846766385
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -9.268482992009535,
+   "min_margin_common": -12.065754667562572,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.478737800131952,
+    -0.7052187649496435
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -2.8043487189628635,
+   "min_margin_common": -5.557628269314426,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.481362617936908,
+    -9.433510659404101
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 24,
+   "common": 24,
+   "left": "22/24",
+   "right": "2/2",
+   "missed": [
+    "C12",
+    "C16"
+   ],
+   "min_margin": -11.434997004628425,
+   "min_margin_common": -14.24829845248523,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.48460977330148,
+    -4.5759078619358435
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 24,
+   "common": 21,
+   "left": "22/24",
+   "right": "2/2",
+   "missed": [
+    "C12",
+    "C24"
+   ],
+   "min_margin": -0.6957020180037716,
+   "min_margin_common": -5.412094043878955,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.4696437954682,
+    -9.447227191394818
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 25,
+   "common": 25,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -1.119095273047682,
+   "min_margin_common": -3.970125549825097,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.478730536290978,
+    2.555054986772806
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 26,
+   "common": 26,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 4.2523135224965,
+   "min_margin_common": 1.2542208000571886,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -1.5080891539457566,
+    1.2212508262770605
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 65 mm",
+   "holes": 65.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 108.97452992342416,
+   "total": 26,
+   "nominal": 26,
+   "common": 26,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.43176970321052,
+   "min_margin_common": 1.3573755956299038,
+   "worst_mark": "C07",
+   "line_clearance": [
+    8.122882620652899,
+    -0.878481997082563
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "ideal",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 25,
+   "common": 24,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -3.612146666141115,
+   "min_margin_common": -6.375303491600967,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.49386613462123,
+    2.927563968526071
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -3 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 25,
+   "common": 24,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -6.758101166312748,
+   "min_margin_common": -9.597107777071187,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.486981837953541,
+    4.6892304392561535
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +3 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 25,
+   "common": 23,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -0.4430665587035705,
+   "min_margin_common": -3.364710444580396,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.483683676391458,
+    -3.595352885507097
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio -5 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 25,
+   "common": 24,
+   "left": "23/24",
+   "right": "2/2",
+   "missed": [
+    "C12"
+   ],
+   "min_margin": -8.927775672304872,
+   "min_margin_common": -11.738428571985608,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.47587101285102,
+    1.0708009909533232
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "desvio +5 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 26,
+   "common": 23,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 1.7201320184458808,
+   "min_margin_common": -3.5733457417189296,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.485916321318484,
+    -8.139767510077327
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 10 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 26,
+   "common": 25,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 1.4285892093313564,
+   "min_margin_common": -1.4174457162167116,
+   "worst_mark": "C12",
+   "line_clearance": [
+    -9.492053713933327,
+    3.7363806839318805
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 20 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 26,
+   "common": 26,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 5.526973367902757,
+   "min_margin_common": 1.4629632911868526,
+   "worst_mark": "C07",
+   "line_clearance": [
+    3.550339306147194,
+    1.9907966450924057
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa de gaivota · 61 mm (referência)",
+   "holes": 61.0,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
+     81.5,
+     16.0
+    ]
+   ],
+   "scenario": "abre 30 mm",
+   "L": 104.97414258006236,
+   "total": 26,
+   "nominal": 26,
+   "common": 26,
+   "left": "24/24",
+   "right": "2/2",
+   "missed": [],
+   "min_margin": 7.275072868812842,
+   "min_margin_common": 1.553662268569255,
+   "worst_mark": "C06",
+   "line_clearance": [
+    12.615425631142521,
+    -0.5017810568613719
+   ]
+  },
+  {
+   "track": "EVA-RT teste",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
+   "holes": 63.141,
+   "sensors": [
+    [
+     50.5,
+     14.0
+    ],
+    [
      82.0,
      20.0
     ]
@@ -2512,7 +3742,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2544,7 +3774,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2576,7 +3806,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2608,7 +3838,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2638,7 +3868,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2668,7 +3898,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2698,7 +3928,7 @@
   },
   {
    "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 63,14 mm",
+   "config": "Asa anterior, externo (82; 20) · 63,14 mm",
    "holes": 63.141,
    "sensors": [
     [
@@ -2724,502 +3954,6 @@
    "line_clearance": [
     10.248107402879612,
     -1.8165713575537774
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "ideal",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 25,
-   "common": 24,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -5.214880358692078,
-   "min_margin_common": -7.988006219660587,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.491157160181778,
-    -2.887387194136587
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -3 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 25,
-   "common": 23,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -8.503995820576492,
-   "min_margin_common": -11.231143062818333,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.478737800131952,
-    0.836891117792101
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +3 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 25,
-   "common": 24,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -1.9983881775127834,
-   "min_margin_common": -4.802076880671336,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.481362617936908,
-    -9.460419411470534
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -5 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 25,
-   "common": 24,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -10.690314228910765,
-   "min_margin_common": -13.413736433256283,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.48460977330148,
-    -3.0228499979027053
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +5 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 26,
-   "common": 23,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 0.13887503086001374,
-   "min_margin_common": -2.6578709730416694,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.4696437954682,
-    -9.490704753046103
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 10 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 25,
-   "common": 25,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -0.3268759275844033,
-   "min_margin_common": -3.1517226320061553,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.478730536290978,
-    1.609370812419705
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 20 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 26,
-   "common": 26,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.03803459376978,
-   "min_margin_common": 1.104095512291451,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -1.5080891539457566,
-    0.1709186570000636
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 65 mm",
-   "holes": 65.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 30 mm",
-   "L": 108.97452992342416,
-   "total": 26,
-   "nominal": 26,
-   "common": 26,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 7.432156950127052,
-   "min_margin_common": 1.0775775836384724,
-   "worst_mark": "C07",
-   "line_clearance": [
-    8.122882620652899,
-    -2.0056738568888077
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "ideal",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 25,
-   "common": 25,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -2.7914492467234666,
-   "min_margin_common": -5.539318677776862,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.49386613462123,
-    3.8681234839456557
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -3 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 25,
-   "common": 25,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -5.989250842788024,
-   "min_margin_common": -8.761241243522932,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.486981837953541,
-    3.951340183198363
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +3 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 26,
-   "common": 24,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 0.39258908674005966,
-   "min_margin_common": -2.359176833401861,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.483683676391458,
-    -1.8861409516969134
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio -5 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 25,
-   "common": 24,
-   "left": "23/24",
-   "right": "2/2",
-   "missed": [
-    "C12"
-   ],
-   "min_margin": -8.162622781537152,
-   "min_margin_common": -10.902644327279823,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.47587101285102,
-    1.3599457722863928
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "desvio +5 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 26,
-   "common": 24,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 2.508079068129029,
-   "min_margin_common": -0.29156113505513304,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.485916321318484,
-    -6.409584792183582
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 10 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 26,
-   "common": 25,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 2.196454613143331,
-   "min_margin_common": -0.6488555192052914,
-   "worst_mark": "C12",
-   "line_clearance": [
-    -9.492053713933327,
-    2.7595461117698186
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 20 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 26,
-   "common": 26,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 5.507381157760008,
-   "min_margin_common": 1.07394965239547,
-   "worst_mark": "C07",
-   "line_clearance": [
-    3.550339306147194,
-    0.9138799984045605
-   ]
-  },
-  {
-   "track": "EVA-RT teste",
-   "config": "Asa de gaivota · 61 mm (referência)",
-   "holes": 61.0,
-   "sensors": [
-    [
-     50.5,
-     14.0
-    ],
-    [
-     82.0,
-     20.0
-    ]
-   ],
-   "scenario": "abre 30 mm",
-   "L": 104.97414258006236,
-   "total": 26,
-   "nominal": 26,
-   "common": 26,
-   "left": "24/24",
-   "right": "2/2",
-   "missed": [],
-   "min_margin": 7.275072868812842,
-   "min_margin_common": 1.0526399569360763,
-   "worst_mark": "C06",
-   "line_clearance": [
-    12.615425631142521,
-    -1.6525625609784713
    ]
   },
   {
@@ -3730,6 +4464,84 @@
   "Asa de gaivota · 63,14 mm": {
    "R100 90°": [
     1.500898945600996,
+    32.393654118187214
+   ],
+   "R100 180°": [
+    -9.496887626763467,
+    11.157711560080752
+   ],
+   "R120 90°": [
+    5.189153853984546,
+    36.10577598044736
+   ],
+   "R120 180°": [
+    -8.586615797169786,
+    22.023872211508234
+   ],
+   "R150 90°": [
+    9.897746640206389,
+    40.84596442323535
+   ],
+   "R150 180°": [
+    2.3959583201404087,
+    33.17862436412636
+   ]
+  },
+  "Asa de gaivota · 65 mm": {
+   "R100 90°": [
+    0.3735264498368682,
+    31.271895260604076
+   ],
+   "R100 180°": [
+    -9.483306338432945,
+    8.860814529839548
+   ],
+   "R120 90°": [
+    4.11105872021577,
+    35.032257684156484
+   ],
+   "R120 180°": [
+    -9.429950536154426,
+    20.068690765001115
+   ],
+   "R150 90°": [
+    8.895970525295816,
+    39.84743046130125
+   ],
+   "R150 180°": [
+    0.8349044400657899,
+    31.615638035861103
+   ]
+  },
+  "Asa de gaivota · 61 mm (referência)": {
+   "R100 90°": [
+    2.795284706519192,
+    33.68139437969821
+   ],
+   "R100 180°": [
+    -9.427045426614603,
+    13.762655787707295
+   ],
+   "R120 90°": [
+    6.425545476902137,
+    37.33660639261384
+   ],
+   "R120 180°": [
+    -6.380411865812728,
+    24.236389014977064
+   ],
+   "R150 90°": [
+    11.043818644279149,
+    41.98819983150131
+   ],
+   "R150 180°": [
+    4.158305810063721,
+    34.94287414431523
+   ]
+  },
+  "Asa anterior, externo (82; 20) · 63,14 mm": {
+   "R100 90°": [
+    1.500898945600996,
     33.566023257428185
    ],
    "R100 180°": [
@@ -3751,58 +4563,6 @@
    "R150 180°": [
     2.3959583201404087,
     34.45522309719561
-   ]
-  },
-  "Asa de gaivota · 65 mm": {
-   "R100 90°": [
-    0.3735264498368682,
-    32.43807247867838
-   ],
-   "R100 180°": [
-    -9.483306338432945,
-    10.34829309817913
-   ],
-   "R120 90°": [
-    4.11105872021577,
-    36.171702923196115
-   ],
-   "R120 180°": [
-    -9.429950536154426,
-    21.464955000473566
-   ],
-   "R150 90°": [
-    8.895970525295816,
-    40.94761189645561
-   ],
-   "R150 180°": [
-    0.8349044400657899,
-    32.89350330033826
-   ]
-  },
-  "Asa de gaivota · 61 mm (referência)": {
-   "R100 90°": [
-    2.795284706519192,
-    34.86095935725119
-   ],
-   "R100 180°": [
-    -9.427045426614603,
-    15.250626535105383
-   ],
-   "R120 90°": [
-    6.425545476902137,
-    38.48797498891568
-   ],
-   "R120 180°": [
-    -6.380411865812728,
-    25.63152259297096
-   ],
-   "R150 90°": [
-    11.043818644279149,
-    43.09796752576213
-   ],
-   "R150 180°": [
-    4.158305810063721,
-    36.21786261835103
    ]
   },
   "Chassi baixo (esboço) · 63,14 mm": {

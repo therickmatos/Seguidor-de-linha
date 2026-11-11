@@ -30,7 +30,7 @@ const fs=require('fs');
     const g=await page.evaluate(()=>({mode:chassisMode,sensors:[tracesL.length,tracesR.length],x:[X,...extras],y:[X,...extras].map(sensorY),
       inside:[X,...extras].every(v=>sensorInsideChassis(v,sensorY(v))&&sensorInsideChassis(-v,sensorY(v))),cutouts:currentChassis().cutouts.length,
       nominal:document.getElementById('scoreNom').textContent,common:document.getElementById('scoreCommon').textContent}));
-    if(g.mode!=='gull'||JSON.stringify(g.sensors)!=='[2,2]'||JSON.stringify(g.x)!=='[50.5,82]'||JSON.stringify(g.y)!=='[14,20]'||!g.inside||g.cutouts!==15)throw Error('Asa de gaivota incorreta: '+JSON.stringify(g));
+    if(g.mode!=='gull'||JSON.stringify(g.sensors)!=='[2,2]'||JSON.stringify(g.x)!=='[50.5,81.5]'||JSON.stringify(g.y)!=='[14,16]'||!g.inside||g.cutouts!==15)throw Error('Asa de gaivota incorreta: '+JSON.stringify(g));
     if(g.nominal!==`${row.nominal} / ${row.total}`||g.common!==`${row.common} / ${row.total}`)throw Error('Asa de gaivota diverge do Python: '+JSON.stringify({g,row:{n:row.nominal,c:row.common,t:row.total}}));
     if(await page.locator('#mount').evaluate(e=>e.classList.contains('danger')))throw Error('Asa de gaivota marcada fora do contorno.');
   }

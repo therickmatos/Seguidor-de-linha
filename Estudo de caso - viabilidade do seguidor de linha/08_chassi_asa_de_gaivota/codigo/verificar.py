@@ -26,6 +26,7 @@ CONFIGS = [  # nome, furos (base → barra), sensores [(x, y), ...] por lado (es
     ('Asa de gaivota · 63,14 mm', 63.141, GULL),
     ('Asa de gaivota · 65 mm', 65.0, GULL),
     ('Asa de gaivota · 61 mm (referência)', 61.0, GULL),
+    ('Asa anterior, externo (82; 20) · 63,14 mm', 63.141, [C.SENSOR_IN, (82.0, 20.0)]),
     ('Chassi baixo (esboço) · 63,14 mm', 63.141, [(52.25, 20.0), (77.75, 20.0)]),
     ('v3 atual · 63,14 mm', 63.141, [(69.5, 4.5)]),
 ]

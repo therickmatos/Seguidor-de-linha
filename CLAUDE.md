@@ -8,7 +8,8 @@
 ## O projeto
 Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida): clone do **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto (contorno B "degraus", estilo HLR).
 - **Fluxo:** esquemático em KiCad (fonte) → importado no EasyEDA Pro → layout → Gerber → pedido na JLC.
-- **Fora deste repositório:** o perseguidor e o seguidor em fenolite são outros projetos (as bases dos robôs são parecidas). Os docs de decisão citam os dois porque o pedido na JLC é compartilhado.
+- **Perseguidor:** em `Perseguidor de linha/` (placa do seguidor sem os braços + receptor IR KY-022 no A5, J6). Revisão e pendências no README de lá.
+- **Fora deste repositório:** o seguidor em fenolite (outro projeto). Os docs de decisão citam o perseguidor e a fenolite porque o pedido na JLC é compartilhado.
 - Peças do seguidor chegando entre ~10 e 25/11/2026; meta de ter tudo até 20–23/11.
 
 ## Seguidor: decisões fixas
@@ -39,6 +40,8 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
+| `Perseguidor de linha/` | projeto EasyEDA Pro do perseguidor (com o J6/KY-022), revisão e figuras |
+| `ferramentas/perseguidor/` | scripts de leitura/DRC/roteamento de `.epro` usados na revisão do perseguidor |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
 
 ## Cuidados
@@ -46,4 +49,5 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Não decidir pelo Erick: base comum × placas separadas já foi decidido (placas separadas), mas nome do robô e terceira placa do pedido estão em aberto.
 - O KiCad 7 do Ubuntu não tem ERC pela linha de comando; a conectividade é conferida por `ferramentas/esquematico/check.py`.
 - Mudança no esquemático depois da importação no EasyEDA: fazer no `gen.py` (fonte) e repetir no EasyEDA, para os dois não divergirem.
+- `.epro` (EasyEDA Pro): componente na face de baixo é espelhado em **y local** (não em x) antes da rotação; conferido pelos polígonos calculados pelo EasyEDA. Unidades do arquivo em mil; `POURED` em 10 mil.
 - Ficaram fora do repositório (estão no zip original): a conversa com o Claude e seus anexos, os scripts de figuras e de STL, a netlist `.net` (regenerável), figuras de alternativas descartadas (ESP, USB-C), os renders PNG dos PDFs do EVA-RT e os docs do perseguidor e da fenolite (outros projetos).

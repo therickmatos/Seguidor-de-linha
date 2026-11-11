@@ -101,6 +101,8 @@ Em grampos de 180° com raio 100–120 mm, qualquer sensor interno perto do corp
 
 ## Cuidados para a próxima fase (firmware e pinos)
 
+**Pinos:** proposta em [PINOS.md](PINOS.md): E2/D2 em A5/A6 (firmware 1.2.2 sem mudança), E1/D1 em D8/D9 (digital).
+
 1. **Sensores internos podem ver a linha principal em curva fechada.** Isso acontece quando o robô segue a linha com o centro da barra exatamente sobre ela. O robô real tende a abrir na curva, e com 10–30 mm de abertura a folga sobe para 8–22 mm nas pistas do TRIF. Mesmo assim, não dá para contar com isso. O firmware precisa distinguir marca de linha, por exemplo ignorando o interno enquanto a barra indica curva fechada (erro grande), ou exigindo que a marca apareça como um pulso curto.
 2. **No lado direito só existem partida e chegada, sempre em reta** (o regulamento exige 250 mm de reta antes e depois da área de partida e chegada). Em reta, qualquer x entre ~55 e ~85 lê a marca. **D2 sozinho já basta para a chegada** e nunca encosta na linha (folga ≥ 11 mm, inclusive no grampo R100). Usar D1 para parar traria de volta o risco de parada falsa em curva fechada à esquerda, que o estudo 07 apontou no EVA-RT. D1 pode servir só para confirmar cruzamentos, ou até ficar sem montar.
 3. No lado esquerdo, E1 e E2 são os dois necessários para as marcas de curva. Vale a regra "qualquer um dos dois, contada uma vez".

@@ -1,0 +1,1913 @@
+[
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "curva",
+   "falsas": [
+    "curva",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "curva",
+   "falsas": [
+    "curva",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "curva",
+   "falsas": [
+    "curva",
+    "cruzamento"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 63.141,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": null,
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": null,
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2025",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "TRIF 2024",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "curva",
+   "falsas": [
+    "curva",
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "curva",
+   "falsas": [
+    "curva",
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "curva",
+   "falsas": [
+    "curva",
+    "linha",
+    "cruzamento",
+    "cruzamento"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "externos E2/D2",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2025",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "TRIF 2024",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_30": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": true,
+   "primeira_parada": "chegada",
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 0",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo -3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "fixo 3",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 10",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 20",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "cruzamento",
+    "cruzamento",
+    "cruzamento",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": "linha",
+   "falsas": [
+    "linha",
+    "linha",
+    "linha"
+   ]
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": null,
+   "falsas": []
+  }
+ },
+ {
+  "furos": 65.0,
+  "par": "internos E1/D1",
+  "pista": "EVA-RT teste",
+  "cenario": "abre 30",
+  "janela_10": {
+   "ok": false,
+   "primeira_parada": "cruzamento",
+   "falsas": [
+    "cruzamento",
+    "cruzamento",
+    "cruzamento"
+   ]
+  },
+  "janela_30": {
+   "ok": false,
+   "primeira_parada": null,
+   "falsas": []
+  },
+  "janela_60": {
+   "ok": false,
+   "primeira_parada": null,
+   "falsas": []
+  }
+ }
+]

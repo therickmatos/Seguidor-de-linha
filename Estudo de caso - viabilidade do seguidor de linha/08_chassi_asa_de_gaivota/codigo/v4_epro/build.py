@@ -166,12 +166,16 @@ SIDES = {
                  ('GND', [(-48.6, 4.85), (-47.85, 4.1), (-47.85, 1.9)], B5),
                  ('GND', [(-47.1, 4.85), (-47.85, 4.1)], B5)]),
 }
+# C19 (E1) montado: filtro RC (~0,5 ms) na trilha longa até o pino 12. C20 (D1) segue não montado.
+CAP_DNP = {'C19': 'no', 'C20': 'yes'}
+CAP_DESC = {'C19': 'filtro RC com o 47k (trilha longa ate o pino 12); ver PINOS.md',
+            'C20': 'DNP: montar so para leitura por tempo de descarga (ver PINOS.md)'}
 for sx, I in SIDES.items():
     add_comp('e230', I['des'], sx * 50.5, 14.0, I['rot'], {'1': I['anode'], '2': 'GND', '3': '+5V', '4': I['sig']})
     x, y, r = I['r220pos']; add_comp('e162', I['r220'], x, y, r, {'1': '+5V', '2': I['anode']}, name='220', value='220')
     x, y, r = I['r47pos']; add_comp('e162', I['r47'], x, y, r, {'1': I['sig'], '2': 'GND'}, name='47k', value='47k')
-    x, y, r = I['cappos']; add_comp('e13', I['cap'], x, y, r, {'1': 'GND', '2': I['sig']}, name='10nF', value='10nF', dnp='yes',
-                                     desc='DNP: montar so para leitura por tempo de descarga (ver PINOS.md)')
+    x, y, r = I['cappos']; add_comp('e13', I['cap'], x, y, r, {'1': 'GND', '2': I['sig']}, name='10nF', value='10nF',
+                                     dnp=CAP_DNP[I['cap']], desc=CAP_DESC[I['cap']])
     for net, vx, vy in I['vias']: via(net, vx, vy)
     for net, P, w in I['lines']: line(net, 2, P, w)
 
@@ -247,8 +251,8 @@ def cap_block(rx, ry, des, net):
     add = [['COMPONENT', new['sch'], tpl[2], cx, ry, 270, 0, {}, 0]]
     for a in BY['e14']:
         a = copy.deepcopy(a); a[1] = sid(); a[2] = new['sch']
-        v = {'Designator': des, 'Name': '10nF', 'Value': '10nF', 'Unique ID': new['uid'], 'DNP': 'yes',
-             'Description': 'DNP: montar so para leitura por tempo de descarga (ver PINOS.md)', 'Encapsulamento': '0603'}
+        v = {'Designator': des, 'Name': '10nF', 'Value': '10nF', 'Unique ID': new['uid'], 'DNP': CAP_DNP[des],
+             'Description': CAP_DESC[des], 'Encapsulamento': '0603'}
         if a[3] in v: a[4] = v[a[3]]
         if a[3] == 'Designator': a[7], a[8] = cx + 10, ry + 5
         if a[3] == 'Name': a[7], a[8] = cx + 10, ry - 5

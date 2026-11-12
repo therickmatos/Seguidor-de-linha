@@ -100,3 +100,5 @@ Ao abrir no EasyEDA Pro:
 2. Rotear à mão no EasyEDA, afastando a via do `B1_D11` em (5,7; −25,65) e a trilha de +5V em (5,1…7,3; −26,9…−25,2) para abrir a saída do pino 13.
 
 **Trilha longa e de alta impedância (47 kΩ) passando perto dos drivers:** vale **montar o C19 (10 nF)**. O RC de cerca de 0,5 ms filtra os picos e não atrapalha a marca, que dura uns 10 ms a 2 m/s.
+
+**Atualização (12/11/2026):** o C19 passou a ser montado, na mesma posição: face de baixo, em (−47,1; 5,6), ao lado do R24. A trilha é eletricamente curta para essas frequências, então o capacitor filtra a rede inteira de qualquer ponto dela. Junto do R24 ele fecha o RC no menor laço possível e não exige novo roteamento no centro da placa. O C20 continua não montado.

@@ -102,3 +102,14 @@ Ao abrir no EasyEDA Pro:
 **Trilha longa e de alta impedância (47 kΩ) passando perto dos drivers:** vale **montar o C19 (10 nF)**. O RC de cerca de 0,5 ms filtra os picos e não atrapalha a marca, que dura uns 10 ms a 2 m/s.
 
 **Atualização (12/11/2026):** o C19 passou a ser montado, na mesma posição: face de baixo, em (−47,1; 5,6), ao lado do R24. A trilha é eletricamente curta para essas frequências, então o capacitor filtra a rede inteira de qualquer ponto dela. Junto do R24 ele fecha o RC no menor laço possível e não exige novo roteamento no centro da placa. O C20 continua não montado.
+
+### Versão corrigida (12/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro` sai de `codigo/v4_epro/corrige_erick.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entrada_erick_2026-11-12.epro`). Nele o Erick já tinha roteado o `MARK_R2_D9` (D1 → pino 13), abrindo a saída junto ao ATmega. O script fez:
+
+- Religou o E1 (S3.4 → R24/C19/pino 12) e o anodo do D1 (S4.1 → R25), que tinham ficado soltos ao mover os resistores. Ligou também o C20.
+- Desviou o trecho do `MARK_R2_D9` que atravessava a traseira em y ≈ −26 na face de baixo. Ele isolava o GND do botão de reset (SW1), e agora passa rente às bordas direita e traseira.
+- Chanfrou em 45° todos os cantos retos e converteu para reto + 45° todos os trechos em ângulo quebrado da placa.
+- Pôs os rótulos do S1, do S2 e do S4 dentro da placa.
+
+Resultado: esquemático = PCB, nenhuma rede partida, nada abaixo de 0,2 mm de folga nem de 0,3 mm até a borda ou os furos, GND inteiro na simulação do cobre, nenhum canto ≤ 90° e nenhum trecho fora de 0/45/90°.

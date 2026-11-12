@@ -83,8 +83,8 @@ for (x1, y1), (x2, y2) in zip(outer.exterior.coords[:-1], outer.exterior.coords[
 def line(net, layer, pts, w=0.254):
     for (x1, y1), (x2, y2) in zip(pts[:-1], pts[1:]):
         pcb.append(['LINE', pid(), 0, net, layer, round(mil(x1), 4), round(mil(y1), 4), round(mil(x2), 4), round(mil(y2), 4), round(mil(w), 4), 0])
-def via(net, x, y):
-    pcb.append(['VIA', pid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), 15.748, 31.49606, 0, None, None, 1, []])
+def via(net, x, y, d=0.8, hole=0.4):
+    pcb.append(['VIA', pid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(hole), 4), round(mil(d), 4), 0, None, None, 1, []])
 
 
 # ---------------- trilhas das abas (camada de cima) ----------------
@@ -183,6 +183,17 @@ for r in pcb:
 last = max(i for i, r in enumerate(pcb) if r[0] == 'NET')
 for n in ('MARK_L2_D8', 'MARK_R2_D9', 'QRE_E1_A', 'QRE_D1_A'):
     last += 1; pcb.insert(last, ['NET', n, None, None, 1, None, 0, None])
+
+# ---------------- roteamento automático do E1 (pino 12) ----------------
+# Só cabe uma saída para os pinos 12/13 sem mexer no roteamento da v3: fica com o E1 (MARK_L2_D8).
+# O D1 (MARK_R2_D9, pino 13) fica por rotear: ver PINOS.md.
+ROUTE_REPORT = {}
+if os.environ.get('V4_ROTEAR', '1') == '1':
+    import route_v4
+    _fps = {f[:-5]: load(os.path.join(ORIG, 'FOOTPRINT', f)) for f in os.listdir(os.path.join(ORIG, 'FOOTPRINT'))}
+    ROUTE_REPORT = route_v4.route_all(sys.modules[__name__], _fps, (('MARK_L2_D8', '12'),), 150, verbose=False)
+    import costura_gnd
+    GND_STITCH = costura_gnd.stitch(sys.modules[__name__], _fps)
 
 # ---------------- esquemático ----------------
 BY = {}

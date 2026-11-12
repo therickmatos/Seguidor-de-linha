@@ -89,3 +89,14 @@ Ao abrir no EasyEDA Pro:
 2. **Rotear duas trilhas:** `MARK_L2_D8` (C19/R24, perto de (−48; 6), até o pino 12 do ATmega) e `MARK_R2_D9` (C20/R26, perto de (+48; 6), até o pino 13). Os pinos ficam em (2,8; −26,4) e (3,4; −25,8). As linhas de ligação (ratsnest) já aparecem.
 3. Rodar o **DRC** e conferir o 3D: os QRE internos estão girados 45°, e os rótulos de serigrafia dos componentes novos e movidos podem precisar de ajuste.
 4. Conferir na BOM que C19 e C20 saem como **DNP**.
+
+### Roteamento automático (12/11/2026)
+
+`codigo/v4_epro/route.py` (A* em grade de 0,1 mm, duas faces, vias) roteou **`MARK_L2_D8` (E1 → pino 12)**. São 168 mm de trilha de 0,2 mm e 3 vias de 0,6/0,3 mm. A trilha atravessa a placa pela face de baixo, desce pela lateral direita na face de cima e entra no ATmega pela traseira. Duas vias de costura de GND (0,6/0,3) mantêm o cobre de GND inteiro. As checagens de folga, borda, furos e ligação não acusam nada novo em relação à v3.
+
+**`MARK_R2_D9` (D1 → pino 13) não tem caminho** sem mexer no roteamento da v3. Os pinos 12 e 13 têm uma única saída possível: uma via sob o corpo do ATmega. Pela frente, eles caem num bolsão fechado por `LEDB_D7`, pelo +5V de 0,5 mm e pela via do `B1_D11`. Opções:
+
+1. **Deixar o D1 sem montar** (S4, R25, R26 e C20). Ele não é necessário para a chegada (D2) nem para as marcas de curva (E1/E2).
+2. Rotear à mão no EasyEDA, afastando a via do `B1_D11` em (5,7; −25,65) e a trilha de +5V em (5,1…7,3; −26,9…−25,2) para abrir a saída do pino 13.
+
+**Trilha longa e de alta impedância (47 kΩ) passando perto dos drivers:** vale **montar o C19 (10 nF)**. O RC de cerca de 0,5 ms filtra os picos e não atrapalha a marca, que dura uns 10 ms a 2 m/s.

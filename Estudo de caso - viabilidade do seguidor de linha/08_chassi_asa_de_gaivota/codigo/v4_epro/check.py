@@ -19,7 +19,14 @@ def pad_geoms(rows, fps):
             if p[0] != 'PAD': continue
             x, y = p[6], p[7]; s = p[10]
             w, h = s[1] * M, s[2] * M
-            g = box(-w / 2, -h / 2, w / 2, h / 2) if s[0] == 'RECT' else affinity.scale(Point(0, 0).buffer(1, quad_segs=12), w / 2, h / 2)
+            if s[0] == 'RECT':
+                g = box(-w / 2, -h / 2, w / 2, h / 2)
+            elif s[0] == 'OVAL':          # oblongo (pontas semicirculares), como no EasyEDA
+                g = (LineString([(-(w - h) / 2, 0), ((w - h) / 2, 0)]).buffer(h / 2, quad_segs=12) if w >= h
+                     else LineString([(0, -(h - w) / 2), (0, (h - w) / 2)]).buffer(w / 2, quad_segs=12))
+                if abs(w - h) < 1e-9: g = Point(0, 0).buffer(w / 2, quad_segs=12)
+            else:                         # ELLIPSE
+                g = affinity.scale(Point(0, 0).buffer(1, quad_segs=12), w / 2, h / 2)
             g = affinity.rotate(g, p[8], origin=(0, 0)); g = affinity.translate(g, x * M, y * M)
             if r[3] == 2: g = affinity.scale(g, 1, -1, origin=(0, 0))
             g = affinity.rotate(g, r[6], origin=(0, 0)); g = affinity.translate(g, r[4] * M, r[5] * M)

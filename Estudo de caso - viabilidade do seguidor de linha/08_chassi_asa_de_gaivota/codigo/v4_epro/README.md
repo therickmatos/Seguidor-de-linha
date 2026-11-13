@@ -15,3 +15,10 @@ O que o script faz:
 `check.py` é uma checagem de folgas aproximada: 0,2 mm entre redes, 0,3 mm até a borda e até furos não metalizados. Nos objetos novos ou movidos, ela não acusa nenhum problema. Não substitui o DRC do EasyEDA.
 
 Falta fazer no EasyEDA: ver a seção "Ao abrir" na resposta do 11/11 ou em `../../PINOS.md`.
+
+## Correções sobre os arquivos do Erick
+
+- `corrige_erick.py <entrada>` (12/11): gera `ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro`.
+- `corrige_v7.py <entrada> <saída>` (13/11): erros do DRC do v7, GND em toda a placa (vias de costura) e furo de 1 mm nos motores. Entrada guardada em `entrada_erick_v7_2026-11-13.epro`.
+- Apoio: `plano_gnd.py` simula o cobre de GND (folga 0,35 mm, medida no arquivo do EasyEDA). `poured.py` lê o cobre já despejado, `conexoes.py` confere a conectividade por rede, e `zoom.py` e `zoom_gnd.py` fazem recortes ampliados.
+

@@ -33,6 +33,15 @@ def pad_geoms(rows, fps):
             lay = p[4]
             layers = [1, 2] if lay == 12 else [r[3] if lay == 1 else 3 - r[3]]
             for L in layers: out.append((L, c['nets'].get(p[5], ''), g, f'{cid}:{p[5]}'))
+    for r in rows:                        # pads soltos (fora de componente), ex.: rasgos traseiros e311/e312
+        if r[0] == 'PAD' and r[4] in (1, 2, 12):
+            s = r[10]; w, h = s[1] * M, s[2] * M
+            if s[0] == 'RECT': g = box(-w / 2, -h / 2, w / 2, h / 2)
+            elif abs(w - h) < 1e-9 or s[0] == 'ELLIPSE': g = affinity.scale(Point(0, 0).buffer(1, quad_segs=12), w / 2, h / 2)
+            else: g = (LineString([(-(w - h) / 2, 0), ((w - h) / 2, 0)]).buffer(h / 2, quad_segs=12) if w >= h
+                       else LineString([(0, -(h - w) / 2), (0, (h - w) / 2)]).buffer(w / 2, quad_segs=12))
+            g = affinity.translate(affinity.rotate(g, r[8], origin=(0, 0)), r[6] * M, r[7] * M)
+            for L in ([1, 2] if r[4] == 12 else [r[4]]): out.append((L, r[3], g, f'{r[1]}:pad'))
     return out
 def copper(rows, fps):
     out = pad_geoms(rows, fps)

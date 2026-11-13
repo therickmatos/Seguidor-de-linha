@@ -103,7 +103,7 @@ Ao abrir no EasyEDA Pro:
 
 **Atualização (12/11/2026):** o C19 passou a ser montado, na mesma posição: face de baixo, em (−47,1; 5,6), ao lado do R24. A trilha é eletricamente curta para essas frequências, então o capacitor filtra a rede inteira de qualquer ponto dela. Junto do R24 ele fecha o RC no menor laço possível e não exige novo roteamento no centro da placa. O C20 continua não montado.
 
-### Versão corrigida (12/11/2026, arquivo atual)
+### Versão corrigida (12/11/2026)
 
 `ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro` sai de `codigo/v4_epro/corrige_erick.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entrada_erick_2026-11-12.epro`). Nele o Erick já tinha roteado o `MARK_R2_D9` (D1 → pino 13), abrindo a saída junto ao ATmega. O script fez:
 
@@ -113,3 +113,19 @@ Ao abrir no EasyEDA Pro:
 - Pôs os rótulos do S1, do S2 e do S4 dentro da placa.
 
 Resultado: esquemático = PCB, nenhuma rede partida, nada abaixo de 0,2 mm de folga nem de 0,3 mm até a borda ou os furos, GND inteiro na simulação do cobre, nenhum canto ≤ 90° e nenhum trecho fora de 0/45/90°.
+
+**Erro meu nessa versão:** o trecho do `MARK_R2_D9` que eu passei rente à borda traseira (y = −29,3) atravessava o pad do rasgo traseiro direito (e311, pad oval de 8,5 × 2,5 mm sem rede). A minha checagem não incluía pads soltos. Isso foi corrigido no `check.py` e no arquivo de 13/11.
+
+### Correções do v7 (13/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v7_2026-11-13_corrigido.epro` sai de `codigo/v4_epro/corrige_v7.py`, aplicado sobre o arquivo v7 do Erick (`codigo/v4_epro/entrada_erick_v7_2026-11-13.epro`). O DRC do EasyEDA acusava 17 erros. O script fez:
+
+1. **Physical Error (4):** as 4 trilhas de 0,2 mm do `MARK_L2_D8` junto ao pino 12 passaram a ter 0,25 mm, que é a mínima da regra do arquivo.
+2. **Clearance Error (1), trilha × pad e311:** o `MARK_R2_D9` sai da borda direita a 45° e passa **acima** do rasgo, na face de baixo. Fica em y = −26,05, entre o `LEDB_D7` (y −26,64) e o `B1_D11` (y −25,58), e entra a 45° na via que já existia em (10,55; −27,17).
+3. **E1 aberto:** faltava a ligação R24.1 → C19 na face de baixo (y = 6,6).
+4. **GND dos pads de gravação (e85:2) e via e1300:** a via do `MARK_L2_D8` em (1,45; −25,75) e a trilha de baixo até ela fechavam o GND do pad e85:2 nas duas faces. A troca de face passou para (3,82; −27,38), na linha do pino 12 a 45°.
+5. **Connection Error (12) / GND em toda a placa:** a simulação do "reconstruir cobre" usa folga de 0,35 mm, medida no cobre que o EasyEDA gravou. Ela mostrou várias ilhas de GND sem ligação, que o EasyEDA apaga. Foram acrescentadas **37 vias de GND (0,6/0,3 mm)**, cada uma onde a ilha de uma face encontra o GND ligado da outra. Sobram só ilhas de 2 a 5 mm² sem lugar para via.
+6. **Motores:** o furo dos pads do footprint `MOTOR_1020_2P` foi de 0,9 para **1,0 mm**, com o pad oval de 3,0 × 2,0 mm mantido. O footprint é o mesmo de M1, M2 **e M3 (ventoinha)**, então os três ficam com 1,0 mm.
+7. Apagou o cobre antigo (`POURED`), que é refeito no EasyEDA.
+
+Resultado: esquemático = PCB (233 pinos), nenhuma rede partida, todos os itens de GND ligados ao plano na simulação, nenhuma trilha abaixo de 0,25 mm, nenhuma folga abaixo de 0,2 mm, nenhum canto ≤ 90° e nenhum trecho fora de 0/45/90°. Figura: `saida/gnd_v7_corrigido.png`.

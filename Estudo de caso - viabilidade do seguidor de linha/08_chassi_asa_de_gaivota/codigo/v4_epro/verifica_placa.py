@@ -36,7 +36,7 @@ def run(path, clr=0.2, edge=0.3, hole=0.3):
         if d < edge: probs.add(('borda', L, str(i), n, round(d, 3)))
         for h in hs:
             dh = g.distance(h)
-            if dh < hole: probs.add(('furo', L, str(i), n, round(dh, 3)))
+            if dh < hole and not str(i).endswith(':pad'): probs.add(('furo', L, str(i), n, round(dh, 3)))   # pad solto × o próprio rasgo
     # pontas soltas de trilhas
     ends = collections.Counter()
     for r in rows:

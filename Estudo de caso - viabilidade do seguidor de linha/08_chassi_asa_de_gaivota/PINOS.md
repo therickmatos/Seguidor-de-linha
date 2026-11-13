@@ -129,3 +129,16 @@ Resultado: esquemático = PCB, nenhuma rede partida, nada abaixo de 0,2 mm de fo
 7. Apagou o cobre antigo (`POURED`), que é refeito no EasyEDA.
 
 Resultado: esquemático = PCB (233 pinos), nenhuma rede partida, todos os itens de GND ligados ao plano na simulação, nenhuma trilha abaixo de 0,25 mm, nenhuma folga abaixo de 0,2 mm, nenhum canto ≤ 90° e nenhum trecho fora de 0/45/90°. Figura: `saida/gnd_v7_corrigido.png`.
+
+### Arquivo do Erick após o DRC (13/11/2026) e PTH sob a placa de sucção
+
+O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `codigo/v4_epro/entrada_erick_v8_2026-11-13.epro`. Conferido contra o contorno real do `suction_base.stl` (pentágono de x ±23,08 e y −27,5 a 21, com o furo da ventoinha e os 4 furos de parafuso):
+
+- PTH dentro da área: **só C1 e C2** (220 µF radial D6,3 P2,5). O C1 está em (−21,72; 1,27) e o C2 em (20,57; 2,29). As pontas e a solda ficam sob a placa de sucção. O EVA-RT original tem o mesmo problema: C1/C2 PTH em (±22,0; 0,8/3,3), segundo o Gerber.
+- Nas vias, inclusive as do pad térmico dos DRV8874, não há problema. SMD na face de cima também não. Na face de baixo, só os pads do J3 entram 0,05 mm na área.
+- Opções em aberto (decisão do Erick):
+  1. Eletrolítico SMD de 220 µF/25 V, 6,3 × 7,7 mm, no mesmo lugar (recomendado).
+  2. PTH cortado rente, como no EVA-RT.
+  3. Mover o C1 para x ≈ −25 e refazer o VBAT. O C2 não tem lugar no lado direito.
+  4. Furos de Ø3 no `suction_base` (muda o STL do EVA-RT).
+

@@ -186,7 +186,7 @@ Nas seções anteriores deste arquivo, "S3" = E1 (hoje S2) e "S4" = D1 (hoje S3)
 
 Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Figura: `saida/ajustes_v81.png`.
 
-### v8.2 (14/11/2026, arquivo atual)
+### v8.2 (14/11/2026)
 
 `ProPrj_RUSH - SATURN - v82_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v82.py`, aplicado sobre o v8.2 do Erick. Nele o Erick já tinha refeito o `PWMC_D10`/`LEDC_D13` para centrar o R17 com o C2.
 
@@ -200,3 +200,27 @@ Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND intei
 - Os gargalos de 0,40–0,50 mm são só as saídas dos pinos VM e OUT2 do DRV8874 (0,85–1,6 mm de comprimento, entre pinos de passo 0,65). Eles dissipam ~10–15 mW a 3 A, o que é desprezível.
 - O ITRIP atual é 2,0 V / (1,5 kΩ × 450 µA/A) ≈ 3,0 A por motor. Para ~5,5 A, o R14/R15 teria de ser ~820 Ω (decisão do Erick). Nesse caso, cada DRV8874 dissiparia ~6 W em regime (RDS(on) HS + LS ≈ 0,2 Ω), o que é aceitável só em picos.
 
+### v8.3 (14/11/2026, arquivo atual): comparação com o EVA-RT e o HyperLine
+
+`ProPrj_RUSH - SATURN - v83_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v83.py`, aplicado sobre o v8.2 corrigido.
+
+**Comparação** (as três placas são de 1 oz):
+
+- Saídas dos motores: 1,0 mm no EVA-RT e no HyperLine (0,65 mm junto ao IFX9201); 1,5 mm no nosso.
+- VBAT: 2,0–3,0 mm no EVA-RT, com trechos de 1,0–1,5 mm; 2,0 mm no HyperLine; tronco de 2,5 mm no nosso, com ramos de 1,5–1,6 mm.
+- Ventoinha (OUT_C): 1,0 mm no EVA-RT, 2,0 mm no HyperLine, 1,0–1,5 mm no nosso.
+- GND: o EVA-RT usa trilhas de 2–3 mm e o HyperLine de 1–2 mm, ligadas direto aos pads e sem plano. No nosso, o retorno vai pelo plano, que no padrão do EasyEDA chega aos pads por raios térmicos.
+- Vias de potência: várias de 1,4–1,6/0,8 mm em paralelo no EVA-RT; 2,0/0,9 mm no HyperLine; no nosso, uma de 1,6/1,0 mm em cada troca de face (C1 e C2).
+
+**Mudanças:**
+
+- **Segunda via de VBAT junto ao C2:** 1,6/1,0 mm em (23,00; 2,09), sobre a trilha de cima de 1,6 mm, ligada à via que já existia por uma trilha de baixo de 1,5 mm. A distância entre os furos é de 0,68 mm. O VBAT do U4 e da ventoinha passa agora por duas vias. Figura: `saida/via_vbat_c2_v83.png`.
+- **R14/R15 (IPROPI) de 1,5k para 910 Ω 1%:** ITRIP = 2,0 V / (910 Ω × 450 µA/A) ≈ 4,9 A por motor. No pior caso (VREF +4%, R −1%), fica em ~5,1–5,3 A, abaixo do OCP do DRV8874 (6 A no mínimo). Alterado no esquemático do EasyEDA, no `gen.py` (KiCad) e na lista de compra. O `.kicad_sch` só muda quando o `gen.py` for rodado de novo, o que precisa do KiCad.
+
+**Falta no EasyEDA (o Erick faz):**
+
+1. Na regra da área de cobre (GND), ligar pads e vias em **Direct**, sem raios térmicos.
+2. Refazer o cobre (Shift+B) e conferir que J1, PGND, os pinos 9 e 17 dos DRV8874 e as vias do pad térmico aparecem sem raios.
+3. DRC e Gerber.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, folga ≥ 0,2 mm, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2.

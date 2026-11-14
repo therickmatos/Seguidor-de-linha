@@ -25,7 +25,7 @@
 5;R1 R5 R6 R7 R10;1k;0603;;sim;igual;
 3;R3 R8 R15;10k;0603;;sim;"R3 (1k); igual; novo";"EVA-RT usava 1k; 10k com reset automatico por DTR; gate -> GND (desligado no boot); nSLEEP sempre alto (pull-down interno de 100k)"
 1;R9;200;0603;;sim;igual;gate
-2;R11 R12;1.5k 1%;0603;;sim;novo;IPROPI -> limite de corrente
+2;R11 R12;910 1%;0603;;sim;novo;IPROPI -> limite de corrente
 1;R13;15k 1%;0603;;sim;novo;VREF = 2,0 V
 1;R14;10k 1%;0603;;sim;novo;VREF = 2,0 V
 2;R20 R21;220;0603;;sim;igual;

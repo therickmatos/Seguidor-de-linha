@@ -13,7 +13,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 
 ## Seguidor: decisões fixas
 - ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware **EVA-RT 1.2.2 sem mudar o mapa de pinos**.
-- 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201; ITRIP ≈ 3 A (VREF 2,0 V, IPROPI 1,5k).
+- 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201; ITRIP ≈ 4,9 A (VREF 2,0 V, IPROPI 910 Ω desde 14/11/2026; antes 1,5k ≈ 3 A).
 - Ventoinha: AO3400A (SOT-23) + 1N5819 em paralelo com o motor; PWM no D10.
 - Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
 - Gravação: barra macho 1×5 90° 2,54 mm (+5V, GND, RX, TX, DTR) no centro da borda traseira, em cima; conversor CH340G com DTR. ICSP: 6 pads SMD embaixo, posições do EVA-RT.
@@ -36,7 +36,8 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - **13/11/2026:** `ProPrj_RUSH - SATURN - v7_2026-11-13_corrigido.epro` (sobre o v7 do Erick: os 17 erros do DRC corrigidos; `MARK_R2_D9` acima do rasgo traseiro; 37 vias de costura de GND; furo de 1,0 mm nos pads dos motores, que valem também para a ventoinha por usarem o mesmo footprint; ver `08_chassi_asa_de_gaivota/PINOS.md`).
 - **14/11/2026:** `ProPrj_RUSH - SATURN - v8_2026-11-14.epro` (C1/C2 em eletrolítico SMD 220 µF/16 V 6,3 × 7,7, LCSC C96175, porque os radiais ficavam sob a placa de sucção; vias VBAT de 1,6/1,0 no lugar dos pads + antigos e via de GND junto a cada pad −; C20 montado; lista de compra em `08_chassi_asa_de_gaivota/LISTA_CAPACITORES_RESISTORES.md`).
 - **14/11/2026 (v8.1):** `ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` (alinhamentos pedidos pelo Erick, via VBAT do C2 de volta, nada travado). **QRE renomeados: S1 = esq. externo (A5), S2 = esq. interno (D8), S3 = dir. interno (D9), S4 = dir. externo (A6)**; os docs anteriores usam S3/S4 para os internos.
-- **14/11/2026 (v8.2), arquivo atual da placa:** `ProPrj_RUSH - SATURN - v82_2026-11-14_corrigido.epro` (GND do J3 e do R3 religados, rótulos dos QRE; análise de corrente em `08_chassi_asa_de_gaivota/PINOS.md`: trilhas atendem ITRIP ≈ 3 A por motor). Falta no EasyEDA: refazer o cobre (Shift+B), DRC, Gerber.
+- **14/11/2026 (v8.2):** `ProPrj_RUSH - SATURN - v82_2026-11-14_corrigido.epro` (GND do J3 e do R3 religados, rótulos dos QRE; análise de corrente em `08_chassi_asa_de_gaivota/PINOS.md`: trilhas atendem ITRIP ≈ 3 A por motor). Falta no EasyEDA: refazer o cobre (Shift+B), DRC, Gerber.
+- **14/11/2026 (v8.3), arquivo atual da placa:** `ProPrj_RUSH - SATURN - v83_2026-11-14.epro` (comparação com o EVA-RT e o HyperLine; segunda via de VBAT no C2; R14/R15 = 910 Ω, ITRIP ≈ 4,9 A). Falta no EasyEDA: GND do plano com ligação Direct nos pads e vias, refazer o cobre (Shift+B), DRC, Gerber. Falta regenerar o KiCad a partir do `gen.py` (precisa do KiCad).
 - **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
 
 ## Arquivos

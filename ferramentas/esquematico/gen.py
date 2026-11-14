@@ -165,7 +165,7 @@ def hbridge(ref, y0, sfx, en, ph, mref, cvcp, ccp, cvm, ripr, side):
     C(cvcp, '100nF', g(143), y0 - g(3), pkg='0603 16 V X7R', note='VCP -> VM'); S.conn(cvcp, '1', 'VBAT'); S.conn(cvcp, '2', 'VCP' + sfx, bend='right')
     C(ccp, '22nF', g(148), y0 - g(3), pkg='0603 50 V X7R', note='CPH -> CPL (tensao >= VM)'); S.conn(ccp, '1', 'CPH' + sfx, bend='right'); S.conn(ccp, '2', 'CPL' + sfx, bend='right')
     C(cvm, '100nF', g(155), y0 - g(3), pkg='0603 25 V X7R', note='VM, junto ao pino 11'); S.conn(cvm, '1', 'VBAT'); S.conn(cvm, '2', 'GND')
-    R(ripr, '1.5k 1%', g(143), y0 + g(5), note='IPROPI -> limite de corrente'); S.conn(ripr, '1', 'IPROPI' + sfx, bend='right'); S.conn(ripr, '2', 'GND')
+    R(ripr, '910 1%', g(143), y0 + g(5), note='IPROPI -> limite de corrente'); S.conn(ripr, '1', 'IPROPI' + sfx, bend='right'); S.conn(ripr, '2', 'GND')
     part('Motor', 'Motor_DC', mref, '1020 ' + side, g(156), y0 + g(6), 0, '2 pads',
          'coreless 1020 7,4 V; se girar ao contrario, inverta os fios', ref_off=(3.81, -1.27), val_off=(3.81, 1.27))
     S.conn(mref, '1', 'OUT' + sfx + '2', bend='left'); S.conn(mref, '2', 'OUT' + sfx + '1', bend='left')
@@ -176,7 +176,7 @@ R('R14', '10k 1%', g(116), g(35), note='VREF = 2,0 V'); S.wire(g(116), g(29) + 3
 R('R15', '10k', g(124), g(29), note='nSLEEP sempre alto (pull-down interno de 100k)'); S.conn('R15', '1', '+5V'); S.conn('R15', '2', 'DRV_SLEEP', bend='right')
 note(['PMODE = GND: modo PH/EN (EN = PWM, PH = sentido), como o DIR/PWM do IFX9201.',
       'IMODE = GND: corte por tempo fixo e religamento automatico (nunca trava a saida na corrida).',
-      'ITRIP = VREF / (450 uA/A x R_IPROPI) = 2,0 V / (450 uA/A x 1,5 k) = ~3,0 A.',
+      'ITRIP = VREF / (450 uA/A x R_IPROPI) = 2,0 V / (450 uA/A x 910) = ~4,9 A (OCP do DRV8874 >= 6 A).',
       'Ajuste: troque R13/R14 (VREF ate 3,6 V) ou R11/R12. nFAULT sem uso.',
       'PH = 0 -> OUT2 positivo (o firmware usa D3/D4 = 0 para frente).'], 282.0, g(61) + 1.27)
 

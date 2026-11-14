@@ -24,7 +24,7 @@ Baseado no EVA-RT (EXOTIC TEAM MX, AGPL-3.0).
 - 1× 200 Ω: R16 (gate do AO3400A; **pode ser 220 Ω**, o mesmo dos QRE, e a tolerância não importa)
 - 4× 220 Ω: R4, R7, R23, R25 (LED dos 4 QRE de marca)
 - 6× 1 kΩ: R1, R6, R9, R18, R19, R20
-- 2× 1,5 kΩ 1%: R14, R15 (IPROPI, limite de corrente; **5% serve**: ITRIP fica entre 2,8 e 3,1 A em vez de 3,0 A)
+- 2× 910 Ω 1%: R14, R15 (IPROPI, limite de corrente ≈ 4,9 A por motor; **use 1%**, porque a margem até o OCP do DRV8874, a partir de 6 A, é pequena; antes era 1,5 kΩ ≈ 3,0 A)
 - 1× 2 kΩ: R21 (divisor do Bluetooth)
 - 1× 4,7 kΩ: R22
 - 3× 10 kΩ: R10, R13, R17

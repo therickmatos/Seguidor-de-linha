@@ -35,3 +35,33 @@ Baseado no EVA-RT (EXOTIC TEAM MX, AGPL-3.0).
 - 4× 47 kΩ: R5, R8, R24, R26 (pull-up dos 4 QRE de marca)
 
 Comprando 10 kΩ de 1%, eles servem para os 5 resistores de 10 kΩ.
+
+## Outros componentes da placa
+
+### Semicondutores e CIs
+- 1× ATmega328P-AU, TQFP-32: U2 (do Nano doador, com bootloader, ou novo + bootloader pelo ICSP)
+- 2× DRV8874PWPR, HTSSOP-16 com pad térmico: U3, U4
+- 1× 78M05, TO-252 (DPAK): U1
+- 1× AO3400A, SOT-23: Q1 (ventoinha)
+- 1× 1N5819HW (ou B5819W), SOD-123: D1 (face de baixo)
+- 4× QRE1113GR: S1, S2, S3, S4 (face de baixo, nas abas)
+
+### Cristal
+- 1× 16 MHz SMD 5032 (5,0 × 3,2 mm, 2 pads): X1, carga de ~18–20 pF (combina com os 22 pF do C9/C10)
+  - O cristal do Nano clone costuma ser HC-49 SMD (bem maior) e não cabe nesse footprint.
+
+### LEDs 0603
+- 5× LED 0603: LED1 (5 V presente, verde), LED2 (LED A), LED3 (LED B), LED4 (LED C, vermelho), LED5 (TX)
+
+### Botões
+- 3× chave táctil SMD 6,1 × 3,7 mm (TVBM17-025CF-R ou equivalente com o mesmo footprint): SW1, SW2, SW3
+
+### Conectores
+- 1× XT30 macho de placa (XT30U-M ou XT30PW-M) ou rabicho XT30: J1 (bateria)
+- 1× barra de pinos macho 1×8, 2,54 mm, reta: J2 (barra de sensores)
+- 1× barra de pinos macho 1×5, 2,54 mm, 90°: J3 (gravação; deitada sobre os pads da face de baixo)
+- Opcional: 1× barra fêmea 1×6, 2,54 mm: J4 (Bluetooth)
+- J5 (ICSP): só pads, nada a comprar
+
+### Já comprados / fora da lista
+- M1, M2 (motores 1020) e M3 (ventoinha): só os pads na placa

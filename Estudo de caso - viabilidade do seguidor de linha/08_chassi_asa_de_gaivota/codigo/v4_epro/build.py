@@ -84,7 +84,7 @@ def line(net, layer, pts, w=0.254):
     for (x1, y1), (x2, y2) in zip(pts[:-1], pts[1:]):
         pcb.append(['LINE', pid(), 0, net, layer, round(mil(x1), 4), round(mil(y1), 4), round(mil(x2), 4), round(mil(y2), 4), round(mil(w), 4), 0])
 def via(net, x, y, d=0.8, hole=0.4):
-    pcb.append(['VIA', pid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(hole), 4), round(mil(d), 4), 0, None, None, 1, []])
+    pcb.append(['VIA', pid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(hole), 4), round(mil(d), 4), 0, None, None, 0, []])
 
 
 # ---------------- trilhas das abas (camada de cima) ----------------

@@ -32,7 +32,7 @@ def line(net, L, pts, w):
         if math.hypot(x2 - x1, y2 - y1) < 1e-4: continue
         rows.append(['LINE', nid(), 0, net, L, round(mil(x1), 4), round(mil(y1), 4), round(mil(x2), 4), round(mil(y2), 4), round(mil(w), 4), 0])
 def via(net, x, y, d=0.6, h=0.3):
-    rows.append(['VIA', nid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(h), 4), round(mil(d), 4), 0, None, None, 1, []])
+    rows.append(['VIA', nid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(h), 4), round(mil(d), 4), 0, None, None, 0, []])
 def obstacles(net, L, skip=()):
     gs = [g for l, n, g, i in check.copper(rows, fps) if l == L and n != net and i not in skip]
     return STRtree(gs), gs

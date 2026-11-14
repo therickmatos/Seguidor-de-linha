@@ -28,7 +28,7 @@ def line(net, L, pts, w):
     for (x1, y1), (x2, y2) in zip(pts[:-1], pts[1:]):
         rows.append(['LINE', nid(), 0, net, L, round(mil(x1), 4), round(mil(y1), 4), round(mil(x2), 4), round(mil(y2), 4), round(mil(w), 4), 0])
 def via(net, x, y, d=0.6, h=0.3):
-    rows.append(['VIA', nid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(h), 4), round(mil(d), 4), 0, None, None, 1, []])
+    rows.append(['VIA', nid(), 0, net, '', round(mil(x), 4), round(mil(y), 4), round(mil(h), 4), round(mil(d), 4), 0, None, None, 0, []])
 log = []
 
 # 1) E1: S3.4 → R24.1 (trilha que terminava em (−49,3; 7,0)); 45°

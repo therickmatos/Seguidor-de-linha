@@ -142,7 +142,7 @@ O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `cod
   3. Mover o C1 para x ≈ −25 e refazer o VBAT. O C2 não tem lugar no lado direito.
   4. Furos de Ø3 no `suction_base` (muda o STL do EVA-RT).
 
-### C1/C2 em SMD e C20 montado (14/11/2026, arquivo atual)
+### C1/C2 em SMD e C20 montado (14/11/2026)
 
 `ProPrj_RUSH - SATURN - v8_2026-11-14.epro` sai de `codigo/v4_epro/caps_smd.py`, aplicado sobre o arquivo do Erick com os capacitores SMD inseridos (`codigo/v4_epro/entrada_erick_v8f1_2026-11-14.epro`; LCSC C96175, 220 µF/16 V, 6,3 × 7,7 mm). Nenhuma trilha existente foi alterada.
 
@@ -154,4 +154,35 @@ O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `cod
 - **C20 montado**: DNP = não, no esquemático e na PCB.
 
 Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nenhum PTH sob a placa de sucção. Figura: `saida/c1_c2_smd_v8.png`.
+
+### Ajustes do v8.1 (14/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v81.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entrada_erick_v81_2026-11-14.epro`).
+
+**QRE renomeados** (esquemático e PCB), da esquerda para a direita:
+
+- **S1**: externo esquerdo (E2) → A5
+- **S2**: interno esquerdo (E1) → D8 (`MARK_L2_D8`)
+- **S3**: interno direito (D1) → D9 (`MARK_R2_D9`)
+- **S4**: externo direito (D2) → A6
+
+Nas seções anteriores deste arquivo, "S3" = E1 (hoje S2) e "S4" = D1 (hoje S3).
+
+**Alinhamentos:**
+- C5 e C1 no mesmo x (−21,718). C3 e C4 voltam ao x original, simétricos ao C5, na nova altura (y 8,202).
+- C1 e C2 na mesma altura (y 0,635).
+- LED1 e R1 sobem 0,2 mm, como o grupo C3/C4/C5. Eles estavam travados e não tinham se movido.
+- **R17 não foi centrado com o C2.** Em x = 19,81 o pad de GND encosta na trilha `PWMC_D10` (folga 0) e na via de GND ao lado. Ele fica na posição do Erick.
+
+**Trilhas:**
+- As trilhas presas a C3, C4, C5, R17 e LED1 voltaram ao centro dos pads, em 45°.
+- A trilha de VBAT do C3 estava a 0,05 mm do pad de GND e foi refeita.
+
+**C2:** voltou a via VBAT de 1,6/1,0 mm (passagem de face), que tinha sido apagada. Fica em (21,35; 2,40), sobre a trilha de cima, com um trecho de 1,5 mm na face de baixo.
+
+**GND:** 5 vias de costura (0,6/0,3 mm). Uma delas religa uma área de 254 mm² na face de baixo, à direita.
+
+**Travas:** todos os objetos destravados (98). Os scripts gravavam as vias novas com o campo de trava = 1, e o v3 já tinha componentes e trilhas travados.
+
+Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Figura: `saida/ajustes_v81.png`.
 

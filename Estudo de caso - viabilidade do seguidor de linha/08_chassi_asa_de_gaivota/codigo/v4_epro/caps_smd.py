@@ -41,7 +41,7 @@ OLD = {'C1': dict(vbat=(-20.447, 1.27), gnd=(-22.987, 1.27)),
 VIA_D, VIA_H = 1.6, 1.0
 for d, o in OLD.items():
     rows.append(['VIA', nid(), 0, 'VBAT', '', round(mil(o['vbat'][0]), 4), round(mil(o['vbat'][1]), 4),
-                 round(mil(VIA_H), 4), round(mil(VIA_D), 4), 0, None, None, 1, []])
+                 round(mil(VIA_H), 4), round(mil(VIA_D), 4), 0, None, None, 0, []])
     log.append(f"{d}: via VBAT {VIA_D}/{VIA_H} mm no lugar do pad + do radial, em {o['vbat']}")
 
 p11 = None
@@ -170,7 +170,7 @@ def gnd_via(d):
                 if best is None or sc < best[0]: best = (sc, p)
     assert best, f'{d}: sem lugar para via de GND'
     p = best[1]
-    rows.append(['VIA', nid(), 0, 'GND', '', round(mil(p.x), 4), round(mil(p.y), 4), round(mil(GV_H), 4), round(mil(GV_D), 4), 0, None, None, 1, []])
+    rows.append(['VIA', nid(), 0, 'GND', '', round(mil(p.x), 4), round(mil(p.y), 4), round(mil(GV_H), 4), round(mil(GV_D), 4), 0, None, None, 0, []])
     if not Point(p).buffer(GV_D / 2).intersects(gp):
         q = nearest = gp.exterior.interpolate(gp.exterior.project(p))
         rows.append(['LINE', nid(), 0, 'GND', 1, round(mil(p.x), 4), round(mil(p.y), 4), round(mil(q.x), 4), round(mil(q.y), 4), round(mil(0.5), 4), 0])

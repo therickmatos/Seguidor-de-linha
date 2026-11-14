@@ -200,7 +200,7 @@ Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND intei
 - Os gargalos de 0,40–0,50 mm são só as saídas dos pinos VM e OUT2 do DRV8874 (0,85–1,6 mm de comprimento, entre pinos de passo 0,65). Eles dissipam ~10–15 mW a 3 A, o que é desprezível.
 - O ITRIP atual é 2,0 V / (1,5 kΩ × 450 µA/A) ≈ 3,0 A por motor. Para ~5,5 A, o R14/R15 teria de ser ~820 Ω (decisão do Erick). Nesse caso, cada DRV8874 dissiparia ~6 W em regime (RDS(on) HS + LS ≈ 0,2 Ω), o que é aceitável só em picos.
 
-### v8.3 (14/11/2026, arquivo atual): comparação com o EVA-RT e o HyperLine
+### v8.3 (14/11/2026): comparação com o EVA-RT e o HyperLine
 
 `ProPrj_RUSH - SATURN - v83_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v83.py`, aplicado sobre o v8.2 corrigido.
 
@@ -224,3 +224,20 @@ Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND intei
 3. DRC e Gerber.
 
 Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, folga ≥ 0,2 mm, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2.
+
+### v8.4 (14/11/2026, arquivo atual): C2 fora do giro da hélice
+
+`ProPrj_RUSH - SATURN - v84_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v84.py`, aplicado sobre o v8.3.
+
+**Problema:** a hélice da ventoinha (`impeller_fan.stl`, Ø34) gira logo acima da face de cima, entre os pés da carcaça. Ela vai até r = 17 mm, cobre toda a altura de um capacitor de 7,7 mm e fica abaixo da tampa da carcaça (z = 12 mm). No v8.3, o corpo do C2 chegava a r = 16,5 mm, ou seja, a hélice batia nele. A conferência do v8 (`caps_smd.py`) tinha olhado só a carcaça (`impeller_base_1`) e não a hélice. A carcaça em si não encosta nos capacitores: está a ≥ 4 mm deles.
+
+**Mudanças:**
+
+- **C2** em (21,72; 1,30), espelhado com o C1 em x. A base fica a 1,42 mm e a lata a 1,61 mm da ponta da hélice, a mesma folga do C1. O EVA-RT deixa ~1,9 mm, com os radiais em (±22,0; 2,06).
+- **M3** (pads do fio da ventoinha) desce 1,016 mm, para y = −3,69, para abrir espaço ao corpo do C2. Fica 0,18 mm entre o corpo e o pad. As trilhas de VBAT e OUT_C ligadas ao M3 foram ajustadas.
+- As **duas vias de VBAT** saíram de baixo do pad + do C2 e foram para (23,35; 2,09) e (24,64; 0,30), com trilha de baixo de 1,5 mm. A trilha de cima termina no pad +.
+- **GND do C2:** via de 0,8/0,4 em (20,67; −1,37), com trilha de 0,4 mm até o pad −.
+
+O C2 fica 0,66 mm mais alto que o C1, porque não há espaço para descer mais sem bater no M3. Figura: `saida/c2_helice_v84.png`.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2/v8.3.

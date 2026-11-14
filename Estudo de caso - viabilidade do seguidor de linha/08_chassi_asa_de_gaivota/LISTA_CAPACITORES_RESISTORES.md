@@ -30,7 +30,7 @@ Baseado no EVA-RT (EXOTIC TEAM MX, AGPL-3.0).
 - 1× 4,7 kΩ: R22
 - 3× 10 kΩ: R10, R13, R17
 - 2× 10 kΩ 1%: R3, R12
-- 1× 15 kΩ 1%: R11 (VREF = 2,0 V)
+- 1× 15 kΩ 1%: R11 (VREF = 2,0 V; **5% serve**: o VREF fica entre 1,94 e 2,06 V, menos que a variação de ±4% do próprio 78M05)
 - 1× 20 kΩ 1%: R2 (medição da bateria; **5% serve**, porque o firmware 1.2.2 não lê o A7)
 - 4× 47 kΩ: R5, R8, R24, R26 (pull-up dos 4 QRE de marca)
 

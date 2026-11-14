@@ -155,7 +155,7 @@ O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `cod
 
 Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nenhum PTH sob a placa de sucção. Figura: `saida/c1_c2_smd_v8.png`.
 
-### Ajustes do v8.1 (14/11/2026, arquivo atual)
+### Ajustes do v8.1 (14/11/2026)
 
 `ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v81.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entrada_erick_v81_2026-11-14.epro`).
 
@@ -185,4 +185,18 @@ Nas seções anteriores deste arquivo, "S3" = E1 (hoje S2) e "S4" = D1 (hoje S3)
 **Travas:** todos os objetos destravados (98). Os scripts gravavam as vias novas com o campo de trava = 1, e o v3 já tinha componentes e trilhas travados.
 
 Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Figura: `saida/ajustes_v81.png`.
+
+### v8.2 (14/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v82_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v82.py`, aplicado sobre o v8.2 do Erick. Nele o Erick já tinha refeito o `PWMC_D10`/`LEDC_D13` para centrar o R17 com o C2.
+
+- **J3 (gravação):** a via de +5V movida para (2,93; −24,14) fechava de novo o GND do pad e77:2. Ela voltou para (3,31; −24,06), com o trecho de baixo refeito.
+- **R3:** o pad de GND ficou ilhado na face de cima. Entrou uma via de GND (0,6/0,3) em (15,00; −22,18), com trilha de 0,3 mm a 45°.
+- Os rótulos S1–S4 voltaram para dentro da placa.
+
+**Corrente** (`codigo/v4_epro/corrente.py`; resultado em `saida/corrente_v82.txt`). Para cada caminho, o script calcula o trecho mais estreito e aplica a IPC-2221 (1 oz, externo):
+
+- Caminhos longos: VBAT do J1 com 2,0–2,5 mm; ramos para U3, U4 e ventoinha com ≥ 1,0–1,5 mm; saídas dos motores com 1,5 mm; OUT_C com 1,0 mm. Isso atende 3 A por motor (ITRIP) com folga.
+- Os gargalos de 0,40–0,50 mm são só as saídas dos pinos VM e OUT2 do DRV8874 (0,85–1,6 mm de comprimento, entre pinos de passo 0,65). Eles dissipam ~10–15 mW a 3 A, o que é desprezível.
+- O ITRIP atual é 2,0 V / (1,5 kΩ × 450 µA/A) ≈ 3,0 A por motor. Para ~5,5 A, o R14/R15 teria de ser ~820 Ω (decisão do Erick). Nesse caso, cada DRV8874 dissiparia ~6 W em regime (RDS(on) HS + LS ≈ 0,2 Ω), o que é aceitável só em picos.
 

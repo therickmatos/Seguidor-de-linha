@@ -242,7 +242,7 @@ O C2 fica 0,66 mm mais alto que o C1, porque não há espaço para descer mais s
 
 Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2/v8.3.
 
-### v8.5 (14/11/2026, arquivo atual): folgas com todos os STL
+### v8.5 (14/11/2026): folgas com todos os STL
 
 `ProPrj_RUSH - SATURN - v85_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v85.py`, aplicado sobre o v8.4. A conferência está em `codigo/v4_epro/interferencias_stl.py`, que compara cada componente com estas peças:
 
@@ -274,3 +274,40 @@ Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha 
 - Os pads do U2 ficam a r = 17,34 mm, 0,34 mm fora da ponta da hélice. É só cobre e solda, na mesma posição do EVA-RT.
 
 Checagens: esquemático = PCB, nenhuma rede partida além do GND, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py`.
+
+### v8.7 (14/11/2026, arquivo atual): correções do v8.6 e trilhas para 5,5 A contínuos
+
+`ProPrj_RUSH - SATURN - v87_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v87.py`, aplicado sobre o v8.6 do Erick (`entrada_erick_v86_2026-11-14.epro`). Nesse arquivo, o Erick alinhou C1/C2 em y = 1,524, subiu C3/C4/C5/LED1/R1, girou o U1, refez as vias de VBAT e voltou o R10 à posição antiga.
+
+**Correções:**
+
+1. **VBAT do lado esquerdo desconectado:** a via (−19,56; 1,14) não chegava à trilha de cima, então C1, C3 e o 78M05 ficavam sem bateria. Entrou uma trilha de 1,6 mm até y = 3,31.
+2. **LEDC_D13 aberto:** a trilha de cima foi prolongada até a via em (13,07; 3,30).
+3. **R10:** em pé em (−13,033; −18,829), como no v8.5. O pé da carcaça ficava a 0,14 mm; agora fica a 0,50 mm.
+
+**Trilhas para 5,5 A contínuos** (IPC-2221, cobre 1 oz, face externa, elevação de 20 °C, que precisa de ≥ 2,1 mm):
+
+- As trilhas foram alargadas no mesmo traçado, todas ao mesmo tempo, em passos de 0,1 mm, respeitando a folga de 0,2 mm da regra do arquivo. Os alvos: saídas dos motores 2,5 mm; VBAT 3,0 mm; OUT_C 2,0 mm.
+- Os trechos longos travados por um obstáculo numa das pontas foram divididos, e só o meio foi alargado.
+- Para dar espaço, foram afastadas duas vias de costura de GND junto às saídas do motor direito, e o trecho vertical da MARK_L_A5 foi 0,25 mm para a esquerda (as diagonais continuam nas mesmas retas; fica a 0,23 mm da LEDA_D2).
+- O ramo de VBAT da medição (R2) e o grupo C1/C3/78M05 não foram alargados, porque quase não passa corrente por eles.
+
+Resultado nos trechos longos (`codigo/v4_epro/resumo_larguras.py`):
+
+| Rede | v8.6 | v8.7 | Capacidade (ΔT 20 °C) |
+|---|---|---|---|
+| OUT_A1 | 1,5 mm | ≥ 2,5 mm | 6,3 A |
+| OUT_A2 | 1,5 mm | ≥ 2,3 mm | 5,9 A |
+| OUT_B1 | 1,5 mm | ≥ 2,3 mm | 5,9 A |
+| OUT_B2 | 1,5 mm | ≥ 2,1 mm | 5,6 A |
+| VBAT (potência) | 2,0 mm | ≥ 2,6 mm | 6,5 A; 3,0 mm em boa parte do tronco |
+| OUT_C (ventoinha) | 1,0 mm | 1,2 mm | 3,7 A |
+
+- Sobram trechos curtos estreitos só junto aos pinos dos DRV8874: 0,4–0,5 mm por 1–2 mm, e 1,0–1,5 mm por até 2,1 mm. O passo de 0,65 mm não deixa alargar. São curtos e mais largos que o próprio pino (0,3 mm); o EVA-RT também tem 0,65 mm nesse ponto.
+- O tronco de VBAT de baixo leva U4 + ventoinha (~7,5 A no pior caso contínuo). Com ≥ 2,6 mm, isso dá ~25 °C de elevação.
+- **Vias de VBAT no lado direito:** duas de 1,6/1,0 mm em paralelo, em (24,13; 1,14) e (22,90; 2,00). Não cabe uma terceira no cobre comum às duas faces.
+- **J1 (XT30):** 3 trilhas de GND de 2,0 × 2,6 mm saindo do pad em cada face. Assim o plano liga direto ao pad, sem depender dos raios térmicos.
+
+Ainda recomendado no EasyEDA: regra do plano GND com ligação Direct nos pads e vias, por causa do PGND e do pad térmico dos DRV8874.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND (que fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado, `interferencias_stl.py` sem colisões, nenhum item novo no `verifica_placa.py`. Figura: `saida/potencia_v86_v87.png`.

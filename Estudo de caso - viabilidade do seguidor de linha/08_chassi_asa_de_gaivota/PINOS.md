@@ -311,3 +311,16 @@ Resultado nos trechos longos (`codigo/v4_epro/resumo_larguras.py`):
 Ainda recomendado no EasyEDA: regra do plano GND com ligação Direct nos pads e vias, por causa do PGND e do pad térmico dos DRV8874.
 
 Checagens: esquemático = PCB, nenhuma rede partida além do GND (que fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado, `interferencias_stl.py` sem colisões, nenhum item novo no `verifica_placa.py`. Figura: `saida/potencia_v86_v87.png`.
+
+### v8.8 com serigrafia (14/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v88_2026-11-14_serigrafia.epro` sai de `codigo/v4_epro/serigrafia_v88.py`, aplicado sobre o v8.8 do Erick (`entrada_erick_v88_2026-11-14.epro`).
+
+O v8.8 passou nas checagens, e a OUT_C já estava com 1,5 mm.
+
+A serigrafia vai na face de baixo, no espaço livre entre a placa de sucção e os pads do motor esquerdo:
+
+- **Símbolo do IF** (círculo + 9 quadrados, 4,65 × 6,3 mm) com "IFSP" embaixo, centrado em x = −29. É desenhado em polígonos, já espelhado para ser lido por baixo.
+- **Texto** "Projetado por" / "Erick Matos", com 1,2 mm de altura, centrado em (−33,3; 7,5). É texto do EasyEDA, que espelha sozinho na face de baixo.
+
+Tudo fica a ≥ 0,9 mm de pads, vias e furos, dentro da placa e fora da placa de sucção. Prévia: `saida/serigrafia_baixo_v88.png`.

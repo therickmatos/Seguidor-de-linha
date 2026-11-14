@@ -225,7 +225,7 @@ Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND intei
 
 Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, folga ≥ 0,2 mm, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2.
 
-### v8.4 (14/11/2026, arquivo atual): C2 fora do giro da hélice
+### v8.4 (14/11/2026): C2 fora do giro da hélice
 
 `ProPrj_RUSH - SATURN - v84_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v84.py`, aplicado sobre o v8.3.
 
@@ -241,3 +241,36 @@ Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha 
 O C2 fica 0,66 mm mais alto que o C1, porque não há espaço para descer mais sem bater no M3. Figura: `saida/c2_helice_v84.png`.
 
 Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2/v8.3.
+
+### v8.5 (14/11/2026, arquivo atual): folgas com todos os STL
+
+`ProPrj_RUSH - SATURN - v85_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v85.py`, aplicado sobre o v8.4. A conferência está em `codigo/v4_epro/interferencias_stl.py`, que compara cada componente com estas peças:
+
+- **Carcaça (`impeller_base_1`):** girada 45°. Compara a altura do componente com o ponto mais baixo da carcaça acima dele.
+- **Hélice:** r = 17 mm, com 1 mm de folga.
+- **Caixa de redução (`gearbox.stl`):** posicionada pelos furos da base, que batem com (±35,25; −3,73/−26,55).
+- **Motor 1020 deitado:** como na camada Document do EVA-RT.
+- **Presilhas, varetas e pneus:** posições aproximadas.
+- **Placa de sucção:** na face de baixo.
+
+**Problemas no v8.4:**
+
+- **R2 e R10** ficavam a 0,09 mm do pé traseiro da carcaça, que encosta na placa. Uma peça impressa (com o "pé de elefante" da primeira camada) encostaria neles. As outras peças sob a carcaça (C12, R3, R19) ficam sob a parte elevada, a 3 mm da placa, e estão OK.
+- **M1** (fio do motor esquerdo): o pad invadia 0,25 mm a base da caixa de redução. O M2 tinha 0,52 mm de folga.
+- **J3** (gravação, na face de baixo): a ponta dos pads ficava 0,05 mm dentro da borda da placa de sucção.
+
+**Correções:**
+
+- R2 desce 0,5 mm; a folga até o pé passa a 0,59 mm.
+- R10 vai para (−13,033; −18,829), em pé (90°). O pad de +5V fica sobre a trilha larga de +5V e o RESET segue em 45° até a trilha que já existia. Folga até o pé: 0,50 mm.
+- M1 sobe 0,762 mm, para o mesmo y do M2 (folga de 0,52 mm até a caixa).
+- J3 vai 0,5 mm para trás (folga de 0,45 mm até a placa de sucção).
+
+**Sem colisão** (o `interferencias_stl.py` não acusa nada):
+
+- A carcaça fica a ≥ 4 mm de C1/C2.
+- Motor 1020 deitado: só há DRV8874 (1,2 mm) embaixo dele, mais baixo que o IFX9201 do EVA-RT, que fica no mesmo lugar.
+- Presilhas, varetas e pneus: nada encontrado.
+- Os pads do U2 ficam a r = 17,34 mm, 0,34 mm fora da ponta da hélice. É só cobre e solda, na mesma posição do EVA-RT.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py`.

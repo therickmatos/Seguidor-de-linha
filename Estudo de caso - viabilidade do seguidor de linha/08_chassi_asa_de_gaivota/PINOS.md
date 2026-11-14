@@ -142,3 +142,16 @@ O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `cod
   3. Mover o C1 para x ≈ −25 e refazer o VBAT. O C2 não tem lugar no lado direito.
   4. Furos de Ø3 no `suction_base` (muda o STL do EVA-RT).
 
+### C1/C2 em SMD e C20 montado (14/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v8_2026-11-14.epro` sai de `codigo/v4_epro/caps_smd.py`, aplicado sobre o arquivo do Erick com os capacitores SMD inseridos (`codigo/v4_epro/entrada_erick_v8f1_2026-11-14.epro`; LCSC C96175, 220 µF/16 V, 6,3 × 7,7 mm). Nenhuma trilha existente foi alterada.
+
+- Os radiais faziam a passagem de face do VBAT pelo próprio furo. No lugar de cada pad + antigo entrou **uma via VBAT de 1,6/1,0 mm**, com o mesmo pad e o mesmo furo, ligada às mesmas trilhas.
+- Os pads − antigos também ligavam o GND das duas faces. Sem eles, o GND de baixo dentro do anel de VBAT ficava separado. Entrou **uma via de GND de 0,8/0,4 mm junto ao pad − de cada capacitor**.
+- **C1:** em (−21,86; 0,62), girado 270°. O pad + fica sobre a trilha larga de VBAT de cima.
+- **C2:** em (19,92; 2,14), girado 45° para os pads passarem entre as trilhas `MARK_R_A6` e `PWMC_D10`. Uma trilha de VBAT de 1 mm liga o pad + à via.
+- Os dois corpos ficam fora da carcaça da ventoinha até 8,2 mm de altura (STL `impeller_base_1`). Os pads ficam a ≥ 0,5 mm dos pads de outros componentes.
+- **C20 montado**: DNP = não, no esquemático e na PCB.
+
+Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nenhum PTH sob a placa de sucção. Figura: `saida/c1_c2_smd_v8.png`.
+

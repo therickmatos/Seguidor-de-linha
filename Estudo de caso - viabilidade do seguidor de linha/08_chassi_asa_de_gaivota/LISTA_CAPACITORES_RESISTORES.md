@@ -1,10 +1,10 @@
 # Capacitores e resistores do seguidor (placa v4, asa de gaivota)
 
-Lista tirada do arquivo do Erick que passou no DRC em 13/11/2026 (`codigo/v4_epro/entrada_erick_v8_2026-11-13.epro`). Nela, o C1 e o C2 já aparecem como eletrolíticos SMD, no lugar dos radiais com furo, porque estes ficam sob a placa de sucção. A troca de footprint ainda não foi feita no arquivo.
+Lista tirada do arquivo do Erick que passou no DRC em 13/11/2026 (`codigo/v4_epro/entrada_erick_v8_2026-11-13.epro`). Nela, o C1 e o C2 já aparecem como eletrolíticos SMD, no lugar dos radiais com furo, porque estes ficam sob a placa de sucção. A troca já está no arquivo `ProPrj_RUSH - SATURN - v8_2026-11-14.epro` (código JLC/LCSC C96175).
 
 Baseado no EVA-RT (EXOTIC TEAM MX, AGPL-3.0).
 
-## Capacitores: 19 montados e 1 não montado
+## Capacitores: 20
 
 - **2× 220 µF, 16 V, eletrolítico SMD, lata 6,3 × 7,7 mm: C1, C2**
   - Substituem os radiais de 6,3 × 11 mm e 25 V.
@@ -17,8 +17,7 @@ Baseado no EVA-RT (EXOTIC TEAM MX, AGPL-3.0).
   - Comprando todos de 25 V X7R, um só item serve para os 10.
 - 2× 22 nF, 50 V, X7R, 0603: C12, C15 (bomba de carga dos DRV8874)
 - 2× 22 pF, 0603: C9, C10 (cristal; de preferência C0G/NP0)
-- 1× 10 nF, 50 V, 0603: C19 (filtro do E1)
-- Não montar: 10 nF, 50 V, 0603, C20
+- 2× 10 nF, 50 V, 0603: C19, C20 (filtros do E1 e do D1)
 
 ## Resistores 0603: 26
 

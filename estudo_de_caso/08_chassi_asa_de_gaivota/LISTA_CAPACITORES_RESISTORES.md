@@ -1,6 +1,6 @@
 # Capacitores e resistores do seguidor (placa v4, asa de gaivota)
 
-Lista tirada do arquivo do Erick que passou no DRC em 13/11/2026 (`codigo/v4_epro/entrada_erick_v8_2026-11-13.epro`). Nela, o C1 e o C2 já aparecem como eletrolíticos SMD, no lugar dos radiais com furo, porque estes ficam sob a placa de sucção. A troca já está no arquivo `ProPrj_RUSH - SATURN - v8_2026-11-14.epro` (código JLC/LCSC C96175).
+Lista tirada do arquivo do Erick que passou no DRC em 13/11/2026 (`codigo/v4_epro/entradas/entrada_erick_v8_2026-11-13.epro`). Nela, o C1 e o C2 já aparecem como eletrolíticos SMD, no lugar dos radiais com furo, porque estes ficam sob a placa de sucção. A troca já está no arquivo `ProPrj_RUSH - SATURN - v8_2026-11-14.epro` (código JLC/LCSC C96175).
 
 Baseado no EVA-RT (EXOTIC TEAM MX, AGPL-3.0).
 

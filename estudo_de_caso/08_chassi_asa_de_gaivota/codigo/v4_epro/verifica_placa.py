@@ -1,5 +1,7 @@
 """Verificação da placa inteira (aproximação do DRC) e comparação v3 × v4."""
 import json, zipfile, collections, sys
+import pathlib
+REPO = [p for p in pathlib.Path(__file__).resolve().parents if (p / 'CLAUDE.md').exists()][0]
 from shapely.geometry import LineString, Point, Polygon
 from shapely.ops import polygonize, unary_union
 from shapely.strtree import STRtree
@@ -67,8 +69,8 @@ def run(path, clr=0.2, edge=0.3, hole=0.3):
                 probs.add(('componentes encostados', tuple(sorted([names.get(ca, ca), names.get(cb, cb)]))))
     return probs
 if __name__ == '__main__':
-    v3 = run('/home/user/Seguidor-de-linha/ProPrj_RUSH - SATURN - v3_2026-11-09.epro')
-    v4 = run('/home/user/Seguidor-de-linha/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro')
+    v3 = run(str(REPO / 'estudo_de_caso/01_projeto/ProPrj_RUSH - SATURN - v3_2026-11-09.epro'))
+    v4 = run(str(REPO / 'hardware/placa_base/historico/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro'))
     def key(p):   # compara sem o valor numérico
         return p[:-1] if p[0] in ('folga', 'borda', 'furo') else p
     k3 = {key(p) for p in v3}

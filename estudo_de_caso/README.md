@@ -1,5 +1,7 @@
 # Estudo de caso - viabilidade do seguidor de linha
 
+> **Desfecho (15/11/2026):** a placa asa de gaivota com 4 QRE foi encomendada; ver [`hardware/placa_base/`](../hardware/placa_base/README.md). Ordem de leitura dos estudos: [08](08_chassi_asa_de_gaivota/README.md) (o mais novo), [07](07_firmware_e_geometria/README.md), [06](06_estudo_consolidado/README.md) e, como histórico, o restante deste arquivo.
+
 > **Atualização de 11/11/2026:** a [análise do firmware e da geometria](07_firmware_e_geometria/README.md) explica por que a v3 leu poucas marcas no estudo de 10/11 (barra a L ≈ 107 mm) e mostra que a placa atual, com um QRE por lado, lê todas com L = 70 mm.
 >
 > **Decisão posterior (11/11/2026):** depois dos testes físicos, o Erick escolheu o chassi asa de gaivota com dois QRE por lado e a barra a 63–65 mm entre furos. A posição dos sensores e o contorno estão em [08_chassi_asa_de_gaivota](08_chassi_asa_de_gaivota/README.md).

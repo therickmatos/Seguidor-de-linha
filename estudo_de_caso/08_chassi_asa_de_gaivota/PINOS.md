@@ -81,7 +81,7 @@ Mesmo circuito da v3 nos 4 sensores, com **um capacitor a mais, não montado (DN
 
 ## Projeto EasyEDA da v4 (11/11/2026)
 
-`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro` (raiz do repositório), gerado por `codigo/v4_epro/build.py` a partir da v3. Contorno asa de gaivota, QRE externos e componentes da aba movidos e roteados, QRE internos S3 (E1) e S4 (D1) com 220 Ω, 47 kΩ e 10 nF DNP.
+`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro` (em `hardware/placa_base/historico/`), gerado por `codigo/v4_epro/build.py` a partir da v3. Contorno asa de gaivota, QRE externos e componentes da aba movidos e roteados, QRE internos S3 (E1) e S4 (D1) com 220 Ω, 47 kΩ e 10 nF DNP.
 
 Ao abrir no EasyEDA Pro:
 
@@ -105,7 +105,7 @@ Ao abrir no EasyEDA Pro:
 
 ### Versão corrigida (12/11/2026)
 
-`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro` sai de `codigo/v4_epro/corrige_erick.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entrada_erick_2026-11-12.epro`). Nele o Erick já tinha roteado o `MARK_R2_D9` (D1 → pino 13), abrindo a saída junto ao ATmega. O script fez:
+`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro` sai de `codigo/v4_epro/corrige_erick.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entradas/entrada_erick_2026-11-12.epro`). Nele o Erick já tinha roteado o `MARK_R2_D9` (D1 → pino 13), abrindo a saída junto ao ATmega. O script fez:
 
 - Religou o E1 (S3.4 → R24/C19/pino 12) e o anodo do D1 (S4.1 → R25), que tinham ficado soltos ao mover os resistores. Ligou também o C20.
 - Desviou o trecho do `MARK_R2_D9` que atravessava a traseira em y ≈ −26 na face de baixo. Ele isolava o GND do botão de reset (SW1), e agora passa rente às bordas direita e traseira.
@@ -118,7 +118,7 @@ Resultado: esquemático = PCB, nenhuma rede partida, nada abaixo de 0,2 mm de fo
 
 ### Correções do v7 (13/11/2026, arquivo atual)
 
-`ProPrj_RUSH - SATURN - v7_2026-11-13_corrigido.epro` sai de `codigo/v4_epro/corrige_v7.py`, aplicado sobre o arquivo v7 do Erick (`codigo/v4_epro/entrada_erick_v7_2026-11-13.epro`). O DRC do EasyEDA acusava 17 erros. O script fez:
+`ProPrj_RUSH - SATURN - v7_2026-11-13_corrigido.epro` sai de `codigo/v4_epro/corrige_v7.py`, aplicado sobre o arquivo v7 do Erick (`codigo/v4_epro/entradas/entrada_erick_v7_2026-11-13.epro`). O DRC do EasyEDA acusava 17 erros. O script fez:
 
 1. **Physical Error (4):** as 4 trilhas de 0,2 mm do `MARK_L2_D8` junto ao pino 12 passaram a ter 0,25 mm, que é a mínima da regra do arquivo.
 2. **Clearance Error (1), trilha × pad e311:** o `MARK_R2_D9` sai da borda direita a 45° e passa **acima** do rasgo, na face de baixo. Fica em y = −26,05, entre o `LEDB_D7` (y −26,64) e o `B1_D11` (y −25,58), e entra a 45° na via que já existia em (10,55; −27,17).
@@ -132,7 +132,7 @@ Resultado: esquemático = PCB (233 pinos), nenhuma rede partida, todos os itens 
 
 ### Arquivo do Erick após o DRC (13/11/2026) e PTH sob a placa de sucção
 
-O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `codigo/v4_epro/entrada_erick_v8_2026-11-13.epro`. Conferido contra o contorno real do `suction_base.stl` (pentágono de x ±23,08 e y −27,5 a 21, com o furo da ventoinha e os 4 furos de parafuso):
+O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `codigo/v4_epro/entradas/entrada_erick_v8_2026-11-13.epro`. Conferido contra o contorno real do `suction_base.stl` (pentágono de x ±23,08 e y −27,5 a 21, com o furo da ventoinha e os 4 furos de parafuso):
 
 - PTH dentro da área: **só C1 e C2** (220 µF radial D6,3 P2,5). O C1 está em (−21,72; 1,27) e o C2 em (20,57; 2,29). As pontas e a solda ficam sob a placa de sucção. O EVA-RT original tem o mesmo problema: C1/C2 PTH em (±22,0; 0,8/3,3), segundo o Gerber.
 - Nas vias, inclusive as do pad térmico dos DRV8874, não há problema. SMD na face de cima também não. Na face de baixo, só os pads do J3 entram 0,05 mm na área.
@@ -144,7 +144,7 @@ O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `cod
 
 ### C1/C2 em SMD e C20 montado (14/11/2026)
 
-`ProPrj_RUSH - SATURN - v8_2026-11-14.epro` sai de `codigo/v4_epro/caps_smd.py`, aplicado sobre o arquivo do Erick com os capacitores SMD inseridos (`codigo/v4_epro/entrada_erick_v8f1_2026-11-14.epro`; LCSC C96175, 220 µF/16 V, 6,3 × 7,7 mm). Nenhuma trilha existente foi alterada.
+`ProPrj_RUSH - SATURN - v8_2026-11-14.epro` sai de `codigo/v4_epro/caps_smd.py`, aplicado sobre o arquivo do Erick com os capacitores SMD inseridos (`codigo/v4_epro/entradas/entrada_erick_v8f1_2026-11-14.epro`; LCSC C96175, 220 µF/16 V, 6,3 × 7,7 mm). Nenhuma trilha existente foi alterada.
 
 - Os radiais faziam a passagem de face do VBAT pelo próprio furo. No lugar de cada pad + antigo entrou **uma via VBAT de 1,6/1,0 mm**, com o mesmo pad e o mesmo furo, ligada às mesmas trilhas.
 - Os pads − antigos também ligavam o GND das duas faces. Sem eles, o GND de baixo dentro do anel de VBAT ficava separado. Entrou **uma via de GND de 0,8/0,4 mm junto ao pad − de cada capacitor**.
@@ -157,7 +157,7 @@ Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND intei
 
 ### Ajustes do v8.1 (14/11/2026)
 
-`ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v81.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entrada_erick_v81_2026-11-14.epro`).
+`ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v81.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entradas/entrada_erick_v81_2026-11-14.epro`).
 
 **QRE renomeados** (esquemático e PCB), da esquerda para a direita:
 
@@ -277,7 +277,7 @@ Checagens: esquemático = PCB, nenhuma rede partida além do GND, GND inteiro na
 
 ### v8.7 (14/11/2026, arquivo atual): correções do v8.6 e trilhas para 5,5 A contínuos
 
-`ProPrj_RUSH - SATURN - v87_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v87.py`, aplicado sobre o v8.6 do Erick (`entrada_erick_v86_2026-11-14.epro`). Nesse arquivo, o Erick alinhou C1/C2 em y = 1,524, subiu C3/C4/C5/LED1/R1, girou o U1, refez as vias de VBAT e voltou o R10 à posição antiga.
+`ProPrj_RUSH - SATURN - v87_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v87.py`, aplicado sobre o v8.6 do Erick (`codigo/v4_epro/entradas/entrada_erick_v86_2026-11-14.epro`). Nesse arquivo, o Erick alinhou C1/C2 em y = 1,524, subiu C3/C4/C5/LED1/R1, girou o U1, refez as vias de VBAT e voltou o R10 à posição antiga.
 
 **Correções:**
 
@@ -314,7 +314,7 @@ Checagens: esquemático = PCB, nenhuma rede partida além do GND (que fecha com 
 
 ### v8.8 com serigrafia (14/11/2026, arquivo atual)
 
-`ProPrj_RUSH - SATURN - v88_2026-11-14_serigrafia.epro` sai de `codigo/v4_epro/serigrafia_v88.py`, aplicado sobre o v8.8 do Erick (`entrada_erick_v88_2026-11-14.epro`).
+`ProPrj_RUSH - SATURN - v88_2026-11-14_serigrafia.epro` sai de `codigo/v4_epro/serigrafia_v88.py`, aplicado sobre o v8.8 do Erick (`codigo/v4_epro/entradas/entrada_erick_v88_2026-11-14.epro`).
 
 O v8.8 passou nas checagens, e a OUT_C já estava com 1,5 mm.
 

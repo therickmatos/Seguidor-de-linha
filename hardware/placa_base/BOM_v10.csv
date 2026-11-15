@@ -1,0 +1,45 @@
+Designadores,Qtd,Valor,Encapsulamento,Footprint,Face,DNP,LCSC
+"C1, C2",2,220uF,,CAP-SMD_BD6.3-L6.6-W6.6-FD,cima,,C96175
+C3,1,220nF,0603 50 V,C0603,cima,,
+"C4, C6, C7, C8, C18",5,100nF,0603,C0603,cima,,
+C5,1,47uF,,C1210,cima,,C397312
+"C9, C10",2,22pF,0603,C0603,cima,,
+"C11, C14",2,100nF,0603 16 V X7R,C0603,cima,,
+"C12, C15",2,22nF,0603 50 V X7R,C0603,cima,,
+"C13, C16",2,100nF,0603 25 V X7R,C0603,cima,,
+C17,1,100nF,0603 25 V,C0603,cima,,
+"C19, C20",2,10nF,0603,C0603,baixo,,
+D1,1,1N5819,SOD-123 (B5819W) ou 1N5819 nos terminais do motor,SOD-123_L2.7-W1.6-LS3.7-RD-1,baixo,,C2905649
+J1,1,XT30 (bateria 2S),XT30PW-M de placa ou rabicho XT30,CONN-TH_XT30U-M,cima,,C19268020
+J2,1,"BARRA (1x8, 2,54 mm)","barra de pinos 1x8 2,54 mm",HDR-TH_8P-P2.54-V-M,cima,,C5156616
+J3,1,GRAVAÇÃO,"5 pads SMD, passo 2,54 mm; montagem na face inferior",seguidor_alpha:HDR_1x05_P2.54_SMD_DEITADA,baixo,,
+J4,1,"BLUETOOTH (femea 1x6, ordem HC-05)","barra femea 1x6 2,54 mm",HDR-TH_6P-P2.54-V-F,cima,,C40877
+J5,1,ICSP,,seguidor_alpha:ICSP_6P_SMD_BOT,baixo,,
+LED1,1,verde,0603,LED0603-RD_GREEN,cima,,
+LED2,1,LED A,0603,LED0603-RD_GREEN,cima,,
+LED3,1,LED B,0603,LED0603-RD_GREEN,cima,,
+LED4,1,LED C,0603,LED0603-RD_GREEN,cima,,
+LED5,1,TX,0603,LED0603-RD_GREEN,cima,,
+M1,1,1020 esq.,,seguidor_alpha:MOTOR_1020_2P,cima,,
+M2,1,1020 dir.,,seguidor_alpha:MOTOR_1020_2P,cima,,
+M3,1,ventoinha,,seguidor_alpha:MOTOR_1020_2P,cima,,
+Q1,1,AO3400A,"SOT-23 (1 = G, 2 = S, 3 = D)",SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR,cima,,C20917
+"R1, R6, R9, R18, R19, R20",6,1k,0603,R0603,baixo/cima,,
+R2,1,20k 1%,0603,R0603,cima,,
+"R3, R12",2,10k 1%,0603,R0603,cima,,
+"R4, R7, R23, R25",4,220,0603,R0603,baixo,,
+"R5, R8, R24, R26",4,47k,0603,R0603,baixo,,
+"R10, R13, R17",3,10k,0603,R0603,cima,,
+R11,1,15k 1%,0603,R0603,cima,,
+"R14, R15",2,910 1%,0603,R0603,cima,,
+R16,1,200,0603,R0603,cima,,
+R21,1,2k,0603,R0603,baixo,,
+R22,1,4.7k,0603,R0603,baixo,,
+"S1, S2, S3, S4",4,QRE1113GR,SMD 4 pinos,OPTO-SMD_QRE1113GR,baixo,,C232862
+SW1,1,RESET,,KEY-SMD_L6.1-W3.7-LS8.0-2,cima,,C19271064
+SW2,1,BOTÃO 1,,KEY-SMD_L6.1-W3.7-LS8.0-2,cima,,C19271064
+SW3,1,BOTÃO 2,,KEY-SMD_L6.1-W3.7-LS8.0-2,cima,,C19271064
+U1,1,78M05,TO-252 (DPAK),TO-252-2_L6.5-W6.1-P4.58-LS10.0-TL,cima,,C111265
+U2,1,ATmega328P-AU,TQFP-32,TQFP-32_L7.0-W7.0-P0.80-LS9.0-BL,cima,,C14877
+"U3, U4",2,DRV8874PWPR,"HTSSOP-16 (PWP), pad termico com vias",HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP,cima,,C1855818
+X1,1,16MHz,,CRYSTAL-SMD_L5.0-W3.2,cima,,C2450102

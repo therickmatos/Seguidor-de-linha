@@ -10,8 +10,8 @@ import tempfile
 REPO = '/home/user/Seguidor-de-linha'
 for _p in __import__('pathlib').Path(__file__).resolve().parents:
     if (_p / 'CLAUDE.md').exists(): REPO = str(_p); break
-SRC = os.path.join(REPO, 'ProPrj_RUSH - SATURN - v3_2026-11-09.epro')
-DST = os.path.join(REPO, 'ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro')
+SRC = os.path.join(REPO, 'estudo_de_caso/01_projeto/ProPrj_RUSH - SATURN - v3_2026-11-09.epro')
+DST = os.path.join(REPO, 'hardware/placa_base/historico/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro')
 ORIG = tempfile.mkdtemp(prefix='v3_')
 zipfile.ZipFile(SRC).extractall(ORIG)
 PCBF = 'PCB/888586395c7d5a9b1bb99ffcd1d10b35.epcb'

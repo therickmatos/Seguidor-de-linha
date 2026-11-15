@@ -1,5 +1,7 @@
 """Simula o preenchimento de GND (as duas faces) e confere se todo o GND fica numa peça só."""
 import sys, collections
+import pathlib
+REPO = [p for p in pathlib.Path(__file__).resolve().parents if (p / 'CLAUDE.md').exists()][0]
 from shapely.ops import unary_union
 import verifica_placa as V, check
 def sim(path, clr=0.254, edge=0.3):
@@ -34,5 +36,5 @@ def sim(path, clr=0.254, edge=0.3):
         inside = [k for k, (L, p) in enumerate(comps) if L == l and p.intersects(g)]
         if not any(f(k) == main for k in inside): lost.append((l, i, round(g.centroid.x, 2), round(g.centroid.y, 2)))
     return len(groups), lost
-for p in ('/home/user/Seguidor-de-linha/ProPrj_RUSH - SATURN - v3_2026-11-09.epro', '/home/user/Seguidor-de-linha/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro'):
+for p in (str(REPO / 'estudo_de_caso/01_projeto/ProPrj_RUSH - SATURN - v3_2026-11-09.epro'), str(REPO / 'hardware/placa_base/historico/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro')):
     g, lost = sim(p); print(p.split('/')[-1], 'grupos de cobre GND:', g, '· itens de GND fora do grupo principal:', lost)

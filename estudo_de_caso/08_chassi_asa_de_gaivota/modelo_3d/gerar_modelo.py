@@ -21,7 +21,7 @@ sys.path.insert(0, str(HERE.parent / 'codigo' / 'v4_epro'))
 import contorno as C
 import check
 REPO = HERE.parents[2]
-EPRO = REPO / 'ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro'
+EPRO = REPO / 'hardware/placa_base/historico/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro'
 M = 0.0254
 
 # --- alturas (mm) -----------------------------------------------------------
@@ -137,7 +137,7 @@ bar = Polygon([(x, y + BAR_DY) for x, y in BAR])
 for x, y, d in ((44.62624, -3.68496, 2.05), (-44.62624, -3.68496, 2.05), (9.2, 0.55, 1.6), (-9.2, 0.55, 1.6)):
     bar = bar.difference(Point(x, y + BAR_DY).buffer(d / 2, quad_segs=16))
 extrude(bar, PCB_BOT, PCB_T, 'barra de sensores V1', COL['pcb'])
-centres = json.loads((REPO / 'Estudo de caso - viabilidade do seguidor de linha/02_referencias/parametros_mecanicos_EVA.json')
+centres = json.loads((REPO / 'estudo_de_caso/02_referencias/parametros_mecanicos_EVA.json')
                      .read_text(encoding='utf8'))['front_sensor_centres']
 for i, (x, y) in enumerate(centres):
     ang = math.degrees(math.atan2(x, 120.0))      # a barra é curva: QRE alinhados à curvatura

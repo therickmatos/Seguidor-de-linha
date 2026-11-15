@@ -1,5 +1,7 @@
 # Seguidor (clone do EVA-RT, placa JLC) — decisões de 03/11/2026
 
+> **Histórico (15/11/2026):** decisões de antes do layout. A placa encomendada e o que mudou depois estão em `hardware/placa_base/`. A gravação, por exemplo, virou 5 pads SMD embaixo (J3), no lugar da barra de pinos 90°.
+
 _Complementa `CONTORNO_B_EVA-RT.md`. Origem = centro da ventoinha, +y = frente, mm._
 
 ## Compras conferidas (ok)

@@ -1,6 +1,6 @@
 """Correções no arquivo do Erick (12/11/2026) e chanfro 45° dos cantos retos.
 
-Entrada: o .epro enviado; saída: ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro (raiz do repositório).
+Entrada: o .epro enviado; saída: ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro (em `hardware/placa_base/historico/`).
 Baseado no EVA-RT, (c) EXOTIC TEAM MX, AGPL-3.0.
 """
 import sys, os, json, math, zipfile, tempfile, copy, re
@@ -13,7 +13,7 @@ M = 0.0254
 mil = lambda v: v / M
 SRC = sys.argv[1]
 REPO = [p for p in __import__('pathlib').Path(__file__).resolve().parents if (p / 'CLAUDE.md').exists()][0]
-DST = str(REPO / 'ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro')
+DST = str(REPO / 'hardware/placa_base/historico/ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro')
 z = zipfile.ZipFile(SRC)
 PCBN = [n for n in z.namelist() if n.endswith('.epcb')][0]
 rows = [json.loads(l) for l in z.read(PCBN).decode('utf-8-sig').splitlines() if l.strip()]

@@ -1,5 +1,10 @@
 # Ferramentas
 
+## bom_epro.py: BOM a partir do .epro
+`python3 ferramentas/bom_epro.py <projeto.epro> <saida.csv>` lê os componentes colocados na PCB (designador, valor, encapsulamento, footprint, face, DNP, LCSC) e agrupa as linhas iguais. Gerou `hardware/placa_base/BOM_v10.csv`.
+
+> **O esquemático do KiCad abaixo é a rev 1.0, de antes do layout.** O esquemático da placa encomendada está no `.epro` do v10 (`hardware/placa_base/`). Ver `hardware/seguidor_base/README.md`.
+
 ## esquematico/ — fonte do esquemático
 O esquemático da placa base é gerado por script, direto em S-expression do KiCad (sem GUI).
 **Para mudar o esquemático, edite o `gen.py` e gere de novo**; não edite o `.kicad_sch` à mão, senão a próxima geração desfaz a mudança.

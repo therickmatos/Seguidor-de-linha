@@ -1,5 +1,7 @@
 # Seguidor – placa base (clone do EVA-RT) – esquemático rev 1.0
 
+> **Histórico (15/11/2026):** esquemático rev 1.0 (KiCad), anterior ao layout. Ele não tem os QRE internos (D8/D9) nem os eletrolíticos SMD. O esquemático da placa encomendada está dentro do `.epro` do v10, em `hardware/placa_base/`.
+
 Baseado no EVA-RT (c) EXOTIC TEAM MX, licença AGPL-3.0 (github.com/EXOTIC-TEAM-MX/EVA-RT).
 Mantenha o crédito e a licença se publicar o projeto.
 

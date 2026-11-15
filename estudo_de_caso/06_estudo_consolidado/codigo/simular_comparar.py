@@ -14,7 +14,7 @@ def _study_root():
     for parent in Path(__file__).resolve().parents:
         if (parent / '05_codigo' / 'originais').is_dir() and (parent / '03_simulacoes').is_dir():
             return parent
-        candidate = parent / 'Estudo de caso - viabilidade do seguidor de linha'
+        candidate = parent / 'estudo_de_caso'
         if (candidate / '05_codigo' / 'originais').is_dir():
             return candidate
     raise FileNotFoundError('Pasta do estudo e 05_codigo/originais não encontrados.')

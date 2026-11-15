@@ -2,65 +2,61 @@
 
 ## Como trabalhar
 - Responder em **português**, de forma direta e concisa. O Erick (estudante de eletrônica, IFSP) revisa e corrige o que recebe.
-- Antes de afirmar algo sobre o projeto, ler o doc correspondente em `docs/`. As decisões mais novas estão em `docs/DECISOES_2026-11-04.md` e `docs/SEGUIDOR_JLC_DECISOES.md`.
-- Unidades em mm. **Referencial do seguidor: origem no centro da ventoinha, +y para a frente** (o mesmo do `.eprj` e do Gerber do EVA-RT).
+- Antes de afirmar algo sobre o projeto, ler o doc correspondente. O estado da placa está em `hardware/placa_base/README.md`; o histórico do layout, versão a versão, em `estudo_de_caso/08_chassi_asa_de_gaivota/PINOS.md`.
+- Unidades em mm. **Referencial do seguidor: origem no centro da ventoinha, +y para a frente** (o mesmo do `.epro` e do Gerber do EVA-RT).
+- Antes de mudar algo de que o Erick gostou (trilhas, posições), explicar o que seria alterado. Manter o resto da placa como está e não deixar nada travado no EasyEDA.
 
 ## O projeto
-Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida): clone do **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto (contorno B "degraus", estilo HLR).
-- **Fluxo:** esquemático em KiCad (fonte) → importado no EasyEDA Pro → layout → Gerber → pedido na JLC.
-- **Fora deste repositório:** o perseguidor e o seguidor em fenolite são outros projetos (as bases dos robôs são parecidas). Os docs de decisão citam os dois porque o pedido na JLC é compartilhado.
-- Peças do seguidor chegando entre ~10 e 25/11/2026; meta de ter tudo até 20–23/11.
+Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida). É baseado no **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), com placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto.
+- **Fluxo:** esquemático e layout no EasyEDA Pro → Gerber → JLC. O KiCad (`ferramentas/esquematico/gen.py`) gerou só a rev 1.0 do esquemático e ficou para trás.
+- **Fora deste repositório:** o perseguidor (placa "RUSH - Dreamcast", irmã do Saturn, encomendada junto) e o seguidor em fenolite.
 
-## Seguidor: decisões fixas
-- ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware **EVA-RT 1.2.2 sem mudar o mapa de pinos**.
-- 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201; ITRIP ≈ 4,9 A (VREF 2,0 V, IPROPI 910 Ω desde 14/11/2026; antes 1,5k ≈ 3 A).
-- Ventoinha: AO3400A (SOT-23) + 1N5819 em paralelo com o motor; PWM no D10.
-- Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
-- Gravação: barra macho 1×5 90° 2,54 mm (+5V, GND, RX, TX, DTR) no centro da borda traseira, em cima; conversor CH340G com DTR. ICSP: 6 pads SMD embaixo, posições do EVA-RT.
-- Bluetooth opcional: fêmea 1×6 (ordem HC-05) na frente direita (x ≈ 32,5; y 0,7…13,4), divisor 1k/2k.
-- Barra de sensores: **V1 de 12 QRE1113 + 74HC4067** (Gerber em `hardware/barra_v1/`), ligada por barra de pinos **2,54 mm** na base (a barra tem passo de 2,0 mm → cabo misto). Distância barra–eixo L = 67–70 mm.
-- **L não é a distância entre furos.** L vai do eixo das rodas (y = −22,59) à linha dos sensores centrais da barra. Entre o furo da frente da base (y = 10,75) e o furo da barra V1: L = distância + 43,97 mm (L 70 ↔ 26 mm; L 100, igual ao EVA-RT ↔ 56 mm; 63,14 mm ↔ L 107,1).
-- Sensores de marca QRE1113GR nos braços em (±69,5; 4,5); esquerdo = curva (A5), direito = partida/chegada (A6). **Pinagem do QRE1113GR: 1 anodo, 2 catodo, 3 coletor, 4 emissor** — conferir no footprint.
-- Bateria GNB 350 mAh 2S (45 × 20,5 × 12 mm), XT30. 78M05 para 5 V.
-- Contorno definitivo: `hardware/contorno/EVA-RT_contorno_B_degraus.dxf` (148,2 × 57,6 mm, braços integrados, furo Ø17).
-- STL do EVA-RT usados como estão; a placa respeita as áreas deles (ver `docs/DECISOES_2026-11-04.md`).
+## Placa encomendada (v10, 15/11/2026)
+- Arquivos: `hardware/placa_base/ProPrj_RUSH - SATURN - v10_2026-11-15_serigrafia.epro`, Gerber em `hardware/placa_base/gerber/`, BOM em `hardware/placa_base/BOM_v10.csv`.
+- ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware **EVA-RT 1.2.2 sem mudar o mapa de pinos**. Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
+- 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201. IPROPI 910 Ω com VREF 2,0 V → ITRIP ≈ 4,9 A. Trilhas de potência para 5,5 A contínuos.
+- Ventoinha: AO3400A + 1N5819 em paralelo com o motor; PWM no D10.
+- **Sensores de marca QRE1113GR**, dois por lado:
+  - S1 = esq. externo (−81,5; 16), A5;
+  - S2 = esq. interno (−50,5; 14), D8;
+  - S3 = dir. interno (50,5; 14), D9;
+  - S4 = dir. externo (81,5; 16), A6.
+  - Pinagem do QRE1113GR: 1 anodo, 2 catodo, 3 coletor, 4 emissor.
+- **Conectores:**
+  - J3, gravação: 5 pads SMD embaixo (+5V, GND, RX, TX, DTR), com conversor CH340G com DTR;
+  - J5, ICSP: 6 pads SMD embaixo;
+  - J4, Bluetooth: fêmea 1×6 na ordem do HC-05, com divisor 1k/2k (STATE e EN sem ligação);
+  - J2, barra V1: 1×8 de 2,54 mm, com cabo misto porque a barra tem passo de 2,0 mm.
+- Bateria GNB 350 mAh 2S (45 × 20,5 × 12 mm), XT30. 78M05 para 5 V. C1/C2 eletrolíticos SMD de 220 µF/16 V.
+- Contorno asa de gaivota 172,2 × 58,6 mm, furo Ø17 da ventoinha.
+- **STL do EVA-RT usados como estão.** Componente alto na face de cima precisa ficar fora de r ≈ 18 mm (hélice com r 17). A conferência é feita por `estudo_de_caso/08_chassi_asa_de_gaivota/codigo/v4_epro/interferencias_stl.py`.
+- Distância barra–eixo: L vai do eixo das rodas (y = −22,59) à linha dos sensores centrais da barra. Entre o furo da frente da base (y = 10,75) e o furo da barra V1, L = distância + 43,97 mm. A escolha atual é a barra a 63–65 mm entre furos (L ≈ 107–109); a distância se ajusta na vareta, não na PCB.
 
-## Estado (04/11/2026)
-- Esquemático rev 1.0 pronto: `hardware/seguidor_base/` (projeto KiCad, PDF, BOM, `REDES.md`).
-- **A fonte do esquemático é o KiCad**, gerado por `ferramentas/esquematico/gen.py` (feito com o Claude em outra sessão). Mudança no esquemático → editar o `gen.py` e regerar (passo a passo em `ferramentas/README.md`).
-- **Em andamento:** o Erick está importando o esquemático do KiCad no EasyEDA Pro para fazer o layout e encomendar na JLC. Conferir a importação rede por rede com `hardware/seguidor_base/REDES.md` (54 redes, 7 pinos sem ligação).
-- **11/11/2026, marcas do TRIF:** a v3 (`ProPrj_RUSH - SATURN - v3_2026-11-09.epro`, um QRE por lado em ±69,5; 4,5) lê todas as marcas dos modelos TRIF 2024/2025 e da pista de teste do EVA-RT com L = 70 mm; não precisa de chassi novo nem de dois sensores por lado. O firmware 1.2.2 não usa marcas de curva (o sensor esquerdo só veta a parada nos cruzamentos). Ver `Estudo de caso - viabilidade do seguidor de linha/07_firmware_e_geometria/README.md`. Em aberto: o Erick tinha preferido manter a distância do EVA-RT (L 100); a escolha entre L 70, 85 e 100 é dele e se faz na vareta, não na PCB.
-- **11/11/2026, decisão do Erick após testes físicos:** chassi **asa de gaivota com dois QRE por lado** e barra a 63–65 mm entre furos (L ≈ 107–109). Proposta de posição e contorno em `Estudo de caso - viabilidade do seguidor de linha/08_chassi_asa_de_gaivota/` (E1/D1 em (±50,5; 14), E2/D2 em (±81,5; 16), versão "mínimo com asa" escolhida pelo Erick; aba estilo Fujitora com a ponta da v3; DXF `saida/asa_gaivota_contorno.dxf`, 172,2 × 58,6 mm, corpo/frente/traseira/recortes da v3). **Pinos (proposta, aguarda OK do Erick):** E2/D2 (externos) em A5/A6 como no 1.2.2; E1/D1 (internos) em D8/D9 (PB0/PB1, únicos livres, leitura digital) — ver `08_chassi_asa_de_gaivota/PINOS.md`. Firmware das 4 entradas é a fase seguinte (os QRE internos podem ver a linha em curva fechada; D1 não deve disparar a parada).
-- **11/11/2026, projeto da v4:** `ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro` (gerado da v3 por `08_chassi_asa_de_gaivota/codigo/v4_epro/build.py`): contorno novo, abas roteadas, QRE internos S3/S4 com 220/47k/10nF (C19 montado como filtro do E1; C20 DNP). `MARK_L2_D8` (E1) roteado automaticamente (168 mm, 3 vias); `MARK_R2_D9` (D1) sem caminho sem mexer no roteamento da v3 junto ao ATmega (opções no `PINOS.md`). Pendente no EasyEDA: refazer o cobre, decidir o D1, DRC.
-- **12/11/2026:** `ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro` (correções sobre o arquivo do Erick; os 4 QRE roteados, D1 → pino 13 incluído; tudo em 45°; checagens limpas; ver `08_chassi_asa_de_gaivota/PINOS.md`).
-- **13/11/2026:** `ProPrj_RUSH - SATURN - v7_2026-11-13_corrigido.epro` (sobre o v7 do Erick: os 17 erros do DRC corrigidos; `MARK_R2_D9` acima do rasgo traseiro; 37 vias de costura de GND; furo de 1,0 mm nos pads dos motores, que valem também para a ventoinha por usarem o mesmo footprint; ver `08_chassi_asa_de_gaivota/PINOS.md`).
-- **14/11/2026:** `ProPrj_RUSH - SATURN - v8_2026-11-14.epro` (C1/C2 em eletrolítico SMD 220 µF/16 V 6,3 × 7,7, LCSC C96175, porque os radiais ficavam sob a placa de sucção; vias VBAT de 1,6/1,0 no lugar dos pads + antigos e via de GND junto a cada pad −; C20 montado; lista de compra em `08_chassi_asa_de_gaivota/LISTA_CAPACITORES_RESISTORES.md`).
-- **14/11/2026 (v8.1):** `ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` (alinhamentos pedidos pelo Erick, via VBAT do C2 de volta, nada travado). **QRE renomeados: S1 = esq. externo (A5), S2 = esq. interno (D8), S3 = dir. interno (D9), S4 = dir. externo (A6)**; os docs anteriores usam S3/S4 para os internos.
-- **14/11/2026 (v8.2):** `ProPrj_RUSH - SATURN - v82_2026-11-14_corrigido.epro` (GND do J3 e do R3 religados, rótulos dos QRE; análise de corrente em `08_chassi_asa_de_gaivota/PINOS.md`: trilhas atendem ITRIP ≈ 3 A por motor). Falta no EasyEDA: refazer o cobre (Shift+B), DRC, Gerber.
-- **14/11/2026 (v8.3):** `ProPrj_RUSH - SATURN - v83_2026-11-14.epro` (comparação com o EVA-RT e o HyperLine; segunda via de VBAT no C2; R14/R15 = 910 Ω, ITRIP ≈ 4,9 A). Falta no EasyEDA: GND do plano com ligação Direct nos pads e vias, refazer o cobre (Shift+B), DRC, Gerber. Falta regenerar o KiCad a partir do `gen.py` (precisa do KiCad).
-- **14/11/2026 (v8.4):** `ProPrj_RUSH - SATURN - v84_2026-11-14.epro` (C2 em (21,72; 1,30), fora do giro da hélice Ø34 da ventoinha, que batia no corpo dele no v8.3; M3 desce 1 mm; vias de VBAT fora do pad +). **Componente alto na face de cima precisa ficar fora de r ≈ 18 mm (hélice com r 17)**, não só fora da carcaça. Pendências no EasyEDA iguais às do v8.3.
-- **14/11/2026 (v8.5):** `ProPrj_RUSH - SATURN - v85_2026-11-14.epro` (folgas com todos os STL, conferidas por `08_chassi_asa_de_gaivota/codigo/v4_epro/interferencias_stl.py`: R2 e R10 afastados do pé da carcaça, M1 fora da caixa de redução, J3 fora da placa de sucção). Pendências no EasyEDA iguais às do v8.3.
-- **14/11/2026 (v8.7):** `ProPrj_RUSH - SATURN - v87_2026-11-14.epro` (sobre o v8.6 do Erick: VBAT esquerdo e LEDC_D13 religados, R10 em pé; trilhas de potência para 5,5 A contínuos pela IPC-2221 a ΔT 20 °C: saídas dos motores ≥ 2,1 mm, VBAT ≥ 2,6 mm, duas vias de VBAT à direita, GND direto no J1). Pendências no EasyEDA iguais às do v8.3.
-- **14/11/2026 (v8.8):** `ProPrj_RUSH - SATURN - v88_2026-11-14_serigrafia.epro` (v8.8 do Erick + símbolo do IF/"IFSP" e "Projetado por Erick Matos" na serigrafia de baixo, à esquerda da placa de sucção). Falta no EasyEDA: plano GND (ligação Direct), DRC, Gerber.
-- **15/11/2026 (v8.9):** `ProPrj_RUSH - SATURN - v89_2026-11-15.epro` (v8.9 do Erick, com GND: pads do J3 encurtados para 1,9 mm e J3 em y = −28,75, 0,30 mm da borda e da placa de sucção, para zerar os 6 erros de folga do DRC; **DRC sem erros no EasyEDA em 15/11/2026**). Gerber final conferido em 15/11/2026 (cobre, furos, plano GND sem ilhas, serigrafia de baixo com a logo do IF de 8 mm e "Projetado por Erick Matos"). Próximo: pedido na JLC.
-- **15/11/2026 (v10), arquivo atual da placa:** `ProPrj_RUSH - SATURN - v10_2026-11-15_serigrafia.epro` (v10 do Erick + sinais +/− de polaridade e nomes dos pinos do J5/ICSP copiados do Dreamcast v3, `codigo/v4_epro/copia_serigrafia_dreamcast.py`; Gerber final do v10 conferido em 15/11/2026, igual ao anterior exceto a serigrafia; pronto para o pedido).
-- **Próximo:** layout da placa base no EasyEDA Pro → conferência 3D com os STL → Gerber → pedido JLC (cupom de US$ 50, junto com a placa do perseguidor).
+## Próximos passos
+- Montagem (peças chegando entre ~10 e 25/11/2026). O furo do XT30 tem 2,54 mm e serve para pino de até ~2,3 mm.
+- **Teste do sentido dos motores:**
+  - se o robô andar para trás, inverter os dois motores;
+  - se girar no lugar, inverter um deles;
+  - se a ventoinha soprar, inverter a ventoinha.
+- Firmware das 4 entradas de marca. O 1.2.2 lê só A5/A6 e não usa marcas de curva: o sensor esquerdo só veta a parada nos cruzamentos. Os QRE internos podem ver a linha em curva fechada, e o S3 não deve disparar a parada. Ver `estudo_de_caso/07_firmware_e_geometria/README.md`.
 
 ## Arquivos
 | Pasta | Conteúdo |
 |---|---|
-| `docs/` | decisões, contorno e esquemático |
-| `hardware/contorno/` | contorno B definitivo (DXF) + figuras de conferência (Gerber do EVA-RT, marcas do TRIF) |
-| `hardware/seguidor_base/` | esquemático rev 1.0 (projeto KiCad, PDF), BOM, `REDES.md` (lista de redes para conferir a importação no EasyEDA) |
+| `hardware/placa_base/` | placa encomendada (v10), Gerber, BOM, `historico/` com v4 a v8.9 |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
-| `hardware/figuras/` | posição do conector do Bluetooth |
-| `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
-| `Estudo de caso - viabilidade do seguidor de linha/` | simulações das marcas do TRIF: `06_estudo_consolidado/` (simulador HTML com TRIF 2024, 2025 e pista de teste do EVA-RT) `07_firmware_e_geometria/` (emulação de `Marks.ino`, varredura de L) e `08_chassi_asa_de_gaivota/` (posição dos 4 QRE e contorno asa de gaivota) |
-| `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
+| `hardware/contorno/`, `hardware/seguidor_base/`, `docs/` | contorno B, esquemático KiCad rev 1.0 e decisões de 02–04/11 (histórico, antes do layout) |
+| `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |
+| `ferramentas/` | gerador do esquemático KiCad (rev 1.0) e `bom_epro.py` |
+| `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro |
+
+## Formato .epro (para os scripts)
+- É um zip de linhas JSON, com coordenadas em mil (× 0,0254 = mm).
+- Campos de trava: COMPONENT r[8], LINE r[10], VIA r[12], ATTR r[20].
+- Serigrafia STRING: camada 3 = cima, 4 = baixo. Limites da JLC: texto ≥ 1 mm de altura, traço ≥ ~0,15 mm.
 
 ## Cuidados
 - Manter o crédito e a licença AGPL-3.0 do EVA-RT em qualquer arquivo derivado.
-- Não decidir pelo Erick: base comum × placas separadas já foi decidido (placas separadas), mas nome do robô e terceira placa do pedido estão em aberto.
-- O KiCad 7 do Ubuntu não tem ERC pela linha de comando; a conectividade é conferida por `ferramentas/esquematico/check.py`.
-- Mudança no esquemático depois da importação no EasyEDA: fazer no `gen.py` (fonte) e repetir no EasyEDA, para os dois não divergirem.
-- Ficaram fora do repositório (estão no zip original): a conversa com o Claude e seus anexos, os scripts de figuras e de STL, a netlist `.net` (regenerável), figuras de alternativas descartadas (ESP, USB-C), os renders PNG dos PDFs do EVA-RT e os docs do perseguidor e da fenolite (outros projetos).
+- Não decidir pelo Erick.
+- O KiCad 7 do Ubuntu não tem ERC pela linha de comando.
+- Ficaram fora do repositório (estão no zip original): a conversa com o Claude e seus anexos, os scripts de figuras e de STL, a netlist `.net`, figuras de alternativas descartadas (ESP, USB-C), os renders PNG dos PDFs do EVA-RT e os docs do perseguidor e da fenolite.

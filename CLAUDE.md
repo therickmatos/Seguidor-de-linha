@@ -40,6 +40,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
+| `ferramentas/teste_barra/` | sketch Arduino (ESP32-C3) de teste de bancada da barra V1 |
 
 ## Cuidados
 - Manter o crédito e a licença AGPL-3.0 do EVA-RT em qualquer arquivo derivado.

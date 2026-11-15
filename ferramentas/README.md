@@ -27,3 +27,9 @@ python3 redes.py
 ```
 
 As saídas intermediárias (`seguidor_base.kicad_sch`, `.pdf`, `.net`, PNGs, `pacote/`) ficam nesta pasta e são ignoradas pelo git. Os UUIDs mudam a cada geração, então o `.kicad_sch` publicado muda inteiro mesmo sem mudança de ligação: confira pelo `check.py` e pelo diff do `REDES.md`.
+
+## `teste_barra/` — teste de bancada da barra de sensores
+
+Sketch Arduino para testar a barra V1 (12 QRE1113 + 74HC4067) num ESP32-C3 Super Mini (Arduino-ESP32 core 3.x). Abrir `teste_barra/teste_barra.ino` na IDE (os três arquivos ficam na mesma pasta); placa **ESP32C3 Dev Module**, **USB CDC On Boot: Enabled**, monitor serial a 115200.
+
+Ligações: S0→GPIO5, S1→GPIO6, S2→GPIO7, S3→GPIO10, SIG→GPIO3, VCC→3V3, GND→GND. Comandos no cabeçalho do `.ino` (`?` no monitor mostra a ajuda).

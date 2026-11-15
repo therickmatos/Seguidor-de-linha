@@ -21,7 +21,7 @@ for d in paths:
     if g is None or g.is_empty: continue
     cy=g.centroid.y
     (sym if cy<110 else bold if cy<158 else reg).append(g)
-mm=8.01/149.0
+mm=float(__import__('os').environ.get('LARG','8.01'))/149.0
 regu=unary_union(reg); boldu=unary_union(bold); symu=unary_union(sym)
 ero=lambda g,t: round(100*g.buffer(-t/2/mm).area/g.area)
 holes=lambda g: (sum(len(p.interiors) for p in getattr(g,'geoms',[g])), round(min([Polygon(h).area for p in getattr(g,'geoms',[g]) for h in p.interiors])*mm*mm,4))
@@ -38,5 +38,5 @@ if len(sys.argv)>1:
                 out.append('M '+' L '.join(f'{x:.3f} {y:.3f}' for x,y in ring.coords)+' Z')
         return ' '.join(out)
     body=''.join(f'<path fill-rule="evenodd" d="{svgpath(g)}"/>' for g in (symu,boldu,reg2,line))
-    open('logo_if_completo_8mm.svg','w').write('<svg xmlns="http://www.w3.org/2000/svg" width="149" height="213" viewBox="34 21 149 213"><g fill="#000">'+body+'</g></svg>\n')
+    open(__import__('os').environ.get('SAIDA','logo_if_completo_8mm.svg'),'w').write('<svg xmlns="http://www.w3.org/2000/svg" width="149" height="213" viewBox="34 21 149 213"><g fill="#000">'+body+'</g></svg>\n')
     print('gravado com',Rmm)

@@ -27,8 +27,9 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `ferramentas/esquematico/` | scripts que geram o esquemático KiCad, a BOM e a lista de redes |
 | `referencias/eva-rt/` | cópia do EVA-RT: projeto EasyEDA Pro, Gerbers, PDFs, STL e firmware |
+| `perseguidor/` | perseguidor **RUSH - Dreamcast** (EasyEDA Pro), gerado a partir do seguidor RUSH - Saturn; ver `perseguidor/README.md` |
 
-O perseguidor e o seguidor em fenolite são outros projetos e não estão neste repositório.
+O seguidor em fenolite é outro projeto e não está neste repositório.
 
 ## Licença
 GNU Affero General Public License v3.0 (`LICENSE`), a mesma do EVA-RT.

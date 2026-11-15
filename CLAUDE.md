@@ -8,7 +8,8 @@
 ## O projeto
 Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida): clone do **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto (contorno B "degraus", estilo HLR).
 - **Fluxo:** esquemático em KiCad (fonte) → importado no EasyEDA Pro → layout → Gerber → pedido na JLC.
-- **Fora deste repositório:** o perseguidor e o seguidor em fenolite são outros projetos (as bases dos robôs são parecidas). Os docs de decisão citam os dois porque o pedido na JLC é compartilhado.
+- **Fora deste repositório:** o seguidor em fenolite é outro projeto. Os docs de decisão citam o perseguidor e a fenolite porque o pedido na JLC é compartilhado.
+- **Perseguidor (`perseguidor/`):** RUSH - Dreamcast, gerado por `perseguidor/ferramentas/gerar_dreamcast.py` a partir do seguidor **RUSH - Saturn** (final, validado eletricamente, em `perseguidor/origem/`) com o contorno e o J6 (IR) do Rush entalhe A. Mudança no Dreamcast: editar o script e regerar, ou editar direto no EasyEDA e trazer o `.epro` de volta (avisar qual virou a fonte).
 - Peças do seguidor chegando entre ~10 e 25/11/2026; meta de ter tudo até 20–23/11.
 
 ## Seguidor: decisões fixas
@@ -40,10 +41,11 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
+| `perseguidor/` | perseguidor RUSH - Dreamcast (`.epro`), origens (Saturn final, Rush entalhe A) e scripts de geração/conferência |
 
 ## Cuidados
 - Manter o crédito e a licença AGPL-3.0 do EVA-RT em qualquer arquivo derivado.
 - Não decidir pelo Erick: base comum × placas separadas já foi decidido (placas separadas), mas nome do robô e terceira placa do pedido estão em aberto.
 - O KiCad 7 do Ubuntu não tem ERC pela linha de comando; a conectividade é conferida por `ferramentas/esquematico/check.py`.
 - Mudança no esquemático depois da importação no EasyEDA: fazer no `gen.py` (fonte) e repetir no EasyEDA, para os dois não divergirem.
-- Ficaram fora do repositório (estão no zip original): a conversa com o Claude e seus anexos, os scripts de figuras e de STL, a netlist `.net` (regenerável), figuras de alternativas descartadas (ESP, USB-C), os renders PNG dos PDFs do EVA-RT e os docs do perseguidor e da fenolite (outros projetos).
+- Ficaram fora do repositório (estão no zip original): a conversa com o Claude e seus anexos, os scripts de figuras e de STL, a netlist `.net` (regenerável), figuras de alternativas descartadas (ESP, USB-C), os renders PNG dos PDFs do EVA-RT e os docs da fenolite (outro projeto).

@@ -11,8 +11,8 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - **Fluxo:** esquemático e layout no EasyEDA Pro → Gerber → JLC. O KiCad (`ferramentas/esquematico/gen.py`) gerou só a rev 1.0 do esquemático e ficou para trás.
 - **Fora deste repositório:** o perseguidor (placa "RUSH - Dreamcast", irmã do Saturn, encomendada junto) e o seguidor em fenolite.
 
-## Placa encomendada (v10, 15/11/2026)
-- Arquivos: `hardware/placa_base/ProPrj_RUSH - SATURN - v10_2026-11-15_serigrafia.epro`, Gerber em `hardware/placa_base/gerber/`, BOM em `hardware/placa_base/BOM_v10.csv`.
+## Placa encomendada (v12, 15/11/2026)
+- Arquivos: `hardware/placa_base/ProPrj_RUSH - SATURN - v12_2026-11-15.epro`, Gerber em `hardware/placa_base/gerber/`, BOM em `hardware/placa_base/BOM_v12.csv`.
 - ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware **EVA-RT 1.2.2 sem mudar o mapa de pinos**. Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
 - 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201. IPROPI 910 Ω com VREF 2,0 V → ITRIP ≈ 4,9 A. Trilhas de potência para 5,5 A contínuos.
 - Ventoinha: AO3400A + 1N5819 em paralelo com o motor; PWM no D10.
@@ -43,7 +43,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 ## Arquivos
 | Pasta | Conteúdo |
 |---|---|
-| `hardware/placa_base/` | placa encomendada (v10), Gerber, BOM, `historico/` com v4 a v8.9 |
+| `hardware/placa_base/` | placa encomendada (v12), Gerber final, BOM, `historico/` com v4 a v10 |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
 | `hardware/contorno/`, `hardware/seguidor_base/`, `docs/` | contorno B, esquemático KiCad rev 1.0 e decisões de 02–04/11 (histórico, antes do layout) |
 | `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |

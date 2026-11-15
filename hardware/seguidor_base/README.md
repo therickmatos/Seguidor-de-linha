@@ -8,4 +8,4 @@ Desde então, o esquemático evoluiu só no EasyEDA:
 - J3 com pads SMD embaixo;
 - C19/C20 montados.
 
-O `gen.py` recebeu só a troca de R14/R15 para 910 Ω. **O esquemático da placa encomendada é o que está dentro do `.epro` do v10** (`hardware/placa_base/`), e a BOM final é `hardware/placa_base/BOM_v10.csv`.
+O `gen.py` recebeu só a troca de R14/R15 para 910 Ω. **O esquemático da placa encomendada é o que está dentro do `.epro` do v12** (`hardware/placa_base/`), e a BOM final é `hardware/placa_base/BOM_v12.csv`.

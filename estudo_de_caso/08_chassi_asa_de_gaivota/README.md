@@ -1,6 +1,6 @@
 # Chassi "asa de gaivota": posição dos 4 sensores e contorno (11/11/2026)
 
-> **Desfecho (15/11/2026):** a placa feita a partir deste estudo foi encomendada (v10, [`hardware/placa_base/`](../../hardware/placa_base/README.md)). O histórico do layout, versão a versão, está em [`PINOS.md`](PINOS.md), e os scripts em [`codigo/v4_epro/`](codigo/v4_epro/README.md). Nomes finais dos sensores: S1 = E2 (A5), S2 = E1 (D8), S3 = D1 (D9), S4 = D2 (A6).
+> **Desfecho (15/11/2026):** a placa feita a partir deste estudo foi encomendada (v12, [`hardware/placa_base/`](../../hardware/placa_base/README.md)). O histórico do layout, versão a versão, está em [`PINOS.md`](PINOS.md), e os scripts em [`codigo/v4_epro/`](codigo/v4_epro/README.md). Nomes finais dos sensores: S1 = E2 (A5), S2 = E1 (D8), S3 = D1 (D9), S4 = D2 (A6).
 
 Continua o [estudo consolidado](../06_estudo_consolidado/README.md) e a [análise do firmware](../07_firmware_e_geometria/README.md). Baseado no EVA-RT, © EXOTIC TEAM MX, [AGPL-3.0](../LICENSE).
 

@@ -20,7 +20,7 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 ## Estrutura
 | Pasta | Conteúdo |
 |---|---|
-| [`hardware/placa_base/`](hardware/placa_base/README.md) | **placa encomendada**: `.epro` do v10, Gerber, BOM, histórico das versões |
+| [`hardware/placa_base/`](hardware/placa_base/README.md) | **placa encomendada**: `.epro` do v12, Gerber, BOM, histórico das versões |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (12 sensores) |
 | `hardware/contorno/` | contorno B "degraus" (histórico, até a v3) |
 | `hardware/seguidor_base/` | esquemático rev 1.0 em KiCad (histórico) |

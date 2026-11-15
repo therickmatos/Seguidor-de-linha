@@ -18,7 +18,7 @@ Falta fazer no EasyEDA: ver a seção "Ao abrir" na resposta do 11/11 ou em `../
 
 ## Correções sobre os arquivos do Erick
 
-As saídas estão em `hardware/placa_base/historico/`, exceto o v10, que está em `hardware/placa_base/`. As entradas recebidas do Erick estão em `entradas/`. Uso: `python3 <script> <entrada> <saída>`, com exceção dos casos indicados.
+As saídas estão em `hardware/placa_base/historico/`, inclusive o v10; a placa encomendada (v12, feita pelo Erick sobre o v10) está em `hardware/placa_base/`. As entradas recebidas do Erick estão em `entradas/`. Uso: `python3 <script> <entrada> <saída>`, com exceção dos casos indicados.
 
 | Script | Data | Entrada | Saída |
 |---|---|---|---|
@@ -34,7 +34,7 @@ As saídas estão em `hardware/placa_base/historico/`, exceto o v10, que está e
 | `corrige_v87.py` | 14/11 | `entrada_erick_v86_2026-11-14` | v87_2026-11-14 |
 | `serigrafia_v88.py` | 14/11 | `entrada_erick_v88_2026-11-14` | v88_2026-11-14_serigrafia |
 | `corrige_v89.py` | 15/11 | `entrada_erick_v89_2026-11-15` | v89_2026-11-15 |
-| `copia_serigrafia_dreamcast.py <dreamcast> <saturn> <saída>` | 15/11 | `ref_dreamcast_v3` + `entrada_erick_v10_2026-11-15` | **v10_2026-11-15_serigrafia (placa encomendada)** |
+| `copia_serigrafia_dreamcast.py <dreamcast> <saturn> <saída>` | 15/11 | `ref_dreamcast_v3` + `entrada_erick_v10_2026-11-15` | v10_2026-11-15_serigrafia |
 
 O que cada versão mudou está em `../../PINOS.md`. O `entrada_erick_v8_2026-11-13` e o `entrada_erick_v87_2026-11-14` são arquivos do Erick guardados só para referência: a lista de capacitores e resistores saiu do primeiro, e o segundo foi conferido sem gerar arquivo novo.
 

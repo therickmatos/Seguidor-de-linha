@@ -5,10 +5,10 @@ Placa encomendada na JLC em 15/11/2026. Baseada no EVA-RT (© EXOTIC TEAM MX, AG
 ## Arquivos
 | Arquivo | O que é |
 |---|---|
-| `ProPrj_RUSH - SATURN - v10_2026-11-15_serigrafia.epro` | projeto EasyEDA Pro da placa encomendada, com esquemático e PCB |
-| `gerber/Gerber_PCB_saturn_v10_2026-11-15.zip` | Gerber enviado à JLC |
-| `BOM_v10.csv` | lista de componentes tirada da PCB do v10 (`python3 ferramentas/bom_epro.py <epro> <csv>`) |
-| `historico/` | versões anteriores (v4 a v8.9), na ordem em que foram feitas |
+| `ProPrj_RUSH - SATURN - v12_2026-11-15.epro` | projeto EasyEDA Pro da placa encomendada, com esquemático e PCB |
+| `gerber/Gerber_Final_Saturn_v12_2026-11-15.zip` | Gerber enviado à JLC |
+| `BOM_v12.csv` | lista de componentes tirada da PCB do v12 (`python3 ferramentas/bom_epro.py <epro> <csv>`) |
+| `historico/` | versões anteriores (v4 a v10), na ordem em que foram feitas |
 
 A v3 (um QRE por lado, contorno B "degraus") está em `estudo_de_caso/01_projeto/`.
 
@@ -69,4 +69,5 @@ Os pinos, as folgas com os STL do EVA-RT e o que cada versão mudou estão em `e
 | v8.7 | 14/11 | trilhas de potência para 5,5 A contínuos; VBAT esquerdo e LEDC_D13 religados |
 | v8.8 | 14/11 | logo do IF e "Projetado por Erick Matos" embaixo |
 | v8.9 | 15/11 | plano GND; pads do J3 com 1,9 mm e J3 em y = −28,75; DRC sem erros |
-| v10 | 15/11 | sinais +/− e nomes do J5 na serigrafia, copiados do Dreamcast; **encomendada** |
+| v10 | 15/11 | sinais +/− e nomes do J5 na serigrafia, copiados do Dreamcast |
+| v12 | 15/11 | ajustes do Erick sobre o v10: retângulo em volta dos nomes do J5 (serigrafia de baixo), designadores do C17 e do J3 movidos, o do J5 oculto, retângulos do plano GND redesenhados (o cobre final não muda); **encomendada** |

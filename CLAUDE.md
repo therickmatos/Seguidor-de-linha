@@ -9,7 +9,8 @@
 Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida): clone do **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto (contorno B "degraus", estilo HLR).
 - **Fluxo:** esquemático em KiCad (fonte) → importado no EasyEDA Pro → layout → Gerber → pedido na JLC.
 - **Fora deste repositório:** o seguidor em fenolite é outro projeto. Os docs de decisão citam o perseguidor e a fenolite porque o pedido na JLC é compartilhado.
-- **Perseguidor (`perseguidor/`):** RUSH - Dreamcast, gerado por `perseguidor/ferramentas/gerar_dreamcast.py` a partir do seguidor **RUSH - Saturn** (final, validado eletricamente, em `perseguidor/origem/`) com o contorno e o J6 (IR) do Rush entalhe A. Mudança no Dreamcast: editar o script e regerar, ou editar direto no EasyEDA e trazer o `.epro` de volta (avisar qual virou a fonte).
+- **Perseguidor (`perseguidor/`):** RUSH - Dreamcast, derivado do seguidor **RUSH - Saturn** (final, validado eletricamente, em `perseguidor/origem/`) com o contorno e o J6 (IR) do Rush entalhe A. **Fonte atual: o `.epro` editado no EasyEDA** (edição do Erick de 14/11 + `ferramentas/ajustar_presilhas.py`); o `gerar_dreamcast.py` ficou como histórico. Ver `perseguidor/README.md`.
+- **Presilhas da vareta (`barilla_clamp`):** parafuso nos furos (±43,75; −1,75/10,75), vareta em x ≈ ±48,35; cada presilha ocupa x ±41,35…±50,85, furo ±2,25 em y, 7 mm de altura, apoiada na placa → nada de componente em cima ali. Vale para o seguidor e para o perseguidor.
 - Peças do seguidor chegando entre ~10 e 25/11/2026; meta de ter tudo até 20–23/11.
 
 ## Seguidor: decisões fixas

@@ -30,7 +30,7 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 | `ferramentas/` | gerador do esquemático KiCad; `bom_epro.py` (BOM a partir do `.epro`) |
 | `referencias/eva-rt/` | cópia do EVA-RT: projeto EasyEDA Pro, Gerbers, PDFs, STL e firmware |
 
-O perseguidor (placa "RUSH - Dreamcast") e o seguidor em fenolite são outros projetos e não estão neste repositório.
+O perseguidor (placa "RUSH - Dreamcast") está em [therickmatos/Perseguidor-de-linha](https://github.com/therickmatos/Perseguidor-de-linha). O seguidor em fenolite está em [therickmatos/seguidor-fenolite](https://github.com/therickmatos/seguidor-fenolite).
 
 ## Licença
 GNU Affero General Public License v3.0 (`LICENSE`), a mesma do EVA-RT.

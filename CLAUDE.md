@@ -9,7 +9,7 @@
 ## O projeto
 Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida). É baseado no **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), com placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto.
 - **Fluxo:** esquemático e layout no EasyEDA Pro → Gerber → JLC. O KiCad (`ferramentas/esquematico/gen.py`) gerou só a rev 1.0 do esquemático e ficou para trás.
-- **Fora deste repositório:** o perseguidor (placa "RUSH - Dreamcast", irmã do Saturn, encomendada junto) e o seguidor em fenolite.
+- **Fora deste repositório:** o perseguidor (placa "RUSH - Dreamcast", irmã do Saturn, encomendada junto), em `therickmatos/Perseguidor-de-linha`, e o seguidor em fenolite, em `therickmatos/seguidor-fenolite`.
 
 ## Placa encomendada (v12, 15/11/2026)
 - Arquivos: `hardware/placa_base/ProPrj_RUSH - SATURN - v12_2026-11-15.epro`, Gerber em `hardware/placa_base/gerber/`, BOM em `hardware/placa_base/BOM_v12.csv`.

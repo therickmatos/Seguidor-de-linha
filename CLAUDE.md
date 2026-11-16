@@ -2,7 +2,7 @@
 
 ## Como trabalhar
 - Responder em **português**, de forma direta e concisa. O Erick (estudante de eletrônica, IFSP) revisa e corrige o que recebe.
-- Antes de afirmar algo sobre o projeto, ler o doc correspondente em `docs/`. As decisões mais novas estão em `docs/DECISOES_2026-11-04.md` e `docs/SEGUIDOR_JLC_DECISOES.md`.
+- Antes de afirmar algo sobre o projeto, ler o doc correspondente em `docs/`. As decisões mais novas estão em `docs/SUPORTE_BARRA_V1.md` (16/11, mecânica da barra), `docs/DECISOES_2026-11-04.md` e `docs/SEGUIDOR_JLC_DECISOES.md`.
 - Unidades em mm. **Referencial do seguidor: origem no centro da ventoinha, +y para a frente** (o mesmo do `.eprj` e do Gerber do EVA-RT).
 
 ## O projeto
@@ -18,11 +18,12 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
 - Gravação: barra macho 1×5 90° 2,54 mm (+5V, GND, RX, TX, DTR) no centro da borda traseira, em cima; conversor CH340G com DTR. ICSP: 6 pads SMD embaixo, posições do EVA-RT.
 - Bluetooth opcional: fêmea 1×6 (ordem HC-05) na frente direita (x ≈ 32,5; y 0,7…13,4), divisor 1k/2k.
-- Barra de sensores: **V1 de 12 QRE1113 + 74HC4067** (Gerber em `hardware/barra_v1/`), ligada por barra de pinos **2,54 mm** na base (a barra tem passo de 2,0 mm → cabo misto). Distância barra–eixo L = 67–70 mm.
+- Barra de sensores: **V1 de 12 QRE1113 + 74HC4067** (Gerber em `hardware/barra_v1/`), ligada por barra de pinos **2,54 mm** na base (a barra tem passo de 2,0 mm → cabo misto). **Distância entre furos base–barra: 63,14 mm** (L ≈ 107,1 mm), dita pelo Erick em 16/11; ajustável deslizando o patim na vareta. O L = 67–70 mm dos docs de 02–04/11 ficou para trás.
 - Sensores de marca QRE1113GR nos braços em (±69,5; 4,5); esquerdo = curva (A5), direito = partida/chegada (A6). **Pinagem do QRE1113GR: 1 anodo, 2 catodo, 3 coletor, 4 emissor** — conferir no footprint.
 - Bateria GNB 350 mAh 2S (45 × 20,5 × 12 mm), XT30. 78M05 para 5 V.
 - Contorno definitivo: `hardware/contorno/EVA-RT_contorno_B_degraus.dxf` (148,2 × 57,6 mm, braços integrados, furo Ø17).
-- STL do EVA-RT usados como estão; a placa respeita as áreas deles (ver `docs/DECISOES_2026-11-04.md`).
+- STL do EVA-RT usados como estão, **menos o patim da barra**: `sensor_sledge` refeito para os furos e a borda da V1 em `mecânica/stl/` (varetas paralelas em x = ±48,45; ver `docs/SUPORTE_BARRA_V1.md`). A placa respeita as áreas dos STL (ver `docs/DECISOES_2026-11-04.md`).
+- As presilhas do EVA-RT têm rasgo de 1,0 mm: **a base tem de ser pedida com 1,0 mm** (o empilhamento do `.epro` está no padrão de 1,6 mm).
 
 ## Estado (04/11/2026)
 - Esquemático rev 1.0 pronto: `hardware/seguidor_base/` (projeto KiCad, PDF, BOM, `REDES.md`).
@@ -38,8 +39,10 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/seguidor_base/` | esquemático rev 1.0 (projeto KiCad, PDF), BOM, `REDES.md` (lista de redes para conferir a importação no EasyEDA) |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 |
 | `hardware/figuras/` | posição do conector do Bluetooth |
+| `mecânica/` | **tudo para imprimir e montar**: `stl/` (patim novo da V1 + cópias dos STL do EVA-RT usados como estão), guia de material, parafusos e montagem (`README.md`), figuras de conferência |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
+| `ferramentas/pecas_3d/` | gera `mecânica/stl/` (peças paramétricas + cópias do EVA-RT) e faz a conferência 3D da montagem (lê o `.epro` e o Gerber da V1) |
 
 ## Cuidados
 - Manter o crédito e a licença AGPL-3.0 do EVA-RT em qualquer arquivo derivado.

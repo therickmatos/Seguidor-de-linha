@@ -1,0 +1,6 @@
+numpy
+manifold3d>=3.0
+trimesh
+# so para conferir_montagem.py:
+shapely
+matplotlib

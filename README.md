@@ -20,12 +20,14 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 ## Estrutura
 | Pasta | Conteúdo |
 |---|---|
-| `docs/` | decisões (as mais novas: `DECISOES_2026-11-04.md`), contorno e esquemático |
+| `docs/` | decisões (as mais novas: `SUPORTE_BARRA_V1.md` e `DECISOES_2026-11-04.md`), contorno e esquemático |
 | `hardware/contorno/` | contorno B definitivo (DXF) e figuras de conferência |
 | `hardware/seguidor_base/` | esquemático rev 1.0 (projeto KiCad, PDF), BOM, lista de redes (`REDES.md`) |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (12 sensores) |
 | `hardware/figuras/` | posição do conector do Bluetooth |
+| `mecânica/` | STL para imprimir (patim novo da barra V1 + peças do EVA-RT), material, parafusos e ordem de montagem |
 | `ferramentas/esquematico/` | scripts que geram o esquemático KiCad, a BOM e a lista de redes |
+| `ferramentas/pecas_3d/` | gera `mecânica/stl/` e faz a conferência 3D da montagem |
 | `referencias/eva-rt/` | cópia do EVA-RT: projeto EasyEDA Pro, Gerbers, PDFs, STL e firmware |
 
 O perseguidor e o seguidor em fenolite são outros projetos e não estão neste repositório.

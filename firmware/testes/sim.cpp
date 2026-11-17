@@ -16,8 +16,9 @@
  * 2024 do estudo de caso (pasta pistas, gerada por exportar_pistas.py).
  *
  * Geometria: barra em arco de R 180 mm, 12 sensores a cada 7,8 mm (Gerber
- * da V1), 104 mm a frente do eixo; sensores de marca em x = +-69,5 mm,
- * 27 mm a frente do eixo. Pista: linha de 19 mm, marcas de 40 x 19 mm a
+ * da V1), 107,1 mm a frente do eixo (63,14 mm entre os furos da base e da
+ * barra); sensores de marca externos do Saturn v12 (S1/S4, os unicos que o
+ * firmware le) em x = +-81,5 mm, 38,6 mm a frente do eixo. Pista: linha de 19 mm, marcas de 40 x 19 mm a
  * 49,5 mm do centro da linha (regulamento RoboCore/TRIF).
  */
 #include <cmath>
@@ -157,8 +158,8 @@ static double branco(const Pista &p, double px, double py, int eixo, int &j) {
 
 // ------------------------------------------------------------------ robo
 
-static const double L_BARRA = 104.0, R_ARCO = 180.0, PASSO_ANG = 2.4826 * PI / 180.0;
-static const double X_MARCA = 69.5, Y_MARCA = 27.1;
+static const double L_BARRA = 107.1, R_ARCO = 180.0, PASSO_ANG = 2.4826 * PI / 180.0;
+static const double X_MARCA = 81.5, Y_MARCA = 38.6;   // S1/S4: (+-81,5; 16) e eixo em y = -22,59
 static const double BITOLA = 110.0;          // entre as rodas (mm)
 static double MM_S_POR_PWM = 45.0;           // PWM 40 -> 1,8 m/s
 static double TAU_MOTOR = 0.120;             // s

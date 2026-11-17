@@ -87,9 +87,11 @@ Não mudou: ADC em 8 bits a 1 MHz, PWM dos motores pelo `analogWrite` (976 Hz), 
 cd firmware/testes
 g++ -O2 -std=c++11 -I../seguidor sim.cpp ../seguidor/linha.cpp ../seguidor/corrida.cpp -o sim && ./sim
 ```
-Roda `linha.cpp` e `corrida.cpp` (os mesmos arquivos do robô) com um robô simulado: barra em arco a 104 mm do eixo, sensores de marca em x = ±69,5 mm. Confere largada, curvas R100–R300, cruzamento (reto e a 85°), marcas, parada, perda da linha e uma volta completa nos modelos **TRIF 2025 e 2024** do estudo de caso (`pistas/*.txt`, exportados por `exportar_pistas.py`), com três motores diferentes e com sensores desiguais. Termina com "tudo certo" ou lista o que falhou.
+Roda `linha.cpp` e `corrida.cpp` (os mesmos arquivos do robô) com um robô simulado na geometria do Saturn v12: barra em arco a 107,1 mm do eixo (63,14 mm entre furos), sensores de marca S1/S4 em x = ±81,5 mm, 38,6 mm à frente do eixo (S2/S3 não são lidos). Confere largada, curvas R100–R300, cruzamento (reto e a 85°), marcas, parada, perda da linha e uma volta completa nos modelos **TRIF 2025 e 2024** do estudo de caso (`pistas/*.txt`, exportados por `exportar_pistas.py`), com três motores diferentes e com sensores desiguais. Termina com "tudo certo" ou lista o que falhou.
 
-O modelo dos motores é inventado (velocidade proporcional ao PWM, atraso de primeira ordem, sem escorregar): serve para conferir a lógica e comparar estratégias, **não** para escolher ganhos nem prever tempo de volta. O número de marcas esquerdas lidas (20–22 de 31–33) bate com o estudo geométrico: é limite da posição dos sensores, não do firmware, e o firmware não depende delas.
+O modelo dos motores é inventado (velocidade proporcional ao PWM, atraso de primeira ordem, sem escorregar): serve para conferir a lógica e comparar estratégias, **não** para escolher ganhos nem prever tempo de volta. O número de marcas esquerdas lidas (14–18 de 31 na TRIF 2025 e 25–27 de 33 na TRIF 2024) bate com o estudo geométrico: é limite da posição dos sensores, não do firmware, e o firmware não depende delas.
+
+**Falha conhecida (17/11/2026):** com a geometria do v12, o caso "3 nível 12" da pista de ensaio (4,6 m/s, desvio de até 116 mm) conta um cruzamento a mais e para fora da área. Com os sensores de marca na posição do v3 (±69,5; 27,1) passava. É sensível à geometria: com L = 105,5 mm passa. Nível ≤ 8 e as voltas nas pistas TRIF passam. Tratar junto com a leitura dos QRE internos (S2/S3).
 
 Tempo de um ciclo medido no `simavr` (ATmega328P, 16 MHz): leitura dos 14 sensores 372 µs + controle 210–235 µs + saídas 17 µs. O console `res` mostra o maior ciclo e quantos passaram de 1 ms no robô.
 

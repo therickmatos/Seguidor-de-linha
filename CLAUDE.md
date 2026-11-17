@@ -13,7 +13,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 
 ## Placa encomendada (v12, 15/11/2026)
 - Arquivos: `hardware/placa_base/ProPrj_RUSH - SATURN - v12_2026-11-15.epro`, Gerber em `hardware/placa_base/gerber/`, BOM em `hardware/placa_base/BOM_v12.csv`.
-- ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware **EVA-RT 1.2.2 sem mudar o mapa de pinos**. Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
+- ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware próprio em `firmware/seguidor/`, **baseado no EVA-RT 1.2.2 e sem mudar o mapa de pinos**. Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
 - 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201. IPROPI 910 Ω com VREF 2,0 V → ITRIP ≈ 4,9 A. Trilhas de potência para 5,5 A contínuos.
 - Ventoinha: AO3400A + 1N5819 em paralelo com o motor; PWM no D10.
 - **Sensores de marca QRE1113GR**, dois por lado:
@@ -31,6 +31,13 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - Contorno asa de gaivota 172,2 × 58,6 mm, furo Ø17 da ventoinha.
 - **STL do EVA-RT usados como estão.** Componente alto na face de cima precisa ficar fora de r ≈ 18 mm (hélice com r 17). A conferência é feita por `estudo_de_caso/08_chassi_asa_de_gaivota/codigo/v4_epro/interferencias_stl.py`.
 - Distância barra–eixo: L vai do eixo das rodas (y = −22,59) à linha dos sensores centrais da barra. Entre o furo da frente da base (y = 10,75) e o furo da barra V1, L = distância + 43,97 mm. A escolha atual é a barra a 63–65 mm entre furos (L ≈ 107–109); a distância se ajusta na vareta, não na PCB.
+
+## Firmware (17/11/2026)
+- `firmware/seguidor/`: escrito e conferido só por simulação (`firmware/testes/sim.cpp`) e compilação com `avr-gcc`; **ainda não rodou no robô**. Ganhos, freio, mapa do mux, sentido das rodas e lado da barra precisam ser conferidos na bancada (lista em `firmware/README.md`).
+- Lê as marcas só em A5 (S1) e A6 (S4), como o 1.2.2. S2/S3 (D8/D9) ficam como entrada sem uso: falta escrever a leitura.
+- `linha.cpp` e `corrida.cpp` não dependem do Arduino e são os mesmos no robô e no simulador: depois de mexer neles, rodar o simulador (tem que terminar com "tudo certo").
+- O ciclo de controle é de 1 ms e o ATmega gasta ~0,6 ms nele: nada de `float` nem divisão de 32 bits dentro de `Corrida::passo()`.
+- Divergência em aberto: `firmware/teste_barra/barra.h` usa os canais 4–15 do mux; o Gerber de `hardware/barra_v1` indica 2–13. O firmware segue o teste de bancada (`MAPA_MUX` em `config.h`).
 
 ## Mecânica (17/11/2026)
 - Base de **1,6 mm** (pedido na JLC) e barra V1 de **1,6 mm** (medida pelo Erick). Guia em `mecânica/README.md`; análise em `mecânica/SUPORTE_BARRA_V1.md`.
@@ -50,7 +57,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - se o robô andar para trás, inverter os dois motores;
   - se girar no lugar, inverter um deles;
   - se a ventoinha soprar, inverter a ventoinha.
-- Firmware das 4 entradas de marca. O 1.2.2 lê só A5/A6 e não usa marcas de curva: o sensor esquerdo só veta a parada nos cruzamentos. Os QRE internos podem ver a linha em curva fechada, e o S3 não deve disparar a parada. Ver `estudo_de_caso/07_firmware_e_geometria/README.md`.
+- Leitura dos QRE internos (D8/D9) no `firmware/seguidor/`. O 1.2.2 lê só A5/A6 e não usa marcas de curva: o sensor esquerdo só veta a parada nos cruzamentos. Os QRE internos podem ver a linha em curva fechada, e o S3 não deve disparar a parada. Ver `estudo_de_caso/07_firmware_e_geometria/README.md`.
 
 ## Arquivos
 | Pasta | Conteúdo |
@@ -59,6 +66,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (1,6 mm) |
 | `mecânica/` | STL para imprimir, guia de montagem, análise do suporte da barra e figuras da conferência 3D |
 | `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |
+| `firmware/` | `seguidor/` (firmware do robô), `testes/` (simulador do controle com as pistas TRIF 2025/2024), `teste_barra/` (teste de bancada da barra no ESP32-C3) |
 | `ferramentas/` | `pecas_3d/` (STL e conferência 3D), `bom_epro.py`, gerador do esquemático KiCad (rev 1.0) |
 | `historico/` | antes do layout: decisões de 02–04/11, contorno B, esquemático KiCad rev 1.0, figura do BT |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro |

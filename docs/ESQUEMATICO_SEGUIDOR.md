@@ -1,5 +1,7 @@
 # Seguidor – placa base (clone do EVA-RT) – esquemático rev 1.0
 
+> **Histórico (15/11/2026):** esquemático rev 1.0 (KiCad), anterior ao layout. Ele não tem os QRE internos (D8/D9) nem os eletrolíticos SMD. O esquemático da placa encomendada está dentro do `.epro` do v10, em `hardware/placa_base/`.
+
 Baseado no EVA-RT (c) EXOTIC TEAM MX, licença AGPL-3.0 (github.com/EXOTIC-TEAM-MX/EVA-RT).
 Mantenha o crédito e a licença se publicar o projeto.
 
@@ -34,7 +36,7 @@ Footprints ainda não atribuídos: isso fica para a etapa da PCB (o campo `Encap
 |---|---|---|
 | IFX_A1 / IFX_B1 (IFX9201) | U2 / U3 DRV8874PWPR, modo PH/EN | disponível e mais barato; mesma lógica DIR/PWM |
 | — | C13/C15 100 nF (VCP), C14/C16 22 nF 50 V (CPH–CPL) | bomba de carga do DRV8874 |
-| — | R11/R12 1,5k 1 % (IPROPI) + R13/R14 15k/10k (VREF = 2,0 V) | limite de corrente ≈ 3,0 A por motor |
+| — | R11/R12 910 Ω 1 % (IPROPI; eram 1,5k) + R13/R14 15k/10k (VREF = 2,0 V) | limite de corrente ≈ 4,9 A por motor (14/11/2026; antes ≈ 3,0 A). No EasyEDA são R14/R15 |
 | — | R15 10k no nSLEEP | ponte sempre acordada |
 | Q1 (MOSFET da ventoinha) | Q1 AO3400A (SOT-23) | liga totalmente com 5 V no gate |
 | — | D1 1N5819 em paralelo com a ventoinha | roda livre (protege o Q1) |

@@ -1,5 +1,7 @@
 # Contorno B "Degraus" para o clone do EVA-RT (versão ATmega)
 
+> **Histórico (15/11/2026):** o contorno B foi substituído pelo asa de gaivota (172,2 × 58,6 mm) a partir da v4. A placa encomendada está em `hardware/placa_base/`.
+
 _02/11/2026. Substitui o contorno do documento `EVA_RT_PCB` (não usar o `EVA_RT_JLCPCB`, que é um painel)._
 
 ## Arquivos (`hardware/contorno/`)

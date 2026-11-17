@@ -1,0 +1,148 @@
+<title>RUSH SATURN v4 em 3D</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: palco 3D em tela cheia; uma barra de controles em cima e uma ficha técnica que se recolhe. */
+:root{
+  --bg:#eef0f2; --stage:#e3e6ea; --panel:#ffffffee; --fg:#16191d; --muted:#5b636d; --line:#c9ced5;
+  --accent:#d06a1f; --accent-fg:#ffffff; --grid:#b9bfc7;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121417; --stage:#181b1f; --panel:#1d2126ee; --fg:#e9ecef; --muted:#9aa3ad; --line:#2f353c;
+  --accent:#ee8a3c; --accent-fg:#16110c; --grid:#2c3238; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121417; --stage:#181b1f; --panel:#1d2126ee; --fg:#e9ecef; --muted:#9aa3ad; --line:#2f353c;
+  --accent:#ee8a3c; --accent-fg:#16110c; --grid:#2c3238; color-scheme:dark}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;overflow:hidden}
+.app{position:relative;height:100%;display:flex;flex-direction:column}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding-block:10px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  border-bottom:1px solid var(--line);background:var(--bg);z-index:2}
+h1{font-size:16px;font-weight:600;margin:0;letter-spacing:.01em;white-space:nowrap}
+h1 span{color:var(--muted);font-weight:400}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+button,.chip{font:500 13px var(--f-body);color:var(--fg);background:transparent;border:1px solid var(--line);
+  border-radius:6px;padding:5px 10px;cursor:pointer}
+button:hover{border-color:var(--muted)}
+button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stage{position:relative;flex:1;min-height:0;background:var(--stage)}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+.sheet{position:absolute;right:max(12px,env(safe-area-inset-right,0px));bottom:12px;width:min(300px,calc(100% - 24px));
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;backdrop-filter:blur(6px)}
+.sheet summary{cursor:pointer;font-weight:600;list-style:none}
+.sheet summary::-webkit-details-marker{display:none}
+.sheet summary::after{content:" ▾";color:var(--muted)}
+.sheet[open] summary::after{content:" ▴"}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:10px 0 0;font-size:13px}
+dt{color:var(--muted)} dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.note{margin:10px 0 0;font-size:12px;color:var(--muted);line-height:1.45}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:4px 8px;font:12px var(--f-mono);white-space:nowrap;transform:translate(12px,12px)}
+.hint{position:absolute;left:max(12px,env(safe-area-inset-left,0px));bottom:12px;font-size:12px;color:var(--muted)}
+.status{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:14px;text-align:center;padding:24px}
+@media (max-width:640px){.hint{display:none}.sheet{bottom:8px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="app">
+  <header>
+    <h1>RUSH SATURN v4 <span>· asa de gaivota + barra V1</span></h1>
+    <div class="group" role="group" aria-label="Vista">
+      <span class="label">Vista</span>
+      <button id="v-iso" data-view="iso" aria-pressed="true">Isométrica</button>
+      <button id="v-top" data-view="top" aria-pressed="false">Cima</button>
+      <button id="v-bottom" data-view="bottom" aria-pressed="false">Baixo</button>
+      <button id="v-front" data-view="front" aria-pressed="false">Frente</button>
+      <button id="v-side" data-view="side" aria-pressed="false">Lado</button>
+    </div>
+    <div class="group" role="group" aria-label="Mostrar">
+      <span class="label">Mostrar</span>
+      <button id="t-bar" data-toggle="barra" aria-pressed="true">Barra e varetas</button>
+      <button id="t-print" data-toggle="impressas" aria-pressed="true">Peças impressas</button>
+      <button id="t-bat" data-toggle="bateria" aria-pressed="true">Bateria</button>
+    </div>
+  </header>
+  <div class="stage" id="stage">
+    <canvas id="c" aria-label="Modelo 3D do robô; arraste para girar, role para aproximar"></canvas>
+    <div class="status" id="status">Carregando o modelo 3D…</div>
+    <div class="tip" id="tip" hidden></div>
+    <div class="hint">Arraste para girar · botão direito para mover · role para aproximar · passe o mouse para ver a peça</div>
+    <details class="sheet" open>
+      <summary>Ficha</summary>
+      <dl>
+        <dt>Placa base</dt><dd>172,2 × 58,6 mm</dd>
+        <dt>Furo base → furo barra</dt><dd>63,14 mm</dd>
+        <dt>L (eixo → sensores da barra)</dt><dd>107,1 mm</dd>
+        <dt>QRE internos E1/D1</dt><dd>(±50,5; 14)</dd>
+        <dt>QRE externos E2/D2</dt><dd>(±81,5; 16)</dd>
+        <dt>Placa ao chão (face de baixo)</dt><dd>2,9 mm</dd>
+        <dt>Comprimento total</dt><dd>__COMP__ mm</dd>
+      </dl>
+      <p class="note">Modelo simplificado: placa e componentes vêm do projeto EasyEDA da v4; barra do Gerber V1; rodas, gearboxes, carcaça e presilhas são volumes com as medidas dos STL do EVA-RT, em posição aproximada. Pneu Ø23 suposto. Baseado no EVA-RT, EXOTIC TEAM MX, AGPL-3.0.</p>
+    </details>
+  </div>
+</div>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+ "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const GLB='__GLB__';
+const $=id=>document.getElementById(id);
+const canvas=$('c'), stage=$('stage');
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(35,1,1,5000);
+const controls=new OrbitControls(camera,canvas); controls.enableDamping=true; controls.dampingFactor=.08;
+scene.add(new THREE.HemisphereLight(0xffffff,0x8a8f96,1.4));
+const sun=new THREE.DirectionalLight(0xffffff,1.6); sun.position.set(120,220,160); scene.add(sun);
+const fill=new THREE.DirectionalLight(0xffffff,.6); fill.position.set(-150,80,-120); scene.add(fill);
+const grid=new THREE.GridHelper(300,30); scene.add(grid);
+function theme(){scene.background=new THREE.Color(css('--stage'));
+  const g=new THREE.Color(css('--grid')); grid.material.color=g; grid.material.opacity=.6; grid.material.transparent=true}
+theme(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change',theme);
+new MutationObserver(theme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+const groups={barra:[],impressas:[],bateria:[]}; const pickables=[];
+const target=new THREE.Vector3(0,8,-25);   // glTF: y = altura, z = −(frente)
+const views={iso:[175,150,-130],top:[0,330,-24.9],bottom:[0,-330,-24.9],front:[0,40,-300],side:[300,30,-25]};
+function setView(v){const p=views[v];camera.position.set(p[0],p[1],p[2]);controls.target.copy(target);
+  camera.up.set(0,1,0); if(v==='top'||v==='bottom'){camera.up.set(0,0,-1)} controls.update();
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v))}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>{
+  const on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on);
+  groups[b.dataset.toggle].forEach(o=>o.visible=on)}));
+function classify(name){const n=name.toLowerCase();
+  if(/barra|vareta|conex|patim|74hc/.test(n)) return 'barra';
+  if(/bateria/.test(n)) return 'bateria';
+  if(/carcaça|presilha|gearbox|saia|motor da ventoinha/.test(n)) return 'impressas';
+  return null}
+const bin=Uint8Array.from(atob(GLB),c=>c.charCodeAt(0)).buffer;
+new GLTFLoader().parse(bin,'',g=>{
+  g.scene.traverse(o=>{if(o.isMesh){const nm=(o.name||o.parent?.name||'').replace(/^\d{3} /,'');
+    o.userData.label=nm; o.material.side=THREE.DoubleSide; pickables.push(o); const k=classify(nm); if(k) groups[k].push(o)}});
+  scene.add(g.scene); $('status').hidden=true; setView('iso'); resize();
+},e=>{$('status').textContent='Não foi possível abrir o modelo: '+(e?.message||e)});
+function resize(){const r=stage.getBoundingClientRect();renderer.setSize(r.width,r.height,false);
+  camera.aspect=r.width/Math.max(r.height,1);camera.updateProjectionMatrix()}
+new ResizeObserver(resize).observe(stage);
+const ray=new THREE.Raycaster(), mouse=new THREE.Vector2(), tip=$('tip');
+canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();
+  mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1); ray.setFromCamera(mouse,camera);
+  const hit=ray.intersectObjects(pickables.filter(o=>o.visible),false)[0];
+  if(hit){tip.textContent=hit.object.userData.label;tip.style.left=(e.clientX-r.left)+'px';tip.style.top=(e.clientY-r.top)+'px';tip.hidden=false}
+  else tip.hidden=true});
+canvas.addEventListener('pointerleave',()=>tip.hidden=true);
+(function loop(){controls.update();renderer.render(scene,camera);requestAnimationFrame(loop)})();
+</script>

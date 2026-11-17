@@ -1,0 +1,326 @@
+# Pinos dos 4 QRE de marca (11/11/2026)
+
+Continua o [estudo da asa de gaivota](README.md). Baseado no EVA-RT, © EXOTIC TEAM MX, [AGPL-3.0](../LICENSE).
+
+## Proposta
+
+| Sensor | Posição (mm) | Pino | ATmega328P-AU (TQFP) | Leitura |
+|---|---|---|---|---|
+| **E2** (externo esquerdo) | (−81,5; 16) | **A5** | pino 28 (PC5/ADC5) | analógica, como hoje (`MARK_L_A5`) |
+| **D2** (externo direito) | (+81,5; 16) | **A6** | pino 19 (ADC6) | analógica, como hoje (`MARK_R_A6`) |
+| **E1** (interno esquerdo) | (−50,5; 14) | **D8** | pino 12 (PB0) | digital |
+| **D1** (interno direito) | (+50,5; 14) | **D9** | pino 13 (PB1) | digital |
+
+- **Mapa do EVA-RT 1.2.2 mantido:** A5 e A6 continuam sendo os sensores de marca do firmware original, agora ligados ao par externo. Sem mudar uma linha do firmware, o robô funciona como o EVA-RT: D2 para na chegada e E2 veta a parada nos cruzamentos. Os internos ficam prontos para o firmware novo.
+- **D8 e D9 são os únicos pinos livres:** conferido no `.epro` da v3, pinos 12 e 13 sem rede. As entradas analógicas já estão todas ocupadas: A0–A3 seleção do mux, A4 saída do mux, A5/A6 marcas, A7 bateria.
+
+## Por que os externos ficam nas entradas analógicas
+
+O script [`codigo/firmware_pares.py`](codigo/firmware_pares.py) emula o `Marks.ino` do 1.2.2 com cada par ligado em A5/A6. A emulação é a mesma do [estudo 07](../07_firmware_e_geometria/README.md): parada na borda de subida do sensor direito, veto se o esquerdo subir dentro de 30 ms. Foram testadas as janelas de 10, 30 e 60 mm (velocidade × 30 ms, ~0,3 a 2 m/s), com a barra a 63,14 e 65 mm entre furos e nos cenários ideal, ±3 mm e "abre" 10–30 mm.
+
+| Par em A5/A6 | TRIF 2025 | TRIF 2024 | Pista de teste do EVA-RT* |
+|---|---|---|---|
+| **Externos E2/D2** | para na chegada em todos os casos | para na chegada em todos os casos | paradas falsas (linha e cruzamentos oblíquos) |
+| Internos E1/D1 | **paradas falsas**: D1 passa sobre a linha nas curvas fechadas à esquerda (ideal e +3 mm, janelas de 10–30 mm) | para na chegada | paradas falsas em todos os casos |
+
+\* A pista de teste do EVA-RT não é regulamentar: tem laços, trechos a menos de 200 mm entre si e cruzamentos que não são a 90°. O estudo 07 já mostrava paradas falsas nela com o próprio EVA-RT no modelo ideal. Ela não entrou no critério.
+
+Isso confirma o que a geometria indicava: D2 nunca encosta na linha (folga ≥ 11 mm, inclusive no grampo R100), e D1 encosta. No lado direito só há partida e chegada, sempre em reta, e D2 lê as duas com folga. **D1 não deve disparar a parada**; ele serve para confirmar cruzamentos ou pode ficar sem montar.
+
+## Leitura digital em D8/D9: o que conferir antes
+
+Na v3, cada QRE tem o LED com 220 Ω e o fototransistor com coletor no +5 V e emissor na saída, com 47 kΩ para o GND: branco dá tensão alta, preto dá tensão baixa. Em D8/D9 a leitura é digital, com Schmitt trigger no AVR. A 5 V, garante-se nível **baixo abaixo de 1,5 V** e **alto acima de 3,0 V**. Não há calibração como no ADC, então o sinal precisa cair claramente fora da faixa de 1,5 a 3,0 V.
+
+O preto do tapete reflete pouco, mas não zero, e com 47 kΩ uns 30 µA já dão 1,4 V. Antes de fechar a placa, vale medir na v3 atual, na altura de corrida e com a ventoinha ligada, sobre o preto e o branco da pista:
+
+```cpp
+// Teste rápido: Serial Monitor a 115200. Mova o robô entre o preto e o branco.
+void setup() { Serial.begin(115200); }
+void loop() {
+  int e = analogRead(A5), d = analogRead(A6);          // 0..1023 → 0..5 V
+  Serial.print(e * 5.0 / 1023); Serial.print(" V  ");
+  Serial.print(d * 5.0 / 1023); Serial.println(" V");
+  delay(100);
+}
+```
+
+- **Preto < ~1,0 V e branco > ~3,5 V:** os 47 kΩ servem também para D8/D9.
+- **Preto entre 1 e 1,5 V:** usar resistor menor nos internos, por exemplo 22 kΩ. Isso baixa as duas tensões; conferir que o branco continua acima de 3,5 V.
+- **Branco abaixo de 3,5 V:** usar resistor maior nos internos.
+
+Para poder ajustar depois da placa pronta, deixar o resistor de emissor dos internos em 0603 com acesso fácil.
+
+**Opcional, para testar na pista:** um jumper de solda de 3 pads por lado, para escolher qual sensor do lado (interno ou externo) vai no analógico e qual no digital. Custa 2 jumpers e um pouco de roteamento na raiz da aba. Dá para trocar o par do A5/A6 sem refazer a placa, caso os testes físicos contrariem o modelo.
+
+## Para o pedido de hoje (recomendação)
+
+Mesmo circuito da v3 nos 4 sensores, com **um capacitor a mais, não montado (DNP), em cada interno**:
+
+| Por sensor interno (E1 → D8, D1 → D9) | Ligação |
+|---|---|
+| QRE1113GR | 1 anodo → 220 Ω → +5V; 2 catodo → GND; 3 coletor → +5V; 4 emissor → rede `MARK_L2_D8` / `MARK_R2_D9` |
+| 47 kΩ (0603) | rede do sensor → GND (montar) |
+| 10 nF (0603), **DNP** | rede do sensor → GND (só pads) |
+
+- **Montado assim (47 kΩ, sem capacitor):** leitura digital simples, `digitalRead`.
+- **Se a leitura no preto ou no branco ficar duvidosa:** retirar o 47 kΩ (ou trocar por ~1 MΩ) e soldar o 10 nF. O firmware descarrega o capacitor pondo o pino em LOW, passa o pino a entrada e mede quanto tempo o fototransistor leva para levá-lo a HIGH. No branco são dezenas a centenas de µs; no preto o tempo passa de ~1 ms (timeout = preto). Assim se tem um valor contínuo, que pode ser **calibrado como o analógico**, sem trocar a placa.
+- Os pads extras ficam na mesma rede, sem mudar a topologia. Colocar o 47 kΩ e o capacitor perto do pino do ATmega ou na raiz da aba, com acesso para o ferro.
+- Sem jumper de troca entre analógico e digital: a geometria e a emulação apontam com clareza para os externos no A5/A6, e o jumper só complica o roteamento.
+
+## O que muda no esquemático (fonte: `ferramentas/esquematico/gen.py`)
+
+- S0/S1, os QRE atuais de `MARK_L_A5`/`MARK_R_A6`, passam a ser os externos E2/D2. A mudança é só de posição no layout, sem mudança elétrica.
+- **Novos:** dois QRE1113GR, cada um com o mesmo circuito dos atuais (220 Ω no LED, 47 kΩ no emissor). Saídas em novas redes `MARK_L2_D8` (U1.12, PB0) e `MARK_R2_D9` (U1.13, PB1). Essas redes saem da lista de pinos sem ligação.
+- Os LEDs indicadores das abas (LED A em D2 e LED B em D7) continuam como estão. O firmware 1.2.2 os usa para mostrar o estado de A5/A6.
+
+## Firmware (fase seguinte)
+
+- **Pinos novos:** D8 e D9 ficam no mesmo registrador (`PINB & 0b11`). A leitura custa um ciclo, e as bordas podem ser pegas por interrupção de mudança de pino (PCINT0/PCINT1) para medir o tempo com precisão.
+- **Timer1:** D9 é o OC1A do Timer1, que gera o PWM da ventoinha no D10 (OC1B). Como entrada não há conflito, desde que o firmware não ligue a saída OC1A.
+- **Lógica a definir:** marca de curva = E1 **ou** E2, contada uma vez; parada = só D2, como no 1.2.2. Ignorar E1/D1 enquanto a barra indicar curva fechada, porque é aí que eles podem ver a linha principal.
+
+## Projeto EasyEDA da v4 (11/11/2026)
+
+`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-11.epro` (em `hardware/placa_base/historico/`), gerado por `codigo/v4_epro/build.py` a partir da v3. Contorno asa de gaivota, QRE externos e componentes da aba movidos e roteados, QRE internos S3 (E1) e S4 (D1) com 220 Ω, 47 kΩ e 10 nF DNP.
+
+Ao abrir no EasyEDA Pro:
+
+1. **Refazer o cobre** (*Reconstruir todas as áreas de cobre*). O cobre antigo foi removido porque cobria as abas velhas.
+2. **Rotear duas trilhas:** `MARK_L2_D8` (C19/R24, perto de (−48; 6), até o pino 12 do ATmega) e `MARK_R2_D9` (C20/R26, perto de (+48; 6), até o pino 13). Os pinos ficam em (2,8; −26,4) e (3,4; −25,8). As linhas de ligação (ratsnest) já aparecem.
+3. Rodar o **DRC** e conferir o 3D: os QRE internos estão girados 45°, e os rótulos de serigrafia dos componentes novos e movidos podem precisar de ajuste.
+4. Conferir na BOM que C19 e C20 saem como **DNP**.
+
+### Roteamento automático (12/11/2026)
+
+`codigo/v4_epro/route.py` (A* em grade de 0,1 mm, duas faces, vias) roteou **`MARK_L2_D8` (E1 → pino 12)**. São 168 mm de trilha de 0,2 mm e 3 vias de 0,6/0,3 mm. A trilha atravessa a placa pela face de baixo, desce pela lateral direita na face de cima e entra no ATmega pela traseira. Duas vias de costura de GND (0,6/0,3) mantêm o cobre de GND inteiro. As checagens de folga, borda, furos e ligação não acusam nada novo em relação à v3.
+
+**`MARK_R2_D9` (D1 → pino 13) não tem caminho** sem mexer no roteamento da v3. Os pinos 12 e 13 têm uma única saída possível: uma via sob o corpo do ATmega. Pela frente, eles caem num bolsão fechado por `LEDB_D7`, pelo +5V de 0,5 mm e pela via do `B1_D11`. Opções:
+
+1. **Deixar o D1 sem montar** (S4, R25, R26 e C20). Ele não é necessário para a chegada (D2) nem para as marcas de curva (E1/E2).
+2. Rotear à mão no EasyEDA, afastando a via do `B1_D11` em (5,7; −25,65) e a trilha de +5V em (5,1…7,3; −26,9…−25,2) para abrir a saída do pino 13.
+
+**Trilha longa e de alta impedância (47 kΩ) passando perto dos drivers:** vale **montar o C19 (10 nF)**. O RC de cerca de 0,5 ms filtra os picos e não atrapalha a marca, que dura uns 10 ms a 2 m/s.
+
+**Atualização (12/11/2026):** o C19 passou a ser montado, na mesma posição: face de baixo, em (−47,1; 5,6), ao lado do R24. A trilha é eletricamente curta para essas frequências, então o capacitor filtra a rede inteira de qualquer ponto dela. Junto do R24 ele fecha o RC no menor laço possível e não exige novo roteamento no centro da placa. O C20 continua não montado.
+
+### Versão corrigida (12/11/2026)
+
+`ProPrj_RUSH - SATURN - v4_asa_gaivota_2026-11-12.epro` sai de `codigo/v4_epro/corrige_erick.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entradas/entrada_erick_2026-11-12.epro`). Nele o Erick já tinha roteado o `MARK_R2_D9` (D1 → pino 13), abrindo a saída junto ao ATmega. O script fez:
+
+- Religou o E1 (S3.4 → R24/C19/pino 12) e o anodo do D1 (S4.1 → R25), que tinham ficado soltos ao mover os resistores. Ligou também o C20.
+- Desviou o trecho do `MARK_R2_D9` que atravessava a traseira em y ≈ −26 na face de baixo. Ele isolava o GND do botão de reset (SW1), e agora passa rente às bordas direita e traseira.
+- Chanfrou em 45° todos os cantos retos e converteu para reto + 45° todos os trechos em ângulo quebrado da placa.
+- Pôs os rótulos do S1, do S2 e do S4 dentro da placa.
+
+Resultado: esquemático = PCB, nenhuma rede partida, nada abaixo de 0,2 mm de folga nem de 0,3 mm até a borda ou os furos, GND inteiro na simulação do cobre, nenhum canto ≤ 90° e nenhum trecho fora de 0/45/90°.
+
+**Erro meu nessa versão:** o trecho do `MARK_R2_D9` que eu passei rente à borda traseira (y = −29,3) atravessava o pad do rasgo traseiro direito (e311, pad oval de 8,5 × 2,5 mm sem rede). A minha checagem não incluía pads soltos. Isso foi corrigido no `check.py` e no arquivo de 13/11.
+
+### Correções do v7 (13/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v7_2026-11-13_corrigido.epro` sai de `codigo/v4_epro/corrige_v7.py`, aplicado sobre o arquivo v7 do Erick (`codigo/v4_epro/entradas/entrada_erick_v7_2026-11-13.epro`). O DRC do EasyEDA acusava 17 erros. O script fez:
+
+1. **Physical Error (4):** as 4 trilhas de 0,2 mm do `MARK_L2_D8` junto ao pino 12 passaram a ter 0,25 mm, que é a mínima da regra do arquivo.
+2. **Clearance Error (1), trilha × pad e311:** o `MARK_R2_D9` sai da borda direita a 45° e passa **acima** do rasgo, na face de baixo. Fica em y = −26,05, entre o `LEDB_D7` (y −26,64) e o `B1_D11` (y −25,58), e entra a 45° na via que já existia em (10,55; −27,17).
+3. **E1 aberto:** faltava a ligação R24.1 → C19 na face de baixo (y = 6,6).
+4. **GND dos pads de gravação (e85:2) e via e1300:** a via do `MARK_L2_D8` em (1,45; −25,75) e a trilha de baixo até ela fechavam o GND do pad e85:2 nas duas faces. A troca de face passou para (3,82; −27,38), na linha do pino 12 a 45°.
+5. **Connection Error (12) / GND em toda a placa:** a simulação do "reconstruir cobre" usa folga de 0,35 mm, medida no cobre que o EasyEDA gravou. Ela mostrou várias ilhas de GND sem ligação, que o EasyEDA apaga. Foram acrescentadas **37 vias de GND (0,6/0,3 mm)**, cada uma onde a ilha de uma face encontra o GND ligado da outra. Sobram só ilhas de 2 a 5 mm² sem lugar para via.
+6. **Motores:** o furo dos pads do footprint `MOTOR_1020_2P` foi de 0,9 para **1,0 mm**, com o pad oval de 3,0 × 2,0 mm mantido. O footprint é o mesmo de M1, M2 **e M3 (ventoinha)**, então os três ficam com 1,0 mm.
+7. Apagou o cobre antigo (`POURED`), que é refeito no EasyEDA.
+
+Resultado: esquemático = PCB (233 pinos), nenhuma rede partida, todos os itens de GND ligados ao plano na simulação, nenhuma trilha abaixo de 0,25 mm, nenhuma folga abaixo de 0,2 mm, nenhum canto ≤ 90° e nenhum trecho fora de 0/45/90°. Figura: `saida/gnd_v7_corrigido.png`.
+
+### Arquivo do Erick após o DRC (13/11/2026) e PTH sob a placa de sucção
+
+O Erick girou alguns componentes sobre o arquivo corrigido, e o DRC passou: `codigo/v4_epro/entradas/entrada_erick_v8_2026-11-13.epro`. Conferido contra o contorno real do `suction_base.stl` (pentágono de x ±23,08 e y −27,5 a 21, com o furo da ventoinha e os 4 furos de parafuso):
+
+- PTH dentro da área: **só C1 e C2** (220 µF radial D6,3 P2,5). O C1 está em (−21,72; 1,27) e o C2 em (20,57; 2,29). As pontas e a solda ficam sob a placa de sucção. O EVA-RT original tem o mesmo problema: C1/C2 PTH em (±22,0; 0,8/3,3), segundo o Gerber.
+- Nas vias, inclusive as do pad térmico dos DRV8874, não há problema. SMD na face de cima também não. Na face de baixo, só os pads do J3 entram 0,05 mm na área.
+- Opções em aberto (decisão do Erick):
+  1. Eletrolítico SMD de 220 µF/25 V, 6,3 × 7,7 mm, no mesmo lugar (recomendado).
+  2. PTH cortado rente, como no EVA-RT.
+  3. Mover o C1 para x ≈ −25 e refazer o VBAT. O C2 não tem lugar no lado direito.
+  4. Furos de Ø3 no `suction_base` (muda o STL do EVA-RT).
+
+### C1/C2 em SMD e C20 montado (14/11/2026)
+
+`ProPrj_RUSH - SATURN - v8_2026-11-14.epro` sai de `codigo/v4_epro/caps_smd.py`, aplicado sobre o arquivo do Erick com os capacitores SMD inseridos (`codigo/v4_epro/entradas/entrada_erick_v8f1_2026-11-14.epro`; LCSC C96175, 220 µF/16 V, 6,3 × 7,7 mm). Nenhuma trilha existente foi alterada.
+
+- Os radiais faziam a passagem de face do VBAT pelo próprio furo. No lugar de cada pad + antigo entrou **uma via VBAT de 1,6/1,0 mm**, com o mesmo pad e o mesmo furo, ligada às mesmas trilhas.
+- Os pads − antigos também ligavam o GND das duas faces. Sem eles, o GND de baixo dentro do anel de VBAT ficava separado. Entrou **uma via de GND de 0,8/0,4 mm junto ao pad − de cada capacitor**.
+- **C1:** em (−21,86; 0,62), girado 270°. O pad + fica sobre a trilha larga de VBAT de cima.
+- **C2:** em (19,92; 2,14), girado 45° para os pads passarem entre as trilhas `MARK_R_A6` e `PWMC_D10`. Uma trilha de VBAT de 1 mm liga o pad + à via.
+- Os dois corpos ficam fora da carcaça da ventoinha até 8,2 mm de altura (STL `impeller_base_1`). Os pads ficam a ≥ 0,5 mm dos pads de outros componentes.
+- **C20 montado**: DNP = não, no esquemático e na PCB.
+
+Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nenhum PTH sob a placa de sucção. Figura: `saida/c1_c2_smd_v8.png`.
+
+### Ajustes do v8.1 (14/11/2026)
+
+`ProPrj_RUSH - SATURN - v81_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v81.py`, aplicado sobre o arquivo do Erick (`codigo/v4_epro/entradas/entrada_erick_v81_2026-11-14.epro`).
+
+**QRE renomeados** (esquemático e PCB), da esquerda para a direita:
+
+- **S1**: externo esquerdo (E2) → A5
+- **S2**: interno esquerdo (E1) → D8 (`MARK_L2_D8`)
+- **S3**: interno direito (D1) → D9 (`MARK_R2_D9`)
+- **S4**: externo direito (D2) → A6
+
+Nas seções anteriores deste arquivo, "S3" = E1 (hoje S2) e "S4" = D1 (hoje S3).
+
+**Alinhamentos:**
+- C5 e C1 no mesmo x (−21,718). C3 e C4 voltam ao x original, simétricos ao C5, na nova altura (y 8,202).
+- C1 e C2 na mesma altura (y 0,635).
+- LED1 e R1 sobem 0,2 mm, como o grupo C3/C4/C5. Eles estavam travados e não tinham se movido.
+- **R17 não foi centrado com o C2.** Em x = 19,81 o pad de GND encosta na trilha `PWMC_D10` (folga 0) e na via de GND ao lado. Ele fica na posição do Erick.
+
+**Trilhas:**
+- As trilhas presas a C3, C4, C5, R17 e LED1 voltaram ao centro dos pads, em 45°.
+- A trilha de VBAT do C3 estava a 0,05 mm do pad de GND e foi refeita.
+
+**C2:** voltou a via VBAT de 1,6/1,0 mm (passagem de face), que tinha sido apagada. Fica em (21,35; 2,40), sobre a trilha de cima, com um trecho de 1,5 mm na face de baixo.
+
+**GND:** 5 vias de costura (0,6/0,3 mm). Uma delas religa uma área de 254 mm² na face de baixo, à direita.
+
+**Travas:** todos os objetos destravados (98). Os scripts gravavam as vias novas com o campo de trava = 1, e o v3 já tinha componentes e trilhas travados.
+
+Checagens: esquemático = PCB, nenhuma rede partida, folga ≥ 0,2 mm, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Figura: `saida/ajustes_v81.png`.
+
+### v8.2 (14/11/2026)
+
+`ProPrj_RUSH - SATURN - v82_2026-11-14_corrigido.epro` sai de `codigo/v4_epro/corrige_v82.py`, aplicado sobre o v8.2 do Erick. Nele o Erick já tinha refeito o `PWMC_D10`/`LEDC_D13` para centrar o R17 com o C2.
+
+- **J3 (gravação):** a via de +5V movida para (2,93; −24,14) fechava de novo o GND do pad e77:2. Ela voltou para (3,31; −24,06), com o trecho de baixo refeito.
+- **R3:** o pad de GND ficou ilhado na face de cima. Entrou uma via de GND (0,6/0,3) em (15,00; −22,18), com trilha de 0,3 mm a 45°.
+- Os rótulos S1–S4 voltaram para dentro da placa.
+
+**Corrente** (`codigo/v4_epro/corrente.py`; resultado em `saida/corrente_v82.txt`). Para cada caminho, o script calcula o trecho mais estreito e aplica a IPC-2221 (1 oz, externo):
+
+- Caminhos longos: VBAT do J1 com 2,0–2,5 mm; ramos para U3, U4 e ventoinha com ≥ 1,0–1,5 mm; saídas dos motores com 1,5 mm; OUT_C com 1,0 mm. Isso atende 3 A por motor (ITRIP) com folga.
+- Os gargalos de 0,40–0,50 mm são só as saídas dos pinos VM e OUT2 do DRV8874 (0,85–1,6 mm de comprimento, entre pinos de passo 0,65). Eles dissipam ~10–15 mW a 3 A, o que é desprezível.
+- O ITRIP atual é 2,0 V / (1,5 kΩ × 450 µA/A) ≈ 3,0 A por motor. Para ~5,5 A, o R14/R15 teria de ser ~820 Ω (decisão do Erick). Nesse caso, cada DRV8874 dissiparia ~6 W em regime (RDS(on) HS + LS ≈ 0,2 Ω), o que é aceitável só em picos.
+
+### v8.3 (14/11/2026): comparação com o EVA-RT e o HyperLine
+
+`ProPrj_RUSH - SATURN - v83_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v83.py`, aplicado sobre o v8.2 corrigido.
+
+**Comparação** (as três placas são de 1 oz):
+
+- Saídas dos motores: 1,0 mm no EVA-RT e no HyperLine (0,65 mm junto ao IFX9201); 1,5 mm no nosso.
+- VBAT: 2,0–3,0 mm no EVA-RT, com trechos de 1,0–1,5 mm; 2,0 mm no HyperLine; tronco de 2,5 mm no nosso, com ramos de 1,5–1,6 mm.
+- Ventoinha (OUT_C): 1,0 mm no EVA-RT, 2,0 mm no HyperLine, 1,0–1,5 mm no nosso.
+- GND: o EVA-RT usa trilhas de 2–3 mm e o HyperLine de 1–2 mm, ligadas direto aos pads e sem plano. No nosso, o retorno vai pelo plano, que no padrão do EasyEDA chega aos pads por raios térmicos.
+- Vias de potência: várias de 1,4–1,6/0,8 mm em paralelo no EVA-RT; 2,0/0,9 mm no HyperLine; no nosso, uma de 1,6/1,0 mm em cada troca de face (C1 e C2).
+
+**Mudanças:**
+
+- **Segunda via de VBAT junto ao C2:** 1,6/1,0 mm em (23,00; 2,09), sobre a trilha de cima de 1,6 mm, ligada à via que já existia por uma trilha de baixo de 1,5 mm. A distância entre os furos é de 0,68 mm. O VBAT do U4 e da ventoinha passa agora por duas vias. Figura: `saida/via_vbat_c2_v83.png`.
+- **R14/R15 (IPROPI) de 1,5k para 910 Ω 1%:** ITRIP = 2,0 V / (910 Ω × 450 µA/A) ≈ 4,9 A por motor. No pior caso (VREF +4%, R −1%), fica em ~5,1–5,3 A, abaixo do OCP do DRV8874 (6 A no mínimo). Alterado no esquemático do EasyEDA, no `gen.py` (KiCad) e na lista de compra. O `.kicad_sch` só muda quando o `gen.py` for rodado de novo, o que precisa do KiCad.
+
+**Falta no EasyEDA (o Erick faz):**
+
+1. Na regra da área de cobre (GND), ligar pads e vias em **Direct**, sem raios térmicos.
+2. Refazer o cobre (Shift+B) e conferir que J1, PGND, os pinos 9 e 17 dos DRV8874 e as vias do pad térmico aparecem sem raios.
+3. DRC e Gerber.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, folga ≥ 0,2 mm, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2.
+
+### v8.4 (14/11/2026): C2 fora do giro da hélice
+
+`ProPrj_RUSH - SATURN - v84_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v84.py`, aplicado sobre o v8.3.
+
+**Problema:** a hélice da ventoinha (`impeller_fan.stl`, Ø34) gira logo acima da face de cima, entre os pés da carcaça. Ela vai até r = 17 mm, cobre toda a altura de um capacitor de 7,7 mm e fica abaixo da tampa da carcaça (z = 12 mm). No v8.3, o corpo do C2 chegava a r = 16,5 mm, ou seja, a hélice batia nele. A conferência do v8 (`caps_smd.py`) tinha olhado só a carcaça (`impeller_base_1`) e não a hélice. A carcaça em si não encosta nos capacitores: está a ≥ 4 mm deles.
+
+**Mudanças:**
+
+- **C2** em (21,72; 1,30), espelhado com o C1 em x. A base fica a 1,42 mm e a lata a 1,61 mm da ponta da hélice, a mesma folga do C1. O EVA-RT deixa ~1,9 mm, com os radiais em (±22,0; 2,06).
+- **M3** (pads do fio da ventoinha) desce 1,016 mm, para y = −3,69, para abrir espaço ao corpo do C2. Fica 0,18 mm entre o corpo e o pad. As trilhas de VBAT e OUT_C ligadas ao M3 foram ajustadas.
+- As **duas vias de VBAT** saíram de baixo do pad + do C2 e foram para (23,35; 2,09) e (24,64; 0,30), com trilha de baixo de 1,5 mm. A trilha de cima termina no pad +.
+- **GND do C2:** via de 0,8/0,4 em (20,67; −1,37), com trilha de 0,4 mm até o pad −.
+
+O C2 fica 0,66 mm mais alto que o C1, porque não há espaço para descer mais sem bater no M3. Figura: `saida/c2_helice_v84.png`.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND (que só fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py` em relação ao v8.2/v8.3.
+
+### v8.5 (14/11/2026): folgas com todos os STL
+
+`ProPrj_RUSH - SATURN - v85_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v85.py`, aplicado sobre o v8.4. A conferência está em `codigo/v4_epro/interferencias_stl.py`, que compara cada componente com estas peças:
+
+- **Carcaça (`impeller_base_1`):** girada 45°. Compara a altura do componente com o ponto mais baixo da carcaça acima dele.
+- **Hélice:** r = 17 mm, com 1 mm de folga.
+- **Caixa de redução (`gearbox.stl`):** posicionada pelos furos da base, que batem com (±35,25; −3,73/−26,55).
+- **Motor 1020 deitado:** como na camada Document do EVA-RT.
+- **Presilhas, varetas e pneus:** posições aproximadas.
+- **Placa de sucção:** na face de baixo.
+
+**Problemas no v8.4:**
+
+- **R2 e R10** ficavam a 0,09 mm do pé traseiro da carcaça, que encosta na placa. Uma peça impressa (com o "pé de elefante" da primeira camada) encostaria neles. As outras peças sob a carcaça (C12, R3, R19) ficam sob a parte elevada, a 3 mm da placa, e estão OK.
+- **M1** (fio do motor esquerdo): o pad invadia 0,25 mm a base da caixa de redução. O M2 tinha 0,52 mm de folga.
+- **J3** (gravação, na face de baixo): a ponta dos pads ficava 0,05 mm dentro da borda da placa de sucção.
+
+**Correções:**
+
+- R2 desce 0,5 mm; a folga até o pé passa a 0,59 mm.
+- R10 vai para (−13,033; −18,829), em pé (90°). O pad de +5V fica sobre a trilha larga de +5V e o RESET segue em 45° até a trilha que já existia. Folga até o pé: 0,50 mm.
+- M1 sobe 0,762 mm, para o mesmo y do M2 (folga de 0,52 mm até a caixa).
+- J3 vai 0,5 mm para trás (folga de 0,45 mm até a placa de sucção).
+
+**Sem colisão** (o `interferencias_stl.py` não acusa nada):
+
+- A carcaça fica a ≥ 4 mm de C1/C2.
+- Motor 1020 deitado: só há DRV8874 (1,2 mm) embaixo dele, mais baixo que o IFX9201 do EVA-RT, que fica no mesmo lugar.
+- Presilhas, varetas e pneus: nada encontrado.
+- Os pads do U2 ficam a r = 17,34 mm, 0,34 mm fora da ponta da hélice. É só cobre e solda, na mesma posição do EVA-RT.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND, GND inteiro na simulação, tudo em 0/45/90°, nada travado. Nenhum item novo no `verifica_placa.py`.
+
+### v8.7 (14/11/2026, arquivo atual): correções do v8.6 e trilhas para 5,5 A contínuos
+
+`ProPrj_RUSH - SATURN - v87_2026-11-14.epro` sai de `codigo/v4_epro/corrige_v87.py`, aplicado sobre o v8.6 do Erick (`codigo/v4_epro/entradas/entrada_erick_v86_2026-11-14.epro`). Nesse arquivo, o Erick alinhou C1/C2 em y = 1,524, subiu C3/C4/C5/LED1/R1, girou o U1, refez as vias de VBAT e voltou o R10 à posição antiga.
+
+**Correções:**
+
+1. **VBAT do lado esquerdo desconectado:** a via (−19,56; 1,14) não chegava à trilha de cima, então C1, C3 e o 78M05 ficavam sem bateria. Entrou uma trilha de 1,6 mm até y = 3,31.
+2. **LEDC_D13 aberto:** a trilha de cima foi prolongada até a via em (13,07; 3,30).
+3. **R10:** em pé em (−13,033; −18,829), como no v8.5. O pé da carcaça ficava a 0,14 mm; agora fica a 0,50 mm.
+
+**Trilhas para 5,5 A contínuos** (IPC-2221, cobre 1 oz, face externa, elevação de 20 °C, que precisa de ≥ 2,1 mm):
+
+- As trilhas foram alargadas no mesmo traçado, todas ao mesmo tempo, em passos de 0,1 mm, respeitando a folga de 0,2 mm da regra do arquivo. Os alvos: saídas dos motores 2,5 mm; VBAT 3,0 mm; OUT_C 2,0 mm.
+- Os trechos longos travados por um obstáculo numa das pontas foram divididos, e só o meio foi alargado.
+- Para dar espaço, foram afastadas duas vias de costura de GND junto às saídas do motor direito, e o trecho vertical da MARK_L_A5 foi 0,25 mm para a esquerda (as diagonais continuam nas mesmas retas; fica a 0,23 mm da LEDA_D2).
+- O ramo de VBAT da medição (R2) e o grupo C1/C3/78M05 não foram alargados, porque quase não passa corrente por eles.
+
+Resultado nos trechos longos (`codigo/v4_epro/resumo_larguras.py`):
+
+| Rede | v8.6 | v8.7 | Capacidade (ΔT 20 °C) |
+|---|---|---|---|
+| OUT_A1 | 1,5 mm | ≥ 2,5 mm | 6,3 A |
+| OUT_A2 | 1,5 mm | ≥ 2,3 mm | 5,9 A |
+| OUT_B1 | 1,5 mm | ≥ 2,3 mm | 5,9 A |
+| OUT_B2 | 1,5 mm | ≥ 2,1 mm | 5,6 A |
+| VBAT (potência) | 2,0 mm | ≥ 2,6 mm | 6,5 A; 3,0 mm em boa parte do tronco |
+| OUT_C (ventoinha) | 1,0 mm | 1,2 mm | 3,7 A |
+
+- Sobram trechos curtos estreitos só junto aos pinos dos DRV8874: 0,4–0,5 mm por 1–2 mm, e 1,0–1,5 mm por até 2,1 mm. O passo de 0,65 mm não deixa alargar. São curtos e mais largos que o próprio pino (0,3 mm); o EVA-RT também tem 0,65 mm nesse ponto.
+- O tronco de VBAT de baixo leva U4 + ventoinha (~7,5 A no pior caso contínuo). Com ≥ 2,6 mm, isso dá ~25 °C de elevação.
+- **Vias de VBAT no lado direito:** duas de 1,6/1,0 mm em paralelo, em (24,13; 1,14) e (22,90; 2,00). Não cabe uma terceira no cobre comum às duas faces.
+- **J1 (XT30):** 3 trilhas de GND de 2,0 × 2,6 mm saindo do pad em cada face. Assim o plano liga direto ao pad, sem depender dos raios térmicos.
+
+Ainda recomendado no EasyEDA: regra do plano GND com ligação Direct nos pads e vias, por causa do PGND e do pad térmico dos DRV8874.
+
+Checagens: esquemático = PCB, nenhuma rede partida além do GND (que fecha com o plano), GND inteiro na simulação, tudo em 0/45/90°, nada travado, `interferencias_stl.py` sem colisões, nenhum item novo no `verifica_placa.py`. Figura: `saida/potencia_v86_v87.png`.
+
+### v8.8 com serigrafia (14/11/2026, arquivo atual)
+
+`ProPrj_RUSH - SATURN - v88_2026-11-14_serigrafia.epro` sai de `codigo/v4_epro/serigrafia_v88.py`, aplicado sobre o v8.8 do Erick (`codigo/v4_epro/entradas/entrada_erick_v88_2026-11-14.epro`).
+
+O v8.8 passou nas checagens, e a OUT_C já estava com 1,5 mm.
+
+A serigrafia vai na face de baixo, no espaço livre entre a placa de sucção e os pads do motor esquerdo:
+
+- **Símbolo do IF** (círculo + 9 quadrados, 4,65 × 6,3 mm) com "IFSP" embaixo, centrado em x = −29. É desenhado em polígonos, já espelhado para ser lido por baixo.
+- **Texto** "Projetado por" / "Erick Matos", com 1,2 mm de altura, centrado em (−33,3; 7,5). É texto do EasyEDA, que espelha sozinho na face de baixo.
+
+Tudo fica a ≥ 0,9 mm de pads, vias e furos, dentro da placa e fora da placa de sucção. Prévia: `saida/serigrafia_baixo_v88.png`.

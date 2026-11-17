@@ -1,0 +1,76 @@
+Montagem: 63.14 mm entre furos, barra de 1.6 mm, base de 1.6 mm
+
+Interferencias (volume em mm3; 0 = nao encosta) e folgas (mm):
+  presilha_dir_0         x base                 interferencia   0.349   folga  0.000
+  presilha_dir_1         x base                 interferencia   0.000   folga  0.000
+  patim_dir              x barra_v1             interferencia  -0.000   folga  0.000
+  patim_dir              x vareta_dir           interferencia   0.000   folga  0.005
+  vareta_dir             x barra_v1             interferencia   0.000   folga  0.018
+  vareta_dir             x base                 interferencia   0.000   folga  1.005
+  parafuso_patim_dir     x barra_v1             interferencia   0.000   folga  0.035
+  bloco_dir              x base                 interferencia   0.000   folga  0.200
+  bloco_dir              x presilha_dir_1       interferencia   0.000   folga  2.295
+  presilha_esq_0         x base                 interferencia   0.349   folga  0.000
+  presilha_esq_1         x base                 interferencia   0.000   folga  0.000
+  patim_esq              x barra_v1             interferencia   0.000   folga  0.000
+  patim_esq              x vareta_esq           interferencia   0.000   folga  0.005
+  vareta_esq             x barra_v1             interferencia   0.000   folga  0.018
+  vareta_esq             x base                 interferencia   0.000   folga  1.005
+  parafuso_patim_esq     x barra_v1             interferencia   0.000   folga  0.035
+  bloco_esq              x base                 interferencia   0.000   folga  0.200
+  bloco_esq              x presilha_esq_1       interferencia   0.000   folga  3.245
+  parafuso_presilha_dir_0 x presilha_dir_0       interferencia   0.000   folga  0.010
+  porca_presilha_dir_0   x vareta_dir           interferencia   0.000   folga  1.205
+  parafuso_presilha_dir_1 x presilha_dir_1       interferencia   0.000   folga  0.010
+  porca_presilha_dir_1   x vareta_dir           interferencia   0.000   folga  1.205
+  parafuso_presilha_esq_0 x presilha_esq_0       interferencia   0.000   folga  0.010
+  porca_presilha_esq_0   x vareta_esq           interferencia   0.000   folga  1.205
+  parafuso_presilha_esq_1 x presilha_esq_1       interferencia   0.000   folga  0.010
+  porca_presilha_esq_1   x vareta_esq           interferencia   0.000   folga  1.205
+  vareta_transversal     x carcaca_ventoinha    interferencia   0.000   folga  0.005
+  vareta_transversal     x J2_barra_de_pinos    interferencia   0.000   folga  0.230
+  vareta_transversal     x J2_com_cabo          interferencia   0.000   folga  0.230
+  vareta_transversal     x base                 interferencia   0.000   folga  0.005
+  barra_v1               x base                 interferencia   0.000   folga  8.000
+  barra_v1               x bloco_dir            interferencia   0.000   folga  8.000
+  barra_v1               x bloco_esq            interferencia   0.000   folga  8.000
+  placa_succao           x base                 interferencia   0.000   folga  0.000
+  J3_corpo               x base                 interferencia   0.000   folga  0.000
+  J3_corpo               x placa_succao         interferencia   0.000   folga  2.500
+  cabeca_pe_0            x placa_succao         interferencia   0.000   folga  0.000
+  cabeca_pe_1            x placa_succao         interferencia   0.000   folga  0.000
+  cabeca_pe_2            x placa_succao         interferencia   0.000   folga  0.000
+  cabeca_pe_3            x placa_succao         interferencia   0.000   folga  0.000
+  cabeca_presilha_dir_1  x baixo_R25            interferencia   0.000   folga  0.131
+  cabeca_presilha_dir_1  x baixo_C20            interferencia   0.000   folga  1.808
+  cabeca_presilha_esq_1  x baixo_C19            interferencia   0.000   folga  1.808
+  (a transversal encosta na base e nas orelhas dos pes da frente da carcaca: folga ~0 e o esperado)
+  porca_presilha_dir_0      x ressalto da presilha interferencia   0.000   folga  0.200
+  porca_presilha_dir_1      x ressalto da presilha interferencia   0.000   folga  0.200
+  porca_presilha_esq_0      x ressalto da presilha interferencia   0.000   folga  0.200
+  porca_presilha_esq_1      x ressalto da presilha interferencia   0.000   folga  0.200
+  parafuso_patim_dir     x patim_dir            interferencia   0.000   (furo alinhado se 0)
+  parafuso_patim_esq     x patim_esq            interferencia   0.000   (furo alinhado se 0)
+
+Altura ate a pista (pista em z = -4.0, vareta nivelada; base de 1.6 mm):
+  base (face de baixo)                2.40 mm
+  placa de succao                     1.80 mm
+  cabeca do parafuso dos pes da carcaca  0.60 mm
+  presilhas                           2.30 mm
+  cabeca do parafuso das presilhas    0.80 mm
+  cabeca do parafuso das caixas       0.80 mm
+  bloco da transversal                3.00 mm
+  barra V1 (face de baixo)            3.40 mm
+  cabeca do parafuso dos patins       0.70 mm
+  J3 deitado (parte preta)            0.81 mm
+  QRE de marca S1 a S4 (face do sensor)  0.70 mm
+  D1 (SOD-123)                        1.05 mm
+  resistores e capacitores 0603 de baixo  1.50 mm
+  esqui do patim                      0.00 mm
+  (com a suction_base original a cabeca dos pes ficaria em cima da placa: 0.20 mm; sem o fundo do rebaixo, direto na base: 0.80 mm)
+
+Furo da barra em y = 73.890; origem da V1 em y = 77.575; L (eixo das rodas -> sensores centrais) = 107.12 mm
+Face de cima da barra +1.00 mm em relacao a face de cima da base; fundo do patim -4.00; face de baixo da barra -0.60 -> barra 3.40 mm acima da pista
+Figuras em mecânica/conferencia/
+
+Maior interferencia: 0.349 mm3

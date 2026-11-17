@@ -1,11 +1,11 @@
 """Gera REDES.md (lista de redes legível) a partir da netlist exportada pelo KiCad (kicadsexpr).
 
-Uso (nesta pasta): python3 redes.py [seguidor_base.net] [../../hardware/seguidor_base/REDES.md]
+Uso (nesta pasta): python3 redes.py [seguidor_base.net] [../../historico/esquematico_kicad_rev1.0/REDES.md]
 """
 import re, sys
 
 src = sys.argv[1] if len(sys.argv) > 1 else "seguidor_base.net"
-out = sys.argv[2] if len(sys.argv) > 2 else "../../hardware/seguidor_base/REDES.md"
+out = sys.argv[2] if len(sys.argv) > 2 else "../../historico/esquematico_kicad_rev1.0/REDES.md"
 txt = open(src, encoding="utf-8").read()
 
 def parse(s):

@@ -32,6 +32,18 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - **STL do EVA-RT usados como estão.** Componente alto na face de cima precisa ficar fora de r ≈ 18 mm (hélice com r 17). A conferência é feita por `estudo_de_caso/08_chassi_asa_de_gaivota/codigo/v4_epro/interferencias_stl.py`.
 - Distância barra–eixo: L vai do eixo das rodas (y = −22,59) à linha dos sensores centrais da barra. Entre o furo da frente da base (y = 10,75) e o furo da barra V1, L = distância + 43,97 mm. A escolha atual é a barra a 63–65 mm entre furos (L ≈ 107–109); a distância se ajusta na vareta, não na PCB.
 
+## Mecânica (17/11/2026)
+- Base de **1,6 mm** (pedido na JLC) e barra V1 de **1,6 mm** (medida pelo Erick). Guia em `mecânica/README.md`; análise em `mecânica/SUPORTE_BARRA_V1.md`.
+- STL gerados por `ferramentas/pecas_3d/gerar_pecas.py`; conferência 3D com o `.epro` do v12 em `ferramentas/pecas_3d/conferir_montagem.py`. A presilha sem braço de baixo e a conferência de parafusos e alturas vieram do repositório do perseguidor.
+- Peças adaptadas:
+  - presilha de trás sem braço de baixo, com a parede na borda x = ±50 (igual à do perseguidor);
+  - presilha da frente apoiada sobre a raiz da asa;
+  - patim da V1 para barra de 1,6 mm (igual ao do perseguidor);
+  - bloco da transversal com rebaixo para a asa;
+  - placa de sucção com rebaixo para as cabeças dos pés. O fundo de 0,2 mm isola as vias PWMA_D5/PWMB_D6/GND.
+- Barra a 63,14 mm entre furos (L = 107,1), ajustável na vareta. Barra a 3,4 mm da pista; QRE de marca a 0,7 mm; cabeças de parafuso a 0,6–0,8 mm (pneu de ~22 mm, não medido).
+- Nada foi impresso nem testado fisicamente.
+
 ## Próximos passos
 - Montagem (peças chegando entre ~10 e 25/11/2026). O furo do XT30 tem 2,54 mm e serve para pino de até ~2,3 mm.
 - **Teste do sentido dos motores:**
@@ -44,10 +56,11 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 | Pasta | Conteúdo |
 |---|---|
 | `hardware/placa_base/` | placa encomendada (v12), Gerber final, BOM, `historico/` com v4 a v10 |
-| `hardware/barra_v1/` | Gerber da barra de sensores V1 |
-| `hardware/contorno/`, `hardware/seguidor_base/`, `docs/` | contorno B, esquemático KiCad rev 1.0 e decisões de 02–04/11 (histórico, antes do layout) |
+| `hardware/barra_v1/` | Gerber da barra de sensores V1 (1,6 mm) |
+| `mecânica/` | STL para imprimir, guia de montagem, análise do suporte da barra e figuras da conferência 3D |
 | `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |
-| `ferramentas/` | gerador do esquemático KiCad (rev 1.0) e `bom_epro.py` |
+| `ferramentas/` | `pecas_3d/` (STL e conferência 3D), `bom_epro.py`, gerador do esquemático KiCad (rev 1.0) |
+| `historico/` | antes do layout: decisões de 02–04/11, contorno B, esquemático KiCad rev 1.0, figura do BT |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro |
 
 ## Formato .epro (para os scripts)

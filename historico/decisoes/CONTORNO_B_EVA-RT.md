@@ -4,7 +4,7 @@
 
 _02/11/2026. Substitui o contorno do documento `EVA_RT_PCB` (não usar o `EVA_RT_JLCPCB`, que é um painel)._
 
-## Arquivos (`hardware/contorno/`)
+## Arquivos (`historico/contorno_B/`)
 - `EVA-RT_contorno_B_degraus.dxf`: contorno fechado com arcos reais + furo Ø17 da ventoinha. Importar na camada Board Outline, em mm.
 - `EVA-RT_B_degraus_referencia.dxf`: contorno antigo, furos do EVA-RT, rasgos do velcro, origem e rasgo opcional do QRE. Fora do repositório (feito em outra conversa). Só para conferência, numa camada de documentação.
 - `contorno_B_sobre_gerber_EVA-RT.jpg`: contorno B sobre o cobre e os furos do Gerber oficial.

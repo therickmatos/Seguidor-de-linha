@@ -46,6 +46,12 @@ Fontes conferidas:
 ![Corte pelas presilhas](conferencia/corte_presilha.png)
 
 Nenhuma das duas presilhas tem o braço de baixo. O parafuso aperta o braço de cima direto na base, com a cabeça embaixo da placa, a 0,8 mm da pista. A solução veio do perseguidor.
+
+As duas têm **assento**: o furo da vareta é fechado embaixo, porque o kit é impresso em PLA/PETG.
+- No original, o canal é aberto para a placa, e sobra 1 mm de vão sob a vareta. Quem segura a altura dela é só o aperto do canal (e cola).
+- Pela estática, o esqui empurra a ponta da vareta para cima, e a vareta tende a girar em torno do bloco da transversal (a única peça que a prende nos dois sentidos). Com isso, a ponta de trás desce justamente para o lado aberto das presilhas.
+- Com filamento comum, o aperto é bem mais fraco que com fibra, e o cianoacrilato cola mal no PETG.
+- Com o assento, a vareta fica presa para cima e para baixo e entra pela ponta (a ordem de montagem já era essa).
 - **De trás** (`presilha_vareta_tras_base1.6.stl`): é a presilha do perseguidor. A parede externa desce até a face de baixo da base e encosta na borda reta em x = 50, o que dá a referência para a vareta não girar. Entra 0,05 mm na borda, como o `barilla_clamp` no EVA-RT.
 - **Da frente** (`presilha_vareta_frente_asa.stl`): é nova. Em y = 10,75, a placa vai até x ≈ 51,6 (raiz da asa), e por isso a parede acaba na face de cima e a peça apoia inteira sobre a placa.
   - A vareta, presa na presilha de trás, não a deixa girar.

@@ -195,7 +195,7 @@ def patim(esp_pcb=1.0, desl=DESL_PATIM_V1, borda_pcb=BORDA_V1_LOCAL,
 # Presilha da vareta na base (barilla_clamp)
 # ----------------------------------------------------------------------------
 def presilha(esp_pcb=1.0, folga_rasgo=0.0, desl=DESL_PRESILHA, x_fim=7.0,
-             braco_baixo=True, parede_na_borda=True) -> Manifold:
+             braco_baixo=True, parede_na_borda=True, assento=False) -> Manifold:
     """Presilha da vareta na base.
 
     braco_baixo  True = como o barilla_clamp do EVA-RT (rasgo que abraca a placa).
@@ -208,6 +208,12 @@ def presilha(esp_pcb=1.0, folga_rasgo=0.0, desl=DESL_PRESILHA, x_fim=7.0,
                  peca girar). False = a parede acaba na face de cima: a peca apoia
                  inteira em cima da placa. E a presilha da frente do Saturn, que
                  fica sobre a raiz da asa (ali a placa vai alem de x = +-50).
+    assento      False = canal em U aberto para a placa, como no original: sob a
+                 vareta sobra 1 mm de vao e a altura dela depende so do aperto do
+                 canal (e de cola). True = canal fechado embaixo (furo O3 inteiro):
+                 a vareta fica presa para cima e para baixo. Para PLA/PETG, que
+                 seguram por aperto bem menos que filamento com fibra de carbono,
+                 e o PETG cola mal com cianoacrilato. A vareta entra pela ponta.
     """
     comp = 4.5
     y_topo_pcb = -2.5                            # eixo da vareta 2,5 mm acima da base
@@ -222,19 +228,20 @@ def presilha(esp_pcb=1.0, folga_rasgo=0.0, desl=DESL_PRESILHA, x_fim=7.0,
     if braco_baixo:
         corpo += ret(-2.5, x_fim, y_base, y_base_pcb)        # braco de baixo
     corpo -= circ(R_VARETA)
-    corpo -= ret(-R_VARETA, R_VARETA, y_base_pcb, 0)
+    if not assento:
+        corpo -= ret(-R_VARETA, R_VARETA, y_base_pcb, 0)
     return extr_z(corpo, 0, comp) - furo_y(desl, comp / 2)
 
 
 def presilha_tras():
     """Presilhas de tras (y = -1,75): borda reta em x = +-50, parede encostada nela.
-    E a presilha do perseguidor RUSH - Dreamcast (base de 1,6 mm)."""
-    return presilha(ESP_BASE, folga_rasgo=0.1, braco_baixo=False)
+    E a presilha do perseguidor RUSH - Dreamcast (base de 1,6 mm) com o assento."""
+    return presilha(ESP_BASE, folga_rasgo=0.1, braco_baixo=False, assento=True)
 
 
 def presilha_frente():
     """Presilhas da frente (y = 10,75): sobre a raiz da asa, apoiada so em cima."""
-    return presilha(ESP_BASE, folga_rasgo=0.1, braco_baixo=False, parede_na_borda=False)
+    return presilha(ESP_BASE, folga_rasgo=0.1, braco_baixo=False, parede_na_borda=False, assento=True)
 
 
 # ----------------------------------------------------------------------------

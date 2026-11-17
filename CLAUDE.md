@@ -44,12 +44,14 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - Base de **1,6 mm** (pedido na JLC) e barra V1 de **1,6 mm** (medida pelo Erick). Guia em `mecânica/README.md`; análise em `mecânica/SUPORTE_BARRA_V1.md`.
 - STL gerados por `ferramentas/pecas_3d/gerar_pecas.py`; conferência 3D com o `.epro` do v12 em `ferramentas/pecas_3d/conferir_montagem.py`. A presilha sem braço de baixo e a conferência de parafusos e alturas vieram do repositório do perseguidor.
 - Peças adaptadas:
-  - presilha de trás sem braço de baixo, com a parede na borda x = ±50 (igual à do perseguidor);
+  - presilha de trás sem braço de baixo, com a parede na borda x = ±50 (a do perseguidor);
   - presilha da frente apoiada sobre a raiz da asa;
+  - as duas presilhas com assento (furo da vareta fechado embaixo), por serem impressas em PLA/PETG;
   - patim da V1 para barra de 1,6 mm (igual ao do perseguidor);
   - bloco da transversal com rebaixo para a asa;
   - placa de sucção com rebaixo para as cabeças dos pés. O fundo de 0,2 mm isola as vias PWMA_D5/PWMB_D6/GND.
 - Barra a 63,14 mm entre furos (L = 107,1), ajustável na vareta. Barra a 3,4 mm da pista; QRE de marca a 0,7 mm; cabeças de parafuso a 0,6–0,8 mm (pneu de ~22 mm, não medido).
+- O Erick tem só PLA e PETG (sem filamento com fibra de carbono). PETG nas peças sob aperto ou perto de motor; PLA nos aros. Tabela em `mecânica/README.md`.
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos

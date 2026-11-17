@@ -16,13 +16,16 @@ O EVA-RT foi feito para base de 1,0 mm. Com 1,6 mm:
 Por causa da asa de gaivota, mais uma mudança, que não depende da espessura:
 - **Bloco da transversal:** o `barilla_connection` desce 1 mm abaixo da face de cima da base. No EVA-RT ele fica à frente da placa; no Saturn, a raiz da asa passa embaixo dele. O bloco novo tem um rebaixo no contorno da placa, com 0,3 mm de folga. É a mesma peça nos dois lados, e o furo da transversal fica igual.
 
+E uma por imprimir só em PLA e PETG (ver "Material"):
+- **Presilhas com assento:** na presilha original, o canal da vareta é aberto para a placa, e sobra 1 mm de vão sob a vareta. A altura dela depende só do aperto do canal e de cola. As presilhas deste kit têm o furo fechado embaixo: a vareta fica presa para cima e para baixo e entra pela ponta.
+
 ![Corte pelas presilhas](conferencia/corte_presilha.png)
 
 ## O que imprimir (`stl/`)
 | Arquivo | Qtde | Origem | Função |
 |---|---|---|---|
-| `presilha_vareta_tras_base1.6.stl` | 2 | perseguidor | presilha de trás (y = −1,75), parede na borda da base |
-| `presilha_vareta_frente_asa.stl` | 2 | **nova** | presilha da frente (y = 10,75), apoiada sobre a raiz da asa |
+| `presilha_vareta_tras_base1.6.stl` | 2 | perseguidor + assento | presilha de trás (y = −1,75), parede na borda da base |
+| `presilha_vareta_frente_asa.stl` | 2 | **nova**, com assento | presilha da frente (y = 10,75), apoiada sobre a raiz da asa |
 | `patim_v1_direito_barra1.6.stl` | 1 | novo (igual ao do perseguidor) | patim da barra V1, lado direito (+x) |
 | `patim_v1_esquerdo_barra1.6.stl` | 1 | novo (igual ao do perseguidor) | patim da barra V1, lado esquerdo |
 | `bloco_transversal_asa.stl` | 2 | EVA-RT com rebaixo | une a vareta longitudinal à transversal |
@@ -41,16 +44,34 @@ Do EVA-RT, não entram:
 - `barilla_clamp.stl`: tem rasgo de 1,0 mm;
 - `suction_base.stl` e `barilla_connection.stl`: foram substituídas pelas versões adaptadas.
 
-## Material e impressão
-Recomendação minha; o EVA-RT não informa material.
-- **PETG** nas peças com braço fino que trabalha sob aperto ou que encostam em motor: patins, presilhas, caixas de redução, `impeller_base_1/2`. O PLA amolece perto de 55–60 °C e racha em braço de 1 mm apertado por parafuso.
-- **Hélice:** PETG ou ABS/ASA, 100% de preenchimento, camada de 0,12–0,16 mm. Antes de dar potência, conferir se gira sem bater. Se vibrar, imprimir de novo.
-- **PLA serve** em aro, bloco da transversal, apoio da bateria, bucha e placa de sucção. O aro precisa de um alojamento de rolamento preciso (Ø6,19 × 3,0), e o PLA acerta melhor a medida.
+## Material: só PLA e PETG
+O README do EVA-RT não informa o filamento. Nas fotos, a carcaça da ventoinha é branca, de filamento comum, e as peças pequenas são pretas e foscas. Podem ser de fibra de carbono ou só de filamento preto: não dá para saber. O carbono documentado são as varetas, que são tubos comprados prontos, não impressos.
+
+Sem fibra de carbono, as peças ficam menos rígidas (PETG ≈ 2 GPa, PLA ≈ 3,5 GPa; com fibra, até 2 a 3 vezes mais) e o PETG amolece menos com calor (~80 °C, contra ~55–60 °C do PLA). O que isso muda:
+- **Presilhas:** ganharam o assento descrito acima. É a única peça que dependia do aperto do plástico para segurar a vareta na altura certa. No patim a vareta já apoia na barra e no assento, e no bloco ela passa por furos fechados.
+- **Cola:** o cianoacrilato cola bem no PLA e mal no PETG.
+  - Com o assento, a cola não segura mais a altura da vareta: serve só para travar o patim e as presilhas na posição ao longo dela.
+  - No PETG, lixar a superfície antes de colar. Se mesmo assim soltar, usar epóxi, ou uma volta de fita isolante na vareta logo atrás do patim, como batente.
+- **Hélice:** a ~50 mil rpm, a tensão na raiz das pás fica em ~5 MPa (estimativa grosseira). É uma fração da resistência do PETG e do PLA, então nenhum dos dois precisa de fibra.
+
+| Peça | Material | Por quê |
+|---|---|---|
+| presilhas, patins, bloco da transversal | **PETG** | braço de 1 mm apertado por parafuso e pancada em batida: o PLA racha |
+| caixas de redução | **PETG** | seguram o motor 1020, que esquenta; no PLA o motor afrouxa e o engrenamento (módulo 0,3) sai do lugar |
+| `impeller_base_1/2` (carcaça) | **PETG** | motor da ventoinha encostado |
+| hélice | **PETG** | o cubo fica no eixo do motor, que esquenta |
+| placa de sucção | **PETG** | o fundo do rebaixo tem 0,2 mm, e a cabeça do parafuso gira em cima dele ao apertar: o PLA trinca |
+| aros | **PLA** | alojamento do rolamento preciso (Ø6,19 × 3,0); o PLA acerta melhor a medida |
+| apoio da bateria, bucha (`bead`) | PLA ou PETG | sem esforço |
+
+Impressão:
 - Bico de 0,4 mm, camada de 0,12–0,16 mm, 3 perímetros ou mais, 100% de preenchimento.
-- Patim, presilhas e bloco já estão na posição de impressão (furo da vareta na vertical), sem suporte. O rebaixo do bloco fica na lateral da peça e também sai sem suporte.
+- PETG seco e com retração bem ajustada: fio solto na hélice desbalanceia, e no furo da vareta impede a vareta de entrar.
+- Patim, presilhas e bloco já estão na posição de impressão (furo da vareta na vertical), sem suporte. O assento das presilhas fecha um furo vertical e também não precisa de suporte. O rebaixo do bloco fica na lateral da peça.
 - Placa de sucção: deitada, 3 camadas de 0,2 mm, **com os rebaixos para cima** (a face lisa na mesa). Assim o fundo de 0,2 mm é a primeira camada e não precisa de ponte.
-- Os furos de Ø2,0 e o canal de 3,0 mm da vareta saem justos de propósito, como no original. Se não entrar, passar broca de 2 mm e de 3 mm à mão.
-- Imprimir primeiro **uma** presilha de cada tipo e **um** patim e testar na placa e na barra antes do resto.
+- Os furos de Ø2,0 e de Ø3,0 da vareta saem justos de propósito, como no original. Se a vareta não entrar, passar broca de 2 mm ou de 3 mm à mão. Como o furo das presilhas agora é fechado, a vareta tem de atravessar as duas presilhas e o bloco: alargar o furo só o bastante para ela deslizar com atrito.
+- Hélice: conferir se gira sem bater antes de dar potência. Se vibrar, imprimir de novo.
+- Imprimir primeiro **uma** presilha de cada tipo e **um** patim e testar na placa, na barra e com a vareta antes do resto.
 - O fundo do esqui desgasta na pista: imprimir um par de reserva.
 
 ## Ferragens
@@ -63,7 +84,7 @@ Recomendação minha; o EVA-RT não informa material.
 | Parafuso M2 × 6 + porca M2 | 4 | caixas de redução. A pilha é de 5,7 mm (pé 2,5 + base 1,6 + porca 1,6), sem sobra: se a porca não pegar a rosca inteira, usar M2 × 8 |
 | Parafuso M2 × 6, rosca direto no plástico | 4 | por baixo: fundo do rebaixo da placa de sucção → base → pés da carcaça (furo Ø1,85, 5 mm de fundo; entram 4,2 mm) |
 | Rolamento 692ZZ (2 × 6 × 3) | 4 | dois por aro |
-| Cola (cianoacrilato) | — | patins e presilhas, depois de acertar a distância |
+| Cola (cianoacrilato; epóxi se o PETG não colar) | — | travar patins e presilhas na vareta, depois de acertar a distância |
 
 Total: 12× M2 × 6, 2× M2 × 8, 10 porcas M2. Um kit M2 de 4 a 10 mm cobre as variações.
 Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeça mais alta encosta na pista (ver alturas abaixo).
@@ -75,7 +96,7 @@ Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeç
    - **Cortar rente**, embaixo, os terminais de J1, J2 e J4 e as pontas dos fios dos motores. Com a base de 1,6 mm sobram só 2,4 mm entre a placa e a pista.
    - Soldar a J2 bem reta, porque a vareta transversal passa a 0,23 mm dela.
    - J3 (gravação): ver "Cuidados".
-2. Passar cada vareta longitudinal pelo bloco da transversal e pelas duas presilhas.
+2. Passar cada vareta longitudinal, pela ponta, pelas duas presilhas e pelo bloco da transversal. O furo das presilhas é fechado.
 3. Encaixar as presilhas na base e prender cada uma com M2 × 6 de baixo para cima, com a porca em cima do braço:
    - **atrás**, a parede externa encosta na borda em x = ±50, sobre os furos (±43,75; −1,75);
    - **na frente**, a presilha apoia sobre a raiz da asa, sobre os furos (±43,75; 10,75).
@@ -84,7 +105,7 @@ Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeç
 6. Conferir se as 4 cabeças ficaram dentro dos rebaixos.
 7. Encaixar os patins nas pontas da barra, com o esqui para fora e a ponta curva para a frente. Pôr o M2 × 8 sem apertar e passar as varetas pelos canais.
 8. Deslizar a barra até **63,14 mm** entre o furo da frente da base e o furo da barra. A mesma cota dá 57,89 mm entre a face da frente da presilha dianteira e a face de trás do patim. Conferir os dois lados iguais e apertar.
-9. Com a distância aprovada na pista, pingar uma gota de cola (cianoacrilato) em cada patim e cada presilha.
+9. Com a distância aprovada na pista, travar cada patim e cada presilha na vareta com uma gota de cola (ver "Material").
 
 Resultado esperado:
 - varetas paralelas em x = ±48,45;

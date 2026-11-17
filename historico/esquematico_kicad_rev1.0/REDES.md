@@ -1,6 +1,6 @@
 # Redes da placa base (conferência da importação KiCad → EasyEDA)
 
-_Gerado por `ferramentas/esquematico/redes.py` a partir da netlist do `seguidor_base.kicad_sch` (rev 1.0). Depois de importar o esquemático no EasyEDA Pro, conferir rede por rede. Formato: `REF.pino (nome do pino)`. Valores e encapsulamentos em `BOM_seguidor_base.csv`._
+_Gerado por `historico/esquematico_kicad_rev1.0/gerador/redes.py` a partir da netlist do `seguidor_base.kicad_sch` (rev 1.0). Depois de importar o esquemático no EasyEDA Pro, conferir rede por rede. Formato: `REF.pino (nome do pino)`. Valores e encapsulamentos em `BOM_seguidor_base.csv`._
 
 **54 redes**, **7 pinos sem ligação**.
 

@@ -41,7 +41,7 @@ Fontes conferidas:
 | Espessura da barra | 1,0 mm | **1,6 mm** | patim com rasgo de 1,7 mm; a barra fica a 3,4 mm da pista (4,0 no EVA-RT) |
 | Carcaça, caixas de redução, Ø17 | — | iguais | demais STL servem |
 
-## Peças novas ou adaptadas (`stl/`)
+## Peças novas ou adaptadas (`stl/PETG/`)
 ### Presilhas da vareta
 ![Corte pelas presilhas](conferencia/corte_presilha.png)
 

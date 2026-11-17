@@ -7,13 +7,13 @@ __pycache__/
 fp-info-cache
 _autosave-*
 # saídas temporárias do gerador do esquemático
-ferramentas/esquematico/hi-*.png
-ferramentas/esquematico/z*.png
-ferramentas/esquematico/pacote/
-ferramentas/esquematico/bom_rows.json
-ferramentas/esquematico/seguidor_base.pdf
-ferramentas/esquematico/seguidor_base.kicad_sch
-ferramentas/esquematico/seguidor_base.net
+historico/esquematico_kicad_rev1.0/gerador/hi-*.png
+historico/esquematico_kicad_rev1.0/gerador/z*.png
+historico/esquematico_kicad_rev1.0/gerador/pacote/
+historico/esquematico_kicad_rev1.0/gerador/bom_rows.json
+historico/esquematico_kicad_rev1.0/gerador/seguidor_base.pdf
+historico/esquematico_kicad_rev1.0/gerador/seguidor_base.kicad_sch
+historico/esquematico_kicad_rev1.0/gerador/seguidor_base.net
 # sistema
 .DS_Store
 Thumbs.db

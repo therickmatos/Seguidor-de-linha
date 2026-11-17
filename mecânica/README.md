@@ -1,70 +1,48 @@
 # Mecânica — peças para imprimir e montar
 
-Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, **RUSH - SATURN v12** (asa de gaivota), com a **base de 1,6 mm** e a **barra V1 de 1,6 mm**.
-A análise e as cotas do suporte da barra estão em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md).
-Os arquivos de `stl/` são gerados por `ferramentas/pecas_3d/gerar_pecas.py`. Os do EVA-RT são cópias sem alteração de `referencias/eva-rt/3d_models/`.
+Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, **RUSH - SATURN v12** (asa de gaivota), com a **base de 1,6 mm** e a **barra V1 de 1,6 mm**, para imprimir em **PLA e PETG**.
 
-## O que muda com a base de 1,6 mm
-O EVA-RT foi feito para base de 1,0 mm. Com 1,6 mm:
-- **Presilhas da vareta:** o rasgo do `barilla_clamp` é de 1,0 mm. Com o braço de baixo, a cabeça do parafuso ficaria abaixo da pista. As presilhas novas não têm esse braço: o parafuso aperta o braço de cima direto na base, com a cabeça embaixo da placa. A solução veio do perseguidor RUSH - Dreamcast.
-  - **Atrás** (y = −1,75), a borda é reta em x = ±50. A parede externa desce até a face de baixo e encosta nela, como no perseguidor.
-  - **Na frente** (y = 10,75), a presilha fica sobre a raiz da asa, e ali a placa vai além de x = 50. Por isso esta presilha não tem a parede que desce: apoia inteira em cima da placa, e a vareta, presa na de trás, não a deixa girar.
-- **Placa de sucção:** no EVA-RT, a cabeça dos 4 parafusos dos pés da carcaça aperta a placa de sucção contra a base. Com 1,6 mm, essa cabeça ficaria a 0,2 mm da pista. A placa nova tem um rebaixo de Ø4,4 em cada pé, com fundo de 0,2 mm: a cabeça entra na placa e fica a 0,6 mm da pista. O fundo de plástico continua isolando a cabeça das vias que há embaixo dela (PWMA_D5, PWMB_D6 e GND, nos pés de trás), então não dá para trocar o rebaixo por furo passante com parafuso de aço.
-- **Barra V1 de 1,6 mm:** o patim é a versão para 1,6 mm, o mesmo do perseguidor. A barra fica a 3,4 mm da pista (4,0 mm com barra de 1,0 mm).
-- **Parafusos:** comprimentos conferidos para 1,6 mm (tabela abaixo).
+| Seção | O que tem |
+|---|---|
+| [O que imprimir](#o-que-imprimir) | STL separados por filamento (`stl/PETG/` e `stl/PLA/`), quantidades e configuração |
+| [Ferragens](#ferragens) | varetas, parafusos, porcas, rolamentos e cola |
+| [Ordem de montagem](#ordem-de-montagem) | passo a passo |
+| [Cuidados](#cuidados) | o que pode dar errado na montagem e na pista |
+| [Por que as peças mudaram](#por-que-as-peças-mudaram) | base de 1,6 mm, asa de gaivota e PLA/PETG |
+| [Conferência 3D](#conferência-3d) | folgas e altura de cada peça até a pista |
 
-Por causa da asa de gaivota, mais uma mudança, que não depende da espessura:
-- **Bloco da transversal:** o `barilla_connection` desce 1 mm abaixo da face de cima da base. No EVA-RT ele fica à frente da placa; no Saturn, a raiz da asa passa embaixo dele. O bloco novo tem um rebaixo no contorno da placa, com 0,3 mm de folga. É a mesma peça nos dois lados, e o furo da transversal fica igual.
+A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`; os do EVA-RT são cópias sem alteração de `referencias/eva-rt/3d_models/`.
 
-E uma por imprimir só em PLA e PETG (ver "Material"):
-- **Presilhas com assento:** na presilha original, o canal da vareta é aberto para a placa, e sobra 1 mm de vão sob a vareta. A altura dela depende só do aperto do canal e de cola. As presilhas deste kit têm o furo fechado embaixo: a vareta fica presa para cima e para baixo e entra pela ponta.
+## O que imprimir
+Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por que as peças mudaram".
 
-![Corte pelas presilhas](conferencia/corte_presilha.png)
+**`stl/PETG/`** (peças sob aperto de parafuso ou perto de motor):
 
-## O que imprimir (`stl/`)
-| Arquivo | Qtde | Origem | Função |
-|---|---|---|---|
-| `presilha_vareta_tras_base1.6.stl` | 2 | perseguidor + assento | presilha de trás (y = −1,75), parede na borda da base |
-| `presilha_vareta_frente_asa.stl` | 2 | **nova**, com assento | presilha da frente (y = 10,75), apoiada sobre a raiz da asa |
-| `patim_v1_direito_barra1.6.stl` | 1 | novo (igual ao do perseguidor) | patim da barra V1, lado direito (+x) |
-| `patim_v1_esquerdo_barra1.6.stl` | 1 | novo (igual ao do perseguidor) | patim da barra V1, lado esquerdo |
-| `bloco_transversal_asa.stl` | 2 | EVA-RT com rebaixo | une a vareta longitudinal à transversal |
-| `placa_succao_rebaixo.stl` | 1 | EVA-RT com rebaixo | placa de sucção de 0,6 mm, com rebaixo para a cabeça do parafuso nos 4 pés |
-| `gearbox.stl` | 1 | EVA-RT | caixa de redução **direita** (pinhão para fora) |
-| `gearbox_esquerdo_espelhado.stl` | 1 | EVA-RT espelhado | caixa de redução esquerda (o EVA-RT publica só um lado) |
-| `wheel_rim.stl` | 2 | EVA-RT | aro da roda (rolamentos 692ZZ) |
-| `impeller_base_1.stl` | 1 | EVA-RT | carcaça da ventoinha (4 pés) |
-| `impeller_base_2.stl` | 1 | EVA-RT | parte de cima da carcaça, segura o motor |
-| `impeller_fan.stl` | 1 | EVA-RT | hélice |
-| `battery_holder.stl` | 1–2 | EVA-RT | apoio da bateria na vareta de trás (a foto mostra um) |
-| `bead.stl` | ? | EVA-RT | bucha Ø6 / Ø3,15 com furo Ø2,15; ver "Não conferido" |
-
-Do EVA-RT, não entram:
-- `sensor_sledge.stl`: é da barra VISION;
-- `barilla_clamp.stl`: tem rasgo de 1,0 mm;
-- `suction_base.stl` e `barilla_connection.stl`: foram substituídas pelas versões adaptadas.
-
-## Material: só PLA e PETG
-O README do EVA-RT não informa o filamento. Nas fotos, a carcaça da ventoinha é branca, de filamento comum, e as peças pequenas são pretas e foscas. Podem ser de fibra de carbono ou só de filamento preto: não dá para saber. O carbono documentado são as varetas, que são tubos comprados prontos, não impressos.
-
-Sem fibra de carbono, as peças ficam menos rígidas (PETG ≈ 2 GPa, PLA ≈ 3,5 GPa; com fibra, até 2 a 3 vezes mais) e o PETG amolece menos com calor (~80 °C, contra ~55–60 °C do PLA). O que isso muda:
-- **Presilhas:** ganharam o assento descrito acima. É a única peça que dependia do aperto do plástico para segurar a vareta na altura certa. No patim a vareta já apoia na barra e no assento, e no bloco ela passa por furos fechados.
-- **Cola:** o cianoacrilato cola bem no PLA e mal no PETG.
-  - Com o assento, a cola não segura mais a altura da vareta: serve só para travar o patim e as presilhas na posição ao longo dela.
-  - No PETG, lixar a superfície antes de colar. Se mesmo assim soltar, usar epóxi, ou uma volta de fita isolante na vareta logo atrás do patim, como batente.
-- **Hélice:** a ~50 mil rpm, a tensão na raiz das pás fica em ~5 MPa (estimativa grosseira). É uma fração da resistência do PETG e do PLA, então nenhum dos dois precisa de fibra.
-
-| Peça | Material | Por quê |
+| Arquivo | Qtde | Função |
 |---|---|---|
-| presilhas, patins, bloco da transversal | **PETG** | braço de 1 mm apertado por parafuso e pancada em batida: o PLA racha |
-| caixas de redução | **PETG** | seguram o motor 1020, que esquenta; no PLA o motor afrouxa e o engrenamento (módulo 0,3) sai do lugar |
-| `impeller_base_1/2` (carcaça) | **PETG** | motor da ventoinha encostado |
-| hélice | **PETG** | o cubo fica no eixo do motor, que esquenta |
-| placa de sucção | **PETG** | o fundo do rebaixo tem 0,2 mm, e a cabeça do parafuso gira em cima dele ao apertar: o PLA trinca |
-| aros | **PLA** | alojamento do rolamento preciso (Ø6,19 × 3,0); o PLA acerta melhor a medida |
-| apoio da bateria, bucha (`bead`) | PLA ou PETG | sem esforço |
+| `presilha_vareta_tras_base1.6.stl` | 2 | presilha de trás (y = −1,75), parede na borda da base |
+| `presilha_vareta_frente_asa.stl` | 2 | presilha da frente (y = 10,75), apoiada sobre a raiz da asa |
+| `patim_v1_direito_barra1.6.stl` | 1 (+1 de reserva) | patim da barra V1, lado direito (+x) |
+| `patim_v1_esquerdo_barra1.6.stl` | 1 (+1 de reserva) | patim da barra V1, lado esquerdo |
+| `bloco_transversal_asa.stl` | 2 | une a vareta longitudinal à transversal |
+| `placa_succao_rebaixo.stl` | 1 | placa de sucção de 0,6 mm, com rebaixo para a cabeça do parafuso nos 4 pés |
+| `gearbox.stl` | 1 | caixa de redução **direita** (pinhão para fora) |
+| `gearbox_esquerdo_espelhado.stl` | 1 | caixa de redução esquerda (o EVA-RT publica só um lado) |
+| `impeller_base_1.stl` | 1 | carcaça da ventoinha (4 pés) |
+| `impeller_base_2.stl` | 1 | parte de cima da carcaça, segura o motor |
+| `impeller_fan.stl` | 1 | hélice |
 
-Impressão:
+**`stl/PLA/`**:
+
+| Arquivo | Qtde | Função |
+|---|---|---|
+| `wheel_rim.stl` | 2 | aro da roda (rolamentos 692ZZ); o PLA acerta melhor a medida do alojamento |
+| `battery_holder.stl` | 1–2 | apoio da bateria na vareta de trás (a foto mostra um); serve PETG também |
+| `bead.stl` | ? | bucha Ø6 / Ø3,15 com furo Ø2,15 (ver "Não conferido"); serve PETG também |
+
+Origem: presilhas, patins, bloco e placa de sucção são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
+
+### Configuração de impressão
 - Bico de 0,4 mm, camada de 0,12–0,16 mm, 3 perímetros ou mais, 100% de preenchimento.
 - PETG seco e com retração bem ajustada: fio solto na hélice desbalanceia, e no furo da vareta impede a vareta de entrar.
 - Patim, presilhas e bloco já estão na posição de impressão (furo da vareta na vertical), sem suporte. O assento das presilhas fecha um furo vertical e também não precisa de suporte. O rebaixo do bloco fica na lateral da peça.
@@ -105,7 +83,7 @@ Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeç
 6. Conferir se as 4 cabeças ficaram dentro dos rebaixos.
 7. Encaixar os patins nas pontas da barra, com o esqui para fora e a ponta curva para a frente. Pôr o M2 × 8 sem apertar e passar as varetas pelos canais.
 8. Deslizar a barra até **63,14 mm** entre o furo da frente da base e o furo da barra. A mesma cota dá 57,89 mm entre a face da frente da presilha dianteira e a face de trás do patim. Conferir os dois lados iguais e apertar.
-9. Com a distância aprovada na pista, travar cada patim e cada presilha na vareta com uma gota de cola (ver "Material").
+9. Com a distância aprovada na pista, travar cada patim e cada presilha na vareta com uma gota de cola (ver "Só PLA e PETG").
 
 Resultado esperado:
 - varetas paralelas em x = ±48,45;
@@ -114,7 +92,58 @@ Resultado esperado:
 
 A distância se ajusta deslizando o patim na vareta. Com varetas de 94 mm vai de ~20 a ~73 mm entre furos.
 
-## Conferência 3D (`ferramentas/pecas_3d/conferir_montagem.py`)
+## Cuidados
+- **J3 (gravação, embaixo):** a mesma solução do perseguidor (mesma posição e footprint). É uma barra de pinos reta deitada:
+  - os pinos curtos ficam soldados nos pads;
+  - a parte preta fica encostada na borda de trás (y = −30), atrás da placa e centrada no pino;
+  - fica a 0,8 mm da pista, menos a solda. Não deixar a parte preta embaixo da placa.
+- **Cabeças de parafuso:** são as partes mais baixas depois do esqui: 0,6 mm nos pés da carcaça, 0,7 mm nos patins e 0,8 mm nas presilhas e nas caixas.
+- **Placa de sucção:** usar a `placa_succao_rebaixo.stl`. Com a `suction_base.stl` original, a cabeça dos pés fica a 0,2 mm da pista. Não abrir o rebaixo até a base: o fundo de plástico isola a cabeça de aço das vias de PWMA_D5, PWMB_D6 e GND. Se 0,6 mm raspar na pista, a alternativa é furo passante de Ø4,4 com parafuso de náilon (0,8 mm).
+- **Carcaça da ventoinha:** montar com os dois pés de orelha para a frente.
+- **Carbono conduz.** As longitudinais ficam 1 mm acima da placa. A transversal deita sobre a máscara de solda só perto do centro: ali não há via, e os pads mais próximos são os da J2, a 0,7 mm.
+
+## Por que as peças mudaram
+### Base de 1,6 mm
+O EVA-RT foi feito para base de 1,0 mm. Com 1,6 mm:
+- **Presilhas da vareta:** o rasgo do `barilla_clamp` é de 1,0 mm. Com o braço de baixo, a cabeça do parafuso ficaria abaixo da pista. As presilhas novas não têm esse braço: o parafuso aperta o braço de cima direto na base, com a cabeça embaixo da placa. A solução veio do perseguidor RUSH - Dreamcast.
+  - **Atrás** (y = −1,75), a borda é reta em x = ±50. A parede externa desce até a face de baixo e encosta nela, como no perseguidor.
+  - **Na frente** (y = 10,75), a presilha fica sobre a raiz da asa, e ali a placa vai além de x = 50. Por isso esta presilha não tem a parede que desce: apoia inteira em cima da placa, e a vareta, presa na de trás, não a deixa girar.
+- **Placa de sucção:** no EVA-RT, a cabeça dos 4 parafusos dos pés da carcaça aperta a placa de sucção contra a base. Com 1,6 mm, essa cabeça ficaria a 0,2 mm da pista. A placa nova tem um rebaixo de Ø4,4 em cada pé, com fundo de 0,2 mm: a cabeça entra na placa e fica a 0,6 mm da pista. O fundo de plástico continua isolando a cabeça das vias que há embaixo dela (PWMA_D5, PWMB_D6 e GND, nos pés de trás), então não dá para trocar o rebaixo por furo passante com parafuso de aço.
+- **Barra V1 de 1,6 mm:** o patim é a versão para 1,6 mm, o mesmo do perseguidor. A barra fica a 3,4 mm da pista (4,0 mm com barra de 1,0 mm).
+- **Parafusos:** comprimentos conferidos para 1,6 mm (tabela abaixo).
+
+Por causa da asa de gaivota, que não depende da espessura:
+- **Bloco da transversal:** o `barilla_connection` desce 1 mm abaixo da face de cima da base. No EVA-RT ele fica à frente da placa; no Saturn, a raiz da asa passa embaixo dele. O bloco novo tem um rebaixo no contorno da placa, com 0,3 mm de folga. É a mesma peça nos dois lados, e o furo da transversal fica igual.
+
+E por imprimir só em PLA e PETG (ver abaixo):
+- **Presilhas com assento:** na presilha original, o canal da vareta é aberto para a placa, e sobra 1 mm de vão sob a vareta. A altura dela depende só do aperto do canal e de cola. As presilhas deste kit têm o furo fechado embaixo: a vareta fica presa para cima e para baixo e entra pela ponta.
+
+![Corte pelas presilhas](conferencia/corte_presilha.png)
+
+### Só PLA e PETG
+O README do EVA-RT não informa o filamento. Nas fotos, a carcaça da ventoinha é branca, de filamento comum, e as peças pequenas são pretas e foscas. Podem ser de fibra de carbono ou só de filamento preto: não dá para saber. O carbono documentado são as varetas, que são tubos comprados prontos, não impressos.
+
+Sem fibra de carbono, as peças ficam menos rígidas (PETG ≈ 2 GPa, PLA ≈ 3,5 GPa; com fibra, até 2 a 3 vezes mais) e o PETG amolece menos com calor (~80 °C, contra ~55–60 °C do PLA). O que isso muda:
+- **Presilhas:** ganharam o assento descrito acima. É a única peça que dependia do aperto do plástico para segurar a vareta na altura certa. No patim a vareta já apoia na barra e no assento, e no bloco ela passa por furos fechados.
+- **Cola:** o cianoacrilato cola bem no PLA e mal no PETG.
+  - Com o assento, a cola não segura mais a altura da vareta: serve só para travar o patim e as presilhas na posição ao longo dela.
+  - No PETG, lixar a superfície antes de colar. Se mesmo assim soltar, usar epóxi, ou uma volta de fita isolante na vareta logo atrás do patim, como batente.
+- **Hélice:** a ~50 mil rpm, a tensão na raiz das pás fica em ~5 MPa (estimativa grosseira). É uma fração da resistência do PETG e do PLA, então nenhum dos dois precisa de fibra.
+
+Por que cada peça está em cada pasta:
+
+| Peça | Material | Por quê |
+|---|---|---|
+| presilhas, patins, bloco da transversal | **PETG** | braço de 1 mm apertado por parafuso e pancada em batida: o PLA racha |
+| caixas de redução | **PETG** | seguram o motor 1020, que esquenta; no PLA o motor afrouxa e o engrenamento (módulo 0,3) sai do lugar |
+| `impeller_base_1/2` (carcaça) | **PETG** | motor da ventoinha encostado |
+| hélice | **PETG** | o cubo fica no eixo do motor, que esquenta |
+| placa de sucção | **PETG** | o fundo do rebaixo tem 0,2 mm, e a cabeça do parafuso gira em cima dele ao apertar: o PLA trinca |
+| aros | **PLA** | alojamento do rolamento preciso (Ø6,19 × 3,0); o PLA acerta melhor a medida |
+| apoio da bateria, bucha (`bead`) | PLA ou PETG | sem esforço |
+
+## Conferência 3D
+Feita por `ferramentas/pecas_3d/conferir_montagem.py`.
 O script monta as peças e lê as placas dos arquivos do repositório:
 - a base é lida do `.epro` do v12 (`hardware/placa_base/`), com 1,6 mm;
 - a V1 é lida do Gerber, com 1,6 mm;
@@ -166,16 +195,6 @@ python3 ferramentas/pecas_3d/gerar_pecas.py
 python3 ferramentas/pecas_3d/conferir_montagem.py --furos 63.14 --esp-barra 1.6
 ```
 Se mudar a distância entre furos ou a espessura da barra, rodar de novo o `conferir_montagem.py`.
-
-## Cuidados
-- **J3 (gravação, embaixo):** a mesma solução do perseguidor (mesma posição e footprint). É uma barra de pinos reta deitada:
-  - os pinos curtos ficam soldados nos pads;
-  - a parte preta fica encostada na borda de trás (y = −30), atrás da placa e centrada no pino;
-  - fica a 0,8 mm da pista, menos a solda. Não deixar a parte preta embaixo da placa.
-- **Cabeças de parafuso:** são as partes mais baixas depois do esqui: 0,6 mm nos pés da carcaça, 0,7 mm nos patins e 0,8 mm nas presilhas e nas caixas.
-- **Placa de sucção:** usar a `placa_succao_rebaixo.stl`. Com a `suction_base.stl` original, a cabeça dos pés fica a 0,2 mm da pista. Não abrir o rebaixo até a base: o fundo de plástico isola a cabeça de aço das vias de PWMA_D5, PWMB_D6 e GND. Se 0,6 mm raspar na pista, a alternativa é furo passante de Ø4,4 com parafuso de náilon (0,8 mm).
-- **Carcaça da ventoinha:** montar com os dois pés de orelha para a frente.
-- **Carbono conduz.** As longitudinais ficam 1 mm acima da placa. A transversal deita sobre a máscara de solda só perto do centro: ali não há via, e os pads mais próximos são os da J2, a 0,7 mm.
 
 ## Não conferido
 - `bead.stl`: pelas medidas, parece uma bucha do eixo Ø2 junto ao rolamento 692ZZ, não um patim. Não achei nas fotos onde vai nem quantas são.

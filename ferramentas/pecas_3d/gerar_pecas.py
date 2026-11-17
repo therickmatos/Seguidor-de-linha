@@ -36,7 +36,7 @@ from manifold3d import CrossSection, Manifold, set_circular_segments
 
 RAIZ = Path(__file__).resolve().parents[2]
 MECANICA = RAIZ / "mecânica"
-SAIDA = MECANICA / "stl"
+SAIDA = MECANICA / "stl"   # uma subpasta por filamento: stl/PETG/ e stl/PLA/
 ORIGINAIS = RAIZ / "referencias" / "eva-rt" / "3d_models"
 EPRO = RAIZ / "hardware" / "placa_base" / "ProPrj_RUSH - SATURN - v12_2026-11-15.epro"
 MIL = 0.0254               # unidade do .epro
@@ -76,6 +76,18 @@ EVA_COMO_ESTAO = ["gearbox.stl", "wheel_rim.stl", "impeller_base_1.stl", "impell
 PES_SUCCAO_STL = [(sx * 15.556, 27.5 + sy * 15.556) for sx in (-1, 1) for sy in (-1, 1)]
 D_REBAIXO = 4.4            # cabeca M2 de O3,8 + folga
 FUNDO_REBAIXO = 0.2        # plastico que fica entre a cabeca e a base (isola as vias)
+
+# Filamento de cada peca (so PLA e PETG; ver mecânica/README.md, "Material").
+# PETG: sob aperto de parafuso ou perto de motor. PLA: aro (alojamento do
+# rolamento mais preciso) e pecas sem esforco.
+PLA = {"wheel_rim.stl", "battery_holder.stl", "bead.stl"}
+
+
+def destino(nome: str) -> Path:
+    pasta = SAIDA / ("PLA" if nome in PLA else "PETG")
+    pasta.mkdir(parents=True, exist_ok=True)
+    return pasta / nome
+
 
 R_VARETA = 1.5             # vareta de carbono O3
 R_FURO = 1.0               # parafuso M2 (O2,0 como nos originais)
@@ -391,24 +403,23 @@ def main():
     ok = conferir()
     if args.conferir:
         raise SystemExit(0 if ok else 1)
-    SAIDA.mkdir(parents=True, exist_ok=True)
-    print(f"STL em {SAIDA.relative_to(RAIZ)}/:")
+    print(f"STL em {SAIDA.relative_to(RAIZ)}/PETG/ e PLA/:")
     # o patim depende da espessura da barra V1; a presilha, da base
     p = patim(ESP_BARRA)
-    gravar_stl(p, SAIDA / f"patim_v1_direito_barra{ESP_BARRA:.1f}.stl", f"patim V1 direito barra {ESP_BARRA:.1f}")
-    gravar_stl(espelhar(p), SAIDA / f"patim_v1_esquerdo_barra{ESP_BARRA:.1f}.stl",
+    gravar_stl(p, destino(f"patim_v1_direito_barra{ESP_BARRA:.1f}.stl"), f"patim V1 direito barra {ESP_BARRA:.1f}")
+    gravar_stl(espelhar(p), destino(f"patim_v1_esquerdo_barra{ESP_BARRA:.1f}.stl"),
                f"patim V1 esquerdo barra {ESP_BARRA:.1f}")
-    gravar_stl(presilha_tras(), SAIDA / "presilha_vareta_tras_base1.6.stl", "presilha da vareta tras base 1.6")
-    gravar_stl(presilha_frente(), SAIDA / "presilha_vareta_frente_asa.stl", "presilha da vareta frente (asa)")
-    gravar_stl(placa_succao(), SAIDA / "placa_succao_rebaixo.stl", "placa de succao com rebaixo")
-    gravar_stl(bloco_transversal(), SAIDA / "bloco_transversal_asa.stl", "bloco da transversal (asa)")
+    gravar_stl(presilha_tras(), destino("presilha_vareta_tras_base1.6.stl"), "presilha da vareta tras base 1.6")
+    gravar_stl(presilha_frente(), destino("presilha_vareta_frente_asa.stl"), "presilha da vareta frente (asa)")
+    gravar_stl(placa_succao(), destino("placa_succao_rebaixo.stl"), "placa de succao com rebaixo")
+    gravar_stl(bloco_transversal(), destino("bloco_transversal_asa.stl"), "bloco da transversal (asa)")
     # pecas do EVA-RT usadas como estao
     import shutil
     for nome in EVA_COMO_ESTAO:
-        shutil.copyfile(ORIGINAIS / nome, SAIDA / nome)
+        shutil.copyfile(ORIGINAIS / nome, destino(nome))
     print(f"  copiados sem alteracao de {ORIGINAIS.relative_to(RAIZ)}/: {', '.join(EVA_COMO_ESTAO)}")
     # o gearbox.stl e o do lado direito (pinhao para fora em +x); o esquerdo e o espelho dele
-    gravar_stl(espelhar(carregar_original("gearbox.stl")), SAIDA / "gearbox_esquerdo_espelhado.stl",
+    gravar_stl(espelhar(carregar_original("gearbox.stl")), destino("gearbox_esquerdo_espelhado.stl"),
                "gearbox espelhado (lado esquerdo)")
 
 

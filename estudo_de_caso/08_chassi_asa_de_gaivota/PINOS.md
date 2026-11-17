@@ -67,7 +67,7 @@ Mesmo circuito da v3 nos 4 sensores, com **um capacitor a mais, não montado (DN
 - Os pads extras ficam na mesma rede, sem mudar a topologia. Colocar o 47 kΩ e o capacitor perto do pino do ATmega ou na raiz da aba, com acesso para o ferro.
 - Sem jumper de troca entre analógico e digital: a geometria e a emulação apontam com clareza para os externos no A5/A6, e o jumper só complica o roteamento.
 
-## O que muda no esquemático (fonte: `ferramentas/esquematico/gen.py`)
+## O que muda no esquemático (fonte: `historico/esquematico_kicad_rev1.0/gerador/gen.py`)
 
 - S0/S1, os QRE atuais de `MARK_L_A5`/`MARK_R_A6`, passam a ser os externos E2/D2. A mudança é só de posição no layout, sem mudança elétrica.
 - **Novos:** dois QRE1113GR, cada um com o mesmo circuito dos atuais (220 Ω no LED, 47 kΩ no emissor). Saídas em novas redes `MARK_L2_D8` (U1.12, PB0) e `MARK_R2_D9` (U1.13, PB1). Essas redes saem da lista de pinos sem ligação.

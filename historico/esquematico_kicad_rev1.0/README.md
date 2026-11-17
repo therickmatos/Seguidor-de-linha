@@ -1,6 +1,6 @@
 # Esquemático rev 1.0 (KiCad): histórico
 
-Gerado por `ferramentas/esquematico/gen.py` em 04/11/2026 e importado no EasyEDA Pro para começar o layout.
+Gerado por `gerador/gen.py` em 04/11/2026 e importado no EasyEDA Pro para começar o layout.
 
 Desde então, o esquemático evoluiu só no EasyEDA:
 - QRE internos S2/S3 (D8/D9) e suas redes;

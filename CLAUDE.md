@@ -8,7 +8,7 @@
 
 ## O projeto
 Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento do **TRIF 7ª edição** (sucção permitida). É baseado no **EVA-RT** (EXOTIC TEAM MX, AGPL-3.0), com placa feita na JLC. Meta: igualar ou superar o EVA-RT, jogando seguro a partir do projeto original. Divulgar como "baseado no EVA-RT"; não deve parecer um clone direto.
-- **Fluxo:** esquemático e layout no EasyEDA Pro → Gerber → JLC. O KiCad (`ferramentas/esquematico/gen.py`) gerou só a rev 1.0 do esquemático e ficou para trás.
+- **Fluxo:** esquemático e layout no EasyEDA Pro → Gerber → JLC. O KiCad (`historico/esquematico_kicad_rev1.0/gerador/gen.py`) gerou só a rev 1.0 do esquemático e ficou para trás.
 - **Fora deste repositório:** o perseguidor (placa "RUSH - Dreamcast", irmã do Saturn, encomendada junto), em `therickmatos/Perseguidor-de-linha`, e o seguidor em fenolite, em `therickmatos/seguidor-fenolite`.
 
 ## Placa encomendada (v12, 15/11/2026)
@@ -52,6 +52,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - placa de sucção com rebaixo para as cabeças dos pés. O fundo de 0,2 mm isola as vias PWMA_D5/PWMB_D6/GND.
 - Barra a 63,14 mm entre furos (L = 107,1), ajustável na vareta. Barra a 3,4 mm da pista; QRE de marca a 0,7 mm; cabeças de parafuso a 0,6–0,8 mm (pneu de ~22 mm, não medido).
 - O Erick tem só PLA e PETG (sem filamento com fibra de carbono). PETG nas peças sob aperto ou perto de motor; PLA nos aros. Tabela em `mecânica/README.md`.
+- Os STL ficam separados por filamento em `mecânica/stl/PETG/` e `mecânica/stl/PLA/`; quem decide a pasta é o conjunto `PLA` em `gerar_pecas.py`.
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos
@@ -63,16 +64,18 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - Leitura dos QRE internos (D8/D9) no `firmware/seguidor/`. O 1.2.2 lê só A5/A6 e não usa marcas de curva: o sensor esquerdo só veta a parada nos cruzamentos. Os QRE internos podem ver a linha em curva fechada, e o S3 não deve disparar a parada. Ver `estudo_de_caso/07_firmware_e_geometria/README.md`.
 
 ## Arquivos
+O `README.md` da raiz tem a tabela "Onde encontrar" por tarefa. Manter atualizada quando algo mudar de lugar.
+
 | Pasta | Conteúdo |
 |---|---|
 | `hardware/placa_base/` | placa encomendada (v12), Gerber final, BOM, `historico/` com v4 a v10 |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (1,6 mm) |
-| `mecânica/` | STL para imprimir, guia de montagem, análise do suporte da barra e figuras da conferência 3D |
+| `mecânica/` | STL para imprimir (`stl/PETG/` e `stl/PLA/`, por filamento), guia de montagem, análise do suporte da barra e figuras da conferência 3D |
 | `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |
 | `firmware/` | `seguidor/` (firmware do robô), `testes/` (simulador do controle com as pistas TRIF 2025/2024), `teste_barra/` (teste de bancada da barra no ESP32-C3) |
-| `ferramentas/` | `pecas_3d/` (STL e conferência 3D), `bom_epro.py`, gerador do esquemático KiCad (rev 1.0) |
-| `historico/` | antes do layout: decisões de 02–04/11, contorno B, esquemático KiCad rev 1.0, figura do BT |
-| `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro |
+| `ferramentas/` | `pecas_3d/` (STL e conferência 3D) e `bom_epro.py` |
+| `historico/` | antes do layout: decisões de 02–04/11, contorno B, esquemático KiCad rev 1.0 com o gerador (`esquematico_kicad_rev1.0/gerador/`), figura do BT |
+| `referencias/` | regulamento do TRIF 2026 (seguidor) e cópia do repositório EVA-RT (sem as fotos grandes): `eva-rt/pcb_files/EVA_RT.eprj` abre no EasyEDA Pro |
 
 ## Formato .epro (para os scripts)
 - É um zip de linhas JSON, com coordenadas em mil (× 0,0254 = mm).

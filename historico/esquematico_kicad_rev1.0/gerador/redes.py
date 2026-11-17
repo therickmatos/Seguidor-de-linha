@@ -1,11 +1,11 @@
 """Gera REDES.md (lista de redes legível) a partir da netlist exportada pelo KiCad (kicadsexpr).
 
-Uso (nesta pasta): python3 redes.py [seguidor_base.net] [../../historico/esquematico_kicad_rev1.0/REDES.md]
+Uso (nesta pasta): python3 redes.py [seguidor_base.net] [../REDES.md]
 """
 import re, sys
 
 src = sys.argv[1] if len(sys.argv) > 1 else "seguidor_base.net"
-out = sys.argv[2] if len(sys.argv) > 2 else "../../historico/esquematico_kicad_rev1.0/REDES.md"
+out = sys.argv[2] if len(sys.argv) > 2 else "../REDES.md"
 txt = open(src, encoding="utf-8").read()
 
 def parse(s):
@@ -59,7 +59,7 @@ def fmt(ref, pin, fn):
 L = []
 L.append("# Redes da placa base (conferência da importação KiCad → EasyEDA)")
 L.append("")
-L.append("_Gerado por `ferramentas/esquematico/redes.py` a partir da netlist do `seguidor_base.kicad_sch` (rev 1.0). "
+L.append("_Gerado por `historico/esquematico_kicad_rev1.0/gerador/redes.py` a partir da netlist do `seguidor_base.kicad_sch` (rev 1.0). "
          "Depois de importar o esquemático no EasyEDA Pro, conferir rede por rede. "
          "Formato: `REF.pino (nome do pino)`. Valores e encapsulamentos em `BOM_seguidor_base.csv`._")
 L.append("")

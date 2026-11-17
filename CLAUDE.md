@@ -65,6 +65,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 
 ## Arquivos
 O `README.md` da raiz tem a tabela "Onde encontrar" por tarefa. Manter atualizada quando algo mudar de lugar.
+Branch principal: `main`. Os branches antigos e o que cada um tem estão listados em `historico/README.md`.
 
 | Pasta | Conteúdo |
 |---|---|

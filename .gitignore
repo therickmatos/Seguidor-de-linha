@@ -18,3 +18,5 @@ ferramentas/esquematico/seguidor_base.net
 .DS_Store
 Thumbs.db
 desktop.ini
+# simulador do firmware compilado
+firmware/testes/sim

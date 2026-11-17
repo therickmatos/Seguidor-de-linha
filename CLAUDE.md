@@ -12,7 +12,7 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 - Peças do seguidor chegando entre ~10 e 25/11/2026; meta de ter tudo até 20–23/11.
 
 ## Seguidor: decisões fixas
-- ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware **EVA-RT 1.2.2 sem mudar o mapa de pinos**.
+- ATmega328P-AU (tirado do Nano/Uno doador, com bootloader) + firmware próprio em `firmware/seguidor/`, **baseado no EVA-RT 1.2.2 e sem mudar o mapa de pinos**.
 - 2× DRV8874PWPR (modo PH/EN) no lugar do IFX9201; ITRIP ≈ 3 A (VREF 2,0 V, IPROPI 1,5k).
 - Ventoinha: AO3400A (SOT-23) + 1N5819 em paralelo com o motor; PWM no D10.
 - Cristal 16 MHz + 2× 22 pF; reset 10k + 100 nF do DTR.
@@ -40,6 +40,15 @@ Seguidor de linha para uma competição baseada no regulamento do **TRIF 7ª edi
 | `hardware/figuras/` | posição do conector do Bluetooth |
 | `referencias/eva-rt/` | cópia do repositório EVA-RT (sem as fotos grandes): `pcb_files/EVA_RT.eprj` abre no EasyEDA Pro (footprints e layout originais) |
 | `ferramentas/esquematico/` | gerador do esquemático KiCad (fonte), conferência da netlist, BOM e `REDES.md` |
+| `firmware/seguidor/` | firmware do robô (Arduino, ATmega328P): uso, parâmetros e diferenças para o EVA-RT em `firmware/README.md` |
+| `firmware/testes/` | simulador no PC do controle (`sim.cpp`) com as pistas TRIF 2025/2024 exportadas do estudo de caso |
+| `firmware/teste_barra/` | teste de bancada da barra no ESP32-C3 (só referência) |
+
+## Firmware (17/11/2026)
+- Escrito e conferido só por simulação (`firmware/testes/sim.cpp`) e compilação com `avr-gcc`; **ainda não rodou no robô**. Ganhos, freio, mapa do mux, sentido das rodas e lado da barra precisam ser conferidos na bancada (lista em `firmware/README.md`).
+- `linha.cpp` e `corrida.cpp` não dependem do Arduino e são os mesmos no robô e no simulador: depois de mexer neles, rodar o simulador (tem que terminar com "tudo certo").
+- O ciclo de controle é de 1 ms e o ATmega gasta ~0,6 ms nele: nada de `float` nem divisão de 32 bits dentro de `Corrida::passo()`.
+- Divergência em aberto: `firmware/teste_barra/barra.h` usa os canais 4–15 do mux; o Gerber de `hardware/barra_v1` indica 2–13. O firmware segue o teste de bancada (`MAPA_MUX` em `config.h`).
 
 ## Cuidados
 - Manter o crédito e a licença AGPL-3.0 do EVA-RT em qualquer arquivo derivado.

@@ -5,13 +5,14 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 | Seção | O que tem |
 |---|---|
 | [O que imprimir](#o-que-imprimir) | STL separados por filamento (`stl/PETG/` e `stl/PLA/`), quantidades e configuração |
+| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | ordem para imprimir e testar as peças dos motores antes de a placa chegar |
 | [Ferragens](#ferragens) | varetas, parafusos, porcas, rolamentos e cola |
 | [Ordem de montagem](#ordem-de-montagem) | passo a passo |
 | [Cuidados](#cuidados) | o que pode dar errado na montagem e na pista |
 | [Por que as peças mudaram](#por-que-as-peças-mudaram) | base de 1,6 mm, asa de gaivota e PLA/PETG |
 | [Conferência 3D](#conferência-3d) | folgas e altura de cada peça até a pista |
 
-A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`; os do EVA-RT são cópias sem alteração de `referencias/eva-rt/3d_models/`.
+A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`. Os do EVA-RT são cópias de `referencias/eva-rt/3d_models/`; a carcaça e as caixas de redução só foram giradas para a posição de impressão.
 
 ## O que imprimir
 Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por que as peças mudaram".
@@ -39,18 +40,68 @@ Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por 
 | `wheel_rim.stl` | 2 | aro da roda (rolamentos 692ZZ); o PLA acerta melhor a medida do alojamento |
 | `battery_holder.stl` | 1–2 | apoio da bateria na vareta de trás (a foto mostra um); serve PETG também |
 | `bead.stl` | ? | bucha Ø6 / Ø3,15 com furo Ø2,15 (ver "Não conferido"); serve PETG também |
+| `gabarito_base_teste.stl` | 1 | **só para testes**: base de 1,6 mm com o contorno e os furos da placa (asas cortadas), para montar a ventoinha e as caixas antes de a placa chegar |
 
 Origem: presilhas, patins, bloco e placa de sucção são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
 
 ### Configuração de impressão
+- **Todos os STL já estão na posição de impressão. Nenhum precisa de suporte:** é só abrir no fatiador e imprimir, sem girar.
+  - A carcaça (`impeller_base_1`) vai de cabeça para baixo: o topo é plano. Apoiada nos pés, teria ~490 mm² em balanço.
+  - As caixas de redução vão deitadas sobre a face do pinhão. Os furos do motor (Ø10,18) e do eixo (Ø2,0) ficam na vertical: saem redondos, e o aperto do motor fica no plano das camadas, onde a peça é mais forte.
+  - A placa de sucção vai com os rebaixos para cima: o fundo de 0,2 mm sai na primeira camada.
+  - A hélice tem 6 corpos no STL (disco + 5 pás). O fatiador junta.
+  - O aro tem um degrau interno (do furo de Ø11 para o alojamento de Ø6,2 do rolamento) e uma aba de 1,75 mm no topo. Imprime sem suporte, mas a borda de baixo do alojamento pode cair um pouco: conferir o rolamento.
+  - Patim, presilhas e bloco têm o furo da vareta na vertical. O assento das presilhas e o rebaixo do bloco também saem sem suporte.
 - Bico de 0,4 mm, camada de 0,12–0,16 mm, 3 perímetros ou mais, 100% de preenchimento.
-- PETG seco e com retração bem ajustada: fio solto na hélice desbalanceia, e no furo da vareta impede a vareta de entrar.
-- Patim, presilhas e bloco já estão na posição de impressão (furo da vareta na vertical), sem suporte. O assento das presilhas fecha um furo vertical e também não precisa de suporte. O rebaixo do bloco fica na lateral da peça.
-- Placa de sucção: deitada, 3 camadas de 0,2 mm, **com os rebaixos para cima** (a face lisa na mesa). Assim o fundo de 0,2 mm é a primeira camada e não precisa de ponte.
+- PETG:
+  - filamento seco e retração bem ajustada: fio solto desbalanceia a hélice e fecha o furo da vareta;
+  - em PEI liso, passar cola bastão como separador, porque o PETG gruda demais e arranca a superfície;
+  - ventilador da peça em 30–50%, parede externa devagar (~20–25 mm/s) e tempo mínimo por camada de ~10 s. Como as peças são pequenas, imprimir várias juntas também dá tempo de esfriar;
+  - temperatura do bico e da mesa: as do fabricante do filamento.
+- Placa de sucção: 3 camadas de 0,2 mm.
 - Os furos de Ø2,0 e de Ø3,0 da vareta saem justos de propósito, como no original. Se a vareta não entrar, passar broca de 2 mm ou de 3 mm à mão. Como o furo das presilhas agora é fechado, a vareta tem de atravessar as duas presilhas e o bloco: alargar o furo só o bastante para ela deslizar com atrito.
 - Hélice: conferir se gira sem bater antes de dar potência. Se vibrar, imprimir de novo.
 - Imprimir primeiro **uma** presilha de cada tipo e **um** patim e testar na placa, na barra e com a vareta antes do resto.
 - O fundo do esqui desgasta na pista: imprimir um par de reserva.
+
+## Primeira impressão: ventoinha e motores
+Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø10,18, eixo Ø2,0, rolamento Ø6,19, cubo da hélice). Imprimindo antes, um problema de medida aparece cedo, e dá para filmar a ventoinha e as caixas funcionando sem a placa, montadas no `gabarito_base_teste.stl`.
+
+**Ordem** (uma peça de cada, conferir e só então imprimir o resto):
+1. Uma caixa de redução (`gearbox.stl`, ~2,2 g de PETG). Conferir:
+   - o motor 1020 tem de entrar firme, sem forçar a ponto de trincar;
+   - o eixo de Ø2 tem de passar;
+   - se o furo sair apertado ou folgado, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes de imprimir as outras.
+2. `impeller_base_2.stl`: tem o mesmo furo de motor, então confere o ajuste da etapa 1.
+3. `gabarito_base_teste.stl` (PLA, ~8,5 g, plano).
+4. `impeller_base_1.stl` (carcaça) e `placa_succao_rebaixo.stl`.
+5. `impeller_fan.stl` (hélice), **depois de resolver o cubo** (abaixo).
+6. Um `wheel_rim.stl` (PLA). Conferir se o rolamento 692ZZ entra firme; depois imprimir o segundo aro e a caixa esquerda.
+
+**Montagem no gabarito:**
+- A frente do gabarito é o lado da aba da J2.
+- Carcaça com os dois pés de orelha para a frente. Por baixo, a placa de sucção com os rebaixos virados para fora, presa com 4× M2 × 6 que fazem rosca direto nos pés.
+- Caixas de redução: M2 × 6 e porca, como na placa.
+- O gabarito tem a mesma espessura da placa (1,6 mm), então os comprimentos de parafuso são os mesmos. Os furos dele são de Ø2,2, para o M2 passar sem broca.
+
+**Cubo da hélice (resolver antes de imprimir):**
+- O furo do cubo tem Ø3,4 e atravessa o cubo todo (4 mm), mas o eixo do 1020 tem 1,2 mm. O EVA-RT não documenta o que vai no meio.
+- Pela medida, o mais provável é um **pinhão 11T M0,3 prensado no eixo da ventoinha** (furo de 1,15 mm, como nos motores das rodas). O pinhão é então cravado no cubo, com os dentes (Ø3,9) mordendo o plástico, mais uma gota de cola.
+- Confira se sobrou um pinhão para o terceiro motor.
+- Não use a hélice solta no eixo, nem com cola só no eixo de 1,2 mm.
+
+**Teste da ventoinha:**
+- Fonte de bancada com limite de corrente, começando em ~3 V e subindo até 7,4 V. Sem a placa, o motor recebe tensão cheia, sem PWM.
+- Use óculos de proteção: a ~50 mil rpm, uma pá que se solta vira projétil.
+- Conferir se a hélice gira sem raspar e sem vibrar.
+- Conferir o sentido: um papel encostado no furo de Ø17, por baixo, tem de ser puxado. Se for soprado, inverta os fios.
+- **Para o vídeo da sucção:** apoie o conjunto sobre a manta ou uma superfície lisa e mostre que ele gruda. Para medir, puxe-o para cima com uma balança de mão ou um dinamômetro.
+- Pôr o conjunto em cima de uma balança de cozinha não mede nada: a força fica entre o conjunto e o prato.
+
+**Teste das caixas:**
+- Precisa do pinhão prensado no motor (na morsa, sem martelo), da engrenagem de 64 dentes, do eixo de Ø2 e do aro com os rolamentos e o pneu.
+- Enquanto faltar alguma dessas peças, dá para filmar o motor girando preso na caixa.
+- Com tudo, ligue o motor direto na fonte para ver o engrenamento. O EVA-RT dá 0,07 mm de folga entre os dentes, então o engrenamento deve rodar macio.
 
 ## Ferragens
 | Item | Qtde | Onde |
@@ -197,6 +248,7 @@ python3 ferramentas/pecas_3d/conferir_montagem.py --furos 63.14 --esp-barra 1.6
 Se mudar a distância entre furos ou a espessura da barra, rodar de novo o `conferir_montagem.py`.
 
 ## Não conferido
+- Cubo da hélice: furo de Ø3,4 para eixo de 1,2 mm (ver "Primeira impressão").
 - `bead.stl`: pelas medidas, parece uma bucha do eixo Ø2 junto ao rolamento 692ZZ, não um patim. Não achei nas fotos onde vai nem quantas são.
 - Eixo das rodas, engrenagem de 64 dentes e pneu. A altura até a pista acima supõe pneu de ~22 mm.
 - Encaixe dos motores 1020 nas caixas de redução e na carcaça.

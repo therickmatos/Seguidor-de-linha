@@ -53,6 +53,8 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - Barra a 63,14 mm entre furos (L = 107,1), ajustável na vareta. Barra a 3,4 mm da pista; QRE de marca a 0,7 mm; cabeças de parafuso a 0,6–0,8 mm (pneu de ~22 mm, não medido).
 - O Erick tem só PLA e PETG (sem filamento com fibra de carbono). PETG nas peças sob aperto ou perto de motor; PLA nos aros. Tabela em `mecânica/README.md`.
 - Os STL ficam separados por filamento em `mecânica/stl/PETG/` e `mecânica/stl/PLA/`; quem decide a pasta é o conjunto `PLA` em `gerar_pecas.py`.
+- Todos os STL saem na posição de impressão, sem suporte. `stl/PLA/gabarito_base_teste.stl` é uma base de teste (contorno e furos do v12, asas cortadas) para montar a ventoinha e as caixas antes da placa.
+- **Em aberto:** o cubo da hélice tem furo de Ø3,4, e o eixo do 1020 tem 1,2 mm. Hipótese: pinhão 11T prensado no eixo e cravado no cubo. Ver "Primeira impressão" em `mecânica/README.md`.
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos

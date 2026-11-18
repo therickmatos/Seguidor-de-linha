@@ -9,7 +9,8 @@ O gerador do esquemático KiCad rev 1.0 (de antes do layout) foi para `historico
 Monta `mecânica/stl/` (subpastas `PETG/` e `PLA/`, conforme o filamento de cada peça) para a placa encomendada (Saturn v12, base de 1,6 mm) e a barra V1 de 1,6 mm. As peças são derivadas das do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0):
 - paramétricas: o patim da barra V1 e as presilhas da vareta de trás e da frente;
 - adaptadas dos STL do EVA-RT: o bloco da transversal (com rebaixo para a asa) e a placa de sucção (com rebaixo para as cabeças);
-- os STL do EVA-RT usados como estão, mais a caixa de redução espelhada.
+- os STL do EVA-RT usados como estão, mais a caixa de redução espelhada. A carcaça da ventoinha e as caixas de redução saem giradas para a posição de impressão;
+- `gabarito_base_teste.stl`: base de teste em PLA, com o contorno e os furos lidos do `.epro`, para montar a ventoinha e as caixas antes de a placa chegar.
 
 A presilha sem braço de baixo e a conferência de parafusos e alturas vieram do repositório do perseguidor (`therickmatos/Perseguidor-de-linha`, `ferramentas/pecas_3d/`). Análise em `mecânica/SUPORTE_BARRA_V1.md`; guia de impressão e montagem em `mecânica/README.md`.
 

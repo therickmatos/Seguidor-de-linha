@@ -80,7 +80,20 @@ FUNDO_REBAIXO = 0.2        # plastico que fica entre a cabeca e a base (isola as
 # Filamento de cada peca (so PLA e PETG; ver mecânica/README.md, "Material").
 # PETG: sob aperto de parafuso ou perto de motor. PLA: aro (alojamento do
 # rolamento mais preciso) e pecas sem esforco.
-PLA = {"wheel_rim.stl", "battery_holder.stl", "bead.stl"}
+PLA = {"wheel_rim.stl", "battery_holder.stl", "bead.stl", "gabarito_base_teste.stl"}
+
+# Pecas do EVA-RT que nao vem na posicao de impressao (matrizes 3x3, det = +1):
+#   carcaca: de cabeca para baixo (o topo e plano; nos pes ela apoiaria 66 mm2
+#            e teria ~490 mm2 em balanco);
+#   caixas de reducao: deitadas sobre a face do pinhao, com os furos do motor e
+#            do eixo na vertical (redondos, e o aperto do motor fica no plano
+#            das camadas).
+GIRO_IMPRESSAO = {
+    "impeller_base_1.stl": [[1, 0, 0], [0, -1, 0], [0, 0, -1]],
+    "gearbox.stl": [[0, 1, 0], [0, 0, 1], [1, 0, 0]],
+    "gearbox_esquerdo_espelhado.stl": [[0, -1, 0], [0, 0, 1], [-1, 0, 0]],
+}
+CABECA_PARA_BAIXO = [[1, 0, 0], [0, -1, 0], [0, 0, -1]]
 
 
 def destino(nome: str) -> Path:
@@ -372,6 +385,28 @@ def espelhar(m: Manifold) -> Manifold:
     return m.mirror((1, 0, 0))
 
 
+def para_impressao(m: Manifold, giro) -> Manifold:
+    """Gira a peca (matriz 3x3) e apoia o ponto mais baixo em z = 0."""
+    m = m.transform([list(l) + [0] for l in giro])
+    return m.translate((0, 0, -m.bounding_box()[2]))
+
+
+def gabarito_base(x_max=56.0, d_furo=2.2) -> Manifold:
+    """Base de teste em PLA com o contorno e os furos do Saturn v12, 1,6 mm.
+
+    So para montar a carcaca da ventoinha, as caixas de reducao e as presilhas
+    antes de a placa chegar (videos, conferencia de encaixe e de parafuso). As
+    asas sao cortadas em |x| = 56: fica so a raiz delas, onde apoiam as
+    presilhas da frente. Furos de O2,2 para o M2 passar sem broca."""
+    from shapely.geometry import box
+    contorno, furos, _ = ler_epro()
+    contorno = contorno.intersection(box(-x_max, -100, x_max, 100))
+    m = poligono(np.array(contorno.exterior.coords)[:-1]).extrude(ESP_BASE)
+    for x, y, d in furos:
+        m -= Manifold.cylinder(ESP_BASE + 2, (d if d > 5 else d_furo) / 2).translate((x, y, -1))
+    return m
+
+
 def conferir():
     """Reconstroi as pecas originais com os mesmos parametros e compara."""
     carregar = carregar_original
@@ -411,15 +446,23 @@ def main():
                f"patim V1 esquerdo barra {ESP_BARRA:.1f}")
     gravar_stl(presilha_tras(), destino("presilha_vareta_tras_base1.6.stl"), "presilha da vareta tras base 1.6")
     gravar_stl(presilha_frente(), destino("presilha_vareta_frente_asa.stl"), "presilha da vareta frente (asa)")
-    gravar_stl(placa_succao(), destino("placa_succao_rebaixo.stl"), "placa de succao com rebaixo")
+    # placa de succao com os rebaixos para cima: o fundo de 0,2 mm sai na 1a camada
+    gravar_stl(para_impressao(placa_succao(), CABECA_PARA_BAIXO), destino("placa_succao_rebaixo.stl"),
+               "placa de succao com rebaixo")
     gravar_stl(bloco_transversal(), destino("bloco_transversal_asa.stl"), "bloco da transversal (asa)")
-    # pecas do EVA-RT usadas como estao
+    gravar_stl(gabarito_base(), destino("gabarito_base_teste.stl"), "gabarito da base (teste, PLA)")
+    # pecas do EVA-RT usadas como estao (as de GIRO_IMPRESSAO so giradas para imprimir)
     import shutil
     for nome in EVA_COMO_ESTAO:
-        shutil.copyfile(ORIGINAIS / nome, destino(nome))
-    print(f"  copiados sem alteracao de {ORIGINAIS.relative_to(RAIZ)}/: {', '.join(EVA_COMO_ESTAO)}")
+        if nome in GIRO_IMPRESSAO:
+            gravar_stl(para_impressao(carregar_original(nome), GIRO_IMPRESSAO[nome]), destino(nome),
+                       f"{nome[:-4]} (EVA-RT, girado para imprimir)")
+        else:
+            shutil.copyfile(ORIGINAIS / nome, destino(nome))
+    print(f"  copiados de {ORIGINAIS.relative_to(RAIZ)}/: {', '.join(EVA_COMO_ESTAO)}")
     # o gearbox.stl e o do lado direito (pinhao para fora em +x); o esquerdo e o espelho dele
-    gravar_stl(espelhar(carregar_original("gearbox.stl")), destino("gearbox_esquerdo_espelhado.stl"),
+    nome = "gearbox_esquerdo_espelhado.stl"
+    gravar_stl(para_impressao(espelhar(carregar_original("gearbox.stl")), GIRO_IMPRESSAO[nome]), destino(nome),
                "gearbox espelhado (lado esquerdo)")
 
 

@@ -208,7 +208,7 @@ Total: 12× M2 × 6, 2× M2 × 8, 2× M2 × 30, 12 porcas M2.
 | carbono maciço | 0,06–0,09 | 0,02–0,04 | 4,0 g | sim |
 | tubo de carbono 3 × 2 (o do EVA-RT) | 0,07–0,11 | 0,03–0,04 | 2,2 g | sim |
 | fibra de vidro maciça | 0,17–0,26 | 0,07–0,11 | 5,1 g | sim |
-| alumínio maciço | 0,10–0,15 | 0,04–0,06 | 6,9 g | sim |
+| alumínio maciço (por exemplo, agulha de tricô de 3,0 mm) | 0,10–0,15 | 0,04–0,06 | 6,9 g | sim |
 | inox ou aço | 0,03–0,05 | 0,01–0,02 | 20 g | sim, mas pesa |
 | barra roscada M3 (aço) | 0,08–0,13 | 0,03–0,05 | 14 g | sim, mas pesa |
 | palito de bambu | 0,44–0,70 | 0,18–0,28 | 1,8 g | só para montar e testar na bancada |
@@ -221,6 +221,11 @@ Total: 12× M2 × 6, 2× M2 × 8, 2× M2 × 30, 12 porcas M2.
 - O peso conta: massa na frente aumenta a inércia nas curvas. Por isso, inox e barra roscada só em último caso.
 - Fibra de vidro: a maciça de Ø3,0 mm, como a de pipa e de aeromodelismo. Conferir o diâmetro com o paquímetro antes de comprar mais.
 - Para montar na bancada enquanto as varetas não chegam, serve um palito de bambu de 3 mm ou uma broca de 3 mm.
+- **Sem tempo para encomendar**, o que se acha em loja física:
+  - **agulha de tricô de alumínio de 3,0 mm** (armarinho, loja de aviamentos, papelaria). É maciça, reta, de diâmetro certo e leve. O par de 35 cm dá as quatro varetas: cortar com serra de arco, longe da ponta e do botão, e tirar a rebarba. Não serve a de plástico; a de bambu, só para teste;
+  - vareta de fibra de vidro ou de carbono de 3 mm em loja de pipa, de pesca ou de aeromodelismo;
+  - eixo de aço prata (retificado) de 3 mm em loja de rolamentos ou de ferramentas industriais: serve, mas pesa ~20 g;
+  - sobra de vareta ou tubo de carbono de 3 mm nos laboratórios (de robótica ou aeromodelismo). O que vale pedir é a vareta, não o filamento.
 
 Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeça mais alta encosta na pista (ver alturas abaixo).
 - A cabeça da presilha da frente direita fica a 0,13 mm do R25, que está embaixo da placa.

@@ -72,10 +72,21 @@ Altura ate a pista (pista em z = -4.0, vareta nivelada; base de 1.6 mm):
 Furo da barra em y = 73.890; origem da V1 em y = 77.575; L (eixo das rodas -> sensores centrais) = 107.12 mm
 Face de cima da barra +1.00 mm em relacao a face de cima da base; fundo do patim -4.00; face de baixo da barra -0.60 -> barra 3.40 mm acima da pista
 
-Engrenamento: distancia entre eixos na caixa 11.350 mm (nominal 64T + 11T: 11.250)
-  pinhao x = +0.00: menor folga entre flancos 0.059 mm (folga total ~0.118); folga ponta do pinhao x fundo da engrenagem 0.175 mm
-  pinhao x = +0.33: menor folga entre flancos 0.025 mm (folga total ~0.050); folga ponta do pinhao x fundo da engrenagem 0.076 mm
-  furo dos pinos O3.3 x pino do aro O3.094: folga radial 0.103; furo central O6.6 x bucha O6,0: folga radial 0.30
+Engrenamento: distancia entre eixos na caixa 11.350 mm (nominal 64T + 11T: 11.250; sem folga com pinhao +0,33: 11.346)
+  menor distancia entre contornos (mm; negativo = interfere), pior posicao numa volta:
+    versao       pinhao   a-0.10  a-0.05  a caixa  a+0.10   razao de contato (caixa)
+    1 justa     x=+0.00  +0.024  +0.044  +0.064  +0.101   1.28
+    1 justa     x=+0.33  -0.006  +0.011  +0.030  +0.067   1.45
+    2 media     x=+0.00  +0.044  +0.064  +0.082  +0.120   1.19
+    2 media     x=+0.33  +0.006  +0.031  +0.048  +0.086   1.37
+    3 folgada   x=+0.00  +0.064  +0.083  +0.101  +0.139   1.11
+    3 folgada   x=+0.33  +0.031  +0.049  +0.067  +0.105   1.29
+  aro do EVA-RT: aba em z = 18.50, 6 pinos de O3.094 x 2.00 mm (a 0, 60, 120, 180, 240, 300 graus); engrenagem de 2.0 mm
+  furo dos pinos O3.25 x pino O3.094: folga radial 0.078; furo central O6.6 x bucha O6,0: folga radial 0.30
+  engrenagem x aro (3D): versao 1 0.000 mm3, versao 2 0.000 mm3, versao 3 0.000 mm3
+  versao 1: 1 furo(s) de marca O1.0 a r 8.1; parede ate o fundo do dente 0.56 mm
+  versao 2: 2 furo(s) de marca O1.0 a r 8.1; parede ate o fundo do dente 0.56 mm
+  versao 3: 3 furo(s) de marca O1.0 a r 8.1; parede ate o fundo do dente 0.54 mm
   ponta dos dentes a 1.10 mm da pista com pneu de O22
   ponta dos dentes a 1.35 mm da pista com StickyMAX esticado no aro (~O22,5)
 Figuras em mecânica/conferencia/

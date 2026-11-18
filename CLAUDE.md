@@ -52,12 +52,12 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - placa de sucção com rebaixo para as cabeças dos pés. O fundo de 0,2 mm isola as vias PWMA_D5/PWMB_D6/GND.
 - Barra a 63,14 mm entre furos (L = 107,1), ajustável na vareta. Barra a 3,4 mm da pista; QRE de marca a 0,7 mm; cabeças de parafuso a 0,6–0,8 mm (pneu de ~22 mm, não medido).
 - O Erick tem só PLA e PETG (sem filamento com fibra de carbono). PETG nas peças sob aperto ou perto de motor; PLA nos aros. Tabela em `mecânica/README.md`.
-- Os STL ficam separados por filamento em `mecânica/stl/PETG/` e `mecânica/stl/PLA/`; quem decide a pasta é o conjunto `PLA` em `gerar_pecas.py`.
+- Os STL ficam separados por material em `mecânica/stl/PETG/`, `mecânica/stl/PLA/` e `mecânica/stl/RESINA/`; quem decide a pasta são os conjuntos `PLA` e `RESINA` em `gerar_pecas.py`.
 - Todos os STL saem na posição de impressão, sem suporte. `stl/PLA/gabarito_base_teste.stl` é uma base de teste (contorno e furos do v12, asas cortadas) para montar a ventoinha e as caixas antes da placa.
 - **Em aberto:** o cubo da hélice tem furo de Ø3,4, e o eixo do 1020 tem 1,2 mm. Hipótese: pinhão 11T prensado no eixo e cravado no cubo. Ver "Primeira impressão" em `mecânica/README.md`.
 - Rodas (18/11/2026):
   - pneu StickyMAX 22 mm da RoboCore (Ø22 × 15, furo de Ø12) no `wheel_rim.stl` do EVA-RT;
-  - engrenagem de 64 dentes (módulo 0,3) impressa em resina (`stl/RESINA/engrenagem_64T_m0.3_aro.stl`), presa nos 6 pinos do aro (Ø3,09, raio 5,45);
+  - engrenagem de 64 dentes (módulo 0,3) impressa em resina, presa nos 6 pinos do aro (Ø3,09 × 2,0, raio 5,45). São 3 versões em `stl/RESINA/`, de justa a folgada, marcadas com 1, 2 ou 3 furos: imprimir 3 de cada na mesma leva e escolher no teste das caixas. Elas cobrem o deslocamento de perfil desconhecido do pinhão (0 ou +0,33; a caixa tem a distância sem folga para +0,33), o encolhimento do PETG e o engorde da resina. Antes da resina, o Erick confere o pinhão (11 dentes, ~3,8 ou ~4,0 mm no paquímetro);
   - eixo fixo = parafuso M2 × 30, com 2 buchas (`bead.stl`) por roda apertando o anel interno dos rolamentos;
   - distância entre o motor e o eixo na caixa: 11,35 mm (nominal 11,25).
 - Varetas: o Erick não tem as de carbono. **Não imprimir** (PETG flete ~50× mais). Comprar carbono Ø3 (1 m basta) ou, em último caso, inox 304 Ø3 (~20 g).

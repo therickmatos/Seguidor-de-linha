@@ -584,60 +584,126 @@ def distancia_eixos_caixa():
     return float(np.hypot(*(centros["motor"] - centros["eixo"])))
 
 
-def conferir_engrenamento(arq=None):
-    """Engrenagem de 64 dentes (gp.ENGRENAGEM) x pinhao 11T m0,3 na distancia da caixa.
-    Gira as duas juntas por um passo e mede a menor folga entre dentes. Testa o pinhao
-    sem deslocamento de perfil e com +0,33 (comum em pinhoes de 11 dentes)."""
+def menor_folga(g0, p0, a, z_eng, z_pin=11, n_fase=40, n_phi=8):
+    """Gira a engrenagem (contorno g0, z_eng dentes) e o pinhao (p0) juntos por um passo e
+    devolve a menor distancia entre os contornos na pior posicao (flanco ou ponta x fundo).
+    Negativa = interferencia (area sobreposta, em mm2)."""
     from shapely import affinity
-    from shapely.geometry import Polygon, box
+    from shapely.geometry import box
+    janela = box(a - 4, -4, a + 4, 4)
+    piores = []
+    for fase in np.linspace(0, 2 * np.pi / z_pin, n_fase + 1)[:-1]:
+        w = np.inf
+        for phi in np.linspace(0, 2 * np.pi / z_eng, n_phi + 1)[:-1]:
+            g = affinity.rotate(g0, phi, origin=(0, 0), use_radians=True).intersection(janela)
+            p = affinity.translate(affinity.rotate(p0, fase - phi * z_eng / z_pin, origin=(0, 0),
+                                                   use_radians=True), a, 0)
+            i = g.intersection(p).area
+            w = min(w, -i if i > 1e-9 else g.distance(p))
+        piores.append((w, fase))
+    return max(piores)
+
+
+def razao_contato(a, z1, x1, z2, m, alfa, corte_ponta2=0.0):
+    al = np.radians(alfa)
+    rb1, rb2 = m * z1 / 2 * np.cos(al), m * z2 / 2 * np.cos(al)
+    ra1, ra2 = m * z1 / 2 + m * (1 + x1), m * z2 / 2 + m - corte_ponta2
+    aw = np.arccos((rb1 + rb2) / a)
+    return (np.sqrt(ra1 ** 2 - rb1 ** 2) + np.sqrt(ra2 ** 2 - rb2 ** 2) - a * np.sin(aw)) / (np.pi * m * np.cos(al))
+
+
+def engrenagem_no_aro():
+    """Poe cada versao da engrenagem sobre a aba do wheel_rim.stl do EVA-RT, com os furos
+    alinhados aos pinos, e mede a interferencia em 3D. Devolve (topo da aba, altura dos
+    pinos, diametro e angulos dos pinos, {versao: interferencia em mm3})."""
+    aro = stl("wheel_rim.stl")
+    z_max = aro.bounding_box()[5]
+    baixo, cima = z_max - 4.0, z_max - 0.01          # acha o topo da aba (onde so sobram os pinos)
+    for _ in range(30):                              # a aba tem O16,5; os pinos chegam a r ~7
+        z = (baixo + cima) / 2
+        if max(np.hypot(*np.asarray(p).T).max() for p in aro.slice(z).to_polygons()) > 7.5:
+            baixo = z
+        else:
+            cima = z
+    z_aba = (baixo + cima) / 2
+    pinos = [np.asarray(p) for p in aro.slice(z_max - 0.5).to_polygons()]
+    d_pino = float(np.mean([2 * np.sqrt(abs(0.5 * np.sum(p[:, 0] * np.roll(p[:, 1], -1)
+                                                         - np.roll(p[:, 0], -1) * p[:, 1])) / np.pi) for p in pinos]))
+    ang = sorted(float(np.degrees(np.arctan2(*p.mean(0)[::-1])) % 360) for p in pinos)
+    res = {}
+    for n in gp.VERSOES_ENGRENAGEM:
+        g = gp.engrenagem_aro(n).rotate((0, 0, ang[0])).translate((0, 0, z_aba))
+        res[n] = inter(g, aro)
+    return z_aba, z_max - z_aba, d_pino, ang, res
+
+
+def conferir_engrenamento(arq=None):
+    """Engrenagem de 64 dentes (as 3 versoes de gp.VERSOES_ENGRENAGEM) x pinhao 11T m0,3.
+    Testa o pinhao sem deslocamento de perfil e com +0,33, na distancia entre eixos lida da
+    caixa e com ela 0,10/0,05 mm mais curta ou 0,10 mm mais longa (PETG encolhe; motor e
+    eixo podem assentar fora de centro). Confere tambem o encaixe no aro em 3D."""
+    from shapely.geometry import Polygon
     e = gp.ENGRENAGEM
     a = distancia_eixos_caixa()
     nominal = e["m"] * (e["z"] + 11) / 2
-    print(f"\nEngrenamento: distancia entre eixos na caixa {a:.3f} mm (nominal 64T + 11T: {nominal:.3f})")
-    g0 = Polygon(gp.perfil_engrenagem(e["z"], e["m"], e["alfa"], 0.0, e["folga_dente"])).buffer(0)
-    janela = box(a - 4, -4, a + 4, 4)
-    resultados = {}
-    for x in (0.0, 0.33):
-        p0 = Polygon(gp.perfil_engrenagem(11, e["m"], e["alfa"], x, 0.0)).buffer(0)
-        def folga(fase, phi):
-            g = affinity.rotate(g0, phi, origin=(0, 0), use_radians=True).intersection(janela)
-            p = affinity.translate(affinity.rotate(p0, fase - phi * e["z"] / 11, origin=(0, 0),
-                                                   use_radians=True), a, 0)
-            inter = g.intersection(p).area
-            return -inter if inter > 1e-9 else g.distance(p)
-        fases = np.linspace(0, 2 * np.pi / 11, 61)[:-1]
-        phis = np.linspace(0, 2 * np.pi / e["z"], 13)[:-1]
-        piores = [min(folga(f, ph) for ph in phis) for f in fases]
-        k = int(np.argmax(piores))
-        ra_p = e["m"] * 11 / 2 + e["m"] * (1 + x)
-        rf_g = e["m"] * e["z"] / 2 - 1.25 * e["m"]
-        radial = a - rf_g - ra_p
-        resultados[x] = (fases[k], piores[k], p0)
-        print(f"  pinhao x = {x:+.2f}: menor folga entre flancos {piores[k]:.3f} mm "
-              f"(folga total ~{2 * piores[k]:.3f}); folga ponta do pinhao x fundo da engrenagem {radial:.3f} mm"
-              + ("   INTERFERE" if piores[k] < 0 or radial < 0 else ""))
-    d_pino = 3.094
-    print(f"  furo dos pinos O{e['d_furo_pino']} x pino do aro O{d_pino}: folga radial {(e['d_furo_pino'] - d_pino) / 2:.3f}; "
+    print(f"\nEngrenamento: distancia entre eixos na caixa {a:.3f} mm (nominal 64T + 11T: {nominal:.3f}; "
+          f"sem folga com pinhao +0,33: {gp_sem_folga(e, 0.33):.3f})")
+    print("  menor distancia entre contornos (mm; negativo = interfere), pior posicao numa volta:")
+    desvios = (-0.10, -0.05, 0.0, +0.10)
+    print("    versao       pinhao   " + "  ".join(f"a{d:+.2f}".replace("+0.00", " caixa") for d in desvios)
+          + "   razao de contato (caixa)")
+    pin = {x: Polygon(gp.perfil_engrenagem(11, e["m"], e["alfa"], x, 0.0)).buffer(0) for x in (0.0, 0.33)}
+    figs = {}
+    for n, v in gp.VERSOES_ENGRENAGEM.items():
+        g0 = Polygon(gp.perfil_versao(n)).buffer(0)
+        for x, p0 in pin.items():
+            r = [menor_folga(g0, p0, a + d, e["z"]) for d in desvios]
+            eps = razao_contato(a, 11, x, e["z"], e["m"], e["alfa"], v["corte_ponta"])
+            print(f"    {n} {v['nome']:8s}  x={x:+.2f}  " + "  ".join(f"{w:+.3f}" for w, _ in r)
+                  + f"   {eps:.2f}" + ("   INTERFERE NA CAIXA" if r[2][0] < 0 else ""))
+            if n == 2:
+                figs[x] = (r[2][1], r[2][0], g0, p0)
+    z_aba, h_pino, d_pino, ang, res = engrenagem_no_aro()
+    print(f"  aro do EVA-RT: aba em z = {z_aba:.2f}, 6 pinos de O{d_pino:.3f} x {h_pino:.2f} mm "
+          f"(a {', '.join(f'{t:.0f}' for t in ang)} graus); engrenagem de {e['largura']:.1f} mm")
+    print(f"  furo dos pinos O{e['d_furo_pino']} x pino O{d_pino:.3f}: folga radial {(e['d_furo_pino'] - d_pino) / 2:.3f}; "
           f"furo central O{e['d_furo_central']} x bucha O6,0: folga radial {(e['d_furo_central'] - 6.0) / 2:.2f}")
+    print("  engrenagem x aro (3D): " + ", ".join(f"versao {n} {w:.3f} mm3" for n, w in res.items()))
+    for n, v in gp.VERSOES_ENGRENAGEM.items():
+        rf = e["m"] * e["z"] / 2 - 1.25 * e["m"] - v["fundo_extra"]
+        print(f"  versao {n}: {n} furo(s) de marca O{e['d_marca']} a r {e['r_marca']}; parede ate o fundo do dente "
+              f"{rf - e['r_marca'] - e['d_marca'] / 2:.2f} mm")
     for nome, d_pneu in (("pneu de O22", 22.0), ("StickyMAX esticado no aro (~O22,5)", 22.5)):
         print(f"  ponta dos dentes a {(d_pneu / 2 - e['m'] * (e['z'] / 2 + 1)):.2f} mm da pista com {nome}")
     if arq:
+        from shapely import affinity
         fig, axs = plt.subplots(1, 2, figsize=(12, 5.4))
-        for ax, (x, (fase, f, p0)) in zip(axs, resultados.items()):
-            g = Polygon(gp.perfil_engrenagem(e["z"], e["m"], e["alfa"], 0.0, e["folga_dente"]))
+        for ax, (x, (fase, f, g0, p0)) in zip(axs, figs.items()):
             p = affinity.translate(affinity.rotate(p0, fase, origin=(0, 0), use_radians=True), a, 0)
-            for poly, c in ((g, CORES["patim"]), (p, "#c9a227")):
+            for poly, c in ((g0, CORES["patim"]), (p, "#c9a227")):
                 xs, ys = poly.exterior.xy
                 ax.fill(xs, ys, fc=c, ec="k", lw=0.4, alpha=0.85)
             ax.set_xlim(a - 4.2, a + 2.6)
             ax.set_ylim(-3.2, 3.2)
             ax.set_aspect("equal")
             ax.grid(alpha=0.25)
-            ax.set_title(f"64T (resina) x pinhão 11T, deslocamento {x:+.2f}\n"
-                         f"entre eixos {a:.2f} mm, menor folga entre flancos {f:.3f} mm".replace(".", ","), fontsize=10)
+            ax.set_title(f"64T versão 2 (média) x pinhão 11T, deslocamento {x:+.2f}\n"
+                         f"entre eixos {a:.2f} mm, menor folga {f:.3f} mm".replace(".", ","), fontsize=10)
         fig.tight_layout()
         fig.savefig(arq, dpi=110)
         plt.close(fig)
+
+
+def gp_sem_folga(e, x_pinhao):
+    """Distancia entre eixos de engrenamento sem folga (x da 64T = 0)."""
+    al = np.radians(e["alfa"])
+    inv = lambda t: np.tan(t) - t
+    alvo = inv(al) + 2 * np.tan(al) * x_pinhao / (e["z"] + 11)
+    lo, hi = al, al + 0.3
+    for _ in range(60):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if inv(mid) < alvo else (lo, mid)
+    return e["m"] * (e["z"] + 11) / 2 * np.cos(al) / np.cos(lo)
 
 
 def fig_patim_3d(esp_barra, arq):

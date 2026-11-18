@@ -6,12 +6,14 @@
 O gerador do esquemático KiCad rev 1.0 (de antes do layout) foi para `historico/esquematico_kicad_rev1.0/gerador/`.
 
 ## pecas_3d/ — peças impressas
-Monta `mecânica/stl/` (subpastas `PETG/` e `PLA/`, conforme o filamento de cada peça) para a placa encomendada (Saturn v12, base de 1,6 mm) e a barra V1 de 1,6 mm. As peças são derivadas das do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0):
+Monta `mecânica/stl/` (subpastas `PETG/`, `PLA/` e `RESINA/`, conforme o material de cada peça) para a placa encomendada (Saturn v12, base de 1,6 mm) e a barra V1 de 1,6 mm. As peças são derivadas das do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0):
 - paramétricas: o patim da barra V1 e as presilhas da vareta de trás e da frente;
 - adaptadas dos STL do EVA-RT: o bloco da transversal (com rebaixo para a asa) e a placa de sucção (com rebaixo para as cabeças);
 - os STL do EVA-RT usados como estão, mais a caixa de redução espelhada. A carcaça da ventoinha e as caixas de redução saem giradas para a posição de impressão;
 - `gabarito_base_teste.stl`: base de teste em PLA, com o contorno e os furos lidos do `.epro`, para montar a ventoinha e as caixas antes de a placa chegar;
-- `engrenagem_64T_m0.3_aro.stl` (resina): engrenagem de dentes evolventes que encaixa nos 6 pinos do `wheel_rim.stl`. O `conferir_montagem.py` confere o engrenamento com o pinhão 11T na distância entre eixos lida do `gearbox.stl`.
+- `engrenagem_64T_m0.3_{1_justa,2_media,3_folgada}.stl` (resina): engrenagem de dentes evolventes que encaixa nos 6 pinos do `wheel_rim.stl`, em 3 versões de folga (`VERSOES_ENGRENAGEM`).
+  - O `conferir_montagem.py` confere em 3D o encaixe no aro.
+  - Confere também o engrenamento com o pinhão 11T (deslocamento 0 e +0,33) na distância entre eixos lida do `gearbox.stl`, e com ela até 0,10 mm mais curta ou mais longa.
 
 A presilha sem braço de baixo e a conferência de parafusos e alturas vieram do repositório do perseguidor (`therickmatos/Perseguidor-de-linha`, `ferramentas/pecas_3d/`). Análise em `mecânica/SUPORTE_BARRA_V1.md`; guia de impressão e montagem em `mecânica/README.md`.
 

@@ -46,7 +46,11 @@ Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por 
 
 | Arquivo | Qtde | Função |
 |---|---|---|
-| `engrenagem_64T_m0.3_aro.stl` | 2 (+1 de reserva) | engrenagem de 64 dentes, módulo 0,3, 2 mm. Encaixa nos 6 pinos do aro e apoia na aba dele. O EVA-RT usa uma comprada; esta foi desenhada para o aro dele |
+| `engrenagem_64T_m0.3_1_justa.stl` | 3 | engrenagem de 64 dentes, módulo 0,3, 2 mm, **versão 1 (justa)**: 1 furo de marca entre os pinos |
+| `engrenagem_64T_m0.3_2_media.stl` | 3 | **versão 2 (média)**: 2 furos de marca |
+| `engrenagem_64T_m0.3_3_folgada.stl` | 3 | **versão 3 (folgada)**: 3 furos de marca |
+
+As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Por que três: ver "Teste das caixas".
 
 Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
 
@@ -65,6 +69,14 @@ Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptaçõ
   - ventilador da peça em 30–50%, parede externa devagar (~20–25 mm/s) e tempo mínimo por camada de ~10 s. Como as peças são pequenas, imprimir várias juntas também dá tempo de esfriar;
   - temperatura do bico e da mesa: as do fabricante do filamento.
 - Placa de sucção: 3 camadas de 0,2 mm.
+- **Resina (engrenagens):**
+  - Antes de imprimir, conferir o pinhão (ver "Primeira impressão").
+  - Deitada, com a face paralela à mesa, sobre suportes finos a ~3 mm da mesa. Os suportes vão numa face só, no anel entre o furo central e os pinos, nunca nos dentes.
+  - Não imprimir direto na mesa: as primeiras camadas recebem exposição longa e engordam os dentes. Também não inclinar, porque os suportes cairiam nos dentes.
+  - As duas faces são iguais. A face dos suportes vai virada para a caixa, onde sobram 0,75 mm; lixar os toquinhos rente.
+  - Camada de 0,05 mm. Se tiver resina tipo ABS ou *tough*, prefira; a comum é mais quebradiça, mas aguenta o 1020.
+  - Lavar bem entre os dentes, com escova macia no álcool isopropílico, e secar antes da pós-cura. Resina que sobra no vão do dente cura junto e trava o engrenamento.
+  - Pós-cura no tempo do fabricante da resina, sem exagerar: em excesso, ela fica quebradiça.
 - Os furos de Ø2,0 e de Ø3,0 da vareta saem justos de propósito, como no original. Se a vareta não entrar, passar broca de 2 mm ou de 3 mm à mão. Como o furo das presilhas agora é fechado, a vareta tem de atravessar as duas presilhas e o bloco: alargar o furo só o bastante para ela deslizar com atrito.
 - Hélice: conferir se gira sem bater antes de dar potência. Se vibrar, imprimir de novo.
 - Imprimir primeiro **uma** presilha de cada tipo e **um** patim e testar na placa, na barra e com a vareta antes do resto.
@@ -79,18 +91,27 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 |---|---|---|---|
 | 1. Teste de medidas | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme nas duas peças, sem trincar; parafuso M2 passando, inclusive no furo do eixo da caixa (Ø2,0); patim na ponta da barra V1. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da mesa 3 |
 | 2. Base de teste e roda | PLA | `gabarito_base_teste.stl`, 1 `wheel_rim.stl`, 4 `bead.stl` | M2 passando nos furos do gabarito; rolamentos 692ZZ firmes no aro; pneu StickyMAX montado no aro |
-| R. Engrenagem | resina | 1 `engrenagem_64T_m0.3_aro.stl` | encaixa nos 6 pinos do aro e apoia na aba; depois imprimir a segunda e a reserva |
+| R. Engrenagens | resina | as 9 de uma vez: 3 de cada versão (cabem em ~75 × 75 mm) | antes: conferir o pinhão (abaixo). Depois: engrenagem entrando nos pinos do aro e apoiando na aba |
 | 3. Ventoinha | PETG | `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, `impeller_fan.stl` (só com o cubo resolvido, ver abaixo) | montar no gabarito e fazer o teste da ventoinha |
 | 4. Resto do PETG | PETG | `gearbox_esquerdo_espelhado.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 2 `presilha_vareta_frente_asa.stl`, `patim_v1_esquerdo_barra1.6.stl`, 2 `bloco_transversal_asa.stl` | com as varetas: montar presilhas, blocos, patins e barra V1 no gabarito; barra paralela e 63,14 mm entre furos |
 | 5. Resto do PLA | PLA | 1 `wheel_rim.stl`, `battery_holder.stl` | — |
 | 6. Reservas | PETG | 1 `impeller_fan.stl`, 1 par de patins | — |
+
+**Antes da resina, conferir o pinhão** (a engrenagem só serve para pinhão de 11 dentes, módulo 0,3):
+- Conte os dentes: têm de ser **11**.
+- Meça com o paquímetro de uma ponta de dente ao lado oposto. Com 11 dentes, o lado oposto é um vão, e a leitura sai ~2% menor que o diâmetro:
+  - ~3,8 mm: pinhão sem deslocamento de perfil;
+  - ~4,0 mm: deslocamento de +0,33.
+  
+  As duas medidas servem.
+- Se não forem 11 dentes, ou se a medida sair longe de 3,8–4,0 mm (5,1 mm, por exemplo, é módulo 0,4), **não imprima**: a engrenagem tem de ser refeita para esse pinhão.
 
 **Roteiro até a placa chegar (5 dias):**
 
 | Dia | Imprimir | Fazer |
 |---|---|---|
 | 1 | mesa 1; mesa 2 | **pedir as varetas** (ver "Ferragens"); checar componentes da BOM e o CH340G; conferir as peças da mesa 1 |
-| 2 | engrenagem (resina); mesa 3 | prensar os pinhões nos 3 motores; montar uma roda completa; teste de bancada da barra V1 (`firmware/teste_barra/`) para decidir o mapa do mux |
+| 2 | engrenagens (resina, as 9); mesa 3 | prensar os pinhões nos 3 motores; montar uma roda completa; teste de bancada da barra V1 (`firmware/teste_barra/`) para decidir o mapa do mux |
 | 3 | mesa 4 | ventoinha no gabarito: teste e vídeo da sucção. Caixas e rodas no gabarito: vídeo das rodas. Compilar o firmware e ajustar o `MAPA_MUX` |
 | 4 | mesa 5 | com as varetas: mecânica completa no gabarito. Gravar o firmware no Nano doador e testar o console pela serial |
 | 5 | mesa 6 | tirar o ATmega do Nano; separar os componentes por etapa de solda; cabo misto da barra; fios dos motores |
@@ -121,7 +142,9 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 - Rolamentos:
   - o de fora vai no fundo do vão de Ø11, a 6 mm da ponta;
   - o de dentro fica rente à aba.
-- Engrenagem de resina: entra nos 6 pinos do aro e apoia na aba, com uma gota de cianoacrilato.
+- Engrenagem de resina: entra nos 6 pinos do aro e apoia na aba. Os pinos ficam rentes à face dela.
+  - O furo dos pinos (Ø3,25 para pino de Ø3,09) é justo de propósito, para a engrenagem ficar centrada. Se não entrar, lixe os pinos de leve e por igual.
+  - Só cole (uma gota de cianoacrilato por pino, sem escorrer para os dentes) depois de escolher a versão no teste das caixas.
 - Buchas (`bead.stl`), uma de cada lado, com o ressalto de Ø3,15 virado para o rolamento:
   - por fora, entre a cabeça do parafuso e o rolamento;
   - por dentro, entre o rolamento e a caixa de redução.
@@ -130,14 +153,31 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 - O parafuso atravessa a roda, a bucha de dentro e a caixa (furo de Ø2,0), e leva a porca do lado de dentro da caixa. Se sobrar ponta depois da porca, cortar.
 - Pinhão: prensar no eixo do motor (na morsa, sem martelo) de modo que cubra a faixa de **0,75 a 2,75 mm a partir da face da caixa**. É onde fica a engrenagem.
 
-**Teste das caixas:**
-- Monte a caixa no gabarito, com o motor, o pinhão e a roda completa.
-- Ligue o motor direto na fonte, começando em ~3 V, e confira se a roda gira macia, sem travar em nenhum ponto da volta.
-- Conferência 2D do engrenamento (`conferencia/engrenamento.png`), com a distância entre o eixo do motor e o da roda tirada da caixa: 11,35 mm (nominal 11,25).
-  - Com o pinhão sem deslocamento de perfil, a folga entre dentes fica em ~0,12 mm.
-  - Com deslocamento de +0,33, comum em pinhões de 11 dentes, fica em ~0,05 mm.
-  - Os dois rodam sem interferência.
-- Se travar, a causa mais provável é a impressão (dente ou furo dos pinos fora de medida). Lixe de leve o furo dos pinos ou imprima de novo.
+**Teste das caixas e escolha da engrenagem:**
+- Monte a caixa no gabarito, com o motor, o pinhão e a roda completa, **com a engrenagem ainda sem cola**.
+- Comece pela versão 1 (1 furo de marca). Gire a roda com a mão uma volta inteira:
+  - se prender em algum ponto, troque pela 2 e depois pela 3;
+  - fique com a mais justa que gira solta a volta toda.
+- Ligue o motor direto na fonte, começando em ~3 V: a roda tem de girar macia, sem estalo e sem travar em nenhum ponto.
+- Use a mesma versão nas duas rodas; as outras ficam de reserva. Só então cole.
+
+Por que três versões:
+- A distância entre o eixo do motor e o da roda na `gearbox.stl` é de 11,35 mm, e a nominal para 64 + 11 dentes é 11,25. Os 11,35 mm são exatamente a distância de engrenamento sem folga de um pinhão com deslocamento de perfil +0,33 (11,346): é o pinhão mais provável do EVA-RT. Mas não dá para saber de antemão:
+  - qual é o seu pinhão (medir, ver acima);
+  - quanto a caixa de PETG encolhe (ela pode sair uns 0,05–0,1 mm mais curta);
+  - quanto a sua impressora de resina engorda o dente.
+- As versões tiram progressivamente mais da espessura do dente e aprofundam o fundo dele. A 2 e a 3 também encurtam a ponta.
+
+Conferência 2D (`conferencia/engrenamento.png`): menor distância entre os dentes na pior posição da volta, em mm. A folga total entre dentes é ~o dobro, e o valor negativo trava.
+
+| Versão (marca) | Pinhão sem deslocamento: caixa / caixa 0,1 mm mais curta | Pinhão +0,33: caixa / caixa 0,1 mm mais curta | Razão de contato (sem desl. / +0,33) |
+|---|---|---|---|
+| 1 justa (1 furo) | 0,064 / 0,024 | 0,030 / **−0,006 (trava)** | 1,28 / 1,45 |
+| 2 média (2 furos) | 0,082 / 0,044 | 0,048 / 0,006 | 1,19 / 1,37 |
+| 3 folgada (3 furos) | 0,101 / 0,064 | 0,067 / 0,031 | 1,11 / 1,29 |
+
+- Com uma razão de contato abaixo de ~1,2, os dentes trocam de contato com mais tranco. Por isso a escolha é a mais justa que gira solta, e não a mais folgada.
+- Se até a 3 travar, a causa é a impressão: dente engordado ou resina que ficou no vão. Escove os vãos com álcool isopropílico e confira de novo.
 
 ## Ferragens
 | Item | Qtde | Onde |
@@ -252,7 +292,8 @@ A saída completa (todas as folgas e alturas) está em `conferencia/relatorio.tx
 - Bloco da transversal × raiz da asa: 0,2 mm de folga. Sem o rebaixo, o bloco entraria 5,5 mm³ na asa.
 - Porca da presilha, com uma face virada para a vareta: 0,2 mm do ressalto (como no original) e 1,2 mm da vareta.
 - Cabeças de parafuso × componentes de baixo: o mais perto é o R25, a 0,13 mm da cabeça da presilha da frente direita.
-- Engrenagem de resina × pinhão 11T, na distância da caixa: sem interferência, com folga entre dentes de ~0,12 mm (pinhão sem deslocamento de perfil) ou ~0,05 mm (deslocamento de +0,33). Ver `conferencia/engrenamento.png` e "Montagem da roda".
+- Engrenagens de resina sobre o `wheel_rim.stl`, em 3D: as três versões apoiam na aba sem interferência, e os pinos (2,0 mm) ficam rentes à face.
+- Engrenagens × pinhão 11T: tabela em "Teste das caixas", com a distância lida da `gearbox.stl` e com ela 0,05 e 0,10 mm mais curta ou 0,10 mm mais longa. Na distância da caixa, nenhuma versão trava com nenhum dos dois pinhões.
 - Vias sob as peças (todas tented, pedido da JLC):
   - as cabeças dos pés de trás da carcaça ficam sobre vias de PWMA_D5, PWMB_D6 e GND, e o fundo do rebaixo da placa de sucção as isola;
   - a presilha da frente apoia sobre vias de +5V e GND, mas é de plástico;
@@ -297,7 +338,8 @@ Se mudar a distância entre furos ou a espessura da barra, rodar de novo o `conf
 
 ## Não conferido
 - Cubo da hélice: furo de Ø3,4 para eixo de 1,2 mm (ver "Primeira impressão").
-- Pinhão 11T comprado: o deslocamento de perfil não é conhecido. O engrenamento foi conferido em 2D para 0 e +0,33, não com a peça real.
+- Pinhão 11T comprado: o deslocamento de perfil não é conhecido (medir antes da resina). O engrenamento foi conferido em 2D para 0 e +0,33, não com a peça real.
+- O quanto a resina engorda o dente e o quanto a caixa de PETG encolhe dependem das impressoras: é o que as três versões cobrem.
 - Buchas (`bead.stl`) e eixo M2 × 30: posição deduzida das medidas do aro e da foto do EVA-RT (porca do lado de dentro), não de documentação.
 - Encaixe dos motores 1020 nas caixas de redução e na carcaça.
 - Comprimento da vareta traseira e posição do apoio da bateria com a GNB 350 mAh.

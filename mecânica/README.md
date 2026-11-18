@@ -5,7 +5,7 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 | Seção | O que tem |
 |---|---|
 | [O que imprimir](#o-que-imprimir) | STL separados por material (`stl/PETG/`, `stl/PLA/` e `stl/RESINA/`), quantidades e configuração |
-| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | roteiro até a placa chegar: ordem das mesas, montagem da roda e testes dos motores |
+| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | roteiro até a placa chegar: as duas mesas e a resina, montagem da roda e testes dos motores |
 | [Ferragens](#ferragens) | varetas, parafusos, porcas, rolamentos e cola |
 | [Ordem de montagem](#ordem-de-montagem) | passo a passo |
 | [Cuidados](#cuidados) | o que pode dar errado na montagem e na pista |
@@ -15,7 +15,7 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`. Os do EVA-RT são cópias de `referencias/eva-rt/3d_models/`; a carcaça e as caixas de redução só foram giradas para a posição de impressão.
 
 ## O que imprimir
-Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por que as peças mudaram".
+As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem em PETG, e assim tudo cabe em duas mesas de PETG e uma leva de resina (ver "Primeira impressão"). O motivo de cada filamento está em "Por que as peças mudaram".
 
 **`stl/PETG/`** (peças sob aperto de parafuso ou perto de motor):
 
@@ -33,11 +33,11 @@ Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por 
 | `impeller_base_2.stl` | 1 | parte de cima da carcaça, segura o motor |
 | `impeller_fan.stl` | 1 | hélice |
 
-**`stl/PLA/`**:
+**`stl/PLA/`** (também servem em PETG):
 
 | Arquivo | Qtde | Função |
 |---|---|---|
-| `wheel_rim.stl` | 2 | aro da roda (rolamentos 692ZZ); o PLA acerta melhor a medida do alojamento |
+| `wheel_rim.stl` | 2 | aro da roda (rolamentos 692ZZ); o PLA acerta melhor a medida do alojamento, mas o PETG serve: a impressão de teste confere o rolamento |
 | `battery_holder.stl` | 1–2 | apoio da bateria na vareta de trás (a foto mostra um); serve PETG também |
 | `bead.stl` | 4 | bucha do eixo da roda, uma de cada lado do aro: o ressalto de Ø3,15 aperta só o anel interno do rolamento (ver "Montagem da roda"); serve PETG também |
 | `gabarito_base_teste.stl` | 1 | **só para testes**: base de 1,6 mm com o contorno e os furos da placa (asas cortadas), para montar a ventoinha e as caixas antes de a placa chegar |
@@ -62,13 +62,13 @@ Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptaçõ
   - A hélice tem 6 corpos no STL (disco + 5 pás). O fatiador junta.
   - O aro tem um degrau interno (do furo de Ø11 para o alojamento de Ø6,2 do rolamento) e uma aba de 1,75 mm no topo. Imprime sem suporte, mas a borda de baixo do alojamento pode cair um pouco: conferir o rolamento.
   - Patim, presilhas e bloco têm o furo da vareta na vertical. O assento das presilhas e o rebaixo do bloco também saem sem suporte.
-- Bico de 0,4 mm, camada de 0,12–0,16 mm, 3 perímetros ou mais, 100% de preenchimento.
+- Bico de 0,4 mm, camada de 0,16 mm com a primeira de 0,2 mm, 3 perímetros ou mais, 100% de preenchimento.
 - PETG:
   - filamento seco e retração bem ajustada: fio solto desbalanceia a hélice e fecha o furo da vareta;
   - em PEI liso, passar cola bastão como separador, porque o PETG gruda demais e arranca a superfície;
   - ventilador da peça em 30–50%, parede externa devagar (~20–25 mm/s) e tempo mínimo por camada de ~10 s. Como as peças são pequenas, imprimir várias juntas também dá tempo de esfriar;
   - temperatura do bico e da mesa: as do fabricante do filamento.
-- Placa de sucção: 3 camadas de 0,2 mm.
+- Placa de sucção: o fundo do rebaixo (0,2 mm) é a primeira camada, e a placa sai com ~0,6 mm.
 - **Resina (engrenagens):**
   - Antes de imprimir, conferir o pinhão (ver "Primeira impressão").
   - Deitada, com a face paralela à mesa, sobre suportes finos a ~3 mm da mesa. Os suportes vão numa face só, no anel entre o furo central e os pinos, nunca nos dentes.
@@ -79,23 +79,24 @@ Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptaçõ
   - Pós-cura no tempo do fabricante da resina, sem exagerar: em excesso, ela fica quebradiça.
 - Os furos de Ø2,0 e de Ø3,0 da vareta saem justos de propósito, como no original. Se a vareta não entrar, passar broca de 2 mm ou de 3 mm à mão. Como o furo das presilhas agora é fechado, a vareta tem de atravessar as duas presilhas e o bloco: alargar o furo só o bastante para ela deslizar com atrito.
 - Hélice: conferir se gira sem bater antes de dar potência. Se vibrar, imprimir de novo.
-- Imprimir primeiro **uma** presilha de cada tipo e **um** patim e testar na placa, na barra e com a vareta antes do resto.
+- A impressão de teste já leva uma presilha de cada tipo e um patim: conferir na barra V1 e com a vareta (ou uma broca de 3 mm) antes do resto.
 - O fundo do esqui desgasta na pista: imprimir um par de reserva.
 
 ## Primeira impressão: ventoinha e motores
 Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø10,18, eixo Ø2,0, rolamento Ø6,19, cubo da hélice). Imprimindo antes, um problema de medida aparece cedo, e dá para filmar a ventoinha e as caixas funcionando sem a placa, montadas no `gabarito_base_teste.stl`.
 
-**Ordem das mesas.** Dá para imprimir tudo antes de a placa chegar. Cada mesa junta peças do mesmo material, e as peças pequenas juntas ajudam o PETG a esfriar entre camadas. A primeira mesa é de teste: só siga depois de conferir as medidas dela.
+**Impressões: duas mesas de PETG e uma leva de resina.** Dá para imprimir tudo antes de a placa chegar. A primeira mesa é curta e de teste: as peças dela também entram no robô, mas só siga depois de conferir as medidas.
 
-| Mesa | Material | Peças | Conferir antes de seguir |
+| Impressão | Material | Peças | Conferir antes de seguir |
 |---|---|---|---|
-| 1. Teste de medidas | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme nas duas peças, sem trincar; parafuso M2 passando, inclusive no furo do eixo da caixa (Ø2,0); patim na ponta da barra V1. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da mesa 3 |
-| 2. Base de teste e roda | PLA | `gabarito_base_teste.stl`, 1 `wheel_rim.stl`, 4 `bead.stl` | M2 passando nos furos do gabarito; rolamentos 692ZZ firmes no aro; pneu StickyMAX montado no aro |
-| R. Engrenagens | resina | as 9 de uma vez: 3 de cada versão (cabem em ~75 × 75 mm) | antes: conferir o pinhão (abaixo). Depois: engrenagem entrando nos pinos do aro e apoiando na aba |
-| 3. Ventoinha | PETG | `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, `impeller_fan.stl` (só com o cubo resolvido, ver abaixo) | montar no gabarito e fazer o teste da ventoinha |
-| 4. Resto do PETG | PETG | `gearbox_esquerdo_espelhado.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 2 `presilha_vareta_frente_asa.stl`, `patim_v1_esquerdo_barra1.6.stl`, 2 `bloco_transversal_asa.stl` | com as varetas: montar presilhas, blocos, patins e barra V1 no gabarito; barra paralela e 63,14 mm entre furos |
-| 5. Resto do PLA | PLA | 1 `wheel_rim.stl`, `battery_holder.stl` | — |
-| 6. Reservas | PETG | 1 `impeller_fan.stl`, 1 par de patins | — |
+| 1. Teste de medidas (curta) | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `wheel_rim.stl`, 2 `bead.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme na caixa e na carcaça, sem trincar; M2 passando, inclusive no furo do eixo da caixa (Ø2,0); rolamentos 692ZZ firmes no aro e pneu montado; patim na ponta da barra V1; vareta (ou broca de 3 mm) passando nas presilhas. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da 2 |
+| 2. Todo o resto | PETG | `gabarito_base_teste.stl`, `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, 2 `impeller_fan.stl` (1 de reserva), `gearbox_esquerdo_espelhado.stl`, 1 `wheel_rim.stl`, 2 `bead.stl`, `battery_holder.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` (reserva), 2 `patim_v1_esquerdo_barra1.6.stl` (1 de reserva), 2 `bloco_transversal_asa.stl` | — |
+| R. Engrenagens | resina | as 9 de uma vez: 3 de cada versão (cabem em ~75 × 75 mm). Pode rodar em paralelo com a 2 | antes: conferir o pinhão (abaixo). Depois: engrenagem entrando nos pinos do aro e apoiando na aba |
+
+- No fatiador: abra os STL, ponha as quantidades e use o arranjo automático (*arrange*). Não é preciso girar nada. A mesa 2 ocupa ~180 × 130 mm.
+- Com a impressora bem calibrada (furos saindo na medida em peças anteriores), dá para juntar a 1 e a 2 numa mesa só, de ~180 × 145 mm. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
+- A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.
+- Com muitas peças de PETG na mesa, ajuste bem a retração e ligue "evitar cruzar perímetros" (*avoid crossing perimeters*): fio solto na hélice desbalanceia.
 
 **Antes da resina, conferir o pinhão** (a engrenagem só serve para pinhão de 11 dentes, módulo 0,3):
 - Conte os dentes: têm de ser **11**.
@@ -110,11 +111,11 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 
 | Dia | Imprimir | Fazer |
 |---|---|---|
-| 1 | mesa 1; mesa 2 | **pedir as varetas** (ver "Ferragens"); checar componentes da BOM e o CH340G; conferir as peças da mesa 1 |
-| 2 | engrenagens (resina, as 9); mesa 3 | prensar os pinhões nos 3 motores; montar uma roda completa; teste de bancada da barra V1 (`firmware/teste_barra/`) para decidir o mapa do mux |
-| 3 | mesa 4 | ventoinha no gabarito: teste e vídeo da sucção. Caixas e rodas no gabarito: vídeo das rodas. Compilar o firmware e ajustar o `MAPA_MUX` |
-| 4 | mesa 5 | com as varetas: mecânica completa no gabarito. Gravar o firmware no Nano doador e testar o console pela serial |
-| 5 | mesa 6 | tirar o ATmega do Nano; separar os componentes por etapa de solda; cabo misto da barra; fios dos motores |
+| 1 | impressão 1 (teste) e, com as medidas conferidas, já começar a 2 | **pedir as varetas** (ver "Ferragens"); checar componentes da BOM e o CH340G; conferir o pinhão |
+| 2 | engrenagens (resina), enquanto a 2 termina | prensar os pinhões nos 3 motores; montar uma roda completa; teste de bancada da barra V1 (`firmware/teste_barra/`) para decidir o mapa do mux |
+| 3 | — | ventoinha no gabarito: teste e vídeo da sucção. Caixas e rodas no gabarito, escolhendo a versão da engrenagem: vídeo das rodas. Compilar o firmware e ajustar o `MAPA_MUX` |
+| 4 | — | com as varetas: mecânica completa no gabarito. Gravar o firmware no Nano doador e testar o console pela serial |
+| 5 | — | tirar o ATmega do Nano; separar os componentes por etapa de solda; cabo misto da barra; fios dos motores |
 
 **Montagem no gabarito:**
 - A frente do gabarito é o lado da aba da J2.
@@ -122,7 +123,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 - Caixas de redução: M2 × 6 e porca, como na placa.
 - O gabarito tem a mesma espessura da placa (1,6 mm), então os comprimentos de parafuso são os mesmos. Os furos dele são de Ø2,2, para o M2 passar sem broca.
 
-**Cubo da hélice (resolver antes de imprimir):**
+**Cubo da hélice (resolver antes de montar a hélice):**
 - O furo do cubo tem Ø3,4 e atravessa o cubo todo (4 mm), mas o eixo do 1020 tem 1,2 mm. O EVA-RT não documenta o que vai no meio.
 - Pela medida, o mais provável é um **pinhão 11T M0,3 prensado no eixo da ventoinha** (furo de 1,15 mm, como nos motores das rodas). O pinhão é então cravado no cubo, com os dentes (Ø3,9) mordendo o plástico, mais uma gota de cola.
 - Confira se sobrou um pinhão para o terceiro motor.
@@ -182,8 +183,8 @@ Conferência 2D (`conferencia/engrenamento.png`): menor distância entre os dent
 ## Ferragens
 | Item | Qtde | Onde |
 |---|---|---|
-| Vareta de carbono Ø3 mm × 94 mm | 3 | 2 longitudinais + 1 transversal (o EVA-RT usa tubo). **Não imprimir**: ver abaixo |
-| Vareta de carbono Ø3 mm × ~80 mm | 1 | traseira, entre as caixas de redução (comprimento estimado, medir na montagem) |
+| Vareta Ø3 mm × 94 mm (carbono ou fibra de vidro maciça) | 3 | 2 longitudinais + 1 transversal (o EVA-RT usa tubo de carbono). **Não imprimir**: ver abaixo |
+| Vareta Ø3 mm × ~80 mm | 1 | traseira, entre as caixas de redução (comprimento estimado, medir na montagem) |
 | Parafuso M2 × 30 + porca M2 | 2 | eixo das rodas (ver "Montagem da roda") |
 | Pneu StickyMAX 22 mm (RoboCore) | 2 | um por aro |
 | Parafuso M2 × 6 + porca M2 | 4 | presilhas: cabeça por baixo da base, porca em cima do braço (base 1,6 + braço 1,0 + porca 1,6 = 4,2 mm) |
@@ -197,12 +198,30 @@ Total: 12× M2 × 6, 2× M2 × 8, 2× M2 × 30, 12 porcas M2.
 
 **Varetas: comprar, não imprimir.**
 - Uma vareta de 1 m dá as quatro (3 × 94 + ~80 = ~362 mm).
-- Uma vareta impressa em PETG é ~50 vezes menos rígida que a de carbono. Pela minha estimativa grosseira (≈0,5 N em cada esqui), a ponta com a barra fletiria ~3 mm, contra ~0,06 mm no carbono, e a barra fica a 3,4 mm da pista.
-- Também não sai reta e redonda o bastante para deslizar nos furos.
-- Alternativas:
-  - tubo de carbono 3 × 2 mm: serve e é ~80% tão rígido quanto a maciça;
-  - vareta de inox 304 de Ø3 mm: mais rígida e fácil de achar, mas as 4 pesam ~20 g, contra ~4 g de carbono;
-  - **não** serve tubo quadrado nem vareta de fibra de vidro, que é bem menos rígida.
+- As varetas não seguram só a barra: o esqui é o apoio da frente do robô, com as rodas atrás.
+  - Cerca de ¼ do peso e da sucção vai para os esquis: ~0,5 N em cada, numa estimativa em que a sucção não foi medida.
+  - A vareta trabalha em balanço, com 54–63 mm entre o bloco ou a presilha da frente e o patim.
+- Quando a vareta flete, a frente da base desce, e na altura dos QRE de marca ela desce ~0,4 vez a flexão. Os QRE ficam a 0,7 mm da pista, e as cabeças de parafuso a 0,6–0,8 mm.
+
+| Vareta Ø3 | Flexão na ponta (mm) | Base desce nos QRE (mm) | Massa das 4 | Serve? |
+|---|---|---|---|---|
+| carbono maciço | 0,06–0,09 | 0,02–0,04 | 4,0 g | sim |
+| tubo de carbono 3 × 2 (o do EVA-RT) | 0,07–0,11 | 0,03–0,04 | 2,2 g | sim |
+| fibra de vidro maciça | 0,17–0,26 | 0,07–0,11 | 5,1 g | sim |
+| alumínio maciço | 0,10–0,15 | 0,04–0,06 | 6,9 g | sim |
+| inox ou aço | 0,03–0,05 | 0,01–0,02 | 20 g | sim, mas pesa |
+| barra roscada M3 (aço) | 0,08–0,13 | 0,03–0,05 | 14 g | sim, mas pesa |
+| palito de bambu | 0,44–0,70 | 0,18–0,28 | 1,8 g | só para montar e testar na bancada |
+| impressa em filamento com fibra (PLA-CF, PETG-CF) | 1,3–2,1 | 0,5–0,8 | — | não |
+| impressa em PLA | 2,2–3,5 | 0,9–1,4 | — | não: a base arrasta na pista |
+| impressa em PETG | 3,5–5,5 | 1,4–2,2 | — | não |
+
+- O filamento com fibra de carbono tem fibra picada. Fica 2 a 3 vezes mais rígido que o PETG, enquanto a vareta de carbono, de fibra contínua, é ~60 vezes. Não resolve a vareta, e as outras peças já foram adaptadas para PLA e PETG.
+- Uma vareta impressa também não sai reta e redonda o bastante para deslizar nos furos.
+- O peso conta: massa na frente aumenta a inércia nas curvas. Por isso, inox e barra roscada só em último caso.
+- Fibra de vidro: a maciça de Ø3,0 mm, como a de pipa e de aeromodelismo. Conferir o diâmetro com o paquímetro antes de comprar mais.
+- Para montar na bancada enquanto as varetas não chegam, serve um palito de bambu de 3 mm ou uma broca de 3 mm.
+
 Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeça mais alta encosta na pista (ver alturas abaixo).
 - A cabeça da presilha da frente direita fica a 0,13 mm do R25, que está embaixo da placa.
 - A cabeça da presilha de trás esquerda apoia sobre uma via de GND (tented). Só encosta em GND, então não tem problema.
@@ -277,7 +296,7 @@ Por que cada peça está em cada pasta:
 | `impeller_base_1/2` (carcaça) | **PETG** | motor da ventoinha encostado |
 | hélice | **PETG** | o cubo fica no eixo do motor, que esquenta |
 | placa de sucção | **PETG** | o fundo do rebaixo tem 0,2 mm, e a cabeça do parafuso gira em cima dele ao apertar: o PLA trinca |
-| aros | **PLA** | alojamento do rolamento preciso (Ø6,19 × 3,0); o PLA acerta melhor a medida |
+| aros | **PLA** (ou PETG) | alojamento do rolamento preciso (Ø6,19 × 3,0); o PLA acerta melhor a medida, e em PETG a impressão de teste confere o rolamento |
 | apoio da bateria, bucha (`bead`) | PLA ou PETG | sem esforço |
 
 ## Conferência 3D

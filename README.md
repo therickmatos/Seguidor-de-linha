@@ -14,7 +14,8 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 |---|---|
 | ver a placa encomendada (Gerber, `.epro`, o que foi pedido à JLC) | [`hardware/placa_base/`](hardware/placa_base/README.md) |
 | comprar e soldar os componentes | [`hardware/placa_base/BOM_v12.csv`](hardware/placa_base/BOM_v12.csv) |
-| imprimir as peças (STL separados por material: PETG, PLA e resina) | [`mecânica/stl/`](mecânica/stl/) e [`mecânica/README.md`](mecânica/README.md#o-que-imprimir) |
+| imprimir as peças: um arquivo por impressão, com as peças já posicionadas | [`mecânica/mesas/`](mecânica/mesas/) e [`mecânica/README.md`, "Primeira impressão"](mecânica/README.md#primeira-impressão-ventoinha-e-motores) |
+| ver ou reimprimir uma peça avulsa (STL separados por material: PETG, PLA e resina) | [`mecânica/stl/`](mecânica/stl/) e [`mecânica/README.md`](mecânica/README.md#o-que-imprimir) |
 | imprimir e testar a ventoinha e as caixas de redução antes da placa | [`mecânica/README.md`, "Primeira impressão"](mecânica/README.md#primeira-impressão-ventoinha-e-motores) |
 | comprar parafusos, varetas e rolamentos | [`mecânica/README.md`, "Ferragens"](mecânica/README.md#ferragens) |
 | montar o robô | [`mecânica/README.md`, "Ordem de montagem"](mecânica/README.md#ordem-de-montagem) |
@@ -39,7 +40,7 @@ Em uso na montagem e na pista:
 | Pasta | Conteúdo |
 |---|---|
 | [`hardware/`](hardware/placa_base/README.md) | `placa_base/`: **placa encomendada** (`.epro` do v12, Gerber, BOM, versões anteriores em `historico/`). `barra_v1/`: Gerber da barra de sensores (12 QRE1113, 1,6 mm) |
-| [`mecânica/`](mecânica/README.md) | STL para imprimir, material, parafusos, ordem de montagem e conferência 3D (base e barra de 1,6 mm) |
+| [`mecânica/`](mecânica/README.md) | mesas prontas para imprimir (`mesas/`), STL avulsos por material (`stl/`), parafusos, ordem de montagem e conferência 3D (base e barra de 1,6 mm) |
 | [`firmware/`](firmware/README.md) | `seguidor/` (firmware do robô), `testes/` (simulador do controle no PC), `teste_barra/` (teste de bancada da barra no ESP32-C3) |
 | [`referencias/`](referencias/README.md) | regulamento do TRIF 2026 e cópia do EVA-RT (projeto EasyEDA, Gerbers, PDFs, STL, firmware 1.2.2) |
 

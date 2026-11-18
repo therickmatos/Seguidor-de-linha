@@ -61,7 +61,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - eixo fixo = parafuso M2 × 30, com 2 buchas (`bead.stl`) por roda apertando o anel interno dos rolamentos;
   - distância entre o motor e o eixo na caixa: 11,35 mm (nominal 11,25).
 - Varetas: o Erick não tem as de carbono. **Não imprimir:** o esqui é o apoio da frente do robô (~0,5 N por vareta, em balanço de 54–63 mm), e a base fica a 0,6–0,8 mm da pista. Impressa em PETG, a vareta fletiria 3,5–5,5 mm e a base arrastaria; filamento com fibra de carbono não resolve (1,3–2,1 mm). Servem carbono (1 m basta), fibra de vidro maciça (0,17–0,26 mm) ou alumínio (agulha de tricô de alumínio de 3,0 mm, achada em armarinho, para não depender de encomenda); inox e barra roscada M3 servem, mas pesam 14–20 g. Tabela em `mecânica/README.md` ("Ferragens").
-- Impressão: duas mesas de PETG (uma de teste curta e o resto; as peças de `stl/PLA/` também saem em PETG) e uma leva de resina com as 9 engrenagens.
+- Impressão: duas mesas de PETG (uma de teste curta e o resto; as peças de `stl/PLA/` também saem em PETG) e uma leva de resina com as 9 engrenagens. Os arquivos prontos ficam em `mecânica/mesas/`: 3MF com um objeto por peça, posicionados para uma mesa de 180 × 180 mm, e um STL com as 9 engrenagens. O `gerar_pecas.py` refaz esses arquivos (`MESA_TESTE`, `MESA_RESTO`).
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos
@@ -80,7 +80,7 @@ Branch principal: `main`. Os branches antigos e o que cada um tem estão listado
 |---|---|
 | `hardware/placa_base/` | placa encomendada (v12), Gerber final, BOM, `historico/` com v4 a v10 |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (1,6 mm) |
-| `mecânica/` | STL para imprimir (`stl/PETG/` e `stl/PLA/`, por filamento), guia de montagem, análise do suporte da barra e figuras da conferência 3D |
+| `mecânica/` | mesas prontas para imprimir (`mesas/`), STL avulsos por material (`stl/PETG/`, `stl/PLA/`, `stl/RESINA/`), guia de montagem, análise do suporte da barra e figuras da conferência 3D |
 | `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |
 | `firmware/` | `seguidor/` (firmware do robô), `testes/` (simulador do controle com as pistas TRIF 2025/2024), `teste_barra/` (teste de bancada da barra no ESP32-C3) |
 | `ferramentas/` | `pecas_3d/` (STL e conferência 3D) e `bom_epro.py` |

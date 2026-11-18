@@ -455,8 +455,7 @@ def malha(m: Manifold):
     return np.asarray(msh.vert_properties)[:, :3].astype(np.float64), np.asarray(msh.tri_verts)
 
 
-def gravar_stl(m: Manifold, caminho: Path, nome: str):
-    v, f = malha(m)
+def escrever_stl(v, f, caminho: Path, nome: str):
     tri = v[f]
     n = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
     n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-12)
@@ -467,6 +466,12 @@ def gravar_stl(m: Manifold, caminho: Path, nome: str):
         reg = np.zeros(len(tri), dtype=[("n", "<f4", 3), ("v", "<f4", (3, 3)), ("a", "<u2")])
         reg["n"], reg["v"] = n, tri
         fh.write(reg.tobytes())
+
+
+def gravar_stl(m: Manifold, caminho: Path, nome: str):
+    v, f = malha(m)
+    escrever_stl(v, f, caminho, nome)
+    tri = v[f]
     bb = np.round([v.min(0), v.max(0)], 3).tolist()
     print(f"  {caminho.name:38s} {len(tri):5d} tri  vol {m.volume():7.2f} mm3  caixa {bb}")
 
@@ -516,6 +521,157 @@ def conferir():
     return ok
 
 
+# ----------------------------------------------------------------------------
+# Mesas de impressao: um arquivo por impressao, com as pecas ja posicionadas
+# ----------------------------------------------------------------------------
+# 3MF para o FDM (cada peca e um objeto separado; o fatiador abre com as posicoes)
+# e STL para a resina. Tudo dentro de LADO_MESA, centrado numa mesa de 180 x 180 mm
+# (origem no canto, como o 3MF define). Quantidades: ver "Primeira impressao" no guia.
+MESAS = MECANICA / "mesas"
+LADO_MESA = 170.0          # cabe numa mesa de 180 x 180 mm, com margem
+CENTRO_MESA = 90.0
+VAO_MESA = 6.0             # entre pecas: o PETG puxa fio
+MESA_TESTE = {"PETG/gearbox.stl": 1, "PETG/impeller_base_2.stl": 1, "PLA/wheel_rim.stl": 1, "PLA/bead.stl": 2,
+              "PETG/presilha_vareta_tras_base1.6.stl": 1, "PETG/presilha_vareta_frente_asa.stl": 1,
+              "PETG/patim_v1_direito_barra1.6.stl": 1}
+MESA_RESTO = {"PLA/gabarito_base_teste.stl": 1, "PETG/impeller_base_1.stl": 1, "PETG/placa_succao_rebaixo.stl": 1,
+              "PETG/impeller_fan.stl": 2, "PETG/gearbox_esquerdo_espelhado.stl": 1, "PLA/wheel_rim.stl": 1,
+              "PLA/bead.stl": 2, "PLA/battery_holder.stl": 1, "PETG/presilha_vareta_tras_base1.6.stl": 1,
+              "PETG/presilha_vareta_frente_asa.stl": 1, "PETG/patim_v1_direito_barra1.6.stl": 1,
+              "PETG/patim_v1_esquerdo_barra1.6.stl": 2, "PETG/bloco_transversal_asa.stl": 2}
+MESAS_FDM = {
+    "mesa_1_teste_PETG": MESA_TESTE,
+    "mesa_2_resto_PETG": MESA_RESTO,
+    "mesa_unica_PETG": {k: MESA_TESTE.get(k, 0) + MESA_RESTO.get(k, 0) for k in {**MESA_TESTE, **MESA_RESTO}},
+}
+
+
+def peca_na_origem(rel):
+    """Le o STL, deita o comprido ao longo de x e poe o centro da caixa em (0, 0), com z >= 0."""
+    import trimesh
+    t = trimesh.load(SAIDA / rel)
+    v, f = np.asarray(t.vertices, dtype=np.float64), np.asarray(t.faces)
+    d = v.max(0) - v.min(0)
+    if d[1] > d[0]:
+        v = v[:, [1, 0, 2]] * [-1, 1, 1]          # giro de 90 graus em z
+    v = v - [(v[:, 0].max() + v[:, 0].min()) / 2, (v[:, 1].max() + v[:, 1].min()) / 2, v[:, 2].min()]
+    return v, f
+
+
+def empacotar(dims, lado, vao):
+    """MaxRects (encaixe pelo lado mais curto): poe os retangulos (w, h) num quadrado de
+    lado `lado`, com `vao` entre eles, podendo girar 90 graus. Devolve [(x, y, girou)]
+    (canto de cada um) ou None se nao couber."""
+    livres = [(0.0, 0.0, lado + vao, lado + vao)]
+    pos = [None] * len(dims)
+    for i in sorted(range(len(dims)), key=lambda k: -dims[k][0] * dims[k][1]):
+        melhor = None
+        for fx, fy, fw, fh in livres:
+            for w, h, gir in ((dims[i][0], dims[i][1], False), (dims[i][1], dims[i][0], True)):
+                w, h = w + vao, h + vao
+                if w <= fw + 1e-9 and h <= fh + 1e-9:
+                    nota = (min(fw - w, fh - h), max(fw - w, fh - h))
+                    if melhor is None or nota < melhor[0]:
+                        melhor = (nota, fx, fy, w, h, gir)
+        if melhor is None:
+            return None
+        _, x, y, w, h, gir = melhor
+        pos[i] = (x, y, gir)
+        novos = []
+        for fx, fy, fw, fh in livres:
+            if x >= fx + fw or x + w <= fx or y >= fy + fh or y + h <= fy:
+                novos.append((fx, fy, fw, fh))
+                continue
+            if x > fx:
+                novos.append((fx, fy, x - fx, fh))
+            if x + w < fx + fw:
+                novos.append((x + w, fy, fx + fw - x - w, fh))
+            if y > fy:
+                novos.append((fx, fy, fw, y - fy))
+            if y + h < fy + fh:
+                novos.append((fx, y + h, fw, fy + fh - y - h))
+        livres = [a for a in novos if not any(a != b and a[0] >= b[0] and a[1] >= b[1] and
+                                                  a[0] + a[2] <= b[0] + b[2] and a[1] + a[3] <= b[1] + b[3]
+                                                  for b in novos)]
+    return pos
+
+
+def arranjar(pecas, lado=LADO_MESA, vao=VAO_MESA):
+    """Acha o menor quadrado em que as pecas cabem (passo de 2 mm) e centra o arranjo
+    na mesa. Devolve [(nome, v, f)] ja na posicao final."""
+    lista = []
+    for rel, q in pecas.items():
+        v, f = peca_na_origem(rel)
+        for k in range(q):
+            lista.append((f"{Path(rel).stem}_{k + 1}" if q > 1 else Path(rel).stem, v, f))
+    dims = [(np.ptp(v[:, 0]), np.ptp(v[:, 1])) for _, v, _ in lista]
+    for lado_q in np.arange(40.0, lado + 0.1, 2.0):
+        pos = empacotar(dims, lado_q, vao)
+        if pos:
+            break
+    assert pos, "as pecas nao cabem na mesa"
+    itens = []
+    for (nome, v, f), (w, h), (x, y, gir) in zip(lista, dims, pos):
+        if gir:
+            v, (w, h) = v[:, [1, 0, 2]] * [-1, 1, 1], (h, w)
+        itens.append((nome, v + [x + w / 2, y + h / 2, 0], f))
+    tudo = np.vstack([v for _, v, _ in itens])
+    centro = (tudo.max(0) + tudo.min(0)) / 2
+    return [(n, v + [CENTRO_MESA - centro[0], CENTRO_MESA - centro[1], 0], f) for n, v, f in itens]
+
+
+def gravar_3mf(itens, caminho: Path, titulo: str):
+    """3MF simples: um objeto por peca, ja na posicao (transformacao identidade)."""
+    objs, build = [], []
+    for i, (nome, v, f) in enumerate(itens, 1):
+        vs = "".join(f'<vertex x="{a:.4f}" y="{b:.4f}" z="{c:.4f}"/>' for a, b, c in v)
+        ts = "".join(f'<triangle v1="{a}" v2="{b}" v3="{c}"/>' for a, b, c in f)
+        objs.append(f'<object id="{i}" type="model" name="{nome}"><mesh><vertices>{vs}</vertices>'
+                    f'<triangles>{ts}</triangles></mesh></object>')
+        build.append(f'<item objectid="{i}"/>')
+    modelo = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+              '<model unit="millimeter" xml:lang="pt-BR" '
+              'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">'
+              f'<metadata name="Title">{titulo}</metadata>'
+              '<metadata name="Copyright">baseado no EVA-RT (EXOTIC TEAM MX), AGPL-3.0</metadata>'
+              f'<resources>{"".join(objs)}</resources><build>{"".join(build)}</build></model>')
+    tipos = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+             '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+             '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+             '<Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/>'
+             '</Types>')
+    rels = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Target="/3D/3dmodel.model" Id="rel0" '
+            'Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>')
+    with zipfile.ZipFile(caminho, "w", zipfile.ZIP_DEFLATED) as z:
+        for nome_arq, txt in (("[Content_Types].xml", tipos), ("_rels/.rels", rels), ("3D/3dmodel.model", modelo)):
+            info = zipfile.ZipInfo(nome_arq, date_time=(2026, 1, 1, 0, 0, 0))   # data fixa: arquivo reprodutivel
+            info.compress_type = zipfile.ZIP_DEFLATED
+            z.writestr(info, txt)
+
+
+def montar_mesas():
+    MESAS.mkdir(parents=True, exist_ok=True)
+    print(f"Mesas em {MESAS.relative_to(RAIZ)}/:")
+    for nome, pecas in MESAS_FDM.items():
+        itens = arranjar(pecas)
+        v = np.vstack([it[1] for it in itens])
+        gravar_3mf(itens, MESAS / f"{nome}.3mf", nome)
+        print(f"  {nome}.3mf  {len(itens):2d} pecas  ocupa {np.ptp(v[:, 0]):.0f} x {np.ptp(v[:, 1]):.0f} mm "
+              f"(x {v[:, 0].min():.0f}-{v[:, 0].max():.0f}, y {v[:, 1].min():.0f}-{v[:, 1].max():.0f})")
+    # resina: 3 de cada versao, uma versao por fileira (1 em cima, 3 embaixo)
+    vs, fs, n0 = [], [], 0
+    for lin, n in enumerate(VERSOES_ENGRENAGEM):
+        v, f = peca_na_origem(f"RESINA/{nome_engrenagem(n)}")
+        for col in range(3):
+            vs.append(v + [CENTRO_MESA + (col - 1) * 24.0, CENTRO_MESA - (lin - 1) * 24.0, 0])
+            fs.append(f + n0)
+            n0 += len(v)
+    escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_9_engrenagens.stl", "9 engrenagens 64T (3 versoes)")
+    print("  resina_9_engrenagens.stl  9 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--conferir", action="store_true",
@@ -556,6 +712,7 @@ def main():
     nome = "gearbox_esquerdo_espelhado.stl"
     gravar_stl(para_impressao(espelhar(carregar_original("gearbox.stl")), GIRO_IMPRESSAO[nome]), destino(nome),
                "gearbox espelhado (lado esquerdo)")
+    montar_mesas()
 
 
 if __name__ == "__main__":

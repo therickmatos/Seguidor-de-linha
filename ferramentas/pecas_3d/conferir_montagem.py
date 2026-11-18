@@ -740,6 +740,48 @@ def fig_patim_3d(esp_barra, arq):
     plt.close(fig)
 
 
+ROTULO_MESA = {"gearbox": "caixa D", "gearbox_esquerdo_espelhado": "caixa E", "impeller_base_1": "carcaça",
+               "impeller_base_2": "tampa\nmotor", "impeller_fan": "hélice", "placa_succao_rebaixo": "placa de sucção",
+               "gabarito_base_teste": "gabarito", "wheel_rim": "aro", "bead": "B", "battery_holder": "bat",
+               "presilha_vareta_tras_base1.6": "PT", "presilha_vareta_frente_asa": "PF",
+               "patim_v1_direito_barra1.6": "pD", "patim_v1_esquerdo_barra1.6": "pE", "bloco_transversal_asa": "bl"}
+
+
+def fig_mesas(arq):
+    """Vista de cima das mesas de mecânica/mesas/ (o mesmo arranjo do gerar_pecas.py)."""
+    import trimesh
+    fig, axs = plt.subplots(1, 4, figsize=(19, 5.6))
+    paineis = [(n, gp.arranjar(p)) for n, p in gp.MESAS_FDM.items()]
+    r = trimesh.load(gp.MESAS / "resina_9_engrenagens.stl")
+    paineis.append(("resina_9_engrenagens", [("engrenagem", np.asarray(r.vertices), np.asarray(r.faces))]))
+    for ax, (nome, itens) in zip(axs, paineis):
+        ax.add_patch(matplotlib.patches.Rectangle((0, 0), 180, 180, fc="#f4f4f4", ec="#999", lw=1))
+        for peca, v, f in itens:
+            m = Manifold(Mesh(vert_properties=np.asarray(v, np.float32), tri_verts=np.asarray(f, np.uint32)))
+            base = re.sub(r"_\d+$", "", peca)
+            c = "#c9a227" if nome.startswith("resina") else CORES["patim"]
+            for pol in m.project().to_polygons():
+                pol = np.asarray(pol)
+                ax.fill(*np.r_[pol, pol[:1]].T, fc=c, ec="k", lw=0.3, alpha=0.8)
+            if base in ROTULO_MESA:
+                cx, cy = (v[:, 0].max() + v[:, 0].min()) / 2, (v[:, 1].max() + v[:, 1].min()) / 2
+                ax.text(cx, cy, ROTULO_MESA[base], ha="center", va="center", fontsize=7, color="#222")
+        ax.set_xlim(-2, 182)
+        ax.set_ylim(-2, 182)
+        ax.set_aspect("equal")
+        ax.set_xticks(range(0, 181, 30))
+        ax.set_yticks(range(0, 181, 30))
+        ax.tick_params(labelsize=7)
+        n = len(itens) if not nome.startswith("resina") else 9
+        ax.set_title(f"{nome}\n{n} peças, mesa de 180 × 180 mm", fontsize=10)
+    fig.text(0.5, 0.01, "PT/PF = presilha de trás/da frente, pD/pE = patim direito/esquerdo, bl = bloco da transversal, "
+             "B = bucha (bead), bat = apoio da bateria. Resina: fileira de cima versão 1, do meio 2, de baixo 3.",
+             ha="center", fontsize=9)
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    fig.savefig(arq, dpi=100)
+    plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--furos", type=float, default=63.14, help="distancia entre furos base-barra (mm)")
@@ -757,6 +799,7 @@ def main():
         fig_patim_3d(a.esp_barra, FIG / "patim_original_x_novo.png")
         fig_corte_presilha(s, FIG / "corte_presilha.png")
         conferir_engrenamento(FIG / "engrenamento.png")
+        fig_mesas(FIG / "mesas.png")
         print(f"Figuras em {FIG.relative_to(RAIZ)}/")
     if a.sem_figuras:
         conferir_engrenamento()

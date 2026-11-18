@@ -5,7 +5,7 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 | Seção | O que tem |
 |---|---|
 | [O que imprimir](#o-que-imprimir) | STL separados por material (`stl/PETG/`, `stl/PLA/` e `stl/RESINA/`), quantidades e configuração |
-| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | roteiro até a placa chegar: as duas mesas e a resina, montagem da roda e testes dos motores |
+| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | roteiro até a placa chegar: as mesas prontas (`mesas/`, um arquivo por impressão), montagem da roda e testes dos motores |
 | [Ferragens](#ferragens) | varetas, parafusos, porcas, rolamentos e cola |
 | [Ordem de montagem](#ordem-de-montagem) | passo a passo |
 | [Cuidados](#cuidados) | o que pode dar errado na montagem e na pista |
@@ -93,8 +93,23 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | 2. Todo o resto | PETG | `gabarito_base_teste.stl`, `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, 2 `impeller_fan.stl` (1 de reserva), `gearbox_esquerdo_espelhado.stl`, 1 `wheel_rim.stl`, 2 `bead.stl`, `battery_holder.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` (reserva), 2 `patim_v1_esquerdo_barra1.6.stl` (1 de reserva), 2 `bloco_transversal_asa.stl` | — |
 | R. Engrenagens | resina | as 9 de uma vez: 3 de cada versão (cabem em ~75 × 75 mm). Pode rodar em paralelo com a 2 | antes: conferir o pinhão (abaixo). Depois: engrenagem entrando nos pinos do aro e apoiando na aba |
 
-- No fatiador: abra os STL, ponha as quantidades e use o arranjo automático (*arrange*). Não é preciso girar nada. A mesa 2 ocupa ~180 × 130 mm.
-- Com a impressora bem calibrada (furos saindo na medida em peças anteriores), dá para juntar a 1 e a 2 numa mesa só, de ~180 × 145 mm. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
+**Arquivos prontos, um por impressão**, em [`mesas/`](mesas/), com as peças já posicionadas e na posição de impressão:
+
+| Arquivo | O que é | Ocupa |
+|---|---|---|
+| `mesas/mesa_1_teste_PETG.3mf` | impressão 1 (teste) | 52 × 51 mm |
+| `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto) | 143 × 144 mm |
+| `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas, para impressora bem calibrada | 152 × 152 mm |
+| `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
+
+![Mesas](conferencia/mesas.png)
+
+- Abra o arquivo no fatiador e imprima: não é preciso girar nem arranjar nada.
+  - Os 3MF abrem no PrusaSlicer, OrcaSlicer, Bambu Studio e Cura, com cada peça como objeto separado e nomeado. Se o fatiador avisar que o 3MF veio de outro programa, é normal: só a geometria importa.
+  - As posições são para uma mesa de 180 × 180 mm, com o grupo no centro, e sobram 14 mm de margem ou mais. Numa mesa maior, se o grupo cair fora do centro, selecione tudo e centralize, sem rearranjar.
+- No fatiador da resina, o STL abre como 9 peças: levante ~3 mm e ponha os suportes como em "Configuração de impressão".
+- A mesa única serve se a impressora estiver bem calibrada, com furos saindo na medida em peças anteriores. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
+- Se alguma peça mudar, o `gerar_pecas.py` refaz os arquivos de `mesas/`.
 - A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.
 - Com muitas peças de PETG na mesa, ajuste bem a retração e ligue "evitar cruzar perímetros" (*avoid crossing perimeters*): fio solto na hélice desbalanceia.
 

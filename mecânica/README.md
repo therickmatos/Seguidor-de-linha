@@ -67,16 +67,16 @@ Origem: presilhas, patins, bloco e placa de sucção são adaptações; o resto 
 ## Primeira impressão: ventoinha e motores
 Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø10,18, eixo Ø2,0, rolamento Ø6,19, cubo da hélice). Imprimindo antes, um problema de medida aparece cedo, e dá para filmar a ventoinha e as caixas funcionando sem a placa, montadas no `gabarito_base_teste.stl`.
 
-**Ordem** (uma peça de cada, conferir e só então imprimir o resto):
-1. Uma caixa de redução (`gearbox.stl`, ~2,2 g de PETG). Conferir:
-   - o motor 1020 tem de entrar firme, sem forçar a ponto de trincar;
-   - o eixo de Ø2 tem de passar;
-   - se o furo sair apertado ou folgado, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes de imprimir as outras.
-2. `impeller_base_2.stl`: tem o mesmo furo de motor, então confere o ajuste da etapa 1.
-3. `gabarito_base_teste.stl` (PLA, ~8,5 g, plano).
-4. `impeller_base_1.stl` (carcaça) e `placa_succao_rebaixo.stl`.
-5. `impeller_fan.stl` (hélice), **depois de resolver o cubo** (abaixo).
-6. Um `wheel_rim.stl` (PLA). Conferir se o rolamento 692ZZ entra firme; depois imprimir o segundo aro e a caixa esquerda.
+**Ordem das mesas.** Dá para imprimir tudo antes de a placa chegar. Cada mesa junta peças do mesmo filamento, e as peças pequenas juntas ajudam o PETG a esfriar entre camadas. A primeira mesa é de teste: só siga depois de conferir as medidas dela.
+
+| Mesa | Filamento | Peças | Conferir antes de seguir |
+|---|---|---|---|
+| 1. Teste de medidas | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme nas duas peças, sem trincar; eixo de Ø2 passando; M2 passando; vareta de Ø3 na presilha e no patim; patim na ponta da barra V1. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da mesa 3 |
+| 2. Base de teste | PLA | `gabarito_base_teste.stl`, 1 `wheel_rim.stl` | M2 passando nos furos do gabarito; rolamento 692ZZ firme no aro |
+| 3. Ventoinha | PETG | `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, `impeller_fan.stl` (só com o cubo resolvido, ver abaixo) | montar no gabarito e fazer o teste da ventoinha |
+| 4. Resto do PETG | PETG | `gearbox_esquerdo_espelhado.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 2 `presilha_vareta_frente_asa.stl`, `patim_v1_esquerdo_barra1.6.stl`, 2 `bloco_transversal_asa.stl` | montar varetas, presilhas, blocos, patins e barra V1 no gabarito: barra paralela e 63,14 mm entre furos |
+| 5. Resto do PLA | PLA | 1 `wheel_rim.stl`, `battery_holder.stl`, `bead.stl` | — |
+| 6. Reservas | PETG | 1 `impeller_fan.stl`, 1 par de patins | — |
 
 **Montagem no gabarito:**
 - A frente do gabarito é o lado da aba da J2.

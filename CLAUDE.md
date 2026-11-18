@@ -55,6 +55,12 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - Os STL ficam separados por filamento em `mecânica/stl/PETG/` e `mecânica/stl/PLA/`; quem decide a pasta é o conjunto `PLA` em `gerar_pecas.py`.
 - Todos os STL saem na posição de impressão, sem suporte. `stl/PLA/gabarito_base_teste.stl` é uma base de teste (contorno e furos do v12, asas cortadas) para montar a ventoinha e as caixas antes da placa.
 - **Em aberto:** o cubo da hélice tem furo de Ø3,4, e o eixo do 1020 tem 1,2 mm. Hipótese: pinhão 11T prensado no eixo e cravado no cubo. Ver "Primeira impressão" em `mecânica/README.md`.
+- Rodas (18/11/2026):
+  - pneu StickyMAX 22 mm da RoboCore (Ø22 × 15, furo de Ø12) no `wheel_rim.stl` do EVA-RT;
+  - engrenagem de 64 dentes (módulo 0,3) impressa em resina (`stl/RESINA/engrenagem_64T_m0.3_aro.stl`), presa nos 6 pinos do aro (Ø3,09, raio 5,45);
+  - eixo fixo = parafuso M2 × 30, com 2 buchas (`bead.stl`) por roda apertando o anel interno dos rolamentos;
+  - distância entre o motor e o eixo na caixa: 11,35 mm (nominal 11,25).
+- Varetas: o Erick não tem as de carbono. **Não imprimir** (PETG flete ~50× mais). Comprar carbono Ø3 (1 m basta) ou, em último caso, inox 304 Ø3 (~20 g).
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos

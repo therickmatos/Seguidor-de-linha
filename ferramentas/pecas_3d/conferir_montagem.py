@@ -569,6 +569,77 @@ def fig_corte_presilha(s, arq):
     plt.close(fig)
 
 
+def distancia_eixos_caixa():
+    """Distancia entre o eixo do motor (furo O10,18) e o eixo da roda (furo O2,0),
+    lida do gearbox.stl (os dois furos sao paralelos a x)."""
+    g = stl("gearbox.stl").transform([[0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 0]])
+    centros = {}
+    for p in g.slice(6.0).to_polygons():
+        p = np.asarray(p)
+        if 0.5 * np.sum(p[:, 0] * np.roll(p[:, 1], -1) - np.roll(p[:, 0], -1) * p[:, 1]) < 0:
+            d = 2 * np.hypot(*(p - p.mean(0)).T).mean()
+            for nome, alvo in (("motor", 10.18), ("eixo", 2.0)):
+                if abs(d - alvo) < 0.1:
+                    centros[nome] = p.mean(0)
+    return float(np.hypot(*(centros["motor"] - centros["eixo"])))
+
+
+def conferir_engrenamento(arq=None):
+    """Engrenagem de 64 dentes (gp.ENGRENAGEM) x pinhao 11T m0,3 na distancia da caixa.
+    Gira as duas juntas por um passo e mede a menor folga entre dentes. Testa o pinhao
+    sem deslocamento de perfil e com +0,33 (comum em pinhoes de 11 dentes)."""
+    from shapely import affinity
+    from shapely.geometry import Polygon, box
+    e = gp.ENGRENAGEM
+    a = distancia_eixos_caixa()
+    nominal = e["m"] * (e["z"] + 11) / 2
+    print(f"\nEngrenamento: distancia entre eixos na caixa {a:.3f} mm (nominal 64T + 11T: {nominal:.3f})")
+    g0 = Polygon(gp.perfil_engrenagem(e["z"], e["m"], e["alfa"], 0.0, e["folga_dente"])).buffer(0)
+    janela = box(a - 4, -4, a + 4, 4)
+    resultados = {}
+    for x in (0.0, 0.33):
+        p0 = Polygon(gp.perfil_engrenagem(11, e["m"], e["alfa"], x, 0.0)).buffer(0)
+        def folga(fase, phi):
+            g = affinity.rotate(g0, phi, origin=(0, 0), use_radians=True).intersection(janela)
+            p = affinity.translate(affinity.rotate(p0, fase - phi * e["z"] / 11, origin=(0, 0),
+                                                   use_radians=True), a, 0)
+            inter = g.intersection(p).area
+            return -inter if inter > 1e-9 else g.distance(p)
+        fases = np.linspace(0, 2 * np.pi / 11, 61)[:-1]
+        phis = np.linspace(0, 2 * np.pi / e["z"], 13)[:-1]
+        piores = [min(folga(f, ph) for ph in phis) for f in fases]
+        k = int(np.argmax(piores))
+        ra_p = e["m"] * 11 / 2 + e["m"] * (1 + x)
+        rf_g = e["m"] * e["z"] / 2 - 1.25 * e["m"]
+        radial = a - rf_g - ra_p
+        resultados[x] = (fases[k], piores[k], p0)
+        print(f"  pinhao x = {x:+.2f}: menor folga entre flancos {piores[k]:.3f} mm "
+              f"(folga total ~{2 * piores[k]:.3f}); folga ponta do pinhao x fundo da engrenagem {radial:.3f} mm"
+              + ("   INTERFERE" if piores[k] < 0 or radial < 0 else ""))
+    d_pino = 3.094
+    print(f"  furo dos pinos O{e['d_furo_pino']} x pino do aro O{d_pino}: folga radial {(e['d_furo_pino'] - d_pino) / 2:.3f}; "
+          f"furo central O{e['d_furo_central']} x bucha O6,0: folga radial {(e['d_furo_central'] - 6.0) / 2:.2f}")
+    for nome, d_pneu in (("pneu de O22", 22.0), ("StickyMAX esticado no aro (~O22,5)", 22.5)):
+        print(f"  ponta dos dentes a {(d_pneu / 2 - e['m'] * (e['z'] / 2 + 1)):.2f} mm da pista com {nome}")
+    if arq:
+        fig, axs = plt.subplots(1, 2, figsize=(12, 5.4))
+        for ax, (x, (fase, f, p0)) in zip(axs, resultados.items()):
+            g = Polygon(gp.perfil_engrenagem(e["z"], e["m"], e["alfa"], 0.0, e["folga_dente"]))
+            p = affinity.translate(affinity.rotate(p0, fase, origin=(0, 0), use_radians=True), a, 0)
+            for poly, c in ((g, CORES["patim"]), (p, "#c9a227")):
+                xs, ys = poly.exterior.xy
+                ax.fill(xs, ys, fc=c, ec="k", lw=0.4, alpha=0.85)
+            ax.set_xlim(a - 4.2, a + 2.6)
+            ax.set_ylim(-3.2, 3.2)
+            ax.set_aspect("equal")
+            ax.grid(alpha=0.25)
+            ax.set_title(f"64T (resina) x pinhão 11T, deslocamento {x:+.2f}\n"
+                         f"entre eixos {a:.2f} mm, menor folga entre flancos {f:.3f} mm".replace(".", ","), fontsize=10)
+        fig.tight_layout()
+        fig.savefig(arq, dpi=110)
+        plt.close(fig)
+
+
 def fig_patim_3d(esp_barra, arq):
     """Patim original do EVA-RT ao lado do patim novo (mesma orientacao de impressao)."""
     from mpl_toolkits.mplot3d.art3d import Poly3DCollection
@@ -619,7 +690,10 @@ def main():
         fig_lateral(s, d, a.esp_barra, FIG / "corte_longitudinal.png")
         fig_patim_3d(a.esp_barra, FIG / "patim_original_x_novo.png")
         fig_corte_presilha(s, FIG / "corte_presilha.png")
+        conferir_engrenamento(FIG / "engrenamento.png")
         print(f"Figuras em {FIG.relative_to(RAIZ)}/")
+    if a.sem_figuras:
+        conferir_engrenamento()
     print(f"\nMaior interferencia: {pior:.3f} mm3")
 
 

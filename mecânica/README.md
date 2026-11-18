@@ -4,8 +4,8 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 
 | Seção | O que tem |
 |---|---|
-| [O que imprimir](#o-que-imprimir) | STL separados por filamento (`stl/PETG/` e `stl/PLA/`), quantidades e configuração |
-| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | ordem para imprimir e testar as peças dos motores antes de a placa chegar |
+| [O que imprimir](#o-que-imprimir) | STL separados por material (`stl/PETG/`, `stl/PLA/` e `stl/RESINA/`), quantidades e configuração |
+| [Primeira impressão: ventoinha e motores](#primeira-impressão-ventoinha-e-motores) | roteiro até a placa chegar: ordem das mesas, montagem da roda e testes dos motores |
 | [Ferragens](#ferragens) | varetas, parafusos, porcas, rolamentos e cola |
 | [Ordem de montagem](#ordem-de-montagem) | passo a passo |
 | [Cuidados](#cuidados) | o que pode dar errado na montagem e na pista |
@@ -39,10 +39,16 @@ Imprima uma pasta inteira de cada vez. O motivo de cada filamento está em "Por 
 |---|---|---|
 | `wheel_rim.stl` | 2 | aro da roda (rolamentos 692ZZ); o PLA acerta melhor a medida do alojamento |
 | `battery_holder.stl` | 1–2 | apoio da bateria na vareta de trás (a foto mostra um); serve PETG também |
-| `bead.stl` | ? | bucha Ø6 / Ø3,15 com furo Ø2,15 (ver "Não conferido"); serve PETG também |
+| `bead.stl` | 4 | bucha do eixo da roda, uma de cada lado do aro: o ressalto de Ø3,15 aperta só o anel interno do rolamento (ver "Montagem da roda"); serve PETG também |
 | `gabarito_base_teste.stl` | 1 | **só para testes**: base de 1,6 mm com o contorno e os furos da placa (asas cortadas), para montar a ventoinha e as caixas antes de a placa chegar |
 
-Origem: presilhas, patins, bloco e placa de sucção são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
+**`stl/RESINA/`**:
+
+| Arquivo | Qtde | Função |
+|---|---|---|
+| `engrenagem_64T_m0.3_aro.stl` | 2 (+1 de reserva) | engrenagem de 64 dentes, módulo 0,3, 2 mm. Encaixa nos 6 pinos do aro e apoia na aba dele. O EVA-RT usa uma comprada; esta foi desenhada para o aro dele |
+
+Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
 
 ### Configuração de impressão
 - **Todos os STL já estão na posição de impressão. Nenhum precisa de suporte:** é só abrir no fatiador e imprimir, sem girar.
@@ -67,16 +73,27 @@ Origem: presilhas, patins, bloco e placa de sucção são adaptações; o resto 
 ## Primeira impressão: ventoinha e motores
 Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø10,18, eixo Ø2,0, rolamento Ø6,19, cubo da hélice). Imprimindo antes, um problema de medida aparece cedo, e dá para filmar a ventoinha e as caixas funcionando sem a placa, montadas no `gabarito_base_teste.stl`.
 
-**Ordem das mesas.** Dá para imprimir tudo antes de a placa chegar. Cada mesa junta peças do mesmo filamento, e as peças pequenas juntas ajudam o PETG a esfriar entre camadas. A primeira mesa é de teste: só siga depois de conferir as medidas dela.
+**Ordem das mesas.** Dá para imprimir tudo antes de a placa chegar. Cada mesa junta peças do mesmo material, e as peças pequenas juntas ajudam o PETG a esfriar entre camadas. A primeira mesa é de teste: só siga depois de conferir as medidas dela.
 
-| Mesa | Filamento | Peças | Conferir antes de seguir |
+| Mesa | Material | Peças | Conferir antes de seguir |
 |---|---|---|---|
-| 1. Teste de medidas | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme nas duas peças, sem trincar; eixo de Ø2 passando; M2 passando; vareta de Ø3 na presilha e no patim; patim na ponta da barra V1. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da mesa 3 |
-| 2. Base de teste | PLA | `gabarito_base_teste.stl`, 1 `wheel_rim.stl` | M2 passando nos furos do gabarito; rolamento 692ZZ firme no aro |
+| 1. Teste de medidas | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme nas duas peças, sem trincar; parafuso M2 passando, inclusive no furo do eixo da caixa (Ø2,0); patim na ponta da barra V1. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da mesa 3 |
+| 2. Base de teste e roda | PLA | `gabarito_base_teste.stl`, 1 `wheel_rim.stl`, 4 `bead.stl` | M2 passando nos furos do gabarito; rolamentos 692ZZ firmes no aro; pneu StickyMAX montado no aro |
+| R. Engrenagem | resina | 1 `engrenagem_64T_m0.3_aro.stl` | encaixa nos 6 pinos do aro e apoia na aba; depois imprimir a segunda e a reserva |
 | 3. Ventoinha | PETG | `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, `impeller_fan.stl` (só com o cubo resolvido, ver abaixo) | montar no gabarito e fazer o teste da ventoinha |
-| 4. Resto do PETG | PETG | `gearbox_esquerdo_espelhado.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 2 `presilha_vareta_frente_asa.stl`, `patim_v1_esquerdo_barra1.6.stl`, 2 `bloco_transversal_asa.stl` | montar varetas, presilhas, blocos, patins e barra V1 no gabarito: barra paralela e 63,14 mm entre furos |
-| 5. Resto do PLA | PLA | 1 `wheel_rim.stl`, `battery_holder.stl`, `bead.stl` | — |
+| 4. Resto do PETG | PETG | `gearbox_esquerdo_espelhado.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 2 `presilha_vareta_frente_asa.stl`, `patim_v1_esquerdo_barra1.6.stl`, 2 `bloco_transversal_asa.stl` | com as varetas: montar presilhas, blocos, patins e barra V1 no gabarito; barra paralela e 63,14 mm entre furos |
+| 5. Resto do PLA | PLA | 1 `wheel_rim.stl`, `battery_holder.stl` | — |
 | 6. Reservas | PETG | 1 `impeller_fan.stl`, 1 par de patins | — |
+
+**Roteiro até a placa chegar (5 dias):**
+
+| Dia | Imprimir | Fazer |
+|---|---|---|
+| 1 | mesa 1; mesa 2 | **pedir as varetas** (ver "Ferragens"); checar componentes da BOM e o CH340G; conferir as peças da mesa 1 |
+| 2 | engrenagem (resina); mesa 3 | prensar os pinhões nos 3 motores; montar uma roda completa; teste de bancada da barra V1 (`firmware/teste_barra/`) para decidir o mapa do mux |
+| 3 | mesa 4 | ventoinha no gabarito: teste e vídeo da sucção. Caixas e rodas no gabarito: vídeo das rodas. Compilar o firmware e ajustar o `MAPA_MUX` |
+| 4 | mesa 5 | com as varetas: mecânica completa no gabarito. Gravar o firmware no Nano doador e testar o console pela serial |
+| 5 | mesa 6 | tirar o ATmega do Nano; separar os componentes por etapa de solda; cabo misto da barra; fios dos motores |
 
 **Montagem no gabarito:**
 - A frente do gabarito é o lado da aba da J2.
@@ -98,16 +115,37 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 - **Para o vídeo da sucção:** apoie o conjunto sobre a manta ou uma superfície lisa e mostre que ele gruda. Para medir, puxe-o para cima com uma balança de mão ou um dinamômetro.
 - Pôr o conjunto em cima de uma balança de cozinha não mede nada: a força fica entre o conjunto e o prato.
 
+**Montagem da roda** (como no EVA-RT, conferido pelo STL do aro e pelas fotos):
+- O aro gira em 2 rolamentos 692ZZ sobre um eixo fixo, que é um **parafuso M2 × 30**. O eixo do motor não encosta na roda: ele só gira o pinhão.
+- Pneu: StickyMAX de 22 mm da RoboCore (Ø22 × 15 mm, furo de Ø12). Ele entra no assento de Ø13 do aro com 1 mm de aperto; água com sabão ajuda. Esticado, fica com ~Ø22,5. O lado do pneu com o rebaixo de Ø15 vai contra a aba do aro.
+- Rolamentos:
+  - o de fora vai no fundo do vão de Ø11, a 6 mm da ponta;
+  - o de dentro fica rente à aba.
+- Engrenagem de resina: entra nos 6 pinos do aro e apoia na aba, com uma gota de cianoacrilato.
+- Buchas (`bead.stl`), uma de cada lado, com o ressalto de Ø3,15 virado para o rolamento:
+  - por fora, entre a cabeça do parafuso e o rolamento;
+  - por dentro, entre o rolamento e a caixa de redução.
+  
+  Elas apertam só o anel interno, que fica parado com o eixo. Sem elas, a cabeça do parafuso e a caixa raspariam na blindagem do rolamento, que gira com o aro.
+- O parafuso atravessa a roda, a bucha de dentro e a caixa (furo de Ø2,0), e leva a porca do lado de dentro da caixa. Se sobrar ponta depois da porca, cortar.
+- Pinhão: prensar no eixo do motor (na morsa, sem martelo) de modo que cubra a faixa de **0,75 a 2,75 mm a partir da face da caixa**. É onde fica a engrenagem.
+
 **Teste das caixas:**
-- Precisa do pinhão prensado no motor (na morsa, sem martelo), da engrenagem de 64 dentes, do eixo de Ø2 e do aro com os rolamentos e o pneu.
-- Enquanto faltar alguma dessas peças, dá para filmar o motor girando preso na caixa.
-- Com tudo, ligue o motor direto na fonte para ver o engrenamento. O EVA-RT dá 0,07 mm de folga entre os dentes, então o engrenamento deve rodar macio.
+- Monte a caixa no gabarito, com o motor, o pinhão e a roda completa.
+- Ligue o motor direto na fonte, começando em ~3 V, e confira se a roda gira macia, sem travar em nenhum ponto da volta.
+- Conferência 2D do engrenamento (`conferencia/engrenamento.png`), com a distância entre o eixo do motor e o da roda tirada da caixa: 11,35 mm (nominal 11,25).
+  - Com o pinhão sem deslocamento de perfil, a folga entre dentes fica em ~0,12 mm.
+  - Com deslocamento de +0,33, comum em pinhões de 11 dentes, fica em ~0,05 mm.
+  - Os dois rodam sem interferência.
+- Se travar, a causa mais provável é a impressão (dente ou furo dos pinos fora de medida). Lixe de leve o furo dos pinos ou imprima de novo.
 
 ## Ferragens
 | Item | Qtde | Onde |
 |---|---|---|
-| Vareta de carbono Ø3 mm × 94 mm | 3 | 2 longitudinais + 1 transversal (o EVA-RT usa tubo) |
+| Vareta de carbono Ø3 mm × 94 mm | 3 | 2 longitudinais + 1 transversal (o EVA-RT usa tubo). **Não imprimir**: ver abaixo |
 | Vareta de carbono Ø3 mm × ~80 mm | 1 | traseira, entre as caixas de redução (comprimento estimado, medir na montagem) |
+| Parafuso M2 × 30 + porca M2 | 2 | eixo das rodas (ver "Montagem da roda") |
+| Pneu StickyMAX 22 mm (RoboCore) | 2 | um por aro |
 | Parafuso M2 × 6 + porca M2 | 4 | presilhas: cabeça por baixo da base, porca em cima do braço (base 1,6 + braço 1,0 + porca 1,6 = 4,2 mm) |
 | Parafuso M2 × 8 + porca M2 | 2 | patins, com a cabeça por baixo e a porca em cima. A pilha é de 7,8 mm (braço 1,0 + barra 1,6 + folga 0,1 + bloco 3,5 + porca 1,6): o M2 × 8 fica justo, e o M2 × 10 dá folga |
 | Parafuso M2 × 6 + porca M2 | 4 | caixas de redução. A pilha é de 5,7 mm (pé 2,5 + base 1,6 + porca 1,6), sem sobra: se a porca não pegar a rosca inteira, usar M2 × 8 |
@@ -115,7 +153,16 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | Rolamento 692ZZ (2 × 6 × 3) | 4 | dois por aro |
 | Cola (cianoacrilato; epóxi se o PETG não colar) | — | travar patins e presilhas na vareta, depois de acertar a distância |
 
-Total: 12× M2 × 6, 2× M2 × 8, 10 porcas M2. Um kit M2 de 4 a 10 mm cobre as variações.
+Total: 12× M2 × 6, 2× M2 × 8, 2× M2 × 30, 12 porcas M2.
+
+**Varetas: comprar, não imprimir.**
+- Uma vareta de 1 m dá as quatro (3 × 94 + ~80 = ~362 mm).
+- Uma vareta impressa em PETG é ~50 vezes menos rígida que a de carbono. Pela minha estimativa grosseira (≈0,5 N em cada esqui), a ponta com a barra fletiria ~3 mm, contra ~0,06 mm no carbono, e a barra fica a 3,4 mm da pista.
+- Também não sai reta e redonda o bastante para deslizar nos furos.
+- Alternativas:
+  - tubo de carbono 3 × 2 mm: serve e é ~80% tão rígido quanto a maciça;
+  - vareta de inox 304 de Ø3 mm: mais rígida e fácil de achar, mas as 4 pesam ~20 g, contra ~4 g de carbono;
+  - **não** serve tubo quadrado nem vareta de fibra de vidro, que é bem menos rígida.
 Use cabeça cilíndrica ou abaulada de até Ø3,8 × 1,6 mm, sem arruela. Cabeça mais alta encosta na pista (ver alturas abaixo).
 - A cabeça da presilha da frente direita fica a 0,13 mm do R25, que está embaixo da placa.
 - A cabeça da presilha de trás esquerda apoia sobre uma via de GND (tented). Só encosta em GND, então não tem problema.
@@ -205,12 +252,13 @@ A saída completa (todas as folgas e alturas) está em `conferencia/relatorio.tx
 - Bloco da transversal × raiz da asa: 0,2 mm de folga. Sem o rebaixo, o bloco entraria 5,5 mm³ na asa.
 - Porca da presilha, com uma face virada para a vareta: 0,2 mm do ressalto (como no original) e 1,2 mm da vareta.
 - Cabeças de parafuso × componentes de baixo: o mais perto é o R25, a 0,13 mm da cabeça da presilha da frente direita.
+- Engrenagem de resina × pinhão 11T, na distância da caixa: sem interferência, com folga entre dentes de ~0,12 mm (pinhão sem deslocamento de perfil) ou ~0,05 mm (deslocamento de +0,33). Ver `conferencia/engrenamento.png` e "Montagem da roda".
 - Vias sob as peças (todas tented, pedido da JLC):
   - as cabeças dos pés de trás da carcaça ficam sobre vias de PWMA_D5, PWMB_D6 e GND, e o fundo do rebaixo da placa de sucção as isola;
   - a presilha da frente apoia sobre vias de +5V e GND, mas é de plástico;
   - as varetas longitudinais passam 1 mm acima da placa.
 
-**Altura até a pista**, com a vareta paralela à pista. Supõe pneu de ~22 mm: pela caixa de redução, o eixo da roda fica 7,0 mm acima da base.
+**Altura até a pista**, com a vareta paralela à pista e pneu de Ø22 (o StickyMAX). Pela caixa de redução, o eixo da roda fica 7,0 mm acima da base. Esticado no aro, o pneu fica com ~Ø22,5: a traseira sobe ~0,25 mm, então a tabela é o pior caso. A sucção amassa o silicone e devolve parte disso.
 
 | Peça | Altura (mm) |
 |---|---|
@@ -249,8 +297,8 @@ Se mudar a distância entre furos ou a espessura da barra, rodar de novo o `conf
 
 ## Não conferido
 - Cubo da hélice: furo de Ø3,4 para eixo de 1,2 mm (ver "Primeira impressão").
-- `bead.stl`: pelas medidas, parece uma bucha do eixo Ø2 junto ao rolamento 692ZZ, não um patim. Não achei nas fotos onde vai nem quantas são.
-- Eixo das rodas, engrenagem de 64 dentes e pneu. A altura até a pista acima supõe pneu de ~22 mm.
+- Pinhão 11T comprado: o deslocamento de perfil não é conhecido. O engrenamento foi conferido em 2D para 0 e +0,33, não com a peça real.
+- Buchas (`bead.stl`) e eixo M2 × 30: posição deduzida das medidas do aro e da foto do EVA-RT (porca do lado de dentro), não de documentação.
 - Encaixe dos motores 1020 nas caixas de redução e na carcaça.
 - Comprimento da vareta traseira e posição do apoio da bateria com a GNB 350 mAh.
 - Módulo HC-05 em pé na J4: a conferência vê só a barra fêmea, não o módulo.

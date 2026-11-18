@@ -96,8 +96,11 @@ GIRO_IMPRESSAO = {
 CABECA_PARA_BAIXO = [[1, 0, 0], [0, -1, 0], [0, 0, -1]]
 
 
+RESINA = {"engrenagem_64T_m0.3_aro.stl"}
+
+
 def destino(nome: str) -> Path:
-    pasta = SAIDA / ("PLA" if nome in PLA else "PETG")
+    pasta = SAIDA / ("RESINA" if nome in RESINA else "PLA" if nome in PLA else "PETG")
     pasta.mkdir(parents=True, exist_ok=True)
     return pasta / nome
 
@@ -358,6 +361,61 @@ def placa_succao(d=D_REBAIXO, fundo=FUNDO_REBAIXO) -> Manifold:
 
 
 # ----------------------------------------------------------------------------
+# Engrenagem de 64 dentes (resina) que encaixa no aro do EVA-RT
+# ----------------------------------------------------------------------------
+# O wheel_rim.stl tem, na ponta de dentro, uma aba de O16,5 x 1,4 mm e 6 pinos de
+# O3,09 x 2,05 mm num circulo de raio 5,45 mm (0, 60, ..., 300 graus). A engrenagem
+# do EVA-RT (64 dentes, modulo 0,3, comprada) apoia na aba, travada pelos pinos.
+# O rolamento fica rente a aba; a bucha (bead.stl) entra pelo furo central.
+ENGRENAGEM = dict(z=64, m=0.3, alfa=20.0, largura=2.0, r_pinos=5.45, d_furo_pino=3.3,
+                  n_pinos=6, d_furo_central=6.6, folga_dente=0.05)
+
+
+def perfil_engrenagem(z, m, alfa=20.0, x=0.0, folga_dente=0.0, n_flanco=24, n_arco=6):
+    """Contorno (anti-horario) de uma engrenagem de dentes retos com flanco evolvente.
+
+    x = deslocamento de perfil; folga_dente = quanto tirar da espessura do dente no
+    circulo primitivo (folga entre dentes). Abaixo do circulo de base o flanco vira
+    radial (sem modelar o rebaixo de corte)."""
+    a = np.radians(alfa)
+    inv = lambda t: np.tan(t) - t
+    rp = m * z / 2
+    rb = rp * np.cos(a)
+    ra = rp + m * (1 + x)
+    rf = rp - m * (1.25 - x)
+    s = m * (np.pi / 2 + 2 * x * np.tan(a)) - folga_dente
+    psi_p = s / (2 * rp)
+    r0 = max(rb, rf)
+    rs = np.linspace(r0, ra, n_flanco)
+    psi = psi_p + inv(a) - inv(np.arccos(np.clip(rb / rs, -1, 1)))
+    assert psi[-1] > 0, "dente em ponta: diminua x ou a folga"
+    pts = []
+    for k in range(z):
+        th = 2 * np.pi * k / z
+        if rf < r0:
+            pts.append((rf, th - psi[0]))
+        pts += [(r, th - q) for r, q in zip(rs, psi)]
+        pts += [(ra, t) for t in np.linspace(th - psi[-1], th + psi[-1], n_arco)[1:-1]]
+        pts += [(r, th + q) for r, q in zip(rs[::-1], psi[::-1])]
+        if rf < r0:
+            pts.append((rf, th + psi[0]))
+        th1 = 2 * np.pi * (k + 1) / z
+        pts += [(rf, t) for t in np.linspace(th + psi[0], th1 - psi[0], n_arco)[1:-1]]
+    return np.array([(r * np.cos(t), r * np.sin(t)) for r, t in pts])
+
+
+def engrenagem_aro(e=ENGRENAGEM) -> Manifold:
+    """Engrenagem de 64 dentes para resina, com os 6 furos dos pinos do aro."""
+    g = poligono(perfil_engrenagem(e["z"], e["m"], e["alfa"], 0.0, e["folga_dente"])).extrude(e["largura"])
+    g -= Manifold.cylinder(e["largura"] + 2, e["d_furo_central"] / 2).translate((0, 0, -1))
+    for k in range(e["n_pinos"]):
+        t = 2 * np.pi * k / e["n_pinos"]
+        g -= Manifold.cylinder(e["largura"] + 2, e["d_furo_pino"] / 2).translate(
+            (e["r_pinos"] * np.cos(t), e["r_pinos"] * np.sin(t), -1))
+    return g
+
+
+# ----------------------------------------------------------------------------
 # Saida
 # ----------------------------------------------------------------------------
 def malha(m: Manifold):
@@ -451,6 +509,7 @@ def main():
                "placa de succao com rebaixo")
     gravar_stl(bloco_transversal(), destino("bloco_transversal_asa.stl"), "bloco da transversal (asa)")
     gravar_stl(gabarito_base(), destino("gabarito_base_teste.stl"), "gabarito da base (teste, PLA)")
+    gravar_stl(engrenagem_aro(), destino("engrenagem_64T_m0.3_aro.stl"), "engrenagem 64T m0.3 para o aro (resina)")
     # pecas do EVA-RT usadas como estao (as de GIRO_IMPRESSAO so giradas para imprimir)
     import shutil
     for nome in EVA_COMO_ESTAO:

@@ -71,6 +71,13 @@ Altura ate a pista (pista em z = -4.0, vareta nivelada; base de 1.6 mm):
 
 Furo da barra em y = 73.890; origem da V1 em y = 77.575; L (eixo das rodas -> sensores centrais) = 107.12 mm
 Face de cima da barra +1.00 mm em relacao a face de cima da base; fundo do patim -4.00; face de baixo da barra -0.60 -> barra 3.40 mm acima da pista
+
+Engrenamento: distancia entre eixos na caixa 11.350 mm (nominal 64T + 11T: 11.250)
+  pinhao x = +0.00: menor folga entre flancos 0.059 mm (folga total ~0.118); folga ponta do pinhao x fundo da engrenagem 0.175 mm
+  pinhao x = +0.33: menor folga entre flancos 0.025 mm (folga total ~0.050); folga ponta do pinhao x fundo da engrenagem 0.076 mm
+  furo dos pinos O3.3 x pino do aro O3.094: folga radial 0.103; furo central O6.6 x bucha O6,0: folga radial 0.30
+  ponta dos dentes a 1.10 mm da pista com pneu de O22
+  ponta dos dentes a 1.35 mm da pista com StickyMAX esticado no aro (~O22,5)
 Figuras em mecânica/conferencia/
 
 Maior interferencia: 0.349 mm3

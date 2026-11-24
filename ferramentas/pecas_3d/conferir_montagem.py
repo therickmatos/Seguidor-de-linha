@@ -569,6 +569,82 @@ def fig_corte_presilha(s, arq):
     plt.close(fig)
 
 
+def conferir_porca_caixa(arq=None):
+    """Porca M2 e ponta do M2 x 6 no rasgo dos pes da caixa de reducao, no gearbox.stl do
+    EVA-RT e na caixa adaptada (gp.caixa_reducao). Referencial do STL: pe em z = -2,5..0,
+    em cima da base; o parafuso vem de baixo e a porca apoia no pe. Devolve a maior
+    interferencia da caixa adaptada (mm3)."""
+    caixas = {"gearbox.stl do EVA-RT (a da mesa 1 de 24/11)": stl("gearbox.stl"),
+              "adaptada (gearbox_direito_porca.stl)": gp.caixa_reducao()}
+    acima = Manifold.cube((60, 60, 20)).translate((-20, -20, 0.01))     # tudo menos o pe
+    z_cab = -2.5 - ESP_BASE
+    comp = 6.0
+    print(f"\nCaixa de reducao: porca M2 ({2 * PORCA_M2[0]:.1f} entre faces x {PORCA_M2[1]}) em cima do pe e "
+          f"M2 x {comp:.0f} de baixo (base {ESP_BASE} + pe 2,5: ponta {z_cab + comp:.1f} mm acima do pe)")
+    r_canto = PORCA_M2[0] / math.cos(math.radians(30))
+
+    def parede(m, x, y, s, z=0.8):
+        """Distancia do eixo do furo ate o plastico, para o lado do corpo (sentido -s)."""
+        a, b = 0.0, 4.0
+        for _ in range(30):
+            c = (a + b) / 2
+            if inter(Manifold.cube((0.02, 0.02, 0.02), True).translate((x, y - s * c, z)), m) > 0:
+                b = c
+            else:
+                a = c
+        return (a + b) / 2
+
+    pior = 0.0
+    for nome, m in caixas.items():
+        sup = m ^ acima
+        for x, y, s in gp.FUROS_PE_CAIXA:
+            # porca com duas faces viradas para a parede (os cantos apontam para +-x)
+            p = Manifold.cylinder(PORCA_M2[1], r_canto, r_canto, 6).translate((x, y, 0.0))
+            ponta = cil_z(x, y, 0.0, z_cab + comp, 0.99)
+            vp, vt = inter(p, sup), inter(ponta, sup)
+            gp_, gt = (folga(p, sup, 3) if vp < 1e-6 else 0.0), (folga(ponta, sup, 3) if vt < 1e-6 else 0.0)
+            if "adaptada" in nome:
+                pior = max(pior, vp, vt)
+            z_ref = (sup ^ cil_z(x, y, 0.01, 20, 0.05)).bounding_box()[2]
+            print(f"  {nome:46s} pe y = {y:6.2f}: reforco a {z_ref:.3f} do pe, parede a {parede(sup, x, y, s):.3f} "
+                  f"do eixo | porca interferencia {vp:5.3f} folga {gp_:5.3f} | ponta do parafuso "
+                  f"interferencia {vt:5.3f} folga {gt:5.3f}")
+    if arq:
+        fig, axs = plt.subplots(1, 2, figsize=(12, 5.2), sharey=True)
+        x, y, s = gp.FUROS_PE_CAIXA[0]
+        for ax, (nome, m) in zip(axs, caixas.items()):
+            pintar(ax, corte(m, "x", x), CORES["presilha"], z=2)
+            ax.fill([y - 4, y + 3.5, y + 3.5, y - 4], [-2.5 - ESP_BASE, -2.5 - ESP_BASE, -2.5, -2.5],
+                    fc=CORES["base"], ec="k", lw=0.5, alpha=0.85, zorder=3)
+            rc, hc = CABECA_M2
+            rp, hp = PORCA_M2
+            for (ya, yb, za, zb) in ((y - 0.99, y + 0.99, z_cab, z_cab + comp), (y - rc, y + rc, z_cab - hc, z_cab),
+                                     (y - rp, y + rp, 0.0, hp)):
+                ax.fill([ya, yb, yb, ya], [za, za, zb, zb], fc="#c9c9c9", ec="k", lw=0.5, alpha=0.8, zorder=5)
+            sup = m ^ acima
+            z_ref = (sup ^ cil_z(x, y, 0.01, 20, 0.05)).bounding_box()[2]
+            y_par = y - s * parede(sup, x, y, s)
+            cota(ax, (y - 2.6, 0.0), (y - 2.6, z_ref), f"{z_ref:.2f}".replace(".", ","), desl=(-0.15, 0), ha="right")
+            cota(ax, (y, 0.8), (y_par, 0.8), f"{abs(y_par - y):.2f}".replace(".", ","), desl=(0, 0.35), fs=8)
+            ax.text(y, hp / 2, "porca", fontsize=7, ha="center", va="center", zorder=6)
+            ax.text(y + 2.2, -2.5 - ESP_BASE / 2, "base 1,6", fontsize=7, color="white", va="center", zorder=6)
+            ax.text(y + 2.2, -1.25, "pé 2,5", fontsize=7, va="center", zorder=6)
+            ax.set_title(nome + f"\nreforço a {z_ref:.2f} mm do pé, parede a {abs(y_par - y):.2f} mm do eixo"
+                         .replace(".", ","), fontsize=10)
+            ax.set_aspect("equal")
+            ax.set_xlim(y - 4, y + 3.5)
+            ax.set_ylim(z_cab - 2.0, 5.5)
+            ax.grid(alpha=0.25)
+            ax.set_xlabel("y no STL (mm): corte pelo furo do pé da frente (o de trás é igual)")
+        axs[0].set_ylabel("z (mm), 0 = face de cima do pé")
+        fig.suptitle(f"Porca M2 (1,6 mm) e M2 × 6 de baixo: a ponta sai {z_cab + comp:.1f} mm acima do pé".replace(".", ","),
+                     fontsize=11)
+        fig.tight_layout()
+        fig.savefig(arq, dpi=110)
+        plt.close(fig)
+    return pior
+
+
 def distancia_eixos_caixa():
     """Distancia entre o eixo do motor (furo O10,18) e o eixo da roda (furo O2,0),
     lida do gearbox.stl (os dois furos sao paralelos a x)."""
@@ -740,7 +816,7 @@ def fig_patim_3d(esp_barra, arq):
     plt.close(fig)
 
 
-ROTULO_MESA = {"gearbox": "caixa D", "gearbox_esquerdo_espelhado": "caixa E", "impeller_base_1": "carcaça",
+ROTULO_MESA = {"gearbox_direito_porca": "caixa D", "gearbox_esquerdo_porca": "caixa E", "impeller_base_1": "carcaça",
                "impeller_base_2": "tampa\nmotor", "impeller_fan": "hélice", "placa_succao_rebaixo": "placa de sucção",
                "gabarito_base_teste": "gabarito", "wheel_rim": "aro", "bead": "B", "battery_holder": "bat",
                "presilha_vareta_tras_base1.6": "PT", "presilha_vareta_frente_asa": "PF",
@@ -799,10 +875,12 @@ def main():
         fig_patim_3d(a.esp_barra, FIG / "patim_original_x_novo.png")
         fig_corte_presilha(s, FIG / "corte_presilha.png")
         conferir_engrenamento(FIG / "engrenamento.png")
+        pior = max(pior, conferir_porca_caixa(FIG / "corte_porca_caixa.png"))
         fig_mesas(FIG / "mesas.png")
         print(f"Figuras em {FIG.relative_to(RAIZ)}/")
     if a.sem_figuras:
         conferir_engrenamento()
+        pior = max(pior, conferir_porca_caixa())
     print(f"\nMaior interferencia: {pior:.3f} mm3")
 
 

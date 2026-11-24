@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Monta a pasta mecânica/stl/ do seguidor RUSH - SATURN v12 (base e barra V1 de
 1,6 mm): patim da barra V1, presilhas da vareta, placa de succao com folga para as
-cabecas dos parafusos e os STL do EVA-RT que sao impressos como estao (mais a caixa
-de reducao espelhada).
+cabecas dos parafusos, caixas de reducao (direita e espelhada) com rasgo para a porca
+M2 e os STL do EVA-RT que sao impressos como estao.
 
 Baseado nas pecas `sensor_sledge.stl` e `barilla_clamp.stl` do EVA-RT
 (c) EXOTIC TEAM MX, AGPL-3.0 - https://github.com/EXOTIC-TEAM-MX/EVA-RT
@@ -68,14 +68,22 @@ FOLGA_BLOCO = 0.3          # folga do rebaixo do bloco da transversal ate a plac
 # rebaixo para a cabeca do parafuso em cada pe).
 # barilla_connection tambem fica de fora: substituido por bloco_transversal(), a mesma
 # peca com um rebaixo para a raiz da asa.
-EVA_COMO_ESTAO = ["gearbox.stl", "wheel_rim.stl", "impeller_base_1.stl", "impeller_base_2.stl",
+EVA_COMO_ESTAO = ["wheel_rim.stl", "impeller_base_1.stl", "impeller_base_2.stl",
                   "impeller_fan.stl", "battery_holder.stl", "bead.stl"]
+# gearbox tambem fica de fora: substituido por caixa_reducao(), a mesma peca com o rasgo
+# da porca dos pes maior (no original a porca M2 nao entra; ver caixa_reducao()).
 
 # Placa de succao (suction_base.stl, 0,6 mm): pes da carcaca da ventoinha em
 # (+-15,556; +-15,556) no robo = (+-15,556; 11,944 e 43,056) no STL (y do STL = y + 27,5).
 PES_SUCCAO_STL = [(sx * 15.556, 27.5 + sy * 15.556) for sx in (-1, 1) for sy in (-1, 1)]
 D_REBAIXO = 4.4            # cabeca M2 de O3,8 + folga
 FUNDO_REBAIXO = 0.2        # plastico que fica entre a cabeca e a base (isola as vias)
+
+# Caixa de reducao (gearbox.stl): furos dos pes no STL, (x, y, sentido da ponta do pe em y).
+# O M2 x 6 vem de baixo: base 1,6 + pe 2,5 = 4,1, e a ponta sai 1,9 mm acima do pe.
+FUROS_PE_CAIXA = ((4.75, -7.52, -1), (4.75, 15.29, +1))
+ALTURA_RASGO_PORCA = 2.3   # era 1,525: porca de 1,6 e ponta do M2 x 6 a 1,9, com folga para o PLA
+PAREDE_RASGO_PORCA = 2.15  # eixo do furo ate a parede (era 1,94): meia porca 2,0 + 0,15
 
 # Filamento de cada peca (so PLA e PETG; ver mecânica/README.md, "Material").
 # PETG: sob aperto de parafuso ou perto de motor. PLA: aro (alojamento do
@@ -90,8 +98,8 @@ PLA = {"wheel_rim.stl", "battery_holder.stl", "bead.stl", "gabarito_base_teste.s
 #            das camadas).
 GIRO_IMPRESSAO = {
     "impeller_base_1.stl": [[1, 0, 0], [0, -1, 0], [0, 0, -1]],
-    "gearbox.stl": [[0, 1, 0], [0, 0, 1], [1, 0, 0]],
-    "gearbox_esquerdo_espelhado.stl": [[0, -1, 0], [0, 0, 1], [-1, 0, 0]],
+    "gearbox_direito_porca.stl": [[0, 1, 0], [0, 0, 1], [1, 0, 0]],
+    "gearbox_esquerdo_porca.stl": [[0, -1, 0], [0, 0, 1], [-1, 0, 0]],
 }
 CABECA_PARA_BAIXO = [[1, 0, 0], [0, -1, 0], [0, 0, -1]]
 
@@ -362,6 +370,28 @@ def placa_succao(d=D_REBAIXO, fundo=FUNDO_REBAIXO) -> Manifold:
 
 
 # ----------------------------------------------------------------------------
+# Caixa de reducao (gearbox) com rasgo para a porca M2
+# ----------------------------------------------------------------------------
+def caixa_reducao(h=ALTURA_RASGO_PORCA, parede=PAREDE_RASGO_PORCA) -> Manifold:
+    """gearbox.stl do EVA-RT com o rasgo da porca dos pes maior.
+
+    No STL (referencial do robo), os pes tem 2,5 mm (z = -2,5..0) e furos de O2,0
+    em FUROS_PE_CAIXA. Sobre cada furo, o reforco inclinado deixa um vao de so
+    1,525 mm, e a parede da caixa fica a 1,94 mm do eixo do furo: a porca M2
+    (1,6 mm, 4,0 entre faces) nao entra. Com a base de 1,6 mm, a ponta do M2 x 6
+    sai 1,9 mm acima do pe e bate no reforco. O corte sobe o fundo do reforco
+    para `h` e afasta a parede para `parede` do eixo, numa faixa de 5,2 mm em
+    torno do furo. O reforco continua por cima da porca e a segura; a parede
+    impede que ela gire (o canto fica a 2,31 mm do eixo). O resto da caixa
+    (motor, eixo da roda, vareta traseira) nao muda."""
+    m = carregar_original("gearbox.stl")
+    for x, y, s in FUROS_PE_CAIXA:
+        y0, y1 = sorted((y - s * parede, y + s * 4.0))     # da parede ate passar da ponta do pe
+        m -= Manifold.cube((5.2, y1 - y0, h)).translate((x - 2.6, y0, 0.0))
+    return m
+
+
+# ----------------------------------------------------------------------------
 # Engrenagem de 64 dentes (resina) que encaixa no aro do EVA-RT
 # ----------------------------------------------------------------------------
 # O wheel_rim.stl tem, na ponta de dentro, uma aba de O16,5 x 1,4 mm e 6 pinos de
@@ -531,17 +561,21 @@ MESAS = MECANICA / "mesas"
 LADO_MESA = 170.0          # cabe numa mesa de 180 x 180 mm, com margem
 CENTRO_MESA = 90.0
 VAO_MESA = 6.0             # entre pecas: o PETG puxa fio
-MESA_TESTE = {"PETG/gearbox.stl": 1, "PETG/impeller_base_2.stl": 1, "PLA/wheel_rim.stl": 1, "PLA/bead.stl": 2,
-              "PETG/presilha_vareta_tras_base1.6.stl": 1, "PETG/presilha_vareta_frente_asa.stl": 1,
+MESA_TESTE = {"PETG/gearbox_direito_porca.stl": 1, "PETG/impeller_base_2.stl": 1, "PLA/wheel_rim.stl": 1,
+              "PLA/bead.stl": 2, "PETG/presilha_vareta_tras_base1.6.stl": 1, "PETG/presilha_vareta_frente_asa.stl": 1,
               "PETG/patim_v1_direito_barra1.6.stl": 1}
 MESA_RESTO = {"PLA/gabarito_base_teste.stl": 1, "PETG/impeller_base_1.stl": 1, "PETG/placa_succao_rebaixo.stl": 1,
-              "PETG/impeller_fan.stl": 2, "PETG/gearbox_esquerdo_espelhado.stl": 1, "PLA/wheel_rim.stl": 1,
+              "PETG/impeller_fan.stl": 2, "PETG/gearbox_esquerdo_porca.stl": 1, "PLA/wheel_rim.stl": 1,
               "PLA/bead.stl": 2, "PLA/battery_holder.stl": 1, "PETG/presilha_vareta_tras_base1.6.stl": 1,
               "PETG/presilha_vareta_frente_asa.stl": 1, "PETG/patim_v1_direito_barra1.6.stl": 1,
               "PETG/patim_v1_esquerdo_barra1.6.stl": 2, "PETG/bloco_transversal_asa.stl": 2}
+# A mesa 1 impressa em 24/11/2026 saiu com a caixa direita do EVA-RT, em que a porca M2
+# nao entra (ver caixa_reducao()). Por isso a mesa 2 leva tambem a caixa direita refeita.
+# A mesa unica (1 e 2 juntas, para quem comeca do zero) leva uma so.
+REFAZER_NA_MESA_2 = {"PETG/gearbox_direito_porca.stl": 1}
 MESAS_FDM = {
     "mesa_1_teste_PETG": MESA_TESTE,
-    "mesa_2_resto_PETG": MESA_RESTO,
+    "mesa_2_resto_PETG": {**MESA_RESTO, **REFAZER_NA_MESA_2},
     "mesa_unica_PETG": {k: MESA_TESTE.get(k, 0) + MESA_RESTO.get(k, 0) for k in {**MESA_TESTE, **MESA_RESTO}},
 }
 
@@ -709,9 +743,11 @@ def main():
             shutil.copyfile(ORIGINAIS / nome, destino(nome))
     print(f"  copiados de {ORIGINAIS.relative_to(RAIZ)}/: {', '.join(EVA_COMO_ESTAO)}")
     # o gearbox.stl e o do lado direito (pinhao para fora em +x); o esquerdo e o espelho dele
-    nome = "gearbox_esquerdo_espelhado.stl"
-    gravar_stl(para_impressao(espelhar(carregar_original("gearbox.stl")), GIRO_IMPRESSAO[nome]), destino(nome),
-               "gearbox espelhado (lado esquerdo)")
+    caixa = caixa_reducao()
+    for nome, m, rot in (("gearbox_direito_porca.stl", caixa, "direita"),
+                         ("gearbox_esquerdo_porca.stl", espelhar(caixa), "esquerda, espelhada")):
+        gravar_stl(para_impressao(m, GIRO_IMPRESSAO[nome]), destino(nome),
+                   f"caixa de reducao {rot}, rasgo da porca M2 de {ALTURA_RASGO_PORCA} mm")
     montar_mesas()
 
 

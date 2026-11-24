@@ -12,7 +12,7 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 | [Por que as peças mudaram](#por-que-as-peças-mudaram) | base de 1,6 mm, asa de gaivota e PLA/PETG |
 | [Conferência 3D](#conferência-3d) | folgas e altura de cada peça até a pista |
 
-A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`. Os do EVA-RT são cópias de `referencias/eva-rt/3d_models/`; a carcaça e as caixas de redução só foram giradas para a posição de impressão.
+A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`. Os do EVA-RT são cópias de `referencias/eva-rt/3d_models/`; a carcaça só foi girada para a posição de impressão. As caixas de redução também saem giradas, e com o rasgo da porca dos pés maior (ver "Por que as peças mudaram").
 
 ## O que imprimir
 As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem em PETG, e assim tudo cabe em duas mesas de PETG e uma leva de resina (ver "Primeira impressão"). O motivo de cada filamento está em "Por que as peças mudaram".
@@ -27,8 +27,8 @@ As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem 
 | `patim_v1_esquerdo_barra1.6.stl` | 1 (+1 de reserva) | patim da barra V1, lado esquerdo |
 | `bloco_transversal_asa.stl` | 2 | une a vareta longitudinal à transversal |
 | `placa_succao_rebaixo.stl` | 1 | placa de sucção de 0,6 mm, com rebaixo para a cabeça do parafuso nos 4 pés |
-| `gearbox.stl` | 1 | caixa de redução **direita** (pinhão para fora) |
-| `gearbox_esquerdo_espelhado.stl` | 1 | caixa de redução esquerda (o EVA-RT publica só um lado) |
+| `gearbox_direito_porca.stl` | 1 | caixa de redução **direita** (pinhão para fora), com o rasgo da porca M2 dos pés maior |
+| `gearbox_esquerdo_porca.stl` | 1 | caixa de redução esquerda: espelho da direita (o EVA-RT publica só um lado) |
 | `impeller_base_1.stl` | 1 | carcaça da ventoinha (4 pés) |
 | `impeller_base_2.stl` | 1 | parte de cima da carcaça, segura o motor |
 | `impeller_fan.stl` | 1 | hélice |
@@ -52,12 +52,12 @@ As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem 
 
 As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Por que três: ver "Teste das caixas".
 
-Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
+Origem: presilhas, patins, bloco, placa de sucção, caixas de redução e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl`, `barilla_connection.stl` e `gearbox.stl` (substituídas pelas adaptadas).
 
 ### Configuração de impressão
 - **Todos os STL já estão na posição de impressão. Nenhum precisa de suporte:** é só abrir no fatiador e imprimir, sem girar.
   - A carcaça (`impeller_base_1`) vai de cabeça para baixo: o topo é plano. Apoiada nos pés, teria ~490 mm² em balanço.
-  - As caixas de redução vão deitadas sobre a face do pinhão. Os furos do motor (Ø10,18) e do eixo (Ø2,0) ficam na vertical: saem redondos, e o aperto do motor fica no plano das camadas, onde a peça é mais forte.
+  - As caixas de redução vão deitadas sobre a face do pinhão. Os furos do motor (Ø10,18) e do eixo (Ø2,0) ficam na vertical: saem redondos, e o aperto do motor fica no plano das camadas, onde a peça é mais forte. Os furos dos pés ficam deitados: se o M2 não passar, broca de 2 mm à mão.
   - A placa de sucção vai com os rebaixos para cima: o fundo de 0,2 mm sai na primeira camada.
   - A hélice tem 6 corpos no STL (disco + 5 pás). O fatiador junta.
   - O aro tem um degrau interno (do furo de Ø11 para o alojamento de Ø6,2 do rolamento) e uma aba de 1,75 mm no topo. Imprime sem suporte, mas a borda de baixo do alojamento pode cair um pouco: conferir o rolamento.
@@ -89,8 +89,8 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 
 | Impressão | Material | Peças | Conferir antes de seguir |
 |---|---|---|---|
-| 1. Teste de medidas (curta) | PETG | `gearbox.stl`, `impeller_base_2.stl`, 1 `wheel_rim.stl`, 2 `bead.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme na caixa e na carcaça, sem trincar; M2 passando, inclusive no furo do eixo da caixa (Ø2,0); rolamentos 692ZZ firmes no aro e pneu montado; patim na ponta da barra V1; vareta (ou broca de 3 mm) passando nas presilhas. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da 2 |
-| 2. Todo o resto | PETG | `gabarito_base_teste.stl`, `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, 2 `impeller_fan.stl` (1 de reserva), `gearbox_esquerdo_espelhado.stl`, 1 `wheel_rim.stl`, 2 `bead.stl`, `battery_holder.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` (reserva), 2 `patim_v1_esquerdo_barra1.6.stl` (1 de reserva), 2 `bloco_transversal_asa.stl` | — |
+| 1. Teste de medidas (curta) | PETG | `gearbox_direito_porca.stl`, `impeller_base_2.stl`, 1 `wheel_rim.stl`, 2 `bead.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` | motor 1020 firme na caixa e na carcaça, sem trincar; M2 passando, inclusive no furo do eixo da caixa (Ø2,0); porca M2 entrando no rasgo dos pés da caixa, por baixo do reforço; rolamentos 692ZZ firmes no aro e pneu montado; patim na ponta da barra V1; vareta (ou broca de 3 mm) passando nas presilhas. Se algum furo sair fora, ajustar a compensação de furos (*hole/XY compensation*) do fatiador antes da 2 |
+| 2. Todo o resto | PETG | `gabarito_base_teste.stl`, `impeller_base_1.stl`, `placa_succao_rebaixo.stl`, 2 `impeller_fan.stl` (1 de reserva), `gearbox_esquerdo_porca.stl`, `gearbox_direito_porca.stl` (a da impressão 1 de 24/11 saiu com o rasgo antigo), 1 `wheel_rim.stl`, 2 `bead.stl`, `battery_holder.stl`, 1 `presilha_vareta_tras_base1.6.stl`, 1 `presilha_vareta_frente_asa.stl`, 1 `patim_v1_direito_barra1.6.stl` (reserva), 2 `patim_v1_esquerdo_barra1.6.stl` (1 de reserva), 2 `bloco_transversal_asa.stl` | — |
 | R. Engrenagens | resina | as 9 de uma vez: 3 de cada versão (cabem em ~75 × 75 mm). Pode rodar em paralelo com a 2 | antes: conferir o pinhão (abaixo). Depois: engrenagem entrando nos pinos do aro e apoiando na aba |
 
 **Arquivos prontos, um por impressão**, em [`mesas/`](mesas/), com as peças já posicionadas e na posição de impressão:
@@ -98,8 +98,8 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | Arquivo | O que é | Ocupa |
 |---|---|---|
 | `mesas/mesa_1_teste_PETG.3mf` | impressão 1 (teste) | 52 × 51 mm |
-| `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto) | 143 × 144 mm |
-| `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas, para impressora bem calibrada | 152 × 152 mm |
+| `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto, mais a caixa direita refeita) | 144 × 143 mm |
+| `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas (com uma caixa direita só), para impressora bem calibrada | 152 × 152 mm |
 | `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
 
 ![Mesas](conferencia/mesas.png)
@@ -112,6 +112,15 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 - Se alguma peça mudar, o `gerar_pecas.py` refaz os arquivos de `mesas/`.
 - A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.
 - Com muitas peças de PETG na mesa, ajuste bem a retração e ligue "evitar cruzar perímetros" (*avoid crossing perimeters*): fio solto na hélice desbalanceia.
+
+**Resultado da impressão 1 (24/11/2026):** saiu em **PLA**, porque o PETG não deu certo na impressora usada. As peças ficaram boas, menos o suporte do motor, que não conectava no furo. Na conferência da caixa de redução apareceu um erro que impede prendê-la com porca:
+- No `gearbox.stl` do EVA-RT, o reforço inclinado passa 1,53 mm acima de cada pé, bem em cima do furo, e a parede da caixa fica a 1,94 mm do eixo do furo. A porca M2 tem 1,6 mm de altura e 4,0 mm entre faces: não entra. A ponta do M2 × 6 também bate no reforço. Não é culpa do PLA: a conferência 3D não punha a porca da caixa (ver "Por que as peças mudaram").
+- Correção: `gearbox_direito_porca.stl` e `gearbox_esquerdo_porca.stl`, com o reforço a 2,3 mm do pé e a parede a 2,15 mm do eixo. O resto da caixa não mudou. A mesa 2 já leva as duas.
+- A caixa de PLA da impressão 1 ainda serve para conferir o motor no furo de Ø10,18, o eixo M2 e a roda. Para prendê-la no gabarito, dá para raspar com estilete o fundo do reforço sobre os dois pés e um pouco da parede até a porca entrar. Sobre o furo, o reforço tem 2 a 3 mm de plástico.
+- Se a mesa 2 também sair em PLA, ela serve para todos os testes de bancada. Para correr, o que muda está em "Por que cada peça está em cada pasta":
+  - caixas, carcaça e hélice ficam perto do motor, que esquenta, e o PLA amolece a ~55–60 °C. Depois de alguns minutos de teste, conferir com o dedo se o motor está quente;
+  - presilhas, patins e bloco podem rachar se o parafuso for apertado demais;
+  - o fundo de 0,2 mm da placa de sucção pode trincar no aperto do parafuso.
 
 **Antes da resina, conferir o pinhão** (a engrenagem só serve para pinhão de 11 dentes, módulo 0,3):
 - Conte os dentes: têm de ser **11**.
@@ -204,7 +213,7 @@ Conferência 2D (`conferencia/engrenamento.png`): menor distância entre os dent
 | Pneu StickyMAX 22 mm (RoboCore) | 2 | um por aro |
 | Parafuso M2 × 6 + porca M2 | 4 | presilhas: cabeça por baixo da base, porca em cima do braço (base 1,6 + braço 1,0 + porca 1,6 = 4,2 mm) |
 | Parafuso M2 × 8 + porca M2 | 2 | patins, com a cabeça por baixo e a porca em cima. A pilha é de 7,8 mm (braço 1,0 + barra 1,6 + folga 0,1 + bloco 3,5 + porca 1,6): o M2 × 8 fica justo, e o M2 × 10 dá folga |
-| Parafuso M2 × 6 + porca M2 | 4 | caixas de redução. A pilha é de 5,7 mm (pé 2,5 + base 1,6 + porca 1,6), sem sobra: se a porca não pegar a rosca inteira, usar M2 × 8 |
+| Parafuso M2 × 6 + porca M2 | 4 | caixas de redução: cabeça por baixo da base e porca no rasgo em cima do pé, por baixo do reforço. A ponta sai 1,9 mm acima do pé (base 1,6 + pé 2,5 = 4,1) e passa 0,3 mm da porca. O rasgo tem 2,3 mm: **não usar M2 × 8**, que bate no reforço |
 | Parafuso M2 × 6, rosca direto no plástico | 4 | por baixo: fundo do rebaixo da placa de sucção → base → pés da carcaça (furo Ø1,85, 5 mm de fundo; entram 4,2 mm) |
 | Rolamento 692ZZ (2 × 6 × 3) | 4 | dois por aro |
 | Cola (cianoacrilato; epóxi se o PETG não colar) | — | travar patins e presilhas na vareta, depois de acertar a distância |
@@ -292,6 +301,13 @@ O EVA-RT foi feito para base de 1,0 mm. Com 1,6 mm:
 Por causa da asa de gaivota, que não depende da espessura:
 - **Bloco da transversal:** o `barilla_connection` desce 1 mm abaixo da face de cima da base. No EVA-RT ele fica à frente da placa; no Saturn, a raiz da asa passa embaixo dele. O bloco novo tem um rebaixo no contorno da placa, com 0,3 mm de folga. É a mesma peça nos dois lados, e o furo da transversal fica igual.
 
+Nas caixas de redução, por causa da porca:
+- **Rasgo da porca dos pés:** no `gearbox.stl`, o reforço inclinado passa 1,53 mm acima de cada pé, em cima do furo, e a parede da caixa fica a 1,94 mm do eixo do furo. A porca M2 (1,6 mm, 4,0 entre faces) não entra. Com a base de 1,6 mm, a ponta do M2 × 6 sai 1,9 mm acima do pé e também bate no reforço. Com a de 1,0 mm do EVA-RT, a ponta do M2 × 5 ficaria rente.
+- A caixa adaptada sobe o fundo do reforço para 2,3 mm e afasta a parede para 2,15 mm do eixo, numa faixa de 5,2 mm em volta de cada furo. O reforço continua por cima da porca e a segura. A parede não deixa a porca girar quando se aperta o parafuso por baixo, porque o canto dela fica a 2,31 mm do eixo.
+- O resto da caixa não mudou: furo do motor, eixo da roda (11,35 mm entre eixos) e furo da vareta traseira.
+
+![Corte pelo pé da caixa](conferencia/corte_porca_caixa.png)
+
 E por imprimir só em PLA e PETG (ver abaixo):
 - **Presilhas com assento:** na presilha original, o canal da vareta é aberto para a placa, e sobra 1 mm de vão sob a vareta. A altura dela depende só do aperto do canal e de cola. As presilhas deste kit têm o furo fechado embaixo: a vareta fica presa para cima e para baixo e entra pela ponta.
 
@@ -329,6 +345,7 @@ O script monta as peças e lê as placas dos arquivos do repositório:
 A saída completa (todas as folgas e alturas) está em `conferencia/relatorio.txt`. O que ele encontra:
 - Nenhuma interferência, a não ser a parede da presilha de trás, que entra 0,05 mm na borda da base, como o `barilla_clamp` no próprio EVA-RT.
 - Bloco da transversal × raiz da asa: 0,2 mm de folga. Sem o rebaixo, o bloco entraria 5,5 mm³ na asa.
+- Porca e parafuso das caixas de redução, no STL da caixa (`conferencia/corte_porca_caixa.png`): no `gearbox.stl` do EVA-RT, a porca M2 entra 1,1 mm³ no reforço e na parede, e a ponta do M2 × 6 também bate. Na caixa adaptada, sobram 0,15 mm entre a porca e a parede e 0,4 mm entre a ponta do parafuso e o reforço.
 - Porca da presilha, com uma face virada para a vareta: 0,2 mm do ressalto (como no original) e 1,2 mm da vareta.
 - Cabeças de parafuso × componentes de baixo: o mais perto é o R25, a 0,13 mm da cabeça da presilha da frente direita.
 - Engrenagens de resina sobre o `wheel_rim.stl`, em 3D: as três versões apoiam na aba sem interferência, e os pinos (2,0 mm) ficam rentes à face.
@@ -383,4 +400,4 @@ Se mudar a distância entre furos ou a espessura da barra, rodar de novo o `conf
 - Encaixe dos motores 1020 nas caixas de redução e na carcaça.
 - Comprimento da vareta traseira e posição do apoio da bateria com a GNB 350 mAh.
 - Módulo HC-05 em pé na J4: a conferência vê só a barra fêmea, não o módulo.
-- Nada foi impresso nem testado fisicamente: a conferência foi toda em 3D.
+- Só a impressão 1 foi feita (em PLA, 24/11/2026; ver "Resultado da impressão 1"). A caixa nova, com o rasgo da porca maior, ainda não foi impressa. O resto da conferência é em 3D.

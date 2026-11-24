@@ -8,8 +8,8 @@ O gerador do esquemático KiCad rev 1.0 (de antes do layout) foi para `historico
 ## pecas_3d/ — peças impressas
 Monta `mecânica/stl/` (subpastas `PETG/`, `PLA/` e `RESINA/`, conforme o material de cada peça) e `mecânica/mesas/` (um arquivo por impressão, com as peças já posicionadas; o conteúdo de cada mesa está em `MESA_TESTE` e `MESA_RESTO`) para a placa encomendada (Saturn v12, base de 1,6 mm) e a barra V1 de 1,6 mm. As peças são derivadas das do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0):
 - paramétricas: o patim da barra V1 e as presilhas da vareta de trás e da frente;
-- adaptadas dos STL do EVA-RT: o bloco da transversal (com rebaixo para a asa) e a placa de sucção (com rebaixo para as cabeças);
-- os STL do EVA-RT usados como estão, mais a caixa de redução espelhada. A carcaça da ventoinha e as caixas de redução saem giradas para a posição de impressão;
+- adaptadas dos STL do EVA-RT: o bloco da transversal (com rebaixo para a asa), a placa de sucção (com rebaixo para as cabeças) e as caixas de redução direita e espelhada (`caixa_reducao()`, com o rasgo da porca M2 dos pés maior);
+- os STL do EVA-RT usados como estão. A carcaça da ventoinha e as caixas de redução saem giradas para a posição de impressão;
 - `gabarito_base_teste.stl`: base de teste em PLA, com o contorno e os furos lidos do `.epro`, para montar a ventoinha e as caixas antes de a placa chegar;
 - `engrenagem_64T_m0.3_{1_justa,2_media,3_folgada}.stl` (resina): engrenagem de dentes evolventes que encaixa nos 6 pinos do `wheel_rim.stl`, em 3 versões de folga (`VERSOES_ENGRENAGEM`).
   - O `conferir_montagem.py` confere em 3D o encaixe no aro.
@@ -23,6 +23,7 @@ Dependências: `pip install -r ferramentas/pecas_3d/requisitos.txt`.
 - `conferir_montagem.py` — monta em 3D as peças e as placas e desenha as figuras de `mecânica/conferencia/`.
   - Entram a base (lida do `.epro`), a V1 (lida do Gerber), varetas, presilhas, blocos, carcaça, patins, parafusos, porcas, placa de sucção, a J3 deitada e os componentes da face de baixo.
   - Lista as interferências, as folgas e a altura de cada peça até a pista.
+  - Confere à parte a porca M2 e a ponta do M2 × 6 no rasgo dos pés da caixa de redução, na do EVA-RT e na adaptada (`conferir_porca_caixa()`).
 
 Rodar na raiz do repositório:
 ```bash

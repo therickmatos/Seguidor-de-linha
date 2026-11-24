@@ -89,6 +89,12 @@ Engrenamento: distancia entre eixos na caixa 11.350 mm (nominal 64T + 11T: 11.25
   versao 3: 3 furo(s) de marca O1.0 a r 8.1; parede ate o fundo do dente 0.54 mm
   ponta dos dentes a 1.10 mm da pista com pneu de O22
   ponta dos dentes a 1.35 mm da pista com StickyMAX esticado no aro (~O22,5)
+
+Caixa de reducao: porca M2 (4.0 entre faces x 1.6) em cima do pe e M2 x 6 de baixo (base 1.6 + pe 2,5: ponta 1.9 mm acima do pe)
+  gearbox.stl do EVA-RT (a da mesa 1 de 24/11)   pe y =  -7.52: reforco a 1.530 do pe, parede a 1.937 do eixo | porca interferencia 1.116 folga 0.000 | ponta do parafuso interferencia 1.138 folga 0.000
+  gearbox.stl do EVA-RT (a da mesa 1 de 24/11)   pe y =  15.29: reforco a 1.530 do pe, parede a 1.936 do eixo | porca interferencia 1.120 folga 0.000 | ponta do parafuso interferencia 1.138 folga 0.000
+  adaptada (gearbox_direito_porca.stl)           pe y =  -7.52: reforco a 2.300 do pe, parede a 2.140 do eixo | porca interferencia 0.000 folga 0.150 | ponta do parafuso interferencia 0.000 folga 0.400
+  adaptada (gearbox_direito_porca.stl)           pe y =  15.29: reforco a 2.300 do pe, parede a 2.140 do eixo | porca interferencia 0.000 folga 0.150 | ponta do parafuso interferencia 0.000 folga 0.400
 Figuras em mecânica/conferencia/
 
 Maior interferencia: 0.349 mm3

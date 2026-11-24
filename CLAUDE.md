@@ -49,7 +49,8 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - as duas presilhas com assento (furo da vareta fechado embaixo), por serem impressas em PLA/PETG;
   - patim da V1 para barra de 1,6 mm (igual ao do perseguidor);
   - bloco da transversal com rebaixo para a asa;
-  - placa de sucção com rebaixo para as cabeças dos pés. O fundo de 0,2 mm isola as vias PWMA_D5/PWMB_D6/GND.
+  - placa de sucção com rebaixo para as cabeças dos pés. O fundo de 0,2 mm isola as vias PWMA_D5/PWMB_D6/GND;
+  - caixas de redução (`gearbox_direito_porca.stl` e a espelhada) com o rasgo da porca M2 dos pés maior: no `gearbox.stl` do EVA-RT, o reforço fica a 1,53 mm do pé e a parede a 1,94 mm do furo, e a porca (1,6 × 4,0) não entra. Na adaptada: 2,3 mm e 2,15 mm. Conferência em `conferir_porca_caixa()`.
 - Barra a 63,14 mm entre furos (L = 107,1), ajustável na vareta. Barra a 3,4 mm da pista; QRE de marca a 0,7 mm; cabeças de parafuso a 0,6–0,8 mm (pneu de ~22 mm, não medido).
 - O Erick tem só PLA e PETG (sem filamento com fibra de carbono). PETG nas peças sob aperto ou perto de motor; PLA nos aros. Tabela em `mecânica/README.md`.
 - Os STL ficam separados por material em `mecânica/stl/PETG/`, `mecânica/stl/PLA/` e `mecânica/stl/RESINA/`; quem decide a pasta são os conjuntos `PLA` e `RESINA` em `gerar_pecas.py`.
@@ -62,7 +63,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - distância entre o motor e o eixo na caixa: 11,35 mm (nominal 11,25).
 - Varetas: o Erick não tem as de carbono. **Não imprimir:** o esqui é o apoio da frente do robô (~0,5 N por vareta, em balanço de 54–63 mm), e a base fica a 0,6–0,8 mm da pista. Impressa em PETG, a vareta fletiria 3,5–5,5 mm e a base arrastaria; filamento com fibra de carbono não resolve (1,3–2,1 mm). Servem carbono (1 m basta), fibra de vidro maciça (0,17–0,26 mm) ou alumínio (agulha de tricô de alumínio de 3,0 mm, achada em armarinho, para não depender de encomenda); inox e barra roscada M3 servem, mas pesam 14–20 g. Tabela em `mecânica/README.md` ("Ferragens").
 - Impressão: duas mesas de PETG (uma de teste curta e o resto; as peças de `stl/PLA/` também saem em PETG) e uma leva de resina com as 9 engrenagens. Os arquivos prontos ficam em `mecânica/mesas/`: 3MF com um objeto por peça, posicionados para uma mesa de 180 × 180 mm, e um STL com as 9 engrenagens. O `gerar_pecas.py` refaz esses arquivos (`MESA_TESTE`, `MESA_RESTO`).
-- Nada foi impresso nem testado fisicamente.
+- **Impressão 1 (teste), 24/11/2026:** saiu em PLA, porque o PETG não deu certo na impressora usada. Peças ok, menos o "suporte para motor", que não conectava no furo. Na conferência apareceu o rasgo da porca da caixa (ver acima), já corrigido; falta o Erick confirmar se era esse o furo (pode ser também o do motor, Ø10,18, na caixa ou na `impeller_base_2`). A mesa 2 leva as duas caixas novas. O material da mesa 2 (PLA ou PETG) é decisão do Erick; os riscos do PLA estão em "Resultado da impressão 1" no `mecânica/README.md`. O resto não foi testado fisicamente.
 
 ## Próximos passos
 - Montagem (peças chegando entre ~10 e 25/11/2026). O furo do XT30 tem 2,54 mm e serve para pino de até ~2,3 mm.

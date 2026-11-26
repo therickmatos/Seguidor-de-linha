@@ -50,7 +50,7 @@ As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem 
 | `engrenagem_64T_m0.3_2_media.stl` | 3 | **versão 2 (média)**: 2 furos de marca |
 | `engrenagem_64T_m0.3_3_folgada.stl` | 3 | **versão 3 (folgada)**: 3 furos de marca |
 
-As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Sem reservas, `mesas/resina_6_engrenagens.stl` tem 2 de cada versão. Por que três: ver "Teste das caixas".
+As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Na impressão mínima, só as 2 engrenagens de uma versão, escolhida pela medida do pinhão (ver "Impressão mínima da resina", depois do teste das caixas). Por que três: ver "Teste das caixas".
 
 Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
 
@@ -103,7 +103,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | `mesas/mesa_funcional_1_pequenas_PLA.3mf` e `.stl` | conjunto funcional em PLA, parte 1: as 13 peças pequenas (4 buchas, 4 presilhas, 2 blocos, 2 patins, apoio da bateria). Ver "Tudo em PLA" | 52 × 54 mm |
 | `mesas/mesa_funcional_2_grandes_PLA.3mf` e `.stl` | parte 2: as 8 grandes (2 caixas, carcaça, tampa, hélice, placa de sucção, 2 aros) | 105 × 109 mm |
 | `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
-| `mesas/resina_6_engrenagens.stl` | sem reservas: 2 de cada versão, nas mesmas fileiras (as duas rodas usam a versão escolhida no teste das caixas) | 44 × 68 mm |
+| `mesas/resina_2_engrenagens_v1_justa.stl`, `_v2_media.stl`, `_v3_folgada.stl` | impressão mínima: só as 2 engrenagens do robô, de uma versão. Imprimir **um** dos três, escolhido pelo pinhão (ver "Impressão mínima da resina") | 44 × 20 mm |
 
 ![Mesas](conferencia/mesas.png)
 
@@ -199,6 +199,16 @@ Conferência 2D (`conferencia/engrenamento.png`): menor distância entre os dent
 - Com uma razão de contato abaixo de ~1,2, os dentes trocam de contato com mais tranco. Por isso a escolha é a mais justa que gira solta, e não a mais folgada.
 - **Caixa em PLA:** o PLA encolhe menos que o PETG, então a caixa fica mais perto dos 11,35 mm. O caso que trava na tabela (versão 1, caixa 0,1 mm mais curta) fica menos provável, mas as três versões continuam valendo, porque o pinhão e a resina seguem desconhecidos.
 - Se até a 3 travar, a causa é a impressão: dente engordado ou resina que ficou no vão. Escove os vãos com álcool isopropílico e confira de novo.
+
+**Impressão mínima da resina (só as 2 engrenagens do robô).** Sem as três versões na mão, a escolha vem antes, pela medida do pinhão (ver "Antes da resina, conferir o pinhão"), e pela tabela acima:
+
+| Pinhão no paquímetro | Arquivo | Por quê |
+|---|---|---|
+| ~3,8 mm (sem deslocamento) | `mesas/resina_2_engrenagens_v1_justa.stl` | não trava em nenhum caso da tabela e tem a maior razão de contato (1,28) |
+| ~4,0 mm (+0,33) | `mesas/resina_2_engrenagens_v2_media.stl` | a v1 trava se a caixa sair 0,1 mm mais curta; a v2 fica com 0,006–0,048 mm e contato de 1,37 |
+| sem medir | `mesas/resina_2_engrenagens_v2_media.stl` | não trava em nenhum caso da tabela, e a razão de contato fica em 1,19 ou mais |
+
+- Se a escolhida travar mesmo com os vãos limpos, imprima o arquivo da versão seguinte, numa nova leva de resina.
 
 ## Ferragens
 | Item | Qtde | Onde |

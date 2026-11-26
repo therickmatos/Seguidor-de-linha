@@ -691,16 +691,15 @@ def montar_mesas():
             n0 += len(v)
     escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_9_engrenagens.stl", "9 engrenagens 64T (3 versoes)")
     print("  resina_9_engrenagens.stl  9 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
-    # sem reservas: 2 de cada versao (as duas rodas usam a mesma, escolhida no teste das caixas)
-    vs, fs, n0 = [], [], 0
-    for lin, n in enumerate(VERSOES_ENGRENAGEM):
+    # impressao minima: so as 2 engrenagens do robo, de uma versao (um arquivo por versao;
+    # a escolha vem da medida do pinhao, ver "Teste das caixas" no guia)
+    for n, ver in VERSOES_ENGRENAGEM.items():
         v, f = peca_na_origem(f"RESINA/{nome_engrenagem(n)}")
-        for col in range(2):
-            vs.append(v + [CENTRO_MESA + (col - 0.5) * 24.0, CENTRO_MESA - (lin - 1) * 24.0, 0])
-            fs.append(f + n0)
-            n0 += len(v)
-    escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_6_engrenagens.stl", "6 engrenagens 64T (3 versoes x 2)")
-    print("  resina_6_engrenagens.stl  6 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
+        vs = np.vstack([v + [CENTRO_MESA + (col - 0.5) * 24.0, CENTRO_MESA, 0] for col in range(2)])
+        fs = np.vstack([f, f + len(v)])
+        arq = f"resina_2_engrenagens_v{n}_{ver['nome']}.stl"
+        escrever_stl(vs, fs, MESAS / arq, f"2 engrenagens 64T versao {n} {ver['nome']}")
+        print(f"  {arq}  2 engrenagens da versao {n}")
 
 
 def main():

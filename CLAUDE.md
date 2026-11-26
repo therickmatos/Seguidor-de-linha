@@ -63,9 +63,10 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
 - Varetas: o Erick não tem as de carbono. **Não imprimir:** o esqui é o apoio da frente do robô (~0,5 N por vareta, em balanço de 54–63 mm), e a base fica a 0,6–0,8 mm da pista. Impressa em PETG, a vareta fletiria 3,5–5,5 mm e a base arrastaria; filamento com fibra de carbono não resolve (1,3–2,1 mm). Servem carbono (1 m basta), fibra de vidro maciça (0,17–0,26 mm) ou alumínio (agulha de tricô de alumínio de 3,0 mm, achada em armarinho, para não depender de encomenda); inox e barra roscada M3 servem, mas pesam 14–20 g. Tabela em `mecânica/README.md` ("Ferragens").
 - Impressão: duas mesas de PETG (uma de teste curta e o resto; as peças de `stl/PLA/` também saem em PETG) e uma leva de resina com as 9 engrenagens. Os arquivos prontos ficam em `mecânica/mesas/`: 3MF com um objeto por peça, posicionados para uma mesa de 180 × 180 mm, e um STL com as 9 engrenagens. O `gerar_pecas.py` refaz esses arquivos (`MESA_TESTE`, `MESA_RESTO`, `MESA_FUNC_PEQUENAS`, `MESA_FUNC_GRANDES`).
 - **Decisão de 26/11/2026:** o conjunto que vai no robô sai todo em **PLA**, numa ida só à impressora (sem reimprimir), com a montagem em casa. A geometria das peças não mudou. Ordem:
-  1. `cupom_furos_PLA.stl`: cupom de furos que acerta a compensação de furos do fatiador pelo motor 1020 e pelo rolamento;
-  2. `mesa_funcional_1_pequenas_PLA` (19 peças);
-  3. `mesa_funcional_2_grandes_PLA` (10 peças).
+  1. `mesa_funcional_1_pequenas_PLA` (19 peças);
+  2. `mesa_funcional_2_grandes_PLA` (10 peças).
+  
+  Sem peça de teste (decisão do Erick): o furo de Ø3,0 da vareta nas presilhas e nos blocos da mesa 1 diz se a mesa 2 precisa de compensação de furos (0, −0,05 ou −0,08 mm; tabela em "Tudo em PLA"). O motor (Ø10,18) e o rolamento (Ø6,20) têm ~0,2 mm de folga de projeto e não se corrigem com broca.
   
   As 21 peças do robô levam 8 reservas baratas: 2 buchas, 1 presilha de cada tipo, 1 patim de cada lado, 1 placa de sucção e 1 hélice. Resina: `resina_6_engrenagens.stl` (2 de cada versão), porque a versão só se escolhe na montagem; os `resina_2_engrenagens_v*` ficam como impressão mínima. Cuidados de impressão e montagem em PLA (calor nas caixas e na ventoinha, aperto leve com cianoacrilato nas porcas das presilhas, fundo da placa de sucção sobre D5/D6/VREF/GND nos pés de trás) em `mecânica/README.md`, "Tudo em PLA". Os 12 furos de fixação do v12 são NPTH de Ø2,00.
 - Nada foi impresso nem testado fisicamente.

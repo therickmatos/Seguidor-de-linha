@@ -522,57 +522,6 @@ def conferir():
 
 
 # ----------------------------------------------------------------------------
-# Cupom de furos: calibra a compensacao de furos antes das mesas (impressao unica)
-# ----------------------------------------------------------------------------
-# Os alojamentos que nao se corrigem com broca (motor 1020 nas caixas e na tampa,
-# rolamento 692ZZ no aro) tem ~0,2 mm de folga no desenho do EVA-RT, para o furo que
-# encolhe na impressora. Cada fileira repete um furo das pecas com 5 diametros
-# (nominal -0,2 ... +0,2); a coluna que der o encaixe certo diz a compensacao de furos
-# do fatiador: compensacao (no raio) = desvio / 2. A coluna escolhida mostra como
-# TODOS os furos reais vao sair com essa compensacao.
-CUPOM_FILEIRAS = [  # (furo, diametro nominal nas pecas, parede do anel)
-    ("motor 1020 (caixas e tampa)", 10.18, 2.0),
-    ("rolamento 692ZZ (aro)", 6.20, 3.4),     # parede do aro em volta do alojamento
-    ("vareta O3 (presilhas, blocos, patins)", 3.0, 1.6),
-    ("M2 (eixo da roda na caixa, presilhas, patins)", 2.0, 1.6),
-]
-CUPOM_DESVIOS = (-0.2, -0.1, 0.0, 0.1, 0.2)
-CUPOM_ALTURA = 3.0         # = largura do rolamento
-
-
-def cupom_furos() -> Manifold:
-    """Fileiras de aneis (uma por furo critico) e colunas por desvio do diametro, da
-    esquerda (-0,2, lado da seta) para a direita (+0,2). A orelha em cima marca a
-    coluna nominal."""
-    passo = max(d + max(CUPOM_DESVIOS) + 2 * w for _, d, w in CUPOM_FILEIRAS) - 0.4
-    xs = [i * passo for i in range(len(CUPOM_DESVIOS))]
-    perfil, furos, y, r_ant = None, [], 0.0, None
-    ys = []
-    for _, d, w in CUPOM_FILEIRAS:
-        r_ext = (d + max(CUPOM_DESVIOS)) / 2 + w
-        if r_ant is not None:
-            y -= r_ant + r_ext + 1.0
-        ys.append((y, r_ext))
-        linha = ret(xs[0], xs[-1], y - 1.0, y + 1.0)
-        for x, dd in zip(xs, CUPOM_DESVIOS):
-            linha += circ(r_ext, x, y)
-            furos.append(circ((d + dd) / 2, x, y))
-        perfil = linha if perfil is None else perfil + linha
-        r_ant = r_ext
-    y_cima, y_baixo = ys[0][0], ys[-1][0]
-    for x in ((xs[0] + xs[1]) / 2, (xs[-2] + xs[-1]) / 2):         # duas travessas
-        perfil += ret(x - 1.0, x + 1.0, y_baixo, y_cima)
-    r0 = ys[0][1]
-    perfil += poligono([(xs[0] - r0 + 0.5, y_cima - 2.5), (xs[0] - r0 + 0.5, y_cima + 2.5),
-                        (xs[0] - r0 - 4.0, y_cima)])                 # seta: lado do -0,2
-    i0 = CUPOM_DESVIOS.index(0.0)
-    perfil += ret(xs[i0] - 1.5, xs[i0] + 1.5, y_cima + r0 - 0.5, y_cima + r0 + 2.0)  # orelha: nominal
-    for f in furos:
-        perfil -= f
-    return extr_z(perfil, 0, CUPOM_ALTURA)
-
-
-# ----------------------------------------------------------------------------
 # Mesas de impressao: um arquivo por impressao, com as pecas ja posicionadas
 # ----------------------------------------------------------------------------
 # 3MF para o FDM (cada peca e um objeto separado; o fatiador abre com as posicoes)
@@ -754,11 +703,6 @@ def montar_mesas():
             n0 += len(v)
     escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_6_engrenagens.stl", "6 engrenagens 64T (3 versoes x 2)")
     print("  resina_6_engrenagens.stl  6 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
-    # cupom de furos, centrado na mesa
-    c = cupom_furos()
-    bb = c.bounding_box()
-    c = c.translate((CENTRO_MESA - (bb[0] + bb[3]) / 2, CENTRO_MESA - (bb[1] + bb[4]) / 2, 0))
-    gravar_stl(c, MESAS / "cupom_furos_PLA.stl", "cupom de furos (calibra a compensacao de furos)")
     # impressao minima: so as 2 engrenagens do robo, de uma versao (um arquivo por versao;
     # a escolha vem da medida do pinhao, ver "Teste das caixas" no guia)
     for n, ver in VERSOES_ENGRENAGEM.items():

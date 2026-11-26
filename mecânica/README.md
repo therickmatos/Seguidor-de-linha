@@ -100,7 +100,6 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | `mesas/mesa_1_teste_PETG.3mf` | impressão 1 (teste) | 52 × 51 mm |
 | `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto) | 143 × 144 mm |
 | `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas, para impressora bem calibrada | 152 × 152 mm |
-| `mesas/cupom_furos_PLA.stl` | cupom de furos: imprimir antes das mesas funcionais para acertar a compensação de furos (ver "Tudo em PLA") | 74 × 44 mm |
 | `mesas/mesa_funcional_1_pequenas_PLA.3mf` e `.stl` | conjunto funcional em PLA, parte 1: 19 peças pequenas (6 buchas, 3 + 3 presilhas, 2 blocos, 2 + 2 patins, apoio da bateria), reservas incluídas | 58 × 56 mm |
 | `mesas/mesa_funcional_2_grandes_PLA.3mf` e `.stl` | parte 2: 10 peças grandes (2 caixas, carcaça, tampa, 2 hélices, 2 placas de sucção, 2 aros), reservas incluídas | 131 × 131 mm |
 | `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
@@ -113,7 +112,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
   - Os 3MF abrem no PrusaSlicer, OrcaSlicer, Bambu Studio e Cura, com cada peça como objeto separado e nomeado. Se o fatiador avisar que o 3MF veio de outro programa, é normal: só a geometria importa.
   - As posições são para uma mesa de 180 × 180 mm, com o grupo no centro, e sobram 14 mm de margem ou mais. Numa mesa maior, se o grupo cair fora do centro, selecione tudo e centralize, sem rearranjar.
 - No fatiador da resina, o STL abre como 9 peças: levante ~3 mm e ponha os suportes como em "Configuração de impressão".
-- As duas mesas funcionais juntas têm as 21 peças que vão no robô e 8 reservas baratas, sem o gabarito, para imprimir em PLA numa ida só, depois do cupom de furos (ver "Tudo em PLA"). Cada uma tem também um STL, um arquivo só com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
+- As duas mesas funcionais juntas têm as 21 peças que vão no robô e 8 reservas baratas, sem o gabarito, para imprimir em PLA numa ida só, a de pequenas primeiro (ver "Tudo em PLA"). Cada uma tem também um STL, um arquivo só com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
 - A mesa única serve se a impressora estiver bem calibrada, com furos saindo na medida em peças anteriores. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
 - Se alguma peça mudar, o `gerar_pecas.py` refaz os arquivos de `mesas/`.
 - A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.
@@ -339,15 +338,14 @@ Por que cada peça está em cada pasta:
 ### Tudo em PLA (mesas funcionais)
 Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, numa ida só à impressora (sem chance de reimprimir), e a montagem é feita em casa. A geometria das peças não muda, e todas saem sem suporte também em PLA. Mudam a impressão, as reservas e a montagem.
 
-**Levar para a impressora:** 1 motor 1020, 1 rolamento 692ZZ, a vareta (ou uma broca de 3 mm), 1 parafuso M2, o paquímetro e um estilete.
+**Levar para a impressora:** a vareta (ou uma broca de 3 mm) e o paquímetro. Se der, também 1 motor 1020 e 1 rolamento 692ZZ, para conferir a mesa 2 ao tirar.
 
-**Ordem das impressões:**
+**Ordem das impressões** (só as duas mesas, sem peça de teste):
 
 | # | Arquivo | Peças | Por quê |
 |---|---|---|---|
-| 0 | `mesas/cupom_furos_PLA.stl` | cupom de furos (~5 g, 74 × 44 × 3 mm) | acerta a compensação de furos antes das peças. O aperto do motor e do rolamento não se corrige depois |
-| 1 | `mesas/mesa_funcional_1_pequenas_PLA.3mf` | 6 buchas, 3 + 3 presilhas, 2 blocos, 2 + 2 patins, apoio da bateria (19) | é rápida, e se uma peça pequena soltar da mesa não estraga as grandes |
-| 2 | `mesas/mesa_funcional_2_grandes_PLA.3mf` | 2 caixas, carcaça, tampa, 2 hélices, 2 placas de sucção, 2 aros (10) | as peças sem conserto, já com a compensação acertada. A hélice sai numa mesa com poucas peças e pega menos fio |
+| 1 | `mesas/mesa_funcional_1_pequenas_PLA.3mf` | 6 buchas, 3 + 3 presilhas, 2 blocos, 2 + 2 patins, apoio da bateria (19) | é rápida, e se uma peça pequena soltar da mesa, não estraga as grandes. Os furos dela dizem se a mesa 2 precisa de ajuste (abaixo) |
+| 2 | `mesas/mesa_funcional_2_grandes_PLA.3mf` | 2 caixas, carcaça, tampa, 2 hélices, 2 placas de sucção, 2 aros (10) | as peças cujos furos não se corrigem com broca. A hélice sai numa mesa com poucas peças e pega menos fio |
 
 **Reservas:** só das peças baratas que podem falhar em casa.
 - 2 buchas, porque somem fácil.
@@ -355,31 +353,30 @@ Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, numa ida s�
 - 1 placa de sucção, porque o fundo de 0,2 mm trinca.
 - 1 hélice, caso vibre.
 - Sem reserva:
-  - caixas, carcaça, tampa e aros: o risco deles é a medida, que o cupom resolve;
+  - caixas, carcaça, tampa e aros: o risco deles é a medida, e uma reserva sairia com o mesmo erro;
   - blocos: não levam parafuso.
 - No 3MF, cada reserva é um objeto separado e pode ser apagada no fatiador.
 
-**Cupom de furos:**
+**Furos: a mesa 1 serve de teste para a 2.**
+- Os alojamentos do motor (Ø10,18, nas caixas e na tampa) e do rolamento (Ø6,20, no aro) têm ~0,2 mm de folga no desenho do EVA-RT, que conta com a impressora fechando o furo. Um alojamento apertado demais racha o PLA quando se força o motor; um folgado deixa o motor solto. Nenhum dos dois se corrige com broca.
+- Os furos da vareta, nas presilhas e nos blocos, são de Ø3,0 exato e saem na vertical, como os alojamentos. Por isso mostram quanto a sua impressora fecha os furos.
+- Antes de fatiar a mesa 2, passe a vareta (ou a broca de 3 mm, pelo lado liso) no furo de uma presilha e de um bloco, entrando pela face de cima. A face da mesa pode ter rebarba da primeira camada.
 
-![Cupom de furos](conferencia/cupom_furos.png)
+| Vareta no furo da mesa 1 | Quer dizer | Compensação de furos na mesa 2 |
+|---|---|---|
+| não entra, ou só entra com a broca | a impressora fecha ~0,2 mm, como o EVA-RT previa | 0 (como está) |
+| entra justa, com atrito | fecha ~0,1 mm: o motor sairia ~0,1 mm frouxo | −0,05 mm |
+| entra solta, sem atrito | o furo sai na medida: o motor sairia ~0,2 mm frouxo | −0,08 mm |
 
-- **Como ler:**
-  - Cada fileira repete um furo das peças, com 5 diâmetros.
-  - A coluna do meio, a da orelha, tem a medida das peças. A seta fica do lado do −0,2.
-  - Testar pela face de cima, a que ficou para cima na impressão. Se a primeira camada fez rebarba (pé de elefante), raspar com o estilete.
-- **Motor:** empurrar o 1020 com a mão em cada furo da primeira fileira. Ficar com o menor furo em que ele:
-  - entra com pressão firme da mão;
-  - não trinca nem branqueia o anel;
-  - não cai com o cupom de cabeça para baixo.
-- **Rolamento:** o mesmo teste, com o polegar. Ele deve pedir a mesma coluna do motor ou a vizinha.
-- **Compensação de furos do fatiador = desvio da coluna ÷ 2**, como está escrito embaixo de cada coluna. Positivo aumenta o furo. Aplicar nas duas mesas.
-  - O nome é *X-Y hole compensation* no OrcaSlicer e no Bambu Studio, e *Hole Horizontal Expansion* no Cura.
-  - Não usar a compensação de tamanho geral (*XY size compensation*): ela também muda o lado de fora, como os pinos onde a engrenagem encaixa. Se o fatiador não tiver a compensação só de furos, imprimir com 0 e acertar em casa, como no item abaixo.
-- **Se o motor e o rolamento pedirem colunas diferentes,** ficar com a do motor.
-  - Rolamento justo: lixar o alojamento com lixa enrolada num palito.
-  - Rolamento folgado: uma gota mínima de cianoacrilato no anel de fora, sem escorrer para a blindagem.
-- **Se nem o furo da ponta servir,** usar a compensação da ponta (−0,10 ou +0,10) e acertar em casa: motor frouxo se prende com uma gota de cianoacrilato; motor apertado se acerta com lixa.
-- **Vareta e M2:** as duas fileiras de baixo mostram como esses furos vão sair com a compensação escolhida. Se ficarem justos, passar broca de 3 mm ou de 2 mm à mão em casa, como o guia já prevê.
+- A compensação diminui todos os furos da mesa 2 e mantém o lado de fora das peças.
+  - O nome é *X-Y hole compensation* no OrcaSlicer e no Bambu Studio, e *Hole Horizontal Expansion* no Cura. Negativo diminui o furo.
+  - Não usar a compensação de tamanho geral (*XY size compensation*): ela também muda o lado de fora, como os pinos onde a engrenagem encaixa. Se o fatiador não tiver a compensação só de furos, imprimir com 0.
+  - Se o perfil da impressora já tiver uma compensação de furos, a mesa 1 já saiu com ela: somar o valor da tabela ao que estiver lá.
+- Em casa, o que sobrar de erro se acerta assim:
+  - **alojamento apertado:** não forçar. Lixar aos poucos com lixa fina enrolada num lápis ou palito, testando;
+  - **motor frouxo:** montar a roda com a engrenagem, achar a posição do motor em que a roda gira macia e só então colar com uma gota de cianoacrilato na borda;
+  - **rolamento frouxo:** uma gota mínima de cianoacrilato no anel de fora, sem escorrer para a blindagem;
+  - **vareta e M2 justos:** passar broca de 3 mm ou de 2 mm à mão, como o guia já prevê.
 
 **Configuração (PLA):**
 - Bico de 0,4 mm, camada de 0,16 mm (a primeira de 0,2 mm), 3 perímetros ou mais e 100% de preenchimento, como antes.
@@ -388,11 +385,7 @@ Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, numa ida s�
 - **Mesa 1 (pequenas):**
   - peças pequenas esquentam camada sobre camada: tempo mínimo por camada de ~10 s e parede externa devagar (~20 mm/s);
   - buchas e presilhas têm pouca área na mesa. Se soltarem, usar *brim* só nelas.
-- Conferir cada mesa ao tirar, ainda na impressora:
-  - vareta nas presilhas e nos blocos;
-  - motor numa caixa e na tampa;
-  - rolamento num aro;
-  - hélice sem fios.
+- Ao tirar a mesa 2, ainda na impressora: hélice sem fios e, se levou, motor numa caixa e na tampa e rolamento num aro. Não dá para reimprimir, mas assim você já sabe o que acertar em casa.
 
 **Montagem, peça por peça** (os riscos são os da tabela acima):
 

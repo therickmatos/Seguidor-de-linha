@@ -302,7 +302,7 @@ O EVA-RT foi feito para base de 1,0 mm. Com 1,6 mm:
 - **Presilhas da vareta:** o rasgo do `barilla_clamp` é de 1,0 mm. Com o braço de baixo, a cabeça do parafuso ficaria abaixo da pista. As presilhas novas não têm esse braço: o parafuso aperta o braço de cima direto na base, com a cabeça embaixo da placa. A solução veio do perseguidor RUSH - Dreamcast.
   - **Atrás** (y = −1,75), a borda é reta em x = ±50. A parede externa desce até a face de baixo e encosta nela, como no perseguidor.
   - **Na frente** (y = 10,75), a presilha fica sobre a raiz da asa, e ali a placa vai além de x = 50. Por isso esta presilha não tem a parede que desce: apoia inteira em cima da placa, e a vareta, presa na de trás, não a deixa girar.
-- **Placa de sucção:** no EVA-RT, a cabeça dos 4 parafusos dos pés da carcaça aperta a placa de sucção contra a base. Com 1,6 mm, essa cabeça ficaria a 0,2 mm da pista. A placa nova tem um rebaixo de Ø4,4 em cada pé, com fundo de 0,2 mm: a cabeça entra na placa e fica a 0,6 mm da pista. O fundo de plástico continua isolando a cabeça das vias que há embaixo dela (PWMA_D5, PWMB_D6 e GND, nos pés de trás), então não dá para trocar o rebaixo por furo passante com parafuso de aço.
+- **Placa de sucção:** no EVA-RT, a cabeça dos 4 parafusos dos pés da carcaça aperta a placa de sucção contra a base. Com 1,6 mm, essa cabeça ficaria a 0,2 mm da pista. A placa nova tem um rebaixo de Ø4,4 em cada pé, com fundo de 0,2 mm: a cabeça entra na placa e fica a 0,6 mm da pista. O fundo de plástico continua isolando a cabeça do cobre que há embaixo dela (plano de GND nos 4 pés; vias e trilhas de PWMA_D5, PWMB_D6, VREF, A5 e D8; ver "Tudo em PLA"), então não dá para trocar o rebaixo por furo passante com parafuso de aço.
 - **Barra V1 de 1,6 mm:** o patim é a versão para 1,6 mm, o mesmo do perseguidor. A barra fica a 3,4 mm da pista (4,0 mm com barra de 1,0 mm).
 - **Parafusos:** comprimentos conferidos para 1,6 mm (tabela abaixo).
 
@@ -398,16 +398,30 @@ Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, numa ida s�
 
 | Peça | Risco no PLA | O que fazer |
 |---|---|---|
-| presilhas | o braço de 1 mm racha no aperto ou numa batida | arruela M2 pequena (Ø4,5, DIN 433) entre a porca e o braço: a pilha vai a ~4,5 mm e o M2 × 6 ainda sobra. Apertar só até firmar. Embaixo da cabeça, continua sem arruela |
+| presilhas | o braço de 1 mm racha no aperto ou numa batida | apertar a porca só até firmar e travar com uma gota de cianoacrilato na rosca, em vez de aperto. Sem arruela: a de Ø4,5 avança 0,05 mm sobre o ressalto da vareta (parede reta a 2,5 mm do eixo) e quase não espalha a força, porque a porca já tem 4,6 mm entre cantos. A porca fica com uma face virada para a vareta (0,2 mm de folga até o ressalto) |
 | patins | braço de 1 mm entre a cabeça e a barra | apertar só até firmar. Nada embaixo da cabeça (fica a 0,7 mm da pista) |
 | caixas de redução | o 1020 esquenta. Perto de ~55 °C o PLA cede: o motor afrouxa e o engrenamento sai do lugar | não deixar a roda travada com o motor ligado. Nos primeiros testes, tocar no motor: se não der para segurar, parar e esfriar. Se o motor afrouxar, uma gota de cianoacrilato o prende (cola bem no PLA), mas aí ele só sai cortando a caixa |
 | carcaça e tampa da ventoinha | o motor da ventoinha roda a corrida inteira e encosta na tampa: é a peça mais exposta ao calor | testar a sucção em rajadas curtas e conferir a temperatura. Se a tampa deformar ou o motor ficar folgado, reimprimir as duas em PETG |
 | hélice | o cubo fica no eixo do motor, que esquenta | o cianoacrilato do pinhão no cubo cola bem no PLA. Conferir se a hélice não entortou depois dos primeiros testes |
-| placa de sucção | o fundo de 0,2 mm trinca com a cabeça girando em cima dele. Sem esse fundo, a cabeça de aço encosta nas vias de PWMA_D5, PWMB_D6 e GND | apertar devagar e parar quando a cabeça encostar. Depois, com o multímetro, conferir que não há curto entre GND e PWMA_D5 nem entre GND e PWMB_D6 |
-| pés da carcaça (rosca no plástico) | o PLA trinca se forçar | rosquear devagar, sem forçar no fim |
+| placa de sucção | o fundo de 0,2 mm trinca com a cabeça girando em cima dele. Nos pés de trás, a cabeça fica sobre cobre de redes diferentes (ver abaixo) | antes de montar, olhar o fundo de cada rebaixo contra a luz: se trincou, usar a placa reserva. Apertar devagar e parar quando a cabeça encostar. Depois, com o multímetro em continuidade, medir da cabeça de cada parafuso para GND: tem de dar aberto |
+| pés da carcaça (rosca no plástico) | o PLA trinca se forçar, e quanto mais duro o parafuso gira, mais a cabeça raspa o fundo da placa de sucção | abrir a rosca antes: rosquear cada M2 × 6 só no pé da carcaça, sem a placa, e tirar. Na montagem ele entra macio. Sem forçar no fim |
 | aros, buchas, apoio da bateria | — | nos aros, o PLA é o melhor material: acerta melhor o alojamento do rolamento |
 
 O cianoacrilato cola bem no PLA: travar patins e presilhas na vareta fica mais fácil que no PETG.
+
+**O que fica sob as cabeças dos pés da carcaça** (conferido no `.epro` e no Gerber do v12):
+- Os 12 furos de fixação (presilhas, caixas e pés) são NPTH de Ø2,00: o parafuso não encosta em cobre pelo furo.
+- Na face de baixo, não há abertura de máscara em volta dos pés. As vias são cobertas (*tented*), e as trilhas ficam sob a máscara. Para dar curto, é preciso trincar o fundo de 0,2 mm **e** raspar a máscara.
+- O plano de GND da face de baixo chega a 1,35 mm do centro de cada furo, então fica sob as 4 cabeças. Sob cada cabeça (r = 1,9 mm):
+
+| Pé | Cobre sob a cabeça | Se a máscara raspar |
+|---|---|---|
+| frente esquerdo (−15,56; 15,56) | plano de GND | uma rede só: sem curto |
+| frente direito (15,56; 15,56) | plano de GND, trilha MARK_L2_D8 (S2) | D8 com GND |
+| trás esquerdo (−15,56; −15,56) | plano e via de GND, trilha MARK_L_A5 (S1), borda da via e da trilha de PWMA_D5 | GND com A5 ou com D5 |
+| trás direito (15,56; −15,56) | plano e via de GND, vias e trilhas de PWMB_D6, trilha de VREF | GND, D6 e VREF entre si (VREF define o ITRIP dos DRV8874) |
+
+- O parafuso só toca o que está sob a cabeça, e há GND sob todas elas. Por isso, medir da cabeça para GND nas 4 pega quase qualquer raspada na máscara.
 
 ## Conferência 3D
 Feita por `ferramentas/pecas_3d/conferir_montagem.py`.

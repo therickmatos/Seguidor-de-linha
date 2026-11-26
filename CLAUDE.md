@@ -67,7 +67,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   2. `mesa_funcional_1_pequenas_PLA` (19 peças);
   3. `mesa_funcional_2_grandes_PLA` (10 peças).
   
-  As 21 peças do robô levam 8 reservas baratas: 2 buchas, 1 presilha de cada tipo, 1 patim de cada lado, 1 placa de sucção e 1 hélice. Resina: `resina_6_engrenagens.stl` (2 de cada versão), porque a versão só se escolhe na montagem; os `resina_2_engrenagens_v*` ficam como impressão mínima. Cuidados de impressão e montagem em PLA (arruela nas presilhas, calor nas caixas e na ventoinha, fundo da placa de sucção) em `mecânica/README.md`, "Tudo em PLA".
+  As 21 peças do robô levam 8 reservas baratas: 2 buchas, 1 presilha de cada tipo, 1 patim de cada lado, 1 placa de sucção e 1 hélice. Resina: `resina_6_engrenagens.stl` (2 de cada versão), porque a versão só se escolhe na montagem; os `resina_2_engrenagens_v*` ficam como impressão mínima. Cuidados de impressão e montagem em PLA (calor nas caixas e na ventoinha, aperto leve com cianoacrilato nas porcas das presilhas, fundo da placa de sucção sobre D5/D6/VREF/GND nos pés de trás) em `mecânica/README.md`, "Tudo em PLA". Os 12 furos de fixação do v12 são NPTH de Ø2,00.
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos

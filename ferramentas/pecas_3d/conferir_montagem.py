@@ -750,10 +750,10 @@ ROTULO_MESA = {"gearbox": "caixa D", "gearbox_esquerdo_espelhado": "caixa E", "i
 def fig_mesas(arq):
     """Vista de cima das mesas de mecânica/mesas/ (o mesmo arranjo do gerar_pecas.py)."""
     import trimesh
-    fig, axs = plt.subplots(1, 4, figsize=(19, 5.6))
     paineis = [(n, gp.arranjar(p)) for n, p in gp.MESAS_FDM.items()]
     r = trimesh.load(gp.MESAS / "resina_9_engrenagens.stl")
     paineis.append(("resina_9_engrenagens", [("engrenagem", np.asarray(r.vertices), np.asarray(r.faces))]))
+    fig, axs = plt.subplots(1, len(paineis), figsize=(4.75 * len(paineis), 5.6))
     for ax, (nome, itens) in zip(axs, paineis):
         ax.add_patch(matplotlib.patches.Rectangle((0, 0), 180, 180, fc="#f4f4f4", ec="#999", lw=1))
         for peca, v, f in itens:

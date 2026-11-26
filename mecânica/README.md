@@ -100,6 +100,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | `mesas/mesa_1_teste_PETG.3mf` | impressão 1 (teste) | 52 × 51 mm |
 | `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto) | 143 × 144 mm |
 | `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas, para impressora bem calibrada | 152 × 152 mm |
+| `mesas/mesa_funcional_PETG.3mf` e `.stl` | só as 21 peças que vão no robô, sem o gabarito e sem as reservas (hélice e patins). Mesmo risco da mesa única: imprimir depois de conferir as medidas | 113 × 112 mm |
 | `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
 
 ![Mesas](conferencia/mesas.png)
@@ -108,6 +109,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
   - Os 3MF abrem no PrusaSlicer, OrcaSlicer, Bambu Studio e Cura, com cada peça como objeto separado e nomeado. Se o fatiador avisar que o 3MF veio de outro programa, é normal: só a geometria importa.
   - As posições são para uma mesa de 180 × 180 mm, com o grupo no centro, e sobram 14 mm de margem ou mais. Numa mesa maior, se o grupo cair fora do centro, selecione tudo e centralize, sem rearranjar.
 - No fatiador da resina, o STL abre como 9 peças: levante ~3 mm e ponha os suportes como em "Configuração de impressão".
+- A mesa funcional tem 2 caixas, carcaça, tampa e hélice, placa de sucção, 2 aros, 4 buchas, 2 presilhas de cada tipo, 2 blocos, 2 patins (um de cada lado) e o apoio da bateria. O STL é um arquivo só, com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
 - A mesa única serve se a impressora estiver bem calibrada, com furos saindo na medida em peças anteriores. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
 - Se alguma peça mudar, o `gerar_pecas.py` refaz os arquivos de `mesas/`.
 - A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.

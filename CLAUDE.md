@@ -61,7 +61,7 @@ Seguidor de linha **RUSH - SATURN** para uma competição baseada no regulamento
   - eixo fixo = parafuso M2 × 30, com 2 buchas (`bead.stl`) por roda apertando o anel interno dos rolamentos;
   - distância entre o motor e o eixo na caixa: 11,35 mm (nominal 11,25).
 - Varetas: o Erick não tem as de carbono. **Não imprimir:** o esqui é o apoio da frente do robô (~0,5 N por vareta, em balanço de 54–63 mm), e a base fica a 0,6–0,8 mm da pista. Impressa em PETG, a vareta fletiria 3,5–5,5 mm e a base arrastaria; filamento com fibra de carbono não resolve (1,3–2,1 mm). Servem carbono (1 m basta), fibra de vidro maciça (0,17–0,26 mm) ou alumínio (agulha de tricô de alumínio de 3,0 mm, achada em armarinho, para não depender de encomenda); inox e barra roscada M3 servem, mas pesam 14–20 g. Tabela em `mecânica/README.md` ("Ferragens").
-- Impressão: duas mesas de PETG (uma de teste curta e o resto; as peças de `stl/PLA/` também saem em PETG) e uma leva de resina com as 9 engrenagens. Os arquivos prontos ficam em `mecânica/mesas/`: 3MF com um objeto por peça, posicionados para uma mesa de 180 × 180 mm, e um STL com as 9 engrenagens. O `gerar_pecas.py` refaz esses arquivos (`MESA_TESTE`, `MESA_RESTO`).
+- Impressão: duas mesas de PETG (uma de teste curta e o resto; as peças de `stl/PLA/` também saem em PETG) e uma leva de resina com as 9 engrenagens. Os arquivos prontos ficam em `mecânica/mesas/`: 3MF com um objeto por peça, posicionados para uma mesa de 180 × 180 mm, e um STL com as 9 engrenagens. A `mesa_funcional_PETG` (3MF e STL, 21 peças, 113 × 112 mm) tem só o que vai no robô, sem gabarito e sem reservas. O `gerar_pecas.py` refaz esses arquivos (`MESA_TESTE`, `MESA_RESTO`, `MESA_FUNCIONAL`).
 - Nada foi impresso nem testado fisicamente.
 
 ## Próximos passos

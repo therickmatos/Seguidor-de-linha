@@ -751,7 +751,7 @@ def fig_mesas(arq):
     """Vista de cima das mesas de mecânica/mesas/ (o mesmo arranjo do gerar_pecas.py)."""
     import trimesh
     paineis = [(n, gp.arranjar(p)) for n, p in gp.MESAS_FDM.items()]
-    for nome_r in ("resina_9_engrenagens", "resina_2_engrenagens_v2_media"):
+    for nome_r in ("resina_9_engrenagens", "resina_6_engrenagens"):
         r = trimesh.load(gp.MESAS / f"{nome_r}.stl")
         paineis.append((nome_r, [("engrenagem", np.asarray(r.vertices), np.asarray(r.faces))]))
     ncol = 4
@@ -779,8 +779,6 @@ def fig_mesas(arq):
         ax.set_yticks(range(0, 181, 30))
         ax.tick_params(labelsize=7)
         n = len(itens) if not nome.startswith("resina") else int(nome.split("_")[1])
-        if nome.startswith("resina_2"):
-            nome = "resina_2_engrenagens_v1, v2 ou v3"
         ax.set_title(f"{nome}\n{n} peças, mesa de 180 × 180 mm", fontsize=10)
     fig.text(0.5, 0.01, "PT/PF = presilha de trás/da frente, pD/pE = patim direito/esquerdo, bl = bloco da transversal, "
              "B = bucha (bead), bat = apoio da bateria. Resina: fileira de cima versão 1, do meio 2, de baixo 3.",

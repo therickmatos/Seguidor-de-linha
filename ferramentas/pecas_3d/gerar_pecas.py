@@ -522,6 +522,57 @@ def conferir():
 
 
 # ----------------------------------------------------------------------------
+# Cupom de furos: calibra a compensacao de furos antes das mesas (impressao unica)
+# ----------------------------------------------------------------------------
+# Os alojamentos que nao se corrigem com broca (motor 1020 nas caixas e na tampa,
+# rolamento 692ZZ no aro) tem ~0,2 mm de folga no desenho do EVA-RT, para o furo que
+# encolhe na impressora. Cada fileira repete um furo das pecas com 5 diametros
+# (nominal -0,2 ... +0,2); a coluna que der o encaixe certo diz a compensacao de furos
+# do fatiador: compensacao (no raio) = desvio / 2. A coluna escolhida mostra como
+# TODOS os furos reais vao sair com essa compensacao.
+CUPOM_FILEIRAS = [  # (furo, diametro nominal nas pecas, parede do anel)
+    ("motor 1020 (caixas e tampa)", 10.18, 2.0),
+    ("rolamento 692ZZ (aro)", 6.20, 3.4),     # parede do aro em volta do alojamento
+    ("vareta O3 (presilhas, blocos, patins)", 3.0, 1.6),
+    ("M2 (eixo da roda na caixa, presilhas, patins)", 2.0, 1.6),
+]
+CUPOM_DESVIOS = (-0.2, -0.1, 0.0, 0.1, 0.2)
+CUPOM_ALTURA = 3.0         # = largura do rolamento
+
+
+def cupom_furos() -> Manifold:
+    """Fileiras de aneis (uma por furo critico) e colunas por desvio do diametro, da
+    esquerda (-0,2, lado da seta) para a direita (+0,2). A orelha em cima marca a
+    coluna nominal."""
+    passo = max(d + max(CUPOM_DESVIOS) + 2 * w for _, d, w in CUPOM_FILEIRAS) - 0.4
+    xs = [i * passo for i in range(len(CUPOM_DESVIOS))]
+    perfil, furos, y, r_ant = None, [], 0.0, None
+    ys = []
+    for _, d, w in CUPOM_FILEIRAS:
+        r_ext = (d + max(CUPOM_DESVIOS)) / 2 + w
+        if r_ant is not None:
+            y -= r_ant + r_ext + 1.0
+        ys.append((y, r_ext))
+        linha = ret(xs[0], xs[-1], y - 1.0, y + 1.0)
+        for x, dd in zip(xs, CUPOM_DESVIOS):
+            linha += circ(r_ext, x, y)
+            furos.append(circ((d + dd) / 2, x, y))
+        perfil = linha if perfil is None else perfil + linha
+        r_ant = r_ext
+    y_cima, y_baixo = ys[0][0], ys[-1][0]
+    for x in ((xs[0] + xs[1]) / 2, (xs[-2] + xs[-1]) / 2):         # duas travessas
+        perfil += ret(x - 1.0, x + 1.0, y_baixo, y_cima)
+    r0 = ys[0][1]
+    perfil += poligono([(xs[0] - r0 + 0.5, y_cima - 2.5), (xs[0] - r0 + 0.5, y_cima + 2.5),
+                        (xs[0] - r0 - 4.0, y_cima)])                 # seta: lado do -0,2
+    i0 = CUPOM_DESVIOS.index(0.0)
+    perfil += ret(xs[i0] - 1.5, xs[i0] + 1.5, y_cima + r0 - 0.5, y_cima + r0 + 2.0)  # orelha: nominal
+    for f in furos:
+        perfil -= f
+    return extr_z(perfil, 0, CUPOM_ALTURA)
+
+
+# ----------------------------------------------------------------------------
 # Mesas de impressao: um arquivo por impressao, com as pecas ja posicionadas
 # ----------------------------------------------------------------------------
 # 3MF para o FDM (cada peca e um objeto separado; o fatiador abre com as posicoes)
@@ -539,16 +590,18 @@ MESA_RESTO = {"PLA/gabarito_base_teste.stl": 1, "PETG/impeller_base_1.stl": 1, "
               "PLA/bead.stl": 2, "PLA/battery_holder.stl": 1, "PETG/presilha_vareta_tras_base1.6.stl": 1,
               "PETG/presilha_vareta_frente_asa.stl": 1, "PETG/patim_v1_direito_barra1.6.stl": 1,
               "PETG/patim_v1_esquerdo_barra1.6.stl": 2, "PETG/bloco_transversal_asa.stl": 2}
-# so o que vai no robo (sem o gabarito de teste e sem reservas), impresso em PLA e
-# dividido em duas mesas: as pecas pequenas (braco de 1 mm, furo da vareta, bucha) numa
-# impressao propria, para regular velocidade e resfriamento so para elas
-MESA_FUNC_PEQUENAS = {"PLA/bead.stl": 4, "PETG/presilha_vareta_tras_base1.6.stl": 2,
-                      "PETG/presilha_vareta_frente_asa.stl": 2, "PETG/bloco_transversal_asa.stl": 2,
-                      "PETG/patim_v1_direito_barra1.6.stl": 1, "PETG/patim_v1_esquerdo_barra1.6.stl": 1,
+# o que vai no robo, impresso em PLA numa ida so a impressora (sem chance de reimprimir):
+# sem o gabarito de teste, com reserva so das pecas baratas que podem falhar em casa
+# (bucha que se perde; presilha, patim e fundo da placa de succao que racham no PLA;
+# patim que gasta; helice que pode vibrar). Duas mesas: as pequenas (braco de 1 mm,
+# furo da vareta, bucha) numa impressao propria, para regular resfriamento so para elas
+MESA_FUNC_PEQUENAS = {"PLA/bead.stl": 4 + 2, "PETG/presilha_vareta_tras_base1.6.stl": 2 + 1,
+                      "PETG/presilha_vareta_frente_asa.stl": 2 + 1, "PETG/bloco_transversal_asa.stl": 2,
+                      "PETG/patim_v1_direito_barra1.6.stl": 1 + 1, "PETG/patim_v1_esquerdo_barra1.6.stl": 1 + 1,
                       "PLA/battery_holder.stl": 1}
 MESA_FUNC_GRANDES = {"PETG/gearbox.stl": 1, "PETG/gearbox_esquerdo_espelhado.stl": 1, "PETG/impeller_base_1.stl": 1,
-                     "PETG/impeller_base_2.stl": 1, "PETG/impeller_fan.stl": 1, "PETG/placa_succao_rebaixo.stl": 1,
-                     "PLA/wheel_rim.stl": 2}
+                     "PETG/impeller_base_2.stl": 1, "PETG/impeller_fan.stl": 1 + 1,
+                     "PETG/placa_succao_rebaixo.stl": 1 + 1, "PLA/wheel_rim.stl": 2}
 MESAS_FDM = {
     "mesa_1_teste_PETG": MESA_TESTE,
     "mesa_2_resto_PETG": MESA_RESTO,
@@ -691,6 +744,21 @@ def montar_mesas():
             n0 += len(v)
     escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_9_engrenagens.stl", "9 engrenagens 64T (3 versoes)")
     print("  resina_9_engrenagens.stl  9 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
+    # impressao unica: 2 de cada versao (a versao so se escolhe na montagem, em casa)
+    vs, fs, n0 = [], [], 0
+    for lin, n in enumerate(VERSOES_ENGRENAGEM):
+        v, f = peca_na_origem(f"RESINA/{nome_engrenagem(n)}")
+        for col in range(2):
+            vs.append(v + [CENTRO_MESA + (col - 0.5) * 24.0, CENTRO_MESA - (lin - 1) * 24.0, 0])
+            fs.append(f + n0)
+            n0 += len(v)
+    escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_6_engrenagens.stl", "6 engrenagens 64T (3 versoes x 2)")
+    print("  resina_6_engrenagens.stl  6 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
+    # cupom de furos, centrado na mesa
+    c = cupom_furos()
+    bb = c.bounding_box()
+    c = c.translate((CENTRO_MESA - (bb[0] + bb[3]) / 2, CENTRO_MESA - (bb[1] + bb[4]) / 2, 0))
+    gravar_stl(c, MESAS / "cupom_furos_PLA.stl", "cupom de furos (calibra a compensacao de furos)")
     # impressao minima: so as 2 engrenagens do robo, de uma versao (um arquivo por versao;
     # a escolha vem da medida do pinhao, ver "Teste das caixas" no guia)
     for n, ver in VERSOES_ENGRENAGEM.items():

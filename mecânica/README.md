@@ -50,7 +50,7 @@ As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem 
 | `engrenagem_64T_m0.3_2_media.stl` | 3 | **versão 2 (média)**: 2 furos de marca |
 | `engrenagem_64T_m0.3_3_folgada.stl` | 3 | **versão 3 (folgada)**: 3 furos de marca |
 
-As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Na impressão mínima, só as 2 engrenagens de uma versão, escolhida pela medida do pinhão (ver "Impressão mínima da resina", depois do teste das caixas). Por que três: ver "Teste das caixas".
+As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Numa ida só à impressora, prefira `mesas/resina_6_engrenagens.stl` (2 de cada versão). Na impressão mínima, só as 2 engrenagens de uma versão, escolhida pela medida do pinhão (ver "Impressão mínima da resina", depois do teste das caixas). Por que três: ver "Teste das caixas".
 
 Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
 
@@ -100,9 +100,11 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | `mesas/mesa_1_teste_PETG.3mf` | impressão 1 (teste) | 52 × 51 mm |
 | `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto) | 143 × 144 mm |
 | `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas, para impressora bem calibrada | 152 × 152 mm |
-| `mesas/mesa_funcional_1_pequenas_PLA.3mf` e `.stl` | conjunto funcional em PLA, parte 1: as 13 peças pequenas (4 buchas, 4 presilhas, 2 blocos, 2 patins, apoio da bateria). Ver "Tudo em PLA" | 52 × 54 mm |
-| `mesas/mesa_funcional_2_grandes_PLA.3mf` e `.stl` | parte 2: as 8 grandes (2 caixas, carcaça, tampa, hélice, placa de sucção, 2 aros) | 105 × 109 mm |
+| `mesas/cupom_furos_PLA.stl` | cupom de furos: imprimir antes das mesas funcionais para acertar a compensação de furos (ver "Tudo em PLA") | 74 × 44 mm |
+| `mesas/mesa_funcional_1_pequenas_PLA.3mf` e `.stl` | conjunto funcional em PLA, parte 1: 19 peças pequenas (6 buchas, 3 + 3 presilhas, 2 blocos, 2 + 2 patins, apoio da bateria), reservas incluídas | 58 × 56 mm |
+| `mesas/mesa_funcional_2_grandes_PLA.3mf` e `.stl` | parte 2: 10 peças grandes (2 caixas, carcaça, tampa, 2 hélices, 2 placas de sucção, 2 aros), reservas incluídas | 131 × 131 mm |
 | `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
+| `mesas/resina_6_engrenagens.stl` | 2 de cada versão, uma versão por fileira (1 em cima). **A recomendada para uma ida só à impressora**: a versão só se escolhe na montagem | 44 × 68 mm |
 | `mesas/resina_2_engrenagens_v1_justa.stl`, `_v2_media.stl`, `_v3_folgada.stl` | impressão mínima: só as 2 engrenagens do robô, de uma versão. Imprimir **um** dos três, escolhido pelo pinhão (ver "Impressão mínima da resina") | 44 × 20 mm |
 
 ![Mesas](conferencia/mesas.png)
@@ -111,7 +113,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
   - Os 3MF abrem no PrusaSlicer, OrcaSlicer, Bambu Studio e Cura, com cada peça como objeto separado e nomeado. Se o fatiador avisar que o 3MF veio de outro programa, é normal: só a geometria importa.
   - As posições são para uma mesa de 180 × 180 mm, com o grupo no centro, e sobram 14 mm de margem ou mais. Numa mesa maior, se o grupo cair fora do centro, selecione tudo e centralize, sem rearranjar.
 - No fatiador da resina, o STL abre como 9 peças: levante ~3 mm e ponha os suportes como em "Configuração de impressão".
-- As duas mesas funcionais juntas têm as 21 peças que vão no robô, sem o gabarito e sem reservas, para imprimir em PLA (ver "Tudo em PLA"). Cada uma tem também um STL, um arquivo só com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
+- As duas mesas funcionais juntas têm as 21 peças que vão no robô e 8 reservas baratas, sem o gabarito, para imprimir em PLA numa ida só, depois do cupom de furos (ver "Tudo em PLA"). Cada uma tem também um STL, um arquivo só com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
 - A mesa única serve se a impressora estiver bem calibrada, com furos saindo na medida em peças anteriores. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
 - Se alguma peça mudar, o `gerar_pecas.py` refaz os arquivos de `mesas/`.
 - A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.
@@ -200,7 +202,7 @@ Conferência 2D (`conferencia/engrenamento.png`): menor distância entre os dent
 - **Caixa em PLA:** o PLA encolhe menos que o PETG, então a caixa fica mais perto dos 11,35 mm. O caso que trava na tabela (versão 1, caixa 0,1 mm mais curta) fica menos provável, mas as três versões continuam valendo, porque o pinhão e a resina seguem desconhecidos.
 - Se até a 3 travar, a causa é a impressão: dente engordado ou resina que ficou no vão. Escove os vãos com álcool isopropílico e confira de novo.
 
-**Impressão mínima da resina (só as 2 engrenagens do robô).** Sem as três versões na mão, a escolha vem antes, pela medida do pinhão (ver "Antes da resina, conferir o pinhão"), e pela tabela acima:
+**Impressão mínima da resina (só as 2 engrenagens do robô).** Se só houver uma leva de resina, prefira `mesas/resina_6_engrenagens.stl`: a versão só se escolhe na montagem, com o motor, e a resina cura a camada inteira de uma vez, então 6 peças levam o mesmo tempo que 2 e gastam ~2 ml a mais. Sem as três versões na mão, a escolha vem antes, pela medida do pinhão (ver "Antes da resina, conferir o pinhão"), e pela tabela acima:
 
 | Pinhão no paquímetro | Arquivo | Por quê |
 |---|---|---|
@@ -335,15 +337,62 @@ Por que cada peça está em cada pasta:
 | apoio da bateria, bucha (`bead`) | PLA ou PETG | sem esforço |
 
 ### Tudo em PLA (mesas funcionais)
-Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, em duas mesas. A geometria não muda, e todas as peças saem sem suporte também em PLA. Mudam a impressão e a montagem.
+Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, numa ida só à impressora (sem chance de reimprimir), e a montagem é feita em casa. A geometria das peças não muda, e todas saem sem suporte também em PLA. Mudam a impressão, as reservas e a montagem.
 
-**Impressão:**
+**Levar para a impressora:** 1 motor 1020, 1 rolamento 692ZZ, a vareta (ou uma broca de 3 mm), 1 parafuso M2, o paquímetro e um estilete.
+
+**Ordem das impressões:**
+
+| # | Arquivo | Peças | Por quê |
+|---|---|---|---|
+| 0 | `mesas/cupom_furos_PLA.stl` | cupom de furos (~5 g, 74 × 44 × 3 mm) | acerta a compensação de furos antes das peças. O aperto do motor e do rolamento não se corrige depois |
+| 1 | `mesas/mesa_funcional_1_pequenas_PLA.3mf` | 6 buchas, 3 + 3 presilhas, 2 blocos, 2 + 2 patins, apoio da bateria (19) | é rápida, e se uma peça pequena soltar da mesa não estraga as grandes |
+| 2 | `mesas/mesa_funcional_2_grandes_PLA.3mf` | 2 caixas, carcaça, tampa, 2 hélices, 2 placas de sucção, 2 aros (10) | as peças sem conserto, já com a compensação acertada. A hélice sai numa mesa com poucas peças e pega menos fio |
+
+**Reservas:** só das peças baratas que podem falhar em casa.
+- 2 buchas, porque somem fácil.
+- 1 presilha de cada tipo e 1 patim de cada lado: racham no PLA, e o esqui do patim gasta.
+- 1 placa de sucção, porque o fundo de 0,2 mm trinca.
+- 1 hélice, caso vibre.
+- Sem reserva:
+  - caixas, carcaça, tampa e aros: o risco deles é a medida, que o cupom resolve;
+  - blocos: não levam parafuso.
+- No 3MF, cada reserva é um objeto separado e pode ser apagada no fatiador.
+
+**Cupom de furos:**
+
+![Cupom de furos](conferencia/cupom_furos.png)
+
+- **Como ler:**
+  - Cada fileira repete um furo das peças, com 5 diâmetros.
+  - A coluna do meio, a da orelha, tem a medida das peças. A seta fica do lado do −0,2.
+  - Testar pela face de cima, a que ficou para cima na impressão. Se a primeira camada fez rebarba (pé de elefante), raspar com o estilete.
+- **Motor:** empurrar o 1020 com a mão em cada furo da primeira fileira. Ficar com o menor furo em que ele:
+  - entra com pressão firme da mão;
+  - não trinca nem branqueia o anel;
+  - não cai com o cupom de cabeça para baixo.
+- **Rolamento:** o mesmo teste, com o polegar. Ele deve pedir a mesma coluna do motor ou a vizinha.
+- **Compensação de furos do fatiador = desvio da coluna ÷ 2**, como está escrito embaixo de cada coluna. Positivo aumenta o furo. Aplicar nas duas mesas.
+  - O nome é *X-Y hole compensation* no OrcaSlicer e no Bambu Studio, e *Hole Horizontal Expansion* no Cura.
+  - Não usar a compensação de tamanho geral (*XY size compensation*): ela também muda o lado de fora, como os pinos onde a engrenagem encaixa. Se o fatiador não tiver a compensação só de furos, imprimir com 0 e acertar em casa, como no item abaixo.
+- **Se o motor e o rolamento pedirem colunas diferentes,** ficar com a do motor.
+  - Rolamento justo: lixar o alojamento com lixa enrolada num palito.
+  - Rolamento folgado: uma gota mínima de cianoacrilato no anel de fora, sem escorrer para a blindagem.
+- **Se nem o furo da ponta servir,** usar a compensação da ponta (−0,10 ou +0,10) e acertar em casa: motor frouxo se prende com uma gota de cianoacrilato; motor apertado se acerta com lixa.
+- **Vareta e M2:** as duas fileiras de baixo mostram como esses furos vão sair com a compensação escolhida. Se ficarem justos, passar broca de 3 mm ou de 2 mm à mão em casa, como o guia já prevê.
+
+**Configuração (PLA):**
 - Bico de 0,4 mm, camada de 0,16 mm (a primeira de 0,2 mm), 3 perímetros ou mais e 100% de preenchimento, como antes.
 - Ventilador da peça a 100% depois das primeiras camadas. Temperatura do bico e da mesa: as do fabricante. Em PEI liso não precisa de cola.
-- **Mesa 1 (pequenas) primeiro.** É rápida e confere a compensação de furos antes da grande: vareta (ou broca de 3 mm) nas presilhas e nos blocos, patim na barra V1. Se a mesa de teste saiu em PETG, a medida dela não vale direto para o PLA.
-  - Peças pequenas esquentam camada sobre camada: tempo mínimo por camada de ~10 s e parede externa devagar (~20 mm/s).
-  - Buchas e presilhas têm pouca área na mesa. Se soltarem, usar *brim* só nelas.
-- **Mesa 2 (grandes):** conferir o motor 1020 nas caixas e na tampa, o M2 no furo de Ø2,0 da caixa e os rolamentos no aro.
+- A primeira camada tem de sair com 0,2 mm: é o fundo do rebaixo da placa de sucção.
+- **Mesa 1 (pequenas):**
+  - peças pequenas esquentam camada sobre camada: tempo mínimo por camada de ~10 s e parede externa devagar (~20 mm/s);
+  - buchas e presilhas têm pouca área na mesa. Se soltarem, usar *brim* só nelas.
+- Conferir cada mesa ao tirar, ainda na impressora:
+  - vareta nas presilhas e nos blocos;
+  - motor numa caixa e na tampa;
+  - rolamento num aro;
+  - hélice sem fios.
 
 **Montagem, peça por peça** (os riscos são os da tabela acima):
 

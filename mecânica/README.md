@@ -9,7 +9,7 @@ Peças do EVA-RT (© EXOTIC TEAM MX, AGPL-3.0) adaptadas à placa encomendada, *
 | [Ferragens](#ferragens) | varetas, parafusos, porcas, rolamentos e cola |
 | [Ordem de montagem](#ordem-de-montagem) | passo a passo |
 | [Cuidados](#cuidados) | o que pode dar errado na montagem e na pista |
-| [Por que as peças mudaram](#por-que-as-peças-mudaram) | base de 1,6 mm, asa de gaivota e PLA/PETG |
+| [Por que as peças mudaram](#por-que-as-peças-mudaram) | base de 1,6 mm, asa de gaivota, PLA/PETG e os cuidados para imprimir tudo em PLA |
 | [Conferência 3D](#conferência-3d) | folgas e altura de cada peça até a pista |
 
 A análise do suporte da barra está em [`SUPORTE_BARRA_V1.md`](SUPORTE_BARRA_V1.md). Os STL são gerados por `ferramentas/pecas_3d/gerar_pecas.py`. Os do EVA-RT são cópias de `referencias/eva-rt/3d_models/`; a carcaça e as caixas de redução só foram giradas para a posição de impressão.
@@ -50,7 +50,7 @@ As pastas separam o material ideal de cada peça. As de `stl/PLA/` também saem 
 | `engrenagem_64T_m0.3_2_media.stl` | 3 | **versão 2 (média)**: 2 furos de marca |
 | `engrenagem_64T_m0.3_3_folgada.stl` | 3 | **versão 3 (folgada)**: 3 furos de marca |
 
-As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Por que três: ver "Teste das caixas".
+As três encaixam nos 6 pinos do aro e apoiam na aba dele. O EVA-RT usa uma engrenagem comprada; estas foram desenhadas para o aro dele. Elas mudam só na folga dos dentes. **Imprima as 9 juntas, numa leva só:** a resina cura a camada inteira de uma vez, então 9 peças levam o mesmo tempo que uma e gastam ~4 ml. No teste das caixas você fica com a versão mais justa que gira solta, e o resto vira reserva. Sem reservas, `mesas/resina_6_engrenagens.stl` tem 2 de cada versão. Por que três: ver "Teste das caixas".
 
 Origem: presilhas, patins, bloco, placa de sucção e engrenagem são adaptações; o resto é do EVA-RT como está. Do EVA-RT, não entram: `sensor_sledge.stl` (barra VISION), `barilla_clamp.stl` (rasgo de 1,0 mm), `suction_base.stl` e `barilla_connection.stl` (substituídas pelas adaptadas).
 
@@ -100,8 +100,10 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
 | `mesas/mesa_1_teste_PETG.3mf` | impressão 1 (teste) | 52 × 51 mm |
 | `mesas/mesa_2_resto_PETG.3mf` | impressão 2 (o resto) | 143 × 144 mm |
 | `mesas/mesa_unica_PETG.3mf` | a 1 e a 2 juntas, para impressora bem calibrada | 152 × 152 mm |
-| `mesas/mesa_funcional_PETG.3mf` e `.stl` | só as 21 peças que vão no robô, sem o gabarito e sem as reservas (hélice e patins). Mesmo risco da mesa única: imprimir depois de conferir as medidas | 113 × 112 mm |
+| `mesas/mesa_funcional_1_pequenas_PLA.3mf` e `.stl` | conjunto funcional em PLA, parte 1: as 13 peças pequenas (4 buchas, 4 presilhas, 2 blocos, 2 patins, apoio da bateria). Ver "Tudo em PLA" | 52 × 54 mm |
+| `mesas/mesa_funcional_2_grandes_PLA.3mf` e `.stl` | parte 2: as 8 grandes (2 caixas, carcaça, tampa, hélice, placa de sucção, 2 aros) | 105 × 109 mm |
 | `mesas/resina_9_engrenagens.stl` | as 9 engrenagens: fileira de cima é a versão 1, a do meio a 2 e a de baixo a 3 | 68 × 68 mm |
+| `mesas/resina_6_engrenagens.stl` | sem reservas: 2 de cada versão, nas mesmas fileiras (as duas rodas usam a versão escolhida no teste das caixas) | 44 × 68 mm |
 
 ![Mesas](conferencia/mesas.png)
 
@@ -109,7 +111,7 @@ Vale começar por elas. São as peças com os encaixes mais críticos (motor Ø1
   - Os 3MF abrem no PrusaSlicer, OrcaSlicer, Bambu Studio e Cura, com cada peça como objeto separado e nomeado. Se o fatiador avisar que o 3MF veio de outro programa, é normal: só a geometria importa.
   - As posições são para uma mesa de 180 × 180 mm, com o grupo no centro, e sobram 14 mm de margem ou mais. Numa mesa maior, se o grupo cair fora do centro, selecione tudo e centralize, sem rearranjar.
 - No fatiador da resina, o STL abre como 9 peças: levante ~3 mm e ponha os suportes como em "Configuração de impressão".
-- A mesa funcional tem 2 caixas, carcaça, tampa e hélice, placa de sucção, 2 aros, 4 buchas, 2 presilhas de cada tipo, 2 blocos, 2 patins (um de cada lado) e o apoio da bateria. O STL é um arquivo só, com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
+- As duas mesas funcionais juntas têm as 21 peças que vão no robô, sem o gabarito e sem reservas, para imprimir em PLA (ver "Tudo em PLA"). Cada uma tem também um STL, um arquivo só com as peças já posicionadas; no fatiador, "dividir em objetos" (*split to objects*) separa as peças, se preciso.
 - A mesa única serve se a impressora estiver bem calibrada, com furos saindo na medida em peças anteriores. O risco: se um furo sair fora, reimprimir as caixas, a carcaça e o aro.
 - Se alguma peça mudar, o `gerar_pecas.py` refaz os arquivos de `mesas/`.
 - A hélice já vai na mesa 2: a solução do cubo (pinhão no eixo, ver abaixo) não muda o STL.
@@ -195,6 +197,7 @@ Conferência 2D (`conferencia/engrenamento.png`): menor distância entre os dent
 | 3 folgada (3 furos) | 0,101 / 0,064 | 0,067 / 0,031 | 1,11 / 1,29 |
 
 - Com uma razão de contato abaixo de ~1,2, os dentes trocam de contato com mais tranco. Por isso a escolha é a mais justa que gira solta, e não a mais folgada.
+- **Caixa em PLA:** o PLA encolhe menos que o PETG, então a caixa fica mais perto dos 11,35 mm. O caso que trava na tabela (versão 1, caixa 0,1 mm mais curta) fica menos provável, mas as três versões continuam valendo, porque o pinhão e a resina seguem desconhecidos.
 - Se até a 3 travar, a causa é a impressão: dente engordado ou resina que ficou no vão. Escove os vãos com álcool isopropílico e confira de novo.
 
 ## Ferragens
@@ -321,6 +324,32 @@ Por que cada peça está em cada pasta:
 | aros | **PLA** (ou PETG) | alojamento do rolamento preciso (Ø6,19 × 3,0); o PLA acerta melhor a medida, e em PETG a impressão de teste confere o rolamento |
 | apoio da bateria, bucha (`bead`) | PLA ou PETG | sem esforço |
 
+### Tudo em PLA (mesas funcionais)
+Decisão de 26/11/2026: o conjunto que vai no robô sai todo em PLA, em duas mesas. A geometria não muda, e todas as peças saem sem suporte também em PLA. Mudam a impressão e a montagem.
+
+**Impressão:**
+- Bico de 0,4 mm, camada de 0,16 mm (a primeira de 0,2 mm), 3 perímetros ou mais e 100% de preenchimento, como antes.
+- Ventilador da peça a 100% depois das primeiras camadas. Temperatura do bico e da mesa: as do fabricante. Em PEI liso não precisa de cola.
+- **Mesa 1 (pequenas) primeiro.** É rápida e confere a compensação de furos antes da grande: vareta (ou broca de 3 mm) nas presilhas e nos blocos, patim na barra V1. Se a mesa de teste saiu em PETG, a medida dela não vale direto para o PLA.
+  - Peças pequenas esquentam camada sobre camada: tempo mínimo por camada de ~10 s e parede externa devagar (~20 mm/s).
+  - Buchas e presilhas têm pouca área na mesa. Se soltarem, usar *brim* só nelas.
+- **Mesa 2 (grandes):** conferir o motor 1020 nas caixas e na tampa, o M2 no furo de Ø2,0 da caixa e os rolamentos no aro.
+
+**Montagem, peça por peça** (os riscos são os da tabela acima):
+
+| Peça | Risco no PLA | O que fazer |
+|---|---|---|
+| presilhas | o braço de 1 mm racha no aperto ou numa batida | arruela M2 pequena (Ø4,5, DIN 433) entre a porca e o braço: a pilha vai a ~4,5 mm e o M2 × 6 ainda sobra. Apertar só até firmar. Embaixo da cabeça, continua sem arruela |
+| patins | braço de 1 mm entre a cabeça e a barra | apertar só até firmar. Nada embaixo da cabeça (fica a 0,7 mm da pista) |
+| caixas de redução | o 1020 esquenta. Perto de ~55 °C o PLA cede: o motor afrouxa e o engrenamento sai do lugar | não deixar a roda travada com o motor ligado. Nos primeiros testes, tocar no motor: se não der para segurar, parar e esfriar. Se o motor afrouxar, uma gota de cianoacrilato o prende (cola bem no PLA), mas aí ele só sai cortando a caixa |
+| carcaça e tampa da ventoinha | o motor da ventoinha roda a corrida inteira e encosta na tampa: é a peça mais exposta ao calor | testar a sucção em rajadas curtas e conferir a temperatura. Se a tampa deformar ou o motor ficar folgado, reimprimir as duas em PETG |
+| hélice | o cubo fica no eixo do motor, que esquenta | o cianoacrilato do pinhão no cubo cola bem no PLA. Conferir se a hélice não entortou depois dos primeiros testes |
+| placa de sucção | o fundo de 0,2 mm trinca com a cabeça girando em cima dele. Sem esse fundo, a cabeça de aço encosta nas vias de PWMA_D5, PWMB_D6 e GND | apertar devagar e parar quando a cabeça encostar. Depois, com o multímetro, conferir que não há curto entre GND e PWMA_D5 nem entre GND e PWMB_D6 |
+| pés da carcaça (rosca no plástico) | o PLA trinca se forçar | rosquear devagar, sem forçar no fim |
+| aros, buchas, apoio da bateria | — | nos aros, o PLA é o melhor material: acerta melhor o alojamento do rolamento |
+
+O cianoacrilato cola bem no PLA: travar patins e presilhas na vareta fica mais fácil que no PETG.
+
 ## Conferência 3D
 Feita por `ferramentas/pecas_3d/conferir_montagem.py`.
 O script monta as peças e lê as placas dos arquivos do repositório:
@@ -380,7 +409,7 @@ Se mudar a distância entre furos ou a espessura da barra, rodar de novo o `conf
 ## Não conferido
 - Cubo da hélice: furo de Ø3,4 para eixo de 1,2 mm (ver "Primeira impressão").
 - Pinhão 11T comprado: o deslocamento de perfil não é conhecido (medir antes da resina). O engrenamento foi conferido em 2D para 0 e +0,33, não com a peça real.
-- O quanto a resina engorda o dente e o quanto a caixa de PETG encolhe dependem das impressoras: é o que as três versões cobrem.
+- O quanto a resina engorda o dente e o quanto a caixa (PETG ou PLA) encolhe dependem das impressoras: é o que as três versões cobrem.
 - Buchas (`bead.stl`) e eixo M2 × 30: posição deduzida das medidas do aro e da foto do EVA-RT (porca do lado de dentro), não de documentação.
 - Encaixe dos motores 1020 nas caixas de redução e na carcaça.
 - Comprimento da vareta traseira e posição do apoio da bateria com a GNB 350 mAh.

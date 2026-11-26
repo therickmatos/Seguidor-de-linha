@@ -751,9 +751,15 @@ def fig_mesas(arq):
     """Vista de cima das mesas de mecânica/mesas/ (o mesmo arranjo do gerar_pecas.py)."""
     import trimesh
     paineis = [(n, gp.arranjar(p)) for n, p in gp.MESAS_FDM.items()]
-    r = trimesh.load(gp.MESAS / "resina_9_engrenagens.stl")
-    paineis.append(("resina_9_engrenagens", [("engrenagem", np.asarray(r.vertices), np.asarray(r.faces))]))
-    fig, axs = plt.subplots(1, len(paineis), figsize=(4.75 * len(paineis), 5.6))
+    for nome_r in ("resina_9_engrenagens", "resina_6_engrenagens"):
+        r = trimesh.load(gp.MESAS / f"{nome_r}.stl")
+        paineis.append((nome_r, [("engrenagem", np.asarray(r.vertices), np.asarray(r.faces))]))
+    ncol = 4
+    nlin = -(-len(paineis) // ncol)
+    fig, axs = plt.subplots(nlin, ncol, figsize=(4.75 * ncol, 5.4 * nlin + 0.4))
+    axs = axs.ravel()
+    for ax in axs[len(paineis):]:
+        ax.set_axis_off()
     for ax, (nome, itens) in zip(axs, paineis):
         ax.add_patch(matplotlib.patches.Rectangle((0, 0), 180, 180, fc="#f4f4f4", ec="#999", lw=1))
         for peca, v, f in itens:
@@ -772,12 +778,12 @@ def fig_mesas(arq):
         ax.set_xticks(range(0, 181, 30))
         ax.set_yticks(range(0, 181, 30))
         ax.tick_params(labelsize=7)
-        n = len(itens) if not nome.startswith("resina") else 9
+        n = len(itens) if not nome.startswith("resina") else int(nome.split("_")[1])
         ax.set_title(f"{nome}\n{n} peças, mesa de 180 × 180 mm", fontsize=10)
     fig.text(0.5, 0.01, "PT/PF = presilha de trás/da frente, pD/pE = patim direito/esquerdo, bl = bloco da transversal, "
              "B = bucha (bead), bat = apoio da bateria. Resina: fileira de cima versão 1, do meio 2, de baixo 3.",
              ha="center", fontsize=9)
-    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
     fig.savefig(arq, dpi=100)
     plt.close(fig)
 

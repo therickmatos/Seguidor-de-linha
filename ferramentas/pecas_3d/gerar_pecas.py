@@ -539,20 +539,25 @@ MESA_RESTO = {"PLA/gabarito_base_teste.stl": 1, "PETG/impeller_base_1.stl": 1, "
               "PLA/bead.stl": 2, "PLA/battery_holder.stl": 1, "PETG/presilha_vareta_tras_base1.6.stl": 1,
               "PETG/presilha_vareta_frente_asa.stl": 1, "PETG/patim_v1_direito_barra1.6.stl": 1,
               "PETG/patim_v1_esquerdo_barra1.6.stl": 2, "PETG/bloco_transversal_asa.stl": 2}
-# so o que vai no robo: sem o gabarito de teste e sem as reservas (helice e patins)
-MESA_FUNCIONAL = {"PETG/gearbox.stl": 1, "PETG/gearbox_esquerdo_espelhado.stl": 1, "PETG/impeller_base_1.stl": 1,
-                  "PETG/impeller_base_2.stl": 1, "PETG/impeller_fan.stl": 1, "PETG/placa_succao_rebaixo.stl": 1,
-                  "PLA/wheel_rim.stl": 2, "PLA/bead.stl": 4, "PETG/presilha_vareta_tras_base1.6.stl": 2,
-                  "PETG/presilha_vareta_frente_asa.stl": 2, "PETG/bloco_transversal_asa.stl": 2,
-                  "PETG/patim_v1_direito_barra1.6.stl": 1, "PETG/patim_v1_esquerdo_barra1.6.stl": 1,
-                  "PLA/battery_holder.stl": 1}
+# so o que vai no robo (sem o gabarito de teste e sem reservas), impresso em PLA e
+# dividido em duas mesas: as pecas pequenas (braco de 1 mm, furo da vareta, bucha) numa
+# impressao propria, para regular velocidade e resfriamento so para elas
+MESA_FUNC_PEQUENAS = {"PLA/bead.stl": 4, "PETG/presilha_vareta_tras_base1.6.stl": 2,
+                      "PETG/presilha_vareta_frente_asa.stl": 2, "PETG/bloco_transversal_asa.stl": 2,
+                      "PETG/patim_v1_direito_barra1.6.stl": 1, "PETG/patim_v1_esquerdo_barra1.6.stl": 1,
+                      "PLA/battery_holder.stl": 1}
+MESA_FUNC_GRANDES = {"PETG/gearbox.stl": 1, "PETG/gearbox_esquerdo_espelhado.stl": 1, "PETG/impeller_base_1.stl": 1,
+                     "PETG/impeller_base_2.stl": 1, "PETG/impeller_fan.stl": 1, "PETG/placa_succao_rebaixo.stl": 1,
+                     "PLA/wheel_rim.stl": 2}
 MESAS_FDM = {
     "mesa_1_teste_PETG": MESA_TESTE,
     "mesa_2_resto_PETG": MESA_RESTO,
     "mesa_unica_PETG": {k: MESA_TESTE.get(k, 0) + MESA_RESTO.get(k, 0) for k in {**MESA_TESTE, **MESA_RESTO}},
-    "mesa_funcional_PETG": MESA_FUNCIONAL,
+    "mesa_funcional_1_pequenas_PLA": MESA_FUNC_PEQUENAS,
+    "mesa_funcional_2_grandes_PLA": MESA_FUNC_GRANDES,
 }
-MESAS_COM_STL = {"mesa_funcional_PETG"}   # tambem em STL (um arquivo, todas as pecas ja posicionadas)
+# tambem em STL (um arquivo, todas as pecas ja posicionadas)
+MESAS_COM_STL = {"mesa_funcional_1_pequenas_PLA", "mesa_funcional_2_grandes_PLA"}
 
 
 def peca_na_origem(rel):
@@ -686,6 +691,16 @@ def montar_mesas():
             n0 += len(v)
     escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_9_engrenagens.stl", "9 engrenagens 64T (3 versoes)")
     print("  resina_9_engrenagens.stl  9 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
+    # sem reservas: 2 de cada versao (as duas rodas usam a mesma, escolhida no teste das caixas)
+    vs, fs, n0 = [], [], 0
+    for lin, n in enumerate(VERSOES_ENGRENAGEM):
+        v, f = peca_na_origem(f"RESINA/{nome_engrenagem(n)}")
+        for col in range(2):
+            vs.append(v + [CENTRO_MESA + (col - 0.5) * 24.0, CENTRO_MESA - (lin - 1) * 24.0, 0])
+            fs.append(f + n0)
+            n0 += len(v)
+    escrever_stl(np.vstack(vs), np.vstack(fs), MESAS / "resina_6_engrenagens.stl", "6 engrenagens 64T (3 versoes x 2)")
+    print("  resina_6_engrenagens.stl  6 engrenagens: fileira de cima versao 1, do meio 2, de baixo 3")
 
 
 def main():

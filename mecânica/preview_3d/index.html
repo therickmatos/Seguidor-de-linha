@@ -6,8 +6,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: a pista ocupa a tela; titulo no canto, painel de pecas a direita, comandos embaixo.
-   Visual unico e escuro, de proposito: a manta da pista do TRIF e preta com linha branca. */
+/* Layout: o robo ocupa a tela; titulo no canto, painel de pecas a direita, comandos embaixo.
+   Visual unico e escuro, de proposito: fundo preto como a manta da pista do TRIF. */
 :root {
   --manta: #0b0c0e;        /* fundo = manta emborrachada */
   --painel: #15171bea;     /* vidro escuro dos paineis */
@@ -171,7 +171,7 @@ details.comp .item { padding-left: 34px; font-size: 12.5px; }
   </section>
   <section class="caixa" style="display:flex;flex-direction:column;min-height:0;flex:1">
     <div class="lista" id="lista"></div>
-    <div class="rodape">Placas texturizadas a partir do Gerber do v12 e da barra V1. Componentes: biblioteca 3D do KiCad. Peças do EVA-RT sob AGPL-3.0. Cores das peças impressas ilustrativas; a posição da bateria ainda está em aberto no projeto.</div>
+    <div class="rodape">Placas texturizadas a partir do Gerber do v12 e da barra V1. Componentes: biblioteca 3D do KiCad. Peças do EVA-RT sob AGPL-3.0. Cores das peças impressas ilustrativas. A bateria não aparece: a posição dela ainda está em aberto no projeto.</div>
   </section>
 </aside>
 
@@ -239,36 +239,11 @@ sol.shadow.normalBias = 0.0006;
 cena.add(sol);
 cena.add(new THREE.HemisphereLight(0xdfe6ff, 0x101010, 0.35));
 
-// Pista do TRIF: manta preta, linha branca de 19 mm, marca de partida a direita e de curva a esquerda.
-function texturaPista() {
-  const N = 2048, L = 1.2, px = N / L;               // 1,2 m de lado
-  const c = document.createElement("canvas"); c.width = c.height = N;
-  const g = c.getContext("2d");
-  g.fillStyle = "#0e0f10"; g.fillRect(0, 0, N, N);
-  const img = g.getImageData(0, 0, N, N), d = img.data;
-  for (let i = 0; i < d.length; i += 4) { const r = (Math.random() - 0.5) * 9; d[i] += r; d[i + 1] += r; d[i + 2] += r; }
-  g.putImageData(img, 0, 0);
-  const X = (x) => N / 2 + x * px, Y = (y) => N / 2 - y * px;    // x = direita, y = frente (m)
-  g.strokeStyle = "#f3f3f1"; g.lineWidth = 0.019 * px; g.lineCap = "butt";
-  g.beginPath(); g.moveTo(X(0), Y(-0.6)); g.lineTo(X(0), Y(0.17));
-  g.bezierCurveTo(X(0), Y(0.32), X(-0.02), Y(0.40), X(-0.16), Y(0.52));
-  g.lineTo(X(-0.30), Y(0.64)); g.stroke();
-  g.fillStyle = "#f3f3f1";
-  g.fillRect(X(0.0725), Y(-0.20), 0.019 * px, 0.04 * px);      // marca de partida/chegada (direita)
-  g.fillRect(X(-0.0915), Y(0.12), 0.019 * px, 0.04 * px);      // marca de curva (esquerda)
-  const t = new THREE.CanvasTexture(c);
-  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  return t;
-}
-const pista = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 1.2),
-  new THREE.MeshStandardMaterial({ map: texturaPista(), roughness: 0.92, metalness: 0 }));
-pista.rotation.x = -Math.PI / 2;
-pista.position.y = -0.0040;              // 4,0 mm abaixo da face de cima da base (conferir_montagem.py)
-pista.receiveShadow = true;
-cena.add(pista);
+// Chao preto, liso, na altura da pista: 4,0 mm abaixo da face de cima da base (conferir_montagem.py)
 const chao = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshStandardMaterial({ color: 0x0e0f10, roughness: 0.95 }));
 chao.rotation.x = -Math.PI / 2;
-chao.position.y = -0.0041;               // manta alem da textura: some na neblina
+chao.position.y = -0.0040;
+chao.receiveShadow = true;
 cena.add(chao);
 
 // Vistas (alvo e posicao da camera, em metros; frente do robo = -z)
@@ -352,7 +327,7 @@ function mostrar(nomes) {
 const GRUPOS = [
   ["Placas", (i) => i.material === "PCB"],
   ["Impressas em 3D", (i) => ["PETG", "PLA", "Resina"].includes(i.material)],
-  ["Tração, ventoinha e bateria", (i) => i.material === "Comprado" && /^(tracao|ventoinha|bateria)$/.test(i.grupo)],
+  ["Tração e ventoinha", (i) => i.material === "Comprado" && /^(tracao|ventoinha|bateria)$/.test(i.grupo)],
   ["Varetas e ferragens", (i) => i.material === "Comprado" && /^(vareta|ferragem)$/.test(i.grupo)],
 ];
 function montarLista() {
@@ -492,7 +467,7 @@ renderer.setAnimationLoop(() => {
     if (voo.t >= 1) voo = null;
   }
   controles.update();
-  pista.visible = chao.visible = camera.position.y > pista.position.y + 0.002;
+  chao.visible = camera.position.y > chao.position.y + 0.002;
   renderer.render(cena, camera);
 });
 </script>

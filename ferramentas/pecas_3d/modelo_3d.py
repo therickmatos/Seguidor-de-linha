@@ -51,6 +51,7 @@ GERBER_BASE = RAIZ / "hardware/placa_base/gerber/Gerber_Final_Saturn_v12_2026-11
 URL_KICAD = "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/{lib}.3dshapes/{nome}.step"
 PX = 20                    # resolucao da textura das placas (px/mm)
 DIST_FUROS = 63.14         # barra a 63,14 mm entre furos (L = 107,1), como no conferir_montagem
+MOSTRAR_BATERIA = False    # a posicao da bateria esta em aberto: fora do preview (fica so o XT30 da placa)
 
 # ----------------------------------------------------------------------------
 # Materiais (PBR). As cores das pecas impressas sao ilustrativas.
@@ -556,7 +557,7 @@ PECAS = [  # (prefixo do no, nome, material, explodida [dx, dy, dz] em mm; dx ap
     ("tracao/aro", "Aro da roda (wheel_rim, EVA-RT)", "PLA", (44, 0, 0)),
     ("tracao/pneu", "Pneu StickyMAX Ø22 × 15 (RoboCore)", "Comprado", (50, 0, 0)),
     ("bateria/bateria", "Bateria LiPo 2S 350 mAh (GNB), posição ilustrativa", "Comprado", (0, -14, 44)),
-    ("bateria/", "XT30 e cabo da bateria", "Comprado", (0, -14, 44)),
+    ("bateria/", "XT30 fêmea (cabo da bateria)", "Comprado", (0, 0, 20)),
     ("fios/", "Fio do motor", "Comprado", (0, 0, 0)),
     ("baixo/J3", "J3 · gravação (barra de pinos deitada, 5 vias)", "Comprado", (0, 0, -10)),
 ]
@@ -669,8 +670,9 @@ def montar_cena():
     zb = z_vt + 2.5
     yb0 = -22.7
     yb_c = yb0 - 10.25
-    cena.peca("bateria/bateria", [(tm(bateria_arredondada(45.0, 20.5, 12.0).translate((0, yb_c, zb))), MAT["bateria"]),
-                                  (tm(caixa(6.0, 20.7, 12.2, (14.0, yb_c, zb + 6.0))), MAT["bateria_faixa"])])
+    if MOSTRAR_BATERIA:
+        cena.peca("bateria/bateria", [(tm(bateria_arredondada(45.0, 20.5, 12.0).translate((0, yb_c, zb))), MAT["bateria"]),
+                                      (tm(caixa(6.0, 20.7, 12.2, (14.0, yb_c, zb + 6.0))), MAT["bateria_faixa"])])
 
     # componentes das placas
     print("Componentes (modelos do KiCad + desenhados aqui)...")
@@ -724,14 +726,14 @@ def montar_cena():
     corpo = caixa(5 * 2.54, 2.54, 2.54, (j3[0], cm.J3_BORDA - 1.27, zp))
     cena.peca("baixo/J3", [(tm(corpo), MAT["preto"]), (tm(pinos), MAT["ouro"])])
 
-    # XT30 femea da bateria encaixada na J1 e os fios
+    # XT30 femea da bateria encaixada na J1 e os fios ate a bateria (so com a bateria)
     j1 = comps_base["J1"]
-    fem = xt30_femea()
-    t = np.eye(4)
-    t[:2, :2] = _rot_z(j1[3])
-    t[:2, 3] = j1[:2]
-    cena.peca("bateria/xt30_femea", fem, t)
-    for k, (dy, mat) in enumerate(((-2.5, "fio_vermelho"), (2.5, "fio_preto"))):
+    if MOSTRAR_BATERIA:
+        t = np.eye(4)
+        t[:2, :2] = _rot_z(j1[3])
+        t[:2, 3] = j1[:2]
+        cena.peca("bateria/xt30_femea", xt30_femea(), t)
+    for k, (dy, mat) in enumerate(((-2.5, "fio_vermelho"), (2.5, "fio_preto")) if MOSTRAR_BATERIA else ()):
         p0 = np.array([j1[0] + dy * 0, j1[1] + dy, 17.3])
         pts = [p0, p0 + (0, 0, 3), (-24.0, yb_c + 3 * np.sign(dy), zb + 6 + 0.5 * dy), (-22.0, yb_c + 2.2 * np.sign(dy), zb + 6)]
         cena.peca(f"bateria/fio_{k}", [(tubo(pts, 0.55), MAT[mat])])

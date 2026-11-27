@@ -670,17 +670,6 @@
 ],
 "grupo": "impresso"
 },
-"bateria/bateria": {
-"nome": "Bateria LiPo 2S 350 mAh (GNB), posição ilustrativa",
-"info": "",
-"material": "Comprado",
-"explode": [
-0,
--14,
-44
-],
-"grupo": "bateria"
-},
 "cima/C1": {
 "nome": "C1 · 220uF",
 "info": "CAP-SMD_BD6.3-L6.6-W6.6-FD",
@@ -1791,39 +1780,6 @@
 -10
 ],
 "grupo": "baixo"
-},
-"bateria/xt30_femea": {
-"nome": "XT30 e cabo da bateria",
-"info": "",
-"material": "Comprado",
-"explode": [
-0,
--14,
-44
-],
-"grupo": "bateria"
-},
-"bateria/fio_0": {
-"nome": "XT30 e cabo da bateria",
-"info": "",
-"material": "Comprado",
-"explode": [
-0,
--14,
-44
-],
-"grupo": "bateria"
-},
-"bateria/fio_1": {
-"nome": "XT30 e cabo da bateria",
-"info": "",
-"material": "Comprado",
-"explode": [
-0,
--14,
-44
-],
-"grupo": "bateria"
 },
 "fios/M2_0": {
 "nome": "Fio do motor",

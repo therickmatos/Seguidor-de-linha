@@ -11,12 +11,12 @@ Modelo 3D do robô montado, para mostrar o projeto (professor, divulgação). **
 ## O que entra
 - Base v12 e barra V1 com a textura tirada do Gerber (cobre, máscara verde, serigrafia, furos). A cor da máscara é a padrão da JLC (o pedido não especifica outra).
 - Peças impressas e ferragens nas posições do `conferir_montagem.py` (barra a 63,14 mm entre furos, L = 107,1 mm), pista 4,0 mm abaixo da face de cima da base.
-- Caixas de redução, motores 1020, pinhões 11T, rodas (aro + engrenagem 64T versão 2 + pneu Ø22 × 15), carcaça, suporte e hélice da ventoinha.
+- Caixas de redução, motores 1020, pinhões 11T, rodas (aro + engrenagem 64T versão 2 + pneu Ø22 × 15), carcaça, suporte e hélice da ventoinha, vareta traseira com os apoios da bateria e o XT30 macho da placa (J1).
 - Componentes das duas placas com os modelos 3D da biblioteca oficial do KiCad (STEP). QRE1113GR, botões e XT30 não existem lá e foram desenhados no script. Cada componente é encaixado nos pads pelo próprio script (giro e deslocamento que põem os terminais nas aberturas da máscara).
-- Fios dos motores e da bateria, desenhados à mão.
+- Fios dos motores, desenhados à mão. O fundo é preto liso (sem a linha da pista), na altura da pista.
 
 ## Ilustrativo (não decidido no projeto)
-- **Posição da bateria:** apoiada nos dois `battery_holder` sobre a vareta traseira, atrás da carcaça. Ainda está em aberto (`mecânica/README.md`).
+- **Bateria:** fica fora do preview, porque a posição dela ainda está em aberto (`mecânica/README.md`). Para mostrar, `MOSTRAR_BATERIA = True` em `modelo_3d.py` (apoiada nos dois `battery_holder` sobre a vareta traseira, atrás da carcaça, com o XT30 fêmea encaixado na J1 e os fios até ela).
 - Cores das peças impressas, cabo misto da J2 à barra (não modelado) e módulo Bluetooth (não modelado).
 
 ## Refazer

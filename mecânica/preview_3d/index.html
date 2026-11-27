@@ -295,7 +295,7 @@ function aplicarAparencia() {
     });
   }
   const leg = $("legenda");
-  leg.hidden = !porMaterial;
+  leg.hidden = !porMaterial || document.body.classList.contains("limpo");
   if (porMaterial) {
     const cont = {};
     for (const no of nos) cont[no.userData.info.material] = (cont[no.userData.info.material] || 0) + 1;
@@ -443,7 +443,7 @@ $("btLista").addEventListener("click", (e) => { const a = $("lateral").classList
 
 // Para gerar as figuras (Playwright)
 window.vista = (n) => irPara(n, true);
-window._dbg = { camera, controles, nos, THREE };
+window._dbg = { camera, controles, nos, THREE, cena };
 window.setExplode = (v) => { explode = v; $("explodir").value = v; aplicarExplode(); };
 window.limpo = () => { document.body.classList.add("limpo"); document.querySelectorAll(".topo,.lateral,.barra-cmd,.legenda,.dica").forEach((e) => (e.hidden = true)); redimensionar(); };
 window.setMaterial = (v) => { porMaterial = v; $("btMaterial").setAttribute("aria-pressed", String(v)); aplicarAparencia(); };

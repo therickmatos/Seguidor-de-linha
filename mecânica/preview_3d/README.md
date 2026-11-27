@@ -7,6 +7,7 @@ Modelo 3D do robô montado, para mostrar o projeto (professor, divulgação). **
 | `rush_saturn_v12.glb` | modelo completo (glTF binário, em metros, +y para cima). Abre no Visualizador 3D do Windows, no Blender ou em qualquer visualizador de glTF |
 | `index.html` + `pecas.json` | visualizador interativo: girar, vistas, lista de peças, vista explodida e cores por material. Precisa de um servidor local (`python3 -m http.server` dentro desta pasta e abrir `http://localhost:8000`); aberto direto do disco, o navegador bloqueia a leitura do `.glb` |
 | `vista_*.jpg` | figuras tiradas do visualizador |
+| `rush_saturn_4_vistas.jpg` | as 4 vistas numa imagem só (perspectiva, explodida por material, cima e baixo) |
 
 ## O que entra
 - Base v12 e barra V1 com a textura tirada do Gerber (cobre, máscara verde, serigrafia, furos). A cor da máscara é a padrão da JLC (o pedido não especifica outra).

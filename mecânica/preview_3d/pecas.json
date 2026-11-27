@@ -1,0 +1,1894 @@
+{
+"pcb/base_cima": {
+"nome": "Placa base RUSH - SATURN v12",
+"info": "",
+"material": "PCB",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "pcb"
+},
+"pcb/base_baixo": {
+"nome": "Placa base RUSH - SATURN v12",
+"info": "",
+"material": "PCB",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "pcb"
+},
+"pcb/base_borda": {
+"nome": "Placa base RUSH - SATURN v12",
+"info": "",
+"material": "PCB",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "pcb"
+},
+"barra/pcb_cima": {
+"nome": "Barra de sensores V1",
+"info": "",
+"material": "PCB",
+"explode": [
+0,
+30,
+6
+],
+"grupo": "barra"
+},
+"barra/pcb_baixo": {
+"nome": "Barra de sensores V1",
+"info": "",
+"material": "PCB",
+"explode": [
+0,
+30,
+6
+],
+"grupo": "barra"
+},
+"barra/pcb_borda": {
+"nome": "Barra de sensores V1",
+"info": "",
+"material": "PCB",
+"explode": [
+0,
+30,
+6
+],
+"grupo": "barra"
+},
+"vareta/vareta_dir": {
+"nome": "Vareta longitudinal Ø3 (fibra de carbono)",
+"info": "",
+"material": "Comprado",
+"explode": [
+6,
+12,
+20
+],
+"grupo": "vareta"
+},
+"impresso/presilha_dir_0": {
+"nome": "Presilha da vareta (trás)",
+"info": "",
+"material": "PETG",
+"explode": [
+6,
+0,
+14
+],
+"grupo": "impresso"
+},
+"ferragem/cabeca_presilha_dir_0": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/porca_presilha_dir_0": {
+"nome": "Porca M2",
+"info": "",
+"material": "Comprado",
+"explode": [
+6,
+0,
+26
+],
+"grupo": "ferragem"
+},
+"impresso/presilha_dir_1": {
+"nome": "Presilha da vareta (frente, sobre a asa)",
+"info": "",
+"material": "PETG",
+"explode": [
+6,
+0,
+14
+],
+"grupo": "impresso"
+},
+"ferragem/cabeca_presilha_dir_1": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/porca_presilha_dir_1": {
+"nome": "Porca M2",
+"info": "",
+"material": "Comprado",
+"explode": [
+6,
+0,
+26
+],
+"grupo": "ferragem"
+},
+"impresso/bloco_dir": {
+"nome": "Bloco da vareta transversal",
+"info": "",
+"material": "PETG",
+"explode": [
+6,
+0,
+22
+],
+"grupo": "impresso"
+},
+"impresso/patim_dir": {
+"nome": "Patim da barra V1 (esqui)",
+"info": "",
+"material": "PETG",
+"explode": [
+14,
+30,
+6
+],
+"grupo": "impresso"
+},
+"ferragem/parafuso_patim_dir": {
+"nome": "Parafuso M2 × 8 do patim",
+"info": "",
+"material": "Comprado",
+"explode": [
+14,
+30,
+18
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_patim_dir": {
+"nome": "Cabeça do parafuso M2 do patim",
+"info": "",
+"material": "Comprado",
+"explode": [
+14,
+30,
+-6
+],
+"grupo": "ferragem"
+},
+"vareta/vareta_esq": {
+"nome": "Vareta longitudinal Ø3 (fibra de carbono)",
+"info": "",
+"material": "Comprado",
+"explode": [
+-6,
+12,
+20
+],
+"grupo": "vareta"
+},
+"impresso/presilha_esq_0": {
+"nome": "Presilha da vareta (trás)",
+"info": "",
+"material": "PETG",
+"explode": [
+-6,
+0,
+14
+],
+"grupo": "impresso"
+},
+"ferragem/cabeca_presilha_esq_0": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/porca_presilha_esq_0": {
+"nome": "Porca M2",
+"info": "",
+"material": "Comprado",
+"explode": [
+-6,
+0,
+26
+],
+"grupo": "ferragem"
+},
+"impresso/presilha_esq_1": {
+"nome": "Presilha da vareta (frente, sobre a asa)",
+"info": "",
+"material": "PETG",
+"explode": [
+-6,
+0,
+14
+],
+"grupo": "impresso"
+},
+"ferragem/cabeca_presilha_esq_1": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/porca_presilha_esq_1": {
+"nome": "Porca M2",
+"info": "",
+"material": "Comprado",
+"explode": [
+-6,
+0,
+26
+],
+"grupo": "ferragem"
+},
+"impresso/bloco_esq": {
+"nome": "Bloco da vareta transversal",
+"info": "",
+"material": "PETG",
+"explode": [
+-6,
+0,
+22
+],
+"grupo": "impresso"
+},
+"impresso/patim_esq": {
+"nome": "Patim da barra V1 (esqui)",
+"info": "",
+"material": "PETG",
+"explode": [
+-14,
+30,
+6
+],
+"grupo": "impresso"
+},
+"ferragem/parafuso_patim_esq": {
+"nome": "Parafuso M2 × 8 do patim",
+"info": "",
+"material": "Comprado",
+"explode": [
+-14,
+30,
+18
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_patim_esq": {
+"nome": "Cabeça do parafuso M2 do patim",
+"info": "",
+"material": "Comprado",
+"explode": [
+-14,
+30,
+-6
+],
+"grupo": "ferragem"
+},
+"vareta/vareta_transversal": {
+"nome": "Vareta transversal Ø3",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+30
+],
+"grupo": "vareta"
+},
+"ferragem/cabeca_caixa_0": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_caixa_1": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_caixa_2": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_caixa_3": {
+"nome": "Parafuso M2 (cabeça por baixo da base)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "ferragem"
+},
+"impresso/placa_succao": {
+"nome": "Placa de sucção com rebaixo",
+"info": "",
+"material": "PETG",
+"explode": [
+0,
+0,
+-16
+],
+"grupo": "impresso"
+},
+"ferragem/cabeca_pe_0": {
+"nome": "Parafuso M2 × 6 dos pés da carcaça",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-24
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_pe_1": {
+"nome": "Parafuso M2 × 6 dos pés da carcaça",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-24
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_pe_2": {
+"nome": "Parafuso M2 × 6 dos pés da carcaça",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-24
+],
+"grupo": "ferragem"
+},
+"ferragem/cabeca_pe_3": {
+"nome": "Parafuso M2 × 6 dos pés da carcaça",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+-24
+],
+"grupo": "ferragem"
+},
+"ventoinha/carcaca": {
+"nome": "Carcaça da ventoinha (impeller_base_1, EVA-RT)",
+"info": "",
+"material": "PETG",
+"explode": [
+0,
+0,
+46
+],
+"grupo": "ventoinha"
+},
+"ventoinha/suporte_motor": {
+"nome": "Suporte do motor da ventoinha (impeller_base_2, EVA-RT)",
+"info": "",
+"material": "PETG",
+"explode": [
+0,
+0,
+70
+],
+"grupo": "ventoinha"
+},
+"ventoinha/helice": {
+"nome": "Hélice centrífuga Ø34 (impeller_fan, EVA-RT)",
+"info": "",
+"material": "PETG",
+"explode": [
+0,
+0,
+22
+],
+"grupo": "ventoinha"
+},
+"ventoinha/motor": {
+"nome": "Motor coreless 1020 da ventoinha (M3)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+96
+],
+"grupo": "ventoinha"
+},
+"tracao/caixa_dir": {
+"nome": "Caixa de redução (gearbox, EVA-RT)",
+"info": "",
+"material": "PETG",
+"explode": [
+10,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/pinhao_dir": {
+"nome": "Pinhão 11T, módulo 0,3",
+"info": "",
+"material": "Comprado",
+"explode": [
+22,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/motor_dir": {
+"nome": "Motor coreless 1020 (tração)",
+"info": "",
+"material": "Comprado",
+"explode": [
+-6,
+0,
+26
+],
+"grupo": "tracao"
+},
+"tracao/aro_dir": {
+"nome": "Aro da roda (wheel_rim, EVA-RT)",
+"info": "",
+"material": "PLA",
+"explode": [
+44,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/engrenagem_dir": {
+"nome": "Engrenagem 64T m0,3 (resina, versão 2)",
+"info": "",
+"material": "Resina",
+"explode": [
+34,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/pneu_dir": {
+"nome": "Pneu StickyMAX Ø22 × 15 (RoboCore)",
+"info": "",
+"material": "Comprado",
+"explode": [
+50,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/buchas_dir": {
+"nome": "Buchas do eixo (bead, EVA-RT)",
+"info": "",
+"material": "PLA",
+"explode": [
+28,
+0,
+0
+],
+"grupo": "tracao"
+},
+"ferragem/eixo_roda_dir": {
+"nome": "Eixo da roda: parafuso M2 × 30 com porca",
+"info": "",
+"material": "Comprado",
+"explode": [
+56,
+0,
+0
+],
+"grupo": "ferragem"
+},
+"tracao/caixa_esq": {
+"nome": "Caixa de redução (gearbox, EVA-RT)",
+"info": "",
+"material": "PETG",
+"explode": [
+-10,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/pinhao_esq": {
+"nome": "Pinhão 11T, módulo 0,3",
+"info": "",
+"material": "Comprado",
+"explode": [
+-22,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/motor_esq": {
+"nome": "Motor coreless 1020 (tração)",
+"info": "",
+"material": "Comprado",
+"explode": [
+6,
+0,
+26
+],
+"grupo": "tracao"
+},
+"tracao/aro_esq": {
+"nome": "Aro da roda (wheel_rim, EVA-RT)",
+"info": "",
+"material": "PLA",
+"explode": [
+-44,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/engrenagem_esq": {
+"nome": "Engrenagem 64T m0,3 (resina, versão 2)",
+"info": "",
+"material": "Resina",
+"explode": [
+-34,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/pneu_esq": {
+"nome": "Pneu StickyMAX Ø22 × 15 (RoboCore)",
+"info": "",
+"material": "Comprado",
+"explode": [
+-50,
+0,
+0
+],
+"grupo": "tracao"
+},
+"tracao/buchas_esq": {
+"nome": "Buchas do eixo (bead, EVA-RT)",
+"info": "",
+"material": "PLA",
+"explode": [
+-28,
+0,
+0
+],
+"grupo": "tracao"
+},
+"ferragem/eixo_roda_esq": {
+"nome": "Eixo da roda: parafuso M2 × 30 com porca",
+"info": "",
+"material": "Comprado",
+"explode": [
+-56,
+0,
+0
+],
+"grupo": "ferragem"
+},
+"vareta/vareta_traseira": {
+"nome": "Vareta traseira Ø3 (segura o apoio da bateria)",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+-14,
+24
+],
+"grupo": "vareta"
+},
+"impresso/apoio_bateria_0": {
+"nome": "Apoio da bateria (battery_holder, EVA-RT)",
+"info": "",
+"material": "PLA",
+"explode": [
+0,
+-14,
+30
+],
+"grupo": "impresso"
+},
+"impresso/apoio_bateria_1": {
+"nome": "Apoio da bateria (battery_holder, EVA-RT)",
+"info": "",
+"material": "PLA",
+"explode": [
+0,
+-14,
+30
+],
+"grupo": "impresso"
+},
+"bateria/bateria": {
+"nome": "Bateria LiPo 2S 350 mAh (GNB), posição ilustrativa",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+-14,
+44
+],
+"grupo": "bateria"
+},
+"cima/C1": {
+"nome": "C1 · 220uF",
+"info": "CAP-SMD_BD6.3-L6.6-W6.6-FD",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C10": {
+"nome": "C10 · 22pF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C11": {
+"nome": "C11 · 100nF",
+"info": "0603 16 V X7R",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C12": {
+"nome": "C12 · 22nF",
+"info": "0603 50 V X7R",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C13": {
+"nome": "C13 · 100nF",
+"info": "0603 25 V X7R",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C14": {
+"nome": "C14 · 100nF",
+"info": "0603 16 V X7R",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C15": {
+"nome": "C15 · 22nF",
+"info": "0603 50 V X7R",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C16": {
+"nome": "C16 · 100nF",
+"info": "0603 25 V X7R",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C17": {
+"nome": "C17 · 100nF",
+"info": "0603 25 V",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C18": {
+"nome": "C18 · 100nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"baixo/C19": {
+"nome": "C19 · 10nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"cima/C2": {
+"nome": "C2 · 220uF",
+"info": "CAP-SMD_BD6.3-L6.6-W6.6-FD",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"baixo/C20": {
+"nome": "C20 · 10nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"cima/C3": {
+"nome": "C3 · 220nF",
+"info": "0603 50 V",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C4": {
+"nome": "C4 · 100nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C5": {
+"nome": "C5 · 47uF",
+"info": "C1210",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C6": {
+"nome": "C6 · 100nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C7": {
+"nome": "C7 · 100nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C8": {
+"nome": "C8 · 100nF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/C9": {
+"nome": "C9 · 22pF",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"baixo/D1": {
+"nome": "D1 · 1N5819",
+"info": "SOD-123 (B5819W) ou 1N5819 nos terminais do motor",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"cima/J1": {
+"nome": "J1 · XT30 (bateria 2S)",
+"info": "XT30PW-M de placa ou rabicho XT30",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/J2": {
+"nome": "J2 · BARRA (1x8, 2,54 mm)",
+"info": "barra de pinos 1x8 2,54 mm",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/J4": {
+"nome": "J4 · BLUETOOTH (femea 1x6, ordem HC-05)",
+"info": "barra femea 1x6 2,54 mm",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/LED1": {
+"nome": "LED1 · verde",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/LED2": {
+"nome": "LED2 · LED A",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/LED3": {
+"nome": "LED3 · LED B",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/LED4": {
+"nome": "LED4 · LED C",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/LED5": {
+"nome": "LED5 · TX",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/Q1": {
+"nome": "Q1 · AO3400A",
+"info": "SOT-23 (1 = G, 2 = S, 3 = D)",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R1": {
+"nome": "R1 · 1k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R10": {
+"nome": "R10 · 10k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R11": {
+"nome": "R11 · 15k 1%",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R12": {
+"nome": "R12 · 10k 1%",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R13": {
+"nome": "R13 · 10k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R14": {
+"nome": "R14 · 910 1%",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R15": {
+"nome": "R15 · 910 1%",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R16": {
+"nome": "R16 · 200",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R17": {
+"nome": "R17 · 10k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R18": {
+"nome": "R18 · 1k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R19": {
+"nome": "R19 · 1k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/R2": {
+"nome": "R2 · 20k 1%",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"baixo/R20": {
+"nome": "R20 · 1k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R21": {
+"nome": "R21 · 2k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R22": {
+"nome": "R22 · 4.7k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R23": {
+"nome": "R23 · 220",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R24": {
+"nome": "R24 · 47k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R25": {
+"nome": "R25 · 220",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R26": {
+"nome": "R26 · 47k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"cima/R3": {
+"nome": "R3 · 10k 1%",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"baixo/R4": {
+"nome": "R4 · 220",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R5": {
+"nome": "R5 · 47k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R6": {
+"nome": "R6 · 1k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R7": {
+"nome": "R7 · 220",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R8": {
+"nome": "R8 · 47k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/R9": {
+"nome": "R9 · 1k",
+"info": "0603",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/S1": {
+"nome": "S1 · QRE1113GR",
+"info": "SMD 4 pinos",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/S2": {
+"nome": "S2 · QRE1113GR",
+"info": "SMD 4 pinos",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/S3": {
+"nome": "S3 · QRE1113GR",
+"info": "SMD 4 pinos",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"baixo/S4": {
+"nome": "S4 · QRE1113GR",
+"info": "SMD 4 pinos",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"cima/SW1": {
+"nome": "SW1 · RESET",
+"info": "KEY-SMD_L6.1-W3.7-LS8.0-2",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/SW2": {
+"nome": "SW2 · BOTÃO 1",
+"info": "KEY-SMD_L6.1-W3.7-LS8.0-2",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/SW3": {
+"nome": "SW3 · BOTÃO 2",
+"info": "KEY-SMD_L6.1-W3.7-LS8.0-2",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/U1": {
+"nome": "U1 · 78M05",
+"info": "TO-252 (DPAK)",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/U2": {
+"nome": "U2 · ATmega328P-AU",
+"info": "TQFP-32",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/U3": {
+"nome": "U3 · DRV8874PWPR",
+"info": "HTSSOP-16 (PWP), pad termico com vias",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/U4": {
+"nome": "U4 · DRV8874PWPR",
+"info": "HTSSOP-16 (PWP), pad termico com vias",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"cima/X1": {
+"nome": "X1 · 16MHz",
+"info": "CRYSTAL-SMD_L5.0-W3.2",
+"material": "Componente",
+"explode": [
+0,
+0,
+8
+],
+"grupo": "cima"
+},
+"barra/C1": {
+"nome": "C1 · Capacitor 100 nF",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R0": {
+"nome": "R0 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R1": {
+"nome": "R1 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R10": {
+"nome": "R10 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R11": {
+"nome": "R11 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R2": {
+"nome": "R2 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R20": {
+"nome": "R20 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R21": {
+"nome": "R21 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R22": {
+"nome": "R22 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R23": {
+"nome": "R23 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R24": {
+"nome": "R24 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R25": {
+"nome": "R25 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/R3": {
+"nome": "R3 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R4": {
+"nome": "R4 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R5": {
+"nome": "R5 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R6": {
+"nome": "R6 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R7": {
+"nome": "R7 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R8": {
+"nome": "R8 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/R9": {
+"nome": "R9 · Resistor",
+"info": "barra V1, 0603",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"barra/S0": {
+"nome": "S0 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S1": {
+"nome": "S1 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S10": {
+"nome": "S10 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S11": {
+"nome": "S11 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S2": {
+"nome": "S2 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S3": {
+"nome": "S3 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S4": {
+"nome": "S4 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S5": {
+"nome": "S5 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S6": {
+"nome": "S6 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S7": {
+"nome": "S7 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S8": {
+"nome": "S8 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/S9": {
+"nome": "S9 · QRE1113 (sensor de linha)",
+"info": "barra V1, QRE1113",
+"material": "Componente",
+"explode": [
+0,
+30,
+-2
+],
+"grupo": "barra"
+},
+"barra/U9": {
+"nome": "U9 · 74HC4067 (multiplexador de 16 canais)",
+"info": "barra V1, SSOP-24",
+"material": "Componente",
+"explode": [
+0,
+30,
+14
+],
+"grupo": "barra"
+},
+"baixo/J3": {
+"nome": "J3 · GRAVAÇÃO",
+"info": "5 pads SMD, passo 2,54 mm; montagem na face inferior",
+"material": "Componente",
+"explode": [
+0,
+0,
+-10
+],
+"grupo": "baixo"
+},
+"bateria/xt30_femea": {
+"nome": "XT30 e cabo da bateria",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+-14,
+44
+],
+"grupo": "bateria"
+},
+"bateria/fio_0": {
+"nome": "XT30 e cabo da bateria",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+-14,
+44
+],
+"grupo": "bateria"
+},
+"bateria/fio_1": {
+"nome": "XT30 e cabo da bateria",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+-14,
+44
+],
+"grupo": "bateria"
+},
+"fios/M2_0": {
+"nome": "Fio do motor",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "fios"
+},
+"fios/M2_1": {
+"nome": "Fio do motor",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "fios"
+},
+"fios/M1_0": {
+"nome": "Fio do motor",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "fios"
+},
+"fios/M1_1": {
+"nome": "Fio do motor",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "fios"
+},
+"fios/M3_0": {
+"nome": "Fio do motor",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "fios"
+},
+"fios/M3_1": {
+"nome": "Fio do motor",
+"info": "",
+"material": "Comprado",
+"explode": [
+0,
+0,
+0
+],
+"grupo": "fios"
+}
+}

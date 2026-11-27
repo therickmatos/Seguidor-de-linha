@@ -24,6 +24,8 @@ Dependências: `pip install -r ferramentas/pecas_3d/requisitos.txt`.
   - Entram a base (lida do `.epro`), a V1 (lida do Gerber), varetas, presilhas, blocos, carcaça, patins, parafusos, porcas, placa de sucção, a J3 deitada e os componentes da face de baixo.
   - Lista as interferências, as folgas e a altura de cada peça até a pista.
 
+- `modelo_3d.py` — modelo 3D completo para apresentação (`mecânica/preview_3d/`): base e barra com a textura do Gerber, peças impressas, caixas, motores, rodas, ventoinha, bateria e os componentes com os modelos 3D do KiCad (baixados na primeira vez para `modelos_kicad/`, fora do git). Grava o `.glb` e o `pecas.json` do visualizador.
+
 Rodar na raiz do repositório:
 ```bash
 python3 ferramentas/pecas_3d/gerar_pecas.py

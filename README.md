@@ -15,6 +15,7 @@ Baseado no [EVA-RT](https://github.com/EXOTIC-TEAM-MX/EVA-RT) (© EXOTIC TEAM MX
 | ver a placa encomendada (Gerber, `.epro`, o que foi pedido à JLC) | [`hardware/placa_base/`](hardware/placa_base/README.md) |
 | comprar e soldar os componentes | [`hardware/placa_base/BOM_v12.csv`](hardware/placa_base/BOM_v12.csv) |
 | imprimir as peças: um arquivo por impressão, com as peças já posicionadas | [`mecânica/mesas/`](mecânica/mesas/) e [`mecânica/README.md`, "Primeira impressão"](mecânica/README.md#primeira-impressão-ventoinha-e-motores) |
+| ver o robô montado em 3D (apresentação) | [`mecânica/preview_3d/`](mecânica/preview_3d/README.md) |
 | ver ou reimprimir uma peça avulsa (STL separados por material: PETG, PLA e resina) | [`mecânica/stl/`](mecânica/stl/) e [`mecânica/README.md`](mecânica/README.md#o-que-imprimir) |
 | imprimir e testar a ventoinha e as caixas de redução antes da placa | [`mecânica/README.md`, "Primeira impressão"](mecânica/README.md#primeira-impressão-ventoinha-e-motores) |
 | comprar parafusos, varetas e rolamentos | [`mecânica/README.md`, "Ferragens"](mecânica/README.md#ferragens) |

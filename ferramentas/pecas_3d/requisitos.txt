@@ -4,3 +4,9 @@ trimesh
 shapely
 # so para conferir_montagem.py:
 matplotlib
+# so para modelo_3d.py (preview 3D: textura do Gerber e modelos STEP do KiCad):
+gerbonara
+cairosvg
+cascadio
+scipy
+networkx

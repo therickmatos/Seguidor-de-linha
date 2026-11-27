@@ -80,7 +80,7 @@ Branch principal: `main`. Os branches antigos e o que cada um tem estão listado
 |---|---|
 | `hardware/placa_base/` | placa encomendada (v12), Gerber final, BOM, `historico/` com v4 a v10 |
 | `hardware/barra_v1/` | Gerber da barra de sensores V1 (1,6 mm) |
-| `mecânica/` | mesas prontas para imprimir (`mesas/`), STL avulsos por material (`stl/PETG/`, `stl/PLA/`, `stl/RESINA/`), guia de montagem, análise do suporte da barra e figuras da conferência 3D |
+| `mecânica/` | preview 3D do robô montado (`preview_3d/`, gerado por `ferramentas/pecas_3d/modelo_3d.py`), mesas prontas para imprimir (`mesas/`), STL avulsos por material (`stl/PETG/`, `stl/PLA/`, `stl/RESINA/`), guia de montagem, análise do suporte da barra e figuras da conferência 3D |
 | `estudo_de_caso/` | simulações das marcas do TRIF (`06_estudo_consolidado/`, `07_firmware_e_geometria/`) e chassi asa de gaivota (`08_chassi_asa_de_gaivota/`: `PINOS.md`, lista de capacitores e resistores, scripts de cada versão em `codigo/v4_epro/`, entradas do Erick em `codigo/v4_epro/entradas/`) |
 | `firmware/` | `seguidor/` (firmware do robô), `testes/` (simulador do controle com as pistas TRIF 2025/2024), `teste_barra/` (teste de bancada da barra no ESP32-C3) |
 | `ferramentas/` | `pecas_3d/` (STL e conferência 3D) e `bom_epro.py` |

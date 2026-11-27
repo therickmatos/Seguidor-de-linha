@@ -20,3 +20,5 @@ Thumbs.db
 desktop.ini
 # simulador do firmware compilado
 firmware/testes/sim
+# modelos 3D do KiCad baixados pelo modelo_3d.py
+ferramentas/pecas_3d/modelos_kicad/

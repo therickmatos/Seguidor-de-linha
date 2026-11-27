@@ -1,0 +1,498 @@
+<meta charset="utf-8">
+<title>RUSH - SATURN em 3D</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later. Baseado no EVA-RT (c) EXOTIC TEAM MX, AGPL-3.0. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a pista ocupa a tela; titulo no canto, painel de pecas a direita, comandos embaixo.
+   Visual unico e escuro, de proposito: a manta da pista do TRIF e preta com linha branca. */
+:root {
+  --manta: #0b0c0e;        /* fundo = manta emborrachada */
+  --painel: #15171bea;     /* vidro escuro dos paineis */
+  --borda: #2a2e35;
+  --texto: #eceef1;
+  --apagado: #8d939d;
+  --linha: #f6f7f8;        /* a linha branca de 19 mm */
+  --ambar: #f2a43a;        /* resina da engrenagem: destaque */
+  --petg: #ff7a2f;
+  --pla: #4fb3ff;
+  --resina: #c47dff;
+  --comprado: #6c727b;
+  --f-titulo: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --f-texto: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-dado: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--manta); color: var(--texto); font-family: var(--f-texto); font-size: 14px;
+  overflow: hidden; -webkit-font-smoothing: antialiased;
+}
+#cena { position: fixed; inset: 0; display: block; width: 100%; height: 100%; touch-action: none; outline: none; }
+
+.topo {
+  position: fixed; top: calc(env(safe-area-inset-top, 0px) + 18px);
+  left: max(18px, env(safe-area-inset-left, 0px)); pointer-events: none; max-width: min(520px, calc(100% - 36px));
+}
+.olho {
+  font-family: var(--f-dado); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--apagado);
+  display: flex; align-items: center; gap: 10px;
+}
+.olho::before { content: ""; width: 22px; height: 6px; background: var(--linha); border-radius: 1px; }
+h1 {
+  font-family: var(--f-titulo); font-weight: 700; font-size: clamp(30px, 5vw, 52px); line-height: .95;
+  letter-spacing: .02em; margin: 8px 0 6px; text-wrap: balance;
+}
+h1 span { color: var(--ambar); }
+.sub { color: var(--apagado); font-size: 13.5px; line-height: 1.5; max-width: 46ch; margin: 0; }
+
+.fichas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.ficha {
+  font-family: var(--f-dado); font-size: 11.5px; padding: 4px 8px; border: 1px solid var(--borda); border-radius: 4px;
+  background: #0b0c0ecc; color: var(--texto); font-variant-numeric: tabular-nums;
+}
+.ficha b { color: var(--apagado); font-weight: 400; margin-right: 6px; }
+
+.lateral {
+  position: fixed; top: calc(env(safe-area-inset-top, 0px) + 18px); right: max(18px, env(safe-area-inset-right, 0px));
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 86px); width: 300px; display: flex; flex-direction: column; gap: 10px;
+}
+.caixa {
+  background: var(--painel); border: 1px solid var(--borda); border-radius: 8px; backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.lista { overflow: auto; min-height: 0; flex: 1; padding: 6px 0; }
+.lista h2 {
+  font-family: var(--f-dado); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--apagado);
+  font-weight: 500; margin: 12px 14px 4px; display: flex; justify-content: space-between;
+}
+.item {
+  display: grid; grid-template-columns: 10px 1fr auto; gap: 10px; align-items: center; width: 100%;
+  padding: 6px 14px; background: none; border: 0; color: var(--texto); text-align: left; font: inherit;
+  font-size: 13px; cursor: pointer; line-height: 1.3;
+}
+.item:hover { background: #ffffff0d; }
+.item:focus-visible { outline: 2px solid var(--ambar); outline-offset: -2px; }
+.item[aria-pressed="true"] { background: #f2a43a1f; }
+.item .pt { width: 8px; height: 8px; border-radius: 2px; background: var(--comprado); }
+.item .n { font-family: var(--f-dado); font-size: 11.5px; color: var(--apagado); font-variant-numeric: tabular-nums; }
+details.comp summary {
+  list-style: none; cursor: pointer; padding: 6px 14px; font-size: 13px; color: var(--texto);
+  display: grid; grid-template-columns: 10px 1fr auto; gap: 10px; align-items: center;
+}
+details.comp summary::-webkit-details-marker { display: none; }
+details.comp summary:hover { background: #ffffff0d; }
+details.comp summary:focus-visible { outline: 2px solid var(--ambar); outline-offset: -2px; }
+details.comp[open] summary .n::after { content: " ▴"; }
+details.comp summary .n::after { content: " ▾"; }
+details.comp .item { padding-left: 34px; font-size: 12.5px; }
+
+.ficha-peca { padding: 12px 14px; min-height: 62px; }
+.ficha-peca .rot { font-family: var(--f-dado); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--apagado); }
+.ficha-peca .nome { font-family: var(--f-titulo); font-weight: 600; font-size: 17px; margin: 4px 0 6px; line-height: 1.2; }
+.ficha-peca .det { color: var(--apagado); font-size: 12.5px; line-height: 1.45; }
+.chip { display: inline-block; font-family: var(--f-dado); font-size: 11px; padding: 1px 7px; border-radius: 3px; border: 1px solid currentColor; margin-right: 6px; }
+
+.barra-cmd {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+  display: flex; align-items: center; gap: 6px; padding: 6px; flex-wrap: wrap; justify-content: center;
+  max-width: calc(100% - 36px);
+}
+.barra-cmd .sep { width: 1px; height: 26px; background: var(--borda); margin: 0 4px; }
+.bt {
+  font: 500 12.5px var(--f-texto); color: var(--texto); background: none; border: 1px solid transparent; border-radius: 5px;
+  padding: 7px 11px; cursor: pointer; white-space: nowrap;
+}
+.bt:hover { background: #ffffff12; }
+.bt:focus-visible { outline: 2px solid var(--ambar); outline-offset: 1px; }
+.bt[aria-pressed="true"] { background: var(--linha); color: var(--manta); }
+.deslizador { display: flex; align-items: center; gap: 8px; padding: 0 8px; font-size: 12.5px; color: var(--apagado); }
+.deslizador input { width: 120px; accent-color: var(--ambar); }
+
+.legenda { position: fixed; left: max(18px, env(safe-area-inset-left, 0px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 86px); padding: 10px 12px; display: grid; gap: 6px; font-size: 12.5px; }
+.legenda div { display: flex; align-items: center; gap: 8px; }
+.legenda i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.legenda .n { font-family: var(--f-dado); color: var(--apagado); margin-left: auto; padding-left: 12px; font-size: 11.5px; }
+
+.dica {
+  position: fixed; pointer-events: none; padding: 5px 9px; font-size: 12px; border-radius: 5px; background: #000000d9;
+  border: 1px solid var(--borda); color: var(--texto); transform: translate(12px, 12px); white-space: nowrap;
+}
+.carga {
+  position: fixed; inset: 0; display: grid; place-items: center; pointer-events: none; font-family: var(--f-dado);
+  color: var(--apagado); font-size: 12.5px; letter-spacing: .06em;
+}
+.carga .trilho { width: 220px; height: 3px; background: var(--borda); margin-top: 10px; border-radius: 2px; overflow: hidden; }
+.carga .trilho i { display: block; height: 100%; width: 0; background: var(--linha); transition: width .2s; }
+.rodape { font-size: 11.5px; color: var(--apagado); padding: 10px 14px; line-height: 1.45; border-top: 1px solid var(--borda); }
+.rodape a { color: var(--texto); }
+.abre-lista { display: none; }
+
+@media (max-width: 900px) {
+  .lateral { top: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + 76px); height: 46%; width: auto;
+             left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+  .lateral:not(.aberta) .lista, .lateral:not(.aberta) .rodape { display: none; }
+  .lateral:not(.aberta) { height: auto; }
+  .abre-lista { display: inline-block; }
+  .fichas { display: none; }
+  .legenda { bottom: auto; top: calc(env(safe-area-inset-top, 0px) + 150px); left: max(16px, env(safe-area-inset-left, 0px)); }
+  .barra-cmd { left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+               transform: none; max-width: none; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; }
+  .barra-cmd .sep { display: none; }
+  .deslizador input { width: 90px; }
+}
+@media (prefers-reduced-motion: reduce) { .carga .trilho i { transition: none; } }
+</style>
+
+<canvas id="cena" tabindex="0" aria-label="Modelo 3D do seguidor de linha. Arraste para girar, role para aproximar."></canvas>
+
+<header class="topo">
+  <div class="olho">Seguidor de linha · TRIF 7ª edição</div>
+  <h1>RUSH <span>·</span> SATURN</h1>
+  <p class="sub">Montagem completa da placa v12 encomendada à JLC, com as peças impressas em 3D e os componentes da BOM. Baseado no EVA-RT (EXOTIC TEAM MX).</p>
+  <div class="fichas">
+    <span class="ficha"><b>base</b>172,2 × 58,6 mm</span>
+    <span class="ficha"><b>L</b>107,1 mm</span>
+    <span class="ficha"><b>sensores</b>12 + 4 QRE1113</span>
+    <span class="ficha"><b>MCU</b>ATmega328P</span>
+    <span class="ficha"><b>ponte</b>2× DRV8874</span>
+    <span class="ficha"><b>bateria</b>2S 350 mAh</span>
+  </div>
+</header>
+
+<aside class="lateral" id="lateral">
+  <section class="caixa ficha-peca" id="fichaPeca" aria-live="polite">
+    <div class="rot">Peça selecionada</div>
+    <div class="nome" id="fpNome">Clique numa peça</div>
+    <div class="det" id="fpDet">Ou escolha na lista. Arraste para girar, role ou belisque para aproximar.</div>
+  </section>
+  <section class="caixa" style="display:flex;flex-direction:column;min-height:0;flex:1">
+    <div class="lista" id="lista"></div>
+    <div class="rodape">Placas texturizadas a partir do Gerber do v12 e da barra V1. Componentes: biblioteca 3D do KiCad. Peças do EVA-RT sob AGPL-3.0. Cores das peças impressas ilustrativas; a posição da bateria ainda está em aberto no projeto.</div>
+  </section>
+</aside>
+
+<div class="caixa legenda" id="legenda" hidden></div>
+
+<nav class="caixa barra-cmd" aria-label="Vistas e comandos">
+  <button class="bt" data-vista="perspectiva" aria-pressed="true">3/4</button>
+  <button class="bt" data-vista="cima" aria-pressed="false">Cima</button>
+  <button class="bt" data-vista="baixo" aria-pressed="false">Baixo</button>
+  <button class="bt" data-vista="lado" aria-pressed="false">Lado</button>
+  <button class="bt" data-vista="frente" aria-pressed="false">Frente</button>
+  <span class="sep"></span>
+  <label class="deslizador" for="explodir">Explodir <input id="explodir" type="range" min="0" max="1" step="0.01" value="0"></label>
+  <button class="bt" id="btMaterial" aria-pressed="false">Por material</button>
+  <button class="bt" id="btGirar" aria-pressed="false">Girar</button>
+  <button class="bt abre-lista" id="btLista" aria-pressed="false">Peças</button>
+</nav>
+
+<div class="dica" id="dica" hidden></div>
+<div class="carga" id="carga"><div><div id="cargaTxt">Carregando o modelo 3D…</div><div class="trilho"><i id="cargaBarra"></i></div></div></div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+const $ = (id) => document.getElementById(id);
+const canvas = $("cena");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.95;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const cena = new THREE.Scene();
+const FUNDO = new THREE.Color(0x0b0c0e);
+cena.background = FUNDO;
+cena.fog = new THREE.Fog(FUNDO, 0.55, 1.4);
+const pm = new THREE.PMREMGenerator(renderer);
+cena.environment = pm.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(30, 1, 0.004, 10);
+const controles = new OrbitControls(camera, canvas);
+controles.enableDamping = true;
+controles.dampingFactor = 0.08;
+controles.minDistance = 0.06;
+controles.maxDistance = 0.9;
+controles.target.set(0, 0.012, -0.03);
+
+const sol = new THREE.DirectionalLight(0xffffff, 1.6);
+sol.position.set(-0.25, 0.5, -0.15);
+sol.castShadow = true;
+sol.shadow.mapSize.set(2048, 2048);
+Object.assign(sol.shadow.camera, { left: -0.16, right: 0.16, top: 0.16, bottom: -0.16, near: 0.05, far: 1.2 });
+sol.shadow.bias = -0.0004;
+sol.shadow.normalBias = 0.0006;
+cena.add(sol);
+cena.add(new THREE.HemisphereLight(0xdfe6ff, 0x101010, 0.35));
+
+// Pista do TRIF: manta preta, linha branca de 19 mm, marca de partida a direita e de curva a esquerda.
+function texturaPista() {
+  const N = 2048, L = 1.2, px = N / L;               // 1,2 m de lado
+  const c = document.createElement("canvas"); c.width = c.height = N;
+  const g = c.getContext("2d");
+  g.fillStyle = "#0e0f10"; g.fillRect(0, 0, N, N);
+  const img = g.getImageData(0, 0, N, N), d = img.data;
+  for (let i = 0; i < d.length; i += 4) { const r = (Math.random() - 0.5) * 9; d[i] += r; d[i + 1] += r; d[i + 2] += r; }
+  g.putImageData(img, 0, 0);
+  const X = (x) => N / 2 + x * px, Y = (y) => N / 2 - y * px;    // x = direita, y = frente (m)
+  g.strokeStyle = "#f3f3f1"; g.lineWidth = 0.019 * px; g.lineCap = "butt";
+  g.beginPath(); g.moveTo(X(0), Y(-0.6)); g.lineTo(X(0), Y(0.17));
+  g.bezierCurveTo(X(0), Y(0.32), X(-0.02), Y(0.40), X(-0.16), Y(0.52));
+  g.lineTo(X(-0.30), Y(0.64)); g.stroke();
+  g.fillStyle = "#f3f3f1";
+  g.fillRect(X(0.0725), Y(-0.20), 0.019 * px, 0.04 * px);      // marca de partida/chegada (direita)
+  g.fillRect(X(-0.0915), Y(0.12), 0.019 * px, 0.04 * px);      // marca de curva (esquerda)
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return t;
+}
+const pista = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 1.2),
+  new THREE.MeshStandardMaterial({ map: texturaPista(), roughness: 0.92, metalness: 0 }));
+pista.rotation.x = -Math.PI / 2;
+pista.position.y = -0.0040;              // 4,0 mm abaixo da face de cima da base (conferir_montagem.py)
+pista.receiveShadow = true;
+cena.add(pista);
+const chao = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshStandardMaterial({ color: 0x0e0f10, roughness: 0.95 }));
+chao.rotation.x = -Math.PI / 2;
+chao.position.y = -0.0041;               // manta alem da textura: some na neblina
+cena.add(chao);
+
+// Vistas (alvo e posicao da camera, em metros; frente do robo = -z)
+const VISTAS = {
+  perspectiva: { p: [-0.19, 0.13, -0.225], a: [0, 0.008, -0.025] },
+  cima: { p: [0, 0.46, -0.0299], a: [0, 0, -0.03] },
+  baixo: { p: [0.0, -0.34, -0.0301], a: [0, 0, -0.03] },
+  lado: { p: [0.40, 0.035, -0.03], a: [0, 0.008, -0.03] },
+  frente: { p: [0.0, 0.07, -0.42], a: [0, 0.006, -0.03] },
+  tras: { p: [0.22, 0.16, 0.20], a: [0, 0.008, -0.02] },
+};
+let voo = null;
+function irPara(nome, instantaneo = false) {
+  const v = VISTAS[nome]; if (!v) return;
+  document.querySelectorAll("[data-vista]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.vista === nome)));
+  const p1 = new THREE.Vector3(...v.p), a1 = new THREE.Vector3(...v.a);
+  if (innerWidth < innerHeight) p1.sub(a1).multiplyScalar(1.55).add(a1);   // tela em pe: afasta a camera
+  if (instantaneo || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    camera.position.copy(p1); controles.target.copy(a1); controles.update(); voo = null; return;
+  }
+  voo = { p0: camera.position.clone(), a0: controles.target.clone(), p1, a1, t: 0 };
+}
+document.querySelectorAll("[data-vista]").forEach((b) => b.addEventListener("click", () => irPara(b.dataset.vista)));
+irPara("perspectiva", true);
+
+// Modelo
+const COR_MAT = { PETG: 0xff7a2f, PLA: 0x4fb3ff, Resina: 0xc47dff };
+const NOME_MAT = { PETG: "Impresso em PETG", PLA: "Impresso em PLA", Resina: "Impresso em resina", PCB: "Placa (JLC)", Componente: "Componente da BOM", Comprado: "Comprado" };
+let robo = null, pecas = {}, nos = [], selecionados = new Set(), porMaterial = false, explode = 0;
+const san = (s) => THREE.PropertyBinding.sanitizeNodeName(s);
+
+function cor(no) {
+  const m = no.userData.info.material;
+  return m === "PETG" ? "var(--petg)" : m === "PLA" ? "var(--pla)" : m === "Resina" ? "var(--resina)" : m === "PCB" ? "#2f8a45" : m === "Componente" ? "#c9ccd2" : "var(--comprado)";
+}
+
+function aplicarAparencia() {
+  for (const no of nos) {
+    const info = no.userData.info, sel = selecionados.has(no);
+    no.traverse((o) => {
+      if (!o.isMesh) return;
+      const m = o.material, orig = o.userData.orig;
+      if (porMaterial && COR_MAT[info.material]) { m.color.setHex(COR_MAT[info.material]); m.map = null; m.metalness = 0; m.roughness = 0.55; }
+      else if (porMaterial && info.material !== "PCB") { m.color.copy(orig.color).lerp(new THREE.Color(0x4a4e55), 0.75); m.map = orig.map; m.metalness = orig.metalness * 0.3; m.roughness = orig.roughness; }
+      else { m.color.copy(orig.color); m.map = orig.map; m.metalness = orig.metalness; m.roughness = orig.roughness; }
+      m.emissive.setHex(sel ? 0xf2a43a : 0x000000);
+      m.emissiveIntensity = sel ? 0.55 : 0;
+      m.needsUpdate = true;
+    });
+  }
+  const leg = $("legenda");
+  leg.hidden = !porMaterial;
+  if (porMaterial) {
+    const cont = {};
+    for (const no of nos) cont[no.userData.info.material] = (cont[no.userData.info.material] || 0) + 1;
+    leg.innerHTML = [["PETG", "var(--petg)"], ["PLA", "var(--pla)"], ["Resina", "var(--resina)"]]
+      .map(([k, c]) => `<div><i style="background:${c}"></i>${NOME_MAT[k]}<span class="n">${cont[k] || 0}</span></div>`).join("")
+      + `<div><i style="background:var(--comprado)"></i>Comprado ou componente<span class="n">${(cont.Comprado || 0) + (cont.Componente || 0)}</span></div>`;
+  }
+}
+
+function aplicarExplode() {
+  for (const no of nos) {
+    const e = no.userData.info.explode, b = no.userData.base;
+    no.position.set(b.x + e[0] * explode, b.y + e[1] * explode, b.z + e[2] * explode);
+    if (no.userData.info.grupo === "fios") no.visible = explode < 0.04;
+  }
+}
+
+function mostrar(nomes) {
+  selecionados = new Set(nos.filter((n) => nomes.includes(n.userData.chave)));
+  aplicarAparencia();
+  document.querySelectorAll(".item").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.chaves === nomes.join("|"))));
+  if (!selecionados.size) { $("fpNome").textContent = "Clique numa peça"; $("fpDet").textContent = "Ou escolha na lista. Arraste para girar, role ou belisque para aproximar."; return; }
+  const info = [...selecionados][0].userData.info;
+  $("fpNome").textContent = info.nome + (selecionados.size > 1 ? ` (×${selecionados.size})` : "");
+  const c = cor([...selecionados][0]);
+  $("fpDet").innerHTML = `<span class="chip" style="color:${c}">${NOME_MAT[info.material] || info.material}</span>${info.info ? info.info : ""}`;
+}
+
+const GRUPOS = [
+  ["Placas", (i) => i.material === "PCB"],
+  ["Impressas em 3D", (i) => ["PETG", "PLA", "Resina"].includes(i.material)],
+  ["Tração, ventoinha e bateria", (i) => i.material === "Comprado" && /^(tracao|ventoinha|bateria)$/.test(i.grupo)],
+  ["Varetas e ferragens", (i) => i.material === "Comprado" && /^(vareta|ferragem)$/.test(i.grupo)],
+];
+function montarLista() {
+  const lista = $("lista");
+  const agrupar = (filtro) => {
+    const m = new Map();
+    for (const no of nos) {
+      const i = no.userData.info; if (!filtro(i) || i.grupo === "fios") continue;
+      const k = i.nome; if (!m.has(k)) m.set(k, { info: i, chaves: [], no }); m.get(k).chaves.push(no.userData.chave);
+    }
+    return [...m.values()];
+  };
+  const botao = (g) => `<button class="item" data-chaves="${g.chaves.join("|")}" aria-pressed="false"><span class="pt" style="background:${cor(g.no)}"></span><span>${g.info.nome}</span><span class="n">${g.chaves.length > 1 ? "×" + g.chaves.length : ""}</span></button>`;
+  let html = "";
+  for (const [titulo, f] of GRUPOS) {
+    const gs = agrupar(f); if (!gs.length) continue;
+    html += `<h2><span>${titulo}</span><span>${gs.reduce((s, g) => s + g.chaves.length, 0)}</span></h2>` + gs.map(botao).join("");
+  }
+  const comps = nos.filter((n) => n.userData.info.material === "Componente");
+  const sub = [["Face de cima", "cima"], ["Face de baixo", "baixo"], ["Barra de sensores V1", "barra"]];
+  html += `<h2><span>Componentes (modelos KiCad)</span><span>${comps.length}</span></h2>`;
+  for (const [t, gr] of sub) {
+    const cs = comps.filter((n) => n.userData.info.grupo === gr);
+    html += `<details class="comp"><summary><span class="pt" style="background:#c9ccd2"></span><span>${t}</span><span class="n">${cs.length}</span></summary>`
+      + cs.map((n) => botao({ info: n.userData.info, chaves: [n.userData.chave], no: n })).join("") + `</details>`;
+  }
+  lista.innerHTML = html;
+  lista.querySelectorAll(".item").forEach((b) => b.addEventListener("click", () => {
+    const ch = b.dataset.chaves.split("|");
+    mostrar(b.getAttribute("aria-pressed") === "true" ? [] : ch);
+  }));
+}
+
+const loader = new GLTFLoader();
+async function baixar(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(url + ": HTTP " + r.status);
+  const total = +r.headers.get("content-length") || 0, leitor = r.body.getReader(), partes = [];
+  let n = 0;
+  for (;;) {
+    const { done, value } = await leitor.read(); if (done) break;
+    partes.push(value); n += value.length;
+    if (total) $("cargaBarra").style.width = (100 * n / total).toFixed(0) + "%";
+  }
+  const u = new Uint8Array(n); let k = 0;
+  for (const p of partes) { u.set(p, k); k += p.length; }
+  return u;
+}
+// No repositorio o modelo e o .glb; no artefato publicado ele vai em base64 (.txt).
+async function carregarModelo() {
+  let bin;
+  try { bin = await baixar("rush_saturn_v12.glb"); }
+  catch { const b64 = new TextDecoder().decode(await baixar("rush_saturn_v12.glb.txt")); bin = Uint8Array.from(atob(b64.trim()), (c) => c.charCodeAt(0)); }
+  return new Promise((ok, erro) => loader.parse(bin.buffer, "", ok, erro));
+}
+Promise.all([fetch("pecas.json").then((r) => r.json()), carregarModelo()]).then(([info, gltf]) => {
+  for (const [k, v] of Object.entries(info)) pecas[san(k)] = { ...v, chave: k };
+  robo = gltf.scene.getObjectByName("robo");
+  cena.add(gltf.scene);
+  for (const no of robo.children) {
+    const i = pecas[no.name]; if (!i) continue;
+    no.userData.info = i; no.userData.chave = i.chave; no.userData.base = no.position.clone();
+    nos.push(no);
+    no.traverse((o) => {
+      if (!o.isMesh) return;
+      o.castShadow = true; o.receiveShadow = true;
+      o.material = o.material.clone();
+      if (o.material.map) o.material.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      o.userData.orig = { color: o.material.color.clone(), map: o.material.map, metalness: o.material.metalness, roughness: o.material.roughness };
+      o.userData.no = no;
+    });
+  }
+  montarLista();
+  aplicarAparencia();
+  $("carga").hidden = true;
+  window.pronto = true;
+}).catch((e) => { $("cargaTxt").textContent = "Não foi possível carregar o modelo 3D: " + e.message; });
+
+// Interacao
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+function acertar(ev) {
+  if (!robo) return null;
+  const r = canvas.getBoundingClientRect();
+  ptr.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(ptr, camera);
+  const h = ray.intersectObject(robo, true).find((x) => x.object.visible && x.object.userData.no);
+  return h ? h.object.userData.no : null;
+}
+let baixou = null;
+canvas.addEventListener("pointerdown", (ev) => { baixou = [ev.clientX, ev.clientY]; });
+canvas.addEventListener("pointerup", (ev) => {
+  if (!baixou || Math.hypot(ev.clientX - baixou[0], ev.clientY - baixou[1]) > 5) return;
+  const no = acertar(ev);
+  if (!no) { mostrar([]); return; }
+  const mesmos = nos.filter((n) => n.userData.info.nome === no.userData.info.nome && n.userData.info.material !== "Componente").map((n) => n.userData.chave);
+  mostrar(no.userData.info.material === "Componente" ? [no.userData.chave] : mesmos);
+});
+let ultimo = 0;
+canvas.addEventListener("pointermove", (ev) => {
+  if (ev.pointerType !== "mouse" || performance.now() - ultimo < 40) return;
+  ultimo = performance.now();
+  const no = acertar(ev), d = $("dica");
+  if (!no || ev.buttons) { d.hidden = true; canvas.style.cursor = ""; return; }
+  d.hidden = false; d.textContent = no.userData.info.nome; d.style.left = ev.clientX + "px"; d.style.top = ev.clientY + "px";
+  canvas.style.cursor = "pointer";
+});
+canvas.addEventListener("pointerleave", () => { $("dica").hidden = true; });
+
+$("explodir").addEventListener("input", (e) => { explode = +e.target.value; aplicarExplode(); });
+$("btMaterial").addEventListener("click", (e) => { porMaterial = !porMaterial; e.currentTarget.setAttribute("aria-pressed", String(porMaterial)); aplicarAparencia(); });
+$("btGirar").addEventListener("click", (e) => { controles.autoRotate = !controles.autoRotate; controles.autoRotateSpeed = 1.2; e.currentTarget.setAttribute("aria-pressed", String(controles.autoRotate)); });
+$("btLista").addEventListener("click", (e) => { const a = $("lateral").classList.toggle("aberta"); e.currentTarget.setAttribute("aria-pressed", String(a)); });
+
+// Para gerar as figuras (Playwright)
+window.vista = (n) => irPara(n, true);
+window._dbg = { camera, controles, nos, THREE };
+window.setExplode = (v) => { explode = v; $("explodir").value = v; aplicarExplode(); };
+window.limpo = () => { document.body.classList.add("limpo"); document.querySelectorAll(".topo,.lateral,.barra-cmd,.legenda,.dica").forEach((e) => (e.hidden = true)); redimensionar(); };
+window.setMaterial = (v) => { porMaterial = v; $("btMaterial").setAttribute("aria-pressed", String(v)); aplicarAparencia(); };
+
+function redimensionar() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false); camera.aspect = w / h;
+  camera.fov = w < h ? 48 : 30;
+  // no computador, o painel da direita ocupa ~320 px: desloca a imagem para o robo ficar no espaco livre
+  const desl = w > 900 && !document.body.classList.contains("limpo") ? 160 : 0;
+  if (desl) camera.setViewOffset(w + 2 * desl, h, 2 * desl, 0, w, h); else camera.clearViewOffset();
+  camera.updateProjectionMatrix();
+}
+addEventListener("resize", redimensionar); redimensionar();
+
+renderer.setAnimationLoop(() => {
+  if (voo) {
+    voo.t = Math.min(1, voo.t + 0.045);
+    const s = voo.t * voo.t * (3 - 2 * voo.t);
+    camera.position.lerpVectors(voo.p0, voo.p1, s); controles.target.lerpVectors(voo.a0, voo.a1, s);
+    if (voo.t >= 1) voo = null;
+  }
+  controles.update();
+  pista.visible = chao.visible = camera.position.y > pista.position.y + 0.002;
+  renderer.render(cena, camera);
+});
+</script>
